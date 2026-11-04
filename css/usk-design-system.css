@@ -186,11 +186,21 @@
   --input-label:var(--color-text-body);       --input-text:var(--color-text-body);
   --input-placeholder:var(--color-text-placeholder); --input-helper:var(--color-text-secondary);
   --input-bg:var(--color-bg-input);           --input-bg-filled:#ffffff;   --input-bg-focus:#ffffff;
+<<<<<<< HEAD
   --input-bg-readonly:var(--color-gray-50);   --input-bg-disabled:var(--color-bg-disabled);
   --input-border:var(--color-border-default); --input-border-hover:var(--color-border-hover);
   --input-border-filled:var(--color-border-strong); --input-border-focus:var(--color-border-focus);
   --input-border-error:var(--color-border-error);   --input-border-success:var(--color-success);
   --input-text-disabled:var(--color-text-disabled);
+=======
+  --input-bg-readonly:var(--color-gray-50);
+  /* Disabled is one step darker than Default (Default bg = #F3F6FA), so the two never look the same */
+  --input-bg-disabled:var(--color-gray-200); --input-border-disabled:var(--color-gray-300);
+  --input-border:var(--color-border-default); --input-border-hover:var(--color-border-hover);
+  --input-border-filled:var(--color-border-strong); --input-border-focus:var(--color-border-focus);
+  --input-border-error:var(--color-border-error);   --input-border-success:var(--color-success);
+  --input-text-disabled:var(--color-gray-400);
+>>>>>>> 08076293f5f70055d93d10839c9e8d3841dd7efc
   --input-ring:var(--color-focus-ring);       --input-ring-error:rgba(210,59,59,.15);
 }
 .ui-field{display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -206,7 +216,11 @@ textarea.ui-input{height:auto;min-height:88px;padding:10px var(--input-padding-x
 .ui-input.is-error:focus{box-shadow:0 0 0 3px var(--input-ring-error)}
 .ui-input.is-success{background:#fff;border-color:var(--input-border-success)}
 .ui-input[readonly]{background:var(--input-bg-readonly);border-style:dashed;border-color:var(--input-border-filled);color:var(--input-text);cursor:default;box-shadow:none}
+<<<<<<< HEAD
 .ui-input:disabled{background:var(--input-bg-disabled);border-color:var(--input-border);color:var(--input-text-disabled);cursor:not-allowed;box-shadow:none}
+=======
+.ui-input:disabled{background:var(--input-bg-disabled);border-color:var(--input-border-disabled);color:var(--input-text-disabled);cursor:not-allowed;box-shadow:none}
+>>>>>>> 08076293f5f70055d93d10839c9e8d3841dd7efc
 .ui-input:disabled::placeholder{color:var(--input-text-disabled)}
 .ui-field.is-disabled .ui-label{color:var(--color-text-secondary)}
 .ui-help{display:flex;align-items:center;gap:4px;font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--input-helper)}
@@ -241,7 +255,11 @@ textarea.ui-input{height:auto;min-height:88px;padding:10px var(--input-padding-x
 .ui-select.is-error .ui-select-trigger{background:#fff;border-color:var(--input-border-error)}
 .ui-select.is-readonly .ui-select-trigger{background:var(--input-bg-readonly);border-style:dashed;border-color:var(--input-border-filled);cursor:default;box-shadow:none}
 .ui-select.is-readonly .ui-select-chev{display:none}
+<<<<<<< HEAD
 .ui-select.is-disabled .ui-select-trigger{background:var(--input-bg-disabled);border-color:var(--input-border);color:var(--input-text-disabled);cursor:not-allowed;box-shadow:none}
+=======
+.ui-select.is-disabled .ui-select-trigger{background:var(--input-bg-disabled);border-color:var(--input-border-disabled);color:var(--input-text-disabled);cursor:not-allowed;box-shadow:none}
+>>>>>>> 08076293f5f70055d93d10839c9e8d3841dd7efc
 .ui-select.is-disabled .ui-select-value.is-ph{color:var(--input-text-disabled)}
 .ui-select.is-disabled .ui-select-chev{color:var(--input-text-disabled)}
 .ui-select-menu{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:25;background:#fff;border:1px solid var(--color-border-default);border-radius:8px;box-shadow:0 10px 24px rgba(15,35,60,.14);padding:6px;display:none}

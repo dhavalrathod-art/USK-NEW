@@ -113,6 +113,10 @@ The full live docs are in `index.html` → sidebar **Design System** (tabs: Logo
 - Added `.ui-badge-neutral` (no dot) for non-status labels.
 - `.ui-select` now dispatches a bubbling `ui-select-change` event.
 - The `.ui-select` search box focuses with `preventScroll`, so opening a dropdown never scrolls the modal.
+<<<<<<< HEAD
+=======
+- Disabled inputs and dropdowns are one step darker than Default (Default looked the same before): `--input-bg-disabled` = gray-200 `#E4E9F0`, new `--input-border-disabled` = gray-300 `#D4DBE4`, `--input-text-disabled` = gray-400 `#9AA8B8`. Disabled buttons, the accordion and `.ui-add-row` still use `--color-bg-disabled`.
+>>>>>>> 08076293f5f70055d93d10839c9e8d3841dd7efc
 
 ## 8. Known gaps / next ideas
 - No focus trap in modals and drawers. Esc can close the modal and the mobile sidebar at the same time.

@@ -7,9 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/usk-design-system.css">
 <style>
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 08076293f5f70055d93d10839c9e8d3841dd7efc
 /* Page-level CSS (layout, sidebar, header, pages). Design System CSS lives in css/usk-design-system.css */
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:13px}
 button{font-family:inherit;cursor:pointer}
@@ -405,6 +408,11 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .fi-state-prev{background:var(--color-gray-50);padding:16px;border-bottom:1px solid var(--color-border-default)}
 .fi-state-body{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
 .fi-state-body h5{font-size:13px;color:var(--color-text-heading)}
+<<<<<<< HEAD
+=======
+.fi-white{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16);background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:10px;padding:var(--space-20)}
+@media (max-width:700px){.fi-white{grid-template-columns:1fr}}
+>>>>>>> 08076293f5f70055d93d10839c9e8d3841dd7efc
 .fi-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .fi-cmp{border:1px solid var(--color-border-default);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px}
 .fi-cmp h5{font-size:14px;color:var(--color-text-heading);margin-top:6px}
@@ -1581,6 +1589,28 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       <section class="card ds-sec">
         <div class="ds-head"><span class="ds-num">02</span><div><h4>Input States</h4><p>All 8 states of a text input. The same states apply to textarea and dropdown.</p></div></div>
         <div class="fi-states" id="fiStates"></div>
+<<<<<<< HEAD
+=======
+        <!-- Same 3 states side by side on a white background (most forms sit on a white card) -->
+        <div class="ds-sub">On a white background</div>
+        <div class="fi-white">
+          <div class="ui-field">
+            <span class="ui-label">Default (Empty)</span>
+            <input class="ui-input" placeholder="Enter student name">
+            <span class="ui-help">Can be filled</span>
+          </div>
+          <div class="ui-field is-disabled">
+            <span class="ui-label">Disabled</span>
+            <input class="ui-input" disabled placeholder="Select state first">
+            <span class="ui-help">Not available now</span>
+          </div>
+          <div class="ui-field">
+            <span class="ui-label">Read-only</span>
+            <input class="ui-input" readonly value="GJ-2023-004512">
+            <span class="ui-help">Value cannot be changed</span>
+          </div>
+        </div>
+>>>>>>> 08076293f5f70055d93d10839c9e8d3841dd7efc
       </section>
 
       <!-- 3. Read-only vs Disabled -->
@@ -3408,7 +3438,11 @@ const INPUT_STATES = [
   { name: "Read-only", attr: "readonly", val: "GJ-2023-004512", help: "Value cannot be changed",
     spec: [["Background", "--input-bg-readonly"], ["Border", "--input-border-filled"], ["Style", "Dashed border"], ["Text", "--input-text"]] },
   { name: "Disabled", attr: "disabled", ph: "Select state first", help: "Not available now", disabled: true,
+<<<<<<< HEAD
     spec: [["Background", "--input-bg-disabled"], ["Border", "--input-border"], ["Text", "--input-text-disabled"]] }
+=======
+    spec: [["Background", "--input-bg-disabled"], ["Border", "--input-border-disabled"], ["Text", "--input-text-disabled"]] }
+>>>>>>> 08076293f5f70055d93d10839c9e8d3841dd7efc
 ];
 const HELP_ICON = {
   "is-error": '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>',
