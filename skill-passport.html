@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Passport – USK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/usk-design-system.css">
+<style>
+/* =====================================================
+   SKILL PASSPORT – page layout (student view)
+   Uses only USK Design System tokens and components.
+   ===================================================== */
+:root{ --sp-max:1200px; --sp-header-h:64px; }
+body{font-family:var(--font-family-base);background:var(--color-bg-page);color:var(--color-text-body);font-size:var(--font-size-body);min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--color-text-link)}
+[hidden]{display:none !important}
+.sp-wrap{width:100%;max-width:var(--sp-max);margin:0 auto;padding:0 var(--space-page)}
+
+/* ---------- Header ---------- */
+.sp-header{position:sticky;top:0;z-index:50;background:var(--color-bg-header);border-bottom:1px solid var(--color-border-default);height:var(--sp-header-h)}
+.sp-header .sp-wrap{height:100%;display:flex;align-items:center;gap:var(--space-16)}
+.sp-brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.sp-brand img{height:var(--logo-size-sidebar);width:auto}
+.sp-brand b{display:block;font-size:var(--logo-title-size);font-weight:var(--font-weight-bold);color:var(--color-logo-title);letter-spacing:.2px;line-height:1.3;white-space:nowrap}
+.sp-brand small{display:block;font-size:var(--logo-subtitle-size);font-weight:var(--font-weight-medium);color:var(--color-logo-subtitle);line-height:1.3}
+.sp-head-actions{margin-left:auto;display:flex;align-items:center;gap:var(--space-8)}
+.sp-head-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--color-border-default);background:#fff;color:var(--color-icon-primary);display:grid;place-items:center;position:relative}
+.sp-head-btn:hover{background:var(--color-primary-50)}
+.sp-head-btn:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-dot{position:absolute;top:6px;right:7px;width:9px;height:9px;border-radius:50%;background:var(--color-accent-500);border:2px solid #fff}
+.sp-user{display:flex;align-items:center;gap:8px;height:40px;padding:0 10px 0 4px;border-radius:20px;border:1px solid var(--color-border-default);background:#fff;color:var(--color-icon-default)}
+.sp-user:hover{background:var(--color-primary-50)}
+.sp-avatar-sm{width:32px;height:32px;border-radius:50%;background:var(--color-primary-600);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:var(--font-weight-semibold)}
+.sp-user-name{font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+
+/* ---------- Main ---------- */
+.sp-main{flex:1;padding:var(--space-20) 0 var(--space-40)}
+.sp-main .sp-wrap{display:flex;flex-direction:column;gap:var(--space-16)}
+.sp-card{background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:12px;box-shadow:0 1px 3px rgba(15,58,102,.06)}
+
+/* Profile */
+.sp-profile{overflow:hidden}
+/* Banner: navy text on the left, gold diagonal stripe, campus photo on the right */
+:root{ --sp-banner-h:260px; --sp-slant:110px; --sp-stripe:14px; }
+.sp-banner{position:relative;min-height:var(--sp-banner-h);background:var(--color-primary-600);color:#fff;overflow:hidden;display:flex;align-items:center}
+.sp-banner-text{position:relative;z-index:2;width:56%;padding:var(--space-24) var(--space-32)}
+.sp-banner-img,.sp-banner-gold{position:absolute;top:0;bottom:0;right:0;width:50%;clip-path:polygon(var(--sp-slant) 0,100% 0,100% 100%,0 100%)}
+.sp-banner-img{height:100%;object-fit:cover;object-position:center 60%;z-index:1}
+.sp-banner-gold{width:calc(50% + var(--sp-stripe));background:var(--color-accent-500);z-index:0}
+.sp-overline{display:block;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);font-weight:var(--font-weight-bold);letter-spacing:.6px;text-transform:uppercase;color:#fff}
+.sp-banner h1{font-size:clamp(30px,4vw,44px);line-height:1.15;font-weight:var(--font-weight-bold);margin-top:var(--space-8)}
+.sp-banner h1 em{font-style:normal;color:var(--color-accent-500)}
+.sp-banner-sub{font-size:var(--font-size-h3);line-height:var(--line-height-h3);font-weight:var(--font-weight-bold);margin-top:var(--space-4)}
+.sp-banner p{font-size:var(--font-size-body);color:var(--color-primary-100);margin-top:var(--space-8)}
+.sp-pills{display:flex;gap:var(--space-20);margin-top:var(--space-16);font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:#fff;flex-wrap:wrap}
+.sp-pills span{display:flex;align-items:center;gap:8px}
+.sp-pills svg{color:var(--color-accent-500)}
+.sp-who{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-20) var(--space-24) 0;flex-wrap:wrap}
+.sp-who-icon{width:48px;height:48px;border-radius:50%}
+.sp-who-info{flex:1;min-width:220px;padding-bottom:4px}
+.sp-who-info h2{font-size:var(--font-size-h2);line-height:var(--line-height-h2);font-weight:var(--font-weight-bold);color:var(--color-text-heading);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sp-who-info p{font-size:var(--font-size-body);color:var(--color-text-secondary);margin-top:2px}
+.sp-who-actions{display:flex;align-items:center;gap:var(--space-20);flex-wrap:wrap;padding:10px}
+
+/* Generate Passport – the one gold button of this page (page-level exception, Design System tokens only).
+   Plain gold pill by default. Hover: two soft rings fade in and out (opacity 0 → 1 → 0) for as long as the mouse stays. */
+.sp-btn-passport{position:relative;height:44px;padding:0 var(--space-24);border-radius:999px;background:var(--color-accent-500);color:#fff;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);
+  box-shadow:none;transition:background .2s}
+.sp-btn-passport::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 5px var(--color-accent-300),0 0 0 10px var(--color-accent-100);opacity:0;pointer-events:none;transition:opacity .25s}
+.sp-btn-passport:hover,.sp-btn-passport:focus-visible{background:var(--color-accent-600);box-shadow:none}
+.sp-btn-passport:hover::before,.sp-btn-passport:focus-visible::before{animation:sp-glow 1.2s ease-in-out infinite alternate}
+@keyframes sp-glow{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.sp-btn-passport:hover::before,.sp-btn-passport:focus-visible::before{animation:none;opacity:1}}
+.sp-btn-passport:active{transform:translateY(1px);background:var(--color-accent-700)}
+.sp-btn-passport:focus-visible{outline:2px solid var(--color-primary-600);outline-offset:12px}
+.sp-social{display:flex;align-items:center;gap:6px;margin-top:var(--space-8)}
+.sp-social a,.sp-share{width:32px;height:32px;border:0;border-radius:8px;display:grid;place-items:center;color:var(--color-icon-primary);background:var(--color-icon-bg-primary)}
+.sp-social a:hover,.sp-share:hover{background:var(--color-primary-100)}
+.sp-social a:focus-visible,.sp-share:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-social-sep{width:1px;height:20px;background:var(--color-divider);margin:0 4px}
+.sp-ids{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr)) minmax(0,.8fr);gap:var(--space-16);padding:var(--space-20) var(--space-24);margin-top:var(--space-20);border-top:1px solid var(--color-divider)}
+.sp-id{display:flex;align-items:center;gap:10px;min-width:0}
+.sp-id .ui-icon-box{width:36px;height:36px}
+.sp-id > div{min-width:0}
+.sp-id > div > span{display:block;font-size:var(--font-size-label);line-height:var(--line-height-label);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.2px;color:var(--color-text-secondary)}
+.sp-id b{display:flex;align-items:center;gap:4px;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);white-space:nowrap}
+.sp-val{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.sp-mask{border:0;background:none;width:24px;height:24px;border-radius:4px;display:grid;place-items:center;color:var(--color-icon-muted);flex-shrink:0}
+.sp-mask:hover,.sp-mask:focus-visible{color:var(--color-icon-primary);background:var(--color-primary-50);outline:0}
+
+/* Summary */
+.sp-stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--space-12)}
+.sp-stat{display:flex;align-items:center;gap:12px;padding:var(--space-16);text-align:left;font-family:inherit;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.sp-stat:hover{border-color:var(--color-primary-300);box-shadow:0 4px 12px rgba(15,58,102,.08)}
+.sp-stat:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+/* Soft gold icon box – Design System icon tokens (--color-icon-bg-accent); darker gold icon for contrast */
+.sp-ib-accent{background:var(--color-icon-bg-accent);color:var(--color-accent-700)}
+.sp-stat b{display:block;font-size:var(--font-size-h3);line-height:var(--line-height-h3);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.sp-stat > span:last-child > span{display:block;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+
+/* Tabs */
+.sp-tabs{position:sticky;top:var(--sp-header-h);z-index:20;display:flex;gap:4px;padding:6px;overflow-x:auto;scrollbar-width:none}
+.sp-tabs::-webkit-scrollbar{display:none}
+.sp-tab{flex:1;min-width:max-content;display:flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 var(--space-16);border:0;border-radius:8px;background:none;font-family:inherit;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);white-space:nowrap}
+.sp-tab:hover{background:var(--color-primary-50);color:var(--color-primary-600)}
+.sp-tab:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-tab[aria-selected="true"]{background:var(--color-primary-600);color:#fff}
+.sp-tab i{font-style:normal;font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);min-width:20px;height:20px;padding:0 6px;border-radius:10px;display:grid;place-items:center;background:var(--color-primary-100);color:var(--color-primary-600)}
+.sp-tab[aria-selected="true"] i{background:rgba(255,255,255,.18);color:#fff}
+.sp-panel{display:flex;flex-direction:column;gap:var(--space-16)}
+.sp-panel[hidden]{display:none}
+
+/* Section card */
+.sp-sec{padding:var(--space-20)}
+.sp-sec-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-12);margin-bottom:var(--space-16);flex-wrap:wrap}
+.sp-sec-head .ui-form-sec-head{margin:0}
+.sp-sec-head h3{font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);display:flex;align-items:center;gap:8px}
+.sp-sec-head h3 i{font-style:normal;font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);padding:1px 8px;border-radius:10px;background:var(--color-primary-50);color:var(--color-primary-600)}
+.sp-sec-head p{font-size:var(--font-size-body-sm);color:var(--color-text-secondary);margin-top:1px}
+
+/* Skills */
+.sp-skills{display:flex;flex-wrap:wrap;gap:8px}
+.sp-skill{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 14px;border-radius:16px;background:var(--color-primary-50);border:1px solid var(--color-primary-100);color:var(--color-primary-600);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold)}
+.sp-skill.is-sm{height:26px;padding:0 10px;font-size:var(--font-size-caption)}
+.sp-skill.is-more{background:var(--color-primary-600);border-color:var(--color-primary-600);color:#fff}
+
+/* Item list (certificates, internships, dissertation, research) */
+.sp-list{display:flex;flex-direction:column;gap:var(--space-12)}
+.sp-item{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:var(--space-16);align-items:start;padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:10px;transition:border-color .15s}
+.sp-item:hover{border-color:var(--color-border-strong)}
+.sp-item .ui-icon-box{width:44px;height:44px}
+.sp-item-main{min-width:0;display:flex;flex-direction:column;gap:6px}
+.sp-item-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sp-item-title h4{font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sp-item-sub{font-size:var(--font-size-body);color:var(--color-text-secondary)}
+.sp-meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.sp-meta span{display:inline-flex;align-items:center;gap:6px}
+.sp-meta b{font-weight:var(--font-weight-semibold);color:var(--color-text-body)}
+.sp-meta svg{color:var(--color-icon-muted)}
+.sp-desc{font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sp-item-actions{display:flex;align-items:center;gap:6px}
+.sp-tag{display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:11px;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);background:var(--color-gray-100);color:var(--color-text-secondary);border:1px solid var(--color-border-default);white-space:nowrap}
+.sp-link{display:inline-flex;align-items:center;gap:6px;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-primary-600);text-decoration:none}
+.sp-link:hover{text-decoration:underline}
+
+/* Project cards */
+.sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-12)}
+.sp-proj{display:flex;flex-direction:column;gap:10px;padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:10px}
+.sp-proj-top{display:flex;align-items:flex-start;gap:12px}
+.sp-proj-top .ui-icon-box{width:40px;height:40px}
+.sp-proj-top > div{flex:1;min-width:0}
+.sp-proj-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid var(--color-divider);flex-wrap:wrap}
+
+/* Empty state – compact */
+.sp-empty{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-16);border:1.5px dashed var(--color-border-strong);border-radius:10px;background:var(--color-gray-50)}
+.sp-empty .ui-icon-box{width:44px;height:44px}
+.sp-empty div{flex:1;min-width:0}
+.sp-empty b{display:block;font-size:var(--font-size-body-lg);color:var(--color-text-heading)}
+.sp-empty span{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+
+/* Education */
+.sp-kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16)}
+.sp-kv > div{min-width:0}
+.sp-kv span{display:block;font-size:var(--font-size-label);line-height:var(--line-height-label);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.2px;color:var(--color-text-secondary)}
+.sp-kv b{display:block;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);margin-top:2px;overflow-wrap:anywhere}
+.sp-edu .ui-acc-head{flex-wrap:wrap}
+.sp-year{font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);color:var(--color-primary-600);background:var(--color-primary-50);border:1px solid var(--color-primary-100);border-radius:10px;padding:2px 8px;white-space:nowrap}
+.sp-score{font-size:var(--font-size-body-sm);font-weight:var(--font-weight-bold);color:var(--color-success-text);background:var(--color-success-bg);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.sp-acc-foot{display:flex;justify-content:flex-end;margin-top:var(--space-16);padding-top:var(--space-12);border-top:1px solid var(--color-divider)}
+/* Your Journey – horizontal timeline (vertical on small screens) */
+.sp-tagline{font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);font-style:italic;align-self:center}
+.sp-journey{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16);position:relative}
+.sp-jstep{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;position:relative;min-width:0}
+.sp-jstep::before{content:"";position:absolute;top:49px;left:calc(-50% - var(--space-16) / 2);right:50%;height:2px;background:var(--color-border-strong);z-index:0}
+.sp-jstep:first-child::before{display:none}
+.sp-jdot{width:40px;height:40px;border-radius:50%;background:var(--color-primary-600);color:#fff;display:grid;place-items:center;position:relative;z-index:1;box-shadow:0 0 0 4px #fff}
+.sp-jstep.is-current .sp-jdot{box-shadow:0 0 0 4px #fff,0 0 0 7px var(--color-primary-100)}
+.sp-jcard{width:100%;flex:1;border:1px solid var(--color-border-default);border-radius:10px;padding:var(--space-12) var(--space-16);display:flex;flex-direction:column;gap:4px;box-shadow:0 1px 3px rgba(15,58,102,.06)}
+.sp-jstep.is-current .sp-jcard{border-color:var(--color-primary-200);background:var(--color-primary-50)}
+.sp-jcard b{font-size:var(--font-size-body);line-height:var(--line-height-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sp-jcard span{font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
+.sp-journey-foot{display:flex;justify-content:center;margin-top:var(--space-20)}
+@media (max-width:767.98px){
+  .sp-journey{grid-template-columns:1fr;gap:0}
+  .sp-jstep{display:grid;grid-template-columns:40px minmax(0,1fr);grid-template-areas:"dot year" "dot card";column-gap:var(--space-12);row-gap:6px;text-align:left;align-items:start;padding-bottom:var(--space-16)}
+  .sp-jstep:last-child{padding-bottom:0}
+  .sp-jstep .sp-year{grid-area:year;justify-self:start}
+  .sp-jstep .sp-jdot{grid-area:dot}
+  .sp-jstep .sp-jcard{grid-area:card}
+  .sp-jstep::before{display:block;top:44px;bottom:0;left:19px;right:auto;width:2px;height:auto}
+  .sp-jstep:first-child::before{display:block}
+  .sp-jstep:last-child::before{display:none}
+  .sp-tagline{display:none}
+}
+/* Full Journey drawer – vertical timeline */
+.sp-tl{list-style:none;display:flex;flex-direction:column;gap:var(--space-16)}
+.sp-tl-item{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:var(--space-16);position:relative}
+.sp-tl-item::before{content:"";position:absolute;left:19px;top:44px;bottom:calc(-1 * var(--space-16) + 4px);width:2px;background:var(--color-border-strong)}
+.sp-tl-item:last-child::before{display:none}
+.sp-tl-item .sp-jdot{margin-top:6px}
+.sp-tl-card{border:1px solid var(--color-border-default);border-radius:10px;padding:var(--space-16);display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 3px rgba(15,58,102,.06)}
+.sp-tl-item.is-current .sp-tl-card{border-color:var(--color-primary-200);background:var(--color-primary-50)}
+.sp-tl-top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap}
+.sp-tl-top b{font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);flex:1;min-width:200px}
+.sp-tl-card p{font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-secondary)}
+@media (max-width:575.98px){.sp-tl-item{column-gap:var(--space-12)}.sp-tl-top b{min-width:0;flex-basis:100%}}
+.sp-sub-title{font-size:var(--font-size-label);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.3px;color:var(--color-text-secondary);margin:var(--space-20) 0 var(--space-8)}
+
+/* ---------- Modals (Design System .ui-modal) ---------- */
+.ui-modal-body{display:flex;flex-direction:column;gap:var(--space-16)}
+.sp-added{border:1px solid var(--color-border-default);border-radius:10px;padding:var(--space-16)}
+.sp-added .ui-form-sec-head{margin-bottom:var(--space-12)}
+.sp-added .ui-form-sec-head p b{color:var(--color-primary-600)}
+.sp-added .ui-chips{margin-bottom:0}
+.sp-added-empty{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.sp-combo > svg:first-child{position:absolute;left:12px;top:calc(var(--input-height) / 2 - 8px);width:16px;height:16px;color:var(--color-icon-muted);pointer-events:none}
+.sp-combo:focus-within > svg:first-child{color:var(--color-icon-primary)}
+.sp-combo .ui-input{padding-left:36px}
+.sp-combo.is-open > svg:first-child{transform:none}
+/* The list floats above the modal (position:fixed), so it is never cut off and the modal never gets a scrollbar */
+.sp-combo .ui-select-menu{position:fixed;z-index:95;right:auto;margin:0}
+.sp-combo .ui-select-list{max-height:var(--sp-menu-h,240px)}
+.sp-info{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:8px;background:var(--color-info-bg);border:1px solid var(--color-info-border);color:var(--color-info-text);font-size:var(--font-size-body);font-weight:var(--font-weight-medium)}
+.sp-info svg{color:var(--color-info)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--color-primary-600);color:#fff;padding:10px 18px;border-radius:6px;font-size:var(--font-size-body);opacity:0;transition:.25s;z-index:90;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Footer ---------- */
+.sp-footer{background:var(--color-bg-header);border-top:1px solid var(--color-border-default)}
+.sp-footer .sp-wrap{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;padding-top:var(--space-12);padding-bottom:var(--space-12)}
+.sp-footer b{font-size:var(--font-size-body-sm);font-weight:var(--font-weight-bold);color:var(--color-text-heading);letter-spacing:.3px}
+.sp-footer span{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.sp-footer nav{display:flex;gap:var(--space-16)}
+.sp-footer nav a{font-size:var(--font-size-body-sm);color:var(--color-text-secondary);text-decoration:none}
+.sp-footer nav a:hover{color:var(--color-text-link-hover);text-decoration:underline}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1199.98px){.sp-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.sp-ids{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:991.98px){.sp-grid{grid-template-columns:1fr}.sp-kv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:767.98px){
+  .sp-banner{flex-direction:column;align-items:stretch}
+  .sp-banner-text{width:100%;padding:var(--space-20)}
+  .sp-banner-img{position:static;width:100%;height:180px;clip-path:none;border-top:var(--space-4) solid var(--color-accent-500)}
+  .sp-banner-gold{display:none}
+  .sp-who{align-items:flex-start;gap:var(--space-12)}
+  .sp-who-info{min-width:0;flex-basis:calc(100% - 64px)}
+  .sp-who-actions{width:100%}
+  .sp-who-actions .ui-btn{flex:1}
+  .sp-ids{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sp-item{grid-template-columns:40px minmax(0,1fr);gap:var(--space-12)}
+  .sp-item .ui-icon-box{width:40px;height:40px}
+  .sp-item-actions{grid-column:1/-1;justify-content:flex-end;border-top:1px solid var(--color-divider);padding-top:10px}
+  .sp-tab{flex:0 0 auto}
+}
+@media (max-width:575.98px){
+  :root{--space-page:var(--space-page-mobile)}
+  .sp-brand small,.sp-user-name{display:none}
+  .sp-brand b{font-size:8.5px;white-space:normal;max-width:150px}
+  .sp-head-btn.is-optional{display:none}
+  .sp-banner-text{padding:var(--space-16)}
+  .sp-banner-sub{font-size:var(--font-size-h4);line-height:var(--line-height-h4)}
+  .sp-banner-img{height:150px}
+  .sp-pills{gap:var(--space-16)}
+  .sp-who{padding:var(--space-16) var(--space-16) 0}
+  .sp-ids{grid-template-columns:1fr;padding:var(--space-16)}
+  .sp-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sp-sec{padding:var(--space-16)}
+  .sp-kv{grid-template-columns:1fr}
+  .sp-empty{flex-wrap:wrap}
+  .sp-empty .ui-btn{width:100%}
+  .sp-footer .sp-wrap{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="sp-header">
+  <div class="sp-wrap">
+    <a class="sp-brand" href="index.html" aria-label="USK home">
+      <img src="LOGO-USK-sm.png" alt="Uccha-Shiksha Samiksha Kendra logo">
+      <span><b>UCCHA-SHIKSHA SAMIKSHA KENDRA</b><small>Higher Education Department - Gujarat</small></span>
+    </a>
+    <div class="sp-head-actions">
+      <a class="sp-head-btn is-optional" href="index.html" title="Home" aria-label="Home"><span data-icon="home:f:18"></span></a>
+      <button class="sp-head-btn is-optional" type="button" title="All services" aria-label="All services"><svg class="ui-icon ui-icon-18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></button>
+      <button class="sp-head-btn" type="button" title="Notifications" aria-label="Notifications, 3 new"><span data-icon="bell:f:18"></span><span class="sp-dot"></span></button>
+      <button class="sp-user" type="button" aria-label="Profile menu"><span class="sp-avatar-sm">SS</span><span class="sp-user-name">Savan</span><span data-icon="chevron-down:l:16"></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="sp-main">
+  <div class="sp-wrap">
+
+    <!-- 1. Profile (hero + Generate Passport + Student Details in one card) -->
+    <section class="sp-card sp-profile" aria-labelledby="spName">
+      <div class="sp-banner">
+        <div class="sp-banner-text">
+          <span class="sp-overline">Your skills. Your learning. Your future.</span>
+          <h1>Skill <em>Passport</em></h1>
+          <h2 class="sp-banner-sub">A Brighter Tomorrow Begins Here</h2>
+          <p>Recognizing your learning. Empowering your journey.</p>
+          <div class="sp-pills"><span><span data-icon="book:f:18"></span>Learn</span><span><span data-icon="star:f:18"></span>Grow</span><span><span data-icon="trophy:f:18"></span>Achieve</span></div>
+        </div>
+        <span class="sp-banner-gold" aria-hidden="true"></span>
+        <img class="sp-banner-img" src="img/USK-SKILL-PASSPORT-web.jpg" alt="" loading="eager">
+      </div>
+      <div class="sp-who">
+        <span class="ui-icon-box is-primary sp-who-icon" aria-hidden="true"><span data-icon="user:f:24"></span></span>
+        <div class="sp-who-info">
+          <h2 id="spName">Savan Satishbhai</h2>
+          <p>BE/B-Tech · Computer Engineering (IT Systems and Network Security) · L.D. College of Engineering, Ahmedabad</p>
+          <div class="sp-social" aria-label="Social media">
+            <a href="#" title="LinkedIn" aria-label="LinkedIn"><span data-icon="linkedin:f:16"></span></a>
+            <a href="#" title="GitHub" aria-label="GitHub"><span data-icon="github:f:16"></span></a>
+            <a href="#" title="Instagram" aria-label="Instagram"><span data-icon="instagram:f:16"></span></a>
+            <a href="#" title="Facebook" aria-label="Facebook"><span data-icon="facebook:f:16"></span></a>
+            <span class="sp-social-sep" aria-hidden="true"></span>
+            <button class="sp-share" type="button" title="Share profile" aria-label="Share profile"><span data-icon="share:f:16"></span></button>
+          </div>
+        </div>
+        <div class="sp-who-actions">
+          <button class="ui-btn ui-btn-outline" type="button"><span data-icon="download:l:16"></span>Download Resume</button>
+          <button class="ui-btn sp-btn-passport" type="button">Generate Passport</button>
+        </div>
+      </div>
+      <div class="sp-ids">
+        <div class="sp-id"><span class="ui-icon-box is-primary"><span data-icon="mail:f:18"></span></span><div><span>Email Address</span><b><span class="sp-val" data-full="savan.s@yopmail.com">s•••••a@yopmail.com</span><button class="sp-mask" type="button" title="Show" aria-label="Show email address"><span data-icon="eye-off:o:16"></span></button></b></div></div>
+        <div class="sp-id"><span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span><div><span>APAAR / ABC ID</span><b><span class="sp-val" data-full="540012349548">54XXXX9548</span><button class="sp-mask" type="button" title="Show" aria-label="Show APAAR ID"><span data-icon="eye-off:o:16"></span></button></b></div></div>
+        <div class="sp-id"><span class="ui-icon-box is-primary"><span data-icon="phone:f:18"></span></span><div><span>Mobile Number</span><b><span class="sp-val" data-full="1234506789">12XXXX6789</span><button class="sp-mask" type="button" title="Show" aria-label="Show mobile number"><span data-icon="eye-off:o:16"></span></button></b></div></div>
+        <div class="sp-id"><span class="ui-icon-box is-primary"><span data-icon="calendar:f:18"></span></span><div><span>Date of Birth</span><b>18/08/1997</b></div></div>
+        <div class="sp-id"><span class="ui-icon-box is-primary"><span data-icon="user:f:18"></span></span><div><span>Gender</span><b>Male</b></div></div>
+      </div>
+    </section>
+
+    <!-- 2. Summary -->
+    <div class="sp-stats" aria-label="Summary">
+      <button class="sp-card sp-stat" type="button" data-go="skills" data-to="secSkills"><span class="ui-icon-box is-error"><span data-icon="star:f:20"></span></span><span><b data-count="skills">0</b><span>Skills</span></span></button>
+      <button class="sp-card sp-stat" type="button" data-go="skills" data-to="secCerts"><span class="ui-icon-box is-success"><span data-icon="award:f:20"></span></span><span><b>2</b><span>Certificates</span></span></button>
+      <button class="sp-card sp-stat" type="button" data-go="experience" data-to="secIntern"><span class="ui-icon-box is-info"><span data-icon="briefcase:f:20"></span></span><span><b>1</b><span>Internships</span></span></button>
+      <button class="sp-card sp-stat" type="button" data-go="academic" data-to="secProjects"><span class="ui-icon-box is-primary"><span data-icon="code:f:20"></span></span><span><b>2</b><span>Projects</span></span></button>
+      <button class="sp-card sp-stat" type="button" data-go="academic" data-to="secResearch"><span class="ui-icon-box is-warning"><span data-icon="research:f:20"></span></span><span><b>2</b><span>Research Papers</span></span></button>
+      <button class="sp-card sp-stat" type="button" data-go="experience" data-to="secAchieve"><span class="ui-icon-box sp-ib-accent"><span data-icon="trophy:f:20"></span></span><span><b>0</b><span>Achievements</span></span></button>
+    </div>
+
+    <!-- 3. Tabs -->
+    <div class="sp-card sp-tabs" role="tablist" aria-label="Skill Passport sections">
+      <button class="sp-tab" role="tab" id="tab-skills" aria-controls="panel-skills" aria-selected="true"><span data-icon="star:f:16"></span>Skills &amp; Certificates <i data-count="skills-tab">2</i></button>
+      <button class="sp-tab" role="tab" id="tab-experience" aria-controls="panel-experience" aria-selected="false" tabindex="-1"><span data-icon="briefcase:f:16"></span>Experience <i>1</i></button>
+      <button class="sp-tab" role="tab" id="tab-academic" aria-controls="panel-academic" aria-selected="false" tabindex="-1"><span data-icon="book:f:16"></span>Academic Work <i>5</i></button>
+      <button class="sp-tab" role="tab" id="tab-education" aria-controls="panel-education" aria-selected="false" tabindex="-1"><span data-icon="graduation:f:16"></span>Education <i>4</i></button>
+    </div>
+
+    <!-- ===== TAB: Skills & Certificates ===== -->
+    <div class="sp-panel" role="tabpanel" id="panel-skills" aria-labelledby="tab-skills">
+
+      <section class="sp-card sp-sec" id="secSkills">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>Job Oriented Skills <i data-count="skills">0</i></h3><p>Skills that prepare you for career opportunities.</p></div>
+          <!-- Shown only when at least one skill is added -->
+          <button class="ui-btn ui-btn-outline ui-btn-sm" type="button" id="skEditBtn" data-modal-open="mdSkills" hidden><span data-icon="edit:f:14"></span>Edit Skills</button>
+        </div>
+        <div class="sp-skills" id="skList"></div>
+        <!-- Shown when no skill is added -->
+        <div class="sp-empty" id="skEmpty">
+          <span class="ui-icon-box is-primary"><span data-icon="star:f:22"></span></span>
+          <div><b>No skills added yet</b><span>Add the job oriented skills you have, so recruiters can find you.</span></div>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-modal-open="mdSkills"><span data-icon="plus:l:14"></span>Add Skill</button>
+        </div>
+      </section>
+
+      <section class="sp-card sp-sec" id="secCerts">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>Certifications &amp; Achievements <i>2</i></h3><p>Recognised learning. Real progress.</p></div>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button"><span data-icon="plus:l:14"></span>Add Certificate</button>
+        </div>
+        <div class="sp-list">
+          <article class="sp-item">
+            <span class="ui-icon-box is-success"><span data-icon="award:f:22"></span></span>
+            <div class="sp-item-main">
+              <div class="sp-item-title"><h4>College Cricket Championship – Best Batsman</h4><span class="sp-tag">Cricket</span></div>
+              <div class="sp-meta"><span>Issued by <b>Cricket</b></span><span>Issued on <b>18/02/2026</b></span><span>ID <b>123213123G</b></span><span>Level <b>College</b></span></div>
+            </div>
+            <div class="sp-item-actions"><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button"><span data-icon="view:f:14"></span>View</button><button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions"><span data-icon="more:f:18"></span></button></div>
+          </article>
+          <article class="sp-item">
+            <span class="ui-icon-box is-success"><span data-icon="award:f:22"></span></span>
+            <div class="sp-item-main">
+              <div class="sp-item-title"><h4>Certificate of Demonstration for Excellence in Classroom Management and Teaching Techniques</h4><span class="sp-tag">Painting</span></div>
+              <div class="sp-meta"><span>Issued by <b>Michigan State University College of Human Medicine</b></span><span>Issued on <b>01/09/2026</b></span><span>ID <b>46820485834</b></span><span>Level <b>State</b></span></div>
+            </div>
+            <div class="sp-item-actions"><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button"><span data-icon="view:f:14"></span>View</button><button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions"><span data-icon="more:f:18"></span></button></div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== TAB: Experience ===== -->
+    <div class="sp-panel" role="tabpanel" id="panel-experience" aria-labelledby="tab-experience" hidden>
+
+      <section class="sp-card sp-sec" id="secIntern">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>Internship <i>1</i></h3><p>Your practical experience and industry exposure.</p></div>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button"><span data-icon="plus:l:14"></span>Add Internship</button>
+        </div>
+        <div class="sp-list">
+          <article class="sp-item">
+            <span class="ui-icon-box is-info"><span data-icon="briefcase:f:22"></span></span>
+            <div class="sp-item-main">
+              <div class="sp-item-title"><h4>Amar Infotech</h4><span class="sp-tag">3 Months</span></div>
+              <div class="sp-item-sub">Architectural Assistantship</div>
+              <div class="sp-meta"><span><span data-icon="calendar:f:14"></span><b>29/09/2026 – 02/01/2027</b></span></div>
+              <div class="sp-skills"><span class="sp-skill is-sm">Hibernate</span><span class="sp-skill is-sm">Java</span><span class="sp-skill is-sm">JavaScript</span><span class="sp-skill is-sm is-more">+5 more</span></div>
+            </div>
+            <div class="sp-item-actions"><button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions"><span data-icon="more:f:18"></span></button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="sp-card sp-sec" id="secAchieve">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>Special Achievements <i>0</i></h3><p>Awards and recognitions you have earned.</p></div>
+        </div>
+        <div class="sp-empty">
+          <span class="ui-icon-box is-primary"><span data-icon="trophy:f:22"></span></span>
+          <div><b>No special achievements yet</b><span>Add awards, ranks or recognitions to make your passport stronger.</span></div>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button"><span data-icon="plus:l:14"></span>Add Special Achievement</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== TAB: Academic Work (new) ===== -->
+    <div class="sp-panel" role="tabpanel" id="panel-academic" aria-labelledby="tab-academic" hidden>
+
+      <section class="sp-card sp-sec" id="secDissertation">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>College Dissertation Details <i>1</i></h3><p>Your final-year dissertation or thesis.</p></div>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button"><span data-icon="plus:l:14"></span>Add Dissertation</button>
+        </div>
+        <div class="sp-list">
+          <article class="sp-item">
+            <span class="ui-icon-box is-primary"><span data-icon="book:f:22"></span></span>
+            <div class="sp-item-main">
+              <div class="sp-item-title"><h4>Intrusion Detection in IoT Networks using Machine Learning</h4><span class="ui-badge ui-badge-approved">Approved</span></div>
+              <div class="sp-meta"><span>Guide <b>Dr. Mehul Patel</b></span><span>Department <b>Computer Engineering</b></span><span>Submitted <b>15/04/2026</b></span><span>Grade <b>A+</b></span></div>
+              <p class="sp-desc">A lightweight machine-learning model that detects unusual traffic in IoT networks in real time, tested on the CIC-IoT dataset with 96% accuracy and low memory use on edge devices.</p>
+            </div>
+            <div class="sp-item-actions"><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button"><span data-icon="view:f:14"></span>View</button><button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions"><span data-icon="more:f:18"></span></button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="sp-card sp-sec" id="secResearch">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>Research Details <i>2</i></h3><p>Research papers, journals and conference publications.</p></div>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button"><span data-icon="plus:l:14"></span>Add Research</button>
+        </div>
+        <div class="sp-list">
+          <article class="sp-item">
+            <span class="ui-icon-box is-warning"><span data-icon="research:f:22"></span></span>
+            <div class="sp-item-main">
+              <div class="sp-item-title"><h4>A Lightweight Deep Learning Approach for IoT Intrusion Detection</h4><span class="ui-badge ui-badge-approved">Published</span></div>
+              <div class="sp-item-sub">International Journal of Computer Applications · Journal</div>
+              <div class="sp-meta"><span>Published <b>12/05/2026</b></span><span>Role <b>First Author</b></span><span>Co-authors <b>Dr. Mehul Patel, Riya Shah</b></span></div>
+              <a class="sp-link" href="#"><span data-icon="link:l:14"></span>DOI: 10.5120/ijca2026-0123</a>
+            </div>
+            <div class="sp-item-actions"><button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions"><span data-icon="more:f:18"></span></button></div>
+          </article>
+          <article class="sp-item">
+            <span class="ui-icon-box is-warning"><span data-icon="research:f:22"></span></span>
+            <div class="sp-item-main">
+              <div class="sp-item-title"><h4>Comparative Study of Container Security Tools</h4><span class="ui-badge ui-badge-review">Under Review</span></div>
+              <div class="sp-item-sub">National Conference on Emerging Technologies (NCET) · Conference</div>
+              <div class="sp-meta"><span>Submitted <b>20/08/2026</b></span><span>Role <b>Co-author</b></span></div>
+            </div>
+            <div class="sp-item-actions"><button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions"><span data-icon="more:f:18"></span></button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="sp-card sp-sec" id="secProjects">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>College Project Details <i>2</i></h3><p>Projects you built during your course.</p></div>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button"><span data-icon="plus:l:14"></span>Add Project</button>
+        </div>
+        <div class="sp-grid">
+          <article class="sp-proj">
+            <div class="sp-proj-top">
+              <span class="ui-icon-box is-primary"><span data-icon="code:f:20"></span></span>
+              <div><div class="sp-item-title"><h4>Smart Campus Attendance System</h4></div><div class="sp-meta" style="margin-top:4px"><span class="sp-tag">Major Project</span><span>Semester <b>7</b></span><span>Team <b>4</b> · Team Lead</span></div></div>
+              <button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions"><span data-icon="more:f:18"></span></button>
+            </div>
+            <p class="sp-desc">Face-recognition attendance for classrooms with a teacher dashboard and monthly reports for the institute.</p>
+            <div class="sp-skills"><span class="sp-skill is-sm">Java</span><span class="sp-skill is-sm">Spring Boot</span><span class="sp-skill is-sm">MySQL</span><span class="sp-skill is-sm">OpenCV</span></div>
+            <div class="sp-proj-foot"><span class="sp-meta"><span><span data-icon="calendar:f:14"></span>07/2026 – 11/2026</span></span><a class="sp-link" href="#"><span data-icon="github:f:14"></span>View on GitHub</a></div>
+          </article>
+          <article class="sp-proj">
+            <div class="sp-proj-top">
+              <span class="ui-icon-box is-primary"><span data-icon="code:f:20"></span></span>
+              <div><div class="sp-item-title"><h4>Library Management Portal</h4></div><div class="sp-meta" style="margin-top:4px"><span class="sp-tag">Mini Project</span><span>Semester <b>5</b></span><span>Team <b>3</b> · Developer</span></div></div>
+              <button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions"><span data-icon="more:f:18"></span></button>
+            </div>
+            <p class="sp-desc">Book issue, return and fine tracking for the college library, with email reminders for due dates.</p>
+            <div class="sp-skills"><span class="sp-skill is-sm">Hibernate</span><span class="sp-skill is-sm">SQL</span><span class="sp-skill is-sm">JavaScript</span></div>
+            <div class="sp-proj-foot"><span class="sp-meta"><span><span data-icon="calendar:f:14"></span>01/2026 – 04/2026</span></span><a class="sp-link" href="#"><span data-icon="external:l:14"></span>Live Demo</a></div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===== TAB: Education (Your Journey + Current + Previous records in one place) ===== -->
+    <div class="sp-panel" role="tabpanel" id="panel-education" aria-labelledby="tab-education" hidden>
+
+      <!-- Your Journey – timeline, same as the live Skill Passport -->
+      <section class="sp-card sp-sec" id="secJourney">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>Your Journey</h3><p>A timeline of your learning, achievements and experiences.</p></div>
+          <span class="sp-tagline">Every step you take today builds a brighter tomorrow.</span>
+        </div>
+        <ol class="sp-journey" aria-label="Your journey">
+          <li class="sp-jstep is-current">
+            <span class="sp-year">2023-2024</span>
+            <span class="sp-jdot"><span data-icon="graduation:f:18"></span></span>
+            <div class="sp-jcard"><b>BE/B-Tech – Computer Engineering (IT Systems and Network Security)</b><span>Currently pursuing at L.D. College of Engineering, Ahmedabad.</span></div>
+          </li>
+          <li class="sp-jstep">
+            <span class="sp-year">2024-2025</span>
+            <span class="sp-jdot"><span data-icon="graduation:f:18"></span></span>
+            <div class="sp-jcard"><b>HSC Completed</b><span>Completed HSC with 80.80% from GHSEB.</span></div>
+          </li>
+          <li class="sp-jstep">
+            <span class="sp-year">2025-2026</span>
+            <span class="sp-jdot"><span data-icon="graduation:f:18"></span></span>
+            <div class="sp-jcard"><b>UG Completed</b><span>Completed UG with 9.95 CGPA from Aakar Adhyapan Mandir M. Ed. College.</span></div>
+          </li>
+          <li class="sp-jstep">
+            <span class="sp-year">2025-2026</span>
+            <span class="sp-jdot"><span data-icon="graduation:f:18"></span></span>
+            <div class="sp-jcard"><b>Diploma Completed</b><span>Completed Diploma with 9.66 CGPA from Aai Ramila Arts College, Dahod.</span></div>
+          </li>
+        </ol>
+        <div class="sp-journey-foot"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-drawer-open="drJourney">View Full Journey<span data-icon="arrow-right:l:14"></span></button></div>
+      </section>
+
+      <section class="sp-card sp-sec" id="secEducation">
+        <div class="sp-sec-head">
+          <div class="ui-form-sec-head"><h3>Education <i>4</i></h3><p>Your current course and previous academic records, newest first.</p></div>
+        </div>
+
+        <div class="ui-acc is-separated sp-edu">
+          <div class="ui-acc-item is-open">
+            <button class="ui-acc-head" type="button" aria-expanded="true">
+              <span class="ui-icon-box is-primary"><span data-icon="graduation:f:18"></span></span>
+              <span class="ui-acc-title"><b>BE/B-Tech – Computer Engineering</b><small>L.D. College of Engineering, Ahmedabad</small></span>
+              <span class="sp-year">2023 – Present</span><span class="ui-badge ui-badge-review">Pursuing</span>
+              <svg class="ui-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="ui-acc-panel"><div><div class="ui-acc-content">
+              <div class="sp-kv">
+                <div><span>University</span><b>Hemchandracharya North Gujarat University, Patan</b></div>
+                <div><span>Institute</span><b>L.D. College of Engineering, Ahmedabad</b></div>
+                <div><span>Degree / Program</span><b>BE/B-Tech</b></div>
+                <div><span>Branch</span><b>Computer Engineering (IT Systems and Network Security)</b></div>
+                <div><span>Enrollment No.</span><b>N/A</b></div>
+                <div><span>Admission Year</span><b>2023-2024</b></div>
+              </div>
+              <div class="sp-sub-title">Semester Results</div>
+              <div class="sp-empty">
+                <span class="ui-icon-box is-primary"><span data-icon="document:f:22"></span></span>
+                <div><b>No semester results yet</b><span>Results will show here once they are added.</span></div>
+                <button class="ui-btn ui-btn-outline ui-btn-sm" type="button"><span data-icon="plus:l:14"></span>Add Semester Result</button>
+              </div>
+            </div></div></div>
+          </div>
+
+          <div class="ui-acc-item">
+            <button class="ui-acc-head" type="button" aria-expanded="false">
+              <span class="ui-icon-box is-primary"><span data-icon="graduation:f:18"></span></span>
+              <span class="ui-acc-title"><b>Diploma</b><small>Aai Ramila Arts College, Dahod</small></span>
+              <span class="sp-year">2025-2026</span><span class="sp-score">9.66 CGPA</span>
+              <svg class="ui-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="ui-acc-panel"><div><div class="ui-acc-content">
+              <div class="sp-kv">
+                <div><span>University</span><b>Gujarat Ayurved University, Jamnagar</b></div>
+                <div><span>Institute</span><b>Aai Ramila Arts College, Dahod</b></div>
+                <div><span>Enrollment No.</span><b>105662</b></div>
+                <div><span>CGPA</span><b>9.66</b></div>
+                <div><span>Passing Year</span><b>2025-2026</b></div>
+              </div>
+              <div class="sp-acc-foot"><button class="ui-btn ui-btn-outline ui-btn-sm" type="button"><span data-icon="edit:f:14"></span>Edit</button></div>
+            </div></div></div>
+          </div>
+
+          <div class="ui-acc-item">
+            <button class="ui-acc-head" type="button" aria-expanded="false">
+              <span class="ui-icon-box is-primary"><span data-icon="graduation:f:18"></span></span>
+              <span class="ui-acc-title"><b>UG</b><small>Aakar Adhyapan Mandir M. Ed. College</small></span>
+              <span class="sp-year">2025-2026</span><span class="sp-score">9.95 CGPA</span>
+              <svg class="ui-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="ui-acc-panel"><div><div class="ui-acc-content">
+              <div class="sp-kv">
+                <div><span>University</span><b>Adani University, Ahmedabad</b></div>
+                <div><span>Institute</span><b>Aakar Adhyapan Mandir M. Ed. College</b></div>
+                <div><span>Enrollment No.</span><b>3424324</b></div>
+                <div><span>CGPA</span><b>9.95</b></div>
+                <div><span>Passing Year</span><b>2025-2026</b></div>
+              </div>
+              <div class="sp-acc-foot"><button class="ui-btn ui-btn-outline ui-btn-sm" type="button"><span data-icon="edit:f:14"></span>Edit</button></div>
+            </div></div></div>
+          </div>
+
+          <div class="ui-acc-item">
+            <button class="ui-acc-head" type="button" aria-expanded="false">
+              <span class="ui-icon-box is-primary"><span data-icon="graduation:f:18"></span></span>
+              <span class="ui-acc-title"><b>HSC – Higher Secondary School</b><small>Saraswati International School · GHSEB</small></span>
+              <span class="sp-year">2024-2025</span><span class="sp-score">80.80%</span>
+              <svg class="ui-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="ui-acc-panel"><div><div class="ui-acc-content">
+              <div class="sp-kv">
+                <div><span>Board Name</span><b>GHSEB</b></div>
+                <div><span>Stream</span><b>N/A</b></div>
+                <div><span>School Name</span><b>Saraswati International School</b></div>
+                <div><span>Seat Number</span><b>324324</b></div>
+                <div><span>Passing Year</span><b>2024-2025</b></div>
+                <div><span>Percentage</span><b>80.80%</b></div>
+              </div>
+              <div class="sp-acc-foot"><button class="ui-btn ui-btn-outline ui-btn-sm" type="button"><span data-icon="edit:f:14"></span>Edit</button></div>
+            </div></div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="sp-footer">
+  <div class="sp-wrap">
+    <b>HE USK GUJARAT</b>
+    <nav aria-label="Footer"><a href="#">Help</a><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></nav>
+    <span>© 2026 Higher Education Department, Govt. of Gujarat. All Rights Reserved.</span>
+  </div>
+</footer>
+
+<!-- ============ MODAL: Add / Edit Job Oriented Skills ============ -->
+<div class="ui-modal-backdrop" id="mdSkills" data-static>
+  <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdSkillsTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="briefcase:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="mdSkillsTitle">Add Job Oriented Skill</h4><p>Search and add the skills that are relevant for your career.</p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="sp-added">
+        <div class="ui-form-sec-head"><h5>Your Added Skills</h5><p>Total added skills: <b id="mdSkCount">0</b> / 15</p></div>
+        <div class="ui-chips" id="mdSkChips"></div>
+        <p class="sp-added-empty" id="mdSkNone">No skills added yet. Search below to add your first skill.</p>
+      </div>
+      <div class="ui-field">
+        <label class="ui-label" for="mdSkIn">Select Skill<span class="ui-req">*</span></label>
+        <div class="ui-combo sp-combo" id="mdSkCombo">
+          <span data-icon="search:l:16"></span>
+          <input class="ui-input" id="mdSkIn" placeholder="Search skill (e.g. HTML, Python, Figma...)" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="mdSkList" aria-autocomplete="list">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          <div class="ui-select-menu"><div class="ui-select-list" id="mdSkList" role="listbox" aria-label="Skills"></div></div>
+        </div>
+        <span class="ui-help" id="mdSkHelp">Type to search. Press Enter to add a skill that is not in the list.</span>
+      </div>
+      <div class="sp-info" role="note"><span data-icon="info:f:18"></span>You can select multiple job oriented skills.</div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="mdSkSave">Save Skills</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DRAWER: Full Journey (Design System .ui-drawer, opens from the right) ============ -->
+<div class="ui-drawer-backdrop" id="drBackdrop"></div>
+<aside class="ui-drawer ui-drawer-lg" id="drJourney" role="dialog" aria-modal="true" aria-labelledby="drJourneyTitle">
+  <div class="ui-modal-head">
+    <div class="ui-modal-title"><h4 id="drJourneyTitle">Your Journey</h4><p>Your education, certificates and achievements, newest first.</p></div>
+    <button class="ui-modal-close" type="button" data-drawer-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+  </div>
+  <div class="ui-drawer-body">
+    <ol class="sp-tl" aria-label="Full journey">
+      <li class="sp-tl-item is-current">
+        <span class="sp-jdot"><span data-icon="graduation:f:18"></span></span>
+        <div class="sp-tl-card"><div class="sp-tl-top"><b>BE/B-Tech – Computer Engineering (IT Systems and Network Security)</b><span class="sp-year">2023-2024</span></div><p>Currently pursuing at L.D. College of Engineering, Ahmedabad.</p></div>
+      </li>
+      <li class="sp-tl-item">
+        <span class="sp-jdot"><span data-icon="graduation:f:18"></span></span>
+        <div class="sp-tl-card"><div class="sp-tl-top"><b>HSC Completed</b><span class="sp-year">2024-2025</span></div><p>Completed HSC with 80.80% from GHSEB.</p></div>
+      </li>
+      <li class="sp-tl-item">
+        <span class="sp-jdot"><span data-icon="graduation:f:18"></span></span>
+        <div class="sp-tl-card"><div class="sp-tl-top"><b>UG Completed</b><span class="sp-year">2025-2026</span></div><p>Completed UG with 9.95 CGPA from Aakar Adhyapan Mandir M. Ed. College.</p></div>
+      </li>
+      <li class="sp-tl-item">
+        <span class="sp-jdot"><span data-icon="graduation:f:18"></span></span>
+        <div class="sp-tl-card"><div class="sp-tl-top"><b>Diploma Completed</b><span class="sp-year">2025-2026</span></div><p>Completed Diploma with 9.66 CGPA from Aai Ramila Arts College, Dahod.</p></div>
+      </li>
+      <li class="sp-tl-item">
+        <span class="sp-jdot"><span data-icon="award:f:18"></span></span>
+        <div class="sp-tl-card"><div class="sp-tl-top"><b>Cricket</b><span class="sp-year">2026</span></div><p>Completed College Cricket Championship – Best Batsman from Cricket.</p></div>
+      </li>
+      <li class="sp-tl-item">
+        <span class="sp-jdot"><span data-icon="award:f:18"></span></span>
+        <div class="sp-tl-card"><div class="sp-tl-top"><b>Painting</b><span class="sp-year">2026</span></div><p>Completed Certificate of Demonstration for Excellence in Classroom Management and Teaching Techniques from Michigan State University College of Human Medicine.</p></div>
+      </li>
+    </ol>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Row actions menu (3 dots) – design only, Edit / Delete are not connected yet -->
+<div class="ui-menu" id="spMenu" role="menu">
+  <button class="ui-menu-item" type="button" role="menuitem"><span data-icon="edit:f:18"></span>Edit</button>
+  <button class="ui-menu-item is-danger" type="button" role="menuitem"><span data-icon="delete:f:18"></span>Delete</button>
+</div>
+
+<script src="icons.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const hl = (text, q) => {
+  if (!q) return esc(text);
+  const i = text.toLowerCase().indexOf(q.toLowerCase());
+  return i < 0 ? esc(text) : esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
+};
+let toastT;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 2200); }
+
+/* Icons from icons.js (built from the icons/ folder) – same helper as the Design System */
+const ICONS = window.USK_ICONS || {};
+function iconSvg(name, style = "f", size = 20) {
+  const ic = ICONS[name]; if (!ic) return "";
+  const st = ic[style] ? style : ic.l ? "l" : ic.f ? "f" : "o";
+  const paint = st === "f" ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+  const cls = size === 20 ? "ui-icon" : `ui-icon ui-icon-${size}`;
+  return `<svg class="${cls}" viewBox="${ic.vb || "0 0 24 24"}" ${paint} aria-hidden="true">${ic[st]}</svg>`;
+}
+$$("[data-icon]").forEach(el => { const [n, s, z] = el.dataset.icon.split(":"); el.outerHTML = iconSvg(n, s, +z || 20); });
+
+/* Tabs (arrow keys move between tabs) */
+const tabs = $$(".sp-tab");
+function showTab(tab, focus) {
+  tabs.forEach(t => { const on = t === tab; t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1; document.getElementById(t.getAttribute("aria-controls")).hidden = !on; });
+  if (focus) tab.focus();
+  tab.scrollIntoView({ block: "nearest", inline: "nearest" });
+}
+tabs.forEach((t, i) => {
+  t.addEventListener("click", () => showTab(t));
+  t.addEventListener("keydown", e => {
+    const n = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (!n) return;
+    e.preventDefault(); showTab(tabs[(i + n + tabs.length) % tabs.length], true);
+  });
+});
+
+/* Summary tiles open their tab and scroll to the section */
+$$("[data-go]").forEach(b => b.addEventListener("click", () => {
+  showTab(document.getElementById("tab-" + b.dataset.go));
+  const sec = document.getElementById(b.dataset.to);
+  scrollTo({ top: sec.getBoundingClientRect().top + scrollY - 140, behavior: "smooth" });
+}));
+
+/* Show / hide masked values */
+$$(".sp-mask").forEach(b => b.addEventListener("click", () => {
+  const v = b.previousElementSibling, show = !v.dataset.masked;
+  if (show) { v.dataset.masked = v.textContent; v.textContent = v.dataset.full; }
+  else { v.textContent = v.dataset.masked; delete v.dataset.masked; }
+  b.innerHTML = iconSvg(show ? "view" : "eye-off", show ? "f" : "o", 16);
+  b.title = show ? "Hide" : "Show";
+}));
+
+/* ================= MODAL (Design System .ui-modal) ================= */
+let modalReturn = null;
+function openModal(id) {
+  const m = document.getElementById(id); if (!m) return;
+  modalReturn = document.activeElement;
+  m.dispatchEvent(new Event("modal:open"));
+  m.classList.add("is-open");
+  document.body.classList.add("ui-modal-lock");
+  m.offsetWidth; // apply the open styles before moving focus
+  (m.querySelector("[autofocus]") || m.querySelector(".ui-modal-close")).focus();
+}
+function closeModal(m) {
+  if (!m) return;
+  m.classList.remove("is-open");
+  document.body.classList.remove("ui-modal-lock");
+  modalReturn?.focus();
+}
+document.addEventListener("click", e => {
+  const o = e.target.closest("[data-modal-open]");
+  if (o) return openModal(o.dataset.modalOpen);
+  const m = e.target.closest(".ui-modal-backdrop.is-open"); if (!m) return;
+  if (e.target.closest("[data-modal-close]")) closeModal(m);
+  else if (e.target === m && !("static" in m.dataset)) closeModal(m);
+});
+/* ================= DRAWER (Design System .ui-drawer) ================= */
+let drawerReturn = null;
+function openDrawer(id) {
+  const d = document.getElementById(id); if (!d) return;
+  drawerReturn = document.activeElement;
+  d.querySelector(".ui-drawer-body").scrollTop = 0;
+  d.classList.add("is-open"); $("#drBackdrop").classList.add("is-open");
+  document.body.classList.add("ui-drawer-lock");
+  d.offsetWidth; // apply the open styles before moving focus
+  d.querySelector(".ui-modal-close").focus();
+}
+function closeDrawer() {
+  const d = $(".ui-drawer.is-open"); if (!d) return;
+  d.classList.remove("is-open"); $("#drBackdrop").classList.remove("is-open");
+  document.body.classList.remove("ui-drawer-lock");
+  drawerReturn?.focus();
+}
+document.addEventListener("click", e => {
+  const o = e.target.closest("[data-drawer-open]");
+  if (o) return openDrawer(o.dataset.drawerOpen);
+  if (e.target.closest("[data-drawer-close]") || e.target.id === "drBackdrop") closeDrawer();
+});
+
+// Esc closes an open dropdown first, then the modal or drawer
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  const combo = $(".ui-combo.is-open"); if (combo) return combo.classList.remove("is-open");
+  if ($(".ui-modal-backdrop.is-open")) return closeModal($(".ui-modal-backdrop.is-open"));
+  closeDrawer();
+});
+
+/* ================= JOB ORIENTED SKILLS ================= */
+const SKILL_OPTIONS = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Angular", "Vue.js", "Node.js", "Java", "Spring Boot", "Hibernate", "Python", "Django", "Machine Learning", "Data Analysis", "SQL", "MySQL", "MongoDB", "PHP", "Laravel", "C", "C++", "C#", ".NET", "Docker", "Git", "Linux", "AWS", "Figma", "UI/UX Design", "Communication", "Problem Solving", "Teamwork", "MS Excel", "Tally"];
+const SK = { saved: [], draft: [], max: 15, active: 0, opts: [] };
+const skCombo = $("#mdSkCombo"), skIn = $("#mdSkIn"), skList = $("#mdSkList");
+const certCount = $$("#secCerts .sp-item").length;
+
+// Page: chips + "Edit Skills" when skills exist, empty state + "Add Skill" when none
+function skRenderPage() {
+  const n = SK.saved.length;
+  $("#skList").innerHTML = SK.saved.map(s => `<span class="sp-skill">${esc(s)}</span>`).join("");
+  $("#skList").hidden = !n; $("#skEmpty").hidden = !!n; $("#skEditBtn").hidden = !n;
+  $$('[data-count="skills"]').forEach(el => el.textContent = n);
+  $$('[data-count="skills-tab"]').forEach(el => el.textContent = n + certCount);
+}
+// Modal: chips of the draft list + search list
+function skRenderChips() {
+  $("#mdSkChips").innerHTML = SK.draft.map(s => `<span class="ui-chip">${esc(s)}<button type="button" data-chip="${esc(s)}" title="Remove ${esc(s)}" aria-label="Remove ${esc(s)}">${iconSvg("close", "l", 12)}</button></span>`).join("");
+  $("#mdSkNone").hidden = SK.draft.length > 0;
+  $("#mdSkCount").textContent = String(SK.draft.length).padStart(2, "0");
+  const full = SK.draft.length >= SK.max;
+  skIn.disabled = full;
+  skIn.placeholder = full ? `Maximum ${SK.max} skills added` : "Search skill (e.g. HTML, Python, Figma...)";
+}
+function skRenderList() {
+  const q = skIn.value.trim(), ql = q.toLowerCase(), has = s => SK.draft.some(p => p.toLowerCase() === s.toLowerCase());
+  SK.opts = SKILL_OPTIONS.filter(s => !has(s) && s.toLowerCase().includes(ql)).map(v => ({ v }));
+  if (q && !has(q) && !SKILL_OPTIONS.some(s => s.toLowerCase() === ql)) SK.opts.push({ v: q, isNew: true });
+  SK.active = Math.min(SK.active, Math.max(0, SK.opts.length - 1));
+  skList.innerHTML = SK.opts.map((o, i) => `<div class="ui-option${o.isNew ? " is-new" : ""}${i === SK.active ? " is-active" : ""}" role="option" aria-selected="${i === SK.active}" data-i="${i}">${o.isNew ? `${iconSvg("plus", "l", 14)}<span>Add "${esc(o.v)}"</span>` : `<span>${hl(o.v, q)}</span>`}</div>`).join("")
+    || `<div class="ui-select-empty">${q ? "Already added" : "All skills added"}</div>`;
+  skPlace();
+}
+function skOpen(open) { skCombo.classList.toggle("is-open", open); skIn.setAttribute("aria-expanded", open); if (open) skRenderList(); }
+// Place the floating list under the field, or above it when there is not enough room below
+function skPlace() {
+  if (!skCombo.classList.contains("is-open")) return;
+  const menu = skCombo.querySelector(".ui-select-menu"), r = skIn.getBoundingClientRect(), gap = 4, pad = 12;
+  const below = innerHeight - r.bottom - gap - pad, above = r.top - gap - pad, up = below < 180 && above > below;
+  // While the modal is still animating in, "fixed" is measured from the modal box – find that origin first
+  menu.style.top = "0px"; menu.style.left = "0px"; menu.style.bottom = "auto";
+  const o = menu.getBoundingClientRect();
+  menu.style.left = r.left - o.left + "px"; menu.style.width = r.width + "px";
+  menu.style.setProperty("--sp-menu-h", Math.max(120, Math.min(240, (up ? above : below) - 16)) + "px");
+  if (up) { menu.style.top = r.top - o.top - gap - menu.offsetHeight + "px"; }
+  else menu.style.top = r.bottom - o.top + gap + "px";
+}
+$("#mdSkills .ui-modal-body").addEventListener("scroll", skPlace);
+$("#mdSkills .ui-modal").addEventListener("transitionend", skPlace);
+addEventListener("resize", skPlace);
+function skHelp(msg, isErr) { const h = $("#mdSkHelp"); h.textContent = msg; h.classList.toggle("is-error", !!isErr); skCombo.classList.toggle("is-error", !!isErr); }
+function skAdd(v) {
+  if (!v || SK.draft.length >= SK.max || SK.draft.some(p => p.toLowerCase() === v.toLowerCase())) return;
+  SK.draft.push(v); skIn.value = ""; SK.active = 0;
+  skHelp("Type to search. Press Enter to add a skill that is not in the list.");
+  skRenderChips(); skRenderList();
+}
+$("#mdSkills").addEventListener("modal:open", () => {
+  SK.draft = [...SK.saved]; skIn.value = ""; SK.active = 0;
+  $("#mdSkillsTitle").textContent = SK.saved.length ? "Edit Job Oriented Skills" : "Add Job Oriented Skill";
+  skHelp("Type to search. Press Enter to add a skill that is not in the list.");
+  skRenderChips(); skOpen(false);
+});
+skIn.addEventListener("focus", () => skOpen(true));
+skIn.addEventListener("click", () => skOpen(true));
+skIn.addEventListener("input", () => { SK.active = 0; skOpen(true); });
+skIn.addEventListener("keydown", e => {
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    e.preventDefault(); if (!skCombo.classList.contains("is-open")) return skOpen(true);
+    SK.active = (SK.active + (e.key === "ArrowDown" ? 1 : -1) + SK.opts.length) % Math.max(1, SK.opts.length); skRenderList();
+    skList.querySelector(".is-active")?.scrollIntoView({ block: "nearest" });
+  } else if (e.key === "Enter") { e.preventDefault(); skAdd(SK.opts[SK.active]?.v || skIn.value.trim()); }
+  else if (e.key === "Backspace" && !skIn.value && SK.draft.length) { SK.draft.pop(); skRenderChips(); skRenderList(); }
+});
+skList.addEventListener("mousedown", e => { const o = e.target.closest(".ui-option"); if (!o) return; e.preventDefault(); skAdd(SK.opts[o.dataset.i].v); });
+$("#mdSkChips").addEventListener("click", e => {
+  const b = e.target.closest("[data-chip]"); if (!b) return;
+  SK.draft = SK.draft.filter(s => s !== b.dataset.chip); skRenderChips(); skRenderList();
+  ($("#mdSkChips [data-chip]") || skIn).focus();
+});
+document.addEventListener("click", e => { if (!e.target.closest("#mdSkCombo")) skOpen(false); });
+$("#mdSkSave").addEventListener("click", () => {
+  if (!SK.draft.length && !SK.saved.length) { skHelp("Add at least one skill.", true); return skIn.focus(); }
+  SK.saved = [...SK.draft]; skRenderPage(); closeModal($("#mdSkills"));
+  toast(SK.saved.length ? `${SK.saved.length} skill${SK.saved.length > 1 ? "s" : ""} saved` : "All skills removed");
+});
+skRenderPage();
+
+/* Accordion (Education) */
+document.addEventListener("click", e => {
+  const h = e.target.closest(".ui-acc-head"); if (!h) return;
+  const item = h.closest(".ui-acc-item"), open = !item.classList.contains("is-open");
+  item.classList.toggle("is-open", open); h.setAttribute("aria-expanded", open);
+});
+
+/* 3 dots menu – opens below the button, aligned right */
+const menu = $("#spMenu"); let menuBtn = null;
+function closeMenu() { menu.classList.remove("is-open"); menuBtn?.classList.remove("is-open"); menuBtn = null; }
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-menu]");
+  if (b) {
+    if (b === menuBtn) return closeMenu();
+    closeMenu(); menuBtn = b; b.classList.add("is-open"); menu.classList.add("is-open");
+    const r = b.getBoundingClientRect(), below = r.bottom + 6 + menu.offsetHeight < innerHeight;
+    menu.style.top = (below ? r.bottom + 6 : r.top - 6 - menu.offsetHeight) + "px";
+    menu.style.left = Math.max(8, r.right - menu.offsetWidth) + "px";
+    return;
+  }
+  if (!e.target.closest("#spMenu") || e.target.closest(".ui-menu-item")) closeMenu();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+addEventListener("scroll", closeMenu, true);
+addEventListener("resize", closeMenu);
+</script>
+</body>
+</html>
