@@ -31,7 +31,7 @@ Open `index.html` directly in Chrome/Edge, or run any static server in this fold
 
 - Layout: `.app` → `aside.sidebar` (fixed, 260px; collapses to 80px on desktop; overlay below 992px) + `.main` → `header.header` (64px, sticky) + one `<main class="content" id="view-NAME">` per page.
 - **Routing:** sidebar links are `<a href="#NAME" data-view="NAME" data-tip="Label">`. `showView(name)` (bottom of the main `<script>`) shows `#view-NAME` and hides the others. The header title is set in `showView`.
-- Views now: `applications` (Student Application, default), `jobs` (Job Opportunities), `design-system`, `responsive`. Skill Passport is a normal link to `skill-passport.html`.
+- Views now: `applications` (Student Application, default), `jobs` (Job Opportunities, student), `company-job` (Company Job Post, company) + its sub-page `company-job-skills` (Add / Edit Job Oriented Skills; not in the sidebar, keeps "Company Job Post" active), `design-system`, `responsive`. Skill Passport is a normal link to `skill-passport.html`.
 - Modals sit near the end of `<body>`, before the `<script>` tags. Open with `data-modal-open="ID"` or `openModal("ID")`; close with `data-modal-close`, ×, Esc or `closeModal(el)`. `data-static` on the backdrop = a backdrop click does not close it (use for forms).
 - Icons in HTML: `<span data-icon="NAME:STYLE:SIZE"></span>`, where STYLE is `f` filled / `o` outline / `l` line and SIZE is 14/16/18/20/24. In JS use `iconSvg(name, style, size)`.
 - Helpers in the main script: `$`, `$$`, `esc()` (always escape user text), `fmt(date)` → DD/MM/YYYY, `toast(msg)`, `initSelect(el)` (builds a `.ui-select`), `closeSelects()`, `HELP_ICON`, `tbAct("view")` (table action button).
@@ -105,6 +105,16 @@ The full live docs are in `index.html` → sidebar **Design System** (tabs: Logo
   - JS: `jpList` (draft list), `jpForm`, `jpBuildCountry/State/Dist`, `jpRenderList`, `jpSync`, `jpOpen`.
 - Dropdowns in this modal **float above the modal** (`position:fixed`, placed by `jpPlaceMenu()`; they open upward when there is no room below), so the modal never gets a scrollbar and the list is never cut off.
 - Sample data: `JB_GEO` (Indian states → districts), `JB_WORLD` (India + sample UAE and Canada), `JOBS` (150 generated jobs). The preference is kept in memory only (`JB.pref`) and resets on reload.
+
+### Company Job Post (`#view-company-job`, company view)
+- Built from the point of view of a **company owner posting a job**. Page "Post a Job". So far only the **Job Oriented Skills** section exists; other job fields (title, salary, location…) are still to come.
+- Section card: empty state + "Add Skills" (primary) until skills are saved; after that, two groups side by side, **Required Skills (Must have)** and **Optional Skills (Good to have)**, with counts, plus "Edit Skills" (outline). On mobile the groups stack.
+- **No modal.** "Add Skills" / "Edit Skills" are links to a separate page `#company-job-skills` ("Add Job Oriented Skills" / "Edit Job Oriented Skills", with a Back button). Opening it (`showView` → `cjOpenPage()`) starts a draft from the saved skills.
+- **Add Skills page**, card 1 "Select Skill": the same search combo as the Skill Passport skills modal (search list, highlight, "Add new" for a typed skill, Enter, arrow keys, max 15). **After a skill is picked, a box asks "Is X a required or an optional skill for this job?"** with Required (primary) / Optional (outline) / Cancel; the answer puts the skill into that group. Card 2 "Added Skills": Required and Optional groups with chips and counts. Bottom right: Cancel (back, discards the draft) + Save Skills (saves and returns to Post a Job with a toast).
+- **Custom skills can be renamed in place** (to fix a typo like "photosop" → "Photoshop"). A custom skill = one typed by the user, not in `CJ_SKILLS`. Only custom chips show an edit (pencil) button; skills from the list have only ×. Edit turns the chip into a small input: Enter or ✓ saves, Esc or × cancels. Empty names and duplicates show a red message under the chips. If the new name matches a list skill, it stops being custom.
+- Chip styles: Required = navy tint, solid border; **Optional = white with a dashed border**, so the two differ by shape and not only by color (`.cj-skill.is-opt`, `.ui-chip.is-opt`). Editing chip = `.ui-chip.is-editing`.
+- Save rules: at least **1 required skill**; it cannot save while a skill is still waiting for the Required/Optional answer, or while a chip edit is invalid.
+- JS: `CJ` (`saved` / `draft` = `{ req, opt }`, `pending`, `editing`), `cjOpenPage`, `cjPick` → `cjAnswer(type)`, `cjEditSave` / `cjEditCancel`, `cjIsCustom`, `cjRenderChips`, `cjRenderPage`. CSS prefix `cj-`. Data in memory only.
 
 ### Skill Passport (`skill-passport.html`)
 - Hero banner, student details (masked email / APAAR / mobile with show/hide), summary tiles, tabs (Skills & Certificates, Experience, Academic Work, Education), Job Oriented Skills modal (search + chips, max 15), Your Journey timeline + Full Journey drawer, education accordion, 3-dots row menu. Page-level classes use the `sp-` prefix.
