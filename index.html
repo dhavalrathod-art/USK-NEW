@@ -223,6 +223,36 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
   .jb-bulk-acts .ui-btn{flex:1}
 }
 
+/* ---------- My Applications (student, scholarships) – Design System tokens & components only ---------- */
+.ma-list[hidden],.ma-none[hidden],.ma-dead[hidden]{display:none}
+.ma-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);padding:var(--space-12) var(--space-16);border-bottom:1px solid var(--color-border-default);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ma-toolbar b{color:var(--color-primary-600)}
+.ma-id{font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ma-scheme b{display:block;font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ma-scheme small{display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ma-acts{display:flex;align-items:center;gap:var(--space-8)}
+.ma-dead{display:block;margin-top:var(--space-4);font-size:var(--font-size-caption);color:var(--color-error-text);white-space:normal}
+.ma-empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-8);padding:var(--space-40) var(--space-20);white-space:normal}
+.ma-empty b{font-size:var(--font-size-body-lg);color:var(--color-text-heading)}
+.ma-empty span{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+/* View Application (read-only) */
+.ma-sec{padding:var(--space-20);margin-bottom:var(--space-16)}
+.ma-sec .ui-form-sec-head{margin-bottom:var(--space-16)}
+.ma-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16)}
+.ma-kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16) var(--space-20)}
+.ma-kv > div,.ma-sum > div{min-width:0}
+.ma-kv > div > span:first-child,.ma-sum > div > span:first-child{display:block;font-size:var(--font-size-label);line-height:var(--line-height-label);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.2px;color:var(--color-text-secondary)}
+.ma-kv b,.ma-sum b{display:block;margin-top:2px;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);overflow-wrap:anywhere}
+/* Verified from a source = green tick + "Verified" (same marking as the Review step) */
+.ma-ver{display:inline-flex;align-items:center;gap:4px;margin-top:2px;font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-success-text)}
+.ma-legend{display:flex;flex-wrap:wrap;gap:var(--space-8) var(--space-20);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ma-docs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-12)}
+.ma-docs .ui-file-row{grid-template-columns:36px minmax(0,1fr) auto}
+.ma-view-acts{display:flex;gap:var(--space-btn-group);flex-wrap:wrap}
+.ma-notfound[hidden],.ma-detail[hidden],.ma-view-acts .ui-btn[hidden]{display:none}
+@media (max-width:991.98px){.ma-kv,.ma-sum{grid-template-columns:repeat(2,minmax(0,1fr))}.ma-docs{grid-template-columns:1fr}}
+@media (max-width:575.98px){.ma-sec{padding:var(--space-16)}.ma-kv,.ma-sum{grid-template-columns:1fr}.ma-view-acts{width:100%}.ma-view-acts .ui-btn{flex:1}}
+
 /* ---------- Company Job Post (company view) – Design System tokens & components only ---------- */
 .cj-sec{padding:var(--space-20);margin-bottom:var(--space-16)}
 .cj-sec-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-12);margin-bottom:var(--space-16);flex-wrap:wrap}
@@ -808,6 +838,10 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       <a href="#jobs" data-view="jobs" data-tip="Job Opportunities">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9 3h6a2 2 0 012 2v2h3a2 2 0 012 2v4H2V9a2 2 0 012-2h3V5a2 2 0 012-2zm0 4h6V5H9z"/><path d="M2 15h8v1a1 1 0 001 1h2a1 1 0 001-1v-1h8v4a2 2 0 01-2 2H4a2 2 0 01-2-2z"/></svg>
         <span class="nav-label">Job Opportunities</span>
+      </a>
+      <a href="#my-apps" data-view="my-apps" data-tip="My Applications">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 2h8v3H8z"/><path fill-rule="evenodd" d="M6 4h1v2h10V4h1a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2zm2 7v2h8v-2H8zm0 4v2h5v-2H8z"/></svg>
+        <span class="nav-label">My Applications</span>
       </a>
       <a href="#company-job" data-view="company-job" data-tip="Company Job Post">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5L14 3.5zM11 11v3H8v2h3v3h2v-3h3v-2h-3v-3h-2z"/></svg>
@@ -2575,6 +2609,71 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       </section>
     </main>
 
+    <!-- ===== VIEW: My Applications (student, scholarships) – COM-01 ===== -->
+    <main class="content" id="view-my-apps" hidden>
+      <div class="page-head">
+        <div>
+          <h3>My Applications</h3>
+          <p>All your scholarship applications in one place. Continue a draft, view a submitted application or download it.</p>
+        </div>
+      </div>
+
+      <!-- List – filters sit in the table head (Design System Table Type 4: filter icon → search + checkbox list, chips above the table) -->
+      <section class="card table-card ma-list" id="maList">
+        <div class="ma-toolbar"><span id="maCount"></span><span>Latest first</span></div>
+        <div class="tb-chips" id="maChips"></div>
+        <div class="table-wrap" id="maWrap">
+          <table>
+            <thead><tr>
+              <th>Application ID</th>
+              <th><span class="th">Scholarship <button class="ui-th-btn" type="button" data-macol="scheme" title="Filter scholarship" aria-label="Filter scholarship"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+              <th><span class="th">Academic Year <button class="ui-th-btn" type="button" data-macol="year" title="Filter academic year" aria-label="Filter academic year"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+              <th>Application Type</th>
+              <th>Submitted Date</th>
+              <th><span class="th">Status <button class="ui-th-btn" type="button" data-macol="status" title="Filter status" aria-label="Filter status"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+              <th>Action</th>
+            </tr></thead>
+            <tbody id="maBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- No application at all -->
+      <section class="card ma-none" id="maNone" hidden>
+        <div class="ma-empty">
+          <span class="ui-icon-box is-primary"><span data-icon="document:o:24"></span></span>
+          <b>You have not applied for any scholarship yet.</b>
+          <span>Find a scholarship you are eligible for and apply.</span>
+          <button class="ui-btn ui-btn-primary" type="button" id="maGoSchemes"><span data-icon="award:f:16"></span>Go to Scholarships</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== VIEW: My Applications → View Application (read-only) – COM-01.1 ===== -->
+    <main class="content" id="view-my-apps-view" hidden>
+      <div class="page-head">
+        <div>
+          <h3 id="maVTitle">View Application</h3>
+          <p>Your submitted application. It is read only and cannot be edited.</p>
+        </div>
+        <div class="ma-view-acts">
+          <a class="ui-btn ui-btn-outline ui-btn-sm" href="#my-apps"><span data-icon="arrow-left:l:14"></span>Back</a>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button" id="maVDownload"><span data-icon="download:l:14"></span>Download Application</button>
+        </div>
+      </div>
+
+      <section class="card ma-notfound" id="maNotFound" hidden>
+        <div class="ma-empty">
+          <span class="ui-icon-box is-error"><span data-icon="warning:o:24"></span></span>
+          <b>Application not found.</b>
+          <span>Go back to My Applications and open the application again.</span>
+          <a class="ui-btn ui-btn-outline" href="#my-apps"><span data-icon="arrow-left:l:16"></span>Back to My Applications</a>
+        </div>
+      </section>
+
+      <div class="ma-detail" id="maDetail"></div>
+    </main>
+
     <!-- ===== VIEW: Company Job Post (company view) ===== -->
     <main class="content" id="view-company-job" hidden>
       <div class="page-head">
@@ -2826,6 +2925,8 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 <!-- Design System – table row menu (3 dots) + header filter popover -->
 <div class="ui-menu" id="tbMenu" role="menu"></div>
 <div class="pop" id="tbPop"></div>
+<!-- My Applications – table head filter popover -->
+<div class="pop" id="maPop"></div>
 
 <!-- ===== Design System – Drawer examples (right side panel) ===== -->
 <div class="ui-drawer-backdrop" id="drBackdrop"></div>
@@ -3000,6 +3101,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="icons.js"></script>
 <script>
 /* ================= DATA ================= */
@@ -4475,6 +4577,205 @@ $("#jbPrefAdd").addEventListener("click", jpOpen);
 $("#jbPrefEdit").addEventListener("click", jpOpen);
 jbRender();
 
+/* ================= MY APPLICATIONS (student, scholarships) – COM-01, COM-01.1, COM-01.2, COM-02 =================
+   List of the logged-in student's scholarship applications (latest first) with Scholarship / Academic Year filters.
+   Draft → Continue only (disabled after the deadline). Submitted → View + Download Application (PDF).
+   Sample data only; more statuses (Under Verification, Approved, Rejected) come with the Nodal Officer spec. */
+const MA_SCHEMES = {
+  CMSS: "Chief Minister Scholarship Scheme",
+  MYSY: "Mukhyamantri Yuva Swavalamban Yojana",
+  "PMS-SC": "Post Matric Scholarship (SC)"
+};
+const MA_STEPS = ["Basic Details", "Admission Details", "Fees Details", "Family Details", "Aadhaar Verification", "Uploaded Documents", "Review"];
+const maD = (dd, mm, yy, h = 11, mi = 0) => new Date(yy, mm - 1, dd, h, mi);
+// One row per application. date = submitted date (Submitted) or last saved date (Draft); used for "latest first".
+const MA_APPS = [
+  { id: "01232324334343", scheme: "MYSY", year: "2026-27", type: "Fresh", status: "Submitted", date: maD(5, 11, 2026, 16, 42), course: "BE/B-Tech – Computer Engineering", sem: "Semester 5", fee: 78000 },
+  { id: "01232324335120", scheme: "CMSS", year: "2026-27", type: "Fresh", status: "Draft", date: maD(10, 11, 2026), step: 3, deadline: maD(30, 11, 2026, 23, 59) },
+  { id: "01232324220871", scheme: "MYSY", year: "2025-26", type: "Renewal", status: "Submitted", date: maD(12, 9, 2025, 10, 15), course: "BE/B-Tech – Computer Engineering", sem: "Semester 3", fee: 74500 },
+  { id: "01232324219045", scheme: "CMSS", year: "2025-26", type: "Fresh", status: "Submitted", date: maD(20, 8, 2025, 14, 5), course: "BE/B-Tech – Computer Engineering", sem: "Semester 3", fee: 74500 },
+  { id: "01232324110093", scheme: "PMS-SC", year: "2025-26", type: "Delayed", status: "Draft", date: maD(2, 10, 2025), step: 2, deadline: maD(31, 10, 2025, 23, 59) },
+  { id: "01232324102277", scheme: "CMSS", year: "2024-25", type: "Renewal Delayed", status: "Submitted", date: maD(14, 12, 2024, 12, 30), course: "BE/B-Tech – Computer Engineering", sem: "Semester 1", fee: 71000 },
+  { id: "01232324108812", scheme: "MYSY", year: "2024-25", type: "Fresh", status: "Submitted", date: maD(18, 9, 2024, 9, 50), course: "BE/B-Tech – Computer Engineering", sem: "Semester 1", fee: 71000 }
+];
+// Same student for every application (only the logged-in student's applications are listed)
+const MA_STUDENT = { name: "Parmar Shruten Mahendrabhai", aadhaar: "XXXX XXXX 4321" };
+const MA = { scheme: new Set(), year: new Set(), status: new Set(), current: null, today: new Date(2026, 10, 14) };
+const maTime = dt => `${fmt(dt)} ${String(dt.getHours()).padStart(2, "0")}:${String(dt.getMinutes()).padStart(2, "0")}`;
+const maRupee = n => "₹ " + n.toLocaleString("en-IN");
+const maOpen = a => a.status === "Draft" && MA.today <= a.deadline;
+const maBadge = s => `<span class="ui-badge ${s === "Draft" ? "ui-badge-neutral" : "ui-badge-review"}">${s}</span>`;
+
+// Filters in the table head (Scholarship / Academic Year / Status), same as Design System Table Type 4.
+// Each column keeps a Set of picked values; options come from the student's own applications.
+const MA_COLS = { scheme: "Scholarship", year: "Academic Year", status: "Status" };
+const maMatch = (a, skip) => Object.keys(MA_COLS).every(c => c === skip || !MA[c].size || MA[c].has(a[c]));
+const maOptions = c => c === "status" ? ["Draft", "Submitted"] : [...new Set(MA_APPS.map(a => a[c]))].sort(c === "year" ? (x, y) => y.localeCompare(x) : undefined);
+const maPop = $("#maPop"); let maPopCol = null;
+function maClosePop() { maPop.classList.remove("show"); $$("#maWrap .ui-th-btn").forEach(b => b.classList.remove("is-open")); maPopCol = null; }
+function maOpenPop(btn) {
+  const col = btn.dataset.macol, title = MA_COLS[col];
+  if (maPopCol === col) return maClosePop();
+  maClosePop(); maPopCol = col; btn.classList.add("is-open");
+  const draft = new Set(MA[col]), base = MA_APPS.filter(a => maMatch(a, col)), all = maOptions(col);
+  maPop.innerHTML = `<h4>Filter ${title} <button type="button" data-pclose aria-label="Close">&times;</button></h4>
+    <div class="pin"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input placeholder="Search ${title.toLowerCase()}..."></div>
+    <div class="opts"></div>
+    <div class="pf"><button type="button" class="ui-btn ui-btn-outline ui-btn-sm" data-pclear>Clear</button><button type="button" class="ui-btn ui-btn-primary ui-btn-sm" data-papply>Apply</button></div>`;
+  const label = o => col === "scheme" ? `${o} <small style="color:var(--color-text-secondary)">${esc(MA_SCHEMES[o])}</small>` : esc(o);
+  const draw = (q = "") => maPop.querySelector(".opts").innerHTML = all.filter(o => (o + " " + (MA_SCHEMES[o] || "")).toLowerCase().includes(q.toLowerCase())).map(o =>
+    `<label><input type="checkbox" class="ui-cb" value="${esc(o)}" ${draft.has(o) ? "checked" : ""}><span>${label(o)}</span><span class="c">${base.filter(a => a[col] === o).length}</span></label>`).join("")
+    || `<div class="meta" style="padding:6px">No options</div>`;
+  draw();
+  maPop.querySelector("input").addEventListener("input", e => draw(e.target.value));
+  maPop.querySelector(".opts").addEventListener("change", e => e.target.checked ? draft.add(e.target.value) : draft.delete(e.target.value));
+  maPop.querySelector("[data-papply]").addEventListener("click", () => { MA[col] = draft; maRender(); maClosePop(); });
+  maPop.querySelector("[data-pclear]").addEventListener("click", () => { MA[col].clear(); maRender(); maClosePop(); });
+  maPop.querySelectorAll("[data-pclose]").forEach(b => b.addEventListener("click", maClosePop));
+  maPop.classList.add("show");
+  const r = btn.getBoundingClientRect();
+  maPop.style.left = Math.max(8, Math.min(r.left + scrollX - 10, scrollX + innerWidth - maPop.offsetWidth - 12)) + "px";
+  maPop.style.top = (r.bottom + scrollY + 8) + "px";
+  maPop.querySelector("input").focus();
+}
+$("#maWrap").addEventListener("click", e => { const f = e.target.closest(".ui-th-btn"); if (f) { e.stopPropagation(); maOpenPop(f); } });
+$("#maWrap").addEventListener("scroll", maClosePop);
+$("#maChips").addEventListener("click", e => {
+  const b = e.target.closest("[data-machip]"); if (!b) return;
+  if (b.dataset.machip === "all") Object.keys(MA_COLS).forEach(c => MA[c].clear());
+  else MA[b.dataset.machip].delete(b.dataset.v);
+  maRender();
+});
+document.addEventListener("click", e => { if (maPopCol && !maPop.contains(e.target)) maClosePop(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") maClosePop(); });
+addEventListener("resize", maClosePop);
+addEventListener("hashchange", maClosePop);
+
+function maRender() {
+  const none = !MA_APPS.length;
+  $("#maNone").hidden = !none; $("#maList").hidden = none;
+  if (none) return;
+  const rows = MA_APPS.filter(a => maMatch(a)).sort((a, b) => b.date - a.date);
+  // Active filter: filled icon + a chip above the table
+  $$("#maWrap .ui-th-btn").forEach(b => b.classList.toggle("is-active", MA[b.dataset.macol].size > 0));
+  const chips = [];
+  Object.keys(MA_COLS).forEach(c => MA[c].forEach(v => chips.push(`<span class="chip"><b>${MA_COLS[c]}:</b> ${esc(v)}<button type="button" data-machip="${c}" data-v="${esc(v)}" title="Remove" aria-label="Remove ${MA_COLS[c]} ${esc(v)}">&times;</button></span>`)));
+  $("#maChips").innerHTML = chips.length ? chips.join("") + `<button type="button" class="chip-clear" data-machip="all">Clear all</button>` : "";
+  $("#maCount").innerHTML = `Showing <b>${rows.length}</b> of ${MA_APPS.length} applications`;
+  $("#maBody").innerHTML = rows.map(a => {
+    const act = a.status === "Draft"
+      ? `<button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-ma-continue="${a.id}" ${maOpen(a) ? "" : "disabled"}><span>Continue</span></button>${maOpen(a) ? "" : `<span class="ma-dead">Application deadline is over.</span>`}`
+      : `<div class="ma-acts"><a class="ui-btn ui-btn-ghost ui-btn-sm" href="#my-apps-view" data-ma-view="${a.id}">${iconSvg("view", "f", 14)}View</a><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-ma-dl="${a.id}">${iconSvg("download", "l", 14)}Download Application</button></div>`;
+    return `<tr>
+      <td><span class="ma-id">${a.id}</span></td>
+      <td><span class="ma-scheme"><b>${a.scheme}</b><small>${esc(MA_SCHEMES[a.scheme])}</small></span></td>
+      <td>${a.year}</td><td>${a.type}</td>
+      <td>${a.status === "Submitted" ? fmt(a.date) : "–"}</td>
+      <td>${maBadge(a.status)}</td>
+      <td>${act}</td></tr>`;
+  }).join("") || `<tr><td colspan="7"><div class="ma-empty"><span class="ui-icon-box is-primary">${iconSvg("search", "l", 24)}</span><b>No applications found.</b><span>Change the filters in the table head, or clear them.</span></div></td></tr>`;
+}
+
+// Continue a draft – COM-01.2 (the application form is not built yet, so it says where it would open)
+$("#maBody").addEventListener("click", e => {
+  const c = e.target.closest("[data-ma-continue]"), v = e.target.closest("[data-ma-view]"), dl = e.target.closest("[data-ma-dl]");
+  if (c) {
+    const a = MA_APPS.find(x => x.id === c.dataset.maContinue);
+    if (!maOpen(a)) return toast("Application deadline is over.");
+    toast(`${a.scheme} form opens at Step ${a.step}: ${MA_STEPS[a.step - 1]}, with your saved data`);
+  }
+  if (v) MA.current = v.dataset.maView; // the link goes to #my-apps-view
+  if (dl) maDownload(MA_APPS.find(x => x.id === dl.dataset.maDl));
+});
+$("#maGoSchemes").addEventListener("click", () => toast("Scholarships page is coming soon"));
+
+// Application details in the same sections as the Review step. v = verified from a source (Aadhaar / DigiLocker / institute)
+function maDetails(a) {
+  const tuition = Math.round(a.fee * .82), other = a.fee - tuition;
+  return [
+    ["Basic Details", [["Full Name", MA_STUDENT.name, 1], ["Date of Birth", "18/08/2006", 1], ["Gender", "Male", 1], ["Mobile Number", "98XXXX4512"], ["Email Address", "shruten.p@example.com"], ["Category", "OBC"], ["Domicile State", "Gujarat", 1]]],
+    ["Admission Details", [["University", "Gujarat Technological University", 1], ["Institute", "L.D. College of Engineering, Ahmedabad", 1], ["Course", a.course, 1], ["Current Semester", a.sem], ["Admission Type", "Merit (ACPC)", 1], ["Enrollment No.", "230280107045", 1]]],
+    ["Fees Details", [["Tuition Fee", maRupee(tuition)], ["Other Fees", maRupee(other)], ["Total Fees", maRupee(a.fee)], ["Fee Receipt No.", "LDCE/" + a.year + "/0" + a.id.slice(-4)]]],
+    ["Family Details", [["Father's Name", "Mahendrabhai Parmar"], ["Mother's Name", "Geetaben Parmar"], ["Annual Family Income", "₹ 3,40,000", 1], ["Income Certificate No.", "INC/AHD/2026/88421", 1]]],
+    ["Aadhaar Verification", [["Aadhaar Number", MA_STUDENT.aadhaar, 1], ["Name as per Aadhaar", MA_STUDENT.name, 1], ["Verification Status", "Verified", 1], ["Verified On", fmt(new Date(a.date.getTime() - 864e5))]]]
+  ];
+}
+const MA_DOCS = ["Income Certificate", "Fee Receipt", "HSC (12th) Marksheet", "Admission Letter", "Bank Passbook"];
+
+// View Application – COM-01.1
+function maOpenView() {
+  const a = MA_APPS.find(x => x.id === MA.current && x.status === "Submitted");
+  $("#maNotFound").hidden = !!a; $("#maDetail").hidden = !a; $("#maVDownload").hidden = !a;
+  scrollTo(0, 0);
+  if (!a) { $("#maVTitle").textContent = "View Application"; return; }
+  $("#maVTitle").textContent = `${a.scheme} Application`;
+  const ver = `<span class="ma-ver">${iconSvg("check", "l", 14)}Verified</span>`;
+  $("#maDetail").innerHTML = `
+    <section class="card ma-sec">
+      <div class="ui-form-sec-head"><h5>Submission Details</h5><p>${esc(MA_SCHEMES[a.scheme])}</p></div>
+      <div class="ma-sum">
+        <div><span>Application ID</span><b>${a.id}</b></div>
+        <div><span>Scholarship</span><b>${a.scheme}</b></div>
+        <div><span>Academic Year</span><b>${a.year}</b></div>
+        <div><span>Application Type</span><b>${a.type}</b></div>
+        <div><span>Submitted Date &amp; Time</span><b>${maTime(a.date)}</b></div>
+        <div><span>Status</span><b>${maBadge(a.status)}</b></div>
+      </div>
+    </section>
+    <div class="ma-legend" style="margin:0 0 var(--space-16)"><span class="ma-ver">${iconSvg("check", "l", 14)}Verified</span><span>= taken from a verified source. Other fields were entered by you.</span></div>
+    ${maDetails(a).map(([title, rows]) => `
+      <section class="card ma-sec">
+        <div class="ui-form-sec-head"><h5>${title}</h5></div>
+        <div class="ma-kv">${rows.map(([k, v, isVer]) => `<div><span>${k}</span><b>${esc(v)}</b>${isVer ? ver : ""}</div>`).join("")}</div>
+      </section>`).join("")}
+    <section class="card ma-sec">
+      <div class="ui-form-sec-head"><h5>Uploaded Documents</h5></div>
+      <div class="ma-docs">${MA_DOCS.map(n => `<div class="ui-file-row"><span class="ui-icon-box is-primary">${iconSvg("document", "f", 18)}</span><div><b>${n}.pdf</b><small>PDF · uploaded ${fmt(a.date)}</small></div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-ma-doc="${n}">${iconSvg("view", "f", 14)}View</button></div>`).join("")}</div>
+    </section>`;
+}
+$("#maDetail").addEventListener("click", e => { const b = e.target.closest("[data-ma-doc]"); if (b) toast(`Opening ${b.dataset.maDoc}.pdf`); });
+$("#maVDownload").addEventListener("click", () => maDownload(MA_APPS.find(x => x.id === MA.current)));
+
+// Download Application – COM-02. PDF title "<Scholarship> Application", file "<Scholarship>_<Application ID>.pdf", Aadhaar masked.
+function maDownload(a) {
+  if (!a || a.status !== "Submitted") return;
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit: "pt", format: "a4" }), W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight(), M = 48;
+    let y = M;
+    const need = h => { if (y + h > H - M) { doc.addPage(); y = M; } };
+    const text = (t, size, bold, color = [31, 41, 55]) => { doc.setFont("helvetica", bold ? "bold" : "normal"); doc.setFontSize(size); doc.setTextColor(...color); };
+    const rs = s => String(s).replace(/₹/g, "Rs.");
+    // Header band
+    doc.setFillColor(35, 60, 90); doc.rect(0, 0, W, 72, "F");
+    text("", 18, true, [255, 255, 255]); doc.text(`${a.scheme} Application`, M, 34);
+    text("", 9, false, [214, 223, 234]); doc.text(rs(MA_SCHEMES[a.scheme]) + "  |  Uccha-Shiksha Samiksha Kendra, Higher Education Department, Gujarat", M, 52);
+    y = 100;
+    const section = (title, rows) => {
+      need(40); text("", 12, true, [35, 60, 90]); doc.text(title, M, y); y += 6;
+      doc.setDrawColor(228, 233, 240); doc.line(M, y, W - M, y); y += 16;
+      rows.forEach(([k, v, isVer]) => {
+        const lines = doc.splitTextToSize(rs(v) + (isVer ? "  (Verified)" : ""), W - M * 2 - 170);
+        need(lines.length * 13 + 6);
+        text("", 9, false, [107, 114, 128]); doc.text(k, M, y);
+        text("", 10, true); doc.text(lines, M + 170, y);
+        y += lines.length * 13 + 6;
+      });
+      y += 10;
+    };
+    section("Submission Details", [["Application ID", a.id], ["Scholarship Name", `${a.scheme} - ${MA_SCHEMES[a.scheme]}`], ["Academic Year", a.year], ["Application Type", a.type], ["Student Name", MA_STUDENT.name], ["Submitted Date and Time", maTime(a.date)], ["Status", a.status]]);
+    maDetails(a).forEach(([t, rows]) => section(t, rows));
+    section("Uploaded Documents", MA_DOCS.map((n, i) => [`Document ${i + 1}`, n + ".pdf"]));
+    const pages = doc.getNumberOfPages();
+    for (let p = 1; p <= pages; p++) { doc.setPage(p); text("", 8, false, [154, 168, 184]); doc.text(`Application ID ${a.id}  |  Downloaded on ${fmt(new Date())}  |  Page ${p} of ${pages}`, M, H - 24); }
+    doc.save(`${a.scheme}_${a.id}.pdf`);
+    toast(`Downloaded ${a.scheme}_${a.id}.pdf`);
+  } catch (err) {
+    toast("Unable to download. Please try again.");
+  }
+}
+maRender();
+
 /* ================= COMPANY JOB POST – Job Oriented Skills (company view) =================
    "Add Skills" / "Edit Skills" go to their own page (#company-job-skills), no modal.
    Same search + chips pattern as the Skill Passport skills modal. After a skill is picked the page asks
@@ -4630,8 +4931,9 @@ cjRenderPage();
 function showView(name) {
   if (!document.getElementById("view-" + name)) name = "applications";
   $$(".content[id^='view-']").forEach(v => v.hidden = v.id !== "view-" + name);
-  $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === name.replace(/-skills$/, "")));
-  $(".h-title h2").textContent = ({ jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-skills": "Company Job Post" })[name] || "Student Profile";
+  $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === name.replace(/-(skills|view)$/, "")));
+  $(".h-title h2").textContent = ({ jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-skills": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications" })[name] || "Student Profile";
+  if (name === "my-apps-view") maOpenView(); // View Application page (read-only)
   if (name === "company-job-skills") cjOpenPage(); // Add / Edit Job Oriented Skills page starts a fresh draft
   closePop();
   setMobileSide(false);
