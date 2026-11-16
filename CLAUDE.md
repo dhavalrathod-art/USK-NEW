@@ -35,6 +35,7 @@
 | `skill-passport.html` | Skill Passport page (student view). Separate page with its own top header (no sidebar). Linked from the sidebar. |
 | `css/usk-design-system.css` | **The one source of truth for the Design System** (tokens + all `.ui-*` components). Both pages load it. Change design tokens/components only here. |
 | `icons/filled`, `icons/outline`, `icons/line` | Icon SVGs (24×24, single color). |
+| `icons/live/` | **Exception (16/11):** 4 Quick Services icons copied as they are from the live gyandiksha site (`qs-scholarship`, `qs-attendance`, `qs-career`, `qs-skill-passport`; 30×30, own fixed colour). Not read by `build-icons.js`; used only as `<img>` on the Dashboard Quick Services; shown on Design System → Icons → "Live Site Icons – Exception". Replace + delete when the UI Designer sends icons in our style. |
 | `build-icons.js` → `icons.js` | `node build-icons.js` turns the SVGs into `icons.js` (`window.USK_ICONS`). Never edit `icons.js` by hand. |
 | `README.md` | Gujarati guide for the team (how to open, design system tabs, icon rules). |
 | `Design-System-Guide.md` | Original planning document (list of components wanted). |
@@ -126,13 +127,14 @@ The full live docs are in `index.html` → sidebar **Design System** (tabs: Logo
 - **10 sections, in order:**
   1. **Profile banner:** navy panel with a slanted right edge and 2 gold stripes, a gold avatar with initials, the name, APAAR / ABC ID, and a gold "Verified" chip. Next to it a 2×2 grid (`.ui-icon-box.is-primary` + label + value): Degree/Program, Semester/Year, Email, Mobile No. Then a **Social Profiles** box with LinkedIn / GitHub / Instagram / Facebook in the DS brand icons, all navy – **icon only, no names** (user, 16/11): 40×40 square buttons (`.db-soc-btn`, icon 20) in one wrapping row (`.db-soc-grid` is flex now), the name is in `title` (tooltip) and `aria-label` "Open your X profile". One **eye toggle** shows or hides APAAR, email and mobile together (masked by default).
   2. **Latest Update ticker** – our DS shape and layout, **colours from the live gyandiksha bar** (16/11): "Latest Update" label (radius 6px, bell icon 16) in `--color-error-bg` with `--color-error-border` and `--color-error` text; then the published announcements scrolling sideways (45 s loop, **pauses on hover / focus**, stops with "reduced motion"; the label sits above the ticker ≤575px). Each item: a `.db-tag.is-live` tag ("NEW ANNOUNCEMENT" if published in the last 7 days, else "ANNOUNCEMENT") in `--color-accent-300` bg + `--color-warning` border + `--color-error` text; the title in `--color-gray-600`; "Read details →" (`--color-primary-500`), which opens the Announcement modal.
-  3. **Quick Services**, **5** tinted cards in the **DS category colours** (taken from the live site, 16/11): card `--color-cat-X-bg` + `-border`, icon and round arrow button `--color-cat-X` (classes `.db-qs.is-purple / is-green / is-teal / is-blue / is-orange`):
-     - Scholarship (purple) → `#my-apps`
+  3. **Quick Services**, **4** tinted cards in the **DS category colours** (taken from the live site, 16/11): card `--color-cat-X-bg` + `-border`, icon and round arrow button `--color-cat-X` (classes `.db-qs.is-purple / is-green / is-blue / is-orange`; `is-teal` unused):
+     - Scholarship (purple) → `#scholarships`
      - Attendance (green) → toast, the page is not built yet
-     - **Feedback** (teal, new 16/11, from the live site) → toast "soon"; temporary icon `star`
      - Career & Placement (blue) → `#jobs`
      - Skill Passport (orange) → `skill-passport.html`
-     - Grid: 5 in one row only ≥1600px; 3 + 2 below that; 2 columns ≤1199px (the 5th card takes the full row); 1 column ≤575px.
+     - The Feedback card (added 16/11) was **removed** on request (16/11).
+     - **Compact cards** (16/11, like the live site): padding 12 / 16px, gap 12, icon box 44px, arrow circle 32px (the whole card is the button). Grid: 4 in a row → 2 columns ≤1199px → 1 column ≤575px.
+     - **Icons = the live site's own icons** (user, 16/11 – exception to the DS icon rule): `<img src="icons/live/qs-*.svg">` 26px in the white icon box (`.db-qs-ic img`). Their colours are fixed in the files (Skill Passport is amber `#F59E0B`, the card is orange `--color-cat-orange`).
      - Icons are still the closest DS icons (graduation, calendar, star, briefcase, award). New icons are requested from the UI Designer in `icons/REQUEST-Quick-Services-Icons.md` (file names, rules, and the 3 steps to swap them in).
   4. **Recommended Government Schemes:** 4 per page, scholarships left out as in the prototype. Each card has a department tag, name, description and "View Details", which opens the `#mdScheme` modal (eligibility, income limit, source; "Visit Official Website" shows a toast).
   5. **Scholarships:** 9 official links, 6 per page. Each card has a code tag, name, description and an external icon; a click shows a toast.
@@ -603,5 +605,20 @@ Each entry: **asked** → **done** → **open**. Dates are DD/MM/YYYY (2026).
 **16/11 – Tracker for sample rows + small-phone header**
 - Asked: "student application ma tracker kya mukyu che?" → on My Applications → View (top "Status" card). Then: "sample row ma pan batavu che".
 - Done: `stTracker` falls back to the row's own status when the application is not in `VER` (all 5 sample submitted rows now show Status + 4-step tracker, no Update). Header on very small phones: ≤400px role switcher 112px and no Settings icon; ≤340px no avatar. Checked: 320px no sideways scroll on Dashboard / My Applications / View; no console errors.
-- Open: user is checking the whole scholarship flow before commit. Nothing committed. Tested at 1366 and 375: shows on open, hides when a new name is typed (the "+ Add" line takes its place), comes back for an existing name or on reopen; no sideways scroll; no console errors. (The 375 check first gave wrong widths – a preview emulation glitch; after a reload it was fine.)
+- Open: user is checking the whole scholarship flow before commit. Nothing committed.
+
+**16/11 – Scholarship: what is still not done (agreed to do later)**
+- Asked: "banne sheet ma hatu ae badhu done kari didhu?" → Claude listed the gaps; user: "aa kam pachi karishu, have dashboard par kam aagal vadhariae".
+- **Deferred list (do when the user asks):** (1) Commissioner decision Approve / Reject / Pending (next spec); (2) MYSY special cases SPC-MYSY-01 / 03 / 04 only saved, not applied; (3) Annexure 9 "7 days else auto-cancel" (status not in spec); (4) Category 1 taluka literacy check + "held for manual review" when data is missing; (5) rule-check fields not asked (mother remarried, adopted, father deceased, MBBS NEET) – BA to answer; (6) session-timeout draft save, Apply Now when a draft exists. Simulated on purpose: DigiLocker, income API, mail, document view (toast), in-memory data, "+1 day" demo clock.
+- Next: back to the Student Dashboard, section by section (done so far: Latest Update colours, Social Profiles icon only, Quick Services colours + Feedback card + icon request).
+
+**16/11 – Dashboard Quick Services: Feedback removed, less padding**
+- Asked: remove the Feedback card; reduce the card padding; "shu same icon nai aave je URL ma che e?"
+- Done: Feedback card removed (back to 4 cards, 4 → 2 → 1 columns; the 5-card grid rules removed). Measured the live card (padding 12.6 / 15.4, icon box 44, gap 12, arrow 28) → ours now padding 12 / 16, gap 12, icon box 44, arrow 32 (DS scale). Teal token stays in the DS (marked "free"). Tested at 1366 (4 × 84px) and 375 (1 column), no sideways scroll, no console errors.
+- Icons: the live icons are the site's own multi-colour SVG files (+ one from the Fluent library). Our DS rule says single-colour icons from our set; using them needs the user's / UI Designer's OK and downloading the files from the live site (asked the user). The request to the UI Designer is in `icons/REQUEST-Quick-Services-Icons.md`.
+
+**16/11 – Quick Services: live icons (exception)**
+- Asked: "ha live icon lai lo ane ene icon ni tab ma alag jagyae thi muki dejo mention karine".
+- Done: the 4 SVGs read from the live page (2 were inline data URIs, 2 downloaded with `curl` from `auth.gyandiksha.in/assets/…`; checked: plain SVG, no script, sizes equal to live). Each is in fact **one colour** (purple / green / blue / amber), not multi-colour. Saved in `icons/live/` (§2), used on the Quick Services cards, and shown on Design System → Icons in a separate dashed section "**Live Site Icons – Exception**" (file names, colours, why apart, replace later). Tested at 1366 and 375 (icons load at 26px, DS section 4 → 2 columns), no sideways scroll, no console errors.
+- Open: Skill Passport icon amber vs orange card – keep or recolour? UI Designer icons still requested. Nothing committed. Tested at 1366 and 375: shows on open, hides when a new name is typed (the "+ Add" line takes its place), comes back for an existing name or on reopen; no sideways scroll; no console errors. (The 375 check first gave wrong widths – a preview emulation glitch; after a reload it was fine.)
 - Open: nothing committed.

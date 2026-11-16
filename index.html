@@ -822,23 +822,22 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 @media (prefers-reduced-motion:reduce){.db-tick-win{overflow-x:auto}.db-tick-track{animation:none}}
 
 /* 3. Quick Services */
-.db-qs-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-16)}
-.db-qs{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-20);border:1px solid;border-radius:8px;text-align:left;cursor:pointer;transition:box-shadow .2s,transform .2s}
+.db-qs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+/* compact (16/11, like the live site): padding 12 / 16, icon box 44, gap 12, arrow 32 – the whole card is the button */
+.db-qs{display:flex;align-items:center;gap:var(--space-12);padding:var(--space-12) var(--space-16);border:1px solid;border-radius:8px;text-align:left;cursor:pointer;transition:box-shadow .2s,transform .2s}
 .db-qs:hover{box-shadow:0 4px 12px rgba(15,31,49,.08);transform:translateY(-1px)}
 .db-qs:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
-.db-qs-ic{width:56px;height:56px;flex:none;border-radius:8px;background:var(--color-bg-surface);display:grid;place-items:center}
+.db-qs-ic{width:44px;height:44px;flex:none;border-radius:8px;background:var(--color-bg-surface);display:grid;place-items:center}
 .db-qs-txt{flex:1;min-width:0}
 .db-qs-txt b{display:block;font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
 .db-qs-txt small{display:block;margin-top:2px;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
-.db-qs-go{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff}
+.db-qs-go{width:32px;height:32px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff}
 /* tones = DS category colours (from the live site, 16/11): card -bg / -border, icon + arrow button = solid */
 .db-qs.is-purple{background:var(--color-cat-purple-bg);border-color:var(--color-cat-purple-border)} .db-qs.is-purple .db-qs-ic{color:var(--color-cat-purple)} .db-qs.is-purple .db-qs-go{background:var(--color-cat-purple)}
 .db-qs.is-green{background:var(--color-cat-green-bg);border-color:var(--color-cat-green-border)} .db-qs.is-green .db-qs-ic{color:var(--color-cat-green)} .db-qs.is-green .db-qs-go{background:var(--color-cat-green)}
 .db-qs.is-teal{background:var(--color-cat-teal-bg);border-color:var(--color-cat-teal-border)} .db-qs.is-teal .db-qs-ic{color:var(--color-cat-teal)} .db-qs.is-teal .db-qs-go{background:var(--color-cat-teal)}
 .db-qs.is-blue{background:var(--color-cat-blue-bg);border-color:var(--color-cat-blue-border)} .db-qs.is-blue .db-qs-ic{color:var(--color-cat-blue)} .db-qs.is-blue .db-qs-go{background:var(--color-cat-blue)}
 .db-qs.is-orange{background:var(--color-cat-orange-bg);border-color:var(--color-cat-orange-border)} .db-qs.is-orange .db-qs-ic{color:var(--color-cat-orange)} .db-qs.is-orange .db-qs-go{background:var(--color-cat-orange)}
-@media (max-width:1599.98px){.db-qs-grid{grid-template-columns:repeat(3,minmax(0,1fr))}} /* 5 in a row only on wide screens; else 3 + 2 */
-
 /* 4. Schemes · 5. Scholarships · 6. Announcement · 7. Internships · 8. Events (cards) */
 .db-grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
 .db-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16)}
@@ -896,16 +895,12 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .db-md-desc{margin-bottom:var(--space-16);font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body)}
 
 @media (max-width:1439.98px){
-  .db-qs{gap:var(--space-12);padding:var(--space-16)}
-  .db-qs-ic{width:48px;height:48px}
   .db-profile{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .db-soc{grid-column:1/-1;margin:0 var(--space-16) var(--space-16)}
   .db-info{padding-right:var(--space-16)}
 }
 @media (max-width:1199.98px){
-  .db-qs-grid,.db-grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .db-qs:last-child:nth-child(odd){grid-column:1/-1} /* 5 cards in 2 columns: the last one takes the full row */
-  .db-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .db-qs-grid,.db-grid4{grid-template-columns:repeat(2,minmax(0,1fr))}  .db-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:991.98px){
   .db-profile{grid-template-columns:1fr;gap:0}
@@ -1233,6 +1228,16 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ic-colors button{width:26px;height:26px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--color-border-strong)}
 .ic-colors button.on{box-shadow:0 0 0 2px var(--color-primary-600)}
 .ic-search{width:220px;margin-left:auto}
+.ic-live{border:1px dashed var(--color-warning-border)}
+.ic-live .ds-num{background:var(--color-warning-bg);color:var(--color-warning-text)}
+.ic-live-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+.ic-live-item{display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:8px;text-align:center}
+.ic-live-box{width:56px;height:56px;display:grid;place-items:center;margin-bottom:var(--space-8);border-radius:8px;background:var(--color-bg-table-head)}
+.ic-live-item b{font-size:var(--font-size-body);color:var(--color-text-heading)}
+.ic-live-item code{font-size:var(--font-size-caption);color:var(--color-text-secondary);overflow-wrap:anywhere}
+.ic-live-item small{font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+@media (max-width:700px){.ic-live-grid{grid-template-columns:repeat(2,1fr)}}
+.db-qs-ic img{width:26px;height:26px;display:block}
 .ic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px}
 .ic-cell{border:1px solid var(--color-border-default);border-radius:10px;background:#fff;padding:16px 8px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:.15s;color:var(--ic-color,var(--color-icon-primary))}
 .ic-cell:hover{border-color:var(--color-primary-300);box-shadow:0 2px 8px rgba(15,58,102,.08)}
@@ -1656,12 +1661,10 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
         <section class="db-card">
           <div class="db-head"><h4><span data-icon="user:f:20"></span>Quick Services</h4></div>
           <div class="db-qs-grid">
-            <button class="db-qs is-purple" type="button" data-dbgo="#scholarships" title="Eligibility is checked using your academic records"><span class="db-qs-ic"><span data-icon="graduation:f:24"></span></span><span class="db-qs-txt"><b>Scholarship</b><small>Check eligibility and apply</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
-            <button class="db-qs is-green" type="button" data-dbsoon="Attendance" title="Marked from the mobile app with face check"><span class="db-qs-ic"><span data-icon="calendar:f:24"></span></span><span class="db-qs-txt"><b>Attendance</b><small>View and monitor your attendance</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
-            <!-- Feedback: new card (16/11, from the live site). Icon = "star" for now, until the UI Designer sends the Quick Services icons -->
-            <button class="db-qs is-teal" type="button" data-dbsoon="Feedback" title="Share your feedback and suggestions"><span class="db-qs-ic"><span data-icon="star:f:24"></span></span><span class="db-qs-txt"><b>Feedback</b><small>Share feedback and suggestions</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
-            <button class="db-qs is-blue" type="button" data-dbgo="#jobs" title="Jobs matched to your Skill Passport"><span class="db-qs-ic"><span data-icon="briefcase:f:24"></span></span><span class="db-qs-txt"><b>Career &amp; Placement</b><small>Explore career opportunities</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
-            <button class="db-qs is-orange" type="button" data-dbgo="skill-passport.html" title="Your verified skills and certificates in one place"><span class="db-qs-ic"><span data-icon="award:f:24"></span></span><span class="db-qs-txt"><b>Skill Passport</b><small>Manage your skills, showcase achievements</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+            <button class="db-qs is-purple" type="button" data-dbgo="#scholarships" title="Eligibility is checked using your academic records"><span class="db-qs-ic"><img src="icons/live/qs-scholarship.svg" alt="" width="26" height="26"></span><span class="db-qs-txt"><b>Scholarship</b><small>Check eligibility and apply</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+            <button class="db-qs is-green" type="button" data-dbsoon="Attendance" title="Marked from the mobile app with face check"><span class="db-qs-ic"><img src="icons/live/qs-attendance.svg" alt="" width="26" height="26"></span><span class="db-qs-txt"><b>Attendance</b><small>View and monitor your attendance</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+            <button class="db-qs is-blue" type="button" data-dbgo="#jobs" title="Jobs matched to your Skill Passport"><span class="db-qs-ic"><img src="icons/live/qs-career.svg" alt="" width="26" height="26"></span><span class="db-qs-txt"><b>Career &amp; Placement</b><small>Explore career opportunities</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+            <button class="db-qs is-orange" type="button" data-dbgo="skill-passport.html" title="Your verified skills and certificates in one place"><span class="db-qs-ic"><img src="icons/live/qs-skill-passport.svg" alt="" width="26" height="26"></span><span class="db-qs-txt"><b>Skill Passport</b><small>Manage your skills, showcase achievements</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
           </div>
         </section>
 
@@ -2313,6 +2316,18 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             </ul>
           </div>
         </div>
+      </section>
+
+      <!-- Exception (16/11): icons taken from the live gyandiksha site, kept apart from our icon set -->
+      <section class="card ds-sec ic-live">
+        <div class="ds-head"><span class="ds-num">!</span><div><h4>Live Site Icons – Exception</h4><p>These 4 icons are taken <b>as they are</b> from the live portal (auth.gyandiksha.in → Student Dashboard → Quick Services), on the team's request (16/11/2026). They are <b>not part of our icon set</b>: each file has its own fixed colour (no <code class="bt-code-inline">currentColor</code>), a 30 × 30 viewBox, and lives in <code class="bt-code-inline">icons/live/</code>, which <code class="bt-code-inline">build-icons.js</code> does not read. Used only on the Dashboard Quick Services cards (as <code class="bt-code-inline">&lt;img&gt;</code>, 26px). Do not use them anywhere else; for new places ask the UI Designer for an icon in our style.</p></div></div>
+        <div class="ic-live-grid">
+          <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-scholarship.svg" alt="" width="30" height="30"></span><b>Scholarship</b><code>icons/live/qs-scholarship.svg</code><small>#7C3AED</small></div>
+          <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-attendance.svg" alt="" width="30" height="30"></span><b>Attendance</b><code>icons/live/qs-attendance.svg</code><small>#16A34A</small></div>
+          <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-career.svg" alt="" width="30" height="30"></span><b>Career &amp; Placement</b><code>icons/live/qs-career.svg</code><small>#2563EB</small></div>
+          <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-skill-passport.svg" alt="" width="30" height="30"></span><b>Skill Passport</b><code>icons/live/qs-skill-passport.svg</code><small>#F59E0B</small></div>
+        </div>
+        <div class="ds-note" style="margin:18px 0 0"><span class="ds-note-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span><div><b>Why apart:</b> our rule is one-colour icons that take the colour of where they sit. When the UI Designer delivers the Quick Services icons in our style (request: <code class="bt-code-inline">icons/REQUEST-Quick-Services-Icons.md</code>), replace these and delete <code class="bt-code-inline">icons/live/</code>.</div></div>
       </section>
 
       </div><!-- /PANEL: ICONS -->
@@ -4808,7 +4823,7 @@ const DS_GROUPS = {
   category: [
     ["Purple", "--color-cat-purple", "Quick Services – Scholarship"],
     ["Green", "--color-cat-green", "Quick Services – Attendance"],
-    ["Teal", "--color-cat-teal", "Quick Services – Feedback"],
+    ["Teal", "--color-cat-teal", "Free (the Feedback card was removed)"],
     ["Blue", "--color-cat-blue", "Quick Services – Career & Placement"],
     ["Orange", "--color-cat-orange", "Quick Services – Skill Passport"]
   ]
