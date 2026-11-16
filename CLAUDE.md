@@ -177,11 +177,21 @@ The full live docs are in `index.html` → sidebar **Design System** (tabs: Logo
 - Built from the point of view of a **company owner posting a job**. Page "Post a Job". So far only the **Job Oriented Skills** section exists; other job fields (title, salary, location…) are still to come.
 - Section card: empty state + "Add Skills" (primary) until skills are saved; after that, two groups side by side, **Required Skills (Must have)** and **Optional Skills (Good to have)**, with counts, plus "Edit Skills" (outline). On mobile the groups stack.
 - **No modal.** "Add Skills" / "Edit Skills" are links to a separate page `#company-job-skills` ("Add Job Oriented Skills" / "Edit Job Oriented Skills", with a Back button). Opening it (`showView` → `cjOpenPage()`) starts a draft from the saved skills.
-- **Add Skills page**, card 1 "Select Skill": the same search combo as the Skill Passport skills modal (search list, highlight, "Add new" for a typed skill, Enter, arrow keys, max 15). **After a skill is picked, a box asks "Is X a required or an optional skill for this job?"** with Required (primary) / Optional (outline) / Cancel; the answer puts the skill into that group. Card 2 "Added Skills": Required and Optional groups with chips and counts. Bottom right: Cancel (back, discards the draft) + Save Skills (saves and returns to Post a Job with a toast).
-- **Custom skills can be renamed in place** (to fix a typo like "photosop" → "Photoshop"). A custom skill = one typed by the user, not in `CJ_SKILLS`. Only custom chips show an edit (pencil) button; skills from the list have only ×. Edit turns the chip into a small input: Enter or ✓ saves, Esc or × cancels. Empty names and duplicates show a red message under the chips. If the new name matches a list skill, it stops being custom.
-- Chip styles: Required = navy tint, solid border; **Optional = white with a dashed border**, so the two differ by shape and not only by color (`.cj-skill.is-opt`, `.ui-chip.is-opt`). Editing chip = `.ui-chip.is-editing`.
-- Save rules: at least **1 required skill**; it cannot save while a skill is still waiting for the Required/Optional answer, or while a chip edit is invalid.
-- JS: `CJ` (`saved` / `draft` = `{ req, opt }`, `pending`, `editing`), `cjOpenPage`, `cjPick` → `cjAnswer(type)`, `cjEditSave` / `cjEditCancel`, `cjIsCustom`, `cjRenderChips`, `cjRenderPage`. CSS prefix `cj-`. Data in memory only.
+- **Add Skills page** (changed 16/11/2026), card 1 "Select Skill":
+  - The skill **dropdown** (search combo: search list, highlight, Enter, arrow keys, max 15) shows the list skills.
+  - **Hint so owners know about Add Skill (16/11, ideas 1 + 2):**
+    - (1) The **blue info box** under the dropdown (`.cj-info`) says "ⓘ Skill not in the list? **+ Add Skill** to add a new one." "+ Add Skill" is a link button (`.cj-help-link`, `data-cj-add`) that opens the modal. Since 16/11 it **replaces** the old text "Required = the candidate must have this skill. Optional = good to have…" (removed on request). The help line `#cjHelp` under the dropdown is now empty and hidden, and only shows error / success messages.
+    - (2) When the typed text is not exactly a list skill, the dropdown shows "“X” is not in the list." (only when nothing matches) and a last option **"+ Add “X” as a new skill"** (`.ui-option.is-new.cj-opt-new`, keyboard too). It opens the modal with **X already filled in** (not added yet; "Add Skills" adds it).
+  - Next to the dropdown is an **"Add Skill"** button (`#cjAddSkillBtn`, **navy primary** + plus since 16/11 (was outline); full width under the dropdown ≤575px). It opens the **`#mdCjSkill` modal** (DS modal, `data-static`), with a Skill Name input + "Add" button.
+  - In the modal the owner types skills **one after another** (Enter or Add after each). They show as chips under "Skills to add (N)", with × to take one back before saving.
+  - Modal checks: empty name → "Enter a skill name."; already in the dropdown list → "X is already in the skill list."; typed twice → "X is already added below."; saving with nothing → "Add at least one skill." A name still in the input when saving is added first.
+  - **Add Skills** (primary) puts the new skills at the **top of the dropdown list** (`CJ_SKILLS.unshift`), closes the modal, shows a toast plus a help message, and opens the dropdown. Cancel / × / Esc throw the modal list away.
+  - Picking a skill from the dropdown shows the box **"Is X a required or an optional skill for this job?"** with Required / Optional / Cancel; the answer puts the skill into that group.
+- Card 2 "Added Skills": Required and Optional groups with counts. The chips are **plain** (`.ui-chip.is-plain`): **edit and delete are removed for now** (user request). The old inline rename of custom skills and the chip × are gone. A wrong pick can only be undone with Cancel (leave the page without saving).
+- Bottom right: Cancel (back, discards the draft) + Save Skills (saves and returns to Post a Job with a toast).
+- Chip styles: Required = navy tint, solid border; **Optional = white with a dashed border**, so the two differ by shape and not only by colour (`.cj-skill.is-opt`, `.ui-chip.is-opt`). The `.cj-chip-edit` / `.ui-chip.is-editing` CSS is still in the file (unused) in case edit comes back.
+- Save rules: at least **1 required skill**; it cannot save while a skill is still waiting for the Required/Optional answer.
+- JS: `CJ_SKILLS` (the dropdown list; new skills are added here, in memory only), `CJ` (`saved` / `draft` = `{ req, opt }`, `pending`, `newList` = the modal list), `cjOpenPage`, `cjPick` → `cjAnswer(type)`, `cjRenderChips`, `cjRenderList`, `cjRenderPage`, `cjNewAdd`, `cjNewRender`, `cjNewHelp`. CSS prefix `cj-` (`.cj-pick-row`, `.cj-add-skill`, `.cj-new-row`, `.cj-new-list`). Data in memory only.
 
 ### Skill Passport (`skill-passport.html`)
 - Hero banner, student details (masked email / APAAR / mobile with show/hide), summary tiles, tabs, in this order since 16/11/2026: **1 Academic** (open by default; Your Journey timeline + Education accordion), **2 Projects & Research** (dissertation, research papers, college projects), **3 Skills & Certificates**, **4 Experience** (internship, special achievements). The tab / panel **ids are the old ones** (`tab-education` = Academic, `tab-academic` = Projects & Research), so the summary tiles (`data-go`) keep working, Job Oriented Skills modal (search + chips, max 15), Your Journey timeline + Full Journey drawer, education accordion, 3-dots row menu. Page-level classes use the `sp-` prefix.
@@ -268,3 +278,24 @@ Each entry: **asked** → **done** → **open**. Dates are DD/MM/YYYY (2026).
 - Done: the tabs are renamed and reordered, and Academic is open by default (`aria-selected`, `hidden` moved). Your Journey was already inside that panel. The "Academic Work" tab was renamed "Projects & Research" (research icon). The **Experience** tab was not mentioned, so it stays as the 4th tab (nothing deleted). The summary tiles, click and arrow keys work; no sideways scroll at 375; no console errors.
 - Backup: `skill-passport.before-tabs.html` in the Claude scratchpad.
 - Open: whether Experience should stay as tab 4, merge into another tab, or go. Nothing committed.
+
+**16/11 – Company Job Post: "Add Skill" modal, no edit / delete**
+- Asked: on Add Job Oriented Skills, put an **Add Skill** button next to the skill dropdown. It opens a modal where the owner types and adds **many** skills. After closing it, they are in the skill dropdown. **Remove edit and delete for now.** Picking from the dropdown only asks Required or Optional.
+- Done: as in §7 Company Job Post. The "Add new" option in the dropdown was removed, because new skills now come only from the modal. In the modal a skill can still be removed with × before saving, which is not the delete on the page. Tested: duplicates, empty, Enter, Esc, the dropdown shows the new skills on top, the Required/Optional box, chips with no buttons. No sideways scroll at 375, no console errors.
+- Backup: `index.before-cj-modal.html` in the Claude scratchpad.
+- Open: should new skills also be added straight to the job (asking Required/Optional) instead of only to the list? Should the × inside the modal stay? Nothing committed.
+
+**16/11 – Company Job Post: tell owners about "Add Skill"**
+- Asked: owners think skills can only come from the dropdown; show some information that a missing skill can be added with Add Skill. Claude was asked to suggest ideas: 4 were given, and the user chose **1 + 2**.
+- Done:
+  - (1) A permanent hint with an "+ Add Skill" link under the dropdown.
+  - (2) When the search has no exact match, a "+ Add “X” as a new skill" option opens the modal with X filled in (`cjOpenAddModal(prefill)`, `CJ_HINT`).
+  - Tested: the link, Enter, mouse, prefill, a partial match ("jav" → Java, JavaScript + add option), an exact match (no add option); no sideways scroll at 375; no console errors.
+- Backup: `index.before-cj-hint.html` in the Claude scratchpad. Nothing committed.
+
+**16/11 – Add Skill button navy**
+- Asked: "add skill button navy kari dyo". Done: `#cjAddSkillBtn` changed from `.ui-btn-outline` to `.ui-btn-primary` (navy). The page now has two primary buttons (Add Skill + Save Skills), as the user asked. Nothing committed.
+
+**16/11 – Info box text changed**
+- Asked: remove "Required = the candidate must have this skill. Optional = good to have, it gives the candidate extra points." and write "Skill not in the list? + Add Skill to add a new one." in its place.
+- Done: the blue info box now holds the Add Skill hint (with a working link). The same hint under the dropdown was removed, so it is not shown twice. The Required / Optional explanation is gone. Nothing committed.

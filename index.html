@@ -288,6 +288,26 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ui-chip.is-editing button.cj-chip-ok:hover,.ui-chip.is-editing button.cj-chip-ok:focus-visible{background:var(--color-success-bg)}
 /* Add Skills page */
 .cj-combo{max-width:560px}
+/* Skill dropdown + "Add Skill" button side by side; Add Skill modal (#mdCjSkill) */
+.cj-pick-row{display:flex;align-items:flex-start;gap:var(--space-12);max-width:700px}
+.cj-pick-row .cj-combo{flex:1;min-width:0}
+.cj-add-skill{flex:none}
+.cj-help:empty{display:none}
+.cj-info .cj-help-link{color:var(--color-info-text)}
+.cj-help-link{border:0;background:none;padding:0;font:inherit;font-weight:var(--font-weight-semibold);color:var(--color-text-link);text-decoration:underline;cursor:pointer}
+.cj-help-link:hover{color:var(--color-text-link-hover)}
+.cj-help-link:focus-visible{outline:0;border-radius:2px;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.cj-opt-new{border-top:1px solid var(--color-divider)}
+.cj-sec .ui-chip.is-plain{padding-right:14px} /* chips without edit / remove buttons */
+.cj-new-row{display:flex;gap:var(--space-8)}
+.cj-new-row .ui-input{flex:1;min-width:0}
+.cj-new-row .ui-btn{flex:none}
+.cj-new-list{margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px solid var(--color-divider)}
+.cj-new-list[hidden]{display:none}
+.cj-new-head{margin-bottom:var(--space-8);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.cj-new-head i{font-style:normal;margin-left:var(--space-4);padding:1px 8px;border-radius:10px;background:var(--color-primary-50);color:var(--color-primary-600);font-size:var(--font-size-caption)}
+#cjNewChips{margin:0}
+@media (max-width:575.98px){.cj-pick-row{flex-direction:column;align-items:stretch}.cj-add-skill{width:100%}}
 .cj-combo > svg:first-child{position:absolute;left:12px;right:auto;top:calc(var(--input-height) / 2 - 8px);width:16px;height:16px;color:var(--color-icon-muted);pointer-events:none}
 .cj-combo:focus-within > svg:first-child{color:var(--color-icon-primary)}
 .cj-combo.is-open > svg:first-child{transform:none}
@@ -3159,16 +3179,20 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 
       <!-- 1. Select a skill -->
       <section class="card cj-sec">
-        <div class="ui-form-sec-head"><h5>Select Skill</h5><p>Pick from the list, or type a new skill and press Enter to add it as a custom skill.</p></div>
+        <div class="ui-form-sec-head"><h5>Select Skill</h5><p>Pick a skill from the list. If it is not in the list, add it with "Add Skill".</p></div>
         <div class="ui-field">
           <label class="ui-label" for="cjIn">Skill<span class="ui-req">*</span></label>
+          <div class="cj-pick-row">
           <div class="ui-combo cj-combo" id="cjCombo">
             <span data-icon="search:l:16"></span>
             <input class="ui-input" id="cjIn" placeholder="Search skill (e.g. HTML, Python, Figma...)" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="cjList" aria-autocomplete="list">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             <div class="ui-select-menu"><div class="ui-select-list" id="cjList" role="listbox" aria-label="Skills"></div></div>
           </div>
-          <span class="ui-help" id="cjHelp">Type to search. Press Enter to add a skill that is not in the list.</span>
+          <!-- Opens the "Add Skill" modal: the owner types new skills; they join this dropdown list -->
+          <button class="ui-btn ui-btn-primary cj-add-skill" type="button" id="cjAddSkillBtn"><span data-icon="plus:l:16"></span>Add Skill</button>
+          </div>
+          <span class="ui-help cj-help" id="cjHelp"></span>
         </div>
         <!-- Asked right after a skill is picked -->
         <div class="cj-ask" id="cjAsk" role="group" aria-labelledby="cjAskText" hidden>
@@ -3179,7 +3203,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             <button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="cjAskCancel">Cancel</button>
           </div>
         </div>
-        <div class="cj-info" role="note"><span data-icon="info:f:18"></span><span><b>Required</b> = the candidate must have this skill. <b>Optional</b> = good to have, it gives the candidate extra points.</span></div>
+        <div class="cj-info" role="note"><span data-icon="info:f:18"></span><span>Skill not in the list? <button type="button" class="cj-help-link" data-cj-add>+ Add Skill</button> to add a new one.</span></div>
       </section>
 
       <!-- 2. Added skills -->
@@ -3197,7 +3221,6 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             <p class="cj-none" id="cjMdOptNone">No optional skills yet.</p>
           </div>
         </div>
-        <span class="ui-help cj-chip-help" id="cjChipHelp"><span data-icon="edit:o:14"></span>Custom skills (typed by you) have an edit button, so you can fix the spelling.</span>
       </section>
 
       <div class="cj-foot">
@@ -3538,6 +3561,34 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
   </div>
 </div>
 
+<!-- ===== Company Job Post – Add Skill modal (new skills join the skill dropdown) ===== -->
+<div class="ui-modal-backdrop" id="mdCjSkill" data-static>
+  <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdCjSkillTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="plus:l:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdCjSkillTitle">Add Skill</h4><p>Add skills that are not in the list. You can add more than one.</p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="ui-field">
+        <label class="ui-label" for="cjNewIn">Skill Name<span class="ui-req">*</span></label>
+        <div class="cj-new-row">
+          <input class="ui-input" id="cjNewIn" maxlength="40" placeholder="Type a skill (e.g. Photoshop)" autocomplete="off">
+          <button class="ui-btn ui-btn-outline" type="button" id="cjNewAdd"><span data-icon="plus:l:16"></span>Add</button>
+        </div>
+        <span class="ui-help" id="cjNewHelp">Press Enter or "Add" after each skill.</span>
+      </div>
+      <div class="cj-new-list" id="cjNewWrap" hidden>
+        <p class="cj-new-head">Skills to add <i id="cjNewCount">0</i></p>
+        <div class="ui-chips" id="cjNewChips"></div>
+      </div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" id="cjNewSave">Add Skills</button>
+    </div>
+  </div>
+</div>
 <!-- ===== Student Dashboard – Scheme details + Announcement details (read-only) ===== -->
 <div class="ui-modal-backdrop" id="mdScheme">
   <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdSchemeTitle">
@@ -5244,18 +5295,20 @@ function maDownload(a) {
 maRender();
 
 /* ================= COMPANY JOB POST – Job Oriented Skills (company view) =================
-   "Add Skills" / "Edit Skills" go to their own page (#company-job-skills), no modal.
-   Same search + chips pattern as the Skill Passport skills modal. After a skill is picked the page asks
-   "Required or Optional?" and the skill goes into that group. Custom skills (typed, not from the list)
-   can be renamed in place, to fix a spelling mistake ("photosop" → "Photoshop"). */
+   "Add Skills" / "Edit Skills" go to their own page (#company-job-skills), no modal for the page itself.
+   Pick a skill from the dropdown → the page asks "Required or Optional?" → the skill goes into that group.
+   A skill that is not in the list is added with the "Add Skill" button: it opens #mdCjSkill, where the owner
+   types one or more skills; after "Add Skills" they join the dropdown list (CJ_SKILLS).
+   Edit and remove of added chips are switched off for now (user, 16/11/2026). */
 const CJ_SKILLS = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Angular", "Vue.js", "Node.js", "Java", "Spring Boot", "Hibernate", "Python", "Django", "Machine Learning", "Data Analysis", "SQL", "MySQL", "MongoDB", "PHP", "Laravel", "C", "C++", "C#", ".NET", "Docker", "Git", "Linux", "AWS", "Figma", "UI/UX Design", "Communication", "Problem Solving", "Teamwork", "MS Excel", "Tally"];
-const CJ = { saved: { req: [], opt: [] }, draft: { req: [], opt: [] }, pending: "", editing: null, max: 15, active: 0, opts: [] };
+const CJ = { saved: { req: [], opt: [] }, draft: { req: [], opt: [] }, pending: "", max: 15, active: 0, opts: [], newList: [] };
 const cjCombo = $("#cjCombo"), cjIn = $("#cjIn"), cjList = $("#cjList");
 const cjAll = () => [...CJ.draft.req, ...CJ.draft.opt];
-const cjHas = (v, except) => cjAll().some(s => s !== except && s.toLowerCase() === v.toLowerCase());
-const cjIsCustom = s => !CJ_SKILLS.some(k => k.toLowerCase() === s.toLowerCase());
-const CJ_HELP = "Type to search. Press Enter to add a skill that is not in the list.";
-const CJ_CHIP_HELP = `${iconSvg("edit", "o", 14)}Custom skills (typed by you) have an edit button, so you can fix the spelling.`;
+const cjHas = v => cjAll().some(s => s.toLowerCase() === v.toLowerCase());
+const cjInList = v => CJ_SKILLS.some(s => s.toLowerCase() === v.toLowerCase());
+const CJ_HELP = "";  // empty = the default hint below
+// Default hint under the dropdown (idea 1): tells the owner that a missing skill can be added with "Add Skill"
+// The "Skill not in the list? + Add Skill" hint lives in the blue info box (.cj-info) since 16/11; #cjHelp only shows messages
 
 // Company Job Post page: two groups (Required / Optional) + "Edit Skills", or the empty state + "Add Skills"
 function cjRenderPage() {
@@ -5266,17 +5319,11 @@ function cjRenderPage() {
   $("#cjReqCount").textContent = req.length; $("#cjOptCount").textContent = opt.length; $("#cjTotal").textContent = n;
   $("#cjGroups").hidden = !n; $("#cjEmpty").hidden = !!n; $("#cjEditBtn").hidden = !n;
 }
-// Add Skills page: chips of the draft. Custom chips get an edit button; the chip being edited becomes an input.
+// Add Skills page: chips of the draft (no edit / remove buttons for now)
 function cjRenderChips() {
-  const chip = (s, type, i) => {
-    const opt = type === "opt" ? " is-opt" : "";
-    if (CJ.editing && CJ.editing.type === type && CJ.editing.i === i)
-      return `<span class="ui-chip is-editing${opt}"><input class="cj-chip-in" value="${esc(s)}" maxlength="40" aria-label="Edit skill name"><button type="button" class="cj-chip-ok" data-cj-ok title="Save" aria-label="Save skill name">${iconSvg("check", "l", 12)}</button><button type="button" data-cj-edit-cancel title="Cancel" aria-label="Cancel editing">${iconSvg("close", "l", 12)}</button></span>`;
-    const edit = cjIsCustom(s) ? `<button type="button" class="cj-chip-edit" data-cj-edit="${type}:${i}" title="Edit ${esc(s)}" aria-label="Edit ${esc(s)}">${iconSvg("edit", "f", 12)}</button>` : "";
-    return `<span class="ui-chip${opt}" title="${cjIsCustom(s) ? "Custom skill" : ""}">${esc(s)}${edit}<button type="button" data-cj-rm="${type}:${i}" title="Remove ${esc(s)}" aria-label="Remove ${esc(s)}">${iconSvg("close", "l", 12)}</button></span>`;
-  };
-  $("#cjMdReq").innerHTML = CJ.draft.req.map((s, i) => chip(s, "req", i)).join("");
-  $("#cjMdOpt").innerHTML = CJ.draft.opt.map((s, i) => chip(s, "opt", i)).join("");
+  const chip = (s, type) => `<span class="ui-chip is-plain${type === "opt" ? " is-opt" : ""}">${esc(s)}</span>`;
+  $("#cjMdReq").innerHTML = CJ.draft.req.map(s => chip(s, "req")).join("");
+  $("#cjMdOpt").innerHTML = CJ.draft.opt.map(s => chip(s, "opt")).join("");
   $("#cjMdReqNone").hidden = CJ.draft.req.length > 0;
   $("#cjMdOptNone").hidden = CJ.draft.opt.length > 0;
   $("#cjMdReqCount").textContent = CJ.draft.req.length; $("#cjMdOptCount").textContent = CJ.draft.opt.length;
@@ -5284,25 +5331,27 @@ function cjRenderChips() {
   const full = cjAll().length >= CJ.max;
   cjIn.disabled = full;
   cjIn.placeholder = full ? `Maximum ${CJ.max} skills added` : "Search skill (e.g. HTML, Python, Figma...)";
-  const ed = $(".cj-chip-in"); if (ed) { ed.focus(); ed.select(); }
 }
 function cjRenderList() {
   const q = cjIn.value.trim(), ql = q.toLowerCase();
   CJ.opts = CJ_SKILLS.filter(s => !cjHas(s) && s !== CJ.pending && s.toLowerCase().includes(ql)).map(v => ({ v }));
-  if (q && !cjHas(q) && !CJ_SKILLS.some(s => s.toLowerCase() === ql)) CJ.opts.push({ v: q, isNew: true });
+  const none = !CJ.opts.length;
+  if (q && !cjHas(q) && !cjInList(q)) CJ.opts.push({ v: q, isNew: true }); // offer to add it as a new skill
   CJ.active = Math.min(CJ.active, Math.max(0, CJ.opts.length - 1));
-  cjList.innerHTML = CJ.opts.map((o, i) => `<div class="ui-option${o.isNew ? " is-new" : ""}${i === CJ.active ? " is-active" : ""}" role="option" aria-selected="${i === CJ.active}" data-i="${i}">${o.isNew ? `${iconSvg("plus", "l", 14)}<span>Add "${esc(o.v)}"</span>` : `<span>${hl(o.v, q)}</span>`}</div>`).join("")
-    || `<div class="ui-select-empty">${q ? "Already added" : "All skills added"}</div>`;
+  const empty = none && q && !cjHas(q) ? `<div class="ui-select-empty">“${esc(q)}” is not in the list.</div>` : "";
+  cjList.innerHTML = (empty + CJ.opts.map((o, i) => `<div class="ui-option${o.isNew ? " is-new cj-opt-new" : ""}${i === CJ.active ? " is-active" : ""}" role="option" aria-selected="${i === CJ.active}" data-i="${i}">${o.isNew ? `${iconSvg("plus", "l", 14)}<span>Add “${esc(o.v)}” as a new skill</span>` : `<span>${hl(o.v, q)}</span>`}</div>`).join(""))
+    || `<div class="ui-select-empty">${!q ? "All skills added" : "Already added"}</div>`;
 }
 function cjOpenList(open) { cjCombo.classList.toggle("is-open", open); cjIn.setAttribute("aria-expanded", open); if (open) cjRenderList(); }
-function cjHelp(msg, isErr) { const h = $("#cjHelp"); h.innerHTML = (isErr ? HELP_ICON["is-error"] : "") + msg; h.classList.toggle("is-error", !!isErr); cjCombo.classList.toggle("is-error", !!isErr); }
-function cjChipHelp(msg, isErr) { const h = $("#cjChipHelp"); h.innerHTML = isErr ? HELP_ICON["is-error"] + msg : CJ_CHIP_HELP; h.classList.toggle("is-error", !!isErr); }
+function cjHelp(msg, isErr) { const h = $("#cjHelp"); h.innerHTML = msg ? (isErr ? HELP_ICON["is-error"] : "") + esc(msg) : ""; h.classList.toggle("is-error", !!isErr); cjCombo.classList.toggle("is-error", !!isErr); }
 
-// Step 1: a skill is picked → ask Required or Optional
+// Step 1: a skill is picked from the list → ask Required or Optional
 function cjPick(v) {
   v = (v || "").trim();
   if (!v || cjAll().length >= CJ.max) return;
   if (cjHas(v)) return cjHelp(`${v} is already added.`, true);
+  if (!cjInList(v)) return cjHelp(`${v} is not in the list. Use “Add Skill” to add it.`, true);
+  v = CJ_SKILLS.find(s => s.toLowerCase() === v.toLowerCase());
   CJ.pending = v;
   cjIn.value = ""; CJ.active = 0; cjOpenList(false); cjHelp(CJ_HELP);
   $("#cjAskName").textContent = v;
@@ -5321,70 +5370,77 @@ function cjCancelAsk() { CJ.pending = ""; $("#cjAsk").hidden = true; cjIn.focus(
 $("#cjAsk").addEventListener("click", e => { const b = e.target.closest("[data-cj-type]"); if (b) cjAnswer(b.dataset.cjType); });
 $("#cjAskCancel").addEventListener("click", cjCancelAsk);
 
-// Inline edit of a custom skill
-function cjEditSave() {
-  const ed = $(".cj-chip-in"); if (!ed || !CJ.editing) return true;
-  const { type, i } = CJ.editing, old = CJ.draft[type][i], v = ed.value.trim().replace(/\s+/g, " ");
-  if (!v) { cjChipHelp("Skill name cannot be empty.", true); ed.focus(); return false; }
-  if (cjHas(v, old)) { cjChipHelp(`${v} is already added.`, true); ed.focus(); return false; }
-  CJ.draft[type][i] = v; CJ.editing = null;
-  cjChipHelp(); cjRenderChips();
-  ($(`[data-cj-edit="${type}:${i}"]`) || $(`[data-cj-rm="${type}:${i}"]`))?.focus();
-  return true;
-}
-function cjEditCancel() {
-  if (!CJ.editing) return;
-  const { type, i } = CJ.editing; CJ.editing = null;
-  cjChipHelp(); cjRenderChips();
-  $(`[data-cj-edit="${type}:${i}"]`)?.focus();
-}
-$("#view-company-job-skills").addEventListener("click", e => {
-  const ed = e.target.closest("[data-cj-edit]"), rm = e.target.closest("[data-cj-rm]");
-  if (e.target.closest("[data-cj-ok]")) return cjEditSave();
-  if (e.target.closest("[data-cj-edit-cancel]")) return cjEditCancel();
-  if (ed) {
-    if (!cjEditSave()) return; // finish another edit first
-    const [type, i] = ed.dataset.cjEdit.split(":"); CJ.editing = { type, i: +i };
-    return cjRenderChips();
-  }
-  if (rm) {
-    const [type, i] = rm.dataset.cjRm.split(":");
-    CJ.editing = null; CJ.draft[type].splice(+i, 1);
-    cjChipHelp(); cjRenderChips(); cjHelp(CJ_HELP);
-    ($(`#cjMd${type === "req" ? "Req" : "Opt"} [data-cj-rm]`) || cjIn).focus();
-  }
-});
-$("#view-company-job-skills").addEventListener("keydown", e => {
-  if (!e.target.matches(".cj-chip-in")) return;
-  if (e.key === "Enter") { e.preventDefault(); cjEditSave(); }
-  else if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); cjEditCancel(); }
-});
-
 cjIn.addEventListener("focus", () => cjOpenList(true));
 cjIn.addEventListener("click", () => cjOpenList(true));
-cjIn.addEventListener("input", () => { CJ.active = 0; cjOpenList(true); });
+cjIn.addEventListener("input", () => { CJ.active = 0; cjHelp(CJ_HELP); cjOpenList(true); });
 cjIn.addEventListener("keydown", e => {
   if (e.key === "ArrowDown" || e.key === "ArrowUp") {
     e.preventDefault(); if (!cjCombo.classList.contains("is-open")) return cjOpenList(true);
     CJ.active = (CJ.active + (e.key === "ArrowDown" ? 1 : -1) + CJ.opts.length) % Math.max(1, CJ.opts.length); cjRenderList();
     cjList.querySelector(".is-active")?.scrollIntoView({ block: "nearest" });
-  } else if (e.key === "Enter") { e.preventDefault(); cjPick(CJ.opts[CJ.active]?.v || cjIn.value); }
+  } else if (e.key === "Enter") { e.preventDefault(); const o = CJ.opts[CJ.active]; o?.isNew ? cjOpenAddModal(o.v) : cjPick(o?.v || cjIn.value); }
   else if (e.key === "Escape") cjOpenList(false);
 });
-cjList.addEventListener("mousedown", e => { const o = e.target.closest(".ui-option"); if (!o) return; e.preventDefault(); cjPick(CJ.opts[o.dataset.i].v); });
+cjList.addEventListener("mousedown", e => { const o = e.target.closest(".ui-option"); if (!o) return; e.preventDefault(); const opt = CJ.opts[o.dataset.i]; opt.isNew ? cjOpenAddModal(opt.v) : cjPick(opt.v); });
 document.addEventListener("click", e => { if (!e.target.closest("#cjCombo")) cjOpenList(false); });
+
+/* ----- "Add Skill" modal: type one or more new skills; "Add Skills" puts them into the dropdown list ----- */
+const cjNewIn = $("#cjNewIn");
+function cjNewHelp(msg, isErr) {
+  const h = $("#cjNewHelp"); h.innerHTML = (isErr ? HELP_ICON["is-error"] : "") + esc(msg || "Press Enter or “Add” after each skill.");
+  h.classList.toggle("is-error", !!isErr); cjNewIn.classList.toggle("is-error", !!isErr);
+}
+function cjNewRender() {
+  $("#cjNewWrap").hidden = !CJ.newList.length;
+  $("#cjNewCount").textContent = CJ.newList.length;
+  $("#cjNewChips").innerHTML = CJ.newList.map((s, i) => `<span class="ui-chip">${esc(s)}<button type="button" data-cj-new-rm="${i}" title="Remove ${esc(s)}" aria-label="Remove ${esc(s)}">${iconSvg("close", "l", 12)}</button></span>`).join("");
+}
+// Adds the typed name to the modal list; returns false (with a message) when it cannot be added
+function cjNewAdd() {
+  const v = cjNewIn.value.trim().replace(/\s+/g, " ");
+  if (!v) { cjNewHelp("Enter a skill name.", true); cjNewIn.focus(); return false; }
+  if (cjInList(v)) { cjNewHelp(`${CJ_SKILLS.find(s => s.toLowerCase() === v.toLowerCase())} is already in the skill list.`, true); cjNewIn.focus(); return false; }
+  if (CJ.newList.some(s => s.toLowerCase() === v.toLowerCase())) { cjNewHelp(`${v} is already added below.`, true); cjNewIn.focus(); return false; }
+  CJ.newList.push(v); cjNewIn.value = ""; cjNewHelp(); cjNewRender(); cjNewIn.focus();
+  return true;
+}
+// Opens the Add Skill modal; "prefill" = the name typed in the dropdown search (idea 2), not added yet
+function cjOpenAddModal(prefill = "") {
+  cjOpenList(false);
+  CJ.newList = []; cjNewIn.value = prefill; cjIn.value = ""; cjNewHelp(prefill ? "Check the spelling, then press “Add Skills” (or Add more skills first)." : ""); cjNewRender();
+  openModal("mdCjSkill");
+  setTimeout(() => { cjNewIn.focus(); cjNewIn.select(); }, 50);
+}
+$("#cjAddSkillBtn").addEventListener("click", () => cjOpenAddModal());
+$("#view-company-job-skills").addEventListener("click", e => { if (e.target.closest("[data-cj-add]")) cjOpenAddModal(); });
+$("#cjNewAdd").addEventListener("click", cjNewAdd);
+cjNewIn.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); cjNewAdd(); } });
+cjNewIn.addEventListener("input", () => { if (cjNewIn.classList.contains("is-error")) cjNewHelp(); });
+$("#cjNewChips").addEventListener("click", e => {
+  const b = e.target.closest("[data-cj-new-rm]"); if (!b) return;
+  CJ.newList.splice(+b.dataset.cjNewRm, 1); cjNewRender(); cjNewIn.focus();
+});
+$("#cjNewSave").addEventListener("click", () => {
+  if (cjNewIn.value.trim() && !cjNewAdd()) return;          // a typed name that was not added yet is added first
+  if (!CJ.newList.length) { cjNewHelp("Add at least one skill.", true); return cjNewIn.focus(); }
+  CJ_SKILLS.unshift(...CJ.newList);                          // new skills show at the top of the dropdown
+  const n = CJ.newList.length; CJ.newList = [];
+  closeModal($("#mdCjSkill"));
+  cjHelp(`${n} skill${n === 1 ? "" : "s"} added to the list. Pick from the list to add ${n === 1 ? "it" : "them"} to this job.`);
+  toast(`${n} skill${n === 1 ? "" : "s"} added to the skill list`);
+  setTimeout(() => { cjIn.focus(); cjOpenList(true); }, 0);
+});
 
 // Opening the Add Skills page: start a draft from the saved skills
 function cjOpenPage() {
   CJ.draft = { req: [...CJ.saved.req], opt: [...CJ.saved.opt] };
-  CJ.pending = ""; CJ.editing = null; $("#cjAsk").hidden = true;
+  CJ.pending = ""; $("#cjAsk").hidden = true;
   cjIn.value = ""; CJ.active = 0; cjOpenList(false);
   $("#cjPageTitle").textContent = CJ.saved.req.length + CJ.saved.opt.length ? "Edit Job Oriented Skills" : "Add Job Oriented Skills";
-  cjHelp(CJ_HELP); cjChipHelp(); cjRenderChips();
+  cjHelp(CJ_HELP); cjRenderChips();
   scrollTo(0, 0);
 }
 $("#cjSave").addEventListener("click", () => {
-  if (!cjEditSave()) return;
   if (CJ.pending) { $('#cjAsk [data-cj-type="req"]').focus(); return cjHelp(`Choose Required or Optional for ${CJ.pending} first.`, true); }
   if (!CJ.draft.req.length) { cjHelp("Add at least one required skill.", true); return cjIn.focus(); }
   CJ.saved = { req: [...CJ.draft.req], opt: [...CJ.draft.opt] };
