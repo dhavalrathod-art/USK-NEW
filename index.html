@@ -396,6 +396,166 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
   .lg-brand small{display:none}
 }
 
+/* ---------- Company Job Post: Manage Job Posting (table + Advanced Filter) and Create / Edit Job Posting – DS tokens & components ---------- */
+.cjp-head{align-items:center;gap:var(--space-12);flex-wrap:wrap}
+.cjp-head > .ui-btn{flex:none}
+.cjp-filter{padding:var(--space-16) var(--space-20);margin-bottom:var(--space-16)}
+.cjp-filter-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12)}
+.cjp-filter-title{display:flex;align-items:center;gap:var(--space-12)}
+.cjp-filter-title .ui-icon-box{width:32px;height:32px}
+.cjp-filter-title h5{font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.cjp-cnt{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#fff;color:var(--color-accent-700);font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);display:inline-grid;place-items:center}
+.cjp-cnt[hidden]{display:none}
+#cjpFilterBtn .cjp-chev,#cjpFilterBtn svg:last-child{transition:transform .2s}
+#cjpFilterBtn[aria-expanded="true"] svg:last-child{transform:rotate(180deg)}
+.cjp-adv[hidden]{display:none}
+.cjp-adv{margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px dashed var(--color-border-strong)}
+.cjp-adv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+.cjp-adv-acts{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-16)}
+.cjp-adv-btns{display:flex;gap:var(--space-btn-group)}
+.cjp-preview{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.cjp-preview b{color:var(--color-primary-600)}
+.cjp-chips{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8);margin-top:var(--space-12)}
+.cjp-chips:empty{display:none}
+.cjp-chips .ui-chip{height:28px;font-weight:var(--font-weight-medium)}
+.cjp-chips .ui-chip b{font-weight:var(--font-weight-semibold);margin-right:2px}
+.cjp-clear{border:0;background:none;padding:0 var(--space-4);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-error-text);cursor:pointer}
+.cjp-clear:hover{text-decoration:underline}
+.cjp-table{overflow:hidden}
+.cjp-table td .ui-acts{gap:var(--space-4)}
+.cjp-empty td{padding:var(--space-40) var(--space-16)!important;text-align:center;color:var(--color-text-secondary)}
+.cjp-empty b{display:block;font-size:var(--font-size-body-lg);color:var(--color-text-heading);margin-bottom:var(--space-4)}
+/* Create / Edit form */
+.cjp-sec{padding:var(--space-20);margin-bottom:var(--space-16)}
+.cjp-sec .ui-form-sec-head{margin-bottom:var(--space-16)}
+.cjp-grid{display:grid;gap:var(--space-16) var(--space-20);margin-bottom:var(--space-16)}
+.cjp-g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cjp-g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.cjp-mt{margin-top:var(--space-16)}
+.cjp-sec .ui-help[hidden]{display:none}
+.cjp-steps-help{margin-top:var(--space-8)}
+/* Selection process template + flow (Resume Screening → rounds → Final Selection) */
+.cjp-tpl-sum[hidden],.cjp-flow[hidden],.cjp-custom[hidden],.cjp-flow-note[hidden]{display:none}
+/* choice cards: Ready Template / Custom */
+.cjp-choice-field{margin-bottom:var(--space-16)}
+.cjp-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16)}
+.cjp-choice-card{position:relative;display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-16);padding-right:var(--space-40);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface);text-align:left;cursor:pointer;font:inherit;transition:border-color .15s,background .15s,box-shadow .15s}
+.cjp-choice-card:hover{border-color:var(--color-border-hover)}
+.cjp-choice-card:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.cjp-choice-card[aria-checked="true"]{border-color:var(--color-primary-600);background:var(--color-primary-50);box-shadow:0 0 0 1px var(--color-primary-600)}
+.cjp-choice-card .ui-icon-box{flex:none;width:40px;height:40px}
+.cjp-choice-text{display:flex;flex-direction:column;gap:var(--space-4);min-width:0}
+.cjp-choice-text b{font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.cjp-choice-text small{font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
+.cjp-choice-tick{position:absolute;top:var(--space-16);right:var(--space-16);width:20px;height:20px;border-radius:50%;border:2px solid var(--color-border-strong);background:var(--color-bg-surface)}
+.cjp-choice-card[aria-checked="true"] .cjp-choice-tick{border:6px solid var(--color-primary-600)}
+.cjp-choice-field.has-error .cjp-choice-card{border-color:var(--color-border-error)}
+/* selected template summary */
+.cjp-tpl-sum{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-bottom:var(--space-12)}
+.cjp-tpl-sum > div{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-4) var(--space-8)}
+.cjp-tpl-sum-lbl{font-size:var(--font-size-label);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);text-transform:uppercase}
+.cjp-tpl-sum b{font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.cjp-tpl-sum small{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+/* template modal list */
+.cjp-tpls{display:flex;flex-direction:column;gap:var(--space-12)}
+.cjp-tpl{border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface);transition:border-color .15s,box-shadow .15s}
+.cjp-tpl.is-picked{border-color:var(--color-primary-600);box-shadow:0 0 0 1px var(--color-primary-600)}
+.cjp-tpl-btn{display:flex;align-items:flex-start;gap:var(--space-12);width:100%;padding:var(--space-16);border:0;background:none;text-align:left;font:inherit;cursor:pointer;border-radius:8px}
+.cjp-tpl-btn:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.cjp-tpl-btn .cjp-choice-tick{position:static;flex:none;margin-top:2px}
+.cjp-tpl.is-picked .cjp-choice-tick{border:6px solid var(--color-primary-600)}
+.cjp-tpl-main{display:flex;flex-direction:column;gap:var(--space-8);min-width:0;flex:1}
+.cjp-tpl-top{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8)}
+.cjp-tpl-top b{font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.cjp-tpl-top small{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.cjp-tpl-path{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4)}
+.cjp-tpl-path span{display:inline-flex;align-items:center;gap:var(--space-4);font-size:var(--font-size-body-sm);color:var(--color-text-body)}
+.cjp-tpl-path svg{color:var(--color-icon-muted)}
+.cjp-tpl-path span:not(:first-child)::before{content:"→";color:var(--color-text-placeholder)}
+.cjp-tpl-map{padding:0 var(--space-16) var(--space-16) 48px}
+.cjp-tpl-map[hidden]{display:none}
+.cjp-tpl-map .cjp-flow-row{padding:var(--space-8) var(--space-12);grid-template-columns:40px minmax(120px,200px) minmax(0,1fr)}
+.cjp-tpl-map .cjp-flow{background:var(--color-bg-surface)}
+.cjp-tpl-map .cjp-flow-row:first-child{border-top:0;border-radius:8px 8px 0 0}
+.cjp-tpl-map .cjp-flow-row:last-child{border-radius:0 0 8px 8px}
+/* custom round: typed statuses (Design System Tag Select) */
+.cjp-sts-pick{display:flex;flex-direction:column;gap:var(--space-4)}
+.cjp-sts-pick .ui-select{min-width:0}
+.cjp-sts-addnew{border-bottom:1px solid var(--color-border-default);margin-bottom:var(--space-4)}
+.cjp-sts-addnew[hidden]{display:none}
+.cjp-sts-tip{display:flex;align-items:center;gap:var(--space-8);margin:0 0 var(--space-4);padding:var(--space-8);border-bottom:1px solid var(--color-border-default);font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-secondary)}
+.cjp-sts-tip svg{flex:none;color:var(--color-icon-muted)}
+.cjp-sts-tip[hidden]{display:none}
+#cjpStsChips{margin:0}
+.cjp-add-hint{display:block;margin-top:var(--space-8)}
+.cjp-flow{border:1px solid var(--color-border-default);border-radius:8px}
+.cjp-flow-head,.cjp-flow-row{display:grid;grid-template-columns:56px minmax(140px,220px) minmax(0,1fr);align-items:center;gap:var(--space-16);padding:var(--space-12) var(--space-16)}
+.cjp-flow-head{background:var(--color-bg-table-head);border-radius:8px 8px 0 0;font-size:var(--font-size-th);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.cjp-flow-row{border-top:1px solid var(--color-border-default)}
+.cjp-flow-row.is-fixed{background:var(--color-bg-page)}
+.cjp-num{width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;background:var(--color-primary-50);color:var(--color-primary-600);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-bold)}
+.cjp-round{display:flex;flex-direction:column;gap:2px;min-width:0}
+.cjp-round b{font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.cjp-round small{display:inline-flex;align-items:center;gap:4px;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.cjp-sts{display:flex;flex-wrap:wrap;gap:var(--space-4)}
+.cjp-custom{border-top:1px solid var(--color-border-default);padding:var(--space-12) var(--space-16)}
+.cjp-custom .ui-repeat{gap:var(--space-12)}
+.cjp-rnd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:var(--space-12)}
+.cjp-flow-note{display:flex;align-items:center;gap:var(--space-8);margin-top:var(--space-12);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.cjp-flow-note b{color:var(--color-text-heading)}
+@media (max-width:767.98px){
+  .cjp-flow-head{display:none}
+  .cjp-flow-row{grid-template-columns:28px minmax(0,1fr);gap:var(--space-8) var(--space-12);align-items:start}
+  .cjp-flow-row .cjp-sts{grid-column:2}
+  .cjp-rnd{grid-template-columns:1fr}
+  .cjp-custom{padding:var(--space-12)}
+  .cjp-choice{grid-template-columns:1fr;gap:var(--space-12)}
+  .cjp-tpl-map{padding:0 var(--space-12) var(--space-12)}
+  .cjp-tpl-map .cjp-flow-row{grid-template-columns:28px minmax(0,1fr)}
+}
+.cjp-radios{display:flex;flex-wrap:wrap;gap:var(--space-8) var(--space-24);margin-bottom:var(--space-16)}
+.cjp-radio{display:inline-flex;align-items:center;gap:var(--space-8);min-height:32px;font-size:var(--font-size-body);font-weight:var(--font-weight-medium);color:var(--color-text-heading);cursor:pointer}
+.cjp-radio input{width:16px;height:16px;margin:0;accent-color:var(--color-primary-600);cursor:pointer}
+.cjp-radio input:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring);border-radius:50%}
+#cjpUploadWrap[hidden],#cjpWriteWrap[hidden],.cjp-crit[hidden]{display:none}
+#cjpFileRow:not(:empty){margin-top:var(--space-12)}
+.cjp-desc{min-height:120px;resize:vertical}
+/* Eligibility criteria rows (grid "table", so the condition dropdown is never cut off) */
+.cjp-crit{margin-top:var(--space-16);border:1px solid var(--color-border-default);border-radius:8px}
+.cjp-crit-row{display:grid;grid-template-columns:minmax(120px,1fr) minmax(180px,1.4fr) minmax(140px,1.2fr) 40px;align-items:center;gap:var(--space-16);padding:var(--space-12) var(--space-16);border-top:1px solid var(--color-border-default)}
+.cjp-crit-head{border-top:0;background:var(--color-bg-table-head);border-radius:8px 8px 0 0;font-size:var(--font-size-th);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.cjp-crit-row > b{font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.cjp-crit-row .ui-field{min-width:0}
+.cjp-crit-row .ui-help{margin-top:4px}
+.cjp-crit-lbl{display:none}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* Skills (reuses the cj- picker) */
+.cjp-sec.cj-sec{padding:var(--space-20)}
+.cjp-skills-added{margin-top:var(--space-20)}
+.cjp-sub{margin-bottom:var(--space-12);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.cjp-sub b{color:var(--color-primary-600)}
+.cjp-sec.is-error .cj-groups{outline:1px solid var(--color-border-error);outline-offset:4px;border-radius:10px}
+.cjp-foot{display:flex;justify-content:flex-end;gap:var(--space-btn-group);margin-bottom:var(--space-24)}
+.cjp-del-text{font-size:var(--font-size-body);color:var(--color-text-body)}
+@media (max-width:1199.98px){.cjp-adv-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:991.98px){.cjp-adv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cjp-g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:767.98px){
+  .cjp-crit-head{display:none}
+  .cjp-crit-row{grid-template-columns:minmax(0,1fr) 40px;gap:var(--space-8) var(--space-12)}
+  .cjp-crit-row > b{grid-column:1/-2}
+  .cjp-crit-row > .cjp-crit-del{grid-column:2;grid-row:1}
+  .cjp-crit-row .ui-field{grid-column:1/-1}
+  .cjp-crit-lbl{display:block}
+}
+@media (max-width:575.98px){
+  .cjp-head > .ui-btn{width:100%}
+  .cjp-filter{padding:var(--space-16)}
+  .cjp-filter-top .ui-btn{flex:none}
+  .cjp-adv-grid,.cjp-g2,.cjp-g3{grid-template-columns:1fr}
+  .cjp-adv-btns,.cjp-adv-btns .ui-btn{flex:1}
+  .cjp-sec{padding:var(--space-16)}
+  .cjp-foot .ui-btn{flex:1}
+}
 /* ---------- Student Dashboard (first page after Sign In) – Design System tokens & components only ---------- */
 /* No sidebar on the Dashboard: full-width page, logo + Log out in the header (.app.is-dash is set in showView) */
 .h-brand,.h-logout{display:none}
@@ -2264,6 +2424,16 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             <span class="ui-help">Selected items show as navy tags</span>
           </div>
           <div class="ui-field">
+            <span class="ui-label">Multi-select – Compact</span>
+            <div class="ui-select is-multi" data-search data-max-tags="2" data-ph="Select statuses" data-value="Scheduled|Joined|Not Joined|Cleared|Not Cleared|On Hold" data-options="Scheduled|Joined|Not Joined|Cleared|Not Cleared|On Hold|Appeared|Not Appeared"></div>
+            <span class="ui-help">One line: 2 tags + "+N more" (<code>data-max-tags="2"</code>). For many values.</span>
+          </div>
+          <div class="ui-field">
+            <span class="ui-label">Label with Info<span class="ui-req">*</span><button class="ui-info" type="button" aria-label="Info: extra help for this field."><span data-icon="info:o:14"></span><span class="ui-info-tip" role="tooltip">Extra help for this field. Shows on hover, keyboard focus or tap.</span></button></span>
+            <div class="ui-select" data-ph="Select option" data-options="Option A|Option B"></div>
+            <span class="ui-help">Info icon (<code>.ui-info</code>) after the label, when help text below the field would break the alignment.</span>
+          </div>
+          <div class="ui-field">
             <span class="ui-label">Error<span class="ui-req">*</span></span>
             <div class="ui-select is-error" data-ph="Select institute" data-options="VGEC Chandkheda|SVIT Vasad|GEC Gandhinagar"></div>
             <span class="ui-help is-error"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>Please select an institute</span>
@@ -3132,56 +3302,171 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       <div class="ma-detail" id="maDetail"></div>
     </main>
 
-    <!-- ===== VIEW: Company Job Post (company view) ===== -->
+    <!-- ===== VIEW: Company Job Post → Manage Job Posting (company view; table + Advanced Filter) ===== -->
     <main class="content" id="view-company-job" hidden>
-      <div class="page-head">
+      <div class="page-head cjp-head">
         <div>
-          <h3>Post a Job</h3>
-          <p>Add the details of the job you want to post. Students will see this job and apply.</p>
+          <h3>Manage Job Posting</h3>
+          <p>Manage and track all internship and placement job postings in one place.</p>
         </div>
+        <button class="ui-btn ui-btn-primary" type="button" id="cjpAdd"><span data-icon="plus:l:16"></span>Add Placement</button>
       </div>
 
-      <!-- Job Oriented Skills – "Add Skills" / "Edit Skills" open the Add Skills page -->
-      <section class="card cj-sec" id="cjSkillsSec">
-        <div class="cj-sec-head">
-          <div class="ui-form-sec-head"><h5>Job Oriented Skills <i id="cjTotal">0</i></h5><p>Skills a candidate needs for this job. Each skill is marked as required or optional.</p></div>
-          <a class="ui-btn ui-btn-outline ui-btn-sm" href="#company-job-skills" id="cjEditBtn" hidden><span data-icon="edit:f:14"></span>Edit Skills</a>
+      <!-- Advanced Filter (same pattern as the Student Application page, rebuilt with Design System components) -->
+      <section class="card cjp-filter">
+        <div class="cjp-filter-top">
+          <div class="cjp-filter-title"><span class="ui-icon-box is-primary"><span data-icon="filter:f:18"></span></span><h5>Advanced Filter</h5></div>
+          <button class="ui-btn ui-btn-accent" type="button" id="cjpFilterBtn" aria-expanded="false" aria-controls="cjpAdv"><span data-icon="filter:f:16"></span>Filter<span class="cjp-cnt" id="cjpCnt" hidden>0</span><span class="cjp-chev" data-icon="chevron-down:l:14"></span></button>
         </div>
-        <!-- Shown when no skill is added -->
-        <div class="cj-empty" id="cjEmpty">
-          <span class="ui-icon-box is-primary"><span data-icon="star:f:20"></span></span>
-          <div><b>No skills added yet</b><span>Add the skills this job needs. You can mark each one as required or optional.</span></div>
-          <a class="ui-btn ui-btn-primary ui-btn-sm" href="#company-job-skills" id="cjAddBtn"><span data-icon="plus:l:14"></span>Add Skills</a>
+        <div class="cjp-adv" id="cjpAdv" hidden>
+          <div class="cjp-adv-grid">
+            <div class="ui-field"><label class="ui-label" for="cjpfTitle">Job Title</label><input class="ui-input" id="cjpfTitle" placeholder="Search by job title" autocomplete="off"></div>
+            <div class="ui-field"><span class="ui-label">Branch</span><div class="ui-select" id="cjpfBranch" data-ph="Select branch" data-search></div></div>
+            <div class="ui-field"><span class="ui-label">Job Location</span><div class="ui-select" id="cjpfLoc" data-ph="Select job location" data-search></div></div>
+            <div class="ui-field"><span class="ui-label">Work Type</span><div class="ui-select" id="cjpfWork" data-ph="Select work type"></div></div>
+            <div class="ui-field"><span class="ui-label">Status</span><div class="ui-select" id="cjpfStatus" data-ph="Select status"></div></div>
+            <div class="ui-field"><label class="ui-label" for="cjpfFrom">Start Date From</label><input class="ui-input" id="cjpfFrom" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
+            <div class="ui-field"><label class="ui-label" for="cjpfTo">End Date To</label><input class="ui-input" id="cjpfTo" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
+          </div>
+          <div class="cjp-adv-acts">
+            <span class="cjp-preview" id="cjpPreview"></span>
+            <div class="cjp-adv-btns">
+              <button class="ui-btn ui-btn-outline" type="button" id="cjpReset">Reset</button>
+              <button class="ui-btn ui-btn-primary" type="button" id="cjpApply"><span data-icon="check:l:16"></span>Apply</button>
+            </div>
+          </div>
         </div>
-        <!-- Shown when skills are added -->
-        <div class="cj-groups" id="cjGroups" hidden>
-          <div class="cj-group">
-            <div class="cj-group-head"><b>Required Skills</b><small>Must have</small><i id="cjReqCount">0</i></div>
-            <div class="cj-skills" id="cjReqList"></div>
-          </div>
-          <div class="cj-group">
-            <div class="cj-group-head"><b>Optional Skills</b><small>Good to have</small><i id="cjOptCount">0</i></div>
-            <div class="cj-skills" id="cjOptList"></div>
-          </div>
+        <div class="cjp-chips" id="cjpChips"></div>
+      </section>
+
+      <!-- Job postings – Design System Table Type 2 (icons + 3 dots menu) -->
+      <section class="card cjp-table">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Sr No.</th><th>Job Title</th><th>Branch</th><th>Job Location</th><th>Start Date</th><th>End Date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="cjpBody"></tbody>
+          </table>
+        </div>
+        <div class="t-foot" id="cjpFoot">
+          <div class="showing" id="cjpShowing"></div>
+          <div class="pager" id="cjpPager"></div>
         </div>
       </section>
+      <div class="ui-menu" id="cjpMenu" role="menu"></div>
     </main>
 
-    <!-- ===== VIEW: Company Job Post → Add / Edit Job Oriented Skills (own page, no modal) ===== -->
-    <main class="content" id="view-company-job-skills" hidden>
-      <div class="page-head">
+    <!-- ===== VIEW: Company Job Post → Create / Edit Job Posting (one form for both) ===== -->
+    <main class="content" id="view-company-job-form" hidden>
+      <div class="page-head cjp-head">
         <div>
-          <h3 id="cjPageTitle">Add Job Oriented Skills</h3>
-          <p>Search a skill and add it, then tell us if it is required or optional for this job.</p>
+          <h3 id="cjpFormTitle">Create Job Posting</h3>
+          <p id="cjpFormSub">Add the job details below to publish a new opportunity for eligible candidates.</p>
         </div>
-        <a class="ui-btn ui-btn-outline ui-btn-sm cj-back" href="#company-job"><span data-icon="arrow-left:l:14"></span>Back</a>
+        <a class="ui-btn ui-btn-outline ui-btn-sm" href="#company-job"><span data-icon="arrow-left:l:14"></span>Back</a>
       </div>
 
-      <!-- 1. Select a skill -->
-      <section class="card cj-sec">
-        <div class="ui-form-sec-head"><h5>Select Skill</h5><p>Pick a skill from the list. If it is not in the list, add it with "Add Skill".</p></div>
+      <!-- 1. Registration Details -->
+      <section class="card cjp-sec" id="cjpSecReg">
+        <div class="ui-form-sec-head"><h5>Registration Details</h5><p>Enter the official registration and tax identification details.</p></div>
+        <div class="cjp-grid cjp-g2">
+          <div class="ui-field"><label class="ui-label" for="cjpTitle">Job Title<span class="ui-req">*</span></label><input class="ui-input" id="cjpTitle" maxlength="80" placeholder="(e.g. Frontend Web Developer)" autocomplete="off"><span class="ui-help" hidden></span></div>
+          <div class="ui-field"><span class="ui-label">Work Type<span class="ui-req">*</span></span><div class="ui-select" id="cjpWork" data-ph="Select work type"></div><span class="ui-help" hidden></span></div>
+        </div>
+        <div class="cjp-grid cjp-g3">
+          <div class="ui-field"><label class="ui-label" for="cjpStart">Application Start Date<span class="ui-req">*</span></label><input class="ui-input" id="cjpStart" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
+          <div class="ui-field"><label class="ui-label" for="cjpEnd">Application End Date<span class="ui-req">*</span></label><input class="ui-input" id="cjpEnd" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
+          <div class="ui-field"><label class="ui-label" for="cjpVac">Vacancies<span class="ui-req">*</span></label><input class="ui-input" id="cjpVac" type="number" min="1" max="999" placeholder="Enter number"><span class="ui-help" hidden></span></div>
+        </div>
+        <div class="ui-field"><span class="ui-label">Job Location<span class="ui-req">*</span></span><div class="ui-select" id="cjpLoc" data-ph="Select job location" data-search></div><span class="ui-help" hidden></span></div>
+      </section>
+
+      <!-- 2. Selection Process: template (5 fixed + Custom). Resume Screening = always first, Final Selection = always last.
+           Custom rounds use Design System Form Patterns (repeatable rows, drag to reorder). -->
+      <section class="card cjp-sec" id="cjpSecSteps">
+        <div class="ui-form-sec-head"><h5>Selection Process &amp; Status Mapping</h5><p>Define the selection process for this job and map each step with the relevant status.</p></div>
+        <!-- Step A: choose how to build the process (ready template in a modal, or custom) -->
+        <div class="ui-field cjp-choice-field" id="cjpChoiceField">
+          <span class="ui-label">How do you want to set the selection process?<span class="ui-req">*</span></span>
+          <div class="cjp-choice" role="radiogroup" aria-label="Selection process type">
+            <button class="cjp-choice-card" type="button" role="radio" aria-checked="false" data-cjp-mode="template">
+              <span class="ui-icon-box is-primary"><span data-icon="document:f:20"></span></span>
+              <span class="cjp-choice-text"><b>Use a Ready Template</b><small>Pick one of 5 ready processes. Rounds and statuses are already set.</small></span>
+              <span class="cjp-choice-tick" aria-hidden="true"></span>
+            </button>
+            <button class="cjp-choice-card" type="button" role="radio" aria-checked="false" data-cjp-mode="custom">
+              <span class="ui-icon-box is-info"><span data-icon="settings:f:20"></span></span>
+              <span class="cjp-choice-text"><b>Create Custom Process</b><small>Add your own rounds and map the statuses for each round.</small></span>
+              <span class="cjp-choice-tick" aria-hidden="true"></span>
+            </button>
+          </div>
+          <span class="ui-help" hidden></span>
+        </div>
+        <!-- Selected template summary -->
+        <div class="cjp-tpl-sum" id="cjpTplSum" hidden>
+          <div><span class="cjp-tpl-sum-lbl">Selected Template</span><b id="cjpTplName"></b><small id="cjpTplFor"></small></div>
+          <button class="ui-btn ui-btn-outline ui-btn-sm" type="button" id="cjpTplChange"><span data-icon="edit:f:14"></span>Change Template</button>
+        </div>
+        <div class="cjp-flow" id="cjpFlow" hidden>
+          <div class="cjp-flow-head"><span>Step</span><span>Round</span><span>Mapped Statuses</span></div>
+          <div class="cjp-flow-row is-fixed" id="cjpFlowFirst"></div>
+          <div id="cjpFlowTpl"></div>
+          <div class="cjp-custom" id="cjpCustom" hidden>
+            <div class="ui-repeat is-list" id="cjpSteps"></div>
+            <button class="ui-add-row" type="button" id="cjpAddStep"><span data-icon="plus:l:16"></span>Add Round</button>
+            <span class="ui-help cjp-steps-help" id="cjpStepsHelp"></span>
+          </div>
+          <div class="cjp-flow-row is-fixed" id="cjpFlowLast"></div>
+        </div>
+        <p class="cjp-flow-note" id="cjpFlowNote" hidden><span data-icon="info:o:16"></span><span>When a student applies, the application status is <b>Applied</b>.</span></p>
+      </section>
+
+      <!-- 3. Job Description: upload a document or write it -->
+      <section class="card cjp-sec" id="cjpSecDesc">
+        <div class="ui-form-sec-head"><h5>Job Description</h5><p>Upload the detailed job description in PDF format or write description</p></div>
+        <div class="cjp-radios" role="radiogroup" aria-label="Job description type">
+          <label class="cjp-radio"><input type="radio" name="cjpDescMode" value="upload" checked>Upload Document</label>
+          <label class="cjp-radio"><input type="radio" name="cjpDescMode" value="write">Write Description</label>
+        </div>
+        <div class="ui-field" id="cjpUploadWrap">
+          <span class="ui-label">Upload Document Here<span class="ui-req">*</span></span>
+          <div class="ui-drop" id="cjpDrop" tabindex="0" role="button" aria-label="Upload job description document">
+            <span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span>
+            <b>Drag and drop your file here, or <u>click to browse</u></b>
+            <small>Supported formats : PDF, JPG, PNG | Max size: 5 MB</small>
+          </div>
+          <input type="file" id="cjpFile" accept=".pdf,image/png,image/jpeg" hidden>
+          <div id="cjpFileRow"></div>
+          <span class="ui-help" hidden></span>
+        </div>
+        <div class="ui-field" id="cjpWriteWrap" hidden>
+          <label class="ui-label" for="cjpDesc">Description<span class="ui-req">*</span></label>
+          <textarea class="ui-input cjp-desc" id="cjpDesc" maxlength="2000" placeholder="Write the job description: role, responsibilities and what the candidate should know."></textarea>
+          <span class="ui-help" hidden></span>
+        </div>
+      </section>
+
+      <!-- 4. Candidate Eligibility -->
+      <section class="card cjp-sec" id="cjpSecElig">
+        <div class="ui-form-sec-head"><h5>Candidate Eligibility</h5><p>Define the academic qualifications, skills, and requirements candidates need to apply for this job.</p></div>
+        <div class="ui-field"><span class="ui-label">Degree/Program<span class="ui-req">*</span></span><div class="ui-select is-multi" id="cjpDegree" data-ph="Select degree / program" data-search></div><span class="ui-help" hidden></span></div>
+        <div class="ui-field cjp-mt"><span class="ui-label">Branch/Subject<span class="ui-req">*</span></span><div class="ui-select is-multi" id="cjpBranch" data-ph="Select branch / subject" data-search></div><span class="ui-help" hidden></span></div>
+      </section>
+
+      <!-- 5. Eligibility Criteria: pick criteria → one row each (condition + value) -->
+      <section class="card cjp-sec" id="cjpSecCrit">
+        <div class="ui-form-sec-head"><h5>Eligibility Criteria</h5><p>Add the eligibility criteria application for this job</p></div>
+        <div class="ui-field"><span class="ui-label">Select Eligibility Criteria<span class="ui-req">*</span></span><div class="ui-select is-multi" id="cjpCritSel" data-ph="Select eligibility criteria"></div><span class="ui-help" hidden></span></div>
+        <div class="cjp-crit" id="cjpCrit" hidden>
+          <div class="cjp-crit-row cjp-crit-head"><span>Criteria</span><span>Condition</span><span>Value</span><span><span class="sr-only">Action</span></span></div>
+          <div id="cjpCritRows"></div>
+        </div>
+      </section>
+
+      <!-- 6. Skills Required – the Job Oriented Skills picker (dropdown + Add Skill modal + Required / Optional) -->
+      <section class="card cjp-sec cj-sec" id="cjpSecSkills">
+        <div class="ui-form-sec-head"><h5>Skills Required</h5><p>Add the required skill for this job</p></div>
         <div class="ui-field">
-          <label class="ui-label" for="cjIn">Skill<span class="ui-req">*</span></label>
+          <label class="ui-label" for="cjIn">Skills Required<span class="ui-req">*</span></label>
           <div class="cj-pick-row">
           <div class="ui-combo cj-combo" id="cjCombo">
             <span data-icon="search:l:16"></span>
@@ -3204,28 +3489,26 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
           </div>
         </div>
         <div class="cj-info" role="note"><span data-icon="info:f:18"></span><span>Skill not in the list? <button type="button" class="cj-help-link" data-cj-add>+ Add Skill</button> to add a new one.</span></div>
-      </section>
-
-      <!-- 2. Added skills -->
-      <section class="card cj-sec">
-        <div class="ui-form-sec-head"><h5>Added Skills</h5><p>Total added skills: <b id="cjMdCount">00</b> / 15</p></div>
-        <div class="cj-groups">
-          <div class="cj-group">
-            <div class="cj-group-head"><b>Required Skills</b><small>Must have</small><i id="cjMdReqCount">0</i></div>
-            <div class="ui-chips" id="cjMdReq"></div>
-            <p class="cj-none" id="cjMdReqNone">No required skills yet.</p>
-          </div>
-          <div class="cj-group">
-            <div class="cj-group-head"><b>Optional Skills</b><small>Good to have</small><i id="cjMdOptCount">0</i></div>
-            <div class="ui-chips" id="cjMdOpt"></div>
-            <p class="cj-none" id="cjMdOptNone">No optional skills yet.</p>
+        <div class="cjp-skills-added">
+          <p class="cjp-sub">Added Skills · <b id="cjMdCount">00</b> / 15</p>
+          <div class="cj-groups">
+            <div class="cj-group">
+              <div class="cj-group-head"><b>Required Skills</b><small>Must have</small><i id="cjMdReqCount">0</i></div>
+              <div class="ui-chips" id="cjMdReq"></div>
+              <p class="cj-none" id="cjMdReqNone">No required skills yet.</p>
+            </div>
+            <div class="cj-group">
+              <div class="cj-group-head"><b>Optional Skills</b><small>Good to have</small><i id="cjMdOptCount">0</i></div>
+              <div class="ui-chips" id="cjMdOpt"></div>
+              <p class="cj-none" id="cjMdOptNone">No optional skills yet.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <div class="cj-foot">
-        <a class="ui-btn ui-btn-outline" href="#company-job">Cancel</a>
-        <button class="ui-btn ui-btn-primary" type="button" id="cjSave">Save Skills</button>
+      <div class="cjp-foot">
+        <button class="ui-btn ui-btn-soft" type="button" id="cjpDraft">Save as draft</button>
+        <button class="ui-btn ui-btn-primary" type="button" id="cjpSubmit">Publish</button>
       </div>
     </main>
 
@@ -3561,6 +3844,64 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
   </div>
 </div>
 
+<!-- ===== Company Job Post – Delete job posting (confirm) ===== -->
+<div class="ui-modal-backdrop" id="mdCjpDel">
+  <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdCjpDelTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="delete:f:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdCjpDelTitle">Delete Job Posting</h4><p>This cannot be undone.</p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body"><p class="cjp-del-text">Are you sure you want to delete <b id="cjpDelName"></b>?</p></div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-danger" id="cjpDelYes"><span data-icon="delete:f:16"></span>Delete</button>
+    </div>
+  </div>
+</div>
+<!-- ===== Company Job Post – Selection Process Templates (5 read-only templates; pick one → shown on the form) ===== -->
+<div class="ui-modal-backdrop" id="mdCjpTpl">
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdCjpTplTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="document:f:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdCjpTplTitle">Selection Process Templates</h4><p>Every template starts with Resume Screening and ends with Final Selection.</p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body"><div class="cjp-tpls" id="cjpTplList" role="radiogroup" aria-label="Templates"></div></div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" id="cjpTplUse" disabled><span data-icon="check:l:16"></span>Use This Template</button>
+    </div>
+  </div>
+</div>
+<!-- ===== Company Job Post – Add Status modal (Custom rounds; new statuses join every round's Mapped Statuses dropdown) ===== -->
+<div class="ui-modal-backdrop" id="mdCjpSts" data-static>
+  <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdCjpStsTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="plus:l:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdCjpStsTitle">Add Status</h4><p>Add statuses that are not in the list. You can add more than one.</p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="ui-field">
+        <label class="ui-label" for="cjpStsIn">Status Name<span class="ui-req">*</span></label>
+        <div class="cj-new-row">
+          <input class="ui-input" id="cjpStsIn" maxlength="30" placeholder="Type a status (e.g. Test Sent)" autocomplete="off">
+          <button class="ui-btn ui-btn-outline" type="button" id="cjpStsAddBtn"><span data-icon="plus:l:16"></span>Add</button>
+        </div>
+        <span class="ui-help" id="cjpStsHelp">Press Enter or "Add" after each status.</span>
+      </div>
+      <div class="cj-new-list" id="cjpStsWrap" hidden>
+        <p class="cj-new-head">Statuses to add <i id="cjpStsCount">0</i></p>
+        <div class="ui-chips" id="cjpStsChips"></div>
+      </div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" id="cjpStsSave">Add Statuses</button>
+    </div>
+  </div>
+</div>
 <!-- ===== Company Job Post – Add Skill modal (new skills join the skill dropdown) ===== -->
 <div class="ui-modal-backdrop" id="mdCjSkill" data-static>
   <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdCjSkillTitle">
@@ -4239,6 +4580,11 @@ function initSelect(sel) {
     list.querySelectorAll(".ui-option").forEach(o => o.classList.toggle("is-selected", picked.has(o.dataset.v)));
     val.classList.toggle("is-ph", !picked.size);
     if (!picked.size) val.textContent = ph;
+    else if (multi && +sel.dataset.maxTags) { // compact multi: one line, N tags + "+X more" (all names in the tooltip)
+      const all = [...picked], max = +sel.dataset.maxTags, rest = all.slice(max);
+      val.innerHTML = all.slice(0, max).map(v => `<span class="ui-tag" title="${esc(v)}"><span class="ui-tag-text">${esc(v)}</span><button type="button" data-rm="${esc(v)}" title="Remove ${esc(v)}" aria-label="Remove ${esc(v)}">&times;</button></span>`).join("")
+        + (rest.length ? `<span class="ui-tag-more" title="${esc(rest.join(", "))}">+${rest.length} more</span>` : "");
+    }
     else if (multi) val.innerHTML = [...picked].map(v => `<span class="ui-tag">${esc(v)}<button type="button" data-rm="${esc(v)}" title="Remove">&times;</button></span>`).join("");
     else val.textContent = [...picked][0];
     if (!sel.classList.contains("is-readonly")) sel.classList.toggle("is-filled", picked.size > 0);
@@ -4273,6 +4619,13 @@ function initSelect(sel) {
   sync();
 }
 $$(".ui-select[data-options]").forEach(initSelect);
+// Info tooltip (.ui-info): hover / focus show it by CSS; a tap or click toggles it (phones), outside click or Esc closes it
+document.addEventListener("click", e => {
+  const b = e.target.closest(".ui-info");
+  $$(".ui-info.is-open").forEach(x => { if (x !== b) x.classList.remove("is-open"); });
+  if (b) { e.preventDefault(); b.classList.toggle("is-open"); }
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") $$(".ui-info.is-open").forEach(x => x.classList.remove("is-open")); });
 document.addEventListener("click", e => { if (!e.target.closest(".ui-select")) closeSelects(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") closeSelects(); });
 
@@ -5294,14 +5647,13 @@ function maDownload(a) {
 }
 maRender();
 
-/* ================= COMPANY JOB POST – Job Oriented Skills (company view) =================
-   "Add Skills" / "Edit Skills" go to their own page (#company-job-skills), no modal for the page itself.
+/* ================= COMPANY JOB POST – Job Oriented Skills picker (used in the Skills Required section of Create / Edit Job Posting) =================
    Pick a skill from the dropdown → the page asks "Required or Optional?" → the skill goes into that group.
    A skill that is not in the list is added with the "Add Skill" button: it opens #mdCjSkill, where the owner
    types one or more skills; after "Add Skills" they join the dropdown list (CJ_SKILLS).
    Edit and remove of added chips are switched off for now (user, 16/11/2026). */
 const CJ_SKILLS = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Angular", "Vue.js", "Node.js", "Java", "Spring Boot", "Hibernate", "Python", "Django", "Machine Learning", "Data Analysis", "SQL", "MySQL", "MongoDB", "PHP", "Laravel", "C", "C++", "C#", ".NET", "Docker", "Git", "Linux", "AWS", "Figma", "UI/UX Design", "Communication", "Problem Solving", "Teamwork", "MS Excel", "Tally"];
-const CJ = { saved: { req: [], opt: [] }, draft: { req: [], opt: [] }, pending: "", max: 15, active: 0, opts: [], newList: [] };
+const CJ = { draft: { req: [], opt: [] }, pending: "", max: 15, active: 0, opts: [], newList: [] };
 const cjCombo = $("#cjCombo"), cjIn = $("#cjIn"), cjList = $("#cjList");
 const cjAll = () => [...CJ.draft.req, ...CJ.draft.opt];
 const cjHas = v => cjAll().some(s => s.toLowerCase() === v.toLowerCase());
@@ -5310,15 +5662,6 @@ const CJ_HELP = "";  // empty = the default hint below
 // Default hint under the dropdown (idea 1): tells the owner that a missing skill can be added with "Add Skill"
 // The "Skill not in the list? + Add Skill" hint lives in the blue info box (.cj-info) since 16/11; #cjHelp only shows messages
 
-// Company Job Post page: two groups (Required / Optional) + "Edit Skills", or the empty state + "Add Skills"
-function cjRenderPage() {
-  const { req, opt } = CJ.saved, n = req.length + opt.length;
-  const chips = (list, cls) => list.map(s => `<span class="cj-skill${cls}">${esc(s)}</span>`).join("") || `<span class="cj-none">None</span>`;
-  $("#cjReqList").innerHTML = chips(req, "");
-  $("#cjOptList").innerHTML = chips(opt, " is-opt");
-  $("#cjReqCount").textContent = req.length; $("#cjOptCount").textContent = opt.length; $("#cjTotal").textContent = n;
-  $("#cjGroups").hidden = !n; $("#cjEmpty").hidden = !!n; $("#cjEditBtn").hidden = !n;
-}
 // Add Skills page: chips of the draft (no edit / remove buttons for now)
 function cjRenderChips() {
   const chip = (s, type) => `<span class="ui-chip is-plain${type === "opt" ? " is-opt" : ""}">${esc(s)}</span>`;
@@ -5412,7 +5755,7 @@ function cjOpenAddModal(prefill = "") {
   setTimeout(() => { cjNewIn.focus(); cjNewIn.select(); }, 50);
 }
 $("#cjAddSkillBtn").addEventListener("click", () => cjOpenAddModal());
-$("#view-company-job-skills").addEventListener("click", e => { if (e.target.closest("[data-cj-add]")) cjOpenAddModal(); });
+$("#view-company-job-form").addEventListener("click", e => { if (e.target.closest("[data-cj-add]")) cjOpenAddModal(); });
 $("#cjNewAdd").addEventListener("click", cjNewAdd);
 cjNewIn.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); cjNewAdd(); } });
 cjNewIn.addEventListener("input", () => { if (cjNewIn.classList.contains("is-error")) cjNewHelp(); });
@@ -5431,24 +5774,611 @@ $("#cjNewSave").addEventListener("click", () => {
   setTimeout(() => { cjIn.focus(); cjOpenList(true); }, 0);
 });
 
-// Opening the Add Skills page: start a draft from the saved skills
-function cjOpenPage() {
-  CJ.draft = { req: [...CJ.saved.req], opt: [...CJ.saved.opt] };
+// Opening Create / Edit Job Posting: load that job’s skills into the picker
+function cjLoadSkills(skills = { req: [], opt: [] }) {
+  CJ.draft = { req: [...skills.req], opt: [...skills.opt] };
   CJ.pending = ""; $("#cjAsk").hidden = true;
   cjIn.value = ""; CJ.active = 0; cjOpenList(false);
-  $("#cjPageTitle").textContent = CJ.saved.req.length + CJ.saved.opt.length ? "Edit Job Oriented Skills" : "Add Job Oriented Skills";
   cjHelp(CJ_HELP); cjRenderChips();
+}
+
+/* ================= COMPANY JOB POST – Manage Job Posting (table) + Create / Edit Job Posting (form) =================
+   Sidebar "Company Job Post" → #company-job = Manage Job Posting: Advanced Filter + table (Design System Table Type 2).
+   "Add Placement" → #company-job-form (create). Edit / Review & Publish in the table → the same form filled in (edit).
+   View and Applicants only show a toast for now (user, 17/11/2026). All data is sample data in memory. */
+const CJP_LOCS = [
+  "Plot No. 42, GIDC Industrial Estate, Sachin, Surat, Gujarat",
+  "3rd Floor, Shivalik Shilp, Iscon Cross Road, Ahmedabad, Gujarat",
+  "Block B, Infocity, Gandhinagar, Gujarat",
+  "12, Alkapuri Business Park, Vadodara, Gujarat",
+  "Kalawad Road, Rajkot, Gujarat"
+];
+const CJP_WORK = ["On-site", "Hybrid", "Remote"];
+const CJP_STATUS = ["Published", "Draft"];
+const CJP_DEGREES = ["B.E", "B.Tech", "BCA", "MCA", "M.E", "M.Tech", "B.Sc", "M.Sc", "BBA", "MBA", "B.Com", "Diploma"];
+const CJP_BRANCHES = ["Computer Engineering", "Information Technology", "Mechanical Engineering", "Civil Engineering", "Electrical Engineering", "Electronics & Communication", "Chemical Engineering", "Computer Science", "Data Science", "Commerce", "Management"];
+const CJP_CRIT = { "Percentage": "e.g. 60%", "CGPA": "e.g. 6.5", "Age Criteria": "e.g. 25 Years", "Backlogs": "e.g. 0", "Passing Year": "e.g. 2026" };
+const CJP_COND = ["Greater Than Or Equal To", "Less Than Or Equal To", "Equal To"];
+const CJP_STEP_MIN = 1, CJP_STEP_MAX = 8, CJP_PER = 10; // Custom: rounds between Resume Screening and Final Selection
+// Selection Process Templates (doc "Selection Process Templates – USK Placement Module"): fixed rounds + fixed status mapping
+const CJP_SEL_ST = { // status mapping per round (same in every template)
+  "Resume Screening": ["Under Review"],
+  "Aptitude Round": ["Scheduled", "Appeared", "Not Appeared", "Cleared", "Not Cleared", "On Hold"],
+  "Practical Round": ["Scheduled", "Appeared", "Not Appeared", "Cleared", "Not Cleared", "On Hold"],
+  "Interview Round": ["Scheduled", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"],
+  "Group Discussion Round": ["Scheduled", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"],
+  "Technical Round": ["Scheduled", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"],
+  "Managerial Round": ["Scheduled", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"],
+  "HR Round": ["Scheduled", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"],
+  "Final Selection": ["Shortlisted", "Rejected", "On Hold"]
+};
+const CJP_SEL_FIRST = "Resume Screening", CJP_SEL_LAST = "Final Selection", CJP_CUSTOM = "Custom";
+const CJP_TPL = { // rounds in between (Resume Screening first and Final Selection last are added automatically)
+  "Quick Hiring": { for: "Small companies and urgent hiring", rounds: ["Interview Round"] },
+  "Standard Interview": { for: "Most companies", rounds: ["Technical Round", "HR Round"] },
+  "Test and Interview": { for: "IT and campus hiring", rounds: ["Aptitude Round", "Technical Round", "HR Round"] },
+  "Practical Assessment": { for: "Developers and designers", rounds: ["Practical Round", "Technical Round", "HR Round"] },
+  "Multi-Stage": { for: "Large companies", rounds: ["Aptitude Round", "Group Discussion Round", "Technical Round", "Managerial Round", "HR Round"] }
+};
+const CJP_CUSTOM_ST = ["Scheduled", "Appeared", "Not Appeared", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"]; // statuses a Custom round can map
+const cjpShort = loc => loc.split(",").slice(-2).map(s => s.trim()).join(", ");
+const CJP_DESC3 = "We Are Looking For A Motivated Frontend Web Developer To Design And Develop Responsive, User-Friendly Web Applications. The Candidate Should Have Knowledge Of HTML, CSS, JavaScript, Bootstrap, And Modern Frontend Development Practices.";
+const cjpPost = (id, title, branches, loc, start, end, status, more = {}) => ({
+  id, title, branches, loc, start, end, status, work: "Hybrid", vac: 5,
+  tpl: "Standard Interview", rounds: [], descMode: "upload", desc: "", file: { name: "Job_Description.pdf", size: 245760 },
+  degrees: ["B.E", "B.Tech"], crit: [{ k: "Percentage", cond: "Greater Than Or Equal To", val: "60%" }],
+  skills: { req: ["HTML", "CSS"], opt: ["Git"] }, ...more
+});
+const CJP = {
+  posts: [
+    cjpPost(1, "Frontend Web Developer", ["Computer Engineering"], CJP_LOCS[1], "26/09/2026", "30/09/2026", "Published", { skills: { req: ["HTML", "CSS", "JavaScript"], opt: ["React"] } }),
+    cjpPost(2, "UI/UX Designer", ["Civil Engineering"], CJP_LOCS[2], "18/10/2026", "05/11/2026", "Published", { skills: { req: ["Figma", "UI/UX Design"], opt: ["Communication"] } }),
+    cjpPost(3, "Software Developer", ["Computer Engineering", "Mechanical Engineering"], CJP_LOCS[0], "20/10/2026", "10/11/2026", "Draft", {
+      tpl: CJP_CUSTOM, rounds: [{ name: "Technical Assessment", sts: ["Scheduled", "Appeared", "Not Appeared", "Cleared", "Not Cleared", "On Hold"] }],
+      descMode: "write", desc: CJP_DESC3, file: null, degrees: ["B.E", "BCA", "B.Tech"],
+      crit: [{ k: "Percentage", cond: "Greater Than Or Equal To", val: "60%" }, { k: "CGPA", cond: "Greater Than Or Equal To", val: "6.5" }, { k: "Age Criteria", cond: "Less Than Or Equal To", val: "25 Years" }],
+      skills: { req: ["HTML", "CSS", "JavaScript"], opt: [] } }),
+    cjpPost(4, "UI/UX Designer", ["Computer Engineering"], CJP_LOCS[2], "18/10/2026", "05/11/2026", "Published", { skills: { req: ["Figma"], opt: ["UI/UX Design"] } }),
+    cjpPost(5, "UI/UX Designer", ["Mechanical Engineering"], CJP_LOCS[2], "18/10/2026", "05/11/2026", "Published", { skills: { req: ["Figma"], opt: [] } }),
+    cjpPost(6, "Java Backend Developer", ["Computer Engineering", "Information Technology"], CJP_LOCS[3], "01/11/2026", "20/11/2026", "Published", { work: "On-site", vac: 6, tpl: "Test and Interview", skills: { req: ["Java", "Spring Boot", "SQL"], opt: ["Git"] } }),
+    cjpPost(7, "Data Analyst Intern", ["Computer Science", "Data Science"], CJP_LOCS[1], "05/11/2026", "30/11/2026", "Draft", { work: "Remote", vac: 10, skills: { req: ["Python", "SQL"], opt: ["MS Excel"] } }),
+    cjpPost(8, "Mechanical Design Engineer", ["Mechanical Engineering"], CJP_LOCS[4], "28/10/2026", "25/11/2026", "Published", { work: "On-site", vac: 3, skills: { req: ["Problem Solving"], opt: ["Teamwork"] } }),
+    cjpPost(9, "Civil Site Engineer", ["Civil Engineering"], CJP_LOCS[0], "02/11/2026", "28/11/2026", "Published", { work: "On-site", vac: 4, skills: { req: ["Communication"], opt: ["MS Excel"] } }),
+    cjpPost(10, "Cloud Support Engineer", ["Computer Engineering", "Information Technology"], CJP_LOCS[2], "10/11/2026", "05/12/2026", "Draft", { vac: 3, skills: { req: ["AWS", "Linux"], opt: ["Docker"] } }),
+    cjpPost(11, "Python Developer", ["Computer Engineering"], CJP_LOCS[1], "12/11/2026", "10/12/2026", "Published", { vac: 4, skills: { req: ["Python", "Django"], opt: ["Git"] } }),
+    cjpPost(12, "Electrical Maintenance Trainee", ["Electrical Engineering"], CJP_LOCS[3], "08/11/2026", "08/12/2026", "Published", { work: "On-site", vac: 8, skills: { req: ["Problem Solving"], opt: [] } }),
+    cjpPost(13, "QA Tester", ["Computer Engineering", "Information Technology"], CJP_LOCS[0], "14/11/2026", "14/12/2026", "Draft", { vac: 2, tpl: "", skills: { req: ["SQL"], opt: ["Git"] } }),
+    cjpPost(14, "Graphic Designer Intern", ["Computer Science"], CJP_LOCS[4], "15/11/2026", "15/12/2026", "Published", { work: "Remote", vac: 2, skills: { req: ["Figma"], opt: ["Communication"] } })
+  ],
+  nextId: 15, page: 1, f: {}, d: {}, editId: null, menuFor: null, delId: null
+};
+const CJP_F_LABEL = { title: "Job Title", branch: "Branch", loc: "Job Location", work: "Work Type", status: "Status", from: "Start Date From", to: "End Date To" };
+
+// ---------- small helpers ----------
+function cjpDate(s) { // "dd/mm/yyyy" → Date, or null when it is not a real date
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(s || "").trim()); if (!m) return null;
+  const d = new Date(+m[3], +m[2] - 1, +m[1]);
+  return d.getDate() === +m[1] && d.getMonth() === +m[2] - 1 ? d : null;
+}
+const cjpVal = el => el.querySelector(".ui-option.is-selected")?.dataset.v || "";
+const cjpVals = el => [...el.querySelectorAll(".ui-option.is-selected")].map(o => o.dataset.v);
+function cjpSel(el, options, values = []) { el.dataset.options = options.join("|"); el.dataset.value = [].concat(values).filter(Boolean).join("|"); initSelect(el); }
+// Typing a date: digits only, the slashes are added automatically (dd/mm/yyyy)
+document.addEventListener("input", e => {
+  const i = e.target; if (!i.matches?.("input[data-date]")) return;
+  const d = i.value.replace(/\D/g, "").slice(0, 8);
+  i.value = d.length > 4 ? `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}` : d.length > 2 ? `${d.slice(0, 2)}/${d.slice(2)}` : d;
+});
+// Error message under a field (.ui-field > .ui-help); empty msg clears it
+function cjpErr(field, msg) {
+  const h = field.querySelector(":scope > .ui-help"); if (!h) return;
+  h.hidden = !msg; h.classList.toggle("is-error", !!msg); h.innerHTML = msg ? HELP_ICON["is-error"] + esc(msg) : "";
+  field.querySelectorAll(":scope > .ui-input, :scope > .ui-select, :scope > .ui-drop, :scope > .ui-combo, :scope > .cjp-sts-pick > .ui-select").forEach(x => x.classList.toggle("is-error", !!msg));
+  field.classList.toggle("has-error", !!msg);
+}
+
+// ---------- Manage Job Posting: filter ----------
+const cjpMatch = (p, f) =>
+  (!f.title || p.title.toLowerCase().includes(f.title.toLowerCase())) &&
+  (!f.branch || p.branches.includes(f.branch)) &&
+  (!f.loc || cjpShort(p.loc) === f.loc) &&
+  (!f.work || p.work === f.work) &&
+  (!f.status || p.status === f.status) &&
+  (!f.from || (cjpDate(p.start) && cjpDate(p.start) >= cjpDate(f.from))) &&
+  (!f.to || (cjpDate(p.end) && cjpDate(p.end) <= cjpDate(f.to)));
+function cjpFilterFields(f) { // puts a filter object into the Advanced Filter fields
+  $("#cjpfTitle").value = f.title || "";
+  cjpSel($("#cjpfBranch"), CJP_BRANCHES, f.branch);
+  cjpSel($("#cjpfLoc"), [...new Set(CJP_LOCS.map(cjpShort))], f.loc);
+  cjpSel($("#cjpfWork"), CJP_WORK, f.work);
+  cjpSel($("#cjpfStatus"), CJP_STATUS, f.status);
+  $("#cjpfFrom").value = f.from || ""; $("#cjpfTo").value = f.to || "";
+  ["#cjpfFrom", "#cjpfTo"].forEach(s => cjpErr($(s).closest(".ui-field"), ""));
+}
+function cjpReadFields() {
+  const d = { title: $("#cjpfTitle").value.trim(), branch: cjpVal($("#cjpfBranch")), loc: cjpVal($("#cjpfLoc")), work: cjpVal($("#cjpfWork")), status: cjpVal($("#cjpfStatus")), from: $("#cjpfFrom").value.trim(), to: $("#cjpfTo").value.trim() };
+  return Object.fromEntries(Object.entries(d).filter(([, v]) => v));
+}
+function cjpPreview() {
+  const d = cjpReadFields(), ok = (!d.from || cjpDate(d.from)) && (!d.to || cjpDate(d.to));
+  const n = ok ? CJP.posts.filter(p => cjpMatch(p, d)).length : null;
+  $("#cjpPreview").innerHTML = n === null ? "Enter dates as dd/mm/yyyy" : `<b>${n}</b> job posting${n === 1 ? "" : "s"} match these filters`;
+}
+$("#cjpAdv").addEventListener("input", cjpPreview);
+$("#cjpAdv").addEventListener("ui-select-change", cjpPreview);
+$("#cjpfTitle").addEventListener("keydown", e => { if (e.key === "Enter") $("#cjpApply").click(); });
+$("#cjpFilterBtn").addEventListener("click", () => {
+  const open = $("#cjpAdv").hidden;
+  $("#cjpAdv").hidden = !open; $("#cjpFilterBtn").setAttribute("aria-expanded", open);
+  if (open) { cjpFilterFields(CJP.f); cjpPreview(); $("#cjpfTitle").focus(); }
+});
+$("#cjpApply").addEventListener("click", () => {
+  const d = cjpReadFields(); let bad = false;
+  [["from", "#cjpfFrom"], ["to", "#cjpfTo"]].forEach(([k, s]) => { const wrong = d[k] && !cjpDate(d[k]); cjpErr($(s).closest(".ui-field"), wrong ? "Enter a valid date (dd/mm/yyyy)." : ""); bad ||= wrong; });
+  if (bad) return;
+  CJP.f = d; CJP.page = 1; cjpRender();
+  $("#cjpAdv").hidden = true; $("#cjpFilterBtn").setAttribute("aria-expanded", false);
+  toast(Object.keys(d).length ? "Filters applied" : "Showing all job postings");
+});
+$("#cjpReset").addEventListener("click", () => { CJP.f = {}; CJP.page = 1; cjpFilterFields({}); cjpPreview(); cjpRender(); });
+$("#cjpChips").addEventListener("click", e => {
+  const rm = e.target.closest("[data-cjp-rm]"), all = e.target.closest("[data-cjp-clear]");
+  if (rm) delete CJP.f[rm.dataset.cjpRm]; else if (all) CJP.f = {}; else return;
+  CJP.page = 1; cjpRender(); if (!$("#cjpAdv").hidden) { cjpFilterFields(CJP.f); cjpPreview(); }
+});
+
+// ---------- Manage Job Posting: table ----------
+const cjpBadge = s => `<span class="ui-badge ${s === "Published" ? "ui-badge-approved" : "ui-badge-neutral"}">${s}</span>`;
+const cjpAct = (k, cls, icon, label, id) => `<button class="ui-act ${cls}" type="button" data-cjp-act="${k}" data-id="${id}" title="${label}" aria-label="${label}">${iconSvg(icon, "f", 18)}</button>`;
+function cjpRender() {
+  const f = CJP.f, list = CJP.posts.filter(p => cjpMatch(p, f));
+  const pages = Math.max(1, Math.ceil(list.length / CJP_PER)); CJP.page = Math.min(CJP.page, pages);
+  const from = (CJP.page - 1) * CJP_PER, rows = list.slice(from, from + CJP_PER);
+  $("#cjpBody").innerHTML = rows.map((p, i) => {
+    const br = p.branches.length > 1 ? `${esc(p.branches[0])} <span class="ui-badge ui-badge-neutral" title="${esc(p.branches.join(", "))}">+${p.branches.length - 1}</span>` : esc(p.branches[0] || "–");
+    const acts = p.status === "Published"
+      ? cjpAct("view", "ui-act-view", "view", "View job posting", p.id) + cjpAct("edit", "ui-act-edit", "edit", "Edit job posting", p.id) + cjpAct("applicants", "ui-act-resume", "user", "View applicants", p.id)
+      : cjpAct("view", "ui-act-view", "view", "View job posting", p.id) + cjpAct("more", "ui-act-more", "more", "More actions", p.id);
+    return `<tr><td>${from + i + 1}</td><td><span class="name">${esc(p.title)}</span></td><td>${br}</td><td>${esc(cjpShort(p.loc))}</td><td>${p.start}</td><td>${p.end}</td><td>${cjpBadge(p.status)}</td><td><div class="ui-acts">${acts}</div></td></tr>`;
+  }).join("") || `<tr class="cjp-empty"><td colspan="8"><b>${CJP.posts.length ? "No job postings found." : "No job postings yet."}</b>${CJP.posts.length ? "Try changing or clearing the filters." : "Click “Add Placement” to create your first job posting."}</td></tr>`;
+  $("#cjpShowing").textContent = list.length ? `Showing ${from + 1} to ${from + rows.length} of ${list.length} entries` : "Showing 0 entries";
+  cjpPager(pages);
+  // filter chips + count on the Filter button
+  const keys = Object.keys(f);
+  $("#cjpChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${CJP_F_LABEL[k]}:</b>${esc(f[k])}<button type="button" data-cjp-rm="${k}" title="Remove ${CJP_F_LABEL[k]} filter" aria-label="Remove ${CJP_F_LABEL[k]} filter">${iconSvg("close", "l", 12)}</button></span>`).join("") + `<button class="cjp-clear" type="button" data-cjp-clear>Clear all</button>` : "";
+  $("#cjpCnt").hidden = !keys.length; $("#cjpCnt").textContent = keys.length;
+}
+function cjpPager(pages) {
+  const p = CJP.page, list = [];
+  if (pages <= 6) for (let i = 1; i <= pages; i++) list.push(i);
+  else { list.push(1); if (p > 3) list.push("…"); for (let i = Math.max(2, p - 1); i <= Math.min(pages - 1, p + 1); i++) list.push(i); if (p < pages - 2) list.push("…"); list.push(pages); }
+  $("#cjpPager").innerHTML = `<button class="arrow" data-p="${p - 1}" ${p === 1 ? "disabled" : ""} aria-label="Previous page">${iconSvg("arrow-left", "l", 14)}</button>`
+    + list.map(x => x === "…" ? `<span class="dots">…</span>` : `<button class="pg ${x === p ? "on" : ""}" data-p="${x}" ${x === p ? 'aria-current="page"' : ""}>${x}</button>`).join("")
+    + `<button class="arrow" data-p="${p + 1}" ${p === pages ? "disabled" : ""} aria-label="Next page">${iconSvg("arrow-right", "l", 14)}</button>`;
+}
+$("#cjpPager").addEventListener("click", e => { const b = e.target.closest("button[data-p]"); if (!b || b.disabled) return; CJP.page = +b.dataset.p; cjpRender(); });
+
+// Row actions + 3 dots menu (Draft: Edit · Review & Publish · Delete)
+function cjpCloseMenu() { $("#cjpMenu").classList.remove("is-open"); $$("#cjpBody .ui-act-more.is-open").forEach(b => b.classList.remove("is-open")); CJP.menuFor = null; }
+function cjpEdit(id) { CJP.editId = id; location.hash === "#company-job-form" ? cjpOpenForm() : (location.hash = "company-job-form"); }
+$("#cjpBody").addEventListener("click", e => {
+  const b = e.target.closest("[data-cjp-act]"); if (!b) return;
+  const id = +b.dataset.id, k = b.dataset.cjpAct;
+  if (k === "view") return toast("View job posting will be added soon");
+  if (k === "applicants") return toast("Applicants list will be added soon");
+  if (k === "edit") return cjpEdit(id);
+  if (k === "more") {
+    if (CJP.menuFor === id) return cjpCloseMenu();
+    cjpCloseMenu(); CJP.menuFor = id; b.classList.add("is-open");
+    const m = $("#cjpMenu");
+    m.innerHTML = `<button class="ui-menu-item" type="button" role="menuitem" data-cjp-menu="edit">${iconSvg("edit", "f", 18)}Edit</button>
+      <button class="ui-menu-item" type="button" role="menuitem" data-cjp-menu="publish">${iconSvg("check", "l", 18)}Review &amp; Publish</button>
+      <div class="ui-menu-sep"></div>
+      <button class="ui-menu-item is-danger" type="button" role="menuitem" data-cjp-menu="delete">${iconSvg("delete", "f", 18)}Delete</button>`;
+    m.classList.add("is-open");
+    const r = b.getBoundingClientRect(), below = r.bottom + 6 + m.offsetHeight < innerHeight;
+    m.style.top = (below ? r.bottom + 6 : r.top - 6 - m.offsetHeight) + "px";
+    m.style.left = Math.max(8, r.right - m.offsetWidth) + "px";
+    m.querySelector(".ui-menu-item").focus();
+  }
+});
+$("#cjpMenu").addEventListener("click", e => {
+  const it = e.target.closest("[data-cjp-menu]"); if (!it) return;
+  const id = CJP.menuFor, k = it.dataset.cjpMenu; cjpCloseMenu();
+  if (k === "edit" || k === "publish") return cjpEdit(id);
+  CJP.delId = id; $("#cjpDelName").textContent = CJP.posts.find(p => p.id === id)?.title || "this job posting";
+  openModal("mdCjpDel");
+});
+document.addEventListener("click", e => { if (CJP.menuFor !== null && !e.target.closest("#cjpMenu, #cjpBody .ui-act-more")) cjpCloseMenu(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && CJP.menuFor !== null) cjpCloseMenu(); });
+addEventListener("scroll", () => { if (CJP.menuFor !== null) cjpCloseMenu(); }, true);
+addEventListener("resize", () => { if (CJP.menuFor !== null) cjpCloseMenu(); });
+$("#cjpDelYes").addEventListener("click", () => {
+  const p = CJP.posts.find(x => x.id === CJP.delId);
+  CJP.posts = CJP.posts.filter(x => x.id !== CJP.delId); CJP.delId = null;
+  closeModal($("#mdCjpDel")); cjpRender(); toast(`${p ? p.title : "Job posting"} deleted`);
+});
+$("#cjpAdd").addEventListener("click", () => { CJP.editId = null; location.hash === "#company-job-form" ? cjpOpenForm() : (location.hash = "company-job-form"); });
+
+// ---------- Create / Edit Job Posting: selection process (Ready Template or Custom) ----------
+// Two choice cards. "Use a Ready Template" opens #mdCjpTpl (5 read-only templates); the picked one shows on the form.
+// "Create Custom Process" = the company adds its own rounds: name + statuses typed or picked (Design System Tag Select).
+// Resume Screening is always Step 1, Final Selection is always the last step (also in Custom).
+const CJS = { mode: "", tpl: "", pick: "" }; // mode: "" | "template" | "custom"; tpl = chosen template; pick = choice inside the modal
+const cjpSteps = $("#cjpSteps");
+const CJP_STS_MAX = 10; // statuses per custom round
+const cjpStsBadges = sts => `<div class="cjp-sts">${sts.map(s => `<span class="ui-badge ui-badge-neutral">${esc(s)}</span>`).join("")}</div>`;
+const cjpFlowRow = (n, name, fixed) => `<span class="cjp-num">${n}</span><div class="cjp-round"><b>${esc(name)}</b>${fixed ? `<small>${iconSvg("lock", "o", 14)}Fixed step</small>` : ""}</div>${cjpStsBadges(CJP_SEL_ST[name])}`;
+const cjpTplPath = n => [CJP_SEL_FIRST, ...CJP_TPL[n].rounds, CJP_SEL_LAST];
+const cjpTplValue = () => CJS.mode === "custom" ? CJP_CUSTOM : CJS.mode === "template" ? CJS.tpl : "";
+function cjpSetTpl(t) {
+  CJS.mode = !t ? "" : t === CJP_CUSTOM ? "custom" : CJP_TPL[t] ? "template" : "";
+  CJS.tpl = CJS.mode === "template" ? t : "";
+  cjpTplRender();
+}
+function cjpTplRender() {
+  const custom = CJS.mode === "custom", tpl = CJS.mode === "template" ? CJP_TPL[CJS.tpl] : null, show = custom || !!tpl;
+  $$("[data-cjp-mode]").forEach(b => b.setAttribute("aria-checked", b.dataset.cjpMode === CJS.mode));
+  $("#cjpTplSum").hidden = !tpl;
+  if (tpl) { $("#cjpTplName").textContent = CJS.tpl; $("#cjpTplFor").textContent = `· Suitable for ${tpl.for}`; }
+  $("#cjpFlow").hidden = $("#cjpFlowNote").hidden = !show;
+  if (!show) return;
+  $("#cjpCustom").hidden = !custom;
+  $("#cjpFlowFirst").innerHTML = cjpFlowRow(1, CJP_SEL_FIRST, true);
+  $("#cjpFlowTpl").innerHTML = custom ? "" : tpl.rounds.map((r, i) => `<div class="cjp-flow-row">${cjpFlowRow(i + 2, r)}</div>`).join("");
+  if (custom && !cjpSteps.children.length) cjpSteps.appendChild(cjpStep());
+  cjpStepsSync();
+}
+// choice cards
+$("#cjpChoiceField").addEventListener("click", e => {
+  const b = e.target.closest("[data-cjp-mode]"); if (!b) return;
+  if (b.dataset.cjpMode === "template") return cjpTplOpen();
+  const was = CJS.mode; cjpSetTpl(CJP_CUSTOM); cjpErr($("#cjpChoiceField"), "");
+  if (was !== "custom") { const i = cjpSteps.querySelector("[data-rnd-name]"); if (i && !i.value) i.focus({ preventScroll: true }); }
+});
+$("#cjpChoiceField").addEventListener("keydown", e => { // arrow keys move between the two radio cards
+  if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key) || !e.target.matches("[data-cjp-mode]")) return;
+  e.preventDefault(); $$("[data-cjp-mode]").find(b => b !== e.target).focus();
+});
+$("#cjpTplChange").addEventListener("click", () => cjpTplOpen());
+
+// ---------- Template modal ----------
+function cjpTplOpen() { CJS.pick = CJS.tpl; cjpTplList(); openModal("mdCjpTpl"); }
+function cjpTplList() {
+  $("#cjpTplList").innerHTML = Object.entries(CJP_TPL).map(([n, t]) => {
+    const on = n === CJS.pick, path = cjpTplPath(n), end = i => i === 0 || i === path.length - 1;
+    return `<div class="cjp-tpl${on ? " is-picked" : ""}">
+      <button class="cjp-tpl-btn" type="button" role="radio" aria-checked="${on}" data-tpl="${esc(n)}">
+        <span class="cjp-choice-tick" aria-hidden="true"></span>
+        <span class="cjp-tpl-main">
+          <span class="cjp-tpl-top"><b>${esc(n)}</b><span class="ui-badge ui-badge-neutral">${path.length} steps</span><small>Suitable for: ${esc(t.for)}</small></span>
+          <span class="cjp-tpl-path">${path.map(p => `<span>${esc(p)}</span>`).join("")}</span>
+        </span>
+      </button>
+      <div class="cjp-tpl-map"${on ? "" : " hidden"}><div class="cjp-flow">${path.map((p, i) => `<div class="cjp-flow-row${end(i) ? " is-fixed" : ""}">${cjpFlowRow(i + 1, p, end(i))}</div>`).join("")}</div></div>
+    </div>`;
+  }).join("");
+  $("#cjpTplUse").disabled = !CJS.pick;
+}
+$("#cjpTplList").addEventListener("click", e => {
+  const b = e.target.closest("[data-tpl]"); if (!b) return;
+  CJS.pick = b.dataset.tpl; cjpTplList();
+  $(`#cjpTplList [data-tpl="${CSS.escape(CJS.pick)}"]`).focus();
+});
+$("#cjpTplList").addEventListener("keydown", e => { // arrow keys move between templates
+  const b = e.target.closest("[data-tpl]"); if (!b || !["ArrowUp", "ArrowDown"].includes(e.key)) return;
+  e.preventDefault(); const all = $$("#cjpTplList [data-tpl]"), i = all.indexOf(b);
+  all[(i + (e.key === "ArrowDown" ? 1 : -1) + all.length) % all.length].focus();
+});
+$("#cjpTplUse").addEventListener("click", () => {
+  if (!CJS.pick) return;
+  cjpSetTpl(CJS.pick); cjpErr($("#cjpChoiceField"), ""); closeModal($("#mdCjpTpl"));
+  toast(`“${CJS.tpl}” template selected`); $("#cjpTplChange").focus({ preventScroll: true });
+});
+
+// ---------- Custom rounds: name + Mapped Statuses (works like Skills Required) ----------
+// Mapped Statuses = multi-select dropdown of CJP_STS_LIST. "Add Status" (or "+ Add “X” as a new status" in the search)
+// opens #mdCjpSts, where many new statuses are typed at once. They join the dropdown of every round (at the top).
+const CJP_STS_LIST = [...CJP_CUSTOM_ST];
+const cjpStsHas = v => CJP_STS_LIST.find(s => s.toLowerCase() === v.toLowerCase());
+function cjpStsSelect(it, values) { // (re)builds a round's status dropdown, keeping the picked values
+  values.forEach(v => { if (!cjpStsHas(v)) CJP_STS_LIST.push(v); });
+  const sel = it.querySelector("[data-rnd-sts]");
+  cjpSel(sel, CJP_STS_LIST, values);
+  // the "+ Add “X” as a new status" line sits at the TOP of the menu (under the search), so no scrolling is needed
+  // above it, an info line (shown while the search has no new name): tells the owner a custom status can be typed
+  sel.querySelector(".ui-select-list").insertAdjacentHTML("beforebegin", `<p class="cjp-sts-tip">${iconSvg("info", "o", 14)}<span>Can't find a status? Type it above to add your own.</span></p><div class="ui-option is-new cjp-sts-addnew" role="button" tabindex="0" hidden></div>`);
+  it._sts = [...values];
+}
+function cjpStep(r = { name: "", sts: [] }) {
+  const el = document.createElement("div");
+  el.className = "ui-repeat-item";
+  el.innerHTML = `<button class="ui-drag" type="button" title="Drag to reorder" aria-label="Move round">${iconSvg("grip", "f", 18)}</button>
+    <div class="cjp-rnd">
+      <div class="ui-field"><span class="ui-label"></span><input class="ui-input" data-rnd-name maxlength="60" placeholder="(e.g. Coding Round)" value="${esc(r.name)}" autocomplete="off"><span class="ui-help" hidden></span></div>
+      <div class="ui-field"><span class="ui-label">Mapped Statuses<span class="ui-req">*</span><button class="ui-info" type="button" aria-label="Info: status not in the list? Type it in the search box and click + Add to add your own status.">${iconSvg("info", "o", 14)}<span class="ui-info-tip" role="tooltip">Status not in the list? Type it in the search box and click <b>“+ Add … as a new status”</b> to add your own.</span></button></span>
+        <div class="cjp-sts-pick">
+          <div class="ui-select is-multi" data-rnd-sts data-ph="Select statuses" data-search data-max-tags="2"></div>        </div>
+        <span class="ui-help" hidden></span>
+      </div>
+    </div>
+    <button class="ui-btn ui-btn-danger-soft ui-btn-icon" type="button" data-remove title="Remove round" aria-label="Remove round">${iconSvg("delete", "f", 18)}</button>`;
+  cjpStsSelect(el, r.sts);
+  return el;
+}
+const cjpRow = e => e.target.closest?.("#cjpSteps > .ui-repeat-item");
+cjpSteps.addEventListener("ui-select-change", e => {
+  if (!e.target.matches("[data-rnd-sts]")) return;
+  cjpRow(e)._sts = [...e.detail]; cjpStepsSync();
+});
+cjpSteps.addEventListener("input", e => {
+  if (e.target.matches("[data-rnd-name]")) return cjpStepsSync();
+  const sel = e.target.closest("[data-rnd-sts]"); if (!sel || !e.target.closest(".ui-select-search")) return;
+  // search with no exact match → "+ Add “X” as a new status" (opens the Add Status modal with X filled in)
+  const q = e.target.value.trim().replace(/\s+/g, " "), line = sel.querySelector(".cjp-sts-addnew"), show = !!q && !cjpStsHas(q);
+  line.hidden = !show; line.dataset.q = q; sel.querySelector(".cjp-sts-tip").hidden = show;
+  if (show) { line.innerHTML = `${iconSvg("plus", "l", 14)}<span>Add “${esc(q)}” as a new status</span>`; sel.querySelector(".ui-select-empty").hidden = true; }
+});
+cjpSteps.addEventListener("click", e => {
+  if (e.target.closest("[data-rnd-sts] .ui-select-trigger")) { // opening: search is empty again → info line on, add line off
+    const s = e.target.closest("[data-rnd-sts]"), l = s.querySelector(".cjp-sts-addnew"), t = s.querySelector(".cjp-sts-tip");
+    if (l) l.hidden = true; if (t) t.hidden = false; return;
+  }
+  const add = e.target.closest(".cjp-sts-addnew"); if (!add) return;
+  cjpStsOpenModal(cjpRow(e), add.dataset.q || "");
+});
+cjpSteps.addEventListener("keydown", e => {
+  if ((e.key === "Enter" || e.key === " ") && e.target.matches(".cjp-sts-addnew")) { e.preventDefault(); cjpStsOpenModal(cjpRow(e), e.target.dataset.q || ""); }
+  if (e.key === "Enter" && e.target.closest("[data-rnd-sts] .ui-select-search")) { // Enter in the search: add-new line if shown
+    e.preventDefault(); const l = e.target.closest("[data-rnd-sts]").querySelector(".cjp-sts-addnew");
+    if (l && !l.hidden) cjpStsOpenModal(cjpRow(e), l.dataset.q);
+  }
+});
+
+// ---------- Add Status modal: type many statuses at once ----------
+const CJN = { list: [], row: null }, cjnIn = $("#cjpStsIn");
+function cjnHelp(msg, isErr) {
+  const h = $("#cjpStsHelp"); h.innerHTML = (isErr ? HELP_ICON["is-error"] : "") + esc(msg || "Press Enter or “Add” after each status.");
+  h.classList.toggle("is-error", !!isErr); cjnIn.classList.toggle("is-error", !!isErr);
+}
+function cjnRender() {
+  $("#cjpStsWrap").hidden = !CJN.list.length;
+  $("#cjpStsCount").textContent = CJN.list.length;
+  $("#cjpStsChips").innerHTML = CJN.list.map((s, i) => `<span class="ui-chip">${esc(s)}<button type="button" data-cjn-rm="${i}" title="Remove ${esc(s)}" aria-label="Remove ${esc(s)}">${iconSvg("close", "l", 12)}</button></span>`).join("");
+}
+function cjnAdd() {
+  const v = cjnIn.value.trim().replace(/\s+/g, " ");
+  if (!v) { cjnHelp("Enter a status name.", true); cjnIn.focus(); return false; }
+  if (cjpStsHas(v)) { cjnHelp(`${cjpStsHas(v)} is already in the status list.`, true); cjnIn.focus(); return false; }
+  if (CJN.list.some(s => s.toLowerCase() === v.toLowerCase())) { cjnHelp(`${v} is already added below.`, true); cjnIn.focus(); return false; }
+  CJN.list.push(v); cjnIn.value = ""; cjnHelp(); cjnRender(); cjnIn.focus();
+  return true;
+}
+function cjpStsOpenModal(row, prefill = "") {
+  closeSelects();
+  CJN.row = row; CJN.list = []; cjnIn.value = prefill;
+  cjnHelp(prefill ? "Check the spelling, then press “Add Statuses” (or add more statuses first)." : ""); cjnRender();
+  openModal("mdCjpSts");
+  setTimeout(() => { cjnIn.focus(); cjnIn.select(); }, 50);
+}
+$("#cjpStsAddBtn").addEventListener("click", cjnAdd);
+cjnIn.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); cjnAdd(); } });
+cjnIn.addEventListener("input", () => { if (cjnIn.classList.contains("is-error")) cjnHelp(); });
+$("#cjpStsChips").addEventListener("click", e => {
+  const b = e.target.closest("[data-cjn-rm]"); if (!b) return;
+  CJN.list.splice(+b.dataset.cjnRm, 1); cjnRender(); cjnIn.focus();
+});
+$("#cjpStsSave").addEventListener("click", () => {
+  if (cjnIn.value.trim() && !cjnAdd()) return;          // a typed name that was not added yet is added first
+  if (!CJN.list.length) { cjnHelp("Add at least one status.", true); return cjnIn.focus(); }
+  CJP_STS_LIST.unshift(...CJN.list);                     // new statuses show at the top of every round's dropdown
+  [...cjpSteps.children].forEach(r => cjpStsSelect(r, r._sts));
+  const n = CJN.list.length, row = CJN.row; CJN.list = [];
+  closeModal($("#mdCjpSts"));
+  toast(`${n} status${n === 1 ? "" : "es"} added to the list. Pick from the list to map ${n === 1 ? "it" : "them"}.`);
+  setTimeout(() => { if (row?.isConnected) row.querySelector("[data-rnd-sts] .ui-select-trigger").click(); }, 0);
+});
+
+function cjpStepsSync() {
+  const items = [...cjpSteps.children], custom = CJS.mode === "custom", last = items[items.length - 1];
+  items.forEach((it, i) => {
+    it.querySelector(".ui-label").innerHTML = `Step ${i + 2} – Round Name<span class="ui-req">*</span>`;
+    it.querySelector(".ui-drag").setAttribute("aria-label", `Move round ${i + 1}`);
+    it.querySelector("[data-remove]").disabled = items.length <= CJP_STEP_MIN;
+  });
+  // "Add Round" works only when the round above has a name and at least one status
+  const ready = !last || (last.querySelector("[data-rnd-name]").value.trim() && last._sts.length);
+  $("#cjpAddStep").disabled = items.length >= CJP_STEP_MAX || !ready;
+  $("#cjpStepsHelp").textContent = items.length >= CJP_STEP_MAX ? `Maximum ${CJP_STEP_MAX} rounds reached.`
+    : !ready ? "Fill the round name and add at least one status to add the next round."
+    : `Minimum ${CJP_STEP_MIN}, maximum ${CJP_STEP_MAX} rounds. Drag ⠿ to change the order.`;
+  const n = 2 + (custom ? items.length : (CJP_TPL[CJS.tpl]?.rounds.length || 0));
+  $("#cjpFlowLast").innerHTML = cjpFlowRow(n, CJP_SEL_LAST, true);
+}
+$("#cjpAddStep").addEventListener("click", () => { const el = cjpStep(); cjpSteps.appendChild(el); cjpStepsSync(); el.querySelector("input").focus(); });
+cjpSteps.addEventListener("click", e => {
+  const r = e.target.closest("[data-remove]"); if (!r || r.disabled) return;
+  const it = r.closest(".ui-repeat-item"), next = it.nextElementSibling || it.previousElementSibling;
+  it.remove(); cjpStepsSync(); next?.querySelector("input").focus();
+});
+let cjpDrag = null;
+cjpSteps.addEventListener("pointerdown", e => {
+  const h = e.target.closest(".ui-drag"); if (!h || e.button !== 0) return;
+  e.preventDefault(); cjpDrag = h.closest(".ui-repeat-item"); cjpDrag.classList.add("is-dragging");
+  document.body.classList.add("ui-dragging"); h.setPointerCapture(e.pointerId);
+});
+cjpSteps.addEventListener("pointermove", e => {
+  if (!cjpDrag) return;
+  const over = document.elementFromPoint(e.clientX, e.clientY)?.closest(".ui-repeat-item");
+  if (!over || over === cjpDrag || over.parentNode !== cjpSteps) return;
+  const items = [...cjpSteps.children];
+  cjpSteps.insertBefore(cjpDrag, items.indexOf(over) < items.indexOf(cjpDrag) ? over : over.nextSibling); cjpStepsSync();
+});
+const cjpDrop = () => { if (!cjpDrag) return; cjpDrag.classList.remove("is-dragging"); document.body.classList.remove("ui-dragging"); cjpDrag = null; };
+cjpSteps.addEventListener("pointerup", cjpDrop);
+cjpSteps.addEventListener("pointercancel", cjpDrop);
+cjpSteps.addEventListener("keydown", e => {
+  const h = e.target.closest(".ui-drag"); if (!h) return;
+  const it = h.closest(".ui-repeat-item");
+  if (["ArrowUp", "ArrowLeft"].includes(e.key) && it.previousElementSibling) cjpSteps.insertBefore(it, it.previousElementSibling);
+  else if (["ArrowDown", "ArrowRight"].includes(e.key) && it.nextElementSibling) cjpSteps.insertBefore(it.nextElementSibling, it);
+  else return;
+  e.preventDefault(); cjpStepsSync(); h.focus();
+});
+
+// ---------- Job description: Upload Document / Write Description ----------
+const CJF = { file: null, crit: new Map() };
+function cjpDescMode(mode) {
+  $$('input[name="cjpDescMode"]').forEach(r => r.checked = r.value === mode);
+  $("#cjpUploadWrap").hidden = mode !== "upload"; $("#cjpWriteWrap").hidden = mode !== "write";
+}
+$$('input[name="cjpDescMode"]').forEach(r => r.addEventListener("change", () => cjpDescMode(r.value)));
+function cjpFileRender() {
+  const f = CJF.file;
+  $("#cjpFileRow").innerHTML = f ? `<div class="ui-file-row"><span class="ui-icon-box is-primary">${iconSvg("document", "f", 18)}</span><div><b>${esc(f.name)}</b><small>${fmtSize(f.size)}</small></div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-cjp-file-rm title="Remove file">${iconSvg("delete", "f", 14)}Remove</button></div>` : "";
+  $("#cjpDrop").hidden = !!f;
+}
+function cjpTakeFile(file) {
+  if (!file) return;
+  const okType = /\.(pdf|png|jpe?g)$/i.test(file.name), okSize = file.size <= 5 * 1024 * 1024;
+  if (!okType || !okSize) return cjpErr($("#cjpUploadWrap"), !okType ? "Only PDF, JPG or PNG files are allowed." : "The file is larger than 5 MB.");
+  CJF.file = { name: file.name, size: file.size }; cjpErr($("#cjpUploadWrap"), ""); cjpFileRender();
+}
+$("#cjpDrop").addEventListener("click", () => $("#cjpFile").click());
+$("#cjpDrop").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("#cjpFile").click(); } });
+$("#cjpFile").addEventListener("change", e => { cjpTakeFile(e.target.files[0]); e.target.value = ""; });
+["dragenter", "dragover"].forEach(t => $("#cjpDrop").addEventListener(t, e => { e.preventDefault(); $("#cjpDrop").classList.add("is-over"); }));
+["dragleave", "drop"].forEach(t => $("#cjpDrop").addEventListener(t, e => { e.preventDefault(); $("#cjpDrop").classList.remove("is-over"); }));
+$("#cjpDrop").addEventListener("drop", e => cjpTakeFile(e.dataTransfer.files[0]));
+$("#cjpFileRow").addEventListener("click", e => { if (e.target.closest("[data-cjp-file-rm]")) { CJF.file = null; cjpFileRender(); $("#cjpDrop").focus(); } });
+
+// ---------- Eligibility criteria: picked criteria → one row each (condition + value) ----------
+function cjpCritRender() {
+  const rows = [...CJF.crit.entries()];
+  $("#cjpCrit").hidden = !rows.length;
+  $("#cjpCritRows").innerHTML = rows.map(([k, c]) => `<div class="cjp-crit-row" data-k="${esc(k)}">
+      <b>${esc(k)}</b>
+      <div class="ui-field"><span class="ui-label cjp-crit-lbl">Condition</span><div class="ui-select" data-cond="${esc(k)}" data-ph="Select condition"></div><span class="ui-help" hidden></span></div>
+      <div class="ui-field"><span class="ui-label cjp-crit-lbl">Value</span><input class="ui-input" data-val="${esc(k)}" maxlength="20" placeholder="${CJP_CRIT[k] || "Enter value"}" value="${esc(c.val)}" aria-label="${esc(k)} value"><span class="ui-help" hidden></span></div>
+      <button class="ui-act ui-act-delete cjp-crit-del" type="button" data-crit-rm="${esc(k)}" title="Remove ${esc(k)}" aria-label="Remove ${esc(k)}">${iconSvg("delete", "f", 18)}</button>
+    </div>`).join("");
+  $$("#cjpCritRows [data-cond]").forEach(el => cjpSel(el, CJP_COND, CJF.crit.get(el.dataset.cond).cond));
+}
+$("#cjpCritSel").addEventListener("ui-select-change", e => {
+  if (e.target !== $("#cjpCritSel")) return;
+  const picked = e.detail;
+  [...CJF.crit.keys()].forEach(k => { if (!picked.includes(k)) CJF.crit.delete(k); });
+  picked.forEach(k => { if (!CJF.crit.has(k)) CJF.crit.set(k, { cond: k === "Age Criteria" ? "Less Than Or Equal To" : "Greater Than Or Equal To", val: "" }); });
+  cjpCritRender();
+});
+$("#cjpCritRows").addEventListener("ui-select-change", e => { const k = e.target.dataset.cond; if (k && CJF.crit.has(k)) CJF.crit.get(k).cond = e.detail[0] || ""; });
+$("#cjpCritRows").addEventListener("input", e => { const k = e.target.dataset.val; if (k && CJF.crit.has(k)) CJF.crit.get(k).val = e.target.value; });
+$("#cjpCritRows").addEventListener("click", e => {
+  const b = e.target.closest("[data-crit-rm]"); if (!b) return;
+  CJF.crit.delete(b.dataset.critRm);
+  cjpSel($("#cjpCritSel"), Object.keys(CJP_CRIT), [...CJF.crit.keys()]); // re-renders the rows through ui-select-change
+});
+
+// ---------- Open the form (create or edit) ----------
+function cjpOpenForm() {
+  const p = CJP.posts.find(x => x.id === CJP.editId) || null;
+  if (!p) CJP.editId = null;
+  const v = p || { title: "", work: "", start: "", end: "", vac: "", loc: "", tpl: "", rounds: [], descMode: "upload", desc: "", file: null, degrees: [], branches: [], crit: [], skills: { req: [], opt: [] }, status: "" };
+  $("#cjpFormTitle").textContent = p ? "Edit Job Posting" : "Create Job Posting";
+  $("#cjpFormSub").textContent = p ? "Update the job details, eligibility criteria, and selection process for this opportunity." : "Add the job details below to publish a new opportunity for eligible candidates.";
+  $("#cjpSubmit").textContent = p && p.status === "Published" ? "Update Job Posting" : "Publish";
+  $("#cjpTitle").value = v.title; cjpSel($("#cjpWork"), CJP_WORK, v.work);
+  $("#cjpStart").value = v.start; $("#cjpEnd").value = v.end; $("#cjpVac").value = v.vac;
+  cjpSel($("#cjpLoc"), CJP_LOCS, v.loc);
+  cjpSteps.innerHTML = ""; (v.rounds || []).forEach(r => cjpSteps.appendChild(cjpStep(r)));
+  cjpSetTpl(v.tpl);
+  cjpDescMode(v.descMode); $("#cjpDesc").value = v.desc; CJF.file = v.file ? { ...v.file } : null; cjpFileRender();
+  cjpSel($("#cjpDegree"), CJP_DEGREES, v.degrees); cjpSel($("#cjpBranch"), CJP_BRANCHES, v.branches);
+  CJF.crit = new Map(v.crit.map(c => [c.k, { cond: c.cond, val: c.val }]));
+  cjpSel($("#cjpCritSel"), Object.keys(CJP_CRIT), v.crit.map(c => c.k));
+  cjLoadSkills(v.skills);
+  $$("#view-company-job-form .ui-field").forEach(f => cjpErr(f, ""));
+  $("#cjpSecSkills").classList.remove("is-error");
   scrollTo(0, 0);
 }
-$("#cjSave").addEventListener("click", () => {
-  if (CJ.pending) { $('#cjAsk [data-cj-type="req"]').focus(); return cjHelp(`Choose Required or Optional for ${CJ.pending} first.`, true); }
-  if (!CJ.draft.req.length) { cjHelp("Add at least one required skill.", true); return cjIn.focus(); }
-  CJ.saved = { req: [...CJ.draft.req], opt: [...CJ.draft.opt] };
-  cjRenderPage();
-  location.hash = "company-job";
-  toast(`${CJ.saved.req.length} required and ${CJ.saved.opt.length} optional skill${CJ.saved.opt.length === 1 ? "" : "s"} saved`);
-});
-cjRenderPage();
+// Clear a field's error as soon as it is changed
+$("#view-company-job-form").addEventListener("input", e => { const f = e.target.closest(".ui-field"); if (f && f.querySelector(":scope > .ui-help.is-error")) cjpErr(f, ""); });
+$("#view-company-job-form").addEventListener("ui-select-change", e => { const f = e.target.closest(".ui-field"); if (f && e.detail.length && f.querySelector(":scope > .ui-help.is-error")) cjpErr(f, ""); });
+
+// ---------- Save as draft / Publish / Update ----------
+function cjpCollect() {
+  return {
+    title: $("#cjpTitle").value.trim(), work: cjpVal($("#cjpWork")), start: $("#cjpStart").value.trim(), end: $("#cjpEnd").value.trim(),
+    vac: $("#cjpVac").value.trim(), loc: cjpVal($("#cjpLoc")),
+    tpl: cjpTplValue(),
+    rounds: CJS.mode === "custom" ? [...cjpSteps.children].map(it => ({ name: it.querySelector("[data-rnd-name]").value.trim(), sts: [...it._sts] })) : [],
+    descMode: $('input[name="cjpDescMode"]:checked').value, desc: $("#cjpDesc").value.trim(), file: CJF.file,
+    degrees: cjpVals($("#cjpDegree")), branches: cjpVals($("#cjpBranch")),
+    crit: [...CJF.crit.entries()].map(([k, c]) => ({ k, cond: c.cond, val: c.val.trim() })),
+    skills: { req: [...CJ.draft.req], opt: [...CJ.draft.opt] }
+  };
+}
+function cjpValidate(v, full) { // returns the first field with an error (or null)
+  const errs = [], fld = s => $(s).closest(".ui-field"), add = (f, m) => { cjpErr(f, m); errs.push(f); };
+  $$("#view-company-job-form .ui-field").forEach(f => cjpErr(f, "")); $("#cjpSecSkills").classList.remove("is-error");
+  if (!v.title) add(fld("#cjpTitle"), "Enter the job title.");
+  // dates are checked whenever they are filled in (also for a draft)
+  const s = cjpDate(v.start), e = cjpDate(v.end);
+  if (v.start && !s) add(fld("#cjpStart"), "Enter a valid date (dd/mm/yyyy).");
+  if (v.end && !e) add(fld("#cjpEnd"), "Enter a valid date (dd/mm/yyyy).");
+  if (s && e && e < s) add(fld("#cjpEnd"), "End date cannot be before the start date.");
+  if (v.vac && !(+v.vac >= 1 && Number.isInteger(+v.vac))) add(fld("#cjpVac"), "Enter a whole number of 1 or more.");
+  if (full) {
+    if (!v.work) add(fld("#cjpWork"), "Select the work type.");
+    if (!v.start) add(fld("#cjpStart"), "Select the application start date.");
+    if (!v.end) add(fld("#cjpEnd"), "Select the application end date.");
+    if (!v.vac) add(fld("#cjpVac"), "Enter the number of vacancies.");
+    if (!v.loc) add(fld("#cjpLoc"), "Select the job location.");
+    if (!v.tpl) add($("#cjpChoiceField"), "Choose a ready template or create a custom process.");
+    if (v.tpl === CJP_CUSTOM) {
+      const seen = new Set([CJP_SEL_FIRST.toLowerCase(), CJP_SEL_LAST.toLowerCase()]);
+      [...cjpSteps.children].forEach((it, i) => {
+        const r = v.rounds[i], key = r.name.toLowerCase(), [nameF, stsF] = it.querySelectorAll(".ui-field");
+        if (!r.name) add(nameF, "Enter the round name or remove this round.");
+        else if (seen.has(key)) add(nameF, "This round is already in the selection process.");
+        seen.add(key);
+        if (!r.sts.length) add(stsF, "Add at least one status.");
+      });
+    }
+    if (v.descMode === "upload" && !v.file) add($("#cjpUploadWrap"), "Upload the job description document.");
+    if (v.descMode === "write" && !v.desc) add($("#cjpWriteWrap"), "Write the job description.");
+    if (!v.degrees.length) add(fld("#cjpDegree"), "Select at least one degree / program.");
+    if (!v.branches.length) add(fld("#cjpBranch"), "Select at least one branch / subject.");
+    if (!v.crit.length) add(fld("#cjpCritSel"), "Select at least one eligibility criteria.");
+    v.crit.forEach(c => {
+      const row = $(`#cjpCritRows [data-k="${CSS.escape(c.k)}"]`); if (!row) return;
+      const [condF, valF] = row.querySelectorAll(".ui-field");
+      if (!c.cond) add(condF, "Select a condition.");
+      if (!c.val) add(valF, "Enter a value.");
+    });
+    if (CJ.pending) { cjHelp(`Choose Required or Optional for ${CJ.pending} first.`, true); errs.push($("#cjpSecSkills")); }
+    else if (!v.skills.req.length) { cjHelp("Add at least one required skill.", true); $("#cjpSecSkills").classList.add("is-error"); errs.push($("#cjpSecSkills")); }
+  }
+  return errs[0] || null;
+}
+function cjpSave(publish) {
+  const v = cjpCollect(), first = cjpValidate(v, publish);
+  if (first) {
+    scrollTo({ top: first.getBoundingClientRect().top + scrollY - 120, behavior: "smooth" });
+    first.querySelector?.(".ui-input, .ui-select-trigger, .ui-drop, .cjp-choice-card")?.focus({ preventScroll: true });
+    return toast(publish ? "Please fill all the required fields" : "Please fix the highlighted fields");
+  }
+  const old = CJP.posts.find(p => p.id === CJP.editId), wasPublished = old?.status === "Published";
+  const status = publish ? "Published" : "Draft";
+  const data = { ...v, vac: v.vac ? +v.vac : "", rounds: v.rounds.filter(r => r.name || r.sts.length), status };
+  if (old) Object.assign(old, data); else CJP.posts.unshift({ id: CJP.nextId++, ...data });
+  toast(!publish ? `“${v.title}” saved as draft` : wasPublished ? `“${v.title}” updated` : `“${v.title}” published`);
+  CJP.editId = null; CJP.page = 1;
+  location.hash = "company-job"; cjpRender();
+}
+$("#cjpDraft").addEventListener("click", () => cjpSave(false));
+$("#cjpSubmit").addEventListener("click", () => cjpSave(true));
+cjpRender();
 
 /* ================= STUDENT SIGN IN (first screen) =================
    index.html always opens on the Sign In screen. Correct demo login → Student Application page.
@@ -5719,10 +6649,11 @@ function showView(name) {
   if (!document.getElementById("view-" + name)) name = "dashboard";
   $$(".content[id^='view-']").forEach(v => v.hidden = v.id !== "view-" + name);
   $("#app").classList.toggle("is-dash", name === "dashboard"); // Dashboard has no sidebar
-  $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === name.replace(/-(skills|view)$/, "")));
-  $(".h-title h2").textContent = ({ dashboard: "Dashboard", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-skills": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications" })[name] || "Student Profile";
+  $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === name.replace(/-(skills|view|form)$/, "")));
+  $(".h-title h2").textContent = ({ dashboard: "Dashboard", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications" })[name] || "Student Profile";
   if (name === "my-apps-view") maOpenView(); // View Application page (read-only)
-  if (name === "company-job-skills") cjOpenPage(); // Add / Edit Job Oriented Skills page starts a fresh draft
+  if (name === "company-job-form") cjpOpenForm(); // Create / Edit Job Posting (CJP.editId = the job being edited, or null)
+  if (name === "company-job") cjpRender();
   closePop();
   setMobileSide(false);
 }

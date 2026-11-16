@@ -48,7 +48,7 @@ Open `index.html` directly in Chrome/Edge, or run any static server in this fold
 - **First screen = Student Sign In** (`#loginScreen`, before `.app`). `.app` stays `hidden` until the student signs in (see §7 "Student Sign In").
 - Layout: `.app` → `aside.sidebar` (fixed, 260px; collapses to 80px on desktop; overlay below 992px) + `.main` → `header.header` (64px, sticky) + one `<main class="content" id="view-NAME">` per page.
 - **Routing:** sidebar links are `<a href="#NAME" data-view="NAME" data-tip="Label">`. `showView(name)` (bottom of the main `<script>`) shows `#view-NAME` and hides the others. The header title is set in `showView`.
-- Views now: `dashboard` (Student Dashboard, **default** + first sidebar item), `applications` (Student Application), `jobs` (Job Opportunities, student), `my-apps` (My Applications, student scholarships) + its sub-page `my-apps-view` (View Application), `company-job` (Company Job Post, company) + its sub-page `company-job-skills` (Add / Edit Job Oriented Skills; not in the sidebar, keeps "Company Job Post" active), `design-system`, `responsive`. Skill Passport is a normal link to `skill-passport.html`.
+- Views now: `dashboard` (Student Dashboard, **default** + first sidebar item), `applications` (Student Application), `jobs` (Job Opportunities, student), `my-apps` (My Applications, student scholarships) + its sub-page `my-apps-view` (View Application), `company-job` (Company Job Post = **Manage Job Posting** table, company) + its sub-page `company-job-form` (Create / Edit Job Posting; not in the sidebar, keeps "Company Job Post" active). The old `company-job-skills` page was removed on 17/11 (its skill picker now lives inside the form), `design-system`, `responsive`. Skill Passport is a normal link to `skill-passport.html`.
 - Modals sit near the end of `<body>`, before the `<script>` tags. Open with `data-modal-open="ID"` or `openModal("ID")`; close with `data-modal-close`, ×, Esc or `closeModal(el)`. `data-static` on the backdrop = a backdrop click does not close it (use for forms).
 - Icons in HTML: `<span data-icon="NAME:STYLE:SIZE"></span>`, where STYLE is `f` filled / `o` outline / `l` line and SIZE is 14/16/18/20/24. In JS use `iconSvg(name, style, size)`.
 - Helpers in the main script: `$`, `$$`, `esc()` (always escape user text), `fmt(date)` → DD/MM/YYYY, `toast(msg)`, `initSelect(el)` (builds a `.ui-select`), `closeSelects()`, `HELP_ICON`, `tbAct("view")` (table action button).
@@ -83,6 +83,8 @@ The full live docs are in `index.html` → sidebar **Design System** (tabs: Logo
 | Accordion | `.ui-acc` > `.ui-acc-item` (`is-open`) > `.ui-acc-head` + `.ui-acc-panel` |
 | Stepper | `.ui-steps` > `.ui-step` (`is-done`, `is-current`, `is-failed`) |
 | Icon box | `.ui-icon-box` + `is-primary` / `is-accent` / `is-success` / `is-warning` / `is-error` / `is-info` |
+
+**Info tooltip:** `.ui-info` (i) after a label + `.ui-info-tip` (see §7 Design System changes).
 
 **Not in the Design System yet** (add it there first if a page needs it): checkbox/radio/switch styles, date picker, alert/banner, toast, pagination (pages reuse the legacy `.pager`), tabs (Skill Passport has page-level `.sp-tabs`), card/empty state (page-level), focus trap in modals.
 
@@ -173,25 +175,65 @@ The full live docs are in `index.html` → sidebar **Design System** (tabs: Logo
 - More statuses (Under Verification, Approved, Rejected) will come with the Nodal Officer spec.
 - JS: `MA_APPS` (7 sample applications), `MA_SCHEMES`, `MA_STEPS`, `MA` (filter Sets `scheme` / `year` / `status`, `current` app id, `today` = 14/11/2026 for the deadline check), `MA_COLS`, `maMatch`, `maOpenPop` / `maClosePop`, `maRender`, `maOpenView`, `maDetails`, `maDownload`. CSS prefix `ma-`.
 
-### Company Job Post (`#view-company-job`, company view)
-- Built from the point of view of a **company owner posting a job**. Page "Post a Job". So far only the **Job Oriented Skills** section exists; other job fields (title, salary, location…) are still to come.
-- Section card: empty state + "Add Skills" (primary) until skills are saved; after that, two groups side by side, **Required Skills (Must have)** and **Optional Skills (Good to have)**, with counts, plus "Edit Skills" (outline). On mobile the groups stack.
-- **No modal.** "Add Skills" / "Edit Skills" are links to a separate page `#company-job-skills` ("Add Job Oriented Skills" / "Edit Job Oriented Skills", with a Back button). Opening it (`showView` → `cjOpenPage()`) starts a draft from the saved skills.
-- **Add Skills page** (changed 16/11/2026), card 1 "Select Skill":
-  - The skill **dropdown** (search combo: search list, highlight, Enter, arrow keys, max 15) shows the list skills.
-  - **Hint so owners know about Add Skill (16/11, ideas 1 + 2):**
-    - (1) The **blue info box** under the dropdown (`.cj-info`) says "ⓘ Skill not in the list? **+ Add Skill** to add a new one." "+ Add Skill" is a link button (`.cj-help-link`, `data-cj-add`) that opens the modal. Since 16/11 it **replaces** the old text "Required = the candidate must have this skill. Optional = good to have…" (removed on request). The help line `#cjHelp` under the dropdown is now empty and hidden, and only shows error / success messages.
-    - (2) When the typed text is not exactly a list skill, the dropdown shows "“X” is not in the list." (only when nothing matches) and a last option **"+ Add “X” as a new skill"** (`.ui-option.is-new.cj-opt-new`, keyboard too). It opens the modal with **X already filled in** (not added yet; "Add Skills" adds it).
-  - Next to the dropdown is an **"Add Skill"** button (`#cjAddSkillBtn`, **navy primary** + plus since 16/11 (was outline); full width under the dropdown ≤575px). It opens the **`#mdCjSkill` modal** (DS modal, `data-static`), with a Skill Name input + "Add" button.
-  - In the modal the owner types skills **one after another** (Enter or Add after each). They show as chips under "Skills to add (N)", with × to take one back before saving.
-  - Modal checks: empty name → "Enter a skill name."; already in the dropdown list → "X is already in the skill list."; typed twice → "X is already added below."; saving with nothing → "Add at least one skill." A name still in the input when saving is added first.
-  - **Add Skills** (primary) puts the new skills at the **top of the dropdown list** (`CJ_SKILLS.unshift`), closes the modal, shows a toast plus a help message, and opens the dropdown. Cancel / × / Esc throw the modal list away.
-  - Picking a skill from the dropdown shows the box **"Is X a required or an optional skill for this job?"** with Required / Optional / Cancel; the answer puts the skill into that group.
-- Card 2 "Added Skills": Required and Optional groups with counts. The chips are **plain** (`.ui-chip.is-plain`): **edit and delete are removed for now** (user request). The old inline rename of custom skills and the chip × are gone. A wrong pick can only be undone with Cancel (leave the page without saving).
-- Bottom right: Cancel (back, discards the draft) + Save Skills (saves and returns to Post a Job with a toast).
-- Chip styles: Required = navy tint, solid border; **Optional = white with a dashed border**, so the two differ by shape and not only by colour (`.cj-skill.is-opt`, `.ui-chip.is-opt`). The `.cj-chip-edit` / `.ui-chip.is-editing` CSS is still in the file (unused) in case edit comes back.
-- Save rules: at least **1 required skill**; it cannot save while a skill is still waiting for the Required/Optional answer.
-- JS: `CJ_SKILLS` (the dropdown list; new skills are added here, in memory only), `CJ` (`saved` / `draft` = `{ req, opt }`, `pending`, `newList` = the modal list), `cjOpenPage`, `cjPick` → `cjAnswer(type)`, `cjRenderChips`, `cjRenderList`, `cjRenderPage`, `cjNewAdd`, `cjNewRender`, `cjNewHelp`. CSS prefix `cj-` (`.cj-pick-row`, `.cj-add-skill`, `.cj-new-row`, `.cj-new-list`). Data in memory only.
+### Company Job Post (company view) – Manage Job Posting + Create / Edit Job Posting – 17/11/2026
+- Built from the user's 3 screenshots (Manage Job Posting table, Create Job Posting, Edit Job Posting), **with the Design System only**. The screenshots' own filter icon button was **not** copied (user): the filter is our **Advanced Filter** pattern.
+- **Manage Job Posting** (`#view-company-job`, sidebar "Company Job Post"):
+  - Page head "Manage Job Posting" + **Add Placement** (primary + plus; full width ≤575px).
+  - **Advanced Filter** card: the same pattern as the Student Application page, rebuilt with `.ui-*`.
+    - The title has a navy icon box. A gold **Filter** button (`.ui-btn-accent`, count badge, chevron) opens and collapses the panel.
+    - Fields (grid of 4 → 3 → 2 → 1): Job Title, Branch, Job Location (city, state), Work Type, Status, Start Date From, End Date To (dd/mm/yyyy, slashes added while typing).
+    - A live "N job postings match these filters" line, plus Reset (outline) and Apply (primary).
+    - Apply collapses the panel and shows **chips** ("Status: Draft ×") with "Clear all".
+  - **Table** (Design System Table Type 2): Sr No., Job Title, Branch (first one + "+N" badge with all in the tooltip), Job Location, Start Date, End Date, Status (Published = `.ui-badge-approved`, Draft = `.ui-badge-neutral`), Action.
+  - **Actions** (user's choice "Edit for all rows"):
+    - Published: View (eye) · **Edit** · Applicants (people icon = `user`, `.ui-act-resume` gold).
+    - Draft: View · 3 dots menu `#cjpMenu` (**Edit**, **Review & Publish**, **Delete**).
+    - Edit and Review & Publish both open the filled form.
+    - Delete asks in `#mdCjpDel` (sm modal, Danger button).
+    - **View and Applicants only show a toast for now** (user).
+  - 10 per page, legacy `.pager` + "Showing X to Y of N entries". Empty states: "No job postings found. Try changing or clearing the filters." / "No job postings yet…".
+- **Create / Edit Job Posting** (`#view-company-job-form`, one form for both):
+  - Titles:
+    - Create: "Create Job Posting" with "Add the job details below…"; the button is **Publish**.
+    - Edit: "**Edit Job Posting**" with "Update the job details…"; the button is **Update Job Posting** for a published job, or **Publish** for a draft.
+    - The Edit screenshot said "Create Job Posting"; Claude used "Edit" so the two are clear.
+  - Back button → table. Sections (`.cjp-sec` cards with `.ui-form-sec-head`), texts as in the screenshots:
+  1. **Registration Details:** Job Title*, Work Type* (On-site / Hybrid / Remote), Application Start / End Date* (dd/mm/yyyy text + auto slashes; there is no DS date picker yet), Vacancies* (number ≥1), Job Location* (dropdown of the company's addresses, with search).
+  2. **Selection Process & Status Mapping** (since 16/11, from the user's doc `Selection Process Templates – USK Placement Module 2.docx`):
+     - **Two choice cards** (`#cjpChoiceField`, `.cjp-choice-card`, radio style; since the 16/11 change "templates in a modal"): **Use a Ready Template** and **Create Custom Process**. Nothing is picked by default; Publish needs one ("Choose a ready template or create a custom process."). Arrow keys move between the cards.
+     - **Use a Ready Template** opens the modal **`#mdCjpTpl`** (lg, "Selection Process Templates"): the 5 templates as radio cards (name, "N steps" badge, "Suitable for", the path "Resume Screening → … → Final Selection"). The picked card opens its read-only Step / Round / Mapped Statuses table. Footer: Cancel + **Use This Template** (disabled until one is picked). Cancel keeps the old choice.
+     - After "Use This Template" the form shows "SELECTED TEMPLATE &lt;name&gt; · Suitable for …" + **Change Template** (outline sm, opens the modal again with the current one picked) and the read-only flow table.
+     - Templates (`CJP_TPL`): Quick Hiring (Interview Round), Standard Interview (Technical, HR), Test and Interview (Aptitude, Technical, HR), Practical Assessment (Practical, Technical, HR), Multi-Stage (Aptitude, Group Discussion, Technical, Managerial, HR).
+     - The flow shows as a table (`.cjp-flow`: Step | Round | Mapped Statuses as neutral badges). **Resume Screening (Under Review) is always Step 1 and Final Selection (Shortlisted, Rejected, On Hold) always last** – both marked "Fixed step" with a lock icon, also in Custom (user's choice). Status mapping per round = `CJP_SEL_ST` (same in every template). A template's rounds are read-only.
+     - **Custom**: Design System Form Patterns rows (`.ui-repeat.is-list`) between the fixed steps: "Step N – Round Name*" text + "**Mapped Statuses***", which **works like Skills Required** (since the 16/11 change "Add Status modal"):
+       - A **compact** multi `.ui-select` with search (`data-rnd-sts`, full width, `data-max-tags="2"`: the box stays one line – 2 tags + "+N more", see §7 Design System changes) of `CJP_STS_LIST` (starts as `CJP_CUSTOM_ST`: Scheduled, Appeared, Not Appeared, Joined, Not Joined, Cleared, Not Cleared, On Hold). **No "Add Status" button** (removed on request, 16/11) – the modal opens only from the "+ Add “X” as a new status" line in the search (below). No hint under the dropdown (added, then removed on request 16/11). Instead an **info icon (i)** after the "Mapped Statuses*" label (DS `.ui-info`) with the tooltip "Status not in the list? Type it in the search box and click “+ Add … as a new status” to add your own." (hover, keyboard focus or tap).
+       - The Add Status modal **`#mdCjpSts`** (data-static, copy of the Add Skill modal): type a status + Enter / "Add" → chips "Statuses to add N" → **Add Statuses**. Errors: empty, already in the list, already added below, none added.
+       - Saved statuses go to the **top of every round's dropdown** (not picked automatically, same as skills), and that round's dropdown opens so the owner can pick them.
+       - **Info line inside the open dropdown** (`.cjp-sts-tip`, under the search, outline info icon, caption grey): "Can't find a status? Type it above to add your own." It shows when the list opens and while the search has no new name; it is replaced by the "+ Add" line below as soon as a new name is typed. The (i) label tooltip stays too (user: "icon rakho").
+       - In the dropdown search, a text with no exact match shows "**+ Add “X” as a new status**" at the **top of the menu**, right under the search and above the list (`.cjp-sts-addnew`, click / Enter; moved there on request so small screens don't need to scroll) → the modal opens with X filled in.
+       - Drag ⠿, delete, "+ Add Round".
+     - **"Add Round" is disabled until the last round has a name and at least 1 status** (help text says so). Min 1, max 8 rounds. Errors: empty name, duplicate name (also "Resume Screening" / "Final Selection"), "Add at least one status.". Custom rows stay in memory if the user switches to a template and back.
+     - JS state `CJS` (`mode` "" / "template" / "custom", `tpl`, `pick` = choice inside the modal); a row keeps its statuses in `row._sts`.
+     - Note under the flow: "When a student applies, the application status is Applied."
+     - Data: a post has `tpl` (template name, "Custom" or "") and `rounds` (`[{name, sts}]`, Custom only). The old `steps` array was removed.
+  3. **Job Description:** radios Upload Document / Write Description (native radio + `accent-color` navy, because the DS has no radio yet). Upload = `.ui-drop` (PDF/JPG/PNG, max 5 MB, drag & drop or click) → `.ui-file-row` with Remove. Write = textarea.
+  4. **Candidate Eligibility:** Degree/Program* and Branch/Subject* (multi `.ui-select` with search, tags).
+  5. **Eligibility Criteria:** Select Eligibility Criteria* (multi: Percentage, CGPA, Age Criteria, Backlogs, Passing Year). Each picked criterion becomes a row (CSS-grid "table" `.cjp-crit`, so dropdowns are never cut): Criteria | Condition (Greater Than Or Equal To / Less Than Or Equal To / Equal To; Age defaults to Less Than Or Equal To) | Value | delete (removes it from the select too). On mobile each row stacks.
+  6. **Skills Required:** **our Job Oriented Skills picker** (user's choice): skill dropdown + navy **Add Skill** (`#mdCjSkill` modal) + info box "Skill not in the list? + Add Skill" + the "Is X required or optional?" box + Required / Optional groups (plain chips, no edit / delete).
+  - Footer: **Save as draft** (`.ui-btn-soft`) + Publish / Update Job Posting (primary).
+  - Validation:
+    - Publish needs everything: each empty field shows a red `.ui-help` under it; End ≥ Start date; a template selected (Custom: each round with a unique name + at least 1 status); a file or a description; at least 1 degree, 1 branch and 1 criterion with condition + value; **at least 1 required skill**, and no skill still waiting for Required / Optional.
+    - Save as draft needs only the Job Title, plus valid dates / vacancies if they are filled.
+    - The page scrolls to the first error and shows a toast.
+    - Errors clear as soon as the field changes.
+  - Saving: a new job goes to the top of the table; an edit updates the row (Save as draft makes it Draft, Publish / Update makes it Published). Then it returns to the table with a toast.
+- Sample data: `CJP.posts` (14 jobs; rows 1–5 are the screenshot's, no. 3 "Software Developer" is the Edit screenshot's data). `CJP_LOCS`, `CJP_DEGREES`, `CJP_BRANCHES`, `CJP_CRIT`, `CJP_COND`. In memory only.
+- JS:
+  - Table + filter: `cjpRender`, `cjpMatch`, `cjpPager`, `cjpFilterFields` / `cjpReadFields` / `cjpPreview`, `cjpEdit(id)`, `cjpCloseMenu`.
+  - Form: `cjpOpenForm` (called by `showView`; `CJP.editId` = the job being edited or null), `cjpSetTpl(name|"Custom"|"")` / `cjpTplRender` / `cjpTplValue`, modal `cjpTplOpen` / `cjpTplList`, `cjpStep` (one Custom round row) / `cjpStepsSync` (also the Add Round rule), status dropdown `cjpStsSelect(row, values)` / `cjpStsHas`, Add Status modal `CJN` / `cjpStsOpenModal(row, prefill)` / `cjnAdd` / `cjnRender` / `cjnHelp`, `cjpFlowRow`, `cjpDescMode`, `cjpTakeFile` / `cjpFileRender`, `cjpCritRender` (`CJF.crit` Map), `cjpCollect`, `cjpValidate`, `cjpSave(publish)`.
+  - Helpers: `cjpDate` (dd/mm/yyyy → Date), `cjpVal` / `cjpVals` / `cjpSel` (read / set a `.ui-select`), `cjpErr(field, msg)`.
+  - Skills: `cjLoadSkills(skills)` + the existing `cj*` picker code (`CJ_SKILLS`, `CJ.draft`, `cjPick`, `cjAnswer`, `cjOpenAddModal`, …).
+- CSS prefix `cjp-` (+ the `cj-` picker styles). The old "Post a Job" skills card, the `#company-job-skills` page, `cjRenderPage` / `cjOpenPage` / `#cjSave` were removed.
 
 ### Skill Passport (`skill-passport.html`)
 - Hero banner, student details (masked email / APAAR / mobile with show/hide), summary tiles, tabs, in this order since 16/11/2026: **1 Academic** (open by default; Your Journey timeline + Education accordion), **2 Projects & Research** (dissertation, research papers, college projects), **3 Skills & Certificates**, **4 Experience** (internship, special achievements). The tab / panel **ids are the old ones** (`tab-education` = Academic, `tab-academic` = Projects & Research), so the summary tiles (`data-go`) keep working, Job Oriented Skills modal (search + chips, max 15), Your Journey timeline + Full Journey drawer, education accordion, 3-dots row menu. Page-level classes use the `sp-` prefix.
@@ -199,6 +241,8 @@ The full live docs are in `index.html` → sidebar **Design System** (tabs: Logo
 ### Design System changes made during this work
 - Added `.ui-badge-neutral` (no dot) for non-status labels.
 - `.ui-select` now dispatches a bubbling `ui-select-change` event.
+- **Info tooltip** (16/11): `<button class="ui-info" type="button" aria-label="Info: …">` + outline info icon 14 + `<span class="ui-info-tip" role="tooltip">…</span>`, placed inside a `.ui-label` after the `.ui-req`. Navy bubble (`--color-primary-900`, white text, arrow) above the icon, max 260px / 70vw. Shows on hover and keyboard focus (CSS) and on tap / click (`.is-open`, toggled by a document click handler right after `initSelect`); outside click or Esc closes it. The label height does not change, so fields in a row stay aligned. Demo: Design System → Form Inputs → Dropdown ("Label with Info"). Use it when help text under a field would break the alignment.
+- **Compact multi-select** (16/11): `.ui-select.is-multi` + `data-max-tags="N"` → the box stays one line (38px): the first N tags (long names cut with "…", max 160px, × still works) + a grey `.ui-tag-more` "+X more" (tooltip = the other names). Open the list to see / change all. CSS in `usk-design-system.css` (after `.ui-tag`), JS in `initSelect` → `sync()`. Shown on Design System → Form Inputs → Dropdown ("Multi-select – Compact"). Used by the Custom round Mapped Statuses.
 - The `.ui-select` search box focuses with `preventScroll`, so opening a dropdown never scrolls the modal.
 - Disabled inputs and dropdowns are one step darker than Default (Default looked the same before): `--input-bg-disabled` = gray-200 `#E4E9F0`, new `--input-border-disabled` = gray-300 `#D4DBE4`, `--input-text-disabled` = gray-400 `#9AA8B8`. Disabled buttons, the accordion and `.ui-add-row` still use `--color-bg-disabled`.
 
@@ -207,6 +251,7 @@ The full live docs are in `index.html` → sidebar **Design System** (tabs: Logo
 - The legacy Student Application view, sidebar and header should move to `.ui-*` components and `--color-*` tokens.
 - Missing Design System components (see §4). The neutral and warning badges are not shown on the Design System Table tab yet.
 - Dashboard: `.db-tag` (label tag in 7 tones) and the `‹ 1 / n ›` pager are page-level for now; they should move into the Design System (Badge / Pagination). Megaphone, clock, location, building and store-logo icons are missing (see §7 Student Dashboard). Attendance, scholarship links, events and the app store buttons only show toasts.
+- Company Job Post: View job posting and Applicants only show a toast. There is no DS date picker or radio style yet (the form uses dd/mm/yyyy text and a native radio). The filter / pagination are page-level (legacy `.pager`). The data is lost on reload.
 - Job "View" only shows a toast; there is no job details page yet. Company logos are initials (no images).
 - All data is sample data; a backend/API is not connected.
 - Sign In: `img/sign-in-image.png` is 8 MB (compress before going live); headset / globe icons missing; slides 2–3 text written by Claude (user may replace); small dots = small tap targets on phones.
@@ -299,3 +344,86 @@ Each entry: **asked** → **done** → **open**. Dates are DD/MM/YYYY (2026).
 **16/11 – Info box text changed**
 - Asked: remove "Required = the candidate must have this skill. Optional = good to have, it gives the candidate extra points." and write "Skill not in the list? + Add Skill to add a new one." in its place.
 - Done: the blue info box now holds the Add Skill hint (with a working link). The same hint under the dropdown was removed, so it is not shown twice. The Required / Optional explanation is gone. Nothing committed.
+
+**17/11 – Placement module: Manage Job Posting + Create / Edit Job Posting (company side)**
+- Asked: with 3 screenshots, clicking **Company Job Post** must open the job posting **table**. The filter must **not** be like the screenshot, but our Design System **Advanced Filter**. **Add Placement** → **Create Job Posting**; Edit from the table → the **edit** screen. Everything with the Design System.
+- Claude asked, and the user answered:
+  - Skills section = **our Required / Optional picker** (not plain chips).
+  - **Edit for all rows** (Published: View + Edit + Applicants; Draft: View + 3 dots with Edit, Review & Publish, Delete).
+  - View + Applicants = **toast for now**.
+- Done: §7 "Company Job Post". The old skills-only page was removed (its picker moved into the form).
+- Tested at 1366 and 375:
+  - Filter: preview count, date check, chips, Clear all, empty state.
+  - Create: all errors, then publish.
+  - Edit: a draft via Review & Publish, then a published job (Update).
+  - Delete with confirm; pager page 2; file row + remove; criteria add / remove; steps add / remove.
+  - No sideways scroll (the table scrolls inside its card); no console errors.
+- Backup: `index.before-placement.html` in the Claude scratchpad.
+- Open:
+  - View job posting page and the Applicants list (next steps).
+  - ~~Selection steps as text inputs~~ → replaced by templates on 16/11 (next entry).
+  - Real date picker and radio in the DS.
+  - Nothing committed.
+
+**16/11 – Company Job Post: Selection Process Templates**
+- Asked: review the user's doc `Selection Process Templates – USK Placement Module 2.docx` and change the Selection Process in Create Job Posting to match.
+- Claude asked, and the user answered: Resume Screening / Final Selection are **fixed in Custom too**; a Custom round = **name + multi-select statuses**; the template dropdown is **empty by default and required** for Publish (optional for a draft).
+- Done: §7 Company Job Post, section 2. Sample data: most posts "Standard Interview", no. 3 Custom (Technical Assessment), no. 6 "Test and Interview", no. 13 (draft) no template.
+- Tested at 1024 and 375: every template, Custom add / remove, numbering of the last step, errors (template, empty round, duplicate, no status), Edit of a Custom / template / no-template post, Update saves the template; no sideways scroll; no console errors.
+- Backup: `index.before-sel-templates.html` in the Claude scratchpad.
+- Open:
+  - The doc's last point (while reviewing applications the company picks Stage → Status) belongs to the Applicants page, which is not built yet.
+  - The Design System "Form Patterns" demo and the "Student View – Selection Process" demo still show the old free-text steps.
+  - Nothing committed.
+
+**16/11 – Selection Process: templates in a modal, typed statuses in Custom**
+- Asked: the company owner should see the 5 templates **read-only**, **or** choose Custom. The templates go in a **modal**; the one selected shows on the form. In Custom, Mapped Statuses can be **typed and added like the skills**. **Add Round works only when the round above is filled.** Good UX.
+- Done: the template dropdown was replaced by 2 choice cards + the `#mdCjpTpl` modal + a selected-template summary with "Change Template". Custom statuses now use the DS Tag Select (type or pick). Add Round is gated. Details in §7 section 2. Claude chose the design without asking (the user asked for "good UX").
+- Tested at 1366 and 375: errors, modal pick / cancel / use / change, Custom typed + picked statuses, Add Round gating, edit of a Custom / template / no-template post, save. No sideways scroll, no console errors.
+- Backup: `index.before-tpl-modal.html` in the Claude scratchpad.
+- Open: should typed custom statuses get a colour / type (e.g. positive / negative) for the Applicants page later? Nothing committed.
+
+**16/11 – Custom process: Mapped Statuses like Skills Required (Add Status modal)**
+- Asked: in Create Custom Process, Mapped Statuses must work like Skills Required: a modal where many statuses are added at once, and the added statuses then show in the Mapped Statuses dropdown.
+- Claude asked, and the user answered: **"Skills jevu j"** = dropdown + "Add Status" button + modal; "+ Add “X” as a new status" in the search also opens the modal.
+- Done: the typed tag-select (chips + combo) was replaced by the multi `.ui-select` + Add Status + `#mdCjpSts` (§7 section 2). The choice card text is now "Add your own rounds and map the statuses for each round."
+- Tested at 1366 and 375: search add-new line → modal prefilled, several statuses, duplicate / empty errors, Save → top of every round's dropdown and the dropdown opens, picking, Add Round gating, errors on Publish, Edit of the Custom post 3. No sideways scroll, no console errors.
+- Backup: `index.before-sts-modal.html` in the Claude scratchpad.
+- Open: new statuses are only added to the list (like skills), not picked automatically – ask if they should be. Nothing committed.
+
+**16/11 – Fix: "Add Round" did not work**
+- Asked: "add round button work nathi kartu".
+- Cause: a multi-select stays open after picking, and its floating list lay **on top of the Add Round button**. The click hit a status in the list (it picked e.g. "Appeared") instead of the button.
+- Done: in Custom rounds the open status list was put in the page flow (`position:static`), so Add Round moved below it and the click worked (tested with real clicks).
+- **Then reverted (user: "remove kari dyo last changes")**: the one CSS rule was removed, so the status list floats again like every DS dropdown. **The original problem is back:** while the list is open it covers Add Round; the owner must click outside first. Don't re-apply this fix unless the user asks; ask what they want instead.
+- Open: another way to fix the covered Add Round (if the user wants one). Nothing committed.
+
+**16/11 – Custom process: "Add Status" button removed**
+- Asked: remove the Add Status button; keep only opening the modal from the custom-status line in the dropdown.
+- Done: the button (and its click hook) is gone; the status dropdown is full width. Typing a status that is not in the list in the dropdown search → "+ Add “X” as a new status" → `#mdCjpSts` with X filled in → Add Statuses → top of every round's dropdown, and that dropdown opens. Tested, no console errors, no sideways scroll.
+- Open: ~~no hint on the page~~ → hint added (next entry). Nothing committed.
+
+**16/11 – Mapped Statuses hint**
+- Asked: "Ha, hint mukho" (Claude had asked whether a hint is needed).
+- Done: hint under every round's Mapped Statuses dropdown; it hid while the "Add at least one status." error showed. Nothing committed.
+
+**16/11 – "+ Add" line on top, hint removed**
+- Asked: the "+ Add “X” as a new status" line must be at the top of the dropdown (on a small screen the user had to scroll down to it), and remove the hint.
+- Done: the line is now inserted before `.ui-select-list` (under the search) with a bottom border; the hint and its CSS are removed. Tested ("Ap" → "+ Add “Ap”" on top, Appeared / Not Appeared below; click opens the modal with "Ap"), no console errors. Nothing committed.
+
+**16/11 – Mapped Statuses box: one line with "+N more"**
+- Asked (with a screenshot of 12 statuses wrapping to 2 lines): the dropdown box grows taller with many statuses – can the design change? Claude gave 3 options; the user had **no preference**, so Claude built the recommended one.
+- Done: new DS option `data-max-tags` for `.ui-select.is-multi` (§7 Design System changes) and used it with 2 on the Custom round Mapped Statuses. Added a demo on the Design System page. Other multi-selects (Degree, Branch, Criteria) are unchanged.
+- Tested at 1366 and 375: box stays 38px, long names cut, "+N more" with tooltip, × on a tag removes it, open list shows all ticked; no sideways scroll; no console errors.
+- Open: use the compact style also for Degree / Branch (they can get long too)? "+N more" has only a hover tooltip (no tap action on phones; open the list instead). Nothing committed.
+
+**16/11 – Info (i) tooltip on "Mapped Statuses"**
+- Asked: tell the owner that custom statuses can be added, but not under the dropdown (it breaks the alignment) – put an (i) icon next to the "Mapped Statuses" label with a tooltip.
+- Done: the DS had no tooltip, so a new DS component `.ui-info` was added first (CSS in `usk-design-system.css` after `.ui-req`, tap/Esc JS after `initSelect`, demo on the DS page), then used on every Custom round's Mapped Statuses label (§7).
+- Tested at 1366 and 375: hover / click / outside click / Esc; Round Name and Mapped Statuses inputs at the same height; the tooltip stays inside the screen at 375; no sideways scroll; no console errors.
+- Open: the icon's hit area is 20 × 16px (smaller than the 40px tap rule) – OK for now? Nothing committed.
+
+**16/11 – Info line inside the Mapped Statuses dropdown**
+- Asked: can the info also show inside the dropdown? Claude suggested a line under the search and asked about the (i) icon; the user said **keep the icon** and build it.
+- Done: `.cjp-sts-tip` (§7 section 2). Order in the menu: search → info line → "+ Add" line (hidden) → list. Tested at 1366 and 375: shows on open, hides when a new name is typed (the "+ Add" line takes its place), comes back for an existing name or on reopen; no sideways scroll; no console errors. (The 375 check first gave wrong widths – a preview emulation glitch; after a reload it was fine.)
+- Open: nothing committed.
