@@ -62,6 +62,14 @@
   --color-info:#3a6fd8;    --color-info-text:#2a5bc2;    --color-info-bg:#e5eeff;    --color-info-border:#b3caf5;
   --color-neutral:#6b7280; --color-neutral-text:#4b5563; --color-neutral-bg:#eef1f5; --color-neutral-border:#d4dbe4;
 
+  /* Category colours (16/11, taken from the live gyandiksha Quick Services) – only for service / category cards,
+     never for status. Solid = icon + button, -bg = card (10%), -border = card border (15%). */
+  --color-cat-purple:#7c3aed; --color-cat-purple-bg:rgba(124,58,237,.1); --color-cat-purple-border:rgba(124,58,237,.15);
+  --color-cat-green:#16a34a;  --color-cat-green-bg:rgba(22,163,74,.1);   --color-cat-green-border:rgba(22,163,74,.15);
+  --color-cat-teal:#0d9488;   --color-cat-teal-bg:rgba(13,148,136,.1);   --color-cat-teal-border:rgba(13,148,136,.15);
+  --color-cat-blue:#2563eb;   --color-cat-blue-bg:rgba(37,99,235,.1);    --color-cat-blue-border:rgba(37,99,235,.15);
+  --color-cat-orange:#ea580c; --color-cat-orange-bg:rgba(234,88,12,.1); --color-cat-orange-border:rgba(234,88,12,.15);
+
   /* Icons */
   --color-icon-default:#4b5563; --color-icon-muted:#9aa8b8; --color-icon-primary:#233c5a;
   --color-icon-accent:#d1a76c;  --color-icon-on-dark:#dbe4ee; --color-icon-on-dark-active:#ffffff;
@@ -533,6 +541,8 @@ body.ui-dragging{cursor:grabbing;user-select:none}
 .ui-badge-shortlisted{color:var(--color-primary-600);background:var(--color-primary-50);border-color:var(--color-primary-200)}
 .ui-badge-review{color:var(--color-info-text);background:var(--color-info-bg);border-color:var(--color-info-border)}
 .ui-badge-rejected{color:var(--color-error-text);background:var(--color-error-bg);border-color:var(--color-error-border)}
+/* Warning – waiting for someone / needs attention (Correction Required, On Hold). Added 16/11 for scholarship verification. */
+.ui-badge-warning{color:var(--color-warning-text);background:var(--color-warning-bg);border-color:var(--color-warning-border)}
 /* Neutral – non-status labels such as job type (On-site, Remote, Hybrid). No dot. */
 .ui-badge-neutral{color:var(--color-neutral-text);background:var(--color-neutral-bg);border-color:var(--color-neutral-border)}
 .ui-badge-neutral::before{display:none}
