@@ -305,6 +305,253 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 @media (max-width:767.98px){.cj-groups{grid-template-columns:1fr}}
 @media (max-width:575.98px){.cj-sec{padding:var(--space-16)}.cj-empty{flex-wrap:wrap}.cj-empty .ui-btn{width:100%}.cj-ask p{flex-basis:100%}.cj-ask-acts{width:100%;flex-wrap:nowrap}.cj-ask-acts .ui-btn,.cj-foot .ui-btn{flex:1}.page-head .cj-back{margin-left:auto}}
 
+/* ---------- Student Sign In (first screen of index.html) – Design System tokens & components only ---------- */
+.app[hidden],.lg-screen[hidden]{display:none}
+.lg-screen{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--color-bg-surface)}
+/* Left: campus photo with a dark overlay and the message */
+.lg-left{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-48) var(--space-48) var(--space-24);background:var(--color-primary-800) url("img/sign-in-image.png") center/cover no-repeat;color:#fff;overflow:hidden}
+.lg-left::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,31,49,.45) 0%,rgba(15,31,49,.55) 45%,rgba(15,31,49,.85) 100%)}
+.lg-left > *{position:relative}
+.lg-pill{align-self:flex-start;padding:6px var(--space-16);border-radius:20px;background:var(--color-accent-500);color:#fff;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-medium)}
+.lg-left h1{max-width:480px;margin-top:var(--space-16);font-size:var(--font-size-display);line-height:var(--line-height-display);font-weight:var(--font-weight-bold)}
+.lg-left p{max-width:480px;margin-top:var(--space-12);font-size:var(--font-size-body-lg);line-height:var(--line-height-body-lg);color:rgba(255,255,255,.85)}
+/* Slider: the 3 slides sit on top of each other; the active one fades in */
+.lg-slides{display:grid}
+.lg-slide{grid-area:1/1;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease,visibility 0s .5s}
+.lg-slide.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .5s ease,transform .5s ease}
+.lg-dots{display:flex;gap:var(--space-4);margin-top:var(--space-16)}
+.lg-dots button{width:8px;height:24px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer;transition:width .3s ease}
+.lg-dots button::before{content:"";width:8px;height:8px;border-radius:4px;background:#fff;transition:width .3s ease,background .3s ease}
+.lg-dots button.is-on{width:24px}
+.lg-dots button.is-on::before{width:24px;background:var(--color-accent-500)}
+.lg-dots button:focus-visible{outline:0;border-radius:6px;box-shadow:0 0 0 2px rgba(255,255,255,.7)}
+@media (prefers-reduced-motion:reduce){.lg-slide,.lg-slide.is-on,.lg-dots button::before{transition:none}}
+.lg-gov{margin-top:var(--space-48);text-align:center;font-size:var(--font-size-body-sm);color:rgba(255,255,255,.85)}
+/* Right: top bar + form + footer links */
+.lg-right{display:flex;flex-direction:column;min-height:100vh;padding:0 var(--space-24)}
+.lg-bar{display:flex;align-items:center;gap:var(--space-12);height:64px;border-bottom:1px solid var(--color-border-default)}
+.lg-brand{display:flex;align-items:center;gap:10px;min-width:0}
+.lg-brand img{height:var(--logo-size-sidebar);width:auto}
+.lg-brand b{display:block;font-size:var(--logo-title-size);font-weight:var(--font-weight-bold);letter-spacing:.2px;color:var(--color-logo-title);line-height:1.3}
+.lg-brand small{display:block;font-size:var(--logo-subtitle-size);font-weight:var(--font-weight-medium);text-transform:uppercase;color:var(--color-logo-subtitle);line-height:1.3}
+.lg-tools{margin-left:auto;display:flex;align-items:center;gap:var(--space-4)}
+.lg-tools-fs{display:flex;gap:2px;flex:none}
+.lg-fs{border:0;background:none;min-width:32px;height:32px;border-radius:6px;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.lg-fs:hover,.lg-lang:hover{background:var(--color-primary-50)}
+.lg-fs.is-on{background:var(--color-primary-600);color:#fff}
+.lg-fs:focus-visible,.lg-lang:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.lg-sep{width:1px;height:16px;margin:0 var(--space-4);background:var(--color-border-strong)}
+.lg-rel{position:relative}
+.lg-lang{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 var(--space-8);border:0;border-radius:6px;background:none;font-size:var(--font-size-body);font-weight:var(--font-weight-medium);color:var(--color-primary-600)}
+.lg-lang svg{width:14px;height:14px}
+.lg-rel .ui-menu{position:absolute;top:calc(100% + 4px);right:0;left:auto;min-width:160px}
+.lg-rel .ui-menu-item.is-on{background:var(--color-primary-50);color:var(--color-primary-600);font-weight:var(--font-weight-semibold)}
+.lg-main{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--space-32) 0}
+.lg-form{width:100%;max-width:360px;display:flex;flex-direction:column;gap:var(--space-16)}
+.lg-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-4);margin-bottom:var(--space-8)}
+.lg-icon{width:64px;height:64px;margin-bottom:var(--space-12);border-radius:50%;display:grid;place-items:center;background:var(--color-icon-bg-accent);color:var(--color-icon-accent)}
+.lg-icon svg{width:28px;height:28px}
+.lg-head h2{font-size:var(--font-size-h1);line-height:var(--line-height-h1);font-weight:var(--font-weight-bold);color:var(--color-primary-600)}
+.lg-head p{font-size:var(--font-size-body);color:var(--color-text-secondary)}
+.lg-check{display:flex;align-items:center;gap:var(--space-8);font-size:var(--font-size-body-sm);color:var(--color-text-secondary);cursor:pointer;margin-top:calc(-1 * var(--space-4))}
+.lg-err[hidden]{display:none}
+.lg-or{display:flex;align-items:center;gap:var(--space-12);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.lg-or::before,.lg-or::after{content:"";flex:1;height:1px;background:var(--color-divider)}
+.lg-help{text-align:center;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-body)}
+.lg-helpdesk{align-self:center;display:inline-flex;align-items:center;gap:6px;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-primary-600);text-decoration:none}
+.lg-helpdesk:hover{text-decoration:underline}
+.lg-foot{display:flex;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;max-width:360px;width:100%;margin:0 auto;padding:var(--space-16) 0 var(--space-24);border-top:1px solid var(--color-border-default)}
+.lg-foot a{font-size:var(--font-size-caption);color:var(--color-text-secondary);text-decoration:none}
+.lg-foot a:hover{color:var(--color-text-link-hover);text-decoration:underline}
+@media (max-width:991.98px){
+  .lg-screen{grid-template-columns:1fr}
+  .lg-left{min-height:300px;padding:var(--space-32) var(--space-24) var(--space-16)}
+  .lg-gov{margin-top:var(--space-24)}
+  .lg-right{min-height:0}
+}
+@media (max-width:575.98px){
+  .lg-left{min-height:240px}
+  .lg-right{padding:0 var(--space-16)}
+  .lg-brand b{font-size:8.5px}
+  .lg-brand small{display:none}
+}
+
+/* ---------- Student Dashboard (first page after Sign In) – Design System tokens & components only ---------- */
+/* No sidebar on the Dashboard: full-width page, logo + Log out in the header (.app.is-dash is set in showView) */
+.h-brand,.h-logout{display:none}
+.app.is-dash .sidebar,.app.is-dash .side-backdrop,.app.is-dash #toggleSide,.app.is-dash .h-title{display:none!important}
+.app.is-dash .main{margin-left:0}
+.app.is-dash .h-brand{display:flex}
+.app.is-dash .h-logout{display:inline-flex}
+@media (max-width:575.98px){.app.is-dash .h-logout{width:32px;padding:0;justify-content:center}.h-logout-t{display:none}.app.is-dash .h-brand b{font-size:8.5px}.app.is-dash .h-brand small{display:none}}
+.db{display:flex;flex-direction:column;gap:var(--space-16)}
+.db-card{background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:8px;padding:var(--space-24)}
+.db [hidden]{display:none!important}
+/* Section head: icon + title + optional tag on the right */
+.db-head{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-8) var(--space-12);margin-bottom:var(--space-16)}
+.db-head h4{display:flex;align-items:center;gap:var(--space-8);font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.db-head h4 svg{color:var(--color-primary-600);flex:none}
+.db-head .db-end{margin-left:auto;display:flex;align-items:center;gap:var(--space-8)}
+/* Small label tag (not a status) – tones come from the status / brand tokens */
+.db-tag{display:inline-flex;align-items:center;gap:4px;padding:2px var(--space-8);border-radius:4px;border:1px solid var(--color-neutral-border);background:var(--color-neutral-bg);color:var(--color-neutral-text);font-size:var(--font-size-badge);line-height:var(--line-height-badge);font-weight:var(--font-weight-semibold);white-space:nowrap}
+.db-tag svg{width:12px;height:12px}
+.db-tag.is-primary{background:var(--color-primary-50);border-color:var(--color-primary-100);color:var(--color-primary-600)}
+.db-tag.is-accent{background:var(--color-accent-50);border-color:var(--color-accent-200);color:var(--color-accent-800)}
+.db-tag.is-success{background:var(--color-success-bg);border-color:var(--color-success-border);color:var(--color-success-text)}
+.db-tag.is-info{background:var(--color-info-bg);border-color:var(--color-info-border);color:var(--color-info-text)}
+.db-tag.is-warning{background:var(--color-warning-bg);border-color:var(--color-warning-border);color:var(--color-warning-text)}
+.db-tag.is-error{background:var(--color-error-bg);border-color:var(--color-error-border);color:var(--color-error-text)}
+/* Pager ‹ 1 / 3 › at the end of a section */
+.db-pager{display:flex;align-items:center;justify-content:flex-end;gap:var(--space-8);margin-top:var(--space-16);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.db-pager b{color:var(--color-text-heading);font-weight:var(--font-weight-semibold)}
+.db-eye{border:0;background:none;padding:0;width:24px;height:24px;display:inline-grid;place-items:center;border-radius:4px;color:inherit;cursor:pointer;flex:none;vertical-align:middle}
+.db-eye:hover{background:rgba(255,255,255,.12)}
+.db-eye:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+
+/* 1. Profile banner */
+.db-profile{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1.3fr) minmax(240px,.8fr);gap:var(--space-24);padding:0;overflow:hidden;align-items:stretch}
+.db-ban{position:relative;display:flex;align-items:center;gap:var(--space-20);min-height:176px;padding:var(--space-24) 112px var(--space-24) var(--space-32);background:var(--color-primary-600);color:#fff;clip-path:polygon(0 0,100% 0,calc(100% - 64px) 100%,0 100%)}
+.db-ban::after{content:"";position:absolute;top:-8px;bottom:-8px;right:52px;width:40px;transform:skewX(-20deg);background:linear-gradient(90deg,var(--color-accent-500) 0 12px,transparent 12px 24px,var(--color-accent-500) 24px 36px,transparent 36px)}
+.db-ava{width:96px;height:96px;flex:none;border-radius:50%;border:4px solid #fff;background:var(--color-accent-500);display:grid;place-items:center;font-size:var(--font-size-h1);font-weight:var(--font-weight-bold);color:#fff}
+.db-ban h3{font-size:var(--font-size-h2);line-height:var(--line-height-h2);font-weight:var(--font-weight-bold)}
+.db-apaar{display:flex;align-items:center;flex-wrap:wrap;gap:var(--space-8);margin-top:var(--space-8);font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold)}
+.db-verified{display:inline-flex;align-items:center;gap:4px;margin-top:var(--space-12);padding:4px var(--space-12);border-radius:4px;background:var(--color-accent-500);color:#fff;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold)}
+.db-info{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-20) var(--space-24);align-content:center;padding:var(--space-24) 0}
+.db-kv{display:flex;align-items:center;gap:var(--space-12);min-width:0}
+.db-kv small{display:block;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.db-kv b{display:flex;align-items:center;gap:var(--space-8);font-size:var(--font-size-body-lg);line-height:var(--line-height-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);overflow-wrap:anywhere}
+.db-kv .db-eye{color:var(--color-icon-default)}
+.db-kv .db-eye:hover{background:var(--color-primary-50)}
+.db-soc{margin:var(--space-16) var(--space-16) var(--space-16) 0;padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:8px;align-self:center}
+.db-soc h6{font-size:var(--font-size-overline);font-weight:var(--font-weight-semibold);letter-spacing:.6px;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:var(--space-12)}
+.db-soc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-8)}
+.db-soc-btn{display:flex;align-items:center;gap:var(--space-8);min-height:40px;padding:0 var(--space-12);border:1px solid var(--color-border-default);border-radius:6px;background:var(--color-bg-surface);font-size:var(--font-size-body);font-weight:var(--font-weight-medium);color:var(--color-text-body);cursor:pointer;text-align:left}
+.db-soc-btn svg{color:var(--color-primary-600);flex:none}
+.db-soc-btn:hover{border-color:var(--color-primary-300);background:var(--color-primary-50)}
+.db-soc-btn:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+
+/* 2. Latest Update ticker */
+.db-tick{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-12) var(--space-16);overflow:hidden}
+.db-tick-lbl{display:inline-flex;align-items:center;gap:var(--space-8);flex:none;padding:var(--space-8) var(--space-12);border-radius:6px;background:var(--color-primary-600);color:#fff;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold)}
+.db-tick-win{flex:1;min-width:0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
+.db-tick-track{display:flex;width:max-content;animation:dbTick 45s linear infinite}
+.db-tick-win:hover .db-tick-track,.db-tick-win:focus-within .db-tick-track{animation-play-state:paused}
+.db-tick-item{display:inline-flex;align-items:center;gap:var(--space-12);padding-right:var(--space-40);white-space:nowrap;font-size:var(--font-size-body);color:var(--color-text-body)}
+.db-tick-item a{color:var(--color-text-link);font-weight:var(--font-weight-semibold);text-decoration:underline;cursor:pointer}
+.db-tick-item a:hover{color:var(--color-text-link-hover)}
+@keyframes dbTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.db-tick-win{overflow-x:auto}.db-tick-track{animation:none}}
+
+/* 3. Quick Services */
+.db-qs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+.db-qs{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-20);border:1px solid;border-radius:8px;text-align:left;cursor:pointer;transition:box-shadow .2s,transform .2s}
+.db-qs:hover{box-shadow:0 4px 12px rgba(15,31,49,.08);transform:translateY(-1px)}
+.db-qs:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.db-qs-ic{width:56px;height:56px;flex:none;border-radius:8px;background:var(--color-bg-surface);display:grid;place-items:center}
+.db-qs-txt{flex:1;min-width:0}
+.db-qs-txt b{display:block;font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.db-qs-txt small{display:block;margin-top:2px;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
+.db-qs-go{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;color:#fff}
+.db-qs.is-primary{background:var(--color-primary-50);border-color:var(--color-primary-100)}
+.db-qs.is-primary .db-qs-ic{color:var(--color-primary-600)} .db-qs.is-primary .db-qs-go{background:var(--color-primary-600)}
+.db-qs.is-success{background:var(--color-success-bg);border-color:var(--color-success-border)}
+.db-qs.is-success .db-qs-ic{color:var(--color-success)} .db-qs.is-success .db-qs-go{background:var(--color-success)}
+.db-qs.is-info{background:var(--color-info-bg);border-color:var(--color-info-border)}
+.db-qs.is-info .db-qs-ic{color:var(--color-info)} .db-qs.is-info .db-qs-go{background:var(--color-info)}
+.db-qs.is-accent{background:var(--color-accent-50);border-color:var(--color-accent-200)}
+.db-qs.is-accent .db-qs-ic{color:var(--color-accent-600)} .db-qs.is-accent .db-qs-go{background:var(--color-accent-600)}
+
+/* 4. Schemes · 5. Scholarships · 6. Announcement · 7. Internships · 8. Events (cards) */
+.db-grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+.db-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16)}
+.db-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16);align-items:start}
+.db-box{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface);text-align:left;min-width:0}
+.db-box > .db-tag{align-self:flex-start}
+.db-box b{font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.db-box p{flex:1;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
+.db-box > .ui-btn{align-self:flex-start;margin-top:var(--space-4)}
+.db-click{cursor:pointer;transition:border-color .2s,background .2s}
+.db-click:hover{border-color:var(--color-primary-300);background:var(--color-bg-row-hover)}
+.db-click:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.db-box-top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-8)}
+.db-box-top b{min-width:0}
+.db-box-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4) var(--space-12);padding-top:var(--space-8);border-top:1px dashed var(--color-border-default);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.db-box-foot strong{color:var(--color-text-heading);font-weight:var(--font-weight-semibold)}
+.db-box-foot svg{flex:none;color:var(--color-icon-default)}
+.db-box-foot.is-nowrap{flex-wrap:nowrap;align-items:flex-start}
+.db-list{display:flex;flex-direction:column;gap:var(--space-12)}
+.db-link{display:inline-flex;align-items:center;gap:4px;border:0;background:none;padding:0;color:var(--color-text-link);font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);cursor:pointer}
+.db-link:hover{text-decoration:underline}
+.db-empty{padding:var(--space-24);text-align:center;color:var(--color-text-secondary);font-size:var(--font-size-body)}
+.db-ev-top{display:flex;align-items:center;gap:var(--space-12)}
+.db-ev-date{width:56px;height:56px;flex:none;border-radius:8px;background:var(--color-primary-50);color:var(--color-primary-600);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:var(--font-size-h3);line-height:1;font-weight:var(--font-weight-bold)}
+.db-ev-date small{margin-top:4px;font-size:9px;font-weight:var(--font-weight-semibold);letter-spacing:.4px}
+.db-ev-top div > small{display:block;margin-top:2px;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+
+/* 9. My Attendance Punch · 10. Mobile app banner */
+.db-att{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16)}
+.db-att-p{display:flex;flex-direction:column;gap:var(--space-12);padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-gray-50)}
+.db-att-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap}
+.db-att-row > b{font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.db-att-vals{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)}
+.db-att-vals small{display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.db-att-vals strong{display:block;margin-top:2px;font-size:var(--font-size-h4);line-height:var(--line-height-h4);font-weight:var(--font-weight-bold);color:var(--color-primary-600)}
+.db-hint{font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.db-att .ui-progress{height:8px;border-radius:4px;margin:0 0 var(--space-4)}
+.db-att .ui-progress i{background:var(--color-success)}
+.db-app{position:relative;display:flex;flex-direction:column;justify-content:center;gap:var(--space-20);padding:var(--space-32);border-radius:8px;background:var(--color-primary-600);color:#fff;overflow:hidden}
+.db-app::after{content:"";position:absolute;top:-8px;bottom:-8px;right:40px;width:40px;transform:skewX(-20deg);background:linear-gradient(90deg,var(--color-accent-500) 0 12px,transparent 12px 24px,var(--color-accent-500) 24px 36px,transparent 36px);opacity:.35}
+.db-app > *{position:relative;z-index:1}
+.db-app h4{font-size:var(--font-size-h5);font-weight:var(--font-weight-semibold)}
+.db-app h3{margin-top:var(--space-4);font-size:var(--font-size-h1);line-height:var(--line-height-h1);font-weight:var(--font-weight-bold)}
+.db-app h3 span{color:var(--color-accent-500)}
+.db-app p{margin-top:var(--space-8);max-width:420px;font-size:var(--font-size-body);color:rgba(255,255,255,.85)}
+.db-stores{display:flex;flex-wrap:wrap;gap:var(--space-12)}
+.db-store{display:flex;flex-direction:column;align-items:flex-start;min-width:150px;padding:var(--space-8) var(--space-16);border:1px solid rgba(255,255,255,.5);border-radius:8px;background:var(--color-primary-800);color:#fff;font-size:10px;text-align:left;cursor:pointer}
+.db-store b{font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold)}
+.db-store:hover{border-color:var(--color-accent-500)}
+.db-store:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-accent-300)}
+/* Detail modals (scheme / announcement) */
+.db-dl{display:grid;grid-template-columns:160px minmax(0,1fr);gap:var(--space-12) var(--space-16);font-size:var(--font-size-body)}
+.db-dl dt{color:var(--color-text-secondary)}
+.db-dl dd{color:var(--color-text-heading);font-weight:var(--font-weight-medium);overflow-wrap:anywhere}
+.db-md-desc{margin-bottom:var(--space-16);font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body)}
+
+@media (max-width:1439.98px){
+  .db-qs{gap:var(--space-12);padding:var(--space-16)}
+  .db-qs-ic{width:48px;height:48px}
+  .db-profile{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .db-soc{grid-column:1/-1;margin:0 var(--space-16) var(--space-16)}
+  .db-soc-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .db-info{padding-right:var(--space-16)}
+}
+@media (max-width:1199.98px){
+  .db-qs-grid,.db-grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .db-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:991.98px){
+  .db-profile{grid-template-columns:1fr;gap:0}
+  .db-info{padding:var(--space-20) var(--space-16)}
+  .db-grid2,.db-att{grid-template-columns:1fr}
+}
+@media (max-width:767.98px){
+  .db-soc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:575.98px){
+  .db-card{padding:var(--space-16)}
+  .db-profile{padding:0}
+  .db-ban{flex-direction:column;align-items:flex-start;gap:var(--space-12);min-height:0;padding:var(--space-20) 88px var(--space-20) var(--space-16);clip-path:polygon(0 0,100% 0,calc(100% - 48px) 100%,0 100%)}
+  .db-ban::after{right:36px;width:36px}
+  .db-ava{width:72px;height:72px;font-size:var(--font-size-h3)}
+  .db-info{grid-template-columns:1fr;gap:var(--space-16)}
+  .db-qs-grid,.db-grid4,.db-grid3{grid-template-columns:1fr}
+  .db-tick{flex-direction:column;align-items:stretch;gap:var(--space-8)}
+  .db-tick-lbl{align-self:flex-start}
+  .db-head .db-end{margin-left:0;width:100%}
+  .db-app{padding:var(--space-24) var(--space-16)}
+  .db-dl{grid-template-columns:1fr;gap:2px}
+  .db-dl dd{margin-bottom:var(--space-8)}
+}
 /* ---------- Design System view ---------- */
 .ds-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;background:#fff;padding:6px;border-radius:8px;box-shadow:0 1px 3px rgba(15,58,102,.06)}
 .ds-tab{border:0;background:none;padding:8px 14px;border-radius:6px;font-size:12.5px;font-weight:500;color:var(--color-text-secondary)}
@@ -819,7 +1066,92 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 </style>
 </head>
 <body>
-<div class="app" id="app">
+<!-- ============ STUDENT SIGN IN (first screen; the portal below opens after sign in) ============ -->
+<div class="lg-screen" id="loginScreen">
+  <section class="lg-left" aria-label="USK Academic Portal">
+    <!-- 3 slides, change by themselves every 5 seconds (pause on hover / focus); the dots below switch them -->
+    <div class="lg-slides" id="lgSlides" aria-roledescription="carousel" aria-label="USK portal highlights">
+      <div class="lg-slide is-on" role="group" aria-roledescription="slide" aria-label="1 of 3">
+        <span class="lg-pill" data-lg="Academic Portal">Academic Portal</span>
+        <h1 data-lg="Empowering Gujarat's Future through Digital Excellence.">Empowering Gujarat's Future through Digital Excellence.</h1>
+        <p data-lg="Access your academic records, schedules, and administrative resources in one unified space.">Access your academic records, schedules, and administrative resources in one unified space.</p>
+      </div>
+      <div class="lg-slide" role="group" aria-roledescription="slide" aria-label="2 of 3" aria-hidden="true">
+        <span class="lg-pill" data-lg="Scholarships">Scholarships</span>
+        <h1 data-lg="Scholarships Made Simple for Every Student.">Scholarships Made Simple for Every Student.</h1>
+        <p data-lg="Check your eligibility, apply online and track every scholarship application from one place.">Check your eligibility, apply online and track every scholarship application from one place.</p>
+      </div>
+      <div class="lg-slide" role="group" aria-roledescription="slide" aria-label="3 of 3" aria-hidden="true">
+        <span class="lg-pill" data-lg="Skills &amp; Careers">Skills &amp; Careers</span>
+        <h1 data-lg="Build Your Skills. Shape Your Career.">Build Your Skills. Shape Your Career.</h1>
+        <p data-lg="Show your skills in your Skill Passport and explore internships and jobs that match your profile.">Show your skills in your Skill Passport and explore internships and jobs that match your profile.</p>
+      </div>
+    </div>
+    <div class="lg-dots" id="lgDots">
+      <button type="button" class="is-on" data-lgslide="0" aria-label="Show slide 1" aria-current="true"></button>
+      <button type="button" data-lgslide="1" aria-label="Show slide 2"></button>
+      <button type="button" data-lgslide="2" aria-label="Show slide 3"></button>
+    </div>
+    <div class="lg-gov" data-lg="Government Of Gujarat">Government Of Gujarat</div>
+  </section>
+
+  <section class="lg-right">
+    <div class="lg-bar">
+      <div class="lg-brand"><img src="LOGO-USK-sm.png" alt="Uccha-Shiksha Samiksha Kendra logo"><span><b>UCCHA-SHIKSHA SAMIKSHA KENDRA</b><small>Higher Education Department - Gujarat</small></span></div>
+      <div class="lg-tools">
+        <div class="lg-tools-fs" role="group" aria-label="Text size">
+          <button class="lg-fs" type="button" data-lgfs="0.9" title="Smaller text" aria-label="Smaller text">A-</button>
+          <button class="lg-fs is-on" type="button" data-lgfs="1" title="Normal text" aria-label="Normal text" aria-pressed="true">A</button>
+          <button class="lg-fs" type="button" data-lgfs="1.1" title="Larger text" aria-label="Larger text">A+</button>
+        </div>
+        <span class="lg-sep" aria-hidden="true"></span>
+        <div class="lg-rel">
+          <button class="lg-lang" type="button" id="lgLangBtn" aria-haspopup="menu" aria-expanded="false" title="Change language"><span id="lgLangLabel">English</span><span data-icon="chevron-down:l:14"></span></button>
+          <div class="ui-menu" id="lgLangMenu" role="menu" hidden>
+            <button class="ui-menu-item is-on" type="button" role="menuitemradio" aria-checked="true" data-lglang="en">English</button>
+            <button class="ui-menu-item" type="button" role="menuitemradio" aria-checked="false" data-lglang="gu">ગુજરાતી</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main class="lg-main">
+      <form class="lg-form" id="lgForm" novalidate>
+        <div class="lg-head">
+          <span class="lg-icon"><span data-icon="graduation:f:24"></span></span>
+          <h2 data-lg="Student Login">Student Login</h2>
+          <p data-lg="Enter your credentials to access the portal">Enter your credentials to access the portal</p>
+        </div>
+        <div class="ui-field">
+          <label class="ui-label" for="lgUser" data-lg="Email / Mobile No / APAAR ID">Email / Mobile No / APAAR ID</label>
+          <input class="ui-input" id="lgUser" name="user" type="text" value="abc@gmail.com" placeholder="Enter Identifier" data-lgph="Enter Identifier" autocomplete="username">
+        </div>
+        <div class="ui-field">
+          <label class="ui-label" for="lgPass" data-lg="Password">Password</label>
+          <div class="ui-input-wrap has-right">
+            <input class="ui-input" id="lgPass" name="pass" type="password" value="abc@123" placeholder="Enter Password" data-lgph="Enter Password" autocomplete="current-password">
+            <button class="ui-input-end" type="button" id="lgEye" title="Show password" aria-label="Show password"><span data-icon="eye-off:o:16"></span></button>
+          </div>
+        </div>
+        <label class="lg-check"><input type="checkbox" class="ui-cb" id="lgRemember"><span data-lg="Remember me on this device">Remember me on this device</span></label>
+        <span class="ui-help is-error lg-err" id="lgErr" role="alert" hidden></span>
+        <button class="ui-btn ui-btn-primary ui-btn-lg ui-btn-block" type="submit" id="lgSubmit" data-lg="Sign In">Sign In</button>
+        <div class="lg-or" data-lg="OR">OR</div>
+        <p class="lg-help" data-lg="Problem logging in? Contact support or visit your university help desk.">Problem logging in? Contact support or visit your university help desk.</p>
+        <a class="lg-helpdesk" href="#" data-lgsoon="Help Desk"><span data-icon="phone:f:16"></span><span data-lg="Help Desk">Help Desk</span></a>
+      </form>
+    </main>
+
+    <nav class="lg-foot" aria-label="Footer">
+      <a href="#" data-lgsoon="Privacy Policy" data-lg="Privacy Policy">Privacy Policy</a>
+      <a href="#" data-lgsoon="Terms Of Service" data-lg="Terms Of Service">Terms Of Service</a>
+      <a href="#" data-lgsoon="Support" data-lg="Support">Support</a>
+      <a href="#" data-lgsoon="Accessibility" data-lg="Accessibility">Accessibility</a>
+    </nav>
+  </section>
+</div>
+
+<div class="app" id="app" hidden>
 
   <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar">
@@ -831,7 +1163,11 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       </div>
     </div>
     <nav class="nav">
-      <a href="#applications" data-view="applications" class="active" data-tip="Student Application">
+      <a href="#dashboard" data-view="dashboard" class="active" data-tip="Dashboard">
+        <span data-icon="home:f:18"></span>
+        <span class="nav-label">Dashboard</span>
+      </a>
+      <a href="#applications" data-view="applications" data-tip="Student Application">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5L14 3.5zM8 12v2h8v-2H8zm0 4v2h5v-2H8z"/></svg>
         <span class="nav-label">Student Application</span>
       </a>
@@ -880,6 +1216,8 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       <button class="icon-btn" id="toggleSide" title="Toggle sidebar">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M6 9l-3 3 3 3"/></svg>
       </button>
+      <!-- Dashboard only (no sidebar there): logo in the header -->
+      <div class="lg-brand h-brand"><img src="LOGO-USK-sm.png" alt="Uccha-Shiksha Samiksha Kendra logo"><span><b>UCCHA-SHIKSHA SAMIKSHA KENDRA</b><small>Higher Education Department - Gujarat</small></span></div>
       <div class="h-title">
         <h2>Student Profile</h2>
         <p>Academic Year &nbsp;||&nbsp; 2023 - 2024</p>
@@ -893,8 +1231,108 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M19.4 13a7.6 7.6 0 000-2l2.1-1.6-2-3.5-2.5 1a7.4 7.4 0 00-1.7-1L15 3h-4l-.4 2.9a7.4 7.4 0 00-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 000 2l-2.1 1.6 2 3.5 2.5-1a7.4 7.4 0 001.7 1L11 21h4l.4-2.9a7.4 7.4 0 001.7-1l2.5 1 2-3.5zM13 15.5A3.5 3.5 0 1116.5 12 3.5 3.5 0 0113 15.5z" transform="translate(-1 0)"/></svg>
         </button>
         <div class="avatar">JS</div>
+        <!-- Dashboard only: Log out (the sidebar with its Log out button is hidden there) -->
+        <button class="ui-btn ui-btn-outline ui-btn-sm h-logout" type="button" title="Log out"><span data-icon="logout:l:16"></span><span class="h-logout-t">Log out</span></button>
       </div>
     </header>
+
+    <!-- ===== VIEW: Student Dashboard (first page after Sign In; layout from USK_Prototype, rebuilt with the Design System) ===== -->
+    <main class="content" id="view-dashboard" hidden>
+      <div class="db" id="dbRoot">
+        <!-- 1. Profile banner -->
+        <section class="db-card db-profile" aria-label="Student profile">
+          <div class="db-ban">
+            <div class="db-ava" aria-hidden="true" id="dbIni"></div>
+            <div>
+              <h3 id="dbName"></h3>
+              <div class="db-apaar">APAAR / ABC ID : <span data-dbmask="apaar"></span><button class="db-eye" type="button" data-dbreveal></button></div>
+              <span class="db-verified"><span data-icon="check:l:14"></span>Verified</span>
+            </div>
+          </div>
+          <div class="db-info">
+            <div class="db-kv"><span class="ui-icon-box is-primary"><span data-icon="graduation:f:20"></span></span><div><small>Degree/Program</small><b id="dbProg"></b></div></div>
+            <div class="db-kv"><span class="ui-icon-box is-primary"><span data-icon="book:f:20"></span></span><div><small>Semester/Year</small><b id="dbSem"></b></div></div>
+            <div class="db-kv"><span class="ui-icon-box is-primary"><span data-icon="mail:f:20"></span></span><div><small>Email</small><b><span data-dbmask="email"></span><button class="db-eye" type="button" data-dbreveal></button></b></div></div>
+            <div class="db-kv"><span class="ui-icon-box is-primary"><span data-icon="phone:f:20"></span></span><div><small>Mobile No.</small><b><span data-dbmask="mobile"></span><button class="db-eye" type="button" data-dbreveal></button></b></div></div>
+          </div>
+          <div class="db-soc">
+            <h6>Social Profiles</h6>
+            <div class="db-soc-grid" id="dbSocial"></div>
+          </div>
+        </section>
+
+        <!-- 2. Latest Update ticker -->
+        <section class="db-card db-tick" aria-label="Latest updates">
+          <span class="db-tick-lbl"><span data-icon="bell:f:16"></span>Latest Update</span>
+          <div class="db-tick-win" id="dbTicker"></div>
+        </section>
+
+        <!-- 3. Quick Services -->
+        <section class="db-card">
+          <div class="db-head"><h4><span data-icon="user:f:20"></span>Quick Services</h4></div>
+          <div class="db-qs-grid">
+            <button class="db-qs is-primary" type="button" data-dbgo="#my-apps" title="Eligibility is checked using your academic records"><span class="db-qs-ic"><span data-icon="graduation:f:24"></span></span><span class="db-qs-txt"><b>Scholarship</b><small>Check eligibility and apply</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+            <button class="db-qs is-success" type="button" data-dbsoon="Attendance" title="Marked from the mobile app with face check"><span class="db-qs-ic"><span data-icon="calendar:f:24"></span></span><span class="db-qs-txt"><b>Attendance</b><small>View and monitor your attendance</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+            <button class="db-qs is-info" type="button" data-dbgo="#jobs" title="Jobs matched to your Skill Passport"><span class="db-qs-ic"><span data-icon="briefcase:f:24"></span></span><span class="db-qs-txt"><b>Career &amp; Placement</b><small>Explore career opportunities</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+            <button class="db-qs is-accent" type="button" data-dbgo="skill-passport.html" title="Your verified skills and certificates in one place"><span class="db-qs-ic"><span data-icon="award:f:24"></span></span><span class="db-qs-txt"><b>Skill Passport</b><small>Manage your skills, showcase achievements</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+          </div>
+        </section>
+
+        <!-- 4. Recommended Government Schemes -->
+        <section class="db-card">
+          <div class="db-head"><h4><span data-icon="briefcase:f:20"></span>Recommended Government Schemes</h4><span class="db-end"><span class="db-tag is-success"><span data-icon="star:f:14"></span>AI-curated · official gov.in / nic.in sources</span></span></div>
+          <div class="db-grid4" id="dbSchemes"></div>
+          <div class="db-pager" data-dbpager="sch"></div>
+        </section>
+
+        <!-- 5. Scholarships -->
+        <section class="db-card">
+          <div class="db-head"><h4><span data-icon="graduation:f:20"></span>Scholarships</h4><span class="db-end"><span class="db-tag is-primary"><span data-icon="home:f:14"></span>Official Gujarat government scholarships</span></span></div>
+          <div class="db-grid3" id="dbSchol"></div>
+          <div class="db-pager" data-dbpager="schl"></div>
+        </section>
+
+        <!-- 6. Announcement + 7. Internship / Placement Opportunity -->
+        <div class="db-grid2">
+          <section class="db-card">
+            <div class="db-head"><h4><span data-icon="bell:f:20"></span>Announcement</h4><span class="db-end"><span class="db-tag is-primary"><span data-icon="home:f:14"></span>Official updates</span></span></div>
+            <div class="db-list" id="dbAnn"></div>
+            <div class="db-pager" data-dbpager="ann"></div>
+          </section>
+          <section class="db-card">
+            <div class="db-head"><h4><span data-icon="resume:f:20"></span>Internship/Placement Opportunity</h4><span class="db-end"><span class="db-tag is-success"><span data-icon="star:f:14"></span>AI-recommended</span></span></div>
+            <div class="db-list" id="dbOpp"></div>
+            <div class="db-pager" data-dbpager="opp"></div>
+          </section>
+        </div>
+
+        <!-- 8. Upcoming Events -->
+        <section class="db-card">
+          <div class="db-head"><h4><span data-icon="calendar:f:20"></span>Upcoming Events</h4><span class="db-end"><span class="db-tag is-success" id="dbEvTag"></span></span></div>
+          <div class="db-grid3" id="dbEvents"></div>
+          <div class="db-pager" data-dbpager="ev"></div>
+        </section>
+
+        <!-- 9. My Attendance Punch + 10. Mobile app banner -->
+        <div class="db-grid2">
+          <section class="db-card">
+            <div class="db-head"><h4><span data-icon="calendar:f:20"></span>My Attendance Punch <small class="db-hint">(In/Out)</small></h4><span class="db-end"><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-dbsoon="Attendance">View attendance<span data-icon="arrow-right:l:16"></span></button></span></div>
+            <div class="db-att" id="dbAtt"></div>
+          </section>
+          <section class="db-app" aria-label="USK mobile app">
+            <div>
+              <h4>Your Student Portal,</h4>
+              <h3>Now in <span>Your Pocket!</span></h3>
+              <p>Mark attendance with face verification inside your campus geofence.</p>
+            </div>
+            <div class="db-stores">
+              <button class="db-store" type="button" data-dbext="Vidhya Setu on Google Play">GET IT ON<b>Google Play</b></button>
+              <button class="db-store" type="button" data-dbext="Vidhya Setu on the App Store">Download on the<b>App Store</b></button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
 
     <!-- ===== VIEW: Design System ===== -->
     <main class="content" id="view-design-system" hidden>
@@ -3100,6 +3538,35 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
   </div>
 </div>
 
+<!-- ===== Student Dashboard – Scheme details + Announcement details (read-only) ===== -->
+<div class="ui-modal-backdrop" id="mdScheme">
+  <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdSchemeTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="briefcase:f:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdSchemeTitle">Scheme Details</h4><p id="mdSchemeSub"></p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body" id="mdSchemeBody"></div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Close</button>
+      <button class="ui-btn ui-btn-primary" id="mdSchemeGo">Visit Official Website<span data-icon="external:l:16"></span></button>
+    </div>
+  </div>
+</div>
+<div class="ui-modal-backdrop" id="mdAnn">
+  <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdAnnTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="bell:f:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdAnnTitle">Announcement</h4><p id="mdAnnSub"></p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body" id="mdAnnBody"></div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Close</button>
+      <button class="ui-btn ui-btn-primary" id="mdAnnGo"></button>
+    </div>
+  </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="icons.js"></script>
@@ -4927,12 +5394,277 @@ $("#cjSave").addEventListener("click", () => {
 });
 cjRenderPage();
 
+/* ================= STUDENT SIGN IN (first screen) =================
+   index.html always opens on the Sign In screen. Correct demo login → Student Application page.
+   The signed-in state lasts for this browser tab (sessionStorage); "Log out" in the sidebar returns here.
+   Student side only for now – other roles come later. No sign-up / register on this page. */
+const LG_DEMO = { user: "abc@gmail.com", pass: "abc@123" };
+const LG_GU = {   // Gujarati texts for the Sign In screen
+  "Academic Portal": "શૈક્ષણિક પોર્ટલ", "Empowering Gujarat's Future through Digital Excellence.": "ડિજિટલ શ્રેષ્ઠતા દ્વારા ગુજરાતના ભવિષ્યને સશક્ત બનાવવું.",
+  "Access your academic records, schedules, and administrative resources in one unified space.": "તમારા શૈક્ષણિક રેકોર્ડ, સમયપત્રક અને વહીવટી સંસાધનો એક જ જગ્યાએ મેળવો.",
+  "Government Of Gujarat": "ગુજરાત સરકાર", "Student Login": "વિદ્યાર્થી લૉગિન", "Enter your credentials to access the portal": "પોર્ટલ ખોલવા માટે તમારી વિગતો દાખલ કરો",
+  "Email / Mobile No / APAAR ID": "ઈમેલ / મોબાઈલ નં. / APAAR ID", "Password": "પાસવર્ડ", "Remember me on this device": "આ ઉપકરણ પર મને યાદ રાખો",
+  "Sign In": "સાઇન ઇન", "OR": "અથવા",
+  "Scholarships": "શિષ્યવૃત્તિ", "Scholarships Made Simple for Every Student.": "દરેક વિદ્યાર્થી માટે શિષ્યવૃત્તિ હવે સરળ.",
+  "Check your eligibility, apply online and track every scholarship application from one place.": "તમારી પાત્રતા ચકાસો, ઓનલાઇન અરજી કરો અને દરેક શિષ્યવૃત્તિ અરજીની સ્થિતિ એક જ જગ્યાએથી જુઓ.",
+  "Skills & Careers": "કૌશલ્ય અને કારકિર્દી", "Build Your Skills. Shape Your Career.": "કૌશલ્ય વિકસાવો. કારકિર્દી ઘડો.",
+  "Show your skills in your Skill Passport and explore internships and jobs that match your profile.": "તમારા સ્કિલ પાસપોર્ટમાં કૌશલ્ય દર્શાવો અને તમારી પ્રોફાઇલ મુજબની ઇન્ટર્નશિપ અને નોકરીઓ શોધો.",
+  "Problem logging in? Contact support or visit your university help desk.": "લૉગિનમાં તકલીફ છે? સપોર્ટનો સંપર્ક કરો અથવા તમારી યુનિવર્સિટીના હેલ્પ ડેસ્ક પર જાઓ.",
+  "Help Desk": "હેલ્પ ડેસ્ક", "Privacy Policy": "ગોપનીયતા નીતિ", "Terms Of Service": "સેવાની શરતો", "Support": "સપોર્ટ", "Accessibility": "સુલભતા",
+  "Enter Identifier": "ઓળખ દાખલ કરો", "Enter Password": "પાસવર્ડ દાખલ કરો",
+  "This field is required.": "આ વિગત ફરજિયાત છે.", "Invalid Email / Mobile No / APAAR ID or password.": "ઈમેલ / મોબાઈલ નં. / APAAR ID અથવા પાસવર્ડ ખોટો છે."
+};
+const LG = { lang: "en" };
+const lgT = s => LG.lang === "gu" && LG_GU[s] ? LG_GU[s] : s;
+let lgStore; try { lgStore = window.sessionStorage; } catch (e) { lgStore = null; }
+const lgSignedIn = () => { try { return lgStore?.getItem("usk-student") === "1"; } catch (e) { return false; } };
+
+function lgShow(signedIn) {
+  $("#loginScreen").hidden = signedIn;
+  $("#app").hidden = !signedIn;
+  if (!signedIn) {
+    // Both fields come filled with the demo login (a remembered identifier wins over the demo email)
+    lgError("");
+    let remembered = ""; try { remembered = localStorage.getItem("usk-remember") || ""; } catch (e) {}
+    $("#lgUser").value = remembered || LG_DEMO.user; $("#lgPass").value = LG_DEMO.pass;
+    setTimeout(() => $("#lgSubmit").focus(), 0);
+  }
+}
+/* Left-side slider: 3 slides. It ALWAYS moves to the next slide every 4 seconds (user request: no pause on hover),
+   and a dot click shows that slide and restarts the 4-second timer. */
+const LG_SLIDE_MS = 4000;
+let lgSlide = 0, lgTimer = null;
+function lgGoSlide(n) {
+  const slides = document.querySelectorAll("#lgSlides .lg-slide"), dots = document.querySelectorAll("#lgDots button");
+  lgSlide = (n + slides.length) % slides.length;
+  slides.forEach((s, i) => { s.classList.toggle("is-on", i === lgSlide); s.setAttribute("aria-hidden", i !== lgSlide); });
+  dots.forEach((d, i) => { d.classList.toggle("is-on", i === lgSlide); if (i === lgSlide) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current"); });
+}
+function lgPlay() {
+  clearInterval(lgTimer);
+  lgTimer = setInterval(() => { if (!$("#loginScreen").hidden) lgGoSlide(lgSlide + 1); }, LG_SLIDE_MS);
+}
+document.querySelectorAll("#lgDots button").forEach(d => d.addEventListener("click", () => { lgGoSlide(+d.dataset.lgslide); lgPlay(); }));
+lgPlay();
+function lgError(msg, which = []) {
+  const e = $("#lgErr");
+  e.hidden = !msg; e.innerHTML = msg ? HELP_ICON["is-error"] + esc(lgT(msg)) : "";
+  ["#lgUser", "#lgPass"].forEach(s => $(s).classList.toggle("is-error", which.includes(s)));
+}
+function lgApplyLang() {
+  document.querySelectorAll("#loginScreen [data-lg]").forEach(el => { el.textContent = lgT(el.dataset.lg); });
+  document.querySelectorAll("#loginScreen [data-lgph]").forEach(el => { el.placeholder = lgT(el.dataset.lgph); });
+  $("#lgLangLabel").textContent = LG.lang === "gu" ? "ગુજરાતી" : "English";
+  document.querySelectorAll("[data-lglang]").forEach(b => { const on = b.dataset.lglang === LG.lang; b.classList.toggle("is-on", on); b.setAttribute("aria-checked", on); });
+  document.documentElement.lang = LG.lang === "gu" ? "gu" : "en";
+}
+
+$("#lgForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const user = $("#lgUser").value.trim(), pass = $("#lgPass").value;
+  if (!user || !pass) { lgError("This field is required.", [!user && "#lgUser", !pass && "#lgPass"].filter(Boolean)); return (!user ? $("#lgUser") : $("#lgPass")).focus(); }
+  if (user.toLowerCase() !== LG_DEMO.user || pass !== LG_DEMO.pass) { lgError("Invalid Email / Mobile No / APAAR ID or password.", ["#lgUser", "#lgPass"]); return $("#lgPass").focus(); }
+  lgError("");
+  const btn = $("#lgSubmit"); btn.classList.add("is-loading"); btn.disabled = true;
+  btn.innerHTML = `<span class="ui-spin"></span>${esc(lgT("Sign In"))}`;
+  try { if ($("#lgRemember").checked) localStorage.setItem("usk-remember", user); else localStorage.removeItem("usk-remember"); } catch (err) {}
+  setTimeout(() => {
+    btn.classList.remove("is-loading"); btn.disabled = false; btn.textContent = lgT("Sign In");
+    try { lgStore?.setItem("usk-student", "1"); } catch (err) {}
+    lgShow(true);
+    if (location.hash !== "#dashboard") location.hash = "dashboard"; else showView("dashboard");
+    scrollTo(0, 0);
+    toast("Signed in successfully");
+  }, 700);
+});
+$("#lgEye").addEventListener("click", () => {
+  const i = $("#lgPass"), show = i.type === "password"; i.type = show ? "text" : "password";
+  $("#lgEye").innerHTML = iconSvg(show ? "view" : "eye-off", show ? "f" : "o", 16);
+  $("#lgEye").title = show ? "Hide password" : "Show password"; $("#lgEye").setAttribute("aria-label", $("#lgEye").title);
+});
+["#lgUser", "#lgPass"].forEach(s => $(s).addEventListener("input", () => { if ($(s).classList.contains("is-error")) lgError(""); }));
+// Text size A- / A / A+ (Sign In screen)
+document.querySelectorAll("[data-lgfs]").forEach(b => b.addEventListener("click", () => {
+  $("#loginScreen").style.zoom = b.dataset.lgfs;
+  document.querySelectorAll("[data-lgfs]").forEach(x => { x.classList.toggle("is-on", x === b); x.setAttribute("aria-pressed", x === b); });
+}));
+// Language menu
+$("#lgLangBtn").addEventListener("click", e => { e.stopPropagation(); const m = $("#lgLangMenu"); m.hidden = !m.hidden; $("#lgLangBtn").setAttribute("aria-expanded", !m.hidden); });
+document.querySelectorAll("[data-lglang]").forEach(b => b.addEventListener("click", () => { LG.lang = b.dataset.lglang; $("#lgLangMenu").hidden = true; $("#lgLangBtn").setAttribute("aria-expanded", false); lgApplyLang(); }));
+document.addEventListener("click", e => { if (!e.target.closest(".lg-rel")) { $("#lgLangMenu").hidden = true; $("#lgLangBtn").setAttribute("aria-expanded", false); } });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#lgLangMenu").hidden) { $("#lgLangMenu").hidden = true; $("#lgLangBtn").focus(); } });
+// Help Desk and footer links are not built yet
+document.querySelectorAll("[data-lgsoon]").forEach(a => a.addEventListener("click", e => { e.preventDefault(); toast(`${a.dataset.lgsoon} will be added soon`); }));
+// Sidebar "Log out" → back to Sign In
+$(".logout").addEventListener("click", () => { try { lgStore?.removeItem("usk-student"); } catch (e) {} lgShow(false); toast("Logged out"); });
+$(".h-logout").addEventListener("click", () => $(".logout").click()); // Dashboard header Log out (same action)
+// Remembered identifier (only the email / ID is remembered, never the password)
+try { const r = localStorage.getItem("usk-remember"); if (r) { $("#lgUser").value = r; $("#lgRemember").checked = true; } } catch (e) {}
+
+/* ================= STUDENT DASHBOARD (first page after Sign In) =================
+   Layout and sample data from USK_Prototype (index → s-dash), rebuilt with Design System components and tokens.
+   Prototype colours are mapped to DS tones: primary · accent · success · info · warning · error · neutral. */
+const DB_TODAY = new Date(2026, 10, 16); // sample "today" for expiry / NEW checks (16/11/2026)
+const DB_STUDENT = {
+  name: "Aarav Patel", initials: "AP", apaar: "452819367781", apaarMasked: "45XXXX7781",
+  email: "aarav.patel.ldce@gmail.com", emailMasked: "a•••••l@gmail.com", mobile: "9876543210", mobileMasked: "98XXXX3210",
+  programme: "BE/B-Tech", branch: "Computer Engineering", semester: "Sem-5",
+  social: ["LinkedIn", "GitHub", "Instagram", "Facebook"],
+  skills: ["Java", "Python", "SQL", "Spring Boot", "React JS", "Data Structures and Algorithms", "Git", "Docker"]
+};
+const DB_TONE = { "#15803D": "success", "#BE185D": "accent", "#1D4ED8": "info", "#B45309": "warning", "#B91C1C": "error", "#0369A1": "info", "#6D28D9": "primary", "#C2410C": "warning", "#9F1239": "error", "#334155": "neutral" };
+// Recommended Government Schemes (scholarships are listed only in the Scholarships section, as in the prototype)
+const DB_SCHEMES = [
+  { id: 4, dept: "Gujarat Knowledge Society", c: "#B45309", name: "Student Startup & Innovation Policy (SSIP 2.0)", desc: "Support for student innovators: prototype grants, mentoring and incubation.", elig: "Students of Gujarat institutions", income: "No income limit", src: "ssip.gujarat.gov.in" },
+  { id: 12, dept: "Education Department, Govt. of Gujarat", c: "#B91C1C", name: "NAMO E-Tablet Yojana", desc: "Provides tablets at a subsidised price to first-year college students in Gujarat to promote digital learning.", elig: "First-year UG / Diploma students", income: "₹1,00,000 per annum", src: "digitalgujarat.gov.in" },
+  { id: 13, dept: "Ministry of Corporate Affairs, GoI", c: "#0369A1", name: "PM Internship Scheme", desc: "Twelve-month paid internships with top companies, with a monthly assistance and a one-time grant.", elig: "Age 21–24, not in full-time study or job", income: "₹8,00,000 per annum", src: "pminternship.mca.gov.in" },
+  { id: 14, dept: "Labour & Employment Dept., Gujarat", c: "#15803D", name: "Mukhyamantri Apprenticeship Yojana", desc: "Stipend support for apprentices trained in Gujarat industries, with part of the stipend paid by the State.", elig: "ITI / Diploma / Graduate apprentices", income: "No income limit", src: "apprenticeshipindia.gov.in" },
+  { id: 15, dept: "Ministry of Skill Development, GoI", c: "#B45309", name: "Skill India Digital Hub", desc: "Free industry-recognised courses, assessments and certificates, with links to jobs and apprenticeships.", elig: "All students and job seekers", income: "No income limit", src: "skillindiadigital.gov.in" },
+  { id: 16, dept: "Ministry of Education, GoI", c: "#6D28D9", name: "SWAYAM Online Courses", desc: "Free online courses from IITs and universities; credits can be transferred to your degree programme.", elig: "All enrolled students", income: "No income limit", src: "swayam.gov.in" }
+];
+const DB_SCHOL = [
+  ["MYSY", "#15803D", "Mukhyamantri Yuva Swavalamban Yojana", "Tuition, hostel and book assistance for meritorious students"],
+  ["MKKN", "#BE185D", "Mukhyamantri Kanya Kelavani Nidhi", "Additional MBBS tuition fee support"],
+  ["CMSS", "#1D4ED8", "Hon. Chief Minister Scholarship Scheme", "Tuition assistance for Diploma / Degree"],
+  ["ISEL", "#B91C1C", "Interest Subsidy Scheme on Education Loan", "100% interest subsidy on education loans"],
+  ["SHODH", "#6D28D9", "Scheme of Developing High Quality Research", "₹15,000 / month fellowship plus contingency"],
+  ["PMS-SC", "#C2410C", "Post Matric Scholarship for SC Students", "Fees and academic allowance for Scheduled Castes"],
+  ["PMS-ST", "#0369A1", "Post Matric Scholarship for ST Students", "Fees and monthly allowance for Scheduled Tribes"],
+  ["PMS-SEBC", "#9F1239", "Post Matric Scholarship for SEBC Students", "Post-matric scholarship for SEBC students"],
+  ["OTHER", "#334155", "Other Scholarships", "All other Gujarat state scholarships"]
+];
+const DB_ANN_CAT = { Scholarship: "accent", Admission: "info", Training: "warning", Examination: "success", Event: "primary", Placement: "primary", Internship: "accent", Other: "neutral" };
+const DB_ANN = [
+  { id: 1, title: "MYSY 2026-27 – Fresh & Renewal Applications", cat: "Scholarship", summary: "Online applications are open for fresh and renewal MYSY students for 2026-27.", desc: "Eligible students must apply with their APAAR ID, admission details and income certificate. Renewal students must upload the previous year's mark sheet. The last date to apply is 31 December 2026.", published: "01/11/2026", expiry: "31/12/2026", status: "Published", by: "Education Dept.", link: "mysy.guj.nic.in", attach: "MYSY_2026-27_Notification.pdf" },
+  { id: 2, title: "ACPC Supplementary Admission Round", cat: "Admission", summary: "Vacant seats in degree engineering will be allotted in a supplementary round.", desc: "Students who have registered with ACPC can fill choices for the supplementary round between 5 and 10 November 2026.", published: "28/10/2026", expiry: "10/11/2026", status: "Published", by: "ACPC", link: "acpc.gujarat.gov.in", attach: null },
+  { id: 3, title: "Digital Skills Training Program", cat: "Training", summary: "Free digital skill development program for final-year students.", desc: "A six-week online program covering cloud, data analytics and cyber security fundamentals with certificates.", published: "24/10/2026", expiry: "30/11/2026", status: "Published", by: "Gujarat Knowledge Society", link: null, attach: "Training_Schedule.pdf" },
+  { id: 4, title: "GTU Winter Examination Timetable", cat: "Examination", summary: "Timetable for the Winter 2026 examinations is published.", desc: "Students can download the subject-wise timetable. Hall tickets will be available one week before the exams.", published: "20/10/2026", expiry: "15/12/2026", status: "Published", by: "GTU", link: "gtu.ac.in", attach: "Winter_2026_Timetable.pdf" },
+  { id: 5, title: "Career Guidance & Job Fair", cat: "Event", summary: "Attend the career guidance seminar and job fair.", desc: "Over 40 companies will participate. Register through your college placement cell.", published: "15/10/2026", expiry: "25/11/2026", status: "Published", by: "Education Dept.", link: null, attach: null },
+  { id: 8, title: "Student Skill Assessment Registration", cat: "Examination", summary: "Online registration has started for the Skill Assessment Test.", desc: "Final-year students can register for the state skill assessment test. The test is free and certificates are added to the Skill Passport.", published: "10/09/2026", expiry: "30/11/2026", status: "Published", by: "Education Dept.", link: null, attach: "Skill_Assessment_Guidelines.pdf" },
+  { id: 9, title: "Merit Scholarship Applications Open", cat: "Scholarship", summary: "Applications are now open for the State Merit Scholarship.", desc: "Students with 85% or above in their last examination may apply before 15 December 2026.", published: "17/09/2026", expiry: "15/12/2026", status: "Published", by: "Education Dept.", link: "digitalgujarat.gov.in", attach: "Merit_Scholarship_Notice.pdf" },
+  { id: 10, title: "Final-Year Mega Placement Week", cat: "Placement", summary: "Register for the largest placement drive of the academic year.", desc: "More than 60 companies will recruit final-year students across branches during the placement week.", published: "05/09/2026", expiry: "20/12/2026", status: "Published", by: "Education Dept.", link: null, attach: null },
+  { id: 6, title: "Campus Placement Drive 2026", cat: "Placement", summary: "Placement drive for final-year students across branches.", desc: "Details to be shared with colleges.", published: "—", expiry: "—", status: "Draft", by: "Education Dept.", link: null, attach: null },
+  { id: 7, title: "National Innovation Challenge 2025", cat: "Event", summary: "Submissions for the 2025 challenge are closed.", desc: "Results have been declared.", published: "01/08/2025", expiry: "30/09/2025", status: "Expired", by: "Education Dept.", link: null, attach: null }
+];
+const DB_OPP = [
+  { company: "Nexora Softech", role: "React JS Developer Intern", desc: "Build responsive web applications using React, work on reusable UI components.", loc: "Ahmedabad, Gujarat, India", by: "15/12/2026" },
+  { company: "Sabar Fintech", role: "Spring Boot & Angular Intern", desc: "Work on secured Spring Boot APIs and the Angular front-end that talks to them.", loc: "Surat, Gujarat, India", by: "30/11/2026" },
+  { company: "Kaveri Data Labs", role: "Data Analyst Intern · Remote", desc: "Clean, analyse and visualise data sets for business dashboards using Python and SQL.", loc: "Remote", by: "10/12/2026" },
+  { company: "Narmada Infotech", role: "Summer Internship 2027", desc: "Eight-week internship across cloud, testing and full-stack development teams.", loc: "Vadodara, Gujarat, India", by: "31/12/2026" },
+  { company: "Sabarmati Robotics", role: "Embedded Systems Intern", desc: "Assist in developing and testing embedded firmware for industrial robots.", loc: "Gandhinagar, Gujarat, India", by: "20/12/2026" },
+  { company: "Kutch AgroTech", role: "Precision Agriculture Intern", desc: "Apply GIS, remote sensing and data analysis to crop monitoring projects.", loc: "Bhuj, Gujarat, India", by: "18/12/2026" },
+  { company: "Saurashtra Analytics", role: "Python Automation Intern", desc: "A hands-on, mentor-led internship focusing on Python scripting and process automation.", loc: "Rajkot, Gujarat, India", by: "28/12/2026" },
+  { company: "Tapi Design Studio", role: "Creative Video Editor Intern", desc: "Create short-form videos and motion graphics for education campaigns.", loc: "Remote", by: "27/12/2026" },
+  { company: "Gir BioSciences", role: "Laboratory Technologist Intern", desc: "Support lab research in molecular biology and quality testing.", loc: "Junagadh, Gujarat, India", by: "31/12/2026" },
+  { company: "Mahi Cloudworks", role: "DevOps Intern · Remote", desc: "Build CI/CD pipelines and container deployments on AWS.", loc: "Remote", by: "05/01/2027" }
+];
+const DB_EVENTS = [
+  { d: "18", m: "NOV 2026", tone: "primary", name: "Gujarat State Hackathon 2026", org: "Student Startup & Innovation Hub", type: "Hackathon", desc: "A 36-hour hackathon on smart governance, agri-tech and health.", skills: ["Java", "Python", "React JS"] },
+  { d: "22", m: "NOV 2026", tone: "warning", name: "CodeSprint Gujarat – Round 1", org: "GTU Innovation Council", type: "Coding Contest", desc: "Online competitive programming contest in Java, Python and C++.", skills: ["Java", "Python", "Data Structures and Algorithms"] },
+  { d: "27", m: "NOV 2026", tone: "success", name: "Cloud & DevOps Bootcamp", org: "L.D. College of Engineering", type: "Bootcamp", desc: "Hands-on Docker, Kubernetes and AWS fundamentals for students.", skills: ["Docker", "Kubernetes"] },
+  { d: "04", m: "DEC 2026", tone: "info", name: "Tech Fest Vadodara 2026", org: "Regional Engineering Colleges", type: "Tech-Fest", desc: "Robotics, coding and project exhibitions across three days.", skills: ["Tech-Fest"] },
+  { d: "09", m: "DEC 2026", tone: "accent", name: "Design Thinking Workshop", org: "GUSEC", type: "Workshop", desc: "A one-day workshop on user research and rapid prototyping.", skills: ["Problem Solving"] },
+  { d: "14", m: "DEC 2026", tone: "info", name: "Startup Gujarat Pitch Day", org: "iCreate", type: "Startup Program", desc: "Pitch your student startup to a panel of investors and mentors.", skills: ["Attracted External Funding"] },
+  { d: "18", m: "DEC 2026", tone: "error", name: "Cyber Security Webinar", org: "Gujarat Police Cyber Cell", type: "Webinar", desc: "Stay safe online: phishing, UPI fraud and data privacy.", skills: ["Cyber Security"] },
+  { d: "22", m: "DEC 2026", tone: "primary", name: "State Science Quiz 2026", org: "GUJCOST", type: "Government Event", desc: "Inter-college quiz on science, technology and innovation.", skills: ["Technical Quiz"] }
+];
+// My Attendance Punch – sample values (the Attendance module is not built yet)
+const DB_ATT = { today: "Present", punchIn: "09:12 AM", punchOut: "—", last: "09:12 AM", month: "November 2026", present: 9, working: 11, hours: "61h 25m" };
+
+const DB = { reveal: false, page: { sch: 0, schl: 0, ann: 0, opp: 0, ev: 0 } };
+const DB_SIZE = { sch: 4, schl: 6, ann: 3, opp: 3, ev: 3 };
+const dbDate = s => { const [d, m, y] = String(s).split("/").map(Number); return y ? new Date(y, m - 1, d) : null; };
+const dbPub = DB_ANN.filter(a => a.status === "Published" && (!dbDate(a.expiry) || dbDate(a.expiry) >= DB_TODAY)); // hidden after "Visible till"
+const dbIsNew = a => { const p = dbDate(a.published); return p && (DB_TODAY - p) / 864e5 <= 7; };
+const dbMatchEv = DB_EVENTS.filter(e => e.skills.some(k => DB_STUDENT.skills.includes(k)));
+const dbEvents = dbMatchEv.length ? dbMatchEv : DB_EVENTS;
+const dbTag = (tone, text) => `<span class="db-tag is-${tone || "neutral"}">${esc(text)}</span>`;
+function dbSlice(key, list) {
+  const n = DB_SIZE[key], pages = Math.max(1, Math.ceil(list.length / n));
+  DB.page[key] = Math.min(DB.page[key], pages - 1);
+  const pg = $(`[data-dbpager="${key}"]`);
+  pg.hidden = pages < 2;
+  pg.innerHTML = `<button class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon" type="button" data-dbpage="${key}:-1" title="Previous" aria-label="Previous page"${DB.page[key] ? "" : " disabled"}>${iconSvg("arrow-left", "l", 16)}</button>
+    <span aria-live="polite"><b>${DB.page[key] + 1}</b> / ${pages}</span>
+    <button class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon" type="button" data-dbpage="${key}:1" title="Next" aria-label="Next page"${DB.page[key] < pages - 1 ? "" : " disabled"}>${iconSvg("arrow-right", "l", 16)}</button>`;
+  return list.slice(DB.page[key] * n, DB.page[key] * n + n);
+}
+function dbRenderMask() {
+  const s = DB_STUDENT;
+  $$("[data-dbmask]").forEach(el => { const k = el.dataset.dbmask; el.textContent = DB.reveal ? s[k] : s[k + "Masked"]; });
+  $$("[data-dbreveal]").forEach(b => { b.innerHTML = iconSvg(DB.reveal ? "view" : "eye-off", DB.reveal ? "f" : "o", 18); b.title = DB.reveal ? "Hide details" : "Show details"; b.setAttribute("aria-label", b.title); b.setAttribute("aria-pressed", DB.reveal); });
+}
+function dbRender() {
+  const s = DB_STUDENT;
+  $("#dbIni").textContent = s.initials; $("#dbName").textContent = s.name;
+  $("#dbProg").textContent = `${s.programme} - ${s.branch.toUpperCase()}`; $("#dbSem").textContent = s.semester;
+  dbRenderMask();
+  $("#dbSocial").innerHTML = s.social.map(t => `<button class="db-soc-btn" type="button" data-dbext="your ${t} profile" title="Open your ${t} profile">${iconSvg(t.toLowerCase(), "f", 18)}<span>${t}</span></button>`).join("");
+  // Latest Update ticker (list repeated once so it loops without a gap; the copy is hidden from screen readers)
+  $("#dbTicker").innerHTML = dbPub.length ? `<div class="db-tick-track">${[...dbPub, ...dbPub].map((a, i) => { const copy = i >= dbPub.length;
+    return `<span class="db-tick-item"${copy ? ' aria-hidden="true"' : ""}>${dbTag(dbIsNew(a) ? "error" : "neutral", (dbIsNew(a) ? "NEW " : "") + "ANNOUNCEMENT")}${esc(a.title)}<a data-dbann="${a.id}" role="button" tabindex="${copy ? -1 : 0}" title="Opens the announcement details">Read details →</a></span>`; }).join("")}</div>` : `<span class="db-hint">No latest updates available.</span>`;
+  dbRenderLists();
+  $("#dbEvTag").innerHTML = dbMatchEv.length ? `${iconSvg("star", "f", 14)}Picked for your skills` : "Popular events across Gujarat";
+  const pct = Math.round(DB_ATT.present / DB_ATT.working * 100);
+  $("#dbAtt").innerHTML = `
+    <div class="db-att-p"><div class="db-att-row"><b>Today's Status</b><span class="ui-badge ui-badge-approved">${DB_ATT.today}</span></div>
+      <div class="db-att-vals"><div><small>Punch In</small><strong>${DB_ATT.punchIn}</strong></div><div><small>Punch Out</small><strong>${DB_ATT.punchOut}</strong></div></div>
+      <div class="db-hint">Updated at the time of your last punch · ${DB_ATT.last}</div></div>
+    <div class="db-att-p"><div class="db-att-row"><b>This Month Summary</b><span class="db-hint">${DB_ATT.month}</span></div>
+      <div class="db-att-vals"><div><small>Days Present</small><strong>${DB_ATT.present} / ${DB_ATT.working}</strong></div><div><small>Total Hours</small><strong>${DB_ATT.hours}</strong></div></div>
+      <div><div class="ui-progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Attendance this month"><i style="width:${pct}%"></i></div><div class="db-hint">${pct}% attendance this month</div></div></div>`;
+}
+function dbRenderLists() {
+  $("#dbSchemes").innerHTML = dbSlice("sch", DB_SCHEMES).map(x => `<div class="db-box">${dbTag(DB_TONE[x.c], x.dept)}<b>${esc(x.name)}</b><p>${esc(x.desc)}</p><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-dbscheme="${x.id}">View Details</button></div>`).join("");
+  $("#dbSchol").innerHTML = dbSlice("schl", DB_SCHOL).map(x => `<button class="db-box db-click" type="button" data-dbext="${esc(x[2])}" title="Opens the official website in a new tab"><span class="db-box-top"><b>${esc(x[2])}</b>${dbTag(DB_TONE[x[1]], x[0])}</span><span class="db-box-foot is-nowrap"><span>${esc(x[3])}</span>${iconSvg("external", "l", 16)}</span></button>`).join("");
+  const ann = dbSlice("ann", dbPub);
+  $("#dbAnn").innerHTML = ann.length ? ann.map(a => `<div class="db-box db-click" role="button" tabindex="0" data-dbann="${a.id}" title="Open announcement details"><span class="db-box-top"><b>${esc(a.title)}${dbIsNew(a) ? ` ${dbTag("error", "NEW")}` : ""}</b>${dbTag(DB_ANN_CAT[a.cat], a.cat)}</span><p>${esc(a.summary)}</p>
+      <span class="db-box-foot"><span>${a.attach ? `<button class="db-link" type="button" data-dbattach="${esc(a.attach)}" title="View attachment">${iconSvg("document", "f", 14)}Attachment</button>` : ""}</span><span>VISIBLE TILL : <strong>${dbDate(a.expiry) ? a.expiry : "Until removed"}</strong></span></span></div>`).join("") : `<div class="db-empty">No announcements available.</div>`;
+  $("#dbOpp").innerHTML = dbSlice("opp", DB_OPP).map(o => `<button class="db-box db-click" type="button" data-dbext="${esc(o.company)} – ${esc(o.role)}"><span class="db-box-top"><b>${esc(o.company)}</b>${dbTag("primary", o.role)}</span><p>${esc(o.desc)}</p><span class="db-box-foot"><span>${esc(o.loc)}</span><span>APPLY BY : <strong>${o.by}</strong></span></span></button>`).join("");
+  $("#dbEvents").innerHTML = dbSlice("ev", dbEvents).map(e => `<div class="db-box"><div class="db-ev-top"><span class="db-ev-date">${e.d}<small>${e.m}</small></span><div><b>${esc(e.name)}</b><small>${esc(e.org)}</small></div></div>${dbTag(e.tone, e.type)}<p>${esc(e.desc)}</p><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-dbext="${esc(e.name)}" title="Organiser's website">Read More${iconSvg("external", "l", 16)}</button></div>`).join("");
+}
+function dbOpenScheme(id) {
+  const x = DB_SCHEMES.find(s => s.id === id); if (!x) return;
+  $("#mdSchemeTitle").textContent = x.name; $("#mdSchemeSub").textContent = x.dept;
+  $("#mdSchemeBody").innerHTML = `<p class="db-md-desc">${esc(x.desc)}</p><dl class="db-dl"><dt>Department</dt><dd>${esc(x.dept)}</dd><dt>Eligibility</dt><dd>${esc(x.elig)}</dd><dt>Income Limit</dt><dd>${esc(x.income)}</dd><dt>Official Source</dt><dd>${esc(x.src)}</dd></dl>`;
+  $("#mdSchemeGo").dataset.dbext = x.src;
+  openModal("mdScheme");
+}
+function dbOpenAnn(id) {
+  const a = DB_ANN.find(x => x.id === id); if (!a) return;
+  $("#mdAnnTitle").textContent = a.title; $("#mdAnnSub").textContent = `${a.cat} · Published ${a.published} by ${a.by}`;
+  $("#mdAnnBody").innerHTML = `<p class="db-md-desc">${esc(a.desc)}</p><dl class="db-dl"><dt>Category</dt><dd>${esc(a.cat)}</dd><dt>Published On</dt><dd>${a.published}</dd><dt>Visible Till</dt><dd>${dbDate(a.expiry) ? a.expiry : "Until removed"}</dd><dt>Published By</dt><dd>${esc(a.by)}</dd>${a.link ? `<dt>Website</dt><dd>${esc(a.link)}</dd>` : ""}${a.attach ? `<dt>Attachment</dt><dd>${esc(a.attach)}</dd>` : ""}</dl>`;
+  const go = $("#mdAnnGo"); go.hidden = !a.link && !a.attach;
+  delete go.dataset.dbext; delete go.dataset.dbattach;
+  if (a.link) { go.dataset.dbext = a.link; go.innerHTML = `Visit Website${iconSvg("external", "l", 16)}`; }
+  else if (a.attach) { go.dataset.dbattach = a.attach; go.innerHTML = `${iconSvg("document", "f", 16)}View Attachment`; }
+  openModal("mdAnn");
+}
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-dbreveal],[data-dbpage],[data-dbscheme],[data-dbattach],[data-dbann],[data-dbext],[data-dbgo],[data-dbsoon]");
+  if (!t) return;
+  if (t.dataset.dbreveal !== undefined) { DB.reveal = !DB.reveal; return dbRenderMask(); }
+  if (t.dataset.dbpage) { const [k, d] = t.dataset.dbpage.split(":"); DB.page[k] += +d; return dbRenderLists(); }
+  if (t.dataset.dbscheme) return dbOpenScheme(+t.dataset.dbscheme);
+  if (t.dataset.dbattach) { e.stopPropagation(); return toast(`Opening ${t.dataset.dbattach}`); }
+  if (t.dataset.dbann) { e.preventDefault(); return dbOpenAnn(+t.dataset.dbann); }
+  if (t.dataset.dbext) return toast(`Opens ${t.dataset.dbext} in a new tab`); // external sites are not linked in the prototype
+  if (t.dataset.dbgo) { const g = t.dataset.dbgo; return g.startsWith("#") ? (location.hash = g.slice(1)) : (location.href = g); }
+  if (t.dataset.dbsoon) return toast(`${t.dataset.dbsoon} will be added soon`);
+});
+document.addEventListener("keydown", e => { // role="button" cards open with Enter / Space
+  const t = e.target.closest?.("[data-dbann][role='button']");
+  if (t && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); dbOpenAnn(+t.dataset.dbann); }
+});
+dbRender();
+
 /* ================= SIDEBAR VIEWS ================= */
 function showView(name) {
-  if (!document.getElementById("view-" + name)) name = "applications";
+  if (!document.getElementById("view-" + name)) name = "dashboard";
   $$(".content[id^='view-']").forEach(v => v.hidden = v.id !== "view-" + name);
+  $("#app").classList.toggle("is-dash", name === "dashboard"); // Dashboard has no sidebar
   $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === name.replace(/-(skills|view)$/, "")));
-  $(".h-title h2").textContent = ({ jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-skills": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications" })[name] || "Student Profile";
+  $(".h-title h2").textContent = ({ dashboard: "Dashboard", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-skills": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications" })[name] || "Student Profile";
   if (name === "my-apps-view") maOpenView(); // View Application page (read-only)
   if (name === "company-job-skills") cjOpenPage(); // Add / Edit Job Oriented Skills page starts a fresh draft
   closePop();
@@ -4943,6 +5675,7 @@ addEventListener("hashchange", () => showView(location.hash.slice(1)));
 syncSelects();
 render();
 showView(location.hash.slice(1));
+lgShow(lgSignedIn()); // index.html opens on Student Sign In until the student signs in
 </script>
 </body>
 </html>

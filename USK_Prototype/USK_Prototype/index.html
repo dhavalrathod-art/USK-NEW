@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>USK Student Portal – Prototype</title>
+  <link rel="icon" href="img/logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <div id="modal-root"></div>
+  <div class="demo-note"><span class="dn-t">Prototype · dummy data · changes reset on reload</span><button onclick="S.role=null;go('login')">Student</button><button onclick="S.role='all';go('adm','all-home')">COGENT admin</button><button onclick="S.role=null;go('login');ACT.suInvite()" title="Open the registration link a pre-registered student receives">Signup link</button><button onclick="S.role=null;go('co-login')" title="Login used by recruiting companies">Company</button></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="student.js"></script>
+  <script src="admin.js"></script>
+  <script src="actions.js"></script>
+  <script src="extra.js"></script>
+</body>
+</html>

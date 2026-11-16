@@ -348,14 +348,16 @@ a{color:var(--color-text-link)}
 
     <!-- 3. Tabs -->
     <div class="sp-card sp-tabs" role="tablist" aria-label="Skill Passport sections">
-      <button class="sp-tab" role="tab" id="tab-skills" aria-controls="panel-skills" aria-selected="true"><span data-icon="star:f:16"></span>Skills &amp; Certificates <i data-count="skills-tab">2</i></button>
+      <!-- Tab order (user, 16/11/2026): 1 Academic (Your Journey + Education) · 2 Projects & Research · 3 Skills & Certificates · 4 Experience.
+           The ids stay the old ones (tab-education = Academic, tab-academic = Projects & Research) so the summary tiles keep working. -->
+      <button class="sp-tab" role="tab" id="tab-education" aria-controls="panel-education" aria-selected="true"><span data-icon="graduation:f:16"></span>Academic <i>4</i></button>
+      <button class="sp-tab" role="tab" id="tab-academic" aria-controls="panel-academic" aria-selected="false" tabindex="-1"><span data-icon="research:f:16"></span>Projects &amp; Research <i>5</i></button>
+      <button class="sp-tab" role="tab" id="tab-skills" aria-controls="panel-skills" aria-selected="false" tabindex="-1"><span data-icon="star:f:16"></span>Skills &amp; Certificates <i data-count="skills-tab">2</i></button>
       <button class="sp-tab" role="tab" id="tab-experience" aria-controls="panel-experience" aria-selected="false" tabindex="-1"><span data-icon="briefcase:f:16"></span>Experience <i>1</i></button>
-      <button class="sp-tab" role="tab" id="tab-academic" aria-controls="panel-academic" aria-selected="false" tabindex="-1"><span data-icon="book:f:16"></span>Academic Work <i>5</i></button>
-      <button class="sp-tab" role="tab" id="tab-education" aria-controls="panel-education" aria-selected="false" tabindex="-1"><span data-icon="graduation:f:16"></span>Education <i>4</i></button>
     </div>
 
     <!-- ===== TAB: Skills & Certificates ===== -->
-    <div class="sp-panel" role="tabpanel" id="panel-skills" aria-labelledby="tab-skills">
+    <div class="sp-panel" role="tabpanel" id="panel-skills" aria-labelledby="tab-skills" hidden>
 
       <section class="sp-card sp-sec" id="secSkills">
         <div class="sp-sec-head">
@@ -432,7 +434,7 @@ a{color:var(--color-text-link)}
       </section>
     </div>
 
-    <!-- ===== TAB: Academic Work (new) ===== -->
+    <!-- ===== TAB 2: Projects & Research (dissertation, research papers, college projects) ===== -->
     <div class="sp-panel" role="tabpanel" id="panel-academic" aria-labelledby="tab-academic" hidden>
 
       <section class="sp-card sp-sec" id="secDissertation">
@@ -511,8 +513,8 @@ a{color:var(--color-text-link)}
       </section>
     </div>
 
-    <!-- ===== TAB: Education (Your Journey + Current + Previous records in one place) ===== -->
-    <div class="sp-panel" role="tabpanel" id="panel-education" aria-labelledby="tab-education" hidden>
+    <!-- ===== TAB 1: Academic (Your Journey + Current + Previous records in one place; first tab, open by default) ===== -->
+    <div class="sp-panel" role="tabpanel" id="panel-education" aria-labelledby="tab-education">
 
       <!-- Your Journey – timeline, same as the live Skill Passport -->
       <section class="sp-card sp-sec" id="secJourney">
