@@ -3403,7 +3403,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
         </div>
         <!-- Selected template summary -->
         <div class="cjp-tpl-sum" id="cjpTplSum" hidden>
-          <div><span class="cjp-tpl-sum-lbl">Selected Template</span><b id="cjpTplName"></b><small id="cjpTplFor"></small></div>
+          <div><span class="cjp-tpl-sum-lbl">Selected Template</span><b id="cjpTplName"></b></div>
           <button class="ui-btn ui-btn-outline ui-btn-sm" type="button" id="cjpTplChange"><span data-icon="edit:f:14"></span>Change Template</button>
         </div>
         <div class="cjp-flow" id="cjpFlow" hidden>
@@ -3864,7 +3864,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
   <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdCjpTplTitle">
     <div class="ui-modal-head">
       <span class="ui-modal-icon"><span data-icon="document:f:20"></span></span>
-      <div class="ui-modal-title"><h4 id="mdCjpTplTitle">Selection Process Templates</h4><p>Every template starts with Resume Screening and ends with Final Selection.</p></div>
+      <div class="ui-modal-title"><h4 id="mdCjpTplTitle">Selection Process Templates</h4><p>Pick a ready selection process for this job. Its rounds and statuses are added for you.</p></div>
       <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
     </div>
     <div class="ui-modal-body"><div class="cjp-tpls" id="cjpTplList" role="radiogroup" aria-label="Templates"></div></div>
@@ -6020,7 +6020,7 @@ function cjpTplRender() {
   const custom = CJS.mode === "custom", tpl = CJS.mode === "template" ? CJP_TPL[CJS.tpl] : null, show = custom || !!tpl;
   $$("[data-cjp-mode]").forEach(b => b.setAttribute("aria-checked", b.dataset.cjpMode === CJS.mode));
   $("#cjpTplSum").hidden = !tpl;
-  if (tpl) { $("#cjpTplName").textContent = CJS.tpl; $("#cjpTplFor").textContent = `· Suitable for ${tpl.for}`; }
+  if (tpl) $("#cjpTplName").textContent = CJS.tpl;
   $("#cjpFlow").hidden = $("#cjpFlowNote").hidden = !show;
   if (!show) return;
   $("#cjpCustom").hidden = !custom;
@@ -6051,7 +6051,7 @@ function cjpTplList() {
       <button class="cjp-tpl-btn" type="button" role="radio" aria-checked="${on}" data-tpl="${esc(n)}">
         <span class="cjp-choice-tick" aria-hidden="true"></span>
         <span class="cjp-tpl-main">
-          <span class="cjp-tpl-top"><b>${esc(n)}</b><span class="ui-badge ui-badge-neutral">${path.length} steps</span><small>Suitable for: ${esc(t.for)}</small></span>
+          <span class="cjp-tpl-top"><b>${esc(n)}</b><span class="ui-badge ui-badge-neutral">${path.length} steps</span></span>
           <span class="cjp-tpl-path">${path.map(p => `<span>${esc(p)}</span>`).join("")}</span>
         </span>
       </button>
