@@ -97,11 +97,12 @@ svg{flex-shrink:0}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 16px;margin-bottom:14px}
 .field label{display:block;font-size:10.5px;font-weight:600;color:#374151;text-transform:uppercase;margin-bottom:6px;letter-spacing:.2px}
 .field label .req{color:var(--red)}
-.field select,.field input{width:100%;height:36px;border:1px solid var(--line);background:var(--input);border-radius:6px;padding:0 10px;font-size:12px;color:var(--text);outline:0}
+.field select,.field input{width:100%;height:36px;border:1px solid var(--input-border);background:var(--input-bg);border-radius:6px;padding:0 10px;font-size:12px;color:var(--text);outline:0}
 .field select:hover,.field input:hover{border-color:var(--color-border-hover)}
 .field select.has,.field input:not(:placeholder-shown){background:#fff;border-color:var(--color-border-strong)}
 .field select:focus,.field input:focus{border-color:var(--color-border-focus);background:#fff;box-shadow:0 0 0 3px var(--color-focus-ring)}
-.field select:disabled{background:var(--color-bg-disabled);border-color:var(--color-border-default);color:var(--color-text-disabled);cursor:not-allowed}
+.field select:disabled,.field input:disabled{background:var(--input-bg-disabled);border-color:var(--input-border-disabled);color:var(--input-text-disabled);cursor:not-allowed}
+.field input[readonly],.field select.is-readonly{background:var(--input-bg-readonly);border-style:dashed;border-color:var(--input-border-filled);cursor:default;box-shadow:none} /* 17/11: same states as the DS .ui-input */
 .adv-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .adv-actions .right{display:flex;gap:10px}
 .hint{font-size:11.5px;color:var(--muted)}
@@ -119,7 +120,7 @@ svg{flex-shrink:0}
 .t-toolbar .sel{font-size:12px;color:var(--muted)}
 .t-toolbar .sel b{color:var(--primary)}
 .t-toolbar .r{display:flex;gap:8px;align-items:center}
-.per{height:32px;border:1px solid var(--line);border-radius:6px;padding:0 8px;background:#fff;font-size:12px}
+.per{height:32px;border:1px solid var(--input-border);border-radius:6px;padding:0 8px;background:var(--input-bg);font-size:12px}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;min-width:860px}
 thead th{background:var(--table-head-bg);font-size:11.5px;font-weight:600;color:var(--table-head-text);text-align:left;padding:14px 12px;white-space:nowrap;border-bottom:1px solid var(--table-head-border)}
@@ -169,7 +170,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 @keyframes pop{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 .pop h4{font-size:11.5px;font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;color:var(--primary)}
 .pop h4 button{border:0;background:none;color:var(--muted);font-size:16px;line-height:1}
-.pop .pin{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:6px;padding:0 8px;height:34px;background:var(--input)}
+.pop .pin{display:flex;align-items:center;gap:6px;border:1px solid var(--input-border);border-radius:6px;padding:0 8px;height:34px;background:var(--input-bg)}
 .pop .pin:focus-within{border-color:var(--primary);background:#fff}
 .pop .pin input{border:0;outline:0;background:none;flex:1;font-size:12px}
 .pop .opts{max-height:170px;overflow:auto;margin-top:8px;display:flex;flex-direction:column;gap:2px}
@@ -407,7 +408,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ver-cls .ui-help[hidden]{display:none}
 .ver-sug{display:inline-flex;align-items:center;gap:4px;margin-left:var(--space-8);font-size:var(--font-size-caption);font-weight:var(--font-weight-medium);letter-spacing:0;text-transform:none;color:var(--color-info-text)}
 /* rich text remarks */
-.ver-rte{border:1px solid var(--input-border);border-radius:var(--input-radius);background:#fff}
+.ver-rte{border:1px solid var(--input-border);border-radius:var(--input-radius);background:var(--input-bg)}
 .ver-rte.is-error{border-color:var(--input-border-error)}
 .ver-rte-bar{display:flex;gap:var(--space-4);padding:var(--space-4);border-bottom:1px solid var(--color-border-default);background:var(--color-bg-table-head);border-radius:var(--input-radius) var(--input-radius) 0 0}
 .ver-rte-bar button{min-width:32px;height:32px;padding:0 var(--space-8);border:0;border-radius:4px;background:none;color:var(--color-text-heading);font-size:var(--font-size-body);cursor:pointer}
@@ -635,22 +636,42 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 /* choice cards: Ready Template / Custom */
 .cjp-choice-field{margin-bottom:var(--space-16)}
 .cjp-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16)}
-.cjp-choice-card{position:relative;display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-16);padding-right:var(--space-40);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface);text-align:left;cursor:pointer;font:inherit;transition:border-color .15s,background .15s,box-shadow .15s}
-.cjp-choice-card:hover{border-color:var(--color-border-hover)}
+.cjp-choice-card{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0;overflow:hidden;border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface);text-align:left;cursor:pointer;font:inherit;transition:border-color .15s,background .15s,box-shadow .15s}
+.cjp-choice-card:hover{border-color:var(--color-border-hover);box-shadow:0 4px 12px rgba(15,31,49,.08)}
+/* 17/11 (user: "unique"): each card has a mini flow preview on top (template = solid steps, custom = dashed + steps) */
+.cjp-viz{position:relative;display:flex;align-items:center;gap:var(--space-4);padding:var(--space-16);background:var(--color-primary-50);border-bottom:1px solid var(--color-border-default);transition:background .15s}
+.cjp-viz i{flex:none;width:14px;height:14px;border-radius:50%;background:var(--color-primary-200);border:2px solid var(--color-primary-200);transition:background .15s,border-color .15s}
+.cjp-viz i:first-child,.cjp-viz i:last-of-type{background:var(--color-primary-600);border-color:var(--color-primary-600)}
+.cjp-viz em{flex:1;max-width:40px;height:2px;background:var(--color-primary-200);transition:background .15s}
+.cjp-viz.is-custom i.is-add{width:18px;height:18px;display:grid;place-items:center;background:var(--color-bg-surface);border:2px solid var(--color-primary-400)}
+.cjp-viz i.is-add::before{content:"+";font-style:normal;font-size:12px;font-weight:700;line-height:1;color:var(--color-primary-600)}
+.cjp-viz.is-custom em{background:repeating-linear-gradient(90deg,var(--color-primary-200) 0 4px,transparent 4px 8px)}
+.cjp-viz-tag{margin-left:auto;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.04em;padding:var(--space-2) var(--space-8);border-radius:4px;background:var(--color-bg-surface);color:var(--color-primary-600);border:1px solid var(--color-primary-100)}
+.cjp-choice-body{display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-16)}
+.cjp-choice-meta{display:flex;flex-wrap:wrap;gap:var(--space-8);margin-top:var(--space-8)}
+.cjp-choice-meta span{display:inline-flex;align-items:center;gap:var(--space-4);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.cjp-choice-meta span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--color-primary-400)}
+.cjp-choice-card[aria-checked="true"] .cjp-viz{background:var(--color-primary-600);border-bottom-color:var(--color-primary-600)}
+.cjp-choice-card[aria-checked="true"] .cjp-viz i{background:var(--color-primary-300,var(--color-primary-200));border-color:var(--color-primary-300,var(--color-primary-200))}
+.cjp-choice-card[aria-checked="true"] .cjp-viz i:first-child,.cjp-choice-card[aria-checked="true"] .cjp-viz i:last-of-type{background:var(--color-gray-0);border-color:var(--color-gray-0)}
+.cjp-choice-card[aria-checked="true"] .cjp-viz i.is-add{background:transparent;border-color:var(--color-gray-0)}
+.cjp-choice-card[aria-checked="true"] .cjp-viz i.is-add::before{color:var(--color-gray-0)}
+.cjp-choice-card[aria-checked="true"] .cjp-viz em{background:var(--color-primary-300,var(--color-primary-200))}
+.cjp-choice-card[aria-checked="true"] .cjp-viz.is-custom em{background:repeating-linear-gradient(90deg,var(--color-gray-0) 0 4px,transparent 4px 8px)}
+.cjp-choice-card[aria-checked="true"] .cjp-viz-tag{background:var(--color-gray-0);border-color:var(--color-gray-0)}
 .cjp-choice-card:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
-.cjp-choice-card[aria-checked="true"]{border-color:var(--color-primary-600);background:var(--color-primary-50);box-shadow:0 0 0 1px var(--color-primary-600)}
-.cjp-choice-card .ui-icon-box{flex:none;width:40px;height:40px}
+.cjp-choice-card[aria-checked="true"]{border-color:var(--color-primary-600);background:var(--color-bg-surface);box-shadow:0 0 0 1px var(--color-primary-600)}
 .cjp-choice-text{display:flex;flex-direction:column;gap:var(--space-4);min-width:0}
 .cjp-choice-text b{font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
 .cjp-choice-text small{font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
-.cjp-choice-tick{position:absolute;top:var(--space-16);right:var(--space-16);width:20px;height:20px;border-radius:50%;border:2px solid var(--color-border-strong);background:var(--color-bg-surface)}
+.cjp-choice-tick{flex:none;margin-top:2px;width:20px;height:20px;border-radius:50%;border:2px solid var(--color-border-strong);background:var(--color-bg-surface)}
 .cjp-choice-card[aria-checked="true"] .cjp-choice-tick{border:6px solid var(--color-primary-600)}
 .cjp-choice-field.has-error .cjp-choice-card{border-color:var(--color-border-error)}
 /* selected template summary */
-.cjp-tpl-sum{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-bottom:var(--space-12)}
-.cjp-tpl-sum > div{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--space-4) var(--space-8)}
+.cjp-tpl-sum{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-bottom:var(--space-12);padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface)}
+.cjp-tpl-sum[hidden]{display:none}
 .cjp-tpl-sum-lbl{font-size:var(--font-size-label);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);text-transform:uppercase}
-.cjp-tpl-sum b{font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.cjp-tpl-sum .cjp-tpl-top b{color:var(--color-primary-600)}
 .cjp-tpl-sum small{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
 /* template modal list */
 .cjp-tpls{display:flex;flex-direction:column;gap:var(--space-12)}
@@ -658,7 +679,6 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .cjp-tpl.is-picked{border-color:var(--color-primary-600);box-shadow:0 0 0 1px var(--color-primary-600)}
 .cjp-tpl-btn{display:flex;align-items:flex-start;gap:var(--space-12);width:100%;padding:var(--space-16);border:0;background:none;text-align:left;font:inherit;cursor:pointer;border-radius:8px}
 .cjp-tpl-btn:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
-.cjp-tpl-btn .cjp-choice-tick{position:static;flex:none;margin-top:2px}
 .cjp-tpl.is-picked .cjp-choice-tick{border:6px solid var(--color-primary-600)}
 .cjp-tpl-main{display:flex;flex-direction:column;gap:var(--space-8);min-width:0;flex:1}
 .cjp-tpl-top{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8)}
@@ -668,12 +688,6 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .cjp-tpl-path span{display:inline-flex;align-items:center;gap:var(--space-4);font-size:var(--font-size-body-sm);color:var(--color-text-body)}
 .cjp-tpl-path svg{color:var(--color-icon-muted)}
 .cjp-tpl-path span:not(:first-child)::before{content:"→";color:var(--color-text-placeholder)}
-.cjp-tpl-map{padding:0 var(--space-16) var(--space-16) 48px}
-.cjp-tpl-map[hidden]{display:none}
-.cjp-tpl-map .cjp-flow-row{padding:var(--space-8) var(--space-12);grid-template-columns:40px minmax(120px,200px) minmax(0,1fr)}
-.cjp-tpl-map .cjp-flow{background:var(--color-bg-surface)}
-.cjp-tpl-map .cjp-flow-row:first-child{border-top:0;border-radius:8px 8px 0 0}
-.cjp-tpl-map .cjp-flow-row:last-child{border-radius:0 0 8px 8px}
 /* custom round: typed statuses (Design System Tag Select) */
 .cjp-sts-pick{display:flex;flex-direction:column;gap:var(--space-4)}
 .cjp-sts-pick .ui-select{min-width:0}
@@ -706,8 +720,6 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
   .cjp-rnd{grid-template-columns:1fr}
   .cjp-custom{padding:var(--space-12)}
   .cjp-choice{grid-template-columns:1fr;gap:var(--space-12)}
-  .cjp-tpl-map{padding:0 var(--space-12) var(--space-12)}
-  .cjp-tpl-map .cjp-flow-row{grid-template-columns:28px minmax(0,1fr)}
 }
 .cjp-radios{display:flex;flex-wrap:wrap;gap:var(--space-8) var(--space-24);margin-bottom:var(--space-16)}
 .cjp-radio{display:inline-flex;align-items:center;gap:var(--space-8);min-height:32px;font-size:var(--font-size-body);font-weight:var(--font-weight-medium);color:var(--color-text-heading);cursor:pointer}
@@ -815,14 +827,20 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .db-tick-track{display:flex;width:max-content;animation:dbTick 45s linear infinite}
 .db-tick-win:hover .db-tick-track,.db-tick-win:focus-within .db-tick-track{animation-play-state:paused}
 .db-tick-item{display:inline-flex;align-items:center;gap:var(--space-12);padding-right:var(--space-40);white-space:nowrap;font-size:var(--font-size-body);color:var(--color-gray-600)}
-.db-tick-item .db-tag.is-live{background:var(--color-accent-300);border-color:var(--color-warning);color:var(--color-error)}
+.db-tick-item .db-tag.is-live{background:var(--color-accent-300);border-color:var(--color-warning);color:var(--color-error);animation:dbLiveBlink .8s steps(1) infinite}
+/* blinks between red and gold every 0.4 s, like the live site (user, 17/11); colours are DS tokens, our shape stays */
+@keyframes dbLiveBlink{
+  0%{background:var(--color-error);border-color:var(--color-error-text);color:var(--color-accent-300);box-shadow:0 0 6px rgba(220,38,38,.7)}
+  50%{background:var(--color-accent-300);border-color:var(--color-warning);color:var(--color-error);box-shadow:0 0 8px rgba(250,204,21,.9)}
+}
+@media (prefers-reduced-motion:reduce){.db-tick-item .db-tag.is-live{animation:none}}
 .db-tick-item a{color:var(--color-primary-500);font-weight:var(--font-weight-semibold);text-decoration:underline;cursor:pointer}
 .db-tick-item a:hover{color:var(--color-text-link-hover)}
 @keyframes dbTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.db-tick-win{overflow-x:auto}.db-tick-track{animation:none}}
 
 /* 3. Quick Services */
-.db-qs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+.db-qs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--space-16)} /* 4 on top, Feedback alone in the 2nd row (user, 16/11); every row as tall as the tallest card, so Feedback matches the top row */
 /* compact (16/11, like the live site): padding 12 / 16, icon box 44, gap 12, arrow 32 – the whole card is the button */
 .db-qs{display:flex;align-items:center;gap:var(--space-12);padding:var(--space-12) var(--space-16);border:1px solid;border-radius:8px;text-align:left;cursor:pointer;transition:box-shadow .2s,transform .2s}
 .db-qs:hover{box-shadow:0 4px 12px rgba(15,31,49,.08);transform:translateY(-1px)}
@@ -900,10 +918,14 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
   .db-info{padding-right:var(--space-16)}
 }
 @media (max-width:1199.98px){
-  .db-qs-grid,.db-grid4{grid-template-columns:repeat(2,minmax(0,1fr))}  .db-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .db-qs-grid,.db-grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .db-qs:last-child:nth-child(odd){grid-column:1/-1} /* 5 cards in 2 columns: the last one takes the full row */  .db-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:991.98px){
   .db-profile{grid-template-columns:1fr;gap:0}
+  /* below 992px (user, 17/11): navy banner full width – no slanted edge, no gold stripes */
+  .db-ban{clip-path:none;padding-right:var(--space-32)}
+  .db-ban::after{display:none}
   .db-info{padding:var(--space-20) var(--space-16)}
   .db-grid2,.db-att{grid-template-columns:1fr}
 }
@@ -912,8 +934,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 @media (max-width:575.98px){
   .db-card{padding:var(--space-16)}
   .db-profile{padding:0}
-  .db-ban{flex-direction:column;align-items:flex-start;gap:var(--space-12);min-height:0;padding:var(--space-20) 88px var(--space-20) var(--space-16);clip-path:polygon(0 0,100% 0,calc(100% - 48px) 100%,0 100%)}
-  .db-ban::after{right:36px;width:36px}
+  .db-ban{flex-direction:column;align-items:flex-start;gap:var(--space-12);min-height:0;padding:var(--space-20) var(--space-16)}
   .db-ava{width:72px;height:72px;font-size:var(--font-size-h3)}
   .db-info{grid-template-columns:1fr;gap:var(--space-16)}
   .db-qs-grid,.db-grid4,.db-grid3{grid-template-columns:1fr}
@@ -962,12 +983,13 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ds-btn{border:0;border-radius:6px;padding:9px 16px;font-size:12.5px;font-weight:600}
 .ds-chip{padding:5px 12px;border-radius:14px;font-size:11.5px;font-weight:500}
 .ds-textdemo{background:#fff;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:6px}
-.ds-in{height:36px;border:1px solid var(--color-border-default);background:var(--color-bg-input);border-radius:6px;padding:0 10px;font-size:12px;color:var(--color-text-body);outline:0;width:100%}
+.ds-in{height:36px;border:1px solid var(--input-border);background:var(--input-bg);border-radius:6px;padding:0 10px;font-size:12px;color:var(--color-text-body);outline:0;width:100%}
 .ds-in::placeholder{color:var(--color-text-placeholder)}
 .ds-in:hover,.ds-in.is-hover{border-color:var(--color-border-hover)}
 .ds-in:focus,.ds-in.is-focus{border-color:var(--color-border-focus);background:#fff;box-shadow:0 0 0 3px var(--color-focus-ring)}
 .ds-in.is-error{border-color:var(--color-border-error);background:#fff;box-shadow:0 0 0 3px rgba(210,59,59,.12)}
-.ds-in:disabled{background:var(--color-bg-disabled);color:var(--color-text-disabled);cursor:not-allowed}
+.ds-in:disabled{background:var(--input-bg-disabled);border-color:var(--input-border-disabled);color:var(--input-text-disabled);cursor:not-allowed}
+.ds-in[readonly]{background:var(--input-bg-readonly);border-style:dashed;border-color:var(--input-border-filled)}
 .ds-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .ds-inputs label{font-size:10.5px;font-weight:600;color:var(--color-text-secondary);text-transform:uppercase;display:flex;flex-direction:column;gap:6px}
 .ds-err{color:var(--color-error-text);font-size:10.5px;text-transform:none;font-weight:500}
@@ -988,7 +1010,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .l-page{flex:1;background:var(--color-bg-page);padding:12px;position:relative}
 .l-tag{display:inline-block;font-size:9.5px;color:var(--color-text-secondary);margin-bottom:6px}
 .l-card{background:var(--color-bg-surface);border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:4px}
-.l-input{background:var(--color-bg-input);border:1px solid var(--color-border-default);border-radius:4px;padding:4px 8px;color:var(--color-text-placeholder);width:160px;margin-bottom:4px}
+.l-input{background:var(--input-bg);border:1px solid var(--input-border);border-radius:4px;padding:4px 8px;color:var(--color-text-placeholder);width:160px;margin-bottom:4px}
 .l-th{background:var(--color-bg-table-head);padding:4px 8px;font-weight:600;border-bottom:1px solid var(--color-border-default)}
 .l-tr{padding:4px 8px;border-bottom:1px solid var(--color-divider)}
 .l-tr.hover{background:var(--color-bg-row-hover)}
@@ -1230,7 +1252,8 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ic-search{width:220px;margin-left:auto}
 .ic-live{border:1px dashed var(--color-warning-border)}
 .ic-live .ds-num{background:var(--color-warning-bg);color:var(--color-warning-text)}
-.ic-live-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+.ic-live-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-16)}
+@media (max-width:1100px){.ic-live-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .ic-live-item{display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:8px;text-align:center}
 .ic-live-box{width:56px;height:56px;display:grid;place-items:center;margin-bottom:var(--space-8);border-radius:8px;background:var(--color-bg-table-head)}
 .ic-live-item b{font-size:var(--font-size-body);color:var(--color-text-heading)}
@@ -1665,6 +1688,8 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             <button class="db-qs is-green" type="button" data-dbsoon="Attendance" title="Marked from the mobile app with face check"><span class="db-qs-ic"><img src="icons/live/qs-attendance.svg" alt="" width="26" height="26"></span><span class="db-qs-txt"><b>Attendance</b><small>View and monitor your attendance</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
             <button class="db-qs is-blue" type="button" data-dbgo="#jobs" title="Jobs matched to your Skill Passport"><span class="db-qs-ic"><img src="icons/live/qs-career.svg" alt="" width="26" height="26"></span><span class="db-qs-txt"><b>Career &amp; Placement</b><small>Explore career opportunities</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
             <button class="db-qs is-orange" type="button" data-dbgo="skill-passport.html" title="Your verified skills and certificates in one place"><span class="db-qs-ic"><img src="icons/live/qs-skill-passport.svg" alt="" width="26" height="26"></span><span class="db-qs-txt"><b>Skill Passport</b><small>Manage your skills, showcase achievements</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
+            <!-- Feedback (16/11): last, alone in the 2nd row under the 4 cards: live icon + live teal colour; the page is not built yet → toast -->
+            <button class="db-qs is-teal" type="button" data-dbsoon="Feedback" title="Share your feedback and suggestions"><span class="db-qs-ic"><img src="icons/live/qs-feedback.svg" alt="" width="26" height="26"></span><span class="db-qs-txt"><b>Feedback</b><small>Share feedback and suggestions</small></span><span class="db-qs-go"><span data-icon="arrow-right:l:18"></span></span></button>
           </div>
         </section>
 
@@ -2320,10 +2345,11 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 
       <!-- Exception (16/11): icons taken from the live gyandiksha site, kept apart from our icon set -->
       <section class="card ds-sec ic-live">
-        <div class="ds-head"><span class="ds-num">!</span><div><h4>Live Site Icons – Exception</h4><p>These 4 icons are taken <b>as they are</b> from the live portal (auth.gyandiksha.in → Student Dashboard → Quick Services), on the team's request (16/11/2026). They are <b>not part of our icon set</b>: each file has its own fixed colour (no <code class="bt-code-inline">currentColor</code>), a 30 × 30 viewBox, and lives in <code class="bt-code-inline">icons/live/</code>, which <code class="bt-code-inline">build-icons.js</code> does not read. Used only on the Dashboard Quick Services cards (as <code class="bt-code-inline">&lt;img&gt;</code>, 26px). Do not use them anywhere else; for new places ask the UI Designer for an icon in our style.</p></div></div>
+        <div class="ds-head"><span class="ds-num">!</span><div><h4>Live Site Icons – Exception</h4><p>These 5 icons are taken <b>as they are</b> from the live portal (auth.gyandiksha.in → Student Dashboard → Quick Services), on the team's request (16/11/2026). The Feedback icon on the live site comes from <b>Microsoft Fluent UI System Icons</b> ("bot-sparkle", MIT licence). They are <b>not part of our icon set</b>: each file has its own fixed colour (no <code class="bt-code-inline">currentColor</code>), a 30 × 30 viewBox (Feedback 24 × 24), and lives in <code class="bt-code-inline">icons/live/</code>, which <code class="bt-code-inline">build-icons.js</code> does not read. Used only on the Dashboard Quick Services cards (as <code class="bt-code-inline">&lt;img&gt;</code>, 26px). Do not use them anywhere else; for new places ask the UI Designer for an icon in our style.</p></div></div>
         <div class="ic-live-grid">
           <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-scholarship.svg" alt="" width="30" height="30"></span><b>Scholarship</b><code>icons/live/qs-scholarship.svg</code><small>#7C3AED</small></div>
           <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-attendance.svg" alt="" width="30" height="30"></span><b>Attendance</b><code>icons/live/qs-attendance.svg</code><small>#16A34A</small></div>
+          <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-feedback.svg" alt="" width="30" height="30"></span><b>Feedback</b><code>icons/live/qs-feedback.svg</code><small>#0D9488 · Fluent UI (MIT)</small></div>
           <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-career.svg" alt="" width="30" height="30"></span><b>Career &amp; Placement</b><code>icons/live/qs-career.svg</code><small>#2563EB</small></div>
           <div class="ic-live-item"><span class="ic-live-box"><img src="icons/live/qs-skill-passport.svg" alt="" width="30" height="30"></span><b>Skill Passport</b><code>icons/live/qs-skill-passport.svg</code><small>#F59E0B</small></div>
         </div>
@@ -2548,7 +2574,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             <h5>Read-only</h5>
             <ul>
               <li>The value is <b>important and must be readable</b>, but the user cannot change it.</li>
-              <li>Dark text, light gray background, <b>dashed border</b>, optional lock icon.</li>
+              <li>Dark text, the same grey background as Disabled, <b>1px dashed border</b>, optional lock icon.</li>
               <li>The user can select and copy the text.</li>
               <li>Example: Application No., Aadhaar No. after verification, auto-filled Date of Birth.</li>
             </ul>
@@ -3749,33 +3775,35 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
         <div class="ui-form-sec-head"><h5>Selection Process &amp; Status Mapping</h5><p>Define the selection process for this job and map each step with the relevant status.</p></div>
         <!-- Step A: choose how to build the process (ready template in a modal, or custom) -->
         <div class="ui-field cjp-choice-field" id="cjpChoiceField">
-          <span class="ui-label">How do you want to set the selection process?<span class="ui-req">*</span></span>
+          <span class="ui-label">How would you like to configure the selection process for this job posting?<span class="ui-req">*</span></span>
           <div class="cjp-choice" role="radiogroup" aria-label="Selection process type">
             <button class="cjp-choice-card" type="button" role="radio" aria-checked="false" data-cjp-mode="template">
-              <span class="ui-icon-box is-primary"><span data-icon="document:f:20"></span></span>
-              <span class="cjp-choice-text"><b>Use a Ready Template</b><small>Pick one of 5 ready processes. Rounds and statuses are already set.</small></span>
-              <span class="cjp-choice-tick" aria-hidden="true"></span>
+              <span class="cjp-viz" aria-hidden="true"><i></i><em></em><i></i><em></em><i></i><em></em><i></i><span class="cjp-viz-tag">Ready</span></span>
+              <span class="cjp-choice-body"><span class="cjp-choice-tick" aria-hidden="true"></span>
+              <span class="cjp-choice-text"><b>Use a Predefined Template</b><small>Select from ready-made selection processes with predefined rounds and status mappings.</small>
+              <span class="cjp-choice-meta"><span>5 templates</span><span>Rounds and statuses set</span></span></span></span>
             </button>
             <button class="cjp-choice-card" type="button" role="radio" aria-checked="false" data-cjp-mode="custom">
-              <span class="ui-icon-box is-info"><span data-icon="settings:f:20"></span></span>
-              <span class="cjp-choice-text"><b>Create Custom Process</b><small>Add your own rounds and map the statuses for each round.</small></span>
-              <span class="cjp-choice-tick" aria-hidden="true"></span>
+              <span class="cjp-viz is-custom" aria-hidden="true"><i></i><em></em><i class="is-add"></i><em></em><i class="is-add"></i><em></em><i></i><span class="cjp-viz-tag">Flexible</span></span>
+              <span class="cjp-choice-body"><span class="cjp-choice-tick" aria-hidden="true"></span>
+              <span class="cjp-choice-text"><b>Create a Custom Selection Process</b><small>Define your own selection rounds and configure the corresponding statuses.</small>
+              <span class="cjp-choice-meta"><span>1 to 8 rounds</span><span>Your own statuses</span></span></span></span>
             </button>
           </div>
           <span class="ui-help" hidden></span>
         </div>
         <!-- Selected template summary -->
         <div class="cjp-tpl-sum" id="cjpTplSum" hidden>
-          <div><span class="cjp-tpl-sum-lbl">Selected Template</span><b id="cjpTplName"></b></div>
+          <div class="cjp-tpl-main"><span class="cjp-tpl-sum-lbl">Selected Template</span><span class="cjp-tpl-top"><b id="cjpTplName"></b><span class="ui-badge ui-badge-neutral" id="cjpTplSteps"></span></span><span class="cjp-tpl-path" id="cjpTplPath"></span></div>
           <button class="ui-btn ui-btn-outline ui-btn-sm" type="button" id="cjpTplChange"><span data-icon="edit:f:14"></span>Change Template</button>
         </div>
         <div class="cjp-flow" id="cjpFlow" hidden>
-          <div class="cjp-flow-head"><span>Step</span><span>Round</span><span>Mapped Statuses</span></div>
+          <div class="cjp-flow-head"><span>Step</span><span>Selection Round</span><span>Applicable Candidate Statuses</span></div>
           <div class="cjp-flow-row is-fixed" id="cjpFlowFirst"></div>
           <div id="cjpFlowTpl"></div>
           <div class="cjp-custom" id="cjpCustom" hidden>
             <div class="ui-repeat is-list" id="cjpSteps"></div>
-            <button class="ui-add-row" type="button" id="cjpAddStep"><span data-icon="plus:l:16"></span>Add Round</button>
+            <button class="ui-add-row" type="button" id="cjpAddStep"><span data-icon="plus:l:16"></span>Add Selection Round</button>
             <span class="ui-help cjp-steps-help" id="cjpStepsHelp"></span>
           </div>
           <div class="cjp-flow-row is-fixed" id="cjpFlowLast"></div>
@@ -3827,13 +3855,13 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 
       <!-- 6. Skills Required – the Job Oriented Skills picker (dropdown + Add Skill modal + Required / Optional) -->
       <section class="card cjp-sec cj-sec" id="cjpSecSkills">
-        <div class="ui-form-sec-head"><h5>Skills Required</h5><p>Add the required skill for this job</p></div>
+        <div class="ui-form-sec-head"><h5>Required and Optional Skills</h5><p>Specify the skills required for this job posting</p></div>
         <div class="ui-field">
-          <label class="ui-label" for="cjIn">Skills Required<span class="ui-req">*</span></label>
+          <label class="ui-label" for="cjIn">Required and Optional Skills<span class="ui-req">*</span></label>
           <div class="cj-pick-row">
           <div class="ui-combo cj-combo" id="cjCombo">
             <span data-icon="search:l:16"></span>
-            <input class="ui-input" id="cjIn" placeholder="Search skill (e.g. HTML, Python, Figma...)" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="cjList" aria-autocomplete="list">
+            <input class="ui-input" id="cjIn" placeholder="Search or select a skill (e.g. HTML, Python, Figma...)" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="cjList" aria-autocomplete="list">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             <div class="ui-select-menu"><div class="ui-select-list" id="cjList" role="listbox" aria-label="Skills"></div></div>
           </div>
@@ -3844,24 +3872,24 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
         </div>
         <!-- Asked right after a skill is picked -->
         <div class="cj-ask" id="cjAsk" role="group" aria-labelledby="cjAskText" hidden>
-          <p id="cjAskText">Is <b id="cjAskName"></b> a required or an optional skill for this job?</p>
+          <p id="cjAskText">Classify <b id="cjAskName"></b> as a required or optional skill</p>
           <div class="cj-ask-acts">
             <button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-cj-type="req">Required</button>
             <button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-cj-type="opt">Optional</button>
             <button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="cjAskCancel">Cancel</button>
           </div>
         </div>
-        <div class="cj-info" role="note"><span data-icon="info:f:18"></span><span>Skill not in the list? <button type="button" class="cj-help-link" data-cj-add>+ Add Skill</button> to add a new one.</span></div>
+        <div class="cj-info" role="note"><span data-icon="info:f:18"></span><span>Can&#39;t find the skill you&#39;re looking for? <button type="button" class="cj-help-link" data-cj-add>+ Add Skill</button> to add a new one.</span></div>
         <div class="cjp-skills-added">
           <p class="cjp-sub">Added Skills · <b id="cjMdCount">00</b> / 15</p>
           <div class="cj-groups">
             <div class="cj-group">
-              <div class="cj-group-head"><b>Required Skills</b><small>Must have</small><i id="cjMdReqCount">0</i></div>
+              <div class="cj-group-head"><b>Required Skills</b><small>Essential</small><i id="cjMdReqCount">0</i></div>
               <div class="ui-chips" id="cjMdReq"></div>
               <p class="cj-none" id="cjMdReqNone">No required skills yet.</p>
             </div>
             <div class="cj-group">
-              <div class="cj-group-head"><b>Optional Skills</b><small>Good to have</small><i id="cjMdOptCount">0</i></div>
+              <div class="cj-group-head"><b>Optional Skills</b><small>Preferred</small><i id="cjMdOptCount">0</i></div>
               <div class="ui-chips" id="cjMdOpt"></div>
               <p class="cj-none" id="cjMdOptNone">No optional skills yet.</p>
             </div>
@@ -4823,7 +4851,7 @@ const DS_GROUPS = {
   category: [
     ["Purple", "--color-cat-purple", "Quick Services – Scholarship"],
     ["Green", "--color-cat-green", "Quick Services – Attendance"],
-    ["Teal", "--color-cat-teal", "Free (the Feedback card was removed)"],
+    ["Teal", "--color-cat-teal", "Quick Services – Feedback"],
     ["Blue", "--color-cat-blue", "Quick Services – Career & Placement"],
     ["Orange", "--color-cat-orange", "Quick Services – Skill Passport"]
   ]
@@ -4960,7 +4988,7 @@ DS_GROUPS.input = [
   [`${pin(2)}Required star`, "--color-error", "Red * right after the label"],
   [`${pin(3)}Placeholder`, "--input-placeholder", "Example text only, never a label"],
   [`${pin(4)}Border (default)`, "--input-border", "Hover: --input-border-hover"],
-  ["Background (empty)", "--input-bg", "Light gray when the field is empty"],
+  ["Background (empty)", "--input-bg", "#FDFDFD (near white) when the field is empty"],
   [`${pin(5)}Icon`, "--color-icon-muted", "Turns Navy (icon-primary) on focus"],
   [`${pin(6)}Helper text`, "--input-helper", "11px, below the field"],
   [`${pin(7)}Input text`, "--input-text", "Value typed by the user, 13px"],
@@ -6135,7 +6163,7 @@ function cjRenderChips() {
   $("#cjMdCount").textContent = String(cjAll().length).padStart(2, "0");
   const full = cjAll().length >= CJ.max;
   cjIn.disabled = full;
-  cjIn.placeholder = full ? `Maximum ${CJ.max} skills added` : "Search skill (e.g. HTML, Python, Figma...)";
+  cjIn.placeholder = full ? `Maximum ${CJ.max} skills added` : "Search or select a skill (e.g. HTML, Python, Figma...)";
 }
 function cjRenderList() {
   const q = cjIn.value.trim(), ql = q.toLowerCase();
@@ -6272,9 +6300,9 @@ const CJP_SEL_ST = { // status mapping per round (same in every template)
   "Technical Round": ["Scheduled", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"],
   "Managerial Round": ["Scheduled", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"],
   "HR Round": ["Scheduled", "Joined", "Not Joined", "Cleared", "Not Cleared", "On Hold"],
-  "Final Selection": ["Shortlisted", "Rejected", "On Hold"]
+  "Final Selection & Status": ["Shortlisted", "Rejected", "On Hold"]
 };
-const CJP_SEL_FIRST = "Resume Screening", CJP_SEL_LAST = "Final Selection", CJP_CUSTOM = "Custom";
+const CJP_SEL_FIRST = "Resume Screening", CJP_SEL_LAST = "Final Selection & Status", CJP_CUSTOM = "Custom";
 const CJP_TPL = { // rounds in between (Resume Screening first and Final Selection last are added automatically)
   "Quick Hiring": { for: "Small companies and urgent hiring", rounds: ["Interview Round"] },
   "Standard Interview": { for: "Most companies", rounds: ["Technical Round", "HR Round"] },
@@ -6470,7 +6498,7 @@ const CJS = { mode: "", tpl: "", pick: "" }; // mode: "" | "template" | "custom"
 const cjpSteps = $("#cjpSteps");
 const CJP_STS_MAX = 10; // statuses per custom round
 const cjpStsBadges = sts => `<div class="cjp-sts">${sts.map(s => `<span class="ui-badge ui-badge-neutral">${esc(s)}</span>`).join("")}</div>`;
-const cjpFlowRow = (n, name, fixed) => `<span class="cjp-num">${n}</span><div class="cjp-round"><b>${esc(name)}</b>${fixed ? `<small>${iconSvg("lock", "o", 14)}Fixed step</small>` : ""}</div>${cjpStsBadges(CJP_SEL_ST[name])}`;
+const cjpFlowRow = (n, name, fixed) => `<span class="cjp-num">${n}</span><div class="cjp-round"><b>${esc(name)}</b>${fixed ? `<small>${iconSvg("lock", "o", 14)}Mandatory stage</small>` : ""}</div>${cjpStsBadges(CJP_SEL_ST[name])}`;
 const cjpTplPath = n => [CJP_SEL_FIRST, ...CJP_TPL[n].rounds, CJP_SEL_LAST];
 const cjpTplValue = () => CJS.mode === "custom" ? CJP_CUSTOM : CJS.mode === "template" ? CJS.tpl : "";
 function cjpSetTpl(t) {
@@ -6482,8 +6510,9 @@ function cjpTplRender() {
   const custom = CJS.mode === "custom", tpl = CJS.mode === "template" ? CJP_TPL[CJS.tpl] : null, show = custom || !!tpl;
   $$("[data-cjp-mode]").forEach(b => b.setAttribute("aria-checked", b.dataset.cjpMode === CJS.mode));
   $("#cjpTplSum").hidden = !tpl;
-  if (tpl) $("#cjpTplName").textContent = CJS.tpl;
-  $("#cjpFlow").hidden = $("#cjpFlowNote").hidden = !show;
+  if (tpl) { const p = cjpTplPath(CJS.tpl); $("#cjpTplName").textContent = CJS.tpl; $("#cjpTplSteps").textContent = `${p.length} steps`; $("#cjpTplPath").innerHTML = p.map(x => `<span>${esc(x)}</span>`).join(""); }
+  // 17/11 (client): a template shows only its rounds (name + steps + path above), no table with statuses; Custom keeps the table
+  $("#cjpFlow").hidden = !custom; $("#cjpFlowNote").hidden = !show;
   if (!show) return;
   $("#cjpCustom").hidden = !custom;
   $("#cjpFlowFirst").innerHTML = cjpFlowRow(1, CJP_SEL_FIRST, true);
@@ -6508,7 +6537,7 @@ $("#cjpTplChange").addEventListener("click", () => cjpTplOpen());
 function cjpTplOpen() { CJS.pick = CJS.tpl; cjpTplList(); openModal("mdCjpTpl"); }
 function cjpTplList() {
   $("#cjpTplList").innerHTML = Object.entries(CJP_TPL).map(([n, t]) => {
-    const on = n === CJS.pick, path = cjpTplPath(n), end = i => i === 0 || i === path.length - 1;
+    const on = n === CJS.pick, path = cjpTplPath(n);
     return `<div class="cjp-tpl${on ? " is-picked" : ""}">
       <button class="cjp-tpl-btn" type="button" role="radio" aria-checked="${on}" data-tpl="${esc(n)}">
         <span class="cjp-choice-tick" aria-hidden="true"></span>
@@ -6517,7 +6546,6 @@ function cjpTplList() {
           <span class="cjp-tpl-path">${path.map(p => `<span>${esc(p)}</span>`).join("")}</span>
         </span>
       </button>
-      <div class="cjp-tpl-map"${on ? "" : " hidden"}><div class="cjp-flow">${path.map((p, i) => `<div class="cjp-flow-row${end(i) ? " is-fixed" : ""}">${cjpFlowRow(i + 1, p, end(i))}</div>`).join("")}</div></div>
     </div>`;
   }).join("");
   $("#cjpTplUse").disabled = !CJS.pick;
@@ -6558,7 +6586,7 @@ function cjpStep(r = { name: "", sts: [] }) {
   el.innerHTML = `<button class="ui-drag" type="button" title="Drag to reorder" aria-label="Move round">${iconSvg("grip", "f", 18)}</button>
     <div class="cjp-rnd">
       <div class="ui-field"><span class="ui-label"></span><input class="ui-input" data-rnd-name maxlength="60" placeholder="(e.g. Coding Round)" value="${esc(r.name)}" autocomplete="off"><span class="ui-help" hidden></span></div>
-      <div class="ui-field"><span class="ui-label">Mapped Statuses<span class="ui-req">*</span><button class="ui-info" type="button" aria-label="Info: status not in the list? Type it in the search box and click + Add to add your own status.">${iconSvg("info", "o", 14)}<span class="ui-info-tip" role="tooltip">Status not in the list? Type it in the search box and click <b>“+ Add … as a new status”</b> to add your own.</span></button></span>
+      <div class="ui-field"><span class="ui-label">Map Candidate Statuses<span class="ui-req">*</span><button class="ui-info" type="button" aria-label="Info: status not in the list? Type it in the search box and click + Add to add your own status.">${iconSvg("info", "o", 14)}<span class="ui-info-tip" role="tooltip">Status not in the list? Type it in the search box and click <b>“+ Add … as a new status”</b> to add your own.</span></button></span>
         <div class="cjp-sts-pick">
           <div class="ui-select is-multi" data-rnd-sts data-ph="Select statuses" data-search data-max-tags="2"></div>        </div>
         <span class="ui-help" hidden></span>
@@ -6644,7 +6672,7 @@ $("#cjpStsSave").addEventListener("click", () => {
 function cjpStepsSync() {
   const items = [...cjpSteps.children], custom = CJS.mode === "custom", last = items[items.length - 1];
   items.forEach((it, i) => {
-    it.querySelector(".ui-label").innerHTML = `Step ${i + 2} – Round Name<span class="ui-req">*</span>`;
+    it.querySelector(".ui-label").innerHTML = `Round ${i + 2} – Selection Round Name<span class="ui-req">*</span>`;
     it.querySelector(".ui-drag").setAttribute("aria-label", `Move round ${i + 1}`);
     it.querySelector("[data-remove]").disabled = items.length <= CJP_STEP_MIN;
   });
@@ -6796,7 +6824,7 @@ function cjpValidate(v, full) { // returns the first field with an error (or nul
     if (!v.end) add(fld("#cjpEnd"), "Select the application end date.");
     if (!v.vac) add(fld("#cjpVac"), "Enter the number of vacancies.");
     if (!v.loc) add(fld("#cjpLoc"), "Select the job location.");
-    if (!v.tpl) add($("#cjpChoiceField"), "Choose a ready template or create a custom process.");
+    if (!v.tpl) add($("#cjpChoiceField"), "Choose a predefined template or create a custom selection process.");
     if (v.tpl === CJP_CUSTOM) {
       const seen = new Set([CJP_SEL_FIRST.toLowerCase(), CJP_SEL_LAST.toLowerCase()]);
       [...cjpSteps.children].forEach((it, i) => {

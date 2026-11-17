@@ -47,7 +47,7 @@
   /* Background */
   --color-bg-page:#eef2f7;        --color-bg-surface:#ffffff;     --color-bg-sidebar:#233c5a;
   --color-bg-sidebar-active:#172d45; --color-bg-header:#ffffff;  --color-bg-table-head:#f7f9fc;
-  --color-bg-row-hover:#f8fafd;   --color-bg-row-selected:#eef2f7; --color-bg-input:#f3f6fa;
+  --color-bg-row-hover:#f8fafd;   --color-bg-row-selected:#eef2f7; --color-bg-input:#fdfdfd; /* 17/11 user: was #f3f6fa */
   --color-bg-disabled:#eef1f5;    --color-bg-overlay:rgba(15,31,49,.5);
 
   /* Border & Divider */
@@ -194,10 +194,10 @@
   --input-label:var(--color-text-body);       --input-text:var(--color-text-body);
   --input-placeholder:var(--color-text-placeholder); --input-helper:var(--color-text-secondary);
   --input-bg:var(--color-bg-input);           --input-bg-filled:#ffffff;   --input-bg-focus:#ffffff;
-  --input-bg-readonly:var(--color-gray-50);
-  /* Disabled is one step darker than Default (Default bg = #F3F6FA), so the two never look the same */
+  --input-bg-readonly:var(--color-gray-200); /* 17/11 user: same grey bg as Disabled (#E4E9F0); the dashed border + dark text tell read-only apart */
+  /* Disabled is one step darker than Default (Default bg = #FDFDFD, border gray-300), so the two never look the same */
   --input-bg-disabled:var(--color-gray-200); --input-border-disabled:var(--color-gray-300);
-  --input-border:var(--color-border-default); --input-border-hover:var(--color-border-hover);
+  --input-border:var(--color-border-strong); --input-border-hover:var(--color-border-hover);
   --input-border-filled:var(--color-border-strong); --input-border-focus:var(--color-border-focus);
   --input-border-error:var(--color-border-error);   --input-border-success:var(--color-success);
   --input-text-disabled:var(--color-gray-400);
