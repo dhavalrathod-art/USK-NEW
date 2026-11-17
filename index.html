@@ -309,7 +309,29 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sm-grid .cjp-radios{margin-bottom:0}
 .sch-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-20);padding-top:var(--space-16);border-top:1px solid var(--color-border-default)}
 /* application form (CMSS-05) */
-.sf-steps-card{padding:var(--space-20) var(--space-16);margin-bottom:var(--space-16)}
+.sf-band{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap;margin:calc(-1 * var(--space-20)) calc(-1 * var(--space-20)) var(--space-16);padding:var(--space-16) var(--space-20);background:var(--color-bg-surface);border-bottom:1px solid var(--color-border-default)}
+.sf-band .ui-icon-box{flex:none;width:44px;height:44px}
+.sf-band-t{flex:1;min-width:0}
+.sf-band-t h3{font-size:var(--font-size-h4);line-height:var(--line-height-h4);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sf-band-org{display:flex;align-items:center;gap:var(--space-4);font-size:var(--font-size-body);color:var(--color-text-secondary)}
+.sf-band-sub{margin-top:var(--space-4);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.sf-band-sub b{color:var(--color-text-heading);font-weight:var(--font-weight-semibold)}
+.sf-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:var(--space-16);align-items:start}
+.sf-layout.is-done{grid-template-columns:minmax(0,1fr)}
+.sf-side{padding:var(--space-24);position:sticky;top:80px}
+.sf-side[hidden],.sf-subs[hidden]{display:none}
+.sf-main{min-width:0;display:flex;flex-direction:column}
+.sf-main > #sfBody{display:flex;flex-direction:column}
+.sf-subs{padding:var(--space-20) var(--space-24);margin-bottom:var(--space-16)}
+.sf-subs .ui-step{cursor:default}
+.sf-subs .ui-step[data-sf-sub]{cursor:pointer}
+.sf-msub{display:none}
+.sf-lockinfo{display:flex;align-items:center;gap:var(--space-8);padding-bottom:var(--space-12);margin-bottom:var(--space-12);border-bottom:1px solid var(--color-border-default);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.sf-lockinfo svg{flex:none;color:var(--color-icon-muted)}
+.sf-foot-row{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap}
+@media (max-width:991.98px){.sf-layout{grid-template-columns:minmax(0,1fr)}.sf-side{position:static;padding:var(--space-16)}.sf-side .sf-steps{display:none}.sf-side .sf-mstep{display:block}}
+@media (max-width:767.98px){.sf-subs{padding:var(--space-12) var(--space-16)}.sf-subs .ui-steps{display:none}.sf-msub{display:block;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}.sf-msub b{color:var(--color-text-heading)}}
+@media (max-width:575.98px){.sf-band{margin:calc(-1 * 14px) calc(-1 * 14px) var(--space-16);padding:var(--space-12) 14px}.sf-band-t{flex-basis:calc(100% - 56px)}.sf-band-t h3{font-size:var(--font-size-h5);line-height:var(--line-height-h5)}.sf-foot-row #sfPrev{order:2}.sf-foot-row .sf-pending{order:1;flex-basis:100%}.sf-foot-row .sf-foot-btns{order:3}}
 .sf-steps .ui-step{cursor:default}
 .sf-steps .ui-step.is-done{cursor:pointer}
 .sf-mstep{display:none}
@@ -365,7 +387,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sf-decl{display:flex;align-items:flex-start;gap:var(--space-12);font-size:var(--font-size-body);color:var(--color-text-body);cursor:pointer}
 .sf-decl input{margin-top:3px;flex:none}
 /* footer + success */
-.sf-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;padding:var(--space-16) var(--space-20)}
+.sf-foot{padding:var(--space-16) var(--space-20)}
 .sf-foot[hidden],.sf-steps-card[hidden],.sf-done[hidden]{display:none}
 .sf-foot-btns{display:flex;gap:var(--space-btn-group);margin-left:auto}
 .sf-pending{max-width:560px}
@@ -383,9 +405,6 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 /* ---------- Verification (Phase 4): role switcher, Help Center, Commissioner Office ---------- */
 .role-sel{width:200px}
 .nav a[hidden]{display:none}
-.ver-filters{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--space-12) var(--space-16);padding:var(--space-16) var(--space-20);margin-bottom:var(--space-16)}
-.ver-filters .ver-college{grid-column:span 2}
-.ver-filters .ui-field[hidden]{display:none}
 .ver-name{font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
 .ver-empty td{padding:var(--space-40) var(--space-16)!important;text-align:center;color:var(--color-text-secondary)}
 .ver-tabs{display:flex;gap:var(--space-8);margin-bottom:var(--space-16)}
@@ -418,9 +437,8 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ver-sar{margin-top:var(--space-16)}
 .ver-sar[hidden]{display:none}
 .ver-sar .cjp-radios{flex-direction:column;gap:var(--space-4);margin-bottom:0}
-@media (max-width:1199.98px){.ver-filters{grid-template-columns:repeat(3,minmax(0,1fr))}.ver-filters .ver-college{grid-column:span 3}}
-@media (max-width:767.98px){.ver-filters{grid-template-columns:repeat(2,minmax(0,1fr))}.ver-filters .ver-college{grid-column:1/-1}.ver-cls{grid-template-columns:1fr}}
-@media (max-width:575.98px){.role-sel{width:132px}.ver-filters{grid-template-columns:1fr}.ver-bar-btns{width:100%}.ver-bar-btns .ui-btn{flex:1}.ver-log time{width:72px}}
+@media (max-width:767.98px){.ver-cls{grid-template-columns:1fr}}
+@media (max-width:575.98px){.role-sel{width:132px}.ver-bar-btns{width:100%}.ver-bar-btns .ui-btn{flex:1}.ver-log time{width:72px}}
 /* Phase 4b: status tracker, update, notifications, updated items */
 .st-clock{display:flex;align-items:center;gap:var(--space-8);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
 .st-clock b{color:var(--color-text-heading)}
@@ -596,26 +614,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 /* ---------- Company Job Post: Manage Job Posting (table + Advanced Filter) and Create / Edit Job Posting – DS tokens & components ---------- */
 .cjp-head{align-items:center;gap:var(--space-12);flex-wrap:wrap}
 .cjp-head > .ui-btn{flex:none}
-.cjp-filter{padding:var(--space-16) var(--space-20);margin-bottom:var(--space-16)}
-.cjp-filter-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12)}
-.cjp-filter-title{display:flex;align-items:center;gap:var(--space-12)}
-.cjp-filter-title .ui-icon-box{width:32px;height:32px}
-.cjp-filter-title h5{font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
-.cjp-cnt{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#fff;color:var(--color-accent-700);font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);display:inline-grid;place-items:center}
-.cjp-cnt[hidden]{display:none}
-#cjpFilterBtn .cjp-chev,#cjpFilterBtn svg:last-child{transition:transform .2s}
-#cjpFilterBtn[aria-expanded="true"] svg:last-child{transform:rotate(180deg)}
-.cjp-adv[hidden]{display:none}
-.cjp-adv{margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px dashed var(--color-border-strong)}
-.cjp-adv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
-.cjp-adv-acts{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-16)}
-.cjp-adv-btns{display:flex;gap:var(--space-btn-group)}
-.cjp-preview{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
-.cjp-preview b{color:var(--color-primary-600)}
-.cjp-chips{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8);margin-top:var(--space-12)}
-.cjp-chips:empty{display:none}
-.cjp-chips .ui-chip{height:28px;font-weight:var(--font-weight-medium)}
-.cjp-chips .ui-chip b{font-weight:var(--font-weight-semibold);margin-right:2px}
+/* Advanced Filter → DS .ui-filter (17/11) */
 .cjp-clear{border:0;background:none;padding:0 var(--space-4);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-error-text);cursor:pointer}
 .cjp-clear:hover{text-decoration:underline}
 .cjp-table{overflow:hidden}
@@ -745,8 +744,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .cjp-sec.is-error .cj-groups{outline:1px solid var(--color-border-error);outline-offset:4px;border-radius:10px}
 .cjp-foot{display:flex;justify-content:flex-end;gap:var(--space-btn-group);margin-bottom:var(--space-24)}
 .cjp-del-text{font-size:var(--font-size-body);color:var(--color-text-body)}
-@media (max-width:1199.98px){.cjp-adv-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:991.98px){.cjp-adv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cjp-g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:991.98px){.cjp-g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:767.98px){
   .cjp-crit-head{display:none}
   .cjp-crit-row{grid-template-columns:minmax(0,1fr) 40px;gap:var(--space-8) var(--space-12)}
@@ -757,10 +755,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 }
 @media (max-width:575.98px){
   .cjp-head > .ui-btn{width:100%}
-  .cjp-filter{padding:var(--space-16)}
-  .cjp-filter-top .ui-btn{flex:none}
-  .cjp-adv-grid,.cjp-g2,.cjp-g3{grid-template-columns:1fr}
-  .cjp-adv-btns,.cjp-adv-btns .ui-btn{flex:1}
+  .cjp-g2,.cjp-g3{grid-template-columns:1fr}
   .cjp-sec{padding:var(--space-16)}
   .cjp-foot .ui-btn{flex:1}
 }
@@ -772,6 +767,15 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .app.is-dash .h-brand{display:flex}
 .app.is-dash .h-logout{display:inline-flex}
 @media (max-width:575.98px){.app.is-dash .h-logout{width:32px;padding:0;justify-content:center}.h-logout-t{display:none}.app.is-dash .h-brand b{font-size:8.5px}.app.is-dash .h-brand small{display:none}}
+/* Student scholarship pages = full width like Skill Passport (17/11): no sidebar (same as the Dashboard) + Scholarship / My Applications in the header (.app.is-sch, set in showView) */
+.h-schnav,.h-home{display:none}
+.app.is-sch .h-schnav{display:flex;align-items:center;gap:var(--space-8);margin-left:auto}
+.app.is-sch .h-right{margin-left:var(--space-8)}
+.app.is-sch .h-home{display:inline-flex}
+.h-schnav .ui-btn.is-active{background:var(--color-primary-50);color:var(--color-primary-600)}
+@media (max-width:767.98px){.app.is-sch .h-schnav .ui-btn{width:32px;padding:0;justify-content:center;font-size:0;gap:0}.app.is-sch .h-brand{flex:none}.app.is-sch .h-brand > span{display:none}.app.is-sch .h-schnav{gap:var(--space-4)}}
+@media (max-width:575.98px){.app.is-sch .avatar{display:none}}
+@media (max-width:400px){.app.is-sch .h-home{display:none}}
 .db{display:flex;flex-direction:column;gap:var(--space-16)}
 .db-card{background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:8px;padding:var(--space-24)}
 .db [hidden]{display:none!important}
@@ -1629,12 +1633,18 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       </button>
       <!-- Dashboard only (no sidebar there): logo in the header -->
       <div class="lg-brand h-brand"><img src="LOGO-USK-sm.png" alt="Uccha-Shiksha Samiksha Kendra logo"><span><b>UCCHA-SHIKSHA SAMIKSHA KENDRA</b><small>Higher Education Department - Gujarat</small></span></div>
+      <!-- Student scholarship pages only (full width, like Skill Passport): Scholarship / My Applications + Home -->
+      <nav class="h-schnav" aria-label="Scholarships">
+        <a class="ui-btn ui-btn-ghost ui-btn-sm" href="#scholarships" data-schnav="scholarships"><span data-icon="graduation:f:16"></span>Scholarship</a>
+        <a class="ui-btn ui-btn-ghost ui-btn-sm" href="#my-apps" data-schnav="my-apps"><span data-icon="user:o:16"></span>My Applications</a>
+      </nav>
       <div class="h-title">
         <h2>Student Profile</h2>
         <p>Academic Year &nbsp;||&nbsp; 2023 - 2024</p>
       </div>
       <div class="h-right">
         <!-- Demo role switcher (Phase 4): Student / Help Center / Commissioner Office -->
+        <a class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon h-home" href="#dashboard" title="Dashboard" aria-label="Go to Dashboard"><span data-icon="home:f:16"></span></a>
         <div class="ui-select role-sel" id="roleSel" data-options="Student|Help Center|Commissioner Office" data-value="Student" title="Switch role (demo)" aria-label="Role"></div>
         <button class="icon-btn" title="Notifications">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 00-5-5.9V4a1 1 0 00-2 0v1.1A6 6 0 006 11v5l-2 2v1h16v-1z"/></svg>
@@ -3544,40 +3554,70 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 
     <!-- ===== VIEW: Application form – CMSS-05 (7 steps) + Review & Submit (CMSS-05.14) + eligibility (CMSS-06) ===== -->
     <main class="content" id="view-sch-form" hidden>
-      <div class="page-head sch-head">
-        <div>
+      <!-- 17/11: full-width page like Skill Passport – title band, main steps on the left (vertical), sub-steps of the step on the right (horizontal) -->
+      <div class="sf-band">
+        <span class="ui-icon-box is-primary" aria-hidden="true"><span data-icon="graduation:f:20"></span></span>
+        <div class="sf-band-t">
           <h3 id="sfTitle">CMSS Application</h3>
-          <p id="sfSub"></p>
+          <p class="sf-band-org"><span data-icon="home:o:14"></span>Government of Gujarat</p>
+          <p class="sf-band-sub" id="sfSub"></p>
         </div>
         <a class="ui-btn ui-btn-outline ui-btn-sm" href="#scholarships" id="sfBack"><span data-icon="arrow-left:l:14"></span>Scholarships</a>
       </div>
       <div class="sch-deadline" id="sfDeadline"></div>
-      <section class="card sf-steps-card" id="sfStepsCard">
-        <ol class="ui-steps sf-steps" id="sfSteps" aria-label="Application steps"></ol>
-        <div class="sf-mstep" id="sfMStep"></div>
-      </section>
-      <div id="sfBody"></div>
-      <section class="card sf-foot" id="sfFoot">
-        <span class="ui-help sf-pending" id="sfPending"></span>
-        <div class="sf-foot-btns">
-          <button class="ui-btn ui-btn-outline" type="button" id="sfPrev"><span data-icon="arrow-left:l:16"></span>Back</button>
-          <button class="ui-btn ui-btn-soft" type="button" id="sfDraft">Save as Draft</button>
-          <button class="ui-btn ui-btn-primary" type="button" id="sfNext">Next<span data-icon="arrow-right:l:16"></span></button>
+      <div class="sf-layout" id="sfLayout">
+        <aside class="card sf-side" id="sfStepsCard">
+          <ol class="ui-steps is-vertical sf-steps" id="sfSteps" aria-label="Application steps"></ol>
+          <div class="sf-mstep" id="sfMStep"></div>
+        </aside>
+        <div class="sf-main">
+          <section class="card sf-subs" id="sfSubsCard" hidden>
+            <ol class="ui-steps is-inline" id="sfSubs" aria-label="Parts of this step"></ol>
+            <div class="sf-msub" id="sfMSub"></div>
+          </section>
+          <div id="sfBody"></div>
+          <section class="card sf-foot" id="sfFoot">
+            <p class="sf-lockinfo"><span data-icon="lock:o:16"></span>Fields with a lock icon are filled in from your verified records (DigiLocker / Agency data) and cannot be changed.</p>
+            <div class="sf-foot-row">
+              <button class="ui-btn ui-btn-outline" type="button" id="sfPrev"><span data-icon="arrow-left:l:16"></span>Back</button>
+              <span class="ui-help sf-pending" id="sfPending"></span>
+              <div class="sf-foot-btns">
+                <button class="ui-btn ui-btn-soft" type="button" id="sfDraft">Save as Draft</button>
+                <button class="ui-btn ui-btn-primary" type="button" id="sfNext">Next<span data-icon="arrow-right:l:16"></span></button>
+              </div>
+            </div>
+          </section>
+          <section class="card sf-done" id="sfDone" hidden></section>
         </div>
-      </section>
-      <section class="card sf-done" id="sfDone" hidden></section>
+      </div>
     </main>
 
     <!-- ===== VIEW: Help Center – application list (HC-01) ===== -->
     <main class="content" id="view-hc" hidden>
       <div class="page-head"><div><h3>Verify Applications</h3><p>Scholarship applications of your college that are Submitted, Resubmitted, On Hold or Expired.</p></div></div>
-      <section class="card ver-filters">
-        <div class="ui-field ver-college"><span class="ui-label">College</span><div class="ui-select" id="hcCollege" data-search></div></div>
-        <div class="ui-field"><span class="ui-label">Scholarship</span><div class="ui-select" id="hcScheme"></div></div>
-        <div class="ui-field"><span class="ui-label">Academic Year</span><div class="ui-select" id="hcYear"></div></div>
-        <div class="ui-field"><span class="ui-label">Application Type</span><div class="ui-select" id="hcType"></div></div>
-        <div class="ui-field"><span class="ui-label">Status</span><div class="ui-select" id="hcStatus"></div></div>
-        <div class="ui-field"><label class="ui-label" for="hcSearch">Search</label><input class="ui-input" id="hcSearch" placeholder="Application ID or student name" autocomplete="off"></div>
+      <section class="card ui-filter">
+        <div class="ui-filter-top">
+          <div class="ui-filter-title"><span class="ui-icon-box is-primary"><span data-icon="filter:f:18"></span></span><h5>Advanced Filter</h5></div>
+          <button class="ui-btn ui-btn-accent ui-filter-btn" type="button" id="hcFilterBtn" aria-expanded="false" aria-controls="hcAdv"><span data-icon="filter:f:16"></span>Filter<span class="ui-filter-cnt" id="hcCnt" hidden>0</span><span data-icon="chevron-down:l:14"></span></button>
+        </div>
+        <div class="ui-filter-panel" id="hcAdv" hidden>
+          <div class="ui-filter-grid">
+            <div class="ui-field"><label class="ui-label" for="hcSearch">Search</label><input class="ui-input" id="hcSearch" placeholder="Application ID or student name" autocomplete="off"></div>
+            <div class="ui-field"><span class="ui-label">College</span><div class="ui-select" id="hcCollege" data-search></div></div>
+            <div class="ui-field"><span class="ui-label">Scholarship</span><div class="ui-select" id="hcScheme"></div></div>
+            <div class="ui-field"><span class="ui-label">Academic Year</span><div class="ui-select" id="hcYear"></div></div>
+            <div class="ui-field"><span class="ui-label">Application Type</span><div class="ui-select" id="hcType"></div></div>
+            <div class="ui-field"><span class="ui-label">Status</span><div class="ui-select" id="hcStatus"></div></div>
+          </div>
+          <div class="ui-filter-acts">
+            <span class="ui-filter-count" id="hcPreview"></span>
+            <div class="ui-filter-btns">
+              <button class="ui-btn ui-btn-primary" type="button" id="hcApply"><span data-icon="check:l:16"></span>Apply</button>
+              <button class="ui-btn ui-btn-danger" type="button" id="hcCancel"><span data-icon="close:l:16"></span>Cancel</button>
+            </div>
+          </div>
+        </div>
+        <div class="ui-filter-chips" id="hcChips"></div>
       </section>
       <section class="card table-card">
         <div class="ma-toolbar"><span id="hcCount"></span><span>Latest first</span></div>
@@ -3592,11 +3632,27 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
     <main class="content" id="view-co" hidden>
       <div class="page-head"><div><h3>Review Applications</h3><p>Applications locked by the Help Centers (Under Review). One role for all departments – use the filters.</p></div></div>
       <div class="ver-tabs" role="tablist" aria-label="Scholarship" id="coTabs"></div>
-      <section class="card ver-filters">
-        <div class="ui-field"><span class="ui-label" id="coClsLbl">Department</span><div class="ui-select" id="coCls"></div></div>
-        <div class="ui-field" id="coGroupWrap"><span class="ui-label">Course group</span><div class="ui-select" id="coGroup"></div></div>
-        <div class="ui-field"><span class="ui-label">College</span><div class="ui-select" id="coCollege" data-search></div></div>
-        <div class="ui-field"><label class="ui-label" for="coSearch">Search</label><input class="ui-input" id="coSearch" placeholder="Application ID or student name" autocomplete="off"></div>
+      <section class="card ui-filter">
+        <div class="ui-filter-top">
+          <div class="ui-filter-title"><span class="ui-icon-box is-primary"><span data-icon="filter:f:18"></span></span><h5>Advanced Filter</h5></div>
+          <button class="ui-btn ui-btn-accent ui-filter-btn" type="button" id="coFilterBtn" aria-expanded="false" aria-controls="coAdv"><span data-icon="filter:f:16"></span>Filter<span class="ui-filter-cnt" id="coCnt" hidden>0</span><span data-icon="chevron-down:l:14"></span></button>
+        </div>
+        <div class="ui-filter-panel" id="coAdv" hidden>
+          <div class="ui-filter-grid">
+            <div class="ui-field"><label class="ui-label" for="coSearch">Search</label><input class="ui-input" id="coSearch" placeholder="Application ID or student name" autocomplete="off"></div>
+            <div class="ui-field"><span class="ui-label">College</span><div class="ui-select" id="coCollege" data-search></div></div>
+            <div class="ui-field"><span class="ui-label" id="coClsLbl">Department</span><div class="ui-select" id="coCls"></div></div>
+            <div class="ui-field" id="coGroupWrap"><span class="ui-label">Course group</span><div class="ui-select" id="coGroup"></div></div>
+          </div>
+          <div class="ui-filter-acts">
+            <span class="ui-filter-count" id="coPreview"></span>
+            <div class="ui-filter-btns">
+              <button class="ui-btn ui-btn-primary" type="button" id="coApply"><span data-icon="check:l:16"></span>Apply</button>
+              <button class="ui-btn ui-btn-danger" type="button" id="coCancel"><span data-icon="close:l:16"></span>Cancel</button>
+            </div>
+          </div>
+        </div>
+        <div class="ui-filter-chips" id="coChips"></div>
       </section>
       <section class="card table-card">
         <div class="ma-toolbar"><span id="coCount"></span><span>Latest first</span></div>
@@ -3702,13 +3758,13 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       </div>
 
       <!-- Advanced Filter (same pattern as the Student Application page, rebuilt with Design System components) -->
-      <section class="card cjp-filter">
-        <div class="cjp-filter-top">
-          <div class="cjp-filter-title"><span class="ui-icon-box is-primary"><span data-icon="filter:f:18"></span></span><h5>Advanced Filter</h5></div>
-          <button class="ui-btn ui-btn-accent" type="button" id="cjpFilterBtn" aria-expanded="false" aria-controls="cjpAdv"><span data-icon="filter:f:16"></span>Filter<span class="cjp-cnt" id="cjpCnt" hidden>0</span><span class="cjp-chev" data-icon="chevron-down:l:14"></span></button>
+      <section class="card ui-filter">
+        <div class="ui-filter-top">
+          <div class="ui-filter-title"><span class="ui-icon-box is-primary"><span data-icon="filter:f:18"></span></span><h5>Advanced Filter</h5></div>
+          <button class="ui-btn ui-btn-accent ui-filter-btn" type="button" id="cjpFilterBtn" aria-expanded="false" aria-controls="cjpAdv"><span data-icon="filter:f:16"></span>Filter<span class="ui-filter-cnt" id="cjpCnt" hidden>0</span><span data-icon="chevron-down:l:14"></span></button>
         </div>
-        <div class="cjp-adv" id="cjpAdv" hidden>
-          <div class="cjp-adv-grid">
+        <div class="ui-filter-panel" id="cjpAdv" hidden>
+          <div class="ui-filter-grid">
             <div class="ui-field"><label class="ui-label" for="cjpfTitle">Job Title</label><input class="ui-input" id="cjpfTitle" placeholder="Search by job title" autocomplete="off"></div>
             <div class="ui-field"><span class="ui-label">Branch</span><div class="ui-select" id="cjpfBranch" data-ph="Select branch" data-search></div></div>
             <div class="ui-field"><span class="ui-label">Job Location</span><div class="ui-select" id="cjpfLoc" data-ph="Select job location" data-search></div></div>
@@ -3717,15 +3773,15 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             <div class="ui-field"><label class="ui-label" for="cjpfFrom">Start Date From</label><input class="ui-input" id="cjpfFrom" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
             <div class="ui-field"><label class="ui-label" for="cjpfTo">End Date To</label><input class="ui-input" id="cjpfTo" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
           </div>
-          <div class="cjp-adv-acts">
-            <span class="cjp-preview" id="cjpPreview"></span>
-            <div class="cjp-adv-btns">
-              <button class="ui-btn ui-btn-outline" type="button" id="cjpReset">Reset</button>
+          <div class="ui-filter-acts">
+            <span class="ui-filter-count" id="cjpPreview"></span>
+            <div class="ui-filter-btns">
               <button class="ui-btn ui-btn-primary" type="button" id="cjpApply"><span data-icon="check:l:16"></span>Apply</button>
+              <button class="ui-btn ui-btn-danger" type="button" id="cjpReset"><span data-icon="close:l:16"></span>Cancel</button>
             </div>
           </div>
         </div>
-        <div class="cjp-chips" id="cjpChips"></div>
+        <div class="ui-filter-chips" id="cjpChips"></div>
       </section>
 
       <!-- Job postings – Design System Table Type 2 (icons + 3 dots menu) -->
@@ -5158,6 +5214,7 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && !e.target.
 
 /* ================= DESIGN SYSTEM – TABLE ================= */
 const TB_ICON = {
+  download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg>', // = icons/line/download.svg
   view: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5C6.5 5 2.7 9.2 1.5 12c1.2 2.8 5 7 10.5 7s9.3-4.2 10.5-7C21.3 9.2 17.5 5 12 5zm0 11.5a4.5 4.5 0 110-9 4.5 4.5 0 010 9zm0-7a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"/></svg>',
   edit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg>',
   delete: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>',
@@ -5170,7 +5227,8 @@ const TB_ACTS = [
   { k: "edit", label: "Edit", use: "Edit the record", token: "--table-act-edit" },
   { k: "delete", label: "Delete", use: "Delete after a confirmation", token: "--table-act-delete" },
   { k: "resume", label: "Resume", use: "Open the student's resume", token: "--table-act-resume" },
-  { k: "more", label: "More", use: "Opens the 3 dots menu", token: "--table-act-more" }
+  { k: "more", label: "More", use: "Opens the 3 dots menu", token: "--table-act-more" },
+  { k: "download", label: "Download", use: "Download the record (e.g. application PDF)", token: "--table-act-download" }
 ];
 const TB_STATUS = {
   "Approved": { cls: "approved", use: "Application accepted" },
@@ -6023,8 +6081,8 @@ function maRender() {
   $("#maCount").innerHTML = `Showing <b>${rows.length}</b> of ${MA_APPS.length} applications`;
   $("#maBody").innerHTML = rows.map(a => {
     const act = a.status === "Draft"
-      ? `<button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-ma-continue="${a.id}" ${maOpen(a) ? "" : "disabled"}><span>Continue</span></button>${maOpen(a) ? "" : `<span class="ma-dead">Application deadline is over.</span>`}`
-      : `<div class="ma-acts">${maUpdBtn(a)}<a class="ui-btn ui-btn-ghost ui-btn-sm" href="#my-apps-view" data-ma-view="${a.id}">${iconSvg("view", "f", 14)}View</a><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-ma-dl="${a.id}">${iconSvg("download", "l", 14)}Download Application</button></div>${maStNote(a)}`;
+      ? `<div class="ui-acts"><button class="ui-act ui-act-edit" type="button" data-ma-continue="${a.id}" ${maOpen(a) ? "" : "disabled"} title="Continue application" aria-label="Continue application ${a.id}">${iconSvg("edit", "f", 18)}</button></div>${maOpen(a) ? "" : `<span class="ma-dead">Application deadline is over.</span>`}`
+      : `<div class="ui-acts">${maUpdBtn(a)}<a class="ui-act ui-act-view" href="#my-apps-view" data-ma-view="${a.id}" title="View application" aria-label="View application ${a.id}">${iconSvg("view", "f", 18)}</a><button class="ui-act ui-act-download" type="button" data-ma-dl="${a.id}" title="Download application" aria-label="Download application ${a.id}">${iconSvg("download", "l", 18)}</button></div>${maStNote(a)}`;
     return `<tr>
       <td><span class="ma-id">${a.id}</span></td>
       <td><span class="ma-scheme"><b>${a.scheme}</b><small>${esc(MA_SCHEMES[a.scheme])}</small></span></td>
@@ -6392,7 +6450,7 @@ function cjpReadFields() {
 function cjpPreview() {
   const d = cjpReadFields(), ok = (!d.from || cjpDate(d.from)) && (!d.to || cjpDate(d.to));
   const n = ok ? CJP.posts.filter(p => cjpMatch(p, d)).length : null;
-  $("#cjpPreview").innerHTML = n === null ? "Enter dates as dd/mm/yyyy" : `<b>${n}</b> job posting${n === 1 ? "" : "s"} match these filters`;
+  $("#cjpPreview").innerHTML = n === null ? "Enter dates as dd/mm/yyyy" : `<b>${n}</b> ${n === 1 ? "job posting matches" : "job postings match"} these filters`;
 }
 $("#cjpAdv").addEventListener("input", cjpPreview);
 $("#cjpAdv").addEventListener("ui-select-change", cjpPreview);
@@ -6410,7 +6468,10 @@ $("#cjpApply").addEventListener("click", () => {
   $("#cjpAdv").hidden = true; $("#cjpFilterBtn").setAttribute("aria-expanded", false);
   toast(Object.keys(d).length ? "Filters applied" : "Showing all job postings");
 });
-$("#cjpReset").addEventListener("click", () => { CJP.f = {}; CJP.page = 1; cjpFilterFields({}); cjpPreview(); cjpRender(); });
+$("#cjpReset").addEventListener("click", () => {             // Cancel (same as the Student Application filter): clear every filter and close the panel
+  CJP.f = {}; CJP.page = 1; cjpFilterFields({}); cjpPreview(); cjpRender();
+  $("#cjpAdv").hidden = true; $("#cjpFilterBtn").setAttribute("aria-expanded", false);
+});
 $("#cjpChips").addEventListener("click", e => {
   const rm = e.target.closest("[data-cjp-rm]"), all = e.target.closest("[data-cjp-clear]");
   if (rm) delete CJP.f[rm.dataset.cjpRm]; else if (all) CJP.f = {}; else return;
@@ -7470,11 +7531,14 @@ function sfErrOf(f) {                                        // error text of on
   if (f.t === "date" && !f.v && !sfDateOk(v)) return "Enter a valid date (dd/mm/yyyy).";
   return f.v ? f.v(v) : "";
 }
-function sfPendingOf(step) {                                  // names of mandatory fields / documents that are missing or wrong
+// Sub-steps (17/11): the visible sections of a step are shown one at a time (right, horizontal). Steps 6 / 7 have none.
+const sfSubsOf = step => step >= 5 ? [] : sfSecs()[step].filter(x => !x.show || x.show());
+function sfPendingOf(step, sub) {                             // names of mandatory fields / documents that are missing or wrong (sub = one sub-step only)
   const out = [];
   if (step === 5) { sfDocGroups().forEach(g => { if (!sfGroupOk(g)) out.push(g.common ? g.items.filter(d => d.r && !F.files[d.k] && !d.auto).map(d => d.l).join(", ") : g.t); }); return out.filter(Boolean); }
   if (step === 6) return F.decl ? [] : ["Declaration"];
-  sfSecs()[step].forEach(s => { if (s.show && !s.show()) return; s.f.forEach(f => {
+  const secs = sub === undefined ? sfSecs()[step] : [sfSubsOf(step)[sub]].filter(Boolean);
+  secs.forEach(s => { if (s.show && !s.show()) return; s.f.forEach(f => {
     if (!sfEn(f)) return;
     const v = String(F[f.k] ?? "").trim();
     if (f.t === "aadhaar" ? !F.aadOk : f.t === "fetch" ? (!v || F.incApi === undefined) : (sfReq(f) && !v) || (v && sfErrOf(f))) out.push(f.l.replace(/\?$/, ""));
@@ -7488,15 +7552,15 @@ function sfStart() {                                           // new applicatio
   Object.entries(SCH.code === "MYSY" ? SF_MYSY_PREFILL() : SF_PREFILL).forEach(([k, [v, s]]) => { F[k] = v; SRC[k] = s; });
   F.instCountry = "India";                                     // default India (editable)
   F.files.dPhoto = { name: "Photo_from_DigiLocker.jpg", size: 48000, auto: true };
-  SF.step = 0; SF.maxStep = 0; SF.draftId = null;
+  SF.step = 0; SF.maxStep = 0; SF.sub = 0; SF.seen = {}; SF.draftId = null;
 }
 function sfOpen() {
   if (!SCH.code || !F.files) { location.hash = "scholarships"; return; }
   const s = SCH_LIST.find(x => x.code === SCH.code);
-  $("#sfTitle").textContent = `${SCH.code} ${sfIsRenew() ? "Renewal " : ""}Application`;
-  $("#sfSub").innerHTML = `${esc(s.name)} · Academic year <b>${SCH.year}</b> · Application type <b>${SCH.type}</b>${SCH.code === "MYSY" ? ` · ${esc(smMarksLabel().replace(/^Your /, ""))} <b>${esc(SM.marks)}</b>` : ` · Categories <b>${[...SCH.cats].join(", ")}</b>`}`;
+  $("#sfTitle").textContent = `${s.name} (${SCH.code})${sfIsRenew() ? " – Renewal" : ""}`;
+  $("#sfSub").innerHTML = `Academic year <b>${SCH.year}</b> · Application type <b>${SCH.type}</b>${SCH.code === "MYSY" ? ` · ${esc(smMarksLabel().replace(/^Your /, ""))} <b>${esc(SM.marks)}</b>` : ` · Categories <b>${[...SCH.cats].join(", ")}</b>`}`;
   $("#sfDeadline").innerHTML = `${iconSvg("calendar", "o", 16)}<span>Application deadline: <b>${fmt(s.deadline)}</b></span>`;
-  $("#sfDone").hidden = true; $("#sfStepsCard").hidden = false; $("#sfFoot").hidden = false;
+  $("#sfDone").hidden = true; $("#sfStepsCard").hidden = false; $("#sfFoot").hidden = false; $("#sfLayout").classList.remove("is-done");
   sfRender();
 }
 
@@ -7521,8 +7585,8 @@ function sfStepHtml(i) {
   if (i === 5) return sfDocsHtml();
   if (i === 6) return sfReviewHtml();
   let extra = "";
-  return sfSecs()[i].map(s => {
-    if (s.show && !s.show()) return "";
+  const subs = sfSubsOf(i); SF.sub = Math.min(SF.sub || 0, Math.max(subs.length - 1, 0));
+  return subs.slice(SF.sub, SF.sub + 1).map(s => {
     if (i === 3 && s.t === "Income Details") extra = F.incApi === true ? `<div class="sf-note is-ok sf-full">${iconSvg("check", "l", 16)}<span>Income details received from the income API (locked).</span></div>` : F.incApi === false ? `<div class="sf-note is-warn sf-full">${iconSvg("warning", "f", 16)}<span>Details were not received. Enter the income yourself and upload the Income Certificate in Upload Documents.</span></div>` : "";
     else if (i === 4) extra = F.aadOk ? `<div class="sf-note is-ok sf-full">${iconSvg("check", "l", 16)}<span>Verified with DigiLocker · XXXX XXXX ${SF_AADHAAR_LAST4}. Your DigiLocker photo is added to Upload Documents.</span></div>` : "";
     else extra = "";
@@ -7563,20 +7627,27 @@ function sfRender() {
   const i = SF.step;
   $("#sfSteps").innerHTML = SF_STEPS.map((t, n) => `<li class="ui-step${n < i ? " is-done" : n === i ? " is-current" : ""}" ${n === i ? 'aria-current="step"' : ""} ${n <= SF.maxStep && n !== i ? `data-sf-go="${n}" tabindex="0" role="button"` : ""}><span class="ui-step-dot">${n < i ? iconSvg("check", "l", 18) : n + 1}</span><div class="ui-step-body"><span class="ui-step-title">${t}</span></div></li>`).join("");
   $("#sfMStep").innerHTML = `<span>Step ${i + 1} of ${SF_STEPS.length}</span><b>${SF_STEPS[i]}</b><div class="ui-progress"><i style="width:${(i + 1) / SF_STEPS.length * 100}%"></i></div>`;
-  $("#sfBody").innerHTML = sfStepHtml(i);
+  $("#sfBody").innerHTML = sfStepHtml(i);                    // also clamps SF.sub
+  const subs = sfSubsOf(i), seen = Math.max(SF.seen?.[i] ?? 0, SF.sub || 0), passed = i < SF.maxStep;
+  SF.seen = { ...(SF.seen || {}), [i]: seen };
+  $("#sfSubsCard").hidden = subs.length < 2;
+  $("#sfSubs").innerHTML = subs.map((x, k) => { const go = k !== SF.sub && (k <= seen || passed); return `<li class="ui-step${k < SF.sub ? " is-done" : k === SF.sub ? " is-current" : ""}" ${k === SF.sub ? 'aria-current="step"' : ""} ${go ? `data-sf-sub="${k}" tabindex="0" role="button"` : ""}><span class="ui-step-dot">${k < SF.sub ? iconSvg("check", "l", 16) : k + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(x.t)}</span></div></li>`; }).join("");
+  $("#sfMSub").innerHTML = subs.length > 1 ? `Part ${SF.sub + 1} of ${subs.length} · <b>${esc(subs[SF.sub].t)}</b>` : "";
   // build the dropdowns
   $$("#sfBody .ui-select[data-k]").forEach(el => { const f = sfField(el.dataset.k); cjpSel(el, sfOpts(f), F[f.k] || ""); });
-  $("#sfPrev").disabled = i === 0;
+  $("#sfPrev").disabled = i === 0 && !SF.sub;
   $("#sfNext").innerHTML = i === 6 ? `Submit Application` : `Next${iconSvg("arrow-right", "l", 16)}`;
   sfSync();
 }
 function sfSync() {                                            // footer: Next enabled only when the step is complete
-  const p = sfPendingOf(SF.step);
+  const hasSubs = sfSubsOf(SF.step).length > 0, p = hasSubs ? sfPendingOf(SF.step, SF.sub) : sfPendingOf(SF.step);
   $("#sfNext").disabled = p.length > 0;
-  $("#sfPending").innerHTML = p.length ? `${HELP_ICON["is-error"] || ""}Complete: ${esc(p.slice(0, 3).join(", "))}${p.length > 3 ? ` and ${p.length - 3} more` : ""}` : SF.step === 6 ? "Ready to submit." : "All mandatory details of this step are filled.";
+  $("#sfPending").innerHTML = p.length ? `${HELP_ICON["is-error"] || ""}Complete: ${esc(p.slice(0, 3).join(", "))}${p.length > 3 ? ` and ${p.length - 3} more` : ""}` : SF.step === 6 ? "Ready to submit." : `All mandatory details of this ${hasSubs && sfSubsOf(SF.step).length > 1 ? "part" : "step"} are filled.`;
   $("#sfPending").classList.toggle("is-error", p.length > 0);
 }
-function sfGo(n) { SF.step = n; SF.maxStep = Math.max(SF.maxStep, n); sfRender(); scrollTo(0, 0); }
+function sfGo(n, sub = 0) { SF.step = n; SF.sub = sub; SF.maxStep = Math.max(SF.maxStep, n); sfRender(); scrollTo(0, 0); }
+$("#sfSubs").addEventListener("click", e => { const g = e.target.closest("[data-sf-sub]"); if (g) sfGo(SF.step, +g.dataset.sfSub); });
+$("#sfSubs").addEventListener("keydown", e => { const g = e.target.closest("[data-sf-sub]"); if (g && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); sfGo(SF.step, +g.dataset.sfSub); } });
 
 // ---------- events ----------
 $("#sfBody").addEventListener("input", e => {
@@ -7638,9 +7709,13 @@ $("#sfBody").addEventListener("change", e => {
   if (msg) { help.hidden = false; help.classList.add("is-error"); help.innerHTML = HELP_ICON["is-error"] + msg; row.classList.add("is-error"); return; }
   F.files[k] = { name: file.name, size: file.size }; SF.touched = true; sfRender();
 });
-$("#sfPrev").addEventListener("click", () => { if (SF.step > 0) sfGo(SF.step - 1); });
+$("#sfPrev").addEventListener("click", () => {                 // back one sub-step, or to the last sub-step of the step before
+  if (SF.sub > 0) return sfGo(SF.step, SF.sub - 1);
+  if (SF.step > 0) sfGo(SF.step - 1, Math.max(sfSubsOf(SF.step - 1).length - 1, 0));
+});
 $("#sfNext").addEventListener("click", () => {
   if ($("#sfNext").disabled) return;
+  if (SF.sub < sfSubsOf(SF.step).length - 1) return sfGo(SF.step, SF.sub + 1);   // next sub-step of this step
   if (SF.step < 6) return sfGo(SF.step + 1);
   sfSubmit();
 });
@@ -7651,13 +7726,13 @@ function sfSaveDraft() {
   const s = SCH_LIST.find(x => x.code === SCH.code);
   let a = MA_APPS.find(x => x.id === SF.draftId);
   if (!a) { SF.draftId = "0123" + String(Date.now()).slice(-10); a = { id: SF.draftId, scheme: SCH.code, year: SCH.year, type: SCH.type, status: "Draft" }; MA_APPS.unshift(a); }
-  Object.assign(a, { date: new Date(), step: SF.step + 1, deadline: s.deadline, form: { F: JSON.parse(JSON.stringify(F)), SRC: { ...SRC }, cats: [...SCH.cats], sm: { ...SM }, step: SF.step, maxStep: SF.maxStep } });
+  Object.assign(a, { date: new Date(), step: SF.step + 1, deadline: s.deadline, form: { F: JSON.parse(JSON.stringify(F)), SRC: { ...SRC }, cats: [...SCH.cats], sm: { ...SM }, step: SF.step, sub: SF.sub, seen: { ...(SF.seen || {}) }, maxStep: SF.maxStep } });
   maRender();
 }
 function sfContinueDraft(a) {                                   // My Applications → Continue (a draft made by this form)
   SCH.code = a.scheme; SCH.type = a.type; SCH.cats = new Set(a.form.cats);
   F = JSON.parse(JSON.stringify(a.form.F)); SRC = { ...a.form.SRC }; if (a.form.sm) Object.assign(SM, a.form.sm);
-  SF.step = a.form.step; SF.maxStep = a.form.maxStep; SF.draftId = a.id;
+  SF.step = a.form.step; SF.sub = a.form.sub || 0; SF.seen = a.form.seen || {}; SF.maxStep = a.form.maxStep; SF.draftId = a.id;
   location.hash === "#sch-form" ? sfOpen() : (location.hash = "sch-form");
 }
 
@@ -7701,7 +7776,7 @@ function sfSubmit() {
   delete a.form; delete a.step; delete a.deadline;
   verFromForm(a, rv);                                         // goes to the Help Center list (Phase 4)
   SF.draftId = null; maRender();
-  $("#sfStepsCard").hidden = true; $("#sfFoot").hidden = true; $("#sfBody").innerHTML = "";
+  $("#sfStepsCard").hidden = true; $("#sfSubsCard").hidden = true; $("#sfFoot").hidden = true; $("#sfBody").innerHTML = ""; $("#sfLayout").classList.add("is-done");
   $("#sfDone").hidden = false;
   $("#sfDone").innerHTML = `<span class="ui-icon-box is-success">${iconSvg("check", "l", 24)}</span><h4>Application submitted</h4>
     <p>Your ${SCH.code} application <b>${a.id}</b> is submitted. The Help Center of your college will verify it.</p>
@@ -8063,20 +8138,33 @@ function hcInit() {
   cjpSel($("#hcType"), ["All", "Fresh", "Delayed", "Renewal", "Renewal Delayed"], HC.type); cjpSel($("#hcStatus"), ["All", ...HC_STATUSES], HC.status); $("#hcSearch").value = HC.q;
 }
 function hcRender() {
-  const q = HC.q.toLowerCase();
-  const list = VER.filter(r => HC_STATUSES.includes(r.status) && r.college === HC.college && (HC.scheme === "All" || r.scheme === HC.scheme) && (HC.year === "All" || r.year === HC.year)
-    && (HC.type === "All" || r.type === HC.type) && (HC.status === "All" || r.status === HC.status) && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q))).sort((a, b) => b.date - a.date);
+  const list = hcList(HC).sort((a, b) => b.date - a.date); hcChips();
   $("#hcCount").textContent = `${list.length} application${list.length === 1 ? "" : "s"}`;
   $("#hcBody").innerHTML = list.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span></td><td>${r.scheme}</td><td title="${esc(r.college)}">${esc(verShort(r.college))}</td>
     <td>${esc(r.program)}<br><small>${esc(r.course)}</small></td><td>${esc(r.type)}</td><td>${verTime(r.date)}</td><td>${verBadge(r.status)}</td>
-    <td><a class="ui-btn ui-btn-ghost ui-btn-sm" href="#ver-view" data-ver="${r.id}">${iconSvg("view", "f", 14)}View</a></td></tr>`).join("")
+    <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#ver-view" data-ver="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`).join("")
     || `<tr class="ver-empty"><td colspan="9">No applications to verify.</td></tr>`;
 }
-$("#view-hc").addEventListener("ui-select-change", e => {
-  const m = { hcCollege: "college", hcScheme: "scheme", hcYear: "year", hcType: "type", hcStatus: "status" }[e.target.id]; if (!m || !e.detail[0]) return;
-  if (HC[m] !== e.detail[0]) { HC[m] = e.detail[0]; hcRender(); }
-});
-$("#hcSearch").addEventListener("input", e => { HC.q = e.target.value.trim(); hcRender(); });
+// Advanced Filter (17/11, DS .ui-filter): the fields are a draft – Apply filters the list, Cancel clears all and closes
+const HC_F = { college: "College", scheme: "Scholarship", year: "Academic Year", type: "Application Type", status: "Status", q: "Search" };
+const hcDef = () => ({ college: VER_COLLEGES[0], scheme: "All", year: "All", type: "All", status: "All", q: "" });
+const hcRead = () => ({ college: cjpVal($("#hcCollege")) || VER_COLLEGES[0], scheme: cjpVal($("#hcScheme")) || "All", year: cjpVal($("#hcYear")) || "All", type: cjpVal($("#hcType")) || "All", status: cjpVal($("#hcStatus")) || "All", q: $("#hcSearch").value.trim() });
+const hcList = f => { const q = f.q.toLowerCase(); return VER.filter(r => HC_STATUSES.includes(r.status) && r.college === f.college && (f.scheme === "All" || r.scheme === f.scheme) && (f.year === "All" || r.year === f.year)
+  && (f.type === "All" || r.type === f.type) && (f.status === "All" || r.status === f.status) && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q))); };
+const hcPreview = () => { const n = hcList(hcRead()).length; $("#hcPreview").innerHTML = `<b>${n}</b> ${n === 1 ? "application matches" : "applications match"} these filters`; };
+function hcChips() {
+  const d = hcDef(), keys = Object.keys(HC_F).filter(k => HC[k] !== d[k]);
+  $("#hcChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${HC_F[k]}:</b>${esc(k === "college" ? verShort(HC[k]) : HC[k])}<button type="button" data-hc-rm="${k}" title="Remove ${HC_F[k]} filter" aria-label="Remove ${HC_F[k]} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + `<button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-hc-clear>Clear all</button>` : "";
+  $("#hcCnt").hidden = !keys.length; $("#hcCnt").textContent = keys.length;
+}
+const hcClose = () => { $("#hcAdv").hidden = true; $("#hcFilterBtn").setAttribute("aria-expanded", false); };
+$("#hcFilterBtn").addEventListener("click", () => { const open = $("#hcAdv").hidden; $("#hcAdv").hidden = !open; $("#hcFilterBtn").setAttribute("aria-expanded", open); if (open) { hcInit(); hcPreview(); $("#hcSearch").focus(); } });
+$("#hcAdv").addEventListener("input", hcPreview);
+$("#hcAdv").addEventListener("ui-select-change", hcPreview);
+$("#hcSearch").addEventListener("keydown", e => { if (e.key === "Enter") $("#hcApply").click(); });
+$("#hcApply").addEventListener("click", () => { Object.assign(HC, hcRead()); hcRender(); hcClose(); toast("Filters applied"); });
+$("#hcCancel").addEventListener("click", () => { Object.assign(HC, hcDef()); hcInit(); hcRender(); hcClose(); });
+$("#hcChips").addEventListener("click", e => { const rm = e.target.closest("[data-hc-rm]"), all = e.target.closest("[data-hc-clear]"); if (rm) HC[rm.dataset.hcRm] = hcDef()[rm.dataset.hcRm]; else if (all) Object.assign(HC, hcDef()); else return; hcInit(); hcRender(); });
 $("#hcBody").addEventListener("click", e => { const a = e.target.closest("[data-ver]"); if (a) { HC.current = a.dataset.ver; HC.from = "hc"; } });
 
 // ---------- Commissioner Office list (CO-01, VER-12) ----------
@@ -8091,22 +8179,34 @@ function coInit() {
   $("#coHead").innerHTML = `<tr><th>Application ID</th><th>Student Name</th><th>College</th><th>Course</th>${cmss ? "<th>Department</th><th>Course group</th>" : "<th>Course Type</th>"}<th>Application Type</th><th>Tuition fee</th><th>Locked on</th><th>Action</th></tr>`;
 }
 function coRender() {
-  const cmss = CO.tab === "CMSS", q = CO.q.toLowerCase();
-  const list = VER.filter(r => r.status === "Under Review" && r.scheme === CO.tab && (CO.college === "All" || r.college === CO.college)
-    && (CO.cls === "All" || (cmss ? r.dept === CO.cls : r.courseType === CO.cls)) && (!cmss || CO.group === "All" || r.group === CO.group)
-    && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q))).sort((a, b) => b.locked - a.locked);
+  const cmss = CO.tab === "CMSS", list = coList(CO).sort((a, b) => b.locked - a.locked); coChips();
   $("#coCount").textContent = `${list.length} application${list.length === 1 ? "" : "s"}`;
   $("#coBody").innerHTML = list.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span></td><td title="${esc(r.college)}">${esc(verShort(r.college))}</td><td>${esc(r.program)}<br><small>${esc(r.course)}</small></td>
     ${cmss ? `<td>${esc(r.dept)}</td><td>${esc(r.group || "–")}</td>` : `<td>${esc((r.courseType || "–").replace(/ \(.*$/, ""))}</td>`}<td>${esc(r.type)}</td><td>${maRupee(r.fee)}</td><td>${fmt(r.locked)}</td>
-    <td><a class="ui-btn ui-btn-ghost ui-btn-sm" href="#ver-view" data-ver="${r.id}">${iconSvg("view", "f", 14)}View</a></td></tr>`).join("")
+    <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#ver-view" data-ver="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`).join("")
     || `<tr class="ver-empty"><td colspan="${cmss ? 10 : 9}">No applications to review.</td></tr>`;
 }
-$("#coTabs").addEventListener("click", e => { const b = e.target.closest("[data-co-tab]"); if (!b || b.dataset.coTab === CO.tab) return; CO.tab = b.dataset.coTab; CO.cls = "All"; CO.group = "All"; coInit(); coRender(); });
-$("#view-co").addEventListener("ui-select-change", e => {
-  const m = { coCls: "cls", coGroup: "group", coCollege: "college" }[e.target.id]; if (!m || !e.detail[0]) return;
-  if (CO[m] !== e.detail[0]) { CO[m] = e.detail[0]; coRender(); }
-});
-$("#coSearch").addEventListener("input", e => { CO.q = e.target.value.trim(); coRender(); });
+$("#coTabs").addEventListener("click", e => { const b = e.target.closest("[data-co-tab]"); if (!b || b.dataset.coTab === CO.tab) return; CO.tab = b.dataset.coTab; Object.assign(CO, coDef()); coInit(); coRender(); coClose(); });
+// Advanced Filter (17/11, DS .ui-filter) – same behaviour as the Help Center list; the CMSS / MYSY tabs stay above it
+const coDef = () => ({ cls: "All", group: "All", college: "All", q: "" });
+const coLbl = k => ({ cls: CO.tab === "CMSS" ? "Department" : "Course Type", group: "Course group", college: "College", q: "Search" })[k];
+const coRead = () => ({ cls: cjpVal($("#coCls")) || "All", group: CO.tab === "CMSS" ? cjpVal($("#coGroup")) || "All" : "All", college: cjpVal($("#coCollege")) || "All", q: $("#coSearch").value.trim() });
+const coList = f => { const cmss = CO.tab === "CMSS", q = f.q.toLowerCase(); return VER.filter(r => r.status === "Under Review" && r.scheme === CO.tab && (f.college === "All" || r.college === f.college)
+  && (f.cls === "All" || (cmss ? r.dept === f.cls : r.courseType === f.cls)) && (!cmss || f.group === "All" || r.group === f.group) && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q))); };
+const coPreview = () => { const n = coList(coRead()).length; $("#coPreview").innerHTML = `<b>${n}</b> ${n === 1 ? "application matches" : "applications match"} these filters`; };
+function coChips() {
+  const keys = ["q", "college", "cls", "group"].filter(k => CO[k] !== coDef()[k]);
+  $("#coChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${coLbl(k)}:</b>${esc(k === "college" ? verShort(CO[k]) : CO[k])}<button type="button" data-co-rm="${k}" title="Remove ${coLbl(k)} filter" aria-label="Remove ${coLbl(k)} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + `<button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-co-clear>Clear all</button>` : "";
+  $("#coCnt").hidden = !keys.length; $("#coCnt").textContent = keys.length;
+}
+const coClose = () => { $("#coAdv").hidden = true; $("#coFilterBtn").setAttribute("aria-expanded", false); };
+$("#coFilterBtn").addEventListener("click", () => { const open = $("#coAdv").hidden; $("#coAdv").hidden = !open; $("#coFilterBtn").setAttribute("aria-expanded", open); if (open) { coInit(); coPreview(); $("#coSearch").focus(); } });
+$("#coAdv").addEventListener("input", coPreview);
+$("#coAdv").addEventListener("ui-select-change", coPreview);
+$("#coSearch").addEventListener("keydown", e => { if (e.key === "Enter") $("#coApply").click(); });
+$("#coApply").addEventListener("click", () => { Object.assign(CO, coRead()); coRender(); coClose(); toast("Filters applied"); });
+$("#coCancel").addEventListener("click", () => { Object.assign(CO, coDef()); coInit(); coRender(); coClose(); });
+$("#coChips").addEventListener("click", e => { const rm = e.target.closest("[data-co-rm]"), all = e.target.closest("[data-co-clear]"); if (rm) CO[rm.dataset.coRm] = coDef()[rm.dataset.coRm]; else if (all) Object.assign(CO, coDef()); else return; coInit(); coRender(); });
 $("#coBody").addEventListener("click", e => { const a = e.target.closest("[data-ver]"); if (a) { HC.current = a.dataset.ver; HC.from = "co"; } });
 
 // ---------- Review page (HC-02 / HC-02.1 / CO-02, VER-02 / 03 / 04 / 13) ----------
@@ -8286,7 +8386,7 @@ function stTracker(a) {
     <ol class="ui-steps st-steps" aria-label="Application progress">${dot(0, "Submitted", fmt(a.date))}${dot(1, "Help Center Check", step === 1 ? s : "Done")}${dot(2, "Commissioner Review", step === 2 ? "In progress" : "")}${dot(3, "Decision", "")}</ol>${rem}</section>`;
 }
 // function declarations (hoisted): maRender runs at page load, before this block; VER is not ready then → try / catch
-function maUpdBtn(a) { try { const r = verOfMa(a); return verCanUpdate(r) ? `<a class="ui-btn ui-btn-primary ui-btn-sm" href="#ma-update" data-ma-upd="${a.id}">${iconSvg("edit", "f", 14)}Update</a>` : ""; } catch (e) { return ""; } }
+function maUpdBtn(a) { try { const r = verOfMa(a); return verCanUpdate(r) ? `<a class="ui-act ui-act-edit" href="#ma-update" data-ma-upd="${a.id}" title="Update application" aria-label="Update application ${a.id}">${iconSvg("edit", "f", 18)}</a>` : ""; } catch (e) { return ""; } }
 function maStNote(a) { try { return maStNote2(a); } catch (e) { return ""; } }
 const maStNote2 = a => { const r = verOfMa(a); if (!r) return ""; return r.status === "Correction Required" ? `<span class="ma-dead st-left">${Math.max(0, verDaysLeft(r))} day${verDaysLeft(r) === 1 ? "" : "s"} left to resubmit</span>` : r.status === "On Hold" && r.sar === "No" ? `<span class="ma-dead st-ok">No action needed</span>` : r.status === "Expired" ? `<span class="ma-dead">Expired – no action possible</span>` : ""; };
 document.addEventListener("click", e => { const u = e.target.closest("[data-ma-upd]"); if (u) MA.current = u.dataset.maUpd; });
@@ -8365,7 +8465,11 @@ function showView(name) {
   if (!document.getElementById("view-" + name)) name = "dashboard";
   if (name === "dashboard" && ROLE !== "student") name = ROLE_HOME[ROLE];   // Help Center / Commissioner Office have no student dashboard
   $$(".content[id^='view-']").forEach(v => v.hidden = v.id !== "view-" + name);
-  $("#app").classList.toggle("is-dash", name === "dashboard"); // Dashboard has no sidebar
+  const schFull = ROLE === "student" && /^(scholarships|sch-declare|sch-form|my-apps|my-apps-view|ma-update)$/.test(name); // student scholarship pages: full width (17/11)
+  $("#app").classList.toggle("is-dash", name === "dashboard" || schFull); // Dashboard + student scholarship pages have no sidebar
+  $("#app").classList.toggle("is-sch", schFull);
+  const schTab = /^(my-apps|my-apps-view|ma-update)$/.test(name) ? "my-apps" : "scholarships";
+  $$("[data-schnav]").forEach(a => { const on = schFull && a.dataset.schnav === schTab; a.classList.toggle("is-active", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   const navName = name === "ver-view" ? HC.from : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
   $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === navName));
   $(".h-title h2").textContent = ({ dashboard: "Dashboard", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications" })[name] || "Student Profile";

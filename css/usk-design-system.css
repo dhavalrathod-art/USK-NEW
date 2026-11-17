@@ -458,6 +458,17 @@ body.ui-dragging{cursor:grabbing;user-select:none}
 .ui-step-body > code,.ui-step-note{align-self:flex-start}
 .ui-step-note{font-size:var(--font-size-body-sm);color:var(--color-text-body);background:var(--color-gray-50);border:1px solid var(--color-border-default);border-radius:6px;padding:8px 10px;margin-top:4px}
 .ui-steps:not(.is-vertical) .ui-step-note{display:none}
+/* Inline stepper (17/11): dot + title in one row, a line fills the space to the next step – used for the sub-steps of a form step.
+   Below 700px it turns vertical like every .ui-steps; pages may show a short "Part N of M" text instead. */
+.ui-steps.is-inline{align-items:center;gap:var(--space-12)}
+.ui-steps.is-inline .ui-step{flex:1 1 auto;flex-direction:row;align-items:center;text-align:left;gap:var(--space-12);padding:0}
+.ui-steps.is-inline .ui-step:last-child{flex:0 0 auto}
+.ui-steps.is-inline .ui-step::before{display:none}
+.ui-steps.is-inline .ui-step:not(:last-child)::after{content:"";flex:1;min-width:24px;height:2px;border-radius:1px;background:var(--step-line)}
+.ui-steps.is-inline .ui-step.is-done::after{background:var(--step-done)}
+.ui-steps.is-inline .ui-step-dot{width:36px;height:36px}
+.ui-steps.is-inline .ui-step-body{align-items:flex-start;padding-top:0}
+.ui-steps.is-inline .ui-step-title{margin-top:0;white-space:nowrap}
 @media (max-width:700px){
   .ui-steps{flex-direction:column}
   .ui-steps .ui-step{flex-direction:row;align-items:flex-start;text-align:left;gap:14px;padding:0 0 22px}
@@ -533,6 +544,7 @@ body.ui-dragging{cursor:grabbing;user-select:none}
   --table-act-view:var(--color-primary-600);  --table-act-edit:var(--color-info);
   --table-act-delete:var(--color-error);      --table-act-resume:var(--color-accent-600);
   --table-act-more:var(--color-gray-800);     --table-act-hover-bg:var(--color-primary-50);
+  --table-act-download:var(--color-primary-600);
 }
 .ui-cb{width:16px;height:16px;accent-color:var(--table-checkbox);cursor:pointer;vertical-align:middle}
 .ui-badge{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:12px;border:1px solid;font-size:var(--font-size-badge);line-height:var(--line-height-badge);font-weight:var(--font-weight-medium);white-space:nowrap}
@@ -546,6 +558,33 @@ body.ui-dragging{cursor:grabbing;user-select:none}
 /* Neutral – non-status labels such as job type (On-site, Remote, Hybrid). No dot. */
 .ui-badge-neutral{color:var(--color-neutral-text);background:var(--color-neutral-bg);border-color:var(--color-neutral-border)}
 .ui-badge-neutral::before{display:none}
+/* ===== Advanced Filter (17/11) – one pattern for every list page: card with title + gold Filter button (count + chevron);
+   the panel opens below a dashed line: fields in 4 EQUAL columns (3 / 2 / 1 on smaller screens), "N … match these filters" on the left,
+   Apply (primary) + Cancel (danger: clears all + closes) on the right; applied filters show as chips with "Clear all". ===== */
+.ui-filter{padding:var(--space-16) var(--space-20);margin-bottom:var(--space-16)}
+.ui-filter-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12)}
+.ui-filter-title{display:flex;align-items:center;gap:var(--space-12);min-width:0}
+.ui-filter-title .ui-icon-box{flex:none;width:32px;height:32px}
+.ui-filter-title h5{font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.ui-filter-btn{flex:none}
+.ui-filter-btn > svg:last-child{transition:transform .2s}
+.ui-filter-btn[aria-expanded="true"] > svg:last-child{transform:rotate(180deg)}
+.ui-filter-cnt{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#fff;color:var(--color-accent-700);font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);display:inline-grid;place-items:center}
+.ui-filter-cnt[hidden],.ui-filter-panel[hidden]{display:none}
+.ui-filter-panel{margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px dashed var(--color-border-strong)}
+.ui-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+.ui-filter-grid > .ui-field[hidden]{display:none}
+.ui-filter-acts{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-16)}
+.ui-filter-btns{display:flex;gap:var(--space-btn-group);margin-left:auto}
+.ui-filter-count{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ui-filter-count b{color:var(--color-primary-600)}
+.ui-filter-chips{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8);margin-top:var(--space-12)}
+.ui-filter-chips:empty{display:none}
+.ui-filter-chips .ui-chip{height:28px;font-weight:var(--font-weight-medium)}
+.ui-filter-chips .ui-chip b{font-weight:var(--font-weight-semibold);margin-right:2px}
+@media (max-width:1199.98px){.ui-filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:991.98px){.ui-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:575.98px){.ui-filter{padding:var(--space-16)}.ui-filter-grid{grid-template-columns:1fr}.ui-filter-btns{width:100%}.ui-filter-btns .ui-btn{flex:1}}
 .ui-acts{display:flex;align-items:center;gap:4px}
 .ui-act{width:32px;height:32px;border:0;border-radius:6px;background:transparent;display:grid;place-items:center;transition:background .15s}
 .ui-act:hover,.ui-act.is-open{background:var(--table-act-hover-bg)}
@@ -553,6 +592,8 @@ body.ui-dragging{cursor:grabbing;user-select:none}
 .ui-act svg{width:18px;height:18px}
 .ui-act-view{color:var(--table-act-view)}
 .ui-act-edit{color:var(--table-act-edit)}
+.ui-act-download{color:var(--table-act-download)}
+.ui-act:disabled{opacity:.45;cursor:not-allowed;background:transparent}
 .ui-act-delete{color:var(--table-act-delete)}
 .ui-act-delete:hover{background:var(--color-error-bg)}
 .ui-act-resume{color:var(--table-act-resume)}
