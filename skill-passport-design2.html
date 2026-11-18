@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skill Passport (Design 2) – USK</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/usk-design-system.css">
+<style>
+/* =====================================================
+   SKILL PASSPORT – "Passport rail + bento" design (student view), 17/11/2026
+   Idea: less scrolling. A sticky Passport ID card + status tiles stay on the left (desktop);
+   the sections sit in a 2-column bento grid on the right, with compact list rows
+   (first 2 items, "Show more"). Below 1100px: one column + a sticky "jump to" bar.
+   Uses only USK Design System tokens and components.
+   Earlier versions: skill-passport-design1.html (tabs).
+   ===================================================== */
+:root{ --sp-max:1280px; --sp-header-h:64px; --sp-rail:320px; --sp-jbar-h:52px; }
+body{font-family:var(--font-family-base);background:var(--color-bg-page);color:var(--color-text-body);font-size:var(--font-size-body);min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--color-text-link)}
+[hidden]{display:none !important}
+.sp-wrap{width:100%;max-width:var(--sp-max);margin:0 auto;padding:0 var(--space-page)}
+
+/* ---------- Header ---------- */
+.sp-header{position:sticky;top:0;z-index:50;background:var(--color-bg-header);border-bottom:1px solid var(--color-border-default);height:var(--sp-header-h)}
+.sp-header .sp-wrap{height:100%;display:flex;align-items:center;gap:var(--space-16)}
+.sp-brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.sp-brand img{height:var(--logo-size-sidebar);width:auto}
+.sp-brand b{display:block;font-size:var(--logo-title-size);font-weight:var(--font-weight-bold);color:var(--color-logo-title);letter-spacing:.2px;line-height:1.3;white-space:nowrap}
+.sp-brand small{display:block;font-size:var(--logo-subtitle-size);font-weight:var(--font-weight-medium);color:var(--color-logo-subtitle);line-height:1.3}
+.sp-head-actions{margin-left:auto;display:flex;align-items:center;gap:var(--space-8)}
+.sp-head-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--color-border-default);background:#fff;color:var(--color-icon-primary);display:grid;place-items:center;position:relative}
+.sp-head-btn:hover{background:var(--color-primary-50)}
+.sp-head-btn:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-dot{position:absolute;top:6px;right:7px;width:9px;height:9px;border-radius:50%;background:var(--color-accent-500);border:2px solid #fff}
+.sp-user{display:flex;align-items:center;gap:8px;height:40px;padding:0 10px 0 4px;border-radius:20px;border:1px solid var(--color-border-default);background:#fff;color:var(--color-icon-default)}
+.sp-user:hover{background:var(--color-primary-50)}
+.sp-avatar-sm{width:32px;height:32px;border-radius:50%;background:var(--color-primary-600);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:var(--font-weight-semibold)}
+.sp-user-name{font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+
+/* ---------- Main: jump bar (small screens) + rail + content ---------- */
+.sp-main{flex:1;padding:var(--space-16) 0 var(--space-40)}
+.sp-main .sp-wrap{display:flex;flex-direction:column;gap:var(--space-12)}
+.sp-card{background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:12px;box-shadow:0 1px 3px rgba(15,58,102,.06)}
+.sp-layout{display:grid;grid-template-columns:var(--sp-rail) minmax(0,1fr);gap:var(--space-20);align-items:start}
+.sp-content{display:flex;flex-direction:column;gap:var(--space-16);min-width:0}
+
+/* Sticky "jump to" bar – only below 1100px (the rail does this job on desktop) */
+.sp-jbar{display:none;position:sticky;top:var(--sp-header-h);z-index:40;gap:var(--space-8);padding:var(--space-8) 0;overflow-x:auto;scrollbar-width:none;background:var(--color-bg-page)}
+.sp-jbar::-webkit-scrollbar{display:none}
+.sp-jchip{flex:none;height:32px;padding:0 14px;border:1px solid var(--color-border-strong);border-radius:16px;background:var(--color-bg-surface);font-family:inherit;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);white-space:nowrap;cursor:pointer}
+.sp-jchip:hover{border-color:var(--color-primary-300);color:var(--color-primary-600)}
+.sp-jchip:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-jchip.is-active{background:var(--color-primary-600);border-color:var(--color-primary-600);color:#fff}
+
+/* Left rail: sticky on desktop */
+.sp-rail > *{flex:none}
+.sp-rail{position:sticky;top:calc(var(--sp-header-h) + var(--space-16));display:flex;flex-direction:column;gap:var(--space-12);max-height:calc(100vh - var(--sp-header-h) - var(--space-32));overflow-y:auto;scrollbar-width:thin;padding:2px}
+
+/* The Passport ID card (navy, gold top edge) */
+.sp-pass{position:relative;background:var(--color-primary-600);color:#fff;border-radius:14px;padding:var(--space-16) var(--space-16) var(--space-12);overflow:hidden;box-shadow:0 4px 14px rgba(15,31,49,.18)}
+.sp-pass::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--color-accent-500)}
+.sp-pass-top{display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);margin-top:var(--space-4)}
+.sp-pass-tag{font-size:var(--font-size-overline);font-weight:var(--font-weight-bold);letter-spacing:.8px;text-transform:uppercase;color:var(--color-accent-300)}
+.sp-verified{display:inline-flex;align-items:center;gap:4px;padding:2px var(--space-8);border-radius:4px;background:var(--color-accent-500);color:#fff;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold)}
+.sp-pass-id{display:flex;align-items:center;gap:var(--space-12);margin-top:var(--space-12)}
+.sp-ava{width:56px;height:56px;flex:none;border-radius:50%;border:3px solid #fff;background:var(--color-accent-500);display:grid;place-items:center;font-size:var(--font-size-h3);font-weight:var(--font-weight-bold);color:#fff}
+.sp-pass h1{font-size:var(--font-size-h4);line-height:var(--line-height-h4);font-weight:var(--font-weight-bold)}
+.sp-pass-sub{margin-top:2px;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-primary-100)}
+.sp-pass-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--space-8);margin-top:var(--space-12);padding-top:var(--space-4);border-top:1px dashed var(--color-primary-400)}
+.sp-pass-row.is-full{grid-column:1/-1}
+.sp-pass-row{display:flex;align-items:center;gap:var(--space-8);min-height:38px;min-width:0}
+.sp-pass-row > svg{flex:none;color:var(--color-accent-300)}
+.sp-pass-row > div{min-width:0}
+.sp-pass-row small{display:block;font-size:var(--font-size-overline);font-weight:var(--font-weight-semibold);letter-spacing:.4px;text-transform:uppercase;color:var(--color-primary-200)}
+.sp-pass-row b{display:flex;align-items:center;gap:4px;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:#fff}
+.sp-val{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sp-mask{border:0;background:none;width:24px;height:24px;border-radius:4px;display:grid;place-items:center;color:var(--color-primary-200);flex-shrink:0;cursor:pointer}
+.sp-mask:hover,.sp-mask:focus-visible{color:#fff;background:var(--color-primary-500);outline:0}
+.sp-pass-foot{display:flex;align-items:center;gap:6px;margin-top:var(--space-8);padding-top:var(--space-8);border-top:1px dashed var(--color-primary-400)}
+.sp-pass-foot > span{font-size:var(--font-size-overline);font-weight:var(--font-weight-semibold);letter-spacing:.4px;text-transform:uppercase;color:var(--color-primary-200);margin-right:auto}
+.sp-pass-foot a,.sp-share{width:32px;height:32px;border:0;border-radius:8px;display:grid;place-items:center;color:#fff;background:var(--color-primary-500);cursor:pointer}
+.sp-pass-foot a:hover,.sp-share:hover{background:var(--color-primary-400)}
+.sp-pass-foot a:focus-visible,.sp-share:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-accent-300)}
+/* Generate Passport – the one gold button of this page (page-level exception, Design System tokens only). Hover: two soft rings fade in and out. */
+.sp-btn-passport{position:relative;width:100%;margin-top:var(--space-8);height:44px;padding:0 var(--space-24);border-radius:999px;background:var(--color-accent-500);color:#fff;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);box-shadow:none;transition:background .2s}
+.sp-btn-passport::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 4px var(--color-accent-300),0 0 0 8px var(--color-accent-100);opacity:0;pointer-events:none;transition:opacity .25s}
+.sp-btn-passport:hover,.sp-btn-passport:focus-visible{background:var(--color-accent-600);box-shadow:none}
+.sp-btn-passport:hover::before,.sp-btn-passport:focus-visible::before{animation:sp-glow 1.2s ease-in-out infinite alternate}
+@keyframes sp-glow{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.sp-btn-passport:hover::before,.sp-btn-passport:focus-visible::before{animation:none;opacity:1}}
+.sp-btn-passport:active{transform:translateY(1px);background:var(--color-accent-700)}
+.sp-btn-passport:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* Status tiles (count of each section; click = jump; the one in view is highlighted) */
+.sp-navcard{padding:var(--space-8) var(--space-12) var(--space-12)}
+.sp-navtitle{display:block;margin:0 0 var(--space-4) var(--space-4);font-size:var(--font-size-overline);font-weight:var(--font-weight-bold);letter-spacing:.6px;text-transform:uppercase;color:var(--color-text-secondary)}
+.sp-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-8)}
+.sp-stat{display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px var(--space-4);border:1px solid var(--color-border-default);border-radius:10px;background:var(--color-bg-surface);font-family:inherit;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.sp-stat:hover{border-color:var(--color-primary-300)}
+.sp-stat:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-stat.is-active{border-color:var(--color-primary-600);background:var(--color-primary-50)}
+.sp-stat .ui-icon-box{width:28px;height:28px;border-radius:8px}
+.sp-stat b{font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.sp-stat > span:last-child{font-size:var(--font-size-label);line-height:var(--line-height-label);font-weight:var(--font-weight-medium);color:var(--color-text-secondary)}
+.sp-ib-accent{background:var(--color-icon-bg-accent);color:var(--color-accent-700)}
+.sp-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;margin-top:var(--space-8);padding-top:var(--space-4);border-top:1px solid var(--color-divider)}
+.sp-linkbtn{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);height:28px;padding:0 var(--space-8);border:0;border-radius:6px;background:none;font-family:inherit;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-body);text-align:left;cursor:pointer}
+.sp-linkbtn:hover{background:var(--color-primary-50);color:var(--color-primary-600)}
+.sp-linkbtn:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-linkbtn.is-active{background:var(--color-primary-50);color:var(--color-primary-600)}
+.sp-linkbtn svg{color:var(--color-icon-muted)}
+
+/* Slim hero (the old tall banner took a whole screen) */
+.sp-hero{position:relative;min-height:128px;display:flex;align-items:center;background:var(--color-primary-600);color:#fff;border-radius:14px;overflow:hidden}
+.sp-hero-text{position:relative;z-index:2;width:62%;padding:var(--space-20) var(--space-24)}
+.sp-hero-img,.sp-hero-gold{position:absolute;top:0;bottom:0;right:0;width:38%;clip-path:polygon(72px 0,100% 0,100% 100%,0 100%)}
+.sp-hero-img{height:100%;object-fit:cover;object-position:center 60%;z-index:1}
+.sp-hero-gold{width:calc(38% + 12px);background:var(--color-accent-500);z-index:0}
+.sp-overline{display:block;font-size:var(--font-size-caption);line-height:var(--line-height-caption);font-weight:var(--font-weight-bold);letter-spacing:.6px;text-transform:uppercase;color:var(--color-accent-300)}
+.sp-hero h2{font-size:var(--font-size-h1);line-height:var(--line-height-h1);font-weight:var(--font-weight-bold);margin-top:2px}
+.sp-hero h2 em{font-style:normal;color:var(--color-accent-500)}
+.sp-hero p{font-size:var(--font-size-body);color:var(--color-primary-100);margin-top:var(--space-4)}
+.sp-pills{display:flex;gap:var(--space-16);margin-top:var(--space-8);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);flex-wrap:wrap}
+.sp-pills span{display:flex;align-items:center;gap:6px}
+.sp-pills svg{color:var(--color-accent-500)}
+
+/* Bento grid of section cards */
+.sp-bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16)}
+.sp-sec{padding:var(--space-16);scroll-margin-top:calc(var(--sp-header-h) + var(--space-16));min-width:0}
+.sp-span2{grid-column:1/-1}
+.sp-head{display:flex;align-items:center;gap:var(--space-12);margin-bottom:var(--space-12)}
+.sp-head .ui-icon-box{width:36px;height:36px;flex:none}
+.sp-head-txt{flex:1;min-width:0}
+.sp-head h2{font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);display:flex;align-items:center;gap:8px}
+.sp-head h2 i{font-style:normal;font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);padding:1px 8px;border-radius:10px;background:var(--color-primary-50);color:var(--color-primary-600)}
+.sp-head p{font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-secondary);margin-top:1px}
+.sp-head-act{flex:none}
+.sp-tagline{font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);font-style:italic}
+
+/* Skills */
+.sp-skills{display:flex;flex-wrap:wrap;gap:8px}
+.sp-skill{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:15px;background:var(--color-primary-50);border:1px solid var(--color-primary-100);color:var(--color-primary-600);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold)}
+.sp-skill.is-sm{height:24px;padding:0 10px;font-size:var(--font-size-caption);background:var(--color-bg-surface)}
+button.sp-skill.is-more{background:var(--color-primary-600);border-color:var(--color-primary-600);color:#fff;font-family:inherit;cursor:pointer}
+button.sp-skill.is-more:hover{background:var(--color-primary-700)}
+button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-empty{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-16);border:1.5px dashed var(--color-border-strong);border-radius:10px;background:var(--color-gray-50)}
+.sp-empty .ui-icon-box{width:44px;height:44px}
+.sp-empty div{flex:1;min-width:0}
+.sp-empty b{display:block;font-size:var(--font-size-body-lg);color:var(--color-text-heading)}
+.sp-empty span{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+
+/* Compact list rows: certificates, internships, achievements, dissertation, research, projects */
+.sp-list{display:flex;flex-direction:column;gap:var(--space-8)}
+.sp-row{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:var(--space-12);align-items:start;padding:var(--space-12);border:1px solid var(--color-border-default);border-radius:10px;background:var(--color-bg-surface);transition:border-color .15s,box-shadow .15s}
+.sp-row:hover{border-color:var(--color-primary-200);box-shadow:0 2px 8px rgba(15,58,102,.07)}
+.sp-row .ui-icon-box{width:36px;height:36px}
+.sp-row-main{min-width:0;display:flex;flex-direction:column;gap:4px}
+.sp-row h3{font-size:var(--font-size-body-lg);line-height:var(--line-height-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);overflow-wrap:anywhere;display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap}
+.sp-row-sub{font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
+.sp-row-meta{display:flex;flex-wrap:wrap;align-items:center;gap:2px var(--space-12);font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-secondary)}
+.sp-row-meta b{font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sp-row-meta svg{vertical-align:-2px;margin-right:2px;color:var(--color-icon-muted)}
+.sp-row-act{display:flex;align-items:center;gap:2px}
+.sp-desc{font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sp-tag{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:10px;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);background:var(--color-primary-600);color:#fff;white-space:nowrap}
+.sp-link{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:0;font-family:inherit;font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-primary-600);text-decoration:none;overflow-wrap:anywhere;cursor:pointer;text-align:left}
+.sp-link:hover{text-decoration:underline}
+.sp-link:focus-visible{outline:0;border-radius:2px;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-more-btn{margin-top:var(--space-8)}
+.sp-skills-lbl{font-size:var(--font-size-overline);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.3px;color:var(--color-text-secondary)}
+
+/* Your Journey – horizontal timeline (vertical on small screens) */
+.sp-journey{list-style:none;display:grid;grid-template-columns:repeat(var(--steps,4),minmax(0,1fr));gap:var(--space-16);position:relative}
+.sp-jstep{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;position:relative;min-width:0}
+.sp-jstep::before{content:"";position:absolute;top:45px;left:calc(-50% - var(--space-16) / 2);right:50%;height:2px;background:var(--color-border-strong);z-index:0}
+.sp-jstep:first-child::before{display:none}
+.sp-jdot{width:36px;height:36px;border-radius:50%;background:var(--color-primary-600);color:#fff;display:grid;place-items:center;position:relative;z-index:1;box-shadow:0 0 0 4px #fff;flex:none}
+.sp-jstep.is-current .sp-jdot{box-shadow:0 0 0 4px #fff,0 0 0 7px var(--color-primary-100)}
+.sp-year{font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);color:var(--color-primary-600);background:var(--color-primary-50);border:1px solid var(--color-primary-100);border-radius:10px;padding:2px 8px;white-space:nowrap}
+.sp-score{font-size:var(--font-size-body-sm);font-weight:var(--font-weight-bold);color:var(--color-success-text);background:var(--color-success-bg);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.sp-jcard{width:100%;flex:1;border:1px solid var(--color-border-default);border-radius:10px;padding:var(--space-8) var(--space-12);display:flex;flex-direction:column;gap:2px;box-shadow:0 1px 3px rgba(15,58,102,.06)}
+.sp-jstep.is-current .sp-jcard{border-color:var(--color-primary-200);background:var(--color-primary-50)}
+.sp-jcard b{font-size:var(--font-size-body);line-height:var(--line-height-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sp-jcard span{font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-secondary)}
+.sp-journey-foot{display:flex;justify-content:center;margin-top:var(--space-16)}
+/* Full Journey drawer – vertical timeline */
+.sp-tl{list-style:none;display:flex;flex-direction:column;gap:var(--space-16)}
+.sp-tl-item{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:var(--space-16);position:relative}
+.sp-tl-item::before{content:"";position:absolute;left:19px;top:44px;bottom:calc(-1 * var(--space-16) + 4px);width:2px;background:var(--color-border-strong)}
+.sp-tl-item:last-child::before{display:none}
+.sp-tl-item .sp-jdot{margin-top:6px}
+.sp-tl-card{border:1px solid var(--color-border-default);border-radius:10px;padding:var(--space-16);display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 3px rgba(15,58,102,.06)}
+.sp-tl-item.is-current .sp-tl-card{border-color:var(--color-primary-200);background:var(--color-primary-50)}
+.sp-tl-top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap}
+.sp-tl-top b{font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);flex:1;min-width:200px}
+.sp-tl-card p{font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-secondary)}
+
+/* Academic: current record + semester-wise performance */
+.sp-kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-8)}
+.sp-kv > div{min-width:0;padding:var(--space-8) var(--space-12);border:1px solid var(--color-border-default);border-left:3px solid var(--color-primary-600);border-radius:8px;background:var(--color-gray-50)}
+.sp-kv span{display:block;font-size:var(--font-size-overline);line-height:var(--line-height-overline);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.3px;color:var(--color-text-secondary)}
+.sp-kv b{display:block;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);margin-top:1px;overflow-wrap:anywhere}
+.sp-perf{margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px solid var(--color-divider)}
+.sp-perf-head{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap}
+.sp-perf-head h3{font-size:var(--font-size-body-lg);line-height:var(--line-height-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sp-perf-head .ui-btn{margin-left:auto}
+.sp-perf > p{font-size:var(--font-size-caption);color:var(--color-text-secondary);margin:var(--space-4) 0 var(--space-12)}
+.sp-sum{display:grid;grid-template-columns:minmax(0,1.7fr) repeat(5,minmax(0,1fr));gap:var(--space-8);margin-bottom:var(--space-12)}
+.sp-sum > div,.sp-mini > div{min-width:0;padding:var(--space-8) var(--space-12);border:1px solid var(--color-border-default);border-radius:10px;background:var(--color-bg-surface)}
+.sp-sum b,.sp-mini b{display:block;font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-bold);color:var(--color-primary-600);overflow-wrap:anywhere}
+.sp-sum > div:first-child b{font-size:var(--font-size-body-lg);line-height:var(--line-height-body-lg)}
+.sp-sum span,.sp-mini span{display:block;margin-top:1px;font-size:var(--font-size-overline);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.2px;color:var(--color-text-secondary)}
+.sp-sem .ui-acc-head{flex-wrap:wrap}
+.sp-roman{font-size:var(--font-size-body);font-weight:var(--font-weight-bold)}
+.sp-mini{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-8);margin:var(--space-8) 0 var(--space-12)}
+.sp-mini > div{background:var(--color-gray-50)}
+.sp-table-wrap{overflow-x:auto;border:1px solid var(--table-head-border);border-radius:8px}
+.sp-table{width:100%;min-width:640px;border-collapse:collapse;font-size:var(--font-size-td);line-height:var(--line-height-td)}
+.sp-table th{background:var(--table-head-bg);color:var(--table-head-text);font-size:var(--font-size-th);line-height:var(--line-height-th);font-weight:var(--font-weight-semibold);text-align:left;padding:var(--space-8) var(--space-12);border-bottom:1px solid var(--table-head-border);white-space:nowrap}
+.sp-table td{padding:var(--space-8) var(--space-12);color:var(--table-cell-text);border-bottom:1px solid var(--table-divider);vertical-align:top}
+.sp-table tbody tr:hover{background:var(--table-row-hover)}
+.sp-table td small{display:block;color:var(--color-text-secondary);margin-top:2px}
+.sp-table .num{text-align:right}
+.sp-table td:nth-child(2) b{font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sp-table tfoot td{background:var(--table-head-bg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);border-bottom:0}
+.sp-scale{margin-top:var(--space-8);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+
+/* Previous academic records: 3 compact tiles */
+.sp-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-12)}
+.sp-rec{display:flex;flex-direction:column;gap:var(--space-8);min-width:0;padding:var(--space-12);border:1px solid var(--color-border-default);border-radius:10px;background:var(--color-bg-surface)}
+.sp-rec-top{display:flex;align-items:center;gap:var(--space-8)}
+.sp-rec-top .ui-icon-box{width:32px;height:32px}
+.sp-rec-top > div{flex:1;min-width:0}
+.sp-rec-top h3{font-size:var(--font-size-body);line-height:var(--line-height-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sp-rec-top small{display:block;font-size:var(--font-size-overline);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.2px;color:var(--color-text-secondary)}
+.sp-dl{display:grid;gap:2px;margin:0;padding-top:var(--space-8);border-top:1px dashed var(--color-border-strong)}
+.sp-dl > div{display:flex;justify-content:space-between;gap:var(--space-12);font-size:var(--font-size-caption);line-height:var(--line-height-caption);padding:2px 0}
+.sp-dl dt{color:var(--color-text-secondary);flex:none}
+.sp-dl dd{margin:0;text-align:right;font-weight:var(--font-weight-semibold);color:var(--color-text-heading);overflow-wrap:anywhere;min-width:0}
+
+/* ---------- Modals (Design System .ui-modal) ---------- */
+.ui-modal-body{display:flex;flex-direction:column;gap:var(--space-16)}
+.sp-added{border:1px solid var(--color-border-default);border-radius:10px;padding:var(--space-16)}
+.sp-added .ui-form-sec-head{margin-bottom:var(--space-12)}
+.sp-added .ui-form-sec-head p b{color:var(--color-primary-600)}
+.sp-added .ui-chips{margin-bottom:0}
+.sp-added-empty{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.sp-combo > svg:first-child{position:absolute;left:12px;top:calc(var(--input-height) / 2 - 8px);width:16px;height:16px;color:var(--color-icon-muted);pointer-events:none}
+.sp-combo:focus-within > svg:first-child{color:var(--color-icon-primary)}
+.sp-combo .ui-input{padding-left:36px}
+.sp-combo.is-open > svg:first-child{transform:none}
+/* The list floats above the modal (position:fixed), so it is never cut off and the modal never gets a scrollbar */
+.sp-combo .ui-select-menu{position:fixed;z-index:95;right:auto;margin:0}
+.sp-combo .ui-select-list{max-height:var(--sp-menu-h,240px)}
+.sp-info{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:8px;background:var(--color-info-bg);border:1px solid var(--color-info-border);color:var(--color-info-text);font-size:var(--font-size-body);font-weight:var(--font-weight-medium)}
+.sp-info svg{color:var(--color-info)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--color-primary-600);color:#fff;padding:10px 18px;border-radius:6px;font-size:var(--font-size-body);opacity:0;transition:.25s;z-index:90;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- Footer ---------- */
+.sp-footer{background:var(--color-bg-header);border-top:1px solid var(--color-border-default)}
+.sp-footer .sp-wrap{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;padding-top:var(--space-12);padding-bottom:var(--space-12)}
+.sp-footer b{font-size:var(--font-size-body-sm);font-weight:var(--font-weight-bold);color:var(--color-text-heading);letter-spacing:.3px}
+.sp-footer span{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.sp-footer nav{display:flex;gap:var(--space-16)}
+.sp-footer nav a{font-size:var(--font-size-body-sm);color:var(--color-text-secondary);text-decoration:none}
+.sp-footer nav a:hover{color:var(--color-text-link-hover);text-decoration:underline}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1099.98px){
+  .sp-layout{grid-template-columns:1fr}
+  .sp-rail{position:static;max-height:none;overflow:visible;padding:0}
+  .sp-jbar{display:flex}
+  .sp-sec{scroll-margin-top:calc(var(--sp-header-h) + var(--sp-jbar-h) + var(--space-8))}
+  .sp-links{display:none}
+  .sp-pass-list{column-gap:var(--space-16)}
+  .sp-pass-row.is-full{grid-column:auto}
+  .sp-stats{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .sp-sum{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sp-sum > div:first-child{grid-column:1/-1}
+}
+@media (max-width:767.98px){
+  .sp-bento{grid-template-columns:1fr}
+  .sp-grid3{grid-template-columns:1fr}
+  .sp-hero-img,.sp-hero-gold{display:none}
+  .sp-hero-text{width:100%;padding:var(--space-16)}
+  .sp-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sp-mini{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sp-kv{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sp-journey{grid-template-columns:1fr;gap:0}
+  .sp-jstep{display:grid;grid-template-columns:36px minmax(0,1fr);grid-template-areas:"dot year" "dot card";column-gap:var(--space-12);row-gap:6px;text-align:left;align-items:start;padding-bottom:var(--space-16)}
+  .sp-jstep:last-child{padding-bottom:0}
+  .sp-jstep .sp-year{grid-area:year;justify-self:start}
+  .sp-jstep .sp-jdot{grid-area:dot}
+  .sp-jstep .sp-jcard{grid-area:card}
+  .sp-jstep::before{display:block;top:40px;bottom:0;left:17px;right:auto;width:2px;height:auto}
+  .sp-jstep:first-child::before{display:block}
+  .sp-jstep:last-child::before{display:none}
+  .sp-tagline{display:none}
+}
+@media (max-width:575.98px){
+  :root{--space-page:var(--space-page-mobile)}
+  .sp-brand small,.sp-user-name{display:none}
+  .sp-brand b{font-size:8.5px;white-space:normal;max-width:150px}
+  .sp-head-btn.is-optional{display:none}
+  .sp-pass-list{grid-template-columns:1fr}
+  .sp-pass-row.is-full{grid-column:1/-1}
+  .sp-sec{padding:var(--space-12)}
+  .sp-kv{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sp-sum{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sp-head-act .ui-btn span:not(.ui-icon){display:inline}
+  .sp-row{grid-template-columns:32px minmax(0,1fr) auto;gap:var(--space-8);padding:var(--space-8)}
+  .sp-row .ui-icon-box{width:32px;height:32px}
+  .sp-empty{flex-wrap:wrap}
+  .sp-empty .ui-btn{width:100%}
+  .sp-footer .sp-wrap{flex-direction:column;align-items:flex-start}
+}
+
+/* =====================================================
+   DESIGN 2 – "Gallery rows" (sx-). Passport banner on top, every section is one swipe row of cards
+   (arrows on desktop, finger swipe on phones). Semester marks open in a drawer. Page is only ~3 screens long.
+   ===================================================== */
+.sx-main{flex:1;padding:var(--space-16) 0 var(--space-40)}
+.sx-main .sp-wrap{display:flex;flex-direction:column;gap:var(--space-24)}
+
+/* Passport banner */
+.sx-banner{position:relative;overflow:hidden;background:var(--color-primary-600);color:#fff;border-radius:14px;padding:var(--space-24);box-shadow:0 4px 14px rgba(15,31,49,.18)}
+.sx-banner::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--color-accent-500)}
+.sx-banner::after{content:"";position:absolute;top:-8px;bottom:-8px;right:48px;width:44px;transform:skewX(-20deg);background:linear-gradient(90deg,var(--color-accent-500) 0 14px,transparent 14px 28px,var(--color-accent-500) 28px 42px,transparent 42px);opacity:.45;pointer-events:none}
+.sx-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:var(--space-20);flex-wrap:wrap}
+.sx-id{display:flex;align-items:center;gap:var(--space-16);min-width:0}
+.sx-ava{width:72px;height:72px;flex:none;border-radius:50%;border:3px solid #fff;background:var(--color-accent-500);display:grid;place-items:center;font-size:var(--font-size-h2);font-weight:var(--font-weight-bold)}
+.sx-over{display:flex;align-items:center;gap:var(--space-8);font-size:var(--font-size-overline);font-weight:var(--font-weight-bold);letter-spacing:.8px;text-transform:uppercase;color:var(--color-accent-300)}
+.sx-banner h1{font-size:var(--font-size-h1);line-height:var(--line-height-h1);font-weight:var(--font-weight-bold);margin-top:2px}
+.sx-banner .sx-sub{font-size:var(--font-size-body);color:var(--color-primary-100);margin-top:var(--space-4)}
+.sx-banner .sx-sub .sp-verified{margin-right:var(--space-8);vertical-align:middle}
+.sx-cta{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap;padding-right:var(--space-48)}
+.sx-cta .sp-btn-passport{width:auto;margin-top:0}
+.sx-cta-ic{display:flex;gap:6px}
+.sx-cta-ic a,.sx-cta-ic button{width:36px;height:36px;border:0;border-radius:8px;display:grid;place-items:center;color:#fff;background:var(--color-primary-500);cursor:pointer}
+.sx-cta-ic a:hover,.sx-cta-ic button:hover{background:var(--color-primary-400)}
+.sx-cta-ic a:focus-visible,.sx-cta-ic button:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-accent-300)}
+.sx-facts{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--space-8) var(--space-16);margin-top:var(--space-20);padding:var(--space-12) var(--space-16);border-radius:10px;background:var(--color-primary-700)}
+.sx-fact{display:flex;align-items:center;gap:var(--space-8);min-width:0}
+.sx-fact > svg{flex:none;color:var(--color-accent-300)}
+.sx-fact > div{min-width:0}
+.sx-fact small{display:block;font-size:var(--font-size-overline);font-weight:var(--font-weight-semibold);letter-spacing:.4px;text-transform:uppercase;color:var(--color-primary-200)}
+.sx-fact b{display:flex;align-items:center;gap:4px;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:#fff}
+.sx-fact .sp-mask,.sx-banner .sp-mask{color:var(--color-primary-200)}
+.sx-fact .sp-mask:hover,.sx-fact .sp-mask:focus-visible{color:#fff;background:var(--color-primary-500)}
+.sx-stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:var(--space-16);border-top:1px solid var(--color-primary-500)}
+.sx-stat{display:flex;flex-direction:column;align-items:center;gap:0;padding:var(--space-12) var(--space-4) 0;border:0;border-radius:8px;background:none;color:#fff;font-family:inherit;cursor:pointer}
+.sx-stat + .sx-stat{border-left:1px solid var(--color-primary-500);border-radius:0 8px 8px 0}
+.sx-stat:hover{background:var(--color-primary-500)}
+.sx-stat:focus-visible{outline:0;box-shadow:inset 0 0 0 2px var(--color-accent-300)}
+.sx-stat b{font-size:var(--font-size-h2);line-height:var(--line-height-h2);font-weight:var(--font-weight-bold);color:var(--color-accent-300)}
+.sx-stat span{font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-primary-100);padding-bottom:var(--space-8)}
+
+/* A row = title + arrows + a swipe track of cards */
+.sx-row{min-width:0;scroll-margin-top:calc(var(--sp-header-h) + var(--space-16))}
+.sx-rh{display:flex;align-items:center;gap:var(--space-12);margin-bottom:var(--space-12)}
+.sx-rh .ui-icon-box{width:36px;height:36px;flex:none}
+.sx-rh-txt{flex:1;min-width:0}
+.sx-rh h2{font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);display:flex;align-items:center;gap:8px}
+.sx-rh h2 i{font-style:normal;font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);padding:1px 8px;border-radius:10px;background:var(--color-primary-50);color:var(--color-primary-600)}
+.sx-rh p{font-size:var(--font-size-caption);color:var(--color-text-secondary);margin-top:1px}
+.sx-rh-act{display:flex;align-items:center;gap:var(--space-8);flex:none}
+.sx-arrows{display:flex;gap:var(--space-4)}
+.sx-arrows[hidden]{display:none}
+.sx-track{--per:3;display:flex;gap:var(--space-12);overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px var(--space-8);margin:0 -2px;scrollbar-width:thin}
+.sx-track:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring);border-radius:8px}
+.sx-card{flex:0 0 calc((100% - (var(--per) - 1) * var(--space-12)) / var(--per));scroll-snap-align:start;display:flex;flex-direction:column;gap:var(--space-8);min-width:0;padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:12px;background:var(--color-bg-surface);box-shadow:0 1px 3px rgba(15,58,102,.06);text-align:left;font-family:inherit;transition:border-color .15s,box-shadow .15s}
+.sx-card:hover{border-color:var(--color-primary-200);box-shadow:0 4px 12px rgba(15,58,102,.1)}
+.sx-card.is-gold{border-top:3px solid var(--color-accent-500)}
+.sx-ct{display:flex;align-items:center;gap:var(--space-8)}
+.sx-ct .ui-icon-box{width:36px;height:36px}
+.sx-ct > .sp-tag,.sx-ct > .ui-badge{margin-left:auto}
+.sx-ct > .ui-act-more{margin-left:auto}
+.sx-ct > .sp-tag ~ .ui-act-more,.sx-ct > .ui-badge ~ .ui-act-more{margin-left:0}
+.sx-card h3{font-size:var(--font-size-body-lg);line-height:var(--line-height-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sx-sub{font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
+.sx-dl{display:grid;gap:2px;margin:auto 0 0;padding-top:var(--space-8);border-top:1px dashed var(--color-border-strong)}
+.sx-dl > div{display:flex;justify-content:space-between;gap:var(--space-12);font-size:var(--font-size-caption);line-height:var(--line-height-caption);padding:2px 0}
+.sx-dl dt{color:var(--color-text-secondary);flex:none}
+.sx-dl dd{margin:0;text-align:right;font-weight:var(--font-weight-semibold);color:var(--color-text-heading);overflow-wrap:anywhere;min-width:0}
+.sx-card .ui-btn-block{margin-top:var(--space-4)}
+.sx-card .sp-desc{-webkit-line-clamp:3}
+.sx-skillwrap{padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:12px;background:var(--color-bg-surface);box-shadow:0 1px 3px rgba(15,58,102,.06)}
+/* Semester card (opens the marks drawer) */
+.sx-sem{cursor:pointer}
+.sx-sem:hover{border-color:var(--color-primary-300)}
+.sx-sem:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sx-sem-g{display:flex;align-items:baseline;gap:var(--space-8)}
+.sx-sem-g b{font-size:var(--font-size-display);line-height:var(--line-height-display);font-weight:var(--font-weight-bold);color:var(--color-primary-600)}
+.sx-sem-g span{font-size:var(--font-size-label);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.3px;color:var(--color-text-secondary)}
+.sx-more{display:inline-flex;align-items:center;gap:6px;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+/* Journey + academic record blocks */
+.sx-box{padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:12px;background:var(--color-bg-surface);box-shadow:0 1px 3px rgba(15,58,102,.06)}
+.sx-acad-kv{margin-bottom:var(--space-16)}
+.sx-sumbar{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap;margin-bottom:var(--space-12)}
+.sx-sumbar h3{font-size:var(--font-size-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.sx-sumbar .ui-badge{margin-left:auto}
+
+@media (max-width:1199.98px){.sx-facts{grid-template-columns:repeat(3,minmax(0,1fr))}.sx-stats{grid-template-columns:repeat(3,minmax(0,1fr))}.sx-stat:nth-child(4){border-left:0}.sx-stats{row-gap:var(--space-8)}}
+@media (max-width:991.98px){.sx-track{--per:2}.sx-cta{padding-right:0}}
+@media (max-width:767.98px){
+  .sx-banner{padding:var(--space-16)}
+  .sx-ava{width:56px;height:56px;font-size:var(--font-size-h3)}
+  .sx-banner h1{font-size:var(--font-size-h3);line-height:var(--line-height-h3)}
+  .sx-cta{width:100%}
+  .sx-cta .sp-btn-passport{flex:1}
+  .sx-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sx-arrows{display:none}
+}
+@media (max-width:575.98px){
+  .sx-track{--per:1.12}
+  .sx-main .sp-wrap{gap:var(--space-20)}
+  .sx-rh p{display:none}
+  .sx-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sx-box{padding:var(--space-12)}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="sp-header">
+  <div class="sp-wrap">
+    <a class="sp-brand" href="index.html" aria-label="USK home">
+      <img src="LOGO-USK-sm.png" alt="Uccha-Shiksha Samiksha Kendra logo">
+      <span><b>UCCHA-SHIKSHA SAMIKSHA KENDRA</b><small>Higher Education Department - Gujarat</small></span>
+    </a>
+    <div class="sp-head-actions">
+      <a class="sp-head-btn is-optional" href="index.html" title="Home" aria-label="Home"><span data-icon="home:f:18"></span></a>
+      <button class="sp-head-btn is-optional" type="button" title="All services" aria-label="All services"><svg class="ui-icon ui-icon-18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></button>
+      <button class="sp-head-btn" type="button" title="Notifications" aria-label="Notifications, 3 new"><span data-icon="bell:f:18"></span><span class="sp-dot"></span></button>
+      <button class="sp-user" type="button" aria-label="Profile menu"><span class="sp-avatar-sm">AP</span><span class="sp-user-name">Aarav</span><span data-icon="chevron-down:l:16"></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MAIN (design 2: Passport banner + gallery rows) ============ -->
+<main class="sx-main">
+  <div class="sp-wrap">
+
+    <!-- Passport banner: identity, facts, counters (click a counter = jump to its row) -->
+    <section class="sx-banner" aria-labelledby="spName">
+      <div class="sx-top">
+        <div class="sx-id">
+          <span class="sx-ava" aria-hidden="true">AP</span>
+          <div>
+            <span class="sx-over">Skill Passport · A Brighter Tomorrow Begins Here</span>
+            <h1 id="spName">Aarav Patel</h1>
+            <p class="sx-sub"><span class="sp-verified"><span data-icon="check:l:12"></span>Verified</span> BE/B-Tech · Computer Engineering · L.D. College of Engineering</p>
+          </div>
+        </div>
+        <div class="sx-cta">
+          <button class="ui-btn sp-btn-passport" type="button" id="spGenerate">Generate Passport</button>
+          <div class="sx-cta-ic" aria-label="Social media">
+            <a href="#" title="LinkedIn" aria-label="LinkedIn"><span data-icon="linkedin:f:16"></span></a>
+            <a href="#" title="GitHub" aria-label="GitHub"><span data-icon="github:f:16"></span></a>
+            <a href="#" title="Instagram" aria-label="Instagram"><span data-icon="instagram:f:16"></span></a>
+            <a href="#" title="Facebook" aria-label="Facebook"><span data-icon="facebook:f:16"></span></a>
+            <button type="button" id="spShare" title="Share" aria-label="Share passport"><span data-icon="share:f:16"></span></button>
+          </div>
+        </div>
+      </div>
+      <div class="sx-facts">
+        <div class="sx-fact"><span data-icon="document:f:18"></span><div><small>APAAR / ABC ID</small><b><span class="sp-val" data-full="452819367781">45XXXX7781</span><button class="sp-mask" type="button" title="Show" aria-label="Show APAAR ID"><span data-icon="eye-off:o:16"></span></button></b></div></div>
+        <div class="sx-fact"><span data-icon="mail:f:18"></span><div><small>Email Address</small><b><span class="sp-val" data-full="aarav.patel.ldce@gmail.com">a•••••l@gmail.com</span><button class="sp-mask" type="button" title="Show" aria-label="Show email address"><span data-icon="eye-off:o:16"></span></button></b></div></div>
+        <div class="sx-fact"><span data-icon="phone:f:18"></span><div><small>Mobile Number</small><b><span class="sp-val" data-full="9876543210">98XXXX3210</span><button class="sp-mask" type="button" title="Show" aria-label="Show mobile number"><span data-icon="eye-off:o:16"></span></button></b></div></div>
+        <div class="sx-fact"><span data-icon="calendar:f:18"></span><div><small>Date of Birth</small><b>14/03/2005</b></div></div>
+        <div class="sx-fact"><span data-icon="user:f:18"></span><div><small>Gender</small><b>Male</b></div></div>
+      </div>
+      <div class="sx-stats" aria-label="Summary">
+        <button class="sx-stat" type="button" data-j="skills"><b data-count="skills">0</b><span>Skills</span></button>
+        <button class="sx-stat" type="button" data-j="certs"><b data-count="certs">0</b><span>Certificates</span></button>
+        <button class="sx-stat" type="button" data-j="interns"><b data-count="interns">0</b><span>Internships</span></button>
+        <button class="sx-stat" type="button" data-j="projects"><b data-count="projects">0</b><span>Projects</span></button>
+        <button class="sx-stat" type="button" data-j="research"><b data-count="research">0</b><span>Research Papers</span></button>
+        <button class="sx-stat" type="button" data-j="special"><b data-count="special">0</b><span>Achievements</span></button>
+      </div>
+    </section>
+
+    <!-- Job Oriented Skill -->
+    <section class="sx-row" id="rowSkills" aria-labelledby="rowSkillsH">
+      <div class="sx-rh">
+        <span class="ui-icon-box is-accent"><span data-icon="briefcase:f:20"></span></span>
+        <div class="sx-rh-txt"><h2 id="rowSkillsH">Job Oriented Skill <i data-count="skills">0</i></h2><p>Skills that prepare you for career opportunities.</p></div>
+        <div class="sx-rh-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" id="skEditBtn" data-modal-open="mdSkills" hidden><span data-icon="edit:f:14"></span>Edit</button></div>
+      </div>
+      <div class="sx-skillwrap">
+        <div class="sp-skills" id="skList"></div>
+        <div class="sp-empty" id="skEmpty">
+          <span class="ui-icon-box is-primary"><span data-icon="star:f:22"></span></span>
+          <div><b>No skills added yet</b><span>Add the job oriented skills you have, so recruiters can find you.</span></div>
+          <button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-modal-open="mdSkills"><span data-icon="plus:l:14"></span>Add Skill</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications & Achievements (+ Special Achievements) -->
+    <section class="sx-row" id="rowCerts" aria-labelledby="rowCertsH">
+      <div class="sx-rh">
+        <span class="ui-icon-box is-success"><span data-icon="graduation:f:20"></span></span>
+        <div class="sx-rh-txt"><h2 id="rowCertsH">Certifications &amp; Achievements <i data-count="certsAll">0</i></h2><p>Recognized learning. Real progress. Special achievements have a gold edge.</p></div>
+        <div class="sx-rh-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-soon="Add Achievement"><span data-icon="plus:l:14"></span>Add</button><div class="sx-arrows" data-for="trkCerts"></div></div>
+      </div>
+      <div class="sx-track" id="trkCerts" tabindex="0" aria-label="Certifications and achievements"></div>
+    </section>
+
+    <!-- Internship -->
+    <section class="sx-row" id="rowIntern" aria-labelledby="rowInternH">
+      <div class="sx-rh">
+        <span class="ui-icon-box is-info"><span data-icon="briefcase:f:20"></span></span>
+        <div class="sx-rh-txt"><h2 id="rowInternH">Internship <i data-count="interns">0</i></h2><p>Your practical experience and industry exposure.</p></div>
+        <div class="sx-rh-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-soon="Add Internship"><span data-icon="plus:l:14"></span>Add</button><div class="sx-arrows" data-for="trkIntern"></div></div>
+      </div>
+      <div class="sx-track" id="trkIntern" tabindex="0" aria-label="Internships"></div>
+    </section>
+
+    <!-- Academic work: dissertation, research, projects (added by us) -->
+    <section class="sx-row" id="rowWork" aria-labelledby="rowWorkH">
+      <div class="sx-rh">
+        <span class="ui-icon-box is-warning"><span data-icon="research:f:20"></span></span>
+        <div class="sx-rh-txt"><h2 id="rowWorkH">Dissertation, Research &amp; Projects <i data-count="work">0</i></h2><p>Your final-year dissertation, publications and college projects.</p></div>
+        <div class="sx-rh-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-soon="Add Dissertation / Research / Project"><span data-icon="plus:l:14"></span>Add</button><div class="sx-arrows" data-for="trkWork"></div></div>
+      </div>
+      <div class="sx-track" id="trkWork" tabindex="0" aria-label="Dissertation, research and projects"></div>
+    </section>
+
+    <!-- Your Journey -->
+    <section class="sx-row" id="rowJourney" aria-labelledby="rowJourneyH">
+      <div class="sx-rh">
+        <span class="ui-icon-box is-primary"><span data-icon="star:f:20"></span></span>
+        <div class="sx-rh-txt"><h2 id="rowJourneyH">Your Journey</h2><p>A timeline of your learning, achievements and experiences.</p></div>
+        <div class="sx-rh-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-drawer-open="drJourney">View Full Journey<span data-icon="arrow-right:l:14"></span></button></div>
+      </div>
+      <div class="sx-box"><ol class="sp-journey" id="journeyList" aria-label="Your journey"></ol></div>
+    </section>
+
+    <!-- Current Academic Record + Semester-wise Academic Performance (marks open in a drawer) -->
+    <section class="sx-row" id="rowAcademic" aria-labelledby="rowAcademicH">
+      <div class="sx-rh">
+        <span class="ui-icon-box is-accent"><span data-icon="graduation:f:20"></span></span>
+        <div class="sx-rh-txt"><h2 id="rowAcademicH">Current Academic Record</h2><p>Your current educational journey. Click a semester to see its marks.</p></div>
+      </div>
+      <div class="sx-box">
+        <div class="sp-kv sx-acad-kv" id="currentRec"></div>
+        <div class="sx-sumbar"><h3>Semester-wise Academic Performance</h3><span class="ui-badge ui-badge-approved">Trusted Source: DigiLocker</span><div class="sx-arrows" data-for="trkSem"></div></div>
+        <div class="sp-sum" id="semSum"></div>
+        <div class="sx-track" id="trkSem" tabindex="0" aria-label="Semesters"></div>
+      </div>
+    </section>
+
+    <!-- Previous Academic Organization Records -->
+    <section class="sx-row" id="rowPrev" aria-labelledby="rowPrevH">
+      <div class="sx-rh">
+        <span class="ui-icon-box is-primary"><span data-icon="book:f:20"></span></span>
+        <div class="sx-rh-txt"><h2 id="rowPrevH">Previous Academic Organization Records</h2><p>Your previous educational journey.</p></div>
+        <div class="sx-rh-act"><div class="sx-arrows" data-for="trkPrev"></div></div>
+      </div>
+      <div class="sx-track" id="trkPrev" tabindex="0" aria-label="Previous academic records"></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="sp-footer">
+  <div class="sp-wrap">
+    <b>HE USK GUJARAT</b>
+    <nav aria-label="Footer"><a href="#">Help</a><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></nav>
+    <span>© 2026 Higher Education Department, Govt. of Gujarat. All Rights Reserved.</span>
+  </div>
+</footer>
+
+<!-- ============ MODAL: Add / Edit Job Oriented Skills ============ -->
+<div class="ui-modal-backdrop" id="mdSkills" data-static>
+  <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdSkillsTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="briefcase:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="mdSkillsTitle">Add Job Oriented Skill</h4><p>Search and add the skills that are relevant for your career.</p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="sp-added">
+        <div class="ui-form-sec-head"><h5>Your Added Skills</h5><p>Total added skills: <b id="mdSkCount">0</b> / 15</p></div>
+        <div class="ui-chips" id="mdSkChips"></div>
+        <p class="sp-added-empty" id="mdSkNone">No skills added yet. Search below to add your first skill.</p>
+      </div>
+      <div class="ui-field">
+        <label class="ui-label" for="mdSkIn">Select Skill<span class="ui-req">*</span></label>
+        <div class="ui-combo sp-combo" id="mdSkCombo">
+          <span data-icon="search:l:16"></span>
+          <input class="ui-input" id="mdSkIn" placeholder="Search skill (e.g. HTML, Python, Figma...)" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="mdSkList" aria-autocomplete="list">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          <div class="ui-select-menu"><div class="ui-select-list" id="mdSkList" role="listbox" aria-label="Skills"></div></div>
+        </div>
+        <span class="ui-help" id="mdSkHelp">Type to search. Press Enter to add a skill that is not in the list.</span>
+      </div>
+      <div class="sp-info" role="note"><span data-icon="info:f:18"></span>You can select multiple job oriented skills.</div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="mdSkSave">Save Skills</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DRAWER: Full Journey (Design System .ui-drawer, opens from the right) ============ -->
+<div class="ui-drawer-backdrop" id="drBackdrop"></div>
+<aside class="ui-drawer ui-drawer-lg" id="drJourney" role="dialog" aria-modal="true" aria-labelledby="drJourneyTitle">
+  <div class="ui-modal-head">
+    <div class="ui-modal-title"><h4 id="drJourneyTitle">Your Journey</h4><p>Your education, certificates and achievements, newest first.</p></div>
+    <button class="ui-modal-close" type="button" data-drawer-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+  </div>
+  <div class="ui-drawer-body">
+    <ol class="sp-tl" id="fullJourney" aria-label="Full journey"></ol>
+  </div>
+</aside>
+
+<!-- ============ DRAWER: Semester marks ============ -->
+<aside class="ui-drawer ui-drawer-lg" id="drSem" role="dialog" aria-modal="true" aria-labelledby="drSemTitle">
+  <div class="ui-modal-head">
+    <div class="ui-modal-title"><h4 id="drSemTitle">Semester</h4><p id="drSemSub"></p></div>
+    <button class="ui-modal-close" type="button" data-drawer-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+  </div>
+  <div class="ui-drawer-body" id="drSemBody"></div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Row actions menu (3 dots) – design only, Edit / Delete are not connected yet -->
+<div class="ui-menu" id="spMenu" role="menu">
+  <button class="ui-menu-item" type="button" role="menuitem"><span data-icon="edit:f:18"></span>Edit</button>
+  <button class="ui-menu-item is-danger" type="button" role="menuitem"><span data-icon="delete:f:18"></span>Delete</button>
+</div>
+
+<script src="icons.js"></script>
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const hl = (text, q) => {
+  if (!q) return esc(text);
+  const i = text.toLowerCase().indexOf(q.toLowerCase());
+  return i < 0 ? esc(text) : esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + q.length)) + "</mark>" + esc(text.slice(i + q.length));
+};
+let toastT;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 2200); }
+
+/* Icons from icons.js (built from the icons/ folder) – same helper as the Design System */
+const ICONS = window.USK_ICONS || {};
+function iconSvg(name, style = "f", size = 20) {
+  const ic = ICONS[name]; if (!ic) return "";
+  const st = ic[style] ? style : ic.l ? "l" : ic.f ? "f" : "o";
+  const paint = st === "f" ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+  const cls = size === 20 ? "ui-icon" : `ui-icon ui-icon-${size}`;
+  return `<svg class="${cls}" viewBox="${ic.vb || "0 0 24 24"}" ${paint} aria-hidden="true">${ic[st]}</svg>`;
+}
+const hydrate = root => (root || document).querySelectorAll("[data-icon]").forEach(el => { const [n, s, z] = el.dataset.icon.split(":"); el.outerHTML = iconSvg(n, s, +z || 20); });
+const MORE_BTN = `<button class="ui-act ui-act-more" type="button" data-menu title="More actions" aria-label="More actions">${iconSvg("more", "f", 18)}</button>`;
+const viewBtn = (what, soon) => `<button class="ui-act ui-act-view" type="button" data-soon="${soon}" title="${what}" aria-label="${what}">${iconSvg("view", "f", 18)}</button>`;
+
+/* ================= SAMPLE DATA (the same student as the Dashboard: Aarav Patel) ================= */
+const CERTS = [
+  { skill: "Cloud Computing", title: "AWS Certified Cloud Practitioner", by: "Amazon Web Services", date: "18/06/2026", id: "AWS-CCP-58H2K9", level: "International" },
+  { skill: "Java", title: "Java Programming Fundamentals", by: "NPTEL · IIT Kharagpur", date: "12/04/2026", id: "NPTEL26CS41S3", level: "National" }
+];
+const INTERNS = [
+  { company: "Nexora Softech", role: "Web Development", from: "01/05/2026", to: "30/06/2026", dur: "02 Months", skills: ["React JS", "REST APIs", "Git", "JavaScript", "HTML", "CSS"], file: "Internship_Certificate.pdf" },
+  { company: "Sabar Fintech", role: "Backend Engineering", from: "08/12/2025", to: "06/01/2026", dur: "01 Month", skills: ["Spring Boot", "SQL"], file: "Completion_Letter.pdf" }
+];
+const SPECIAL = [
+  { title: "State Level Winner", level: "State", event: "Smart Gujarat Hackathon 2025 · Agri-Tech Track", org: "Student Startup & Innovation Hub", date: "15/02/2026", skill: "Problem Solving" }
+];
+const DISS = [
+  { title: "Intrusion Detection in IoT Networks using Machine Learning", status: "Approved", guide: "Dr. Mehul Patel", dept: "Computer Engineering", date: "15/04/2026", grade: "A+", text: "A lightweight machine-learning model that detects unusual traffic in IoT networks in real time, tested on the CIC-IoT dataset with 96% accuracy and low memory use on edge devices." }
+];
+const RESEARCH = [
+  { title: "A Lightweight Deep Learning Approach for IoT Intrusion Detection", status: "Published", venue: "International Journal of Computer Applications", type: "Journal", label: "Published", date: "12/05/2026", role: "First Author", co: "Dr. Mehul Patel, Riya Shah", doi: "10.5120/ijca2026-0123" },
+  { title: "Comparative Study of Container Security Tools", status: "Under Review", venue: "National Conference on Emerging Technologies (NCET)", type: "Conference", label: "Submitted", date: "20/08/2026", role: "Co-author", co: "", doi: "" }
+];
+const PROJECTS = [
+  { title: "Smart Campus Attendance System", type: "Major Project", sem: "7", team: "4 · Team Lead", from: "07/2026", to: "11/2026", text: "Face-recognition attendance for classrooms with a teacher dashboard and monthly reports for the institute.", skills: ["Java", "Spring Boot", "MySQL", "OpenCV"], link: "View on GitHub", icon: "github" },
+  { title: "Library Management Portal", type: "Mini Project", sem: "5", team: "3 · Developer", from: "01/2026", to: "04/2026", text: "Book issue, return and fine tracking for the college library, with email reminders for due dates.", skills: ["Hibernate", "SQL", "JavaScript"], link: "Live Demo", icon: "external" }
+];
+const BADGE = { Approved: "approved", Published: "approved", "Under Review": "review" };
+const CURRENT = [["University", "Gujarat Technological University"], ["Institute", "L.D. College of Engineering, Ahmedabad"], ["Degree / Program", "BE/B-Tech"], ["Branch", "Computer Engineering"], ["Enrollment No.", "230280107014"], ["Admission Year", "2023-2024"]];
+const GP = { AA: 10, AB: 9, BB: 8, BC: 7, CC: 6, CD: 5, DD: 4, FF: 0, PP: 0 };   // grade → grade points
+const SEMS = [
+  { n: "I", term: "DEC 2023 (WINTER)", courses: [["3110005", "Basic Electrical Engineering", 4, "AB"], ["3110014", "Mathematics – I", 5, "AA"], ["3110003", "Programming for Problem Solving", 5, "AA"], ["3110013", "Engineering Graphics & Design", 5, "BB"], ["3110002", "English", 1, "AB"]] },
+  { n: "II", term: "MAY 2024 (SUMMER)", courses: [["3120007", "Physics", 5, "AB"], ["3120001", "Mathematics – II", 5, "AA"], ["3120008", "Basic Mechanical Engineering", 4, "BB"], ["3120009", "Basic Civil Engineering", 4, "AB"], ["3120002", "Environmental Science", 2, "AA"], ["3120003", "Workshop", 2, "AA"]] },
+  { n: "III", term: "DEC 2024 (WINTER)", courses: [["3130702", "Data Structures", 4, "AA"], ["3130704", "Digital Fundamentals", 4, "AB"], ["3130703", "Database Management Systems", 4, "AA"], ["3130006", "Probability & Statistics", 4, "AB"], ["3130007", "Indian Constitution", 0, "PP"], ["3130008", "Design Engineering 1A", 5, "AA"]] },
+  { n: "IV", term: "MAY 2025 (SUMMER)", courses: [["3140702", "Operating System", 4, "AA"], ["3140705", "Object Oriented Programming – I", 4, "AA"], ["3140707", "Computer Organization", 4, "AB"], ["3140708", "Discrete Mathematics", 4, "BB"], ["3140709", "Principles of Economics", 3, "AB"], ["3140005", "Design Engineering 1B", 2, "AA"]] },
+  { n: "V", term: "DEC 2025 (WINTER)", courses: [["3150703", "Analysis & Design of Algorithms", 5, "AA"], ["3150709", "Professional Ethics", 0, "PP"], ["3150710", "Computer Networks", 5, "AB"], ["3150711", "Software Engineering", 5, "AA"], ["3150713", "Python for Data Science", 5, "AA"]] }
+];
+const PREV = [
+  { title: "SSC Academic Records", kind: "Secondary School", edit: true, rows: [["Board Name", "GSEB"], ["School Name", "Shree Swaminarayan Vidyalaya"], ["Seat Number", "B 4XXXX17"], ["Passing Year", "2020-2021"], ["Percentage", "91.20%"]] },
+  { title: "HSC Academic Records", kind: "Higher Secondary School", edit: true, rows: [["Board Name", "GSEB"], ["Stream", "Science"], ["School Name", "Shree Swaminarayan Vidyalaya"], ["Seat Number", "E 1XXXX52"], ["Passing Year", "2022-2023"], ["Percentage", "86.40%"]] },
+  { title: "GUJCET Exam Records", kind: "Entrance Exam", edit: false, rows: [["Roll Number", "2208018195"], ["Score", "112"], ["Rank", "4,215"], ["Percentile", "94.50"]] }
+];
+const JOURNEY = [   // education steps (page) + certificates / achievements (drawer only)
+  { year: "2020-2021", title: "SSC Completed", text: "Completed SSC with 91.20% from GSEB.", icon: "graduation" },
+  { year: "2022-2023", title: "HSC Completed", text: "Completed HSC with 86.40% from GSEB.", icon: "graduation" },
+  { year: "2023-2024", title: "BE/B-Tech – Computer Engineering", text: "Currently pursuing at L.D. College of Engineering, Ahmedabad.", icon: "graduation", current: true },
+  { year: "2026", title: "State Level Winner", text: "Won State Level Winner at Smart Gujarat Hackathon 2025 · Agri-Tech Track.", icon: "trophy", drawer: true },
+  { year: "2026", title: "Java Programming Fundamentals", text: "Completed Java Programming Fundamentals from NPTEL · IIT Kharagpur.", icon: "award", drawer: true },
+  { year: "2026", title: "AWS Certified Cloud Practitioner", text: "Completed AWS Certified Cloud Practitioner from Amazon Web Services.", icon: "award", drawer: true }
+];
+
+/* ================= RENDER (design 2: gallery rows) ================= */
+const sum = (a, f) => a.reduce((s, x) => s + f(x), 0);
+const cpOf = c => c[2] * GP[c[3]];
+function semStats(s) { const cr = sum(s.courses, c => c[2]), cp = sum(s.courses, cpOf); return { cr, cp, sgpa: cr ? (cp / cr).toFixed(2) : "0.00" }; }
+const setCount = (key, n) => $$(`[data-count="${key}"]`).forEach(el => el.textContent = n);
+
+// One card of a row
+const card = o => `<article class="sx-card${o.gold ? " is-gold" : ""}" data-kind="${o.kind}">
+  <div class="sx-ct"><span class="ui-icon-box ${o.tone}">${iconSvg(o.icon, "f", 18)}</span>${o.tagHtml || `<span class="sp-tag">${esc(o.tag)}</span>`}${MORE_BTN}</div>
+  <h3>${esc(o.title)}</h3>${o.sub ? `<div class="sx-sub">${esc(o.sub)}</div>` : ""}${o.extra || ""}
+  <dl class="sx-dl">${o.dl.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>${o.action || ""}
+</article>`;
+const vBtn = (label, soon) => `<button class="ui-btn ui-btn-outline ui-btn-sm ui-btn-block" type="button" data-soon="${soon}">${iconSvg("view", "f", 14)}${label}</button>`;
+const link = (icon, style, text) => `<a class="sp-link" href="#">${iconSvg(icon, style, 14)}${esc(text)}</a>`;
+function skillChips(list, id) {
+  const show = list.slice(0, 3), more = list.length - show.length;
+  return `<div class="sp-skills" data-skills="${id}">${show.map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("")}${more > 0 ? `<button class="sp-skill is-sm is-more" type="button" data-more="${id}" aria-expanded="false" title="Show all skills">+${more} More</button>` : ""}</div>`;
+}
+
+function renderRows() {
+  // Certifications (+ Special Achievements with a gold edge)
+  $("#trkCerts").innerHTML = CERTS.map(c => card({ kind: "cert", tone: "is-success", icon: "award", tag: c.skill, title: c.title, sub: `${c.by}`,
+      dl: [["Issued Date", c.date], ["Certification ID", esc(c.id || "–")], ["Skill Level", esc(c.level)]], action: vBtn("View Certificate", "Certificate viewer") })).join("")
+    + SPECIAL.map(a => card({ kind: "special", gold: true, tone: "sp-ib-accent", icon: "trophy", tag: a.level, title: a.title, sub: a.event,
+      dl: [["Organisation", esc(a.org)], ["Date", a.date], ["Skill", esc(a.skill)]] })).join("");
+  // Internships
+  $("#trkIntern").innerHTML = INTERNS.map((it, i) => card({ kind: "intern", tone: "is-info", icon: "briefcase", tag: it.dur, title: it.company, sub: it.role,
+      extra: `<div><span class="sp-skills-lbl">Skill used</span>${skillChips(it.skills, i)}</div>`,
+      dl: [["Duration", `${it.from} – ${it.to}`]], action: `<button class="sp-link" type="button" data-soon="Document viewer">${iconSvg("document", "f", 14)}${esc(it.file)}</button>` })).join("");
+  // Dissertation, research, projects
+  $("#trkWork").innerHTML =
+    DISS.map(d => card({ kind: "diss", tone: "is-primary", icon: "book", tagHtml: `<span class="ui-badge ui-badge-${BADGE[d.status] || "neutral"}">${esc(d.status)}</span>`, title: d.title, sub: `Dissertation · ${d.guide} · ${d.dept}`,
+      extra: `<p class="sp-desc">${esc(d.text)}</p>`, dl: [["Submitted", d.date], ["Grade", esc(d.grade)]], action: vBtn("View", "Dissertation viewer") })).join("")
+    + RESEARCH.map(r => card({ kind: "research", tone: "is-warning", icon: "research", tagHtml: `<span class="ui-badge ui-badge-${BADGE[r.status] || "neutral"}">${esc(r.status)}</span>`, title: r.title, sub: `Research · ${r.venue} · ${r.type}`,
+      dl: [[r.label, r.date], ["Role", esc(r.role)]].concat(r.co ? [["Co-authors", esc(r.co)]] : []), action: r.doi ? link("link", "l", `DOI: ${r.doi}`) : "" })).join("")
+    + PROJECTS.map(p => card({ kind: "project", tone: "is-primary", icon: "code", tag: p.type, title: p.title, sub: `College Project · Semester ${p.sem}`,
+      extra: `<p class="sp-desc">${esc(p.text)}</p><div class="sp-skills">${p.skills.map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("")}</div>`,
+      dl: [["Team", esc(p.team)], ["Duration", `${p.from} – ${p.to}`]], action: link(p.icon, p.icon === "github" ? "f" : "l", p.link) })).join("");
+  // Semesters (open the marks drawer) + previous records
+  const st = SEMS.map(semStats);
+  $("#trkSem").innerHTML = SEMS.map((s, i) => `<button class="sx-card sx-sem" type="button" data-sem="${i}" aria-label="Semester ${s.n}, SGPA ${st[i].sgpa}. View marks">
+    <div class="sx-ct"><span class="ui-icon-box is-primary sp-roman">${s.n}</span><span class="sp-year">${st[i].cr} Credits</span></div>
+    <h3>Semester ${s.n}</h3><div class="sx-sub">${s.courses.length} Course${s.courses.length > 1 ? "s" : ""} · ${s.term}</div>
+    <div class="sx-sem-g"><b>${st[i].sgpa}</b><span>SGPA</span></div>
+    <span class="sx-more">View marks ${iconSvg("arrow-right", "l", 14)}</span></button>`).join("");
+  $("#trkPrev").innerHTML = PREV.map(p => `<article class="sx-card" data-kind="prev"><div class="sx-ct"><span class="ui-icon-box is-primary">${iconSvg("document", "f", 18)}</span><span class="sp-tag">${esc(p.kind)}</span>${p.edit ? `<button class="ui-act ui-act-edit" type="button" data-soon="Edit record" title="Edit" aria-label="Edit ${esc(p.title)}">${iconSvg("edit", "f", 18)}</button>` : ""}</div>
+    <h3>${esc(p.title)}</h3><dl class="sx-dl">${p.rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl></article>`).join("");
+  setCount("certs", CERTS.length); setCount("certsAll", CERTS.length + SPECIAL.length); setCount("interns", INTERNS.length); setCount("special", SPECIAL.length);
+  setCount("projects", PROJECTS.length); setCount("research", RESEARCH.length); setCount("work", DISS.length + RESEARCH.length + PROJECTS.length);
+}
+function renderJourney() {
+  const page = JOURNEY.filter(j => !j.drawer);
+  $("#journeyList").style.setProperty("--steps", page.length);
+  $("#journeyList").innerHTML = page.map(j => `<li class="sp-jstep${j.current ? " is-current" : ""}"><span class="sp-year">${j.year}</span><span class="sp-jdot">${iconSvg(j.icon, "f", 18)}</span><div class="sp-jcard"><b>${esc(j.title)}</b><span>${esc(j.text)}</span></div></li>`).join("");
+  $("#fullJourney").innerHTML = [...JOURNEY].reverse().map(j => `<li class="sp-tl-item${j.current ? " is-current" : ""}"><span class="sp-jdot">${iconSvg(j.icon, "f", 18)}</span><div class="sp-tl-card"><div class="sp-tl-top"><b>${esc(j.title)}</b><span class="sp-year">${j.year}</span></div><p>${esc(j.text)}</p></div></li>`).join("");
+}
+function renderAcademic() {
+  $("#currentRec").innerHTML = CURRENT.map(([k, v]) => `<div><span>${k}</span><b>${esc(v)}</b></div>`).join("");
+  const st = SEMS.map(semStats), courses = sum(SEMS, s => s.courses.length), cr = sum(st, x => x.cr), cp = sum(st, x => x.cp);
+  $("#semSum").innerHTML = [["Computer Engineering", "Stream"], [SEMS.length, "Semesters"], [courses, "Courses"], [cr, "Total Credits"], [cp, "Credit Points"], [(cp / cr).toFixed(2), "CGPA"]].map(([v, l]) => `<div><b>${esc(v)}</b><span>${l}</span></div>`).join("");
+}
+// Semester marks drawer
+function openSem(i) {
+  const s = SEMS[i], x = semStats(s);
+  $("#drSemTitle").textContent = `Semester ${s.n} · SGPA ${x.sgpa}`;
+  $("#drSemSub").textContent = `${s.courses.length} Course${s.courses.length > 1 ? "s" : ""} · ${s.term} · Trusted Source: DigiLocker`;
+  $("#drSemBody").innerHTML = `<div class="sp-mini"><div><b>${s.courses.length}</b><span>Courses</span></div><div><b>${x.cr}</b><span>Total Credits</span></div><div><b>${x.cp}</b><span>Credit Points</span></div><div><b>${x.sgpa}</b><span>Semester SGPA</span></div></div>
+    <div class="sp-table-wrap"><table class="sp-table">
+      <thead><tr><th>#</th><th>Course / Subject Name</th><th>Exam Session</th><th class="num">Credits</th><th>Grade</th><th class="num">Grade Points</th><th class="num">Credit Points</th></tr></thead>
+      <tbody>${s.courses.map((c, n) => `<tr><td>${n + 1}</td><td><b>${esc(c[1])}</b><small>${c[0]}</small></td><td>${s.term}</td><td class="num">${c[2]}</td><td>${c[3]}</td><td class="num">${GP[c[3]]}</td><td class="num">${cpOf(c)}</td></tr>`).join("")}</tbody>
+      <tfoot><tr><td colspan="3">Semester Total</td><td class="num">${x.cr}</td><td>SGPA: ${x.sgpa}</td><td class="num">–</td><td class="num">${x.cp}</td></tr></tfoot>
+    </table></div>
+    <p class="sp-scale">Grade Scale: AA (10) • AB (9) • BB (8) • BC (7) • CC (6) • CD (5) • DD (4) • FF (0 - Fail) • PP (Pass, no credit)</p>`;
+  openDrawer("drSem");
+}
+renderRows(); renderJourney(); renderAcademic();
+
+/* Arrows of every row (desktop) – scroll one screen, disabled at the ends, hidden when everything fits */
+const TRACKS = $$(".sx-track");
+$$(".sx-arrows[data-for]").forEach(a => {
+  a.innerHTML = `<button class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon" type="button" data-dir="-1" aria-label="Previous">${iconSvg("arrow-left", "l", 16)}</button><button class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon" type="button" data-dir="1" aria-label="Next">${iconSvg("arrow-right", "l", 16)}</button>`;
+});
+function syncArrows(t) {
+  const a = document.querySelector(`.sx-arrows[data-for="${t.id}"]`); if (!a) return;
+  const over = t.scrollWidth > t.clientWidth + 4;
+  a.hidden = !over;
+  const [prev, next] = a.querySelectorAll("button");
+  prev.disabled = t.scrollLeft <= 6; next.disabled = t.scrollLeft + t.clientWidth >= t.scrollWidth - 6;   // snap leaves ~2px
+}
+const syncAll = () => TRACKS.forEach(syncArrows);
+TRACKS.forEach(t => t.addEventListener("scroll", () => syncArrows(t), { passive: true }));
+addEventListener("resize", syncAll);
+document.addEventListener("click", e => {
+  const b = e.target.closest(".sx-arrows button[data-dir]"); if (!b) return;
+  const t = document.getElementById(b.closest(".sx-arrows").dataset.for);
+  t.scrollBy({ left: +b.dataset.dir * t.clientWidth * 0.9, behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth" });
+  setTimeout(() => syncArrows(t), 450);
+});
+// Arrow keys scroll a focused row
+TRACKS.forEach(t => t.addEventListener("keydown", e => {
+  if (e.target !== t || !["ArrowLeft", "ArrowRight"].includes(e.key)) return;
+  e.preventDefault(); t.scrollBy({ left: (e.key === "ArrowRight" ? 1 : -1) * t.clientWidth * 0.5 });
+}));
+hydrate();
+syncAll();
+
+/* Counters in the banner: jump to the row (and to the first card of that kind) */
+const JUMP = { skills: ["rowSkills"], certs: ["rowCerts", "cert"], interns: ["rowIntern"], projects: ["rowWork", "project"], research: ["rowWork", "research"], special: ["rowCerts", "special"] };
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-j]"); if (!b) return;
+  const [rowId, kind] = JUMP[b.dataset.j], row = document.getElementById(rowId), reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  row.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  const t = row.querySelector(".sx-track"), c = kind && t?.querySelector(`[data-kind="${kind}"]`);
+  if (c) { t.scrollTo({ left: c.getBoundingClientRect().left - t.getBoundingClientRect().left + t.scrollLeft - 2, behavior: reduce ? "auto" : "smooth" }); setTimeout(() => syncArrows(t), 450); }
+});
+document.addEventListener("click", e => { const s = e.target.closest("[data-sem]"); if (s) openSem(+s.dataset.sem); });
+
+/* "+N More" skills on an internship card */
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-more]"); if (!b) return;
+  const i = +b.dataset.more, wrap = b.closest(".sp-skills"), open = b.getAttribute("aria-expanded") !== "true", list = INTERNS[i].skills;
+  wrap.innerHTML = (open ? list : list.slice(0, 3)).map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("")
+    + `<button class="sp-skill is-sm is-more" type="button" data-more="${i}" aria-expanded="${open}" title="${open ? "Show fewer skills" : "Show all skills"}">${open ? "Show less" : `+${list.length - 3} More`}</button>`;
+  wrap.querySelector("[data-more]").focus();
+});
+
+/* Buttons whose page is not built yet */
+document.addEventListener("click", e => { const b = e.target.closest("[data-soon]"); if (b) toast(`${b.dataset.soon} will be added soon`); });
+$("#spGenerate").addEventListener("click", () => toast("Skill Passport PDF will be generated soon"));
+$("#spShare").addEventListener("click", () => toast("Share link will be added soon"));
+
+/* Show / hide masked values */
+$$(".sp-mask").forEach(b => b.addEventListener("click", () => {
+  const v = b.previousElementSibling, show = !v.dataset.masked;
+  if (show) { v.dataset.masked = v.textContent; v.textContent = v.dataset.full; }
+  else { v.textContent = v.dataset.masked; delete v.dataset.masked; }
+  b.innerHTML = iconSvg(show ? "view" : "eye-off", show ? "f" : "o", 16);
+  b.title = show ? "Hide" : "Show";
+}));
+
+/* ================= MODAL (Design System .ui-modal) ================= */
+let modalReturn = null;
+function openModal(id) {
+  const m = document.getElementById(id); if (!m) return;
+  modalReturn = document.activeElement;
+  m.dispatchEvent(new Event("modal:open"));
+  m.classList.add("is-open");
+  document.body.classList.add("ui-modal-lock");
+  m.offsetWidth; // apply the open styles before moving focus
+  (m.querySelector("[autofocus]") || m.querySelector(".ui-modal-close")).focus();
+}
+function closeModal(m) {
+  if (!m) return;
+  m.classList.remove("is-open");
+  document.body.classList.remove("ui-modal-lock");
+  modalReturn?.focus();
+}
+document.addEventListener("click", e => {
+  const o = e.target.closest("[data-modal-open]");
+  if (o) return openModal(o.dataset.modalOpen);
+  const m = e.target.closest(".ui-modal-backdrop.is-open"); if (!m) return;
+  if (e.target.closest("[data-modal-close]")) closeModal(m);
+  else if (e.target === m && !("static" in m.dataset)) closeModal(m);
+});
+/* ================= DRAWER (Design System .ui-drawer) ================= */
+let drawerReturn = null;
+function openDrawer(id) {
+  const d = document.getElementById(id); if (!d) return;
+  drawerReturn = document.activeElement;
+  d.querySelector(".ui-drawer-body").scrollTop = 0;
+  d.classList.add("is-open"); $("#drBackdrop").classList.add("is-open");
+  document.body.classList.add("ui-drawer-lock");
+  d.offsetWidth; // apply the open styles before moving focus
+  d.querySelector(".ui-modal-close").focus();
+}
+function closeDrawer() {
+  const d = $(".ui-drawer.is-open"); if (!d) return;
+  d.classList.remove("is-open"); $("#drBackdrop").classList.remove("is-open");
+  document.body.classList.remove("ui-drawer-lock");
+  drawerReturn?.focus();
+}
+document.addEventListener("click", e => {
+  const o = e.target.closest("[data-drawer-open]");
+  if (o) return openDrawer(o.dataset.drawerOpen);
+  if (e.target.closest("[data-drawer-close]") || e.target.id === "drBackdrop") closeDrawer();
+});
+
+// Esc closes an open dropdown first, then the modal or drawer
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  const combo = $(".ui-combo.is-open"); if (combo) return combo.classList.remove("is-open");
+  if ($(".ui-modal-backdrop.is-open")) return closeModal($(".ui-modal-backdrop.is-open"));
+  closeDrawer();
+});
+
+/* ================= JOB ORIENTED SKILLS ================= */
+const SKILL_OPTIONS = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Angular", "Vue.js", "Node.js", "Java", "Spring Boot", "Hibernate", "Python", "Django", "Machine Learning", "Data Analysis", "SQL", "MySQL", "MongoDB", "PHP", "Laravel", "C", "C++", "C#", ".NET", "Docker", "Git", "Linux", "AWS", "Figma", "UI/UX Design", "Communication", "Problem Solving", "Teamwork", "MS Excel", "Tally"];
+const SK = { saved: ["Java", "Python", "SQL", "Spring Boot", "React JS", "Data Structures and Algorithms", "Git", "Docker"], draft: [], max: 15, active: 0, opts: [] };
+const skCombo = $("#mdSkCombo"), skIn = $("#mdSkIn"), skList = $("#mdSkList");
+
+// Page: chips + "Edit" when skills exist, empty state + "Add Skill" when none
+function skRenderPage() {
+  const n = SK.saved.length;
+  $("#skList").innerHTML = SK.saved.map(s => `<span class="sp-skill">${esc(s)}</span>`).join("");
+  $("#skList").hidden = !n; $("#skEmpty").hidden = !!n; $("#skEditBtn").hidden = !n;
+  setCount("skills", n);
+}
+// Modal: chips of the draft list + search list
+function skRenderChips() {
+  $("#mdSkChips").innerHTML = SK.draft.map(s => `<span class="ui-chip">${esc(s)}<button type="button" data-chip="${esc(s)}" title="Remove ${esc(s)}" aria-label="Remove ${esc(s)}">${iconSvg("close", "l", 12)}</button></span>`).join("");
+  $("#mdSkNone").hidden = SK.draft.length > 0;
+  $("#mdSkCount").textContent = String(SK.draft.length).padStart(2, "0");
+  const full = SK.draft.length >= SK.max;
+  skIn.disabled = full;
+  skIn.placeholder = full ? `Maximum ${SK.max} skills added` : "Search skill (e.g. HTML, Python, Figma...)";
+}
+function skRenderList() {
+  const q = skIn.value.trim(), ql = q.toLowerCase(), has = s => SK.draft.some(p => p.toLowerCase() === s.toLowerCase());
+  SK.opts = SKILL_OPTIONS.filter(s => !has(s) && s.toLowerCase().includes(ql)).map(v => ({ v }));
+  if (q && !has(q) && !SKILL_OPTIONS.some(s => s.toLowerCase() === ql)) SK.opts.push({ v: q, isNew: true });
+  SK.active = Math.min(SK.active, Math.max(0, SK.opts.length - 1));
+  skList.innerHTML = SK.opts.map((o, i) => `<div class="ui-option${o.isNew ? " is-new" : ""}${i === SK.active ? " is-active" : ""}" role="option" aria-selected="${i === SK.active}" data-i="${i}">${o.isNew ? `${iconSvg("plus", "l", 14)}<span>Add "${esc(o.v)}"</span>` : `<span>${hl(o.v, q)}</span>`}</div>`).join("")
+    || `<div class="ui-select-empty">${q ? "Already added" : "All skills added"}</div>`;
+  skPlace();
+}
+function skOpen(open) { skCombo.classList.toggle("is-open", open); skIn.setAttribute("aria-expanded", open); if (open) skRenderList(); }
+// Place the floating list under the field, or above it when there is not enough room below
+function skPlace() {
+  if (!skCombo.classList.contains("is-open")) return;
+  const menu = skCombo.querySelector(".ui-select-menu"), r = skIn.getBoundingClientRect(), gap = 4, pad = 12;
+  const below = innerHeight - r.bottom - gap - pad, above = r.top - gap - pad, up = below < 180 && above > below;
+  // While the modal is still animating in, "fixed" is measured from the modal box – find that origin first
+  menu.style.top = "0px"; menu.style.left = "0px"; menu.style.bottom = "auto";
+  const o = menu.getBoundingClientRect();
+  menu.style.left = r.left - o.left + "px"; menu.style.width = r.width + "px";
+  menu.style.setProperty("--sp-menu-h", Math.max(120, Math.min(240, (up ? above : below) - 16)) + "px");
+  if (up) { menu.style.top = r.top - o.top - gap - menu.offsetHeight + "px"; }
+  else menu.style.top = r.bottom - o.top + gap + "px";
+}
+$("#mdSkills .ui-modal-body").addEventListener("scroll", skPlace);
+$("#mdSkills .ui-modal").addEventListener("transitionend", skPlace);
+addEventListener("resize", skPlace);
+function skHelp(msg, isErr) { const h = $("#mdSkHelp"); h.textContent = msg; h.classList.toggle("is-error", !!isErr); skCombo.classList.toggle("is-error", !!isErr); }
+function skAdd(v) {
+  if (!v || SK.draft.length >= SK.max || SK.draft.some(p => p.toLowerCase() === v.toLowerCase())) return;
+  SK.draft.push(v); skIn.value = ""; SK.active = 0;
+  skHelp("Type to search. Press Enter to add a skill that is not in the list.");
+  skRenderChips(); skRenderList();
+}
+$("#mdSkills").addEventListener("modal:open", () => {
+  SK.draft = [...SK.saved]; skIn.value = ""; SK.active = 0;
+  $("#mdSkillsTitle").textContent = SK.saved.length ? "Edit Job Oriented Skills" : "Add Job Oriented Skill";
+  skHelp("Type to search. Press Enter to add a skill that is not in the list.");
+  skRenderChips(); skOpen(false);
+});
+skIn.addEventListener("focus", () => skOpen(true));
+skIn.addEventListener("click", () => skOpen(true));
+skIn.addEventListener("input", () => { SK.active = 0; skOpen(true); });
+skIn.addEventListener("keydown", e => {
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    e.preventDefault(); if (!skCombo.classList.contains("is-open")) return skOpen(true);
+    SK.active = (SK.active + (e.key === "ArrowDown" ? 1 : -1) + SK.opts.length) % Math.max(1, SK.opts.length); skRenderList();
+    skList.querySelector(".is-active")?.scrollIntoView({ block: "nearest" });
+  } else if (e.key === "Enter") { e.preventDefault(); skAdd(SK.opts[SK.active]?.v || skIn.value.trim()); }
+  else if (e.key === "Backspace" && !skIn.value && SK.draft.length) { SK.draft.pop(); skRenderChips(); skRenderList(); }
+});
+skList.addEventListener("mousedown", e => { const o = e.target.closest(".ui-option"); if (!o) return; e.preventDefault(); skAdd(SK.opts[o.dataset.i].v); });
+$("#mdSkChips").addEventListener("click", e => {
+  const b = e.target.closest("[data-chip]"); if (!b) return;
+  SK.draft = SK.draft.filter(s => s !== b.dataset.chip); skRenderChips(); skRenderList();
+  ($("#mdSkChips [data-chip]") || skIn).focus();
+});
+document.addEventListener("click", e => { if (!e.target.closest("#mdSkCombo")) skOpen(false); });
+$("#mdSkSave").addEventListener("click", () => {
+  if (!SK.draft.length && !SK.saved.length) { skHelp("Add at least one skill.", true); return skIn.focus(); }
+  SK.saved = [...SK.draft]; skRenderPage(); closeModal($("#mdSkills"));
+  toast(SK.saved.length ? `${SK.saved.length} skill${SK.saved.length > 1 ? "s" : ""} saved` : "All skills removed");
+});
+skRenderPage();
+
+/* 3 dots menu – opens below the button, aligned right */
+const menu = $("#spMenu"); let menuBtn = null;
+function closeMenu() { menu.classList.remove("is-open"); menuBtn?.classList.remove("is-open"); menuBtn = null; }
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-menu]");
+  if (b) {
+    if (b === menuBtn) return closeMenu();
+    closeMenu(); menuBtn = b; b.classList.add("is-open"); menu.classList.add("is-open");
+    const r = b.getBoundingClientRect(), below = r.bottom + 6 + menu.offsetHeight < innerHeight;
+    menu.style.top = (below ? r.bottom + 6 : r.top - 6 - menu.offsetHeight) + "px";
+    menu.style.left = Math.max(8, r.right - menu.offsetWidth) + "px";
+    return;
+  }
+  if (!e.target.closest("#spMenu") || e.target.closest(".ui-menu-item")) closeMenu();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+addEventListener("scroll", closeMenu, true);
+addEventListener("resize", closeMenu);
+hydrate(); // the modal, drawer and menu icons
+</script>
+</body>
+</html>
