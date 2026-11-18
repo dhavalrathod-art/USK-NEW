@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -58,6 +58,16 @@ svg{flex-shrink:0}
 .h-right{margin-left:auto;display:flex;align-items:center;gap:10px}
 .badge-count{position:absolute;top:0;right:-4px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--side-accent);color:#fff;font-size:9.5px;font-weight:700;line-height:14px;text-align:center;border:2px solid #fff}
 .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8b5e3c,#3d2a1d);color:#fff;display:grid;place-items:center;font-weight:600;font-size:12px;border:2px solid #fff;box-shadow:0 0 0 1px var(--line)}
+/* Header account dropdown (19/11): avatar + chevron → Profile / Settings / Logout */
+.h-user{position:relative}
+.h-user-btn{display:flex;align-items:center;gap:4px;background:none;border:0;cursor:pointer;padding:2px}
+.h-user-chev{color:var(--color-text-secondary);transition:transform .15s}
+.h-user-btn[aria-expanded="true"] .h-user-chev{transform:rotate(180deg)}
+.h-user-panel{position:absolute;top:calc(100% + 10px);right:0;z-index:60;width:200px;background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:10px;box-shadow:0 10px 28px rgba(15,31,49,.14);padding:6px}
+.h-user-item{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border-radius:6px;border:0;background:none;font:inherit;font-size:var(--font-size-body-sm);color:var(--color-text-heading);text-align:left;cursor:pointer}
+.h-user-item:hover{background:var(--color-bg-page)}
+.h-user-item.is-danger{color:var(--color-error)}
+.h-user-sep{height:1px;background:var(--color-border-default);margin:6px 2px}
 
 .content{padding:20px}
 .page-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
@@ -83,8 +93,6 @@ svg{flex-shrink:0}
 /* ---------- Filter panel ---------- */
 .filter-card{padding:14px 16px;margin-bottom:16px}
 .filter-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.f-title{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--primary)}
-.f-ic{width:32px;height:32px;border-radius:8px;background:#e7eef7;color:var(--primary);display:grid;place-items:center}
 .btn-gold .cnt{background:#fff;color:var(--gold-d);border-radius:10px;font-size:11px;padding:0 7px;font-weight:700;display:none}
 .btn-gold .cnt.on{display:inline-block}
 .btn-gold .chev{transition:transform .2s}
@@ -289,7 +297,9 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sch-deadline b{font-weight:var(--font-weight-semibold)}
 .sch-sec{padding:var(--space-20)}
 .sch-sec-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-bottom:var(--space-16)}
-.sd-list{display:grid;gap:var(--space-8)}
+.sd-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-8) var(--space-12)}
+.sd-opt.is-none{grid-column:1/-1}
+@media (max-width:767.98px){.sd-list{grid-template-columns:1fr}}
 .sd-opt{display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-12) var(--space-16);border:1px solid var(--color-border-default);border-radius:8px;cursor:pointer;transition:border-color .15s,background .15s}
 .sd-opt:hover{border-color:var(--color-border-hover)}
 .sd-opt input{margin-top:2px;flex:none}
@@ -308,6 +318,27 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sm-pre li.is-fail svg{color:var(--color-error)}
 .sm-grid .cjp-radios{margin-bottom:0}
 .sch-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-20);padding-top:var(--space-16);border-top:1px solid var(--color-border-default)}
+/* ===== Kaushalya Sahaay Yojana (KSY, 18/11) – separate module, student side only (Phase 1a: info + eligibility) ===== */
+.ksy-info{padding:var(--space-20);margin-bottom:var(--space-16)}
+.ksy-elig{padding:var(--space-20)}
+.ksy-info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-12)}
+.ksy-info-grid div{padding:var(--space-12);border:1px solid var(--color-border-default);border-radius:8px}
+.ksy-info-grid span{display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ksy-info-grid b{font-size:var(--font-size-body);color:var(--color-text-heading)}
+.ksy-note{display:flex;align-items:flex-start;gap:var(--space-8);margin-top:var(--space-16);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ksy-note svg{flex:none;margin-top:1px;color:var(--color-icon-muted)}
+.ksy-checks{display:grid;gap:var(--space-12)}
+.ksy-checks li{display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-12) var(--space-16);border:1px solid var(--color-border-default);border-radius:8px}
+.ksy-checks li.is-ok{border-color:var(--color-success-border);background:var(--color-success-bg)}
+.ksy-checks li.is-fail{border-color:var(--color-error-border);background:var(--color-error-bg)}
+.ksy-checks svg{flex:none;margin-top:2px}
+.ksy-checks li.is-ok svg{color:var(--color-success)}
+.ksy-checks li.is-fail svg{color:var(--color-error)}
+.ksy-checks b{display:block;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ksy-checks small{display:block;margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ksy-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-20);padding-top:var(--space-16);border-top:1px solid var(--color-border-default)}
+@media (max-width:767.98px){.ksy-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:575.98px){.ksy-info-grid{grid-template-columns:1fr}.ksy-foot{flex-direction:column;align-items:stretch}.ksy-foot .ui-btn{width:100%}}
 /* application form (CMSS-05) */
 .sf-band{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap;margin:calc(-1 * var(--space-20)) calc(-1 * var(--space-20)) var(--space-16);padding:var(--space-16) var(--space-20);background:var(--color-bg-surface);border-bottom:1px solid var(--color-border-default)}
 .sf-band .ui-icon-box{flex:none;width:44px;height:44px}
@@ -323,6 +354,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sf-main{min-width:0;display:flex;flex-direction:column}
 .sf-main > #sfBody{display:flex;flex-direction:column}
 .sf-subs{padding:var(--space-20) var(--space-24);margin-bottom:var(--space-16)}
+.sf-steps-card{padding:var(--space-20) var(--space-24);margin-bottom:var(--space-16)}
 .sf-subs .ui-step{cursor:default}
 .sf-subs .ui-step[data-sf-sub]{cursor:pointer}
 .sf-msub{display:none}
@@ -331,6 +363,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sf-foot-row{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap}
 @media (max-width:991.98px){.sf-layout{grid-template-columns:minmax(0,1fr)}.sf-side{position:static;padding:var(--space-16)}.sf-side .sf-steps{display:none}.sf-side .sf-mstep{display:block}}
 @media (max-width:767.98px){.sf-subs{padding:var(--space-12) var(--space-16)}.sf-subs .ui-steps{display:none}.sf-msub{display:block;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}.sf-msub b{color:var(--color-text-heading)}}
+@media (max-width:991.98px){.sf-steps-card{padding:var(--space-16)}}
 @media (max-width:575.98px){.sf-band{margin:calc(-1 * 14px) calc(-1 * 14px) var(--space-16);padding:var(--space-12) 14px}.sf-band-t{flex-basis:calc(100% - 56px)}.sf-band-t h3{font-size:var(--font-size-h5);line-height:var(--line-height-h5)}.sf-foot-row #sfPrev{order:2}.sf-foot-row .sf-pending{order:1;flex-basis:100%}.sf-foot-row .sf-foot-btns{order:3}}
 .sf-steps .ui-step{cursor:default}
 .sf-steps .ui-step.is-done{cursor:pointer}
@@ -761,12 +794,24 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 }
 /* ---------- Student Dashboard (first page after Sign In) – Design System tokens & components only ---------- */
 /* No sidebar on the Dashboard: full-width page, logo + Log out in the header (.app.is-dash is set in showView) */
-.h-brand,.h-logout{display:none}
+.h-brand,.h-logout,.h-ai{display:none}
 .app.is-dash .sidebar,.app.is-dash .side-backdrop,.app.is-dash #toggleSide,.app.is-dash .h-title{display:none!important}
 .app.is-dash .main{margin-left:0}
 .app.is-dash .h-brand{display:flex}
 .app.is-dash .h-logout{display:inline-flex}
+.app.is-dash .h-ai{display:inline-flex}
 @media (max-width:575.98px){.app.is-dash .h-logout{width:32px;padding:0;justify-content:center}.h-logout-t{display:none}.app.is-dash .h-brand b{font-size:8.5px}.app.is-dash .h-brand small{display:none}}
+/* AI Career Guide (18/11): star icon + a thin rotating gradient ring around the pill (user's reference: codepen.io/hktechhub/pen/YPWYvjJ) –
+   a big conic-gradient disc spins behind the button (::before), clipped to the pill by overflow:hidden, with a solid inset layer (::after)
+   leaving only a slim glowing ring visible, so it reads as "the border is rotating" rather than the whole fill animating. */
+.h-ai{position:relative;align-items:center;gap:6px;height:32px;padding:0 14px;border:none;border-radius:999px;cursor:pointer;background:var(--color-bg-surface);color:var(--color-text-heading);font:inherit;font-size:var(--font-size-button);font-weight:var(--font-weight-semibold);white-space:nowrap;overflow:hidden;isolation:isolate}
+.h-ai::before{content:"";position:absolute;top:50%;left:50%;width:220%;aspect-ratio:1/1;border-radius:50%;background:conic-gradient(var(--color-accent-400) 0%,var(--color-primary-400) 35%,var(--color-bg-surface) 55%,var(--color-bg-surface) 80%,var(--color-accent-400) 100%);transform:translate(-50%,-50%);animation:hAiSpin 3s linear infinite;z-index:-2}
+.h-ai::after{content:"";position:absolute;inset:2px;border-radius:999px;background:var(--color-bg-surface);z-index:-1}
+.h-ai svg{flex:none;color:var(--color-accent-500)}
+.h-ai:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}
+@keyframes hAiSpin{to{transform:translate(-50%,-50%) rotate(1turn)}}
+@media (prefers-reduced-motion:reduce){.h-ai::before{animation:none}}
+@media (max-width:767.98px){.h-ai-t{display:none}.h-ai{width:32px;padding:0;justify-content:center}}
 /* Student scholarship pages = full width like Skill Passport (17/11): no sidebar (same as the Dashboard) + Scholarship / My Applications in the header (.app.is-sch, set in showView) */
 .h-schnav,.h-home{display:none}
 /* Mobile App screens (18/11): phone-width screens (430px) in the portal, to copy into Figma. Tokens only. */
@@ -901,6 +946,18 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 @keyframes dbTick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.db-tick-win{overflow-x:auto}.db-tick-track{animation:none}}
 
+/* 2.5 Featured Schemes (19/11, user: Kaushalya Sahaay Yojana + Unnati Yojana, right above Quick Services) */
+.db-feat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16)}
+.db-feat{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-16) var(--space-20);border-radius:12px;border:1px solid var(--color-border-default);background:var(--color-bg-surface);cursor:pointer;transition:box-shadow .2s,border-color .2s;width:100%;text-align:left;font:inherit}
+.db-feat:hover{box-shadow:0 4px 14px rgba(15,31,49,.08);border-color:var(--color-border-hover)}
+.db-feat:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.db-feat .ui-icon-box{width:48px;height:48px;flex:none}
+.db-feat-txt{flex:1;min-width:0}
+.db-feat-txt b{display:block;font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.db-feat-txt small{display:block;margin-top:2px;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
+.db-feat-go{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--color-bg-page);color:var(--color-primary-600)}
+@media (max-width:767.98px){.db-feat-grid{grid-template-columns:1fr}}
+
 /* 3. Quick Services */
 .db-qs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--space-16)} /* 4 on top, Feedback alone in the 2nd row (user, 16/11); every row as tall as the tallest card, so Feedback matches the top row */
 /* compact (16/11, like the live site): padding 12 / 16, icon box 44, gap 12, arrow 32 – the whole card is the button */
@@ -973,6 +1030,27 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .db-dl dt{color:var(--color-text-secondary)}
 .db-dl dd{color:var(--color-text-heading);font-weight:var(--font-weight-medium);overflow-wrap:anywhere}
 .db-md-desc{margin-bottom:var(--space-16);font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body)}
+
+/* Student Profile page (19/11, from the header account dropdown; data level = the live site's /profile for now) */
+.pf-head-acts{display:flex;align-items:center;gap:var(--space-8);flex:none}
+.pf-card{padding:var(--space-24);margin-bottom:var(--space-16)}
+.pf-top{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-8);padding-bottom:var(--space-20);margin-bottom:var(--space-20);border-bottom:1px solid var(--color-border-default)}
+.pf-avatar{width:88px;height:88px;border-radius:50%;background:var(--color-accent-500);color:#fff;display:grid;place-items:center;font-size:var(--font-size-h1);font-weight:var(--font-weight-bold)}
+.pf-name{font-size:var(--font-size-h4);line-height:var(--line-height-h4);color:var(--color-text-heading)}
+.pf-apaar{display:flex;align-items:center;gap:var(--space-8);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.pf-apaar span{font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.pf-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16) var(--space-24)}
+.pf-kv > div{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);padding-bottom:var(--space-12);border-bottom:1px solid var(--color-border-default)}
+.pf-kv > div > span{color:var(--color-text-secondary);font-size:var(--font-size-body-sm)}
+.pf-kv > div > b{display:flex;align-items:center;gap:var(--space-8);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);text-align:right}
+.pf-kv2 > div{border-bottom:0;padding-bottom:0}
+.pf-sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-16)}
+.pf-soc-row{display:flex;align-items:center;gap:var(--space-12);padding:var(--space-12);border:1px solid var(--color-border-default);border-radius:8px}
+.pf-soc-txt{flex:1;min-width:0}
+.pf-soc-txt small{display:block;color:var(--color-text-secondary);overflow-wrap:anywhere}
+.pf-soc-acts{display:flex;gap:var(--space-4);flex:none}
+.pf-acc .ui-acc-title{display:flex;align-items:center}
+@media (max-width:767.98px){.pf-kv,.pf-kv2{grid-template-columns:1fr}}
 
 @media (max-width:1439.98px){
   .db-profile{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
@@ -1648,9 +1726,18 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       </a>
       <a href="#hc" data-view="hc" data-tip="Verify Applications" data-role="hc" hidden><span data-icon="document:f:18"></span><span class="nav-label">Verify Applications</span></a>
       <a href="#co" data-view="co" data-tip="Review Applications" data-role="co" hidden><span data-icon="view:f:18"></span><span class="nav-label">Review Applications</span></a>
+      <!-- KSY 3-level review roles (18/11) -->
+      <a href="#ksy-nodal" data-view="ksy-nodal" data-tip="KSY Applications" data-role="nodal" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
+      <a href="#ksy-principal" data-view="ksy-principal" data-tip="KSY Applications" data-role="principal" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
+      <a href="#ksy-nep" data-view="ksy-nep" data-tip="KSY Applications" data-role="nep" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
       <a href="#my-apps" data-view="my-apps" data-tip="My Applications" data-role="student">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 2h8v3H8z"/><path fill-rule="evenodd" d="M6 4h1v2h10V4h1a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2zm2 7v2h8v-2H8zm0 4v2h5v-2H8z"/></svg>
         <span class="nav-label">My Applications</span>
+      </a>
+      <!-- Kaushalya Sahaay Yojana (KSY, 18/11): separate module (user: "aakhu alag banavanu che"), not part of Scholarships -->
+      <a href="#ksy" data-view="ksy" data-tip="Kaushalya Sahaay Yojana" data-role="student">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 3h6a2 2 0 012 2v2h3a2 2 0 012 2v4H2V9a2 2 0 012-2h3V5a2 2 0 012-2zm0 4h6V5H9z"/><path d="M2 15h8v1a1 1 0 001 1h2a1 1 0 001-1v-1h8v4a2 2 0 01-2 2H4a2 2 0 01-2-2z"/></svg>
+        <span class="nav-label">Kaushalya Sahaay Yojana</span>
       </a>
       <a href="#company-job" data-view="company-job" data-tip="Company Job Post">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5L14 3.5zM11 11v3H8v2h3v3h2v-3h3v-2h-3v-3h-2z"/></svg>
@@ -1661,15 +1748,15 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="9" r="6.5"/><path d="M8 15.2L6.5 23l5.5-3.2 5.5 3.2L16 15.2a8 8 0 01-8 0z"/></svg>
         <span class="nav-label">Skill Passport</span>
       </a>
-      <a href="#design-system" data-view="design-system" data-tip="Design System">
+      <a href="#design-system" data-view="design-system" data-tip="Design System" data-role="student">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 000 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0022 9.8C22 5.5 17.5 2 12 2z"/></svg>
         <span class="nav-label">Design System</span>
       </a>
-      <a href="#mobile-app" data-view="mobile-app" data-tip="Mobile App">
+      <a href="#mobile-app" data-view="mobile-app" data-tip="Mobile App" data-role="student">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10.5 18.5h3"/></svg>
         <span class="nav-label">Mobile App</span>
       </a>
-      <a href="#responsive" data-view="responsive" data-tip="Responsive">
+      <a href="#responsive" data-view="responsive" data-tip="Responsive" data-role="student">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="11" rx="1.5"/><path d="M6 19h6M9 15v4"/><rect x="17" y="9" width="5" height="11" rx="1.2"/></svg>
         <span class="nav-label">Responsive</span>
       </a>
@@ -1707,6 +1794,8 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       <div class="h-right">
         <!-- Demo role switcher (Phase 4): Student / Help Center / Commissioner Office -->
         <a class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon h-home" href="#dashboard" title="Dashboard" aria-label="Go to Dashboard"><span data-icon="home:f:16"></span></a>
+        <!-- Dashboard only: AI Career Guide (18/11, user: like the live site's button, but "Ask Gemini" style – shimmer + a star, not a plain outline button) -->
+        <button class="h-ai" type="button" id="hAi" title="AI Career Guide"><span data-icon="star:f:16"></span><span class="h-ai-t">AI Career Guide</span></button>
         <div class="qsm" id="qsm">
         <button class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon qsm-btn" type="button" id="qsmBtn" title="Quick Services" aria-label="Quick Services" aria-haspopup="true" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></button>
         <div class="qsm-panel" id="qsmPanel" role="menu" aria-label="Quick Services" hidden>
@@ -1719,7 +1808,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
           </div>
         </div>
       </div>
-        <div class="ui-select role-sel" id="roleSel" data-options="Student|Help Center|Commissioner Office" data-value="Student" title="Switch role (demo)" aria-label="Role"></div>
+        <div class="ui-select role-sel" id="roleSel" data-options="Student|Help Center|Commissioner Office|Nodal Officer|Principal|NEP Cell, KCG" data-value="Student" title="Switch role (demo)" aria-label="Role"></div>
         <button class="icon-btn" title="Notifications">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 00-5-5.9V4a1 1 0 00-2 0v1.1A6 6 0 006 11v5l-2 2v1h16v-1z"/></svg>
           <span class="badge-count">10</span>
@@ -1727,7 +1816,19 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
         <button class="icon-btn" title="Settings">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M19.4 13a7.6 7.6 0 000-2l2.1-1.6-2-3.5-2.5 1a7.4 7.4 0 00-1.7-1L15 3h-4l-.4 2.9a7.4 7.4 0 00-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 000 2l-2.1 1.6 2 3.5 2.5-1a7.4 7.4 0 001.7 1L11 21h4l.4-2.9a7.4 7.4 0 001.7-1l2.5 1 2-3.5zM13 15.5A3.5 3.5 0 1116.5 12 3.5 3.5 0 0113 15.5z" transform="translate(-1 0)"/></svg>
         </button>
-        <div class="avatar">JS</div>
+        <!-- Account dropdown (19/11, user: Profile / Settings / Logout under the avatar, chevron beside it) -->
+        <div class="h-user" id="hUser">
+          <button class="h-user-btn" type="button" id="hUserBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu">
+            <div class="avatar">JS</div>
+            <span class="h-user-chev" data-icon="chevron-down:l:14"></span>
+          </button>
+          <div class="h-user-panel" id="hUserPanel" role="menu" aria-label="Account menu" hidden>
+            <a class="h-user-item" href="#profile" role="menuitem"><span data-icon="user:o:18"></span>Profile</a>
+            <button class="h-user-item" type="button" role="menuitem" data-dbsoon="Settings"><span data-icon="settings:o:18"></span>Settings</button>
+            <div class="h-user-sep"></div>
+            <button class="h-user-item is-danger h-user-logout" type="button" role="menuitem"><span data-icon="logout:l:18"></span>Logout</button>
+          </div>
+        </div>
         <!-- Dashboard only: Log out (the sidebar with its Log out button is hidden there) -->
         <button class="ui-btn ui-btn-outline ui-btn-sm h-logout" type="button" title="Log out"><span data-icon="logout:l:16"></span><span class="h-logout-t">Log out</span></button>
       </div>
@@ -1762,6 +1863,24 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
         <section class="db-card db-tick" aria-label="Latest updates">
           <span class="db-tick-lbl"><span data-icon="bell:f:16"></span>Latest Update</span>
           <div class="db-tick-win" id="dbTicker"></div>
+        </section>
+
+        <!-- 2.5 Featured Schemes (19/11, user: Kaushalya Sahaay Yojana + Unnati Yojana, right above Quick Services) -->
+        <section class="db-card">
+          <div class="db-head"><h4><span data-icon="award:f:20"></span>Featured Schemes</h4></div>
+          <div class="db-feat-grid">
+            <button class="db-feat" type="button" data-dbgo="#ksy">
+              <span class="ui-icon-box is-primary"><span data-icon="briefcase:f:20"></span></span>
+              <span class="db-feat-txt"><b>Kaushalya Sahaay Yojana</b><small>₹2,000 internship assistance for third-year students</small></span>
+              <span class="db-feat-go"><span data-icon="arrow-right:l:16"></span></span>
+            </button>
+            <!-- Unnati Yojana (19/11): flow not built yet, user will give the details next – placeholder toast for now -->
+            <button class="db-feat" type="button" data-dbsoon="Unnati Yojana">
+              <span class="ui-icon-box is-info"><span data-icon="award:f:20"></span></span>
+              <span class="db-feat-txt"><b>Unnati Yojana</b><small>Details coming soon</small></span>
+              <span class="db-feat-go"><span data-icon="arrow-right:l:16"></span></span>
+            </button>
+          </div>
         </section>
 
         <!-- 3. Quick Services -->
@@ -3236,10 +3355,10 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             <table>
               <thead><tr>
                 <th>Sr No.</th>
-                <th><span class="th">Student Name <button class="ui-th-btn" data-tcol="name" title="Search by name"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button><button class="ui-th-sort" data-tsort="0" title="Sort"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l5 6H7zm0 16l-5-6h10z"/></svg></button></span></th>
-                <th><span class="th">Program <button class="ui-th-btn" data-tcol="program" title="Filter program"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+                <th><span class="th">Student Name <button class="ui-th-btn" data-tcol="name" title="Search by name"><span data-icon="filter:f:14"></span></button><button class="ui-th-sort" data-tsort="0" title="Sort"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l5 6H7zm0 16l-5-6h10z"/></svg></button></span></th>
+                <th><span class="th">Program <button class="ui-th-btn" data-tcol="program" title="Filter program"><span data-icon="filter:f:14"></span></button></span></th>
                 <th><span class="th">Application Date <button class="ui-th-sort" data-tsort="2" title="Sort"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l5 6H7zm0 16l-5-6h10z"/></svg></button></span></th>
-                <th><span class="th">Status <button class="ui-th-btn" data-tcol="status" title="Filter status"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+                <th><span class="th">Status <button class="ui-th-btn" data-tcol="status" title="Filter status"><span data-icon="filter:f:14"></span></button></span></th>
                 <th>Action</th>
               </tr></thead>
               <tbody id="tbT4"></tbody>
@@ -3853,11 +3972,11 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
           <table>
             <thead><tr>
               <th>Application ID</th>
-              <th><span class="th">Scholarship <button class="ui-th-btn" type="button" data-macol="scheme" title="Filter scholarship" aria-label="Filter scholarship"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
-              <th><span class="th">Academic Year <button class="ui-th-btn" type="button" data-macol="year" title="Filter academic year" aria-label="Filter academic year"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+              <th><span class="th">Scholarship <button class="ui-th-btn" type="button" data-macol="scheme" title="Filter scholarship" aria-label="Filter scholarship"><span data-icon="filter:f:14"></span></button></span></th>
+              <th><span class="th">Academic Year <button class="ui-th-btn" type="button" data-macol="year" title="Filter academic year" aria-label="Filter academic year"><span data-icon="filter:f:14"></span></button></span></th>
               <th>Application Type</th>
               <th>Submitted Date</th>
-              <th><span class="th">Status <button class="ui-th-btn" type="button" data-macol="status" title="Filter status" aria-label="Filter status"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+              <th><span class="th">Status <button class="ui-th-btn" type="button" data-macol="status" title="Filter status" aria-label="Filter status"><span data-icon="filter:f:14"></span></button></span></th>
               <th>Action</th>
             </tr></thead>
             <tbody id="maBody"></tbody>
@@ -3874,6 +3993,56 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
           <button class="ui-btn ui-btn-primary" type="button" id="maGoSchemes"><span data-icon="award:f:16"></span>Go to Scholarships</button>
         </div>
       </section>
+    </main>
+
+    <!-- ===== VIEW: Kaushalya Sahaay Yojana (KSY, 18/11) – student (own module, not part of Scholarships) ===== -->
+    <main class="content" id="view-ksy" hidden>
+      <div class="page-head">
+        <div>
+          <h3>Kaushalya Sahaay Yojana</h3>
+          <p>A one-time internship assistance of <b>₹2,000</b> for third-year (Semester VI) students who complete a 20-day internship as part of the curriculum.</p>
+        </div>
+      </div>
+      <section class="card ksy-info">
+        <div class="ksy-info-grid">
+          <div><span>Assistance</span><b>₹2,000 per student</b></div>
+          <div><span>Internship</span><b>20 days · 4 credits · Semester VI</b></div>
+          <div><span>Application window</span><b>To be announced</b></div>
+        </div>
+        <p class="ksy-note"><span data-icon="info:o:16"></span>Payment is by Direct Benefit Transfer (DBT) after approval by the Nodal Officer, Principal and NEP Cell, KCG. Only Government and Grant-in-Aid colleges are covered.</p>
+      </section>
+      <section class="card ksy-elig">
+        <div class="ui-form-sec-head"><h5>Eligibility Checklist</h5><p>Checked automatically from your SSO and Skill Passport details.</p></div>
+        <ul class="ksy-checks" id="ksyChecks"></ul>
+        <div class="ksy-foot">
+          <span class="ui-help" id="ksyMsg"></span>
+          <button class="ui-btn ui-btn-primary" type="button" id="ksyApply">Apply Now<span data-icon="arrow-right:l:16"></span></button>
+        </div>
+      </section>
+      <div id="ksyStatus"></div>
+    </main>
+
+    <!-- ===== VIEW: Kaushalya Sahaay Yojana – Application Form (Phase 2, 18/11; 4 steps + review, per the doc) ===== -->
+    <main class="content" id="view-ksy-form" hidden>
+      <div class="page-head sch-head">
+        <div><h3>Kaushalya Sahaay Yojana – Application</h3><p id="kfSub">Academic year <b id="kfYear"></b> · Internship: <b id="kfCompany"></b></p></div>
+        <a class="ui-btn ui-btn-outline ui-btn-sm" href="#ksy"><span data-icon="arrow-left:l:14"></span>Kaushalya Sahaay Yojana</a>
+      </div>
+      <section class="card sf-steps-card" id="kfStepsCard">
+        <ol class="ui-steps sf-steps" id="kfSteps" aria-label="Application steps"></ol>
+        <div class="sf-mstep" id="kfMStep"></div>
+      </section>
+      <div id="kfBody"></div>
+      <section class="card sf-foot" id="kfFoot">
+        <div class="sf-foot-row">
+          <button class="ui-btn ui-btn-outline" type="button" id="kfPrev"><span data-icon="arrow-left:l:16"></span>Back</button>
+          <span class="ui-help sf-pending" id="kfPending"></span>
+          <div class="sf-foot-btns">
+            <button class="ui-btn ui-btn-primary" type="button" id="kfNext">Next<span data-icon="arrow-right:l:16"></span></button>
+          </div>
+        </div>
+      </section>
+      <section class="card sf-done" id="kfDone" hidden></section>
     </main>
 
     <!-- ===== VIEW: My Applications → View Application (read-only) – COM-01.1 ===== -->
@@ -3924,8 +4093,8 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
             <div class="ui-field"><span class="ui-label">Job Location</span><div class="ui-select" id="cjpfLoc" data-ph="Select job location" data-search></div></div>
             <div class="ui-field"><span class="ui-label">Work Type</span><div class="ui-select" id="cjpfWork" data-ph="Select work type"></div></div>
             <div class="ui-field"><span class="ui-label">Status</span><div class="ui-select" id="cjpfStatus" data-ph="Select status"></div></div>
-            <div class="ui-field"><label class="ui-label" for="cjpfFrom">Start Date From</label><input class="ui-input" id="cjpfFrom" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
-            <div class="ui-field"><label class="ui-label" for="cjpfTo">End Date To</label><input class="ui-input" id="cjpfTo" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
+            <div class="ui-field"><label class="ui-label" for="cjpfFrom">Start Date From</label><input class="ui-input" type="date" id="cjpfFrom"><span class="ui-help" hidden></span></div>
+            <div class="ui-field"><label class="ui-label" for="cjpfTo">End Date To</label><input class="ui-input" type="date" id="cjpfTo"><span class="ui-help" hidden></span></div>
           </div>
           <div class="ui-filter-acts">
             <span class="ui-filter-count" id="cjpPreview"></span>
@@ -3954,6 +4123,81 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       <div class="ui-menu" id="cjpMenu" role="menu"></div>
     </main>
 
+    <!-- ===== VIEW: Kaushalya Sahaay Yojana – Nodal Officer Review (Phase 3, 18/11: Approve / Reject, bulk actions) ===== -->
+    <main class="content" id="view-ksy-nodal" hidden>
+      <div class="page-head"><div><h3>KSY – Nodal Officer Review</h3><p>Internship Mentor Teacher: verify the internship and documents of students at your college.</p></div></div>
+      <section class="card table-card">
+        <div class="ui-bulk">
+          <span class="ui-bulk-count"><b id="ksyNodalBulkText">No applications selected</b></span>
+          <button class="ui-btn ui-btn-danger-soft" type="button" id="ksyNodalReject" disabled>Reject Selected</button>
+          <button class="ui-btn ui-btn-primary" type="button" id="ksyNodalApprove" disabled>Approve Selected</button>
+        </div>
+        <div class="ma-toolbar"><span id="ksyNodalCount"></span><span>Latest first</span></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th style="width:44px"><input type="checkbox" class="ui-cb" id="ksyNodalAll" aria-label="Select all"></th><th>Application ID</th><th>Student Name</th><th>College</th><th>Internship</th><th>Duration</th><th>Submitted Date</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="ksyNodalBody"></tbody>
+        </table></div>
+      </section>
+    </main>
+
+    <!-- ===== VIEW: Kaushalya Sahaay Yojana – KSY – Principal Approval (Phase 3, 18/11) ===== -->
+    <main class="content" id="view-ksy-principal" hidden>
+      <div class="page-head"><div><h3>KSY – Principal Approval</h3><p>Approve or reject the applications your Nodal Officer has verified.</p></div></div>
+      <section class="card table-card">
+        <div class="ui-bulk">
+          <span class="ui-bulk-count"><b id="ksyPrincipalBulkText">No applications selected</b></span>
+          <button class="ui-btn ui-btn-danger-soft" type="button" id="ksyPrincipalReject" disabled>Reject Selected</button>
+          <button class="ui-btn ui-btn-primary" type="button" id="ksyPrincipalApprove" disabled>Approve Selected</button>
+        </div>
+        <div class="ma-toolbar"><span id="ksyPrincipalCount"></span><span>Latest first</span></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th style="width:44px"><input type="checkbox" class="ui-cb" id="ksyPrincipalAll" aria-label="Select all"></th><th>Application ID</th><th>Student Name</th><th>College</th><th>Internship</th><th>Duration</th><th>Nodal Approved</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="ksyPrincipalBody"></tbody>
+        </table></div>
+      </section>
+    </main>
+
+    <!-- ===== VIEW: Kaushalya Sahaay Yojana – KSY – NEP Cell, KCG Approval (Phase 3, 18/11) ===== -->
+    <main class="content" id="view-ksy-nep" hidden>
+      <div class="page-head"><div><h3>KSY – NEP Cell, KCG Approval</h3><p>Final approval for payment, within the approved budget.</p></div></div>
+      <section class="card table-card">
+        <div class="ui-bulk">
+          <span class="ui-bulk-count"><b id="ksyNepBulkText">No applications selected</b></span>
+          <button class="ui-btn ui-btn-danger-soft" type="button" id="ksyNepReject" disabled>Reject Selected</button>
+          <button class="ui-btn ui-btn-primary" type="button" id="ksyNepApprove" disabled>Approve Selected</button>
+        </div>
+        <div class="ma-toolbar"><span id="ksyNepCount"></span><span>Latest first</span></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th style="width:44px"><input type="checkbox" class="ui-cb" id="ksyNepAll" aria-label="Select all"></th><th>Application ID</th><th>Student Name</th><th>College</th><th>Internship</th><th>Duration</th><th>Principal Approved</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="ksyNepBody"></tbody>
+        </table></div>
+      </section>
+
+      <!-- Disbursement (doc section 7 – the doc itself leaves this step pending; a simple "Mark as Paid" DBT simulation) -->
+      <div class="page-head" style="margin-top:var(--space-32)"><div><h3 style="font-size:var(--font-size-h5)">Ready for Payment</h3><p>Approved for the Direct Benefit Transfer (DBT) of ₹2,000. Marking paid here is a demo for the actual payment step, which the department has not finalised yet.</p></div></div>
+      <section class="card table-card">
+        <div class="ui-bulk">
+          <span class="ui-bulk-count"><b id="ksyPayBulkText">No applications selected</b></span>
+          <button class="ui-btn ui-btn-primary" type="button" id="ksyPayMark" disabled>Mark as Paid</button>
+        </div>
+        <div class="ma-toolbar"><span id="ksyPayCount"></span><span>Latest first</span></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th style="width:44px"><input type="checkbox" class="ui-cb" id="ksyPayAll" aria-label="Select all"></th><th>Application ID</th><th>Student Name</th><th>College</th><th>NEP Approved</th><th>Status</th></tr></thead>
+          <tbody id="ksyPayBody"></tbody>
+        </table></div>
+      </section>
+    </main>
+
+    <!-- ===== VIEW: Kaushalya Sahaay Yojana – Application Review (Phase 3, 18/11): one page shared by Nodal Officer, Principal, NEP Cell ===== -->
+    <main class="content" id="view-ksy-review" hidden>
+      <div class="page-head sch-head">
+        <div><h3 id="krTitle"></h3><p id="krSub"></p></div>
+        <a class="ui-btn ui-btn-outline ui-btn-sm" id="krBack" href="#ksy-nodal"><span data-icon="arrow-left:l:14"></span>Back</a>
+      </div>
+      <div id="krBody"></div>
+    </main>
+
+
     <!-- ===== VIEW: Company Job Post → Create / Edit Job Posting (one form for both) ===== -->
     <main class="content" id="view-company-job-form" hidden>
       <div class="page-head cjp-head">
@@ -3972,8 +4216,8 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
           <div class="ui-field"><span class="ui-label">Work Type<span class="ui-req">*</span></span><div class="ui-select" id="cjpWork" data-ph="Select work type"></div><span class="ui-help" hidden></span></div>
         </div>
         <div class="cjp-grid cjp-g3">
-          <div class="ui-field"><label class="ui-label" for="cjpStart">Application Start Date<span class="ui-req">*</span></label><input class="ui-input" id="cjpStart" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
-          <div class="ui-field"><label class="ui-label" for="cjpEnd">Application End Date<span class="ui-req">*</span></label><input class="ui-input" id="cjpEnd" data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric" autocomplete="off"><span class="ui-help" hidden></span></div>
+          <div class="ui-field"><label class="ui-label" for="cjpStart">Application Start Date<span class="ui-req">*</span></label><input class="ui-input" type="date" id="cjpStart"><span class="ui-help" hidden></span></div>
+          <div class="ui-field"><label class="ui-label" for="cjpEnd">Application End Date<span class="ui-req">*</span></label><input class="ui-input" type="date" id="cjpEnd"><span class="ui-help" hidden></span></div>
           <div class="ui-field"><label class="ui-label" for="cjpVac">Vacancies<span class="ui-req">*</span></label><input class="ui-input" id="cjpVac" type="number" min="1" max="999" placeholder="Enter number"><span class="ui-help" hidden></span></div>
         </div>
         <div class="ui-field"><span class="ui-label">Job Location<span class="ui-req">*</span></span><div class="ui-select" id="cjpLoc" data-ph="Select job location" data-search></div><span class="ui-help" hidden></span></div>
@@ -4113,6 +4357,75 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       </div>
     </main>
 
+    <!-- ===== VIEW: Student Profile (19/11, from the account dropdown; data level = the live gyandiksha /profile page for now) ===== -->
+    <main class="content" id="view-profile" hidden>
+      <div class="page-head">
+        <div><h3><span class="ui-icon-box is-primary"><span data-icon="user:f:18"></span></span>My Profile</h3><p>View and manage your personal and academic details.</p></div>
+        <div class="pf-head-acts">
+          <button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-dbsoon="Edit profile"><span data-icon="edit:o:16"></span>Edit</button>
+          <a class="ui-btn ui-btn-outline ui-btn-sm" href="#dashboard"><span data-icon="arrow-left:l:16"></span>Back</a>
+        </div>
+      </div>
+
+      <section class="card pf-card">
+        <div class="pf-top">
+          <div class="pf-avatar">AP</div>
+          <b class="pf-name">Aarav Patel</b>
+          <div class="pf-apaar">APAAR / ABC ID : <span data-dbmask="apaar"></span><button class="db-eye" type="button" data-dbreveal></button></div>
+        </div>
+        <div class="pf-kv">
+          <div><span>Mobile No. :</span><b><span data-dbmask="mobile"></span><button class="db-eye" type="button" data-dbreveal></button></b></div>
+          <div><span>Email Address :</span><b><span data-dbmask="email"></span><button class="db-eye" type="button" data-dbreveal></button></b></div>
+          <div><span>Date Of Birth :</span><b>11/06/2004</b></div>
+          <div><span>Gender :</span><b>Male</b></div>
+          <div><span>Student Category :</span><b>General</b></div>
+          <div><span>Religion :</span><b>Hindu</b></div>
+          <div><span>Are you a Non-Gujarat Domicile? :</span><b>No</b></div>
+          <div><span>Person with Disability (PWD)? :</span><b>No</b></div>
+        </div>
+      </section>
+
+      <section class="card pf-card">
+        <div class="pf-sec-head"><h5>Social Media</h5><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-dbsoon="Add social media"><span data-icon="plus:l:14"></span>Add</button></div>
+        <div class="pf-soc-row">
+          <span class="ui-icon-box is-info"><span data-icon="linkedin:f:18"></span></span>
+          <div class="pf-soc-txt"><b>LinkedIn</b><small>https://linkedin.com/in/aaravpatel</small></div>
+          <div class="pf-soc-acts"><button class="ui-act ui-act-edit" type="button" data-dbsoon="Edit social link" title="Edit" aria-label="Edit"><span data-icon="edit:f:18"></span></button><button class="ui-act ui-act-delete" type="button" data-dbsoon="Remove social link" title="Remove" aria-label="Remove"><span data-icon="delete:f:18"></span></button></div>
+        </div>
+      </section>
+
+      <div class="ui-acc pf-acc">
+        <div class="ui-acc-item is-open">
+          <button class="ui-acc-head" type="button" aria-expanded="true"><span class="ui-icon-box is-primary"><span data-icon="graduation:f:18"></span></span><span class="ui-acc-title"><b>Current Academic Information</b></span><svg class="ui-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="ui-acc-panel"><div class="ui-acc-content">
+            <div class="pf-kv pf-kv2">
+              <div><span>University :</span><b>Gujarat Technological University, Ahmedabad</b></div>
+              <div><span>Institute :</span><b>L.D. COLLEGE OF ENGINEERING</b></div>
+              <div><span>Programme Level :</span><b>UG</b></div>
+              <div><span>Degree/Program :</span><b>BE/B-Tech</b></div>
+              <div><span>Branch :</span><b>COMPUTER ENGINEERING</b></div>
+              <div><span>Enrollment No. :</span><b>221260107055</b></div>
+              <div><span>Admission Year :</span><b>2022-2023</b></div>
+              <div><span>Admission Type :</span><b>Regular</b></div>
+              <div><span>Current Semester :</span><b>Sem-5</b></div>
+              <div><span>Agency :</span><b>ACPC</b></div>
+              <div><span>Academic Status :</span><b>PURSUING</b></div>
+            </div>
+          </div></div>
+        </div>
+        <div class="ui-acc-item">
+          <button class="ui-acc-head" type="button" aria-expanded="false"><span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span><span class="ui-acc-title"><b>Previous Academic Organization Records</b></span><svg class="ui-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="ui-acc-panel"><div class="ui-acc-content"><p class="t-body-sm" style="color:var(--color-text-secondary);margin:0 0 12px">No previous academic organization records added yet.</p><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-dbsoon="Add new record"><span data-icon="plus:l:14"></span>Add New Record</button></div></div>
+        </div>
+        <div class="ui-acc-item">
+          <button class="ui-acc-head" type="button" aria-expanded="false"><span class="ui-icon-box is-primary"><span data-icon="home:f:18"></span></span><span class="ui-acc-title"><b>Address Information</b></span><svg class="ui-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
+          <div class="ui-acc-panel"><div class="ui-acc-content">
+            <p class="t-body-sm" style="margin:0">B-12, Shreeji Residency, Nr. Gota Over Bridge<br>Gota, Ahmedabad<br>Gujarat - 382481<br>India</p>
+          </div></div>
+        </div>
+      </div>
+    </main>
+
     <!-- ===== VIEW: Job Opportunities (student) ===== -->
     <main class="content" id="view-jobs" hidden>
       <div class="page-head">
@@ -4176,12 +4489,12 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       <!-- Filter card -->
       <section class="card filter-card">
         <div class="filter-top">
-          <div class="f-title">
-            <span class="f-ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></span>
-            Advanced Filter
+          <div class="ui-filter-title">
+            <span class="ui-icon-box is-primary"><span data-icon="filter:f:18"></span></span>
+            <h5>Advanced Filter</h5>
           </div>
           <button class="btn btn-gold" id="advToggle">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+            <span data-icon="filter:f:16"></span>
             Filter <span class="cnt" id="advCnt">0</span>
             <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
           </button>
@@ -4236,11 +4549,11 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
               <tr>
                 <th style="width:40px"><input type="checkbox" class="cb" id="checkAll"></th>
                 <th>Sr No.</th>
-                <th><span class="th">Student Name <button class="f-btn" data-col="name" title="Search by name"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button><button class="sort-btn" data-sort="name" title="Sort"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l5 6H7zm0 16l-5-6h10z"/></svg></button></span></th>
-                <th><span class="th">Program <button class="f-btn" data-col="program"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
-                <th><span class="th">Branch <button class="f-btn" data-col="branch"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+                <th><span class="th">Student Name <button class="f-btn" data-col="name" title="Search by name"><span data-icon="filter:f:14"></span></button><button class="sort-btn" data-sort="name" title="Sort"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l5 6H7zm0 16l-5-6h10z"/></svg></button></span></th>
+                <th><span class="th">Program <button class="f-btn" data-col="program"><span data-icon="filter:f:14"></span></button></span></th>
+                <th><span class="th">Branch <button class="f-btn" data-col="branch"><span data-icon="filter:f:14"></span></button></span></th>
                 <th><span class="th">Application Date <button class="sort-btn" data-sort="date" title="Sort"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l5 6H7zm0 16l-5-6h10z"/></svg></button></span></th>
-                <th><span class="th">Status <button class="f-btn" data-col="status"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 8.5V19l-4 2v-8.5z"/></svg></button></span></th>
+                <th><span class="th">Status <button class="f-btn" data-col="status"><span data-icon="filter:f:14"></span></button></span></th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -4533,6 +4846,42 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
     <div class="ui-modal-foot">
       <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
       <button class="ui-btn ui-btn-primary" id="verActYes">Send</button>
+    </div>
+  </div>
+</div>
+<!-- ===== Kaushalya Sahaay Yojana – Approve / Reject (Phase 3, 18/11): one modal for Nodal Officer, Principal, NEP Cell, single or bulk ===== -->
+<div class="ui-modal-backdrop" id="mdKsyAct" data-static>
+  <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdKsyActTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="edit:f:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdKsyActTitle">Approve Application</h4><p id="mdKsyActSub"></p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="ui-field">
+        <label class="ui-label" for="ksyActReason">Remarks<span class="ui-req" id="ksyActReq" hidden>*</span></label>
+        <textarea class="ui-input" id="ksyActReason" rows="4"></textarea>
+        <span class="ui-help" id="ksyActHelp" hidden></span>
+      </div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" id="ksyActYes">Approve</button>
+    </div>
+  </div>
+</div>
+<!-- ===== Kaushalya Sahaay Yojana – Mark as Paid (Phase 4, 18/11): DBT disbursement demo ===== -->
+<div class="ui-modal-backdrop" id="mdKsyPay" data-static>
+  <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdKsyPayTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="lock:f:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdKsyPayTitle">Mark as Paid</h4><p id="mdKsyPaySub"></p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body"><p class="cjp-del-text">Has the DBT of ₹2,000 been credited to the student's bank account?</p></div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" id="ksyPayYes">Mark as Paid</button>
     </div>
   </div>
 </div>
@@ -6562,15 +6911,13 @@ function cjpDate(s) { // "dd/mm/yyyy" → Date, or null when it is not a real da
   const d = new Date(+m[3], +m[2] - 1, +m[1]);
   return d.getDate() === +m[1] && d.getMonth() === +m[2] - 1 ? d : null;
 }
+// A native <input type="date"> always reads/writes ISO "yyyy-mm-dd"; the app stores every date as "dd/mm/yyyy" (project rule).
+// These two convert at the boundary, so a native date picker can be used for entry without changing any date's stored format.
+function cjpIsoToDmy(iso) { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || "").trim()); return m ? `${m[3]}/${m[2]}/${m[1]}` : ""; }
+function cjpDmyToIso(dmy) { const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(String(dmy || "").trim()); return m ? `${m[3]}-${m[2]}-${m[1]}` : ""; }
 const cjpVal = el => el.querySelector(".ui-option.is-selected")?.dataset.v || "";
 const cjpVals = el => [...el.querySelectorAll(".ui-option.is-selected")].map(o => o.dataset.v);
 function cjpSel(el, options, values = []) { el.dataset.options = options.join("|"); el.dataset.value = [].concat(values).filter(Boolean).join("|"); initSelect(el); }
-// Typing a date: digits only, the slashes are added automatically (dd/mm/yyyy)
-document.addEventListener("input", e => {
-  const i = e.target; if (!i.matches?.("input[data-date]")) return;
-  const d = i.value.replace(/\D/g, "").slice(0, 8);
-  i.value = d.length > 4 ? `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}` : d.length > 2 ? `${d.slice(0, 2)}/${d.slice(2)}` : d;
-});
 // Error message under a field (.ui-field > .ui-help); empty msg clears it
 function cjpErr(field, msg) {
   const h = field.querySelector(":scope > .ui-help"); if (!h) return;
@@ -6594,11 +6941,11 @@ function cjpFilterFields(f) { // puts a filter object into the Advanced Filter f
   cjpSel($("#cjpfLoc"), [...new Set(CJP_LOCS.map(cjpShort))], f.loc);
   cjpSel($("#cjpfWork"), CJP_WORK, f.work);
   cjpSel($("#cjpfStatus"), CJP_STATUS, f.status);
-  $("#cjpfFrom").value = f.from || ""; $("#cjpfTo").value = f.to || "";
+  $("#cjpfFrom").value = cjpDmyToIso(f.from); $("#cjpfTo").value = cjpDmyToIso(f.to);
   ["#cjpfFrom", "#cjpfTo"].forEach(s => cjpErr($(s).closest(".ui-field"), ""));
 }
 function cjpReadFields() {
-  const d = { title: $("#cjpfTitle").value.trim(), branch: cjpVal($("#cjpfBranch")), loc: cjpVal($("#cjpfLoc")), work: cjpVal($("#cjpfWork")), status: cjpVal($("#cjpfStatus")), from: $("#cjpfFrom").value.trim(), to: $("#cjpfTo").value.trim() };
+  const d = { title: $("#cjpfTitle").value.trim(), branch: cjpVal($("#cjpfBranch")), loc: cjpVal($("#cjpfLoc")), work: cjpVal($("#cjpfWork")), status: cjpVal($("#cjpfStatus")), from: cjpIsoToDmy($("#cjpfFrom").value), to: cjpIsoToDmy($("#cjpfTo").value) };
   return Object.fromEntries(Object.entries(d).filter(([, v]) => v));
 }
 function cjpPreview() {
@@ -6993,7 +7340,7 @@ function cjpOpenForm() {
   $("#cjpFormSub").textContent = p ? "Update the job details, eligibility criteria, and selection process for this opportunity." : "Add the job details below to publish a new opportunity for eligible candidates.";
   $("#cjpSubmit").textContent = p && p.status === "Published" ? "Update Job Posting" : "Publish";
   $("#cjpTitle").value = v.title; cjpSel($("#cjpWork"), CJP_WORK, v.work);
-  $("#cjpStart").value = v.start; $("#cjpEnd").value = v.end; $("#cjpVac").value = v.vac;
+  $("#cjpStart").value = cjpDmyToIso(v.start); $("#cjpEnd").value = cjpDmyToIso(v.end); $("#cjpVac").value = v.vac;
   cjpSel($("#cjpLoc"), CJP_LOCS, v.loc);
   cjpSteps.innerHTML = ""; (v.rounds || []).forEach(r => cjpSteps.appendChild(cjpStep(r)));
   cjpSetTpl(v.tpl);
@@ -7013,7 +7360,7 @@ $("#view-company-job-form").addEventListener("ui-select-change", e => { const f 
 // ---------- Save as draft / Publish / Update ----------
 function cjpCollect() {
   return {
-    title: $("#cjpTitle").value.trim(), work: cjpVal($("#cjpWork")), start: $("#cjpStart").value.trim(), end: $("#cjpEnd").value.trim(),
+    title: $("#cjpTitle").value.trim(), work: cjpVal($("#cjpWork")), start: cjpIsoToDmy($("#cjpStart").value), end: cjpIsoToDmy($("#cjpEnd").value),
     vac: $("#cjpVac").value.trim(), loc: cjpVal($("#cjpLoc")),
     tpl: cjpTplValue(),
     rounds: CJS.mode === "custom" ? [...cjpSteps.children].map(it => ({ name: it.querySelector("[data-rnd-name]").value.trim(), sts: [...it._sts] })) : [],
@@ -7220,6 +7567,18 @@ document.querySelectorAll("[data-lgsoon]").forEach(a => a.addEventListener("clic
 })();
 $(".logout").addEventListener("click", () => { try { lgStore?.removeItem("usk-student"); } catch (e) {} lgShow(false); toast("Logged out"); });
 $(".h-logout").addEventListener("click", () => $(".logout").click()); // Dashboard header Log out (same action)
+/* Header account dropdown: avatar + chevron → Profile / Settings / Logout (19/11) */
+(function () {
+  const btn = document.getElementById("hUserBtn"), panel = document.getElementById("hUserPanel");
+  if (!btn || !panel) return;
+  const close = () => { panel.hidden = true; btn.setAttribute("aria-expanded", "false"); };
+  btn.addEventListener("click", e => { e.stopPropagation(); const open = panel.hidden; panel.hidden = !open; btn.setAttribute("aria-expanded", String(open)); });
+  panel.addEventListener("click", e => { if (e.target.closest(".h-user-logout")) { close(); $(".logout").click(); return; } close(); });
+  document.addEventListener("click", e => { if (!panel.hidden && !e.target.closest("#hUser")) close(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) { close(); btn.focus(); } });
+  addEventListener("hashchange", close);
+})();
+$("#hAi").addEventListener("click", () => window.open("https://career.gyandiksha.in/", "_blank", "noopener"));
 // Remembered identifier (only the email / ID is remembered, never the password)
 try { const r = localStorage.getItem("usk-remember"); if (r) { $("#lgUser").value = r; $("#lgRemember").checked = true; } } catch (e) {}
 
@@ -7758,7 +8117,8 @@ function sfFieldHtml(f) {
   else if (f.t === "area") ctl = `<textarea class="ui-input" data-k="${f.k}" maxlength="${f.max || 250}" rows="2" ${dis}>${esc(v)}</textarea><span class="sf-count" data-count="${f.k}">${String(v).length} / ${f.max || 250}</span>`;
   else if (f.t === "fetch") ctl = `<div class="sf-inline"><input class="ui-input" data-k="${f.k}" value="${esc(v)}" placeholder="${esc(f.ph || "")}" ${F.incApi ? "readonly" : ""}><button class="ui-btn ui-btn-outline" type="button" data-sf-fetch ${F.incApi ? "disabled" : ""}>${F.incApi ? "Fetched" : "Fetch"}</button></div>`;
   else if (f.t === "aadhaar") ctl = `<div class="sf-inline"><input class="ui-input" data-k="aadhaar" value="${esc(v)}" placeholder="12 digits" inputmode="numeric" maxlength="12" ${F.aadOk ? "readonly" : ""}><button class="ui-btn ui-btn-primary" type="button" data-sf-aadhaar ${F.aadOk ? "disabled" : ""}>${F.aadOk ? "Verified" : "Verify with DigiLocker"}</button></div>`;
-  else ctl = `<input class="ui-input" data-k="${f.k}" value="${esc(v)}" ${f.t === "date" ? 'data-date placeholder="dd/mm/yyyy" maxlength="10" inputmode="numeric"' : `placeholder="${esc(f.ph || "")}"`} ${f.t === "num" ? 'inputmode="decimal"' : ""} ${dis} ${ro} autocomplete="off">`;
+  else if (f.t === "date") ctl = `<input class="ui-input" type="date" data-k="${f.k}" value="${cjpDmyToIso(v)}" ${dis} ${ro}>`;
+  else ctl = `<input class="ui-input" data-k="${f.k}" value="${esc(v)}" placeholder="${esc(f.ph || "")}" ${f.t === "num" ? 'inputmode="decimal"' : ""} ${dis} ${ro} autocomplete="off">`;
   const err = sfErrOf(f);
   return `<div class="ui-field${f.full || f.t === "area" ? " sf-full" : ""}" data-field="${f.k}">${lab}${ctl}<span class="ui-help${err ? " is-error" : ""}" ${err ? "" : "hidden"}>${err ? HELP_ICON["is-error"] + esc(err) : ""}</span></div>`;
 }
@@ -7834,7 +8194,8 @@ $("#sfSubs").addEventListener("keydown", e => { const g = e.target.closest("[dat
 $("#sfBody").addEventListener("input", e => {
   const el = e.target, k = el.dataset.k; if (!k) return;
   if (k === "aadhaar") el.value = el.value.replace(/\D/g, "").slice(0, 12);
-  F[k] = el.value; SF.touched = true;
+  const f0 = sfField(k);
+  F[k] = f0 && f0.t === "date" ? cjpIsoToDmy(el.value) : el.value; SF.touched = true;
   const c = $(`#sfBody [data-count="${k}"]`); if (c) c.textContent = `${el.value.length} / ${sfField(k).max || 250}`;
   const f = sfField(k); if (f) { const box = el.closest(".ui-field"), err = sfErrOf(f); cjpErr(box, err); }
   if (k === "incNo") F.incApi = undefined;
@@ -8241,8 +8602,8 @@ function sfRenewElig() {
    Phase 4b (next): student Update / Resubmit (COM-04), updated items (HC-05), 15-day timeline / reminders / expiry (HC-07),
    notifications (COM-05), progress tracker (COM-03). */
 let ROLE = "student";
-const ROLE_NAME = { student: "Student", hc: "Help Center", co: "Commissioner Office" };
-const ROLE_HOME = { student: "dashboard", hc: "hc", co: "co" };
+const ROLE_NAME = { student: "Student", hc: "Help Center", co: "Commissioner Office", nodal: "Nodal Officer", principal: "Principal", nep: "NEP Cell, KCG" };
+const ROLE_HOME = { student: "dashboard", hc: "hc", co: "co", nodal: "ksy-nodal", principal: "ksy-principal", nep: "ksy-nep" };
 function roleSet(r, go) {
   ROLE = ROLE_NAME[r] ? r : "student";
   try { sessionStorage.setItem("usk-role", ROLE); } catch (e) {}
@@ -8641,6 +9002,395 @@ function verClockRender() { const el = $("#maClock"); if (el) el.innerHTML = `De
 $("#maClockBtn").addEventListener("click", () => { VER_CLOCK = new Date(VER_CLOCK.getTime() + VER_DAY); verTick(); verClockRender(); maRender(); toast(`Demo date moved to ${fmt(VER_CLOCK)} – reminders / expiry checked`); });
 verClockRender();
 
+/* ================= KAUSHALYA SAHAAY YOJANA (KSY, 18/11) – Phase 1a: module + eligibility, student side only =================
+   New scheme (not a Scholarship): ₹2,000 one-time, 20-day internship in Semester VI, 3 approvals (Nodal Officer → Principal → NEP Cell, KCG) before payment.
+   `KSY.student` is its own small sample object (same pattern as `SCH.student` for CMSS/MYSY) – separate from the Skill Passport / Dashboard display,
+   so this module can demo a student who is actually eligible (Aarav Patel's real profile is Engineering / already graduated, which KSY does not cover).
+   The internship dates ARE the real ones: duplicated from Skill Passport's `INTERNS[0]` (Nexora Softech) so the 20-day count is genuine, not invented. ================= */
+const KSY = {
+  student: {
+    name: "Aarav Patel", apaar: "452819367781", gender: "Male", dob: "14/03/2005", caste: "General",   // same identity as the Dashboard / Skill Passport
+    email: "aarav.patel.ldce@gmail.com", emailMasked: "a•••••l@gmail.com", mobile: "9876543210", mobileMasked: "98XXXX3210",
+    university: "Gujarat Technological University, Ahmedabad", academicYear: "2023-2024",             // Academic Details step
+    college: "L.D. College of Engineering, Ahmedabad", collegeType: "Government",         // criterion 1
+    year: "Third Year", semester: "Semester VI",                                           // criterion 2 (KSY's own academic state)
+    programme: "B.Sc", branch: "Science", stream: "Science",                               // criterion 3 (KSY's own programme)
+    intern: { company: "Nexora Softech", from: "01/05/2026", to: "30/06/2026",             // criterion 4 – same dates as Skill Passport INTERNS[0]
+      sector: "Information Technology", project: "Customer Portal Revamp", deliverable: "A redesigned self-service customer portal with a working demo and deployment guide.",
+      skills: ["React JS", "REST APIs", "Git", "JavaScript", "HTML", "CSS"] },              // = Skill Passport INTERNS[0].skills
+    certFile: "Internship_Certificate.pdf",                                                // criterion 5 – = Skill Passport INTERNS[0].file
+    appliedBefore: false                                                                   // criterion 6
+  },
+  applied: false,
+  appId: null
+};
+function ksyDays(from, to) { const a = cjpDate(from), b = cjpDate(to); return a && b ? Math.round((b - a) / 86400000) + 1 : 0; }
+/* ---------- Sample seed applications (18/11, Phase 5): so the Nodal Officer / Principal / NEP Cell tables and the student's
+   own status card are not empty by default. One row is the logged-in student's own (Aarav Patel); the rest are other sample
+   students at various colleges, so every role has something to review. All data is static / in-memory. ---------- */
+function ksySeedApp(spec, idx) {
+  const days = ksyDays(spec.from, spec.to), sub = new Date(Date.now() - spec.daysAgo * 864e5);
+  const app = {
+    id: "KSY" + String(100200300 + idx * 111111).slice(0, 9), name: spec.name, college: spec.college, company: spec.company,
+    days, date: sub, status: "Submitted", stage: "nodal",
+    details: {
+      basic: [["Full Name", spec.name], ["APAAR ID", "45281936" + (7790 + idx)], ["Gender", idx % 2 ? "Male" : "Female"], ["Date of Birth", "12/08/2005"], ["Mobile", "98XXXX32" + (10 + idx)], ["Email", spec.name.split(" ")[0].toLowerCase() + "•••••@gmail.com"]],
+      academic: [["University", spec.university], ["College", spec.college], ["Programme", spec.programme + " · " + spec.branch], ["Semester", "Semester VI"]],
+      internship: [["Company", spec.company], ["Duration", spec.from + " – " + spec.to + " (" + days + " days)"], ["Reporting Manager", spec.manager], ["Reporting Manager Contact", "98765" + (43210 + idx)], ["Internship Report", "Internship_Report.pdf"]],
+      bank: [["Account Holder Name", spec.name], ["Bank Name", "State Bank of India · " + spec.college.split(",")[0]], ["Account Number", "123456789" + (10 + idx)], ["IFSC Code", "SBIN000" + (1230 + idx)]]
+    },
+    remarks: [], log: [{ d: sub, t: "Submitted by the student" }]
+  };
+  const order = ["nodal", "principal", "nep", "done"], by = ["Nodal Officer", "Principal", "NEP Cell, KCG"], target = order.indexOf(spec.stage);
+  for (let i = 0; i < target; i++) { const d = new Date(sub.getTime() + (i + 1) * 864e5); app.remarks.push({ act: "Approved", by: by[i], text: "", d }); app.log.push({ d, t: `Approved by ${by[i]}` }); }
+  app.stage = spec.stage;
+  app.status = spec.stage === "nodal" ? "Submitted" : spec.stage === "principal" ? "Nodal Approved" : spec.stage === "nep" ? "Principal Approved" : "Approved for Payment";
+  return app;
+}
+const KSY_SEED = [
+  { name: "Priya Mehta", college: "Vishwakarma Government Engineering College, Chandkheda", university: "Gujarat Technological University, Ahmedabad", programme: "B.A", branch: "Arts", company: "Sabar Fintech", from: "01/05/2026", to: "25/06/2026", manager: "Nidhi Shah", stage: "nodal", daysAgo: 2 },
+  { name: "Jigar Thakkar", college: "Government Engineering College, Gandhinagar", university: "Gujarat Technological University, Ahmedabad", programme: "B.Com", branch: "Commerce", company: "Orbit Analytics", from: "05/05/2026", to: "02/07/2026", manager: "Rohit Vyas", stage: "nodal", daysAgo: 3 },
+  { name: "Karan Joshi", college: "Government Engineering College, Gandhinagar", university: "Gujarat Technological University, Ahmedabad", programme: "B.Sc", branch: "Science", company: "BlueWave Technologies", from: "10/05/2026", to: "30/06/2026", manager: "Sunita Rao", stage: "principal", daysAgo: 6 },
+  { name: "Foram Desai", college: "L.D. College of Engineering, Ahmedabad", university: "Gujarat Technological University, Ahmedabad", programme: "B.A", branch: "Arts", company: "Pixel Forge Studio", from: "12/05/2026", to: "01/07/2026", manager: "Alpesh Patel", stage: "principal", daysAgo: 7 },
+  { name: "Meera Solanki", college: "L.D. College of Engineering, Ahmedabad", university: "Gujarat Technological University, Ahmedabad", programme: "B.Com", branch: "Commerce", company: "Civic Data Labs", from: "01/05/2026", to: "28/06/2026", manager: "Devika Trivedi", stage: "nep", daysAgo: 9 },
+  { name: "Devansh Raval", college: "Vishwakarma Government Engineering College, Chandkheda", university: "Gujarat Technological University, Ahmedabad", programme: "B.Sc", branch: "Science", company: "Northline Systems", from: "03/05/2026", to: "29/06/2026", manager: "Komal Iyer", stage: "done", daysAgo: 12 }
+];
+const KSY_APPS = KSY_SEED.map((s, i) => ksySeedApp(s, i)); // submitted applications, visible to the Nodal Officer (Phase 2, 18/11)
+(function ksySeedSelf() {
+  const self = ksySeedApp({ name: KSY.student.name, college: KSY.student.college, university: KSY.student.university, programme: KSY.student.programme, branch: KSY.student.branch, company: KSY.student.intern.company, from: KSY.student.intern.from, to: KSY.student.intern.to, manager: "Priya Shah", stage: "nep", daysAgo: 8 }, KSY_SEED.length);
+  self.details.internship = [["Company", KSY.student.intern.company], ["Duration", KSY.student.intern.from + " – " + KSY.student.intern.to + " (" + ksyDays(KSY.student.intern.from, KSY.student.intern.to) + " days)"], ["Reporting Manager", "Priya Shah"], ["Reporting Manager Contact", "9898989898"], ["Internship Report", "Internship_Report.pdf"]];
+  KSY_APPS.unshift(self);
+  KSY.applied = true; KSY.appId = self.id; KSY.student.appliedBefore = true;
+})();
+function ksyChecks() {
+  const s = KSY.student, days = ksyDays(s.intern.from, s.intern.to);
+  return [
+    { ok: s.collegeType === "Government" || s.collegeType === "Grant-in-Aid", l: "Government or Grant-in-Aid college", d: `${s.college} (${s.collegeType})` },
+    { ok: s.semester === "Semester VI", l: "Studying in the third year (Semester VI)", d: `Currently in ${s.semester}` },
+    { ok: ["Arts", "Commerce", "Science"].includes(s.stream), l: "Programme is in Arts, Commerce or Science", d: `${s.programme} (${s.stream})` },
+    { ok: days >= 20, l: "Internship of at least 20 days in one organisation", d: `${s.intern.company} · ${s.intern.from} – ${s.intern.to} · ${days} days` },
+    { ok: !!s.certFile, l: "Internship Completion Certificate uploaded", d: s.certFile ? `Uploaded (${s.certFile})` : "Not uploaded" },
+    { ok: !s.appliedBefore, l: "Has not applied before", d: s.appliedBefore ? "An application already exists" : "No earlier application" }
+  ];
+}
+function ksyRender() {
+  const checks = ksyChecks(), fails = checks.filter(c => !c.ok);
+  $("#ksyChecks").innerHTML = checks.map(c => `<li class="${c.ok ? "is-ok" : "is-fail"}">${iconSvg(c.ok ? "check" : "close", "l", 18)}<div><b>${esc(c.l)}</b><small>${esc(c.d)}</small></div></li>`).join("");
+  const btn = $("#ksyApply");
+  if (KSY.applied) { btn.disabled = false; btn.innerHTML = `Apply Now${iconSvg("arrow-right", "l", 16)}`; $("#ksyMsg").innerHTML = "An application already exists, but you can still open the form below to see it (demo)."; $("#ksyMsg").classList.remove("is-error"); }
+  else if (fails.length) { btn.disabled = true; btn.innerHTML = `Apply Now${iconSvg("arrow-right", "l", 16)}`; $("#ksyMsg").innerHTML = `${HELP_ICON["is-error"] || ""}Not eligible yet: ${esc(fails[0].l)}.`; $("#ksyMsg").classList.add("is-error"); }
+  else { btn.disabled = false; btn.innerHTML = `Apply Now${iconSvg("arrow-right", "l", 16)}`; $("#ksyMsg").innerHTML = "You meet all the automatic checks."; $("#ksyMsg").classList.remove("is-error"); }
+  $("#ksyStatus").innerHTML = KSY.applied ? ksyStatusHtml() : "";
+}
+$("#ksyApply").addEventListener("click", () => { if (!$("#ksyApply").disabled) location.hash = "ksy-form"; });
+
+/* ================= KSY APPLICATION FORM (Phase 2, 18/11) – 4 steps + Review, per the doc ("The form has four steps and a review screen") =================
+   Basic Details + Academic Details are fully read-only (from SSO, same as KSY.student). Internship Details is mostly read-only (from Skill Passport / KSY.student.intern);
+   only Reporting Manager, Reporting Manager Contact and the Internship Report upload are typed by the student. Bank Details is fully typed (test values only – see the note on the step). */
+const KSY_STEPS = ["Basic Details", "Academic Details", "Internship Details", "Bank Details", "Review"];
+const KF = { step: 0, maxStep: 0, manager: "", managerPhone: "", bank: { holder: "", name: "", branch: "", acc: "", ifsc: "" }, file: null, decl: false };
+function kfRoField(label, value, full) { return `<div class="ui-field${full ? " sf-full" : ""}"><span class="ui-label">${esc(label)}</span><input class="ui-input" readonly value="${esc(value)}"></div>`; }
+function kfStepHtml(i) {
+  const s = KSY.student;
+  if (i === 0) return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Basic Details</h5><p>From your SSO profile. Read only.</p></div><div class="sf-grid">
+    ${kfRoField("Full Name", s.name)}${kfRoField("APAAR ID", s.apaar)}${kfRoField("Gender", s.gender)}
+    ${kfRoField("Caste Category", s.caste)}${kfRoField("Date of Birth", s.dob)}${kfRoField("Mobile", s.mobileMasked)}${kfRoField("Email", s.emailMasked, true)}
+  </div></section>`;
+  if (i === 1) return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Academic Details</h5><p>From your SSO profile. Read only.</p></div><div class="sf-grid">
+    ${kfRoField("University Name", s.university, true)}${kfRoField("College", s.college, true)}${kfRoField("Enrolment Academic Year", s.academicYear)}
+    ${kfRoField("Programme", s.programme)}${kfRoField("Branch", s.branch)}${kfRoField("Semester", s.semester)}
+  </div></section>`;
+  if (i === 2) {
+    const days = ksyDays(s.intern.from, s.intern.to);
+    const f = KF.file;
+    const fileRow = f
+      ? `<div class="sf-doc"><div class="sf-doc-name"><b>Internship Report<span class="ui-req">*</span></b><small>PDF · max 5 MB</small></div><span class="sf-doc-file">${iconSvg("check", "l", 16)}<b title="${esc(f.name)}">${esc(f.name)}</b><small>${fmtSize(f.size)}</small></span><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="kfFileRm">${iconSvg("delete", "f", 14)}Remove</button></div>`
+      : `<div class="ui-field sf-full"><span class="ui-label">Internship Report<span class="ui-req">*</span></span><div class="ui-drop" id="kfDrop" tabindex="0" role="button" aria-label="Upload internship report"><span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span><b>Drag and drop your file here, or <u>click to browse</u></b><small>PDF · max 5 MB</small></div></div>`;
+    return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Internship Details</h5><p>One internship on your Skill Passport is at least 20 days, so no selection is needed.</p></div><div class="sf-grid">
+      ${kfRoField("Company Name", s.intern.company)}${kfRoField("Work Sector", s.intern.sector)}
+      ${kfRoField("Start Date", s.intern.from)}${kfRoField("End Date", s.intern.to)}
+      ${kfRoField("Total Days", days + " days")}${kfRoField("Certificate", s.certFile)}
+      ${kfRoField("Internship Project", s.intern.project, true)}${kfRoField("Project Deliverable", s.intern.deliverable, true)}
+      <div class="ui-field sf-full"><span class="ui-label">Skills</span><div style="display:flex;flex-wrap:wrap;gap:8px">${s.intern.skills.map(k => `<span class="ui-badge ui-badge-neutral">${esc(k)}</span>`).join("")}</div></div>
+      <div class="ui-field"><label class="ui-label" for="kfManager">Reporting Manager<span class="ui-req">*</span></label><input class="ui-input" id="kfManager" value="${esc(KF.manager)}" placeholder="Name of your reporting manager" autocomplete="off"></div>
+      <div class="ui-field"><label class="ui-label" for="kfManagerPhone">Reporting Manager Contact Details<span class="ui-req">*</span></label><input class="ui-input" id="kfManagerPhone" value="${esc(KF.managerPhone)}" placeholder="Mobile number or email" autocomplete="off"></div>
+      ${fileRow}
+      <input type="file" id="kfFile" accept=".pdf" hidden>
+    </div></section>`;
+  }
+  if (i === 3) return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Bank Details</h5><p>For the Direct Benefit Transfer (DBT) of ₹2,000 after approval.</p></div>
+    <div class="sf-note sf-full" style="margin-bottom:var(--space-16)">${iconSvg("info", "o", 16)}<span>This is a prototype form – please enter test values only, never your real bank details. IFSC format example: <b>SBIN0001234</b>.</span></div>
+    <div class="sf-grid">
+      <div class="ui-field"><label class="ui-label" for="kfHolder">Account Holder Name<span class="ui-req">*</span></label><input class="ui-input" id="kfHolder" value="${esc(KF.bank.holder)}" autocomplete="off"></div>
+      <div class="ui-field"><label class="ui-label" for="kfBank">Bank Name<span class="ui-req">*</span></label><input class="ui-input" id="kfBank" value="${esc(KF.bank.name)}" autocomplete="off"></div>
+      <div class="ui-field"><label class="ui-label" for="kfBranch">Branch Name<span class="ui-req">*</span></label><input class="ui-input" id="kfBranch" value="${esc(KF.bank.branch)}" autocomplete="off"></div>
+      <div class="ui-field"><label class="ui-label" for="kfAcc">Account Number<span class="ui-req">*</span></label><input class="ui-input" id="kfAcc" value="${esc(KF.bank.acc)}" inputmode="numeric" autocomplete="off"></div>
+      <div class="ui-field"><label class="ui-label" for="kfIfsc">IFSC Code<span class="ui-req">*</span></label><input class="ui-input" id="kfIfsc" value="${esc(KF.bank.ifsc)}" maxlength="11" autocomplete="off" style="text-transform:uppercase"></div>
+    </div></section>`;
+  // i === 4 Review
+  const rows = [
+    ["Basic Details", [["Full Name", s.name], ["APAAR ID", s.apaar], ["Gender", s.gender], ["Date of Birth", s.dob], ["Mobile", s.mobileMasked], ["Email", s.emailMasked]]],
+    ["Academic Details", [["University", s.university], ["College", s.college], ["Programme", s.programme + " · " + s.branch], ["Semester", s.semester]]],
+    ["Internship Details", [["Company", s.intern.company], ["Duration", s.intern.from + " – " + s.intern.to + " (" + ksyDays(s.intern.from, s.intern.to) + " days)"], ["Reporting Manager", KF.manager], ["Reporting Manager Contact", KF.managerPhone], ["Internship Report", KF.file ? KF.file.name : "–"]]],
+    ["Bank Details", [["Account Holder Name", KF.bank.holder], ["Bank Name", KF.bank.name + " · " + KF.bank.branch], ["Account Number", KF.bank.acc], ["IFSC Code", KF.bank.ifsc]]]
+  ];
+  return rows.map(([t, list], idx) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${esc(t)}</h5><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-kf-go="${idx === 2 ? 2 : idx === 3 ? 3 : idx}">${iconSvg("edit", "f", 14)}Edit</button></div>
+    <div class="sf-kv">${list.map(([l, v]) => `<div><span>${esc(l)}</span><b>${esc(v || "–")}</b></div>`).join("")}</div></section>`).join("")
+    + `<section class="card sf-sec"><label class="sf-decl"><input class="ui-cb" type="checkbox" id="kfDecl" ${KF.decl ? "checked" : ""}><span>I declare that the information given above is correct. I understand that the internship and documents will be verified by the Nodal Officer, Principal and NEP Cell, KCG, and that this application cannot be edited or resubmitted once submitted.</span></label></section>`;
+}
+function kfPendingOf(step) {
+  if (step === 2) { const out = []; if (!KF.manager.trim()) out.push("Reporting Manager"); if (!KF.managerPhone.trim()) out.push("Reporting Manager Contact Details"); if (!KF.file) out.push("Internship Report"); return out; }
+  if (step === 3) { const b = KF.bank, out = []; if (!b.holder.trim()) out.push("Account Holder Name"); if (!b.name.trim()) out.push("Bank Name"); if (!b.branch.trim()) out.push("Branch Name"); if (!/^\d{6,20}$/.test(b.acc.trim())) out.push("Account Number"); if (!/^[A-Za-z]{4}0[A-Za-z0-9]{6}$/.test(b.ifsc.trim())) out.push("IFSC Code"); return out; }
+  if (step === 4) return KF.decl ? [] : ["Declaration"];
+  return [];
+}
+function kfRender() {
+  const i = KF.step;
+  $("#kfYear").textContent = KSY.student.academicYear; $("#kfCompany").textContent = KSY.student.intern.company;
+  $("#kfSteps").innerHTML = KSY_STEPS.map((t, n) => `<li class="ui-step${n < i ? " is-done" : n === i ? " is-current" : ""}" ${n === i ? 'aria-current="step"' : ""} ${n <= KF.maxStep && n !== i ? `data-kf-go="${n}" tabindex="0" role="button"` : ""}><span class="ui-step-dot">${n < i ? iconSvg("check", "l", 18) : n + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(t)}</span></div></li>`).join("");
+  $("#kfMStep").innerHTML = `<span>Step ${i + 1} of ${KSY_STEPS.length}</span><b>${esc(KSY_STEPS[i])}</b><div class="ui-progress"><i style="width:${(i + 1) / KSY_STEPS.length * 100}%"></i></div>`;
+  $("#kfBody").innerHTML = kfStepHtml(i);
+  $("#kfPrev").disabled = i === 0;
+  $("#kfNext").innerHTML = i === 4 ? "Submit Application" : `Next${iconSvg("arrow-right", "l", 16)}`;
+  kfSync();
+}
+function kfSync() {
+  const p = kfPendingOf(KF.step);
+  $("#kfNext").disabled = p.length > 0;
+  $("#kfPending").innerHTML = p.length ? `${HELP_ICON["is-error"] || ""}Complete: ${esc(p.join(", "))}` : KF.step === 4 ? "Ready to submit." : "All mandatory details of this step are filled.";
+  $("#kfPending").classList.toggle("is-error", p.length > 0);
+}
+function kfGo(n) { KF.step = n; KF.maxStep = Math.max(KF.maxStep, n); kfRender(); scrollTo(0, 0); }
+function kfOpen() { if (!KSY.applied) { KF.step = 0; KF.maxStep = 0; } $("#kfDone").hidden = true; $("#kfStepsCard").hidden = false; $("#kfFoot").hidden = false; kfRender(); }
+$("#kfBody").addEventListener("input", e => {
+  const id = e.target.id;
+  if (id === "kfManager") KF.manager = e.target.value;
+  else if (id === "kfManagerPhone") KF.managerPhone = e.target.value;
+  else if (id === "kfHolder") KF.bank.holder = e.target.value;
+  else if (id === "kfBank") KF.bank.name = e.target.value;
+  else if (id === "kfBranch") KF.bank.branch = e.target.value;
+  else if (id === "kfAcc") KF.bank.acc = e.target.value.replace(/\D/g, "");
+  else if (id === "kfIfsc") KF.bank.ifsc = e.target.value.toUpperCase();
+  else return;
+  kfSync();
+});
+$("#kfBody").addEventListener("change", e => { if (e.target.id === "kfDecl") { KF.decl = e.target.checked; kfSync(); } });
+$("#kfBody").addEventListener("click", e => {
+  const go = e.target.closest("[data-kf-go]"); if (go) return kfGo(+go.dataset.kfGo);
+  if (e.target.closest("#kfDrop")) return $("#kfFile").click();
+  if (e.target.closest("#kfFileRm")) { KF.file = null; kfRender(); }
+});
+$("#kfBody").addEventListener("keydown", e => { if (e.target.closest("#kfDrop") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); $("#kfFile").click(); } });
+$("#kfBody").addEventListener("change", e => {
+  if (e.target.id !== "kfFile") return;
+  const file = e.target.files[0]; e.target.value = ""; if (!file) return;
+  if (!/\.pdf$/i.test(file.name)) { const row = $("#kfDrop").closest(".ui-field"); cjpErr(row, "Only PDF files are allowed."); return; }
+  if (file.size > 5 * 1024 * 1024) { const row = $("#kfDrop").closest(".ui-field"); cjpErr(row, "File size must be up to 5 MB."); return; }
+  KF.file = { name: file.name, size: file.size }; kfRender();
+});
+$("#kfSteps").addEventListener("click", e => { const go = e.target.closest("[data-kf-go]"); if (go) kfGo(+go.dataset.kfGo); });
+$("#kfPrev").addEventListener("click", () => { if (KF.step > 0) kfGo(KF.step - 1); });
+$("#kfNext").addEventListener("click", () => {
+  if ($("#kfNext").disabled) return;
+  if (KF.step < 4) return kfGo(KF.step + 1);
+  kfSubmit();
+});
+function kfSubmit() {
+  const s = KSY.student, days = ksyDays(s.intern.from, s.intern.to);
+  KSY.appId = "KSY" + String(Date.now()).slice(-9);
+  const details = {
+    basic: [["Full Name", s.name], ["APAAR ID", s.apaar], ["Gender", s.gender], ["Date of Birth", s.dob], ["Mobile", s.mobileMasked], ["Email", s.emailMasked]],
+    academic: [["University", s.university], ["College", s.college], ["Programme", s.programme + " · " + s.branch], ["Semester", s.semester]],
+    internship: [["Company", s.intern.company], ["Duration", s.intern.from + " – " + s.intern.to + " (" + days + " days)"], ["Reporting Manager", KF.manager], ["Reporting Manager Contact", KF.managerPhone], ["Internship Report", KF.file ? KF.file.name : "–"]],
+    bank: [["Account Holder Name", KF.bank.holder], ["Bank Name", KF.bank.name + " · " + KF.bank.branch], ["Account Number", KF.bank.acc], ["IFSC Code", KF.bank.ifsc]]
+  };
+  KSY_APPS.unshift({ id: KSY.appId, name: s.name, college: s.college, company: s.intern.company, days, date: new Date(), status: "Submitted", stage: "nodal", details, remarks: [], log: [{ d: new Date(), t: "Submitted by the student" }] });
+  KSY.applied = true; KSY.student.appliedBefore = true;
+  $("#kfStepsCard").hidden = true; $("#kfFoot").hidden = true; $("#kfBody").innerHTML = ""; $("#kfDone").hidden = false;
+  $("#kfDone").innerHTML = `<span class="ui-icon-box is-success" style="width:56px;height:56px;margin-bottom:var(--space-16)">${iconSvg("check", "l", 28)}</span>
+    <h4>Application Submitted</h4>
+    <p>Your Kaushalya Sahaay Yojana application has been submitted for review.</p>
+    <p class="sf-full"><b>Application Reference Number</b><br><span class="ma-id">${KSY.appId}</span></p>
+    <p>You will get an SMS and email once the Nodal Officer, Principal and NEP Cell, KCG have reviewed it. This application cannot be edited or resubmitted.</p>
+    <a class="ui-btn ui-btn-primary" href="#ksy">Back to Kaushalya Sahaay Yojana</a>`;
+  toast("Application submitted");
+}
+
+/* ================= KSY – 3-level Approve / Reject review (Phase 3, 18/11) =================
+   Nodal Officer verifies -> Principal approves -> NEP Cell approves for payment (doc section 6). Each role's list shows
+   only applications currently at that stage (r.stage); Approve moves it to the next stage, Reject ends it (mandatory reason)
+   and the application leaves every list. One shared review page (#view-ksy-review) + one Approve/Reject modal, single or bulk. */
+const KSY_ROLE = {
+  nodal: { title: "Nodal Officer", next: "principal", listHash: "ksy-nodal", dateCol: r => fmt(r.date) },
+  principal: { title: "Principal", next: "nep", listHash: "ksy-principal", dateCol: r => { const m = r.remarks.find(x => x.act === "Approved" && x.by === "Nodal Officer"); return m ? fmt(m.d) : "–"; } },
+  nep: { title: "NEP Cell, KCG", next: null, listHash: "ksy-nep", dateCol: r => { const m = r.remarks.find(x => x.act === "Approved" && x.by === "Principal"); return m ? fmt(m.d) : "–"; } }
+};
+const KSY_IDP = { nodal: "ksyNodal", principal: "ksyPrincipal", nep: "ksyNep" };
+const KSY_STAGE_STATUS = { nodal: "Submitted", principal: "Nodal Approved", nep: "Principal Approved" };
+const KSY_SEL = { nodal: new Set(), principal: new Set(), nep: new Set() };
+let KSY_ACT = null; // { role, act, ids } while the Approve/Reject modal is open
+function ksyBadgeCls(status) { return status === "Approved for Payment" || status === "Paid" ? "ui-badge-approved" : status === "Rejected" ? "ui-badge-rejected" : status === "Submitted" ? "ui-badge-review" : "ui-badge-shortlisted"; }
+function ksyRoleList(role) { return KSY_APPS.filter(a => a.stage === role); }
+function ksyOpenReview(role, id) { KSY.reviewRole = role; KSY.reviewId = id; location.hash = "ksy-review"; }
+function ksyListRender(role) {
+  const p = KSY_IDP[role], list = ksyRoleList(role), sel = KSY_SEL[role], info = KSY_ROLE[role];
+  KSY_SEL[role] = new Set([...sel].filter(id => list.some(r => r.id === id)));
+  $(`#${p}Count`).textContent = `${list.length} application${list.length === 1 ? "" : "s"}`;
+  $(`#${p}All`).checked = list.length > 0 && KSY_SEL[role].size === list.length;
+  $(`#${p}All`).disabled = list.length === 0;
+  $(`#${p}Body`).innerHTML = list.map(r => `<tr><td><input type="checkbox" class="ui-cb" data-ksy-row="${r.id}" ${KSY_SEL[role].has(r.id) ? "checked" : ""} aria-label="Select ${esc(r.id)}"></td><td><span class="ma-id">${esc(r.id)}</span></td><td>${esc(r.name)}</td><td>${esc(r.college)}</td><td>${esc(r.company)}</td><td>${r.days} days</td><td>${info.dateCol(r)}</td><td><span class="ui-badge ${ksyBadgeCls(r.status)}">${esc(r.status)}</span></td>
+    <td><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-ksy-view="${esc(r.id)}">${iconSvg("view", "f", 14)}View</button></td></tr>`).join("")
+    || `<tr class="ver-empty"><td colspan="9">${role === "nodal" ? "No applications yet. Students have not started applying for Kaushalya Sahaay Yojana." : "No applications yet. Nothing has reached this stage yet."}</td></tr>`;
+  ksyBulkSync(role);
+}
+function ksyBulkSync(role) {
+  const p = KSY_IDP[role], n = KSY_SEL[role].size;
+  $(`#${p}BulkText`).textContent = n ? `${n} application${n > 1 ? "s" : ""} selected` : "No applications selected";
+  $(`#${p}Approve`).disabled = n === 0; $(`#${p}Approve`).innerHTML = `Approve Selected${n ? ` (${n})` : ""}`;
+  $(`#${p}Reject`).disabled = n === 0; $(`#${p}Reject`).innerHTML = `Reject Selected${n ? ` (${n})` : ""}`;
+}
+["nodal", "principal", "nep"].forEach(role => {
+  const p = KSY_IDP[role];
+  $(`#${p}Body`).addEventListener("click", e => { const v = e.target.closest("[data-ksy-view]"); if (v) ksyOpenReview(role, v.dataset.ksyView); });
+  $(`#${p}Body`).addEventListener("change", e => {
+    const cb = e.target.closest("[data-ksy-row]"); if (!cb) return;
+    cb.checked ? KSY_SEL[role].add(cb.dataset.ksyRow) : KSY_SEL[role].delete(cb.dataset.ksyRow);
+    $(`#${p}All`).checked = ksyRoleList(role).length > 0 && KSY_SEL[role].size === ksyRoleList(role).length;
+    ksyBulkSync(role);
+  });
+  $(`#${p}All`).addEventListener("change", e => {
+    const list = ksyRoleList(role);
+    if (e.target.checked) list.forEach(r => KSY_SEL[role].add(r.id)); else KSY_SEL[role].clear();
+    ksyListRender(role);
+  });
+  $(`#${p}Approve`).addEventListener("click", () => ksyOpenAct(role, "approve", [...KSY_SEL[role]]));
+  $(`#${p}Reject`).addEventListener("click", () => ksyOpenAct(role, "reject", [...KSY_SEL[role]]));
+});
+function ksyOpenAct(role, act, ids) {
+  if (!ids.length) return;
+  KSY_ACT = { role, act, ids };
+  const n = ids.length, next = KSY_ROLE[role].next;
+  $("#mdKsyActTitle").textContent = `${act === "approve" ? "Approve" : "Reject"} Application${n > 1 ? "s" : ""}`;
+  $("#mdKsyActSub").textContent = act === "approve"
+    ? `${n > 1 ? `These ${n} applications move` : "This application moves"} to ${next ? KSY_ROLE[next].title : "final payment"}.`
+    : `${n > 1 ? `These ${n} applications are` : "This application is"} rejected and the student is notified. This cannot be undone.`;
+  $("#ksyActReq").hidden = act !== "reject";
+  $("#ksyActReason").value = "";
+  $("#ksyActHelp").hidden = true;
+  $("#ksyActYes").textContent = act === "approve" ? "Approve" : "Reject";
+  $("#ksyActYes").className = act === "approve" ? "ui-btn ui-btn-primary" : "ui-btn ui-btn-danger";
+  openModal("mdKsyAct"); setTimeout(() => $("#ksyActReason").focus(), 60);
+}
+$("#ksyActYes").addEventListener("click", () => {
+  if (!KSY_ACT) return;
+  const { role, act, ids } = KSY_ACT, text = $("#ksyActReason").value.trim();
+  if (act === "reject" && !text) { $("#ksyActHelp").hidden = false; $("#ksyActHelp").className = "ui-help is-error"; $("#ksyActHelp").innerHTML = HELP_ICON["is-error"] + "Add a reason for rejecting."; return; }
+  const by = KSY_ROLE[role].title, now = new Date();
+  ids.forEach(id => {
+    const r = KSY_APPS.find(x => x.id === id); if (!r || r.stage !== role) return;
+    r.remarks.push({ act: act === "approve" ? "Approved" : "Rejected", by, text, d: now });
+    r.log.push({ d: now, t: `${act === "approve" ? "Approved" : "Rejected"} by ${by}${text ? ": " + text : ""}` });
+    if (act === "approve") { const next = KSY_ROLE[role].next; if (next) { r.stage = next; r.status = KSY_STAGE_STATUS[next]; } else { r.stage = "done"; r.status = "Approved for Payment"; } }
+    else { r.stage = "rejected"; r.rejectedAt = role; r.status = "Rejected"; }
+  });
+  closeModal($("#mdKsyAct"));
+  toast(`${ids.length} application${ids.length > 1 ? "s" : ""} ${act === "approve" ? "approved" : "rejected"}`);
+  KSY_SEL[role].clear(); KSY_ACT = null;
+  if (location.hash === "#ksy-review") location.hash = "#" + KSY_ROLE[role].listHash; else { ksyListRender(role); if (role === "nep") ksyPayRender(); }
+});
+/* ---------- Disbursement (doc section 7, 18/11): the doc leaves this step pending end-to-end, so this is a simple
+   "Mark as Paid" DBT demo for applications the NEP Cell has approved. Generates a sample UTR; this is the final status. ---------- */
+let KSY_SEL_PAY = new Set(), KSY_PAY_IDS = [];
+function ksyPayList() { return KSY_APPS.filter(a => a.stage === "done" && !a.paid); }
+function ksyPayApprovedDate(r) { const m = r.remarks.find(x => x.act === "Approved" && x.by === "NEP Cell, KCG"); return m ? fmt(m.d) : "–"; }
+function ksyPayRender() {
+  const list = ksyPayList();
+  KSY_SEL_PAY = new Set([...KSY_SEL_PAY].filter(id => list.some(r => r.id === id)));
+  $("#ksyPayCount").textContent = `${list.length} application${list.length === 1 ? "" : "s"}`;
+  $("#ksyPayAll").checked = list.length > 0 && KSY_SEL_PAY.size === list.length;
+  $("#ksyPayAll").disabled = list.length === 0;
+  $("#ksyPayBody").innerHTML = list.map(r => `<tr><td><input type="checkbox" class="ui-cb" data-ksy-pay-row="${esc(r.id)}" ${KSY_SEL_PAY.has(r.id) ? "checked" : ""} aria-label="Select ${esc(r.id)}"></td><td><span class="ma-id">${esc(r.id)}</span></td><td>${esc(r.name)}</td><td>${esc(r.college)}</td><td>${ksyPayApprovedDate(r)}</td><td><span class="ui-badge ${ksyBadgeCls(r.status)}">${esc(r.status)}</span></td></tr>`).join("")
+    || `<tr class="ver-empty"><td colspan="6">No applications ready for payment yet.</td></tr>`;
+  ksyPayBulkSync();
+}
+function ksyPayBulkSync() {
+  const n = KSY_SEL_PAY.size;
+  $("#ksyPayBulkText").textContent = n ? `${n} application${n > 1 ? "s" : ""} selected` : "No applications selected";
+  $("#ksyPayMark").disabled = n === 0; $("#ksyPayMark").innerHTML = `Mark as Paid${n ? ` (${n})` : ""}`;
+}
+$("#ksyPayBody").addEventListener("change", e => {
+  const cb = e.target.closest("[data-ksy-pay-row]"); if (!cb) return;
+  cb.checked ? KSY_SEL_PAY.add(cb.dataset.ksyPayRow) : KSY_SEL_PAY.delete(cb.dataset.ksyPayRow);
+  $("#ksyPayAll").checked = ksyPayList().length > 0 && KSY_SEL_PAY.size === ksyPayList().length;
+  ksyPayBulkSync();
+});
+$("#ksyPayAll").addEventListener("change", e => {
+  const list = ksyPayList();
+  if (e.target.checked) list.forEach(r => KSY_SEL_PAY.add(r.id)); else KSY_SEL_PAY.clear();
+  ksyPayRender();
+});
+$("#ksyPayMark").addEventListener("click", () => {
+  KSY_PAY_IDS = [...KSY_SEL_PAY]; if (!KSY_PAY_IDS.length) return;
+  $("#mdKsyPaySub").textContent = `${KSY_PAY_IDS.length} application${KSY_PAY_IDS.length > 1 ? "s" : ""} selected.`;
+  openModal("mdKsyPay");
+});
+$("#ksyPayYes").addEventListener("click", () => {
+  const now = new Date();
+  KSY_PAY_IDS.forEach(id => {
+    const r = KSY_APPS.find(x => x.id === id); if (!r || r.stage !== "done" || r.paid) return;
+    r.paid = true; r.paidDate = now; r.utr = "UTR" + String(Date.now()).slice(-6) + Math.floor(100 + Math.random() * 900);
+    r.status = "Paid";
+    r.log.push({ d: now, t: `Marked as paid (UTR ${r.utr})` });
+  });
+  closeModal($("#mdKsyPay"));
+  toast(`${KSY_PAY_IDS.length} application${KSY_PAY_IDS.length > 1 ? "s" : ""} marked as paid`);
+  KSY_SEL_PAY.clear(); KSY_PAY_IDS = [];
+  ksyPayRender();
+});
+function krOpen() {
+  const id = KSY.reviewId, role = KSY.reviewRole, r = KSY_APPS.find(a => a.id === id), info = KSY_ROLE[role];
+  $("#krBack").href = "#" + (info ? info.listHash : "ksy-nodal");
+  if (!r || !info) { $("#krTitle").textContent = "Application not found"; $("#krSub").textContent = ""; $("#krBody").innerHTML = ""; return; }
+  const canAct = r.stage === role;
+  $("#krTitle").textContent = `Kaushalya Sahaay Yojana – ${r.id}`;
+  $("#krSub").innerHTML = `${esc(r.name)} · ${esc(r.college)} · <span class="ui-badge ${ksyBadgeCls(r.status)}">${esc(r.status)}</span>`;
+  const rmk = r.remarks.length ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Earlier remarks</h5><p>All stages, latest first.</p></div><div class="ver-remarks">${r.remarks.slice().reverse().map(m => `<div class="ver-rmk"><div class="ver-rmk-h"><b>${esc(m.act)} by ${esc(m.by)}</b><span>${fmt(m.d)}</span></div><div class="ver-rmk-b">${m.text ? esc(m.text) : "<i>No remarks</i>"}</div></div>`).join("")}</div></section>` : "";
+  const secs = [["Basic Details", r.details.basic], ["Academic Details", r.details.academic], ["Internship Details", r.details.internship], ["Bank Details", r.details.bank]];
+  const reportName = (r.details.internship.find(x => x[0] === "Internship Report") || [])[1] || "Internship_Report.pdf";
+  const budget = role === "nep" ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Budget Check</h5><p>Per the scheme's overall budget (doc section 1).</p></div><div class="sf-kv"><div><span>Total Budget</span><b>₹42.51 crore</b></div><div><span>This Application</span><b>₹2,000</b></div><div><span>Within Budget</span><b>Yes</b></div></div></section>` : "";
+  $("#krBody").innerHTML = `
+    ${rmk}
+    ${secs.map(([t, list]) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${esc(t)}</h5></div><div class="sf-kv">${list.map(([l, v]) => `<div><span>${esc(l)}</span><b>${esc(v || "–")}</b></div>`).join("")}</div></section>`).join("")}
+    <section class="card sf-sec"><div class="sf-rv-head"><h5>Uploaded Document</h5></div><div class="sf-docs"><div class="sf-doc"><div class="sf-doc-name"><b>${esc(reportName)}</b><small>PDF</small></div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-kr-doc>${iconSvg("view", "f", 14)}View</button></div></div></section>
+    ${budget}
+    ${canAct ? `<section class="card ver-bar"><span class="ui-help">${esc(info.title)}: approve to send it to ${info.next ? esc(KSY_ROLE[info.next].title) : "final payment"}, or reject with a reason.</span>
+      <div class="ver-bar-btns"><button class="ui-btn ui-btn-danger-soft" type="button" data-kr-act="reject">Reject</button><button class="ui-btn ui-btn-primary" type="button" data-kr-act="approve">Approve</button></div></section>` : ""}`;
+  scrollTo(0, 0);
+}
+$("#krBody").addEventListener("click", e => {
+  if (e.target.closest("[data-kr-doc]")) return toast("Opening the internship report");
+  const a = e.target.closest("[data-kr-act]"); if (!a) return;
+  ksyOpenAct(KSY.reviewRole, a.dataset.krAct, [KSY.reviewId]);
+});
+/* ---------- Student side: application status + 3-stage tracker on #view-ksy ---------- */
+function ksyStatusHtml() {
+  const r = KSY_APPS.find(a => a.id === KSY.appId); if (!r) return "";
+  const stages = ["nodal", "principal", "nep"], names = ["Nodal Officer", "Principal", "NEP Cell, KCG", "Payment (DBT)"];
+  const cur = r.stage === "rejected" ? -1 : r.stage !== "done" ? stages.indexOf(r.stage) : r.paid ? 4 : 3;
+  const rejIdx = r.stage === "rejected" ? stages.indexOf(r.rejectedAt) : -1;
+  const rejReason = rejIdx > -1 ? (r.remarks.slice().reverse().find(m => m.act === "Rejected") || {}).text : "";
+  const msg = r.status === "Rejected" ? `Rejected by ${esc(names[rejIdx])}${rejReason ? ": " + esc(rejReason) : "."}`
+    : r.paid ? `Paid. ₹2,000 credited via DBT (${esc(r.utr)}) on ${fmt(r.paidDate)}.`
+    : r.status === "Approved for Payment" ? "Approved. Payment (DBT) of ₹2,000 is being processed by the NEP Cell, KCG."
+    : `Waiting for review by ${esc(names[cur])}.`;
+  return `<section class="card sf-sec" style="margin-top:var(--space-16)">
+    <div class="sf-rv-head"><h5>Application ${esc(r.id)}</h5><span class="ui-badge ${ksyBadgeCls(r.status)}">${esc(r.status)}</span></div>
+    <ol class="ui-steps" style="margin:var(--space-12) 0 0">${names.map((t, i) => `<li class="ui-step${i === rejIdx ? " is-failed" : i < cur ? " is-done" : i === cur ? " is-current" : ""}"><span class="ui-step-dot">${i < cur && i !== rejIdx ? iconSvg("check", "l", 16) : i + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(t)}</span></div></li>`).join("")}</ol>
+    <p class="ui-help${r.status === "Rejected" ? " is-error" : ""}" style="margin-top:var(--space-12)">${msg}</p>
+  </section>`;
+}
+
+
 /* ================= SIDEBAR VIEWS ================= */
 function showView(name) {
   if (!document.getElementById("view-" + name)) name = "dashboard";
@@ -8651,9 +9401,9 @@ function showView(name) {
   $("#app").classList.toggle("is-sch", schFull);
   const schTab = /^(my-apps|my-apps-view|ma-update)$/.test(name) ? "my-apps" : "scholarships";
   $$("[data-schnav]").forEach(a => { const on = schFull && a.dataset.schnav === schTab; a.classList.toggle("is-active", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-  const navName = name === "ver-view" ? HC.from : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
+  const navName = name === "ver-view" ? HC.from : name === "ksy-review" ? "ksy-" + KSY.reviewRole : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
   $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === navName));
-  $(".h-title h2").textContent = ({ dashboard: "Dashboard", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App" })[name] || "Student Profile";
+  $(".h-title h2").textContent = ({ dashboard: "Dashboard", profile: "My Profile", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App", ksy: "Kaushalya Sahaay Yojana", "ksy-form": "Kaushalya Sahaay Yojana", "ksy-nodal": "KSY – Nodal Officer", "ksy-principal": "KSY – Principal", "ksy-nep": "KSY – NEP Cell, KCG", "ksy-review": "Kaushalya Sahaay Yojana" })[name] || "Student Profile";
   if (name === "hc") { hcInit(); hcRender(); }
   if (name === "co") { coInit(); coRender(); }
   if (name === "ver-view") { vvOpen(); vvUpdatedAdd(); }
@@ -8662,6 +9412,12 @@ function showView(name) {
   if (name === "sch-declare") sdOpen();    // CMSS declaration form (needs Apply Now first)
   if (name === "sch-form") sfOpen();       // CMSS application form (after the declaration or Continue draft)
   if (name === "scholarships") schRender();
+  if (name === "ksy") ksyRender();
+  if (name === "ksy-form") kfOpen();
+  if (name === "ksy-nodal") ksyListRender("nodal");
+  if (name === "ksy-principal") ksyListRender("principal");
+  if (name === "ksy-nep") { ksyListRender("nep"); ksyPayRender(); }
+  if (name === "ksy-review") krOpen();
   if (name === "my-apps-view") { maOpenView(); const a = MA_APPS.find(x => x.id === MA.current); if (a && !$("#maDetail").hidden) $("#maDetail").insertAdjacentHTML("afterbegin", stTracker(a)); } // View Application + status tracker (COM-03)
   if (name === "company-job-form") cjpOpenForm(); // Create / Edit Job Posting (CJP.editId = the job being edited, or null)
   if (name === "company-job") cjpRender();
