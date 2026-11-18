@@ -769,6 +769,64 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 @media (max-width:575.98px){.app.is-dash .h-logout{width:32px;padding:0;justify-content:center}.h-logout-t{display:none}.app.is-dash .h-brand b{font-size:8.5px}.app.is-dash .h-brand small{display:none}}
 /* Student scholarship pages = full width like Skill Passport (17/11): no sidebar (same as the Dashboard) + Scholarship / My Applications in the header (.app.is-sch, set in showView) */
 .h-schnav,.h-home{display:none}
+/* Mobile App screens (18/11): phone-width screens (430px) in the portal, to copy into Figma. Tokens only. */
+.mob-screens{display:flex;flex-wrap:wrap;gap:var(--space-32) var(--space-24);align-items:flex-start}
+.mob-screen{width:430px;max-width:100%;scroll-margin-top:var(--space-16)}
+.mob-label{display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-8)}
+.mob-label b{font-size:var(--font-size-body-lg);color:var(--color-text-heading);font-weight:var(--font-weight-semibold)}
+.mob-label span{font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.mob-frame{display:flex;flex-direction:column;min-height:932px;background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:var(--space-24);overflow:hidden;box-shadow:0 8px 24px rgba(15,31,49,.12)}
+.mob-head{position:relative;background:var(--color-primary-600);color:var(--color-text-inverse);padding:var(--space-12) var(--space-24) var(--space-24);overflow:hidden}
+.mob-head::before,.mob-head::after{content:"";position:absolute;border-radius:50%;border:var(--space-12) solid rgba(255,255,255,.07);pointer-events:none}
+.mob-head::before{width:175px;height:175px;top:-65px;right:-60px}
+.mob-head::after{width:111px;height:111px;top:-33px;right:-28px}
+.mob-status{position:relative;display:flex;align-items:center;justify-content:space-between;padding:0 var(--space-8);font-size:var(--font-size-body);font-weight:var(--font-weight-semibold)}
+.mob-status-ic{display:flex;align-items:center;gap:var(--space-4)}
+.mob-bar{position:relative;display:flex;align-items:center;gap:var(--space-12);margin-top:var(--space-24)}
+.mob-bar h4{margin:0;font-size:var(--font-size-h4);font-weight:var(--font-weight-medium);color:var(--color-text-inverse)}
+.mob-back{width:32px;height:32px;display:grid;place-items:center;border:0;background:none;color:var(--color-text-inverse);border-radius:8px;cursor:pointer}
+.mob-back:hover{background:rgba(255,255,255,.12)}
+.mob-back:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-accent-300)}
+.mob-body{flex:1;display:flex;flex-direction:column;gap:var(--space-16);padding:var(--space-20) var(--space-24) var(--space-32)}
+.mob-title{margin:0;padding-left:var(--space-12);border-left:4px solid var(--color-accent-500);font-size:var(--font-size-body-lg);font-weight:var(--font-weight-medium);color:var(--color-text-heading)}
+.mob-card{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-16);background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:var(--space-20)}
+.mob-card h5{margin:0;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-medium);color:var(--color-text-heading);line-height:1.3}
+.mob-card h6{margin:var(--space-8) 0 0;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.mob-dept{margin:0;font-size:var(--font-size-caption);font-weight:var(--font-weight-medium);color:var(--color-text-secondary)}
+.mob-tag{align-self:flex-start;padding:var(--space-4) var(--space-12);border-radius:999px;background:var(--color-accent-500);color:var(--color-text-inverse);font-size:var(--font-size-badge);font-weight:var(--font-weight-medium)}
+.mob-desc{margin:0;font-size:var(--font-size-caption);font-style:italic;color:var(--color-text-secondary)}
+.mob-by{margin:0;font-size:var(--font-size-caption);font-weight:var(--font-weight-medium);color:var(--color-text-body)}
+.mob-btns{display:flex;gap:var(--space-12);margin-top:var(--space-4)}
+.mob-btns .ui-btn{flex:1;min-width:0}
+.mob-info{display:flex;flex-direction:column;gap:var(--space-2);padding:var(--space-8) var(--space-12);background:var(--color-info-bg);border-radius:var(--space-8);font-size:var(--font-size-caption);color:var(--color-info-text)}
+.mob-info b{font-weight:var(--font-weight-semibold)}
+.mob-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--space-8)}
+.mob-list li{position:relative;padding-left:var(--space-16);font-size:var(--font-size-caption);line-height:1.45;color:var(--color-primary-600)}
+.mob-list li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:2px;background:var(--color-primary-600)}
+.mob-list li b{font-weight:var(--font-weight-semibold)}
+.mob-list li em{display:block;margin-top:var(--space-2);font-size:var(--font-size-badge);color:var(--color-text-secondary)}
+.mob-note{margin:0;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+@media (max-width:575.98px){.mob-frame{border-radius:var(--space-16)}.mob-body{padding:var(--space-16) var(--space-16) var(--space-24)}.mob-head{padding:var(--space-12) var(--space-16) var(--space-20)}}
+/* Quick Services menu (18/11): the dots button in the header of pages without a sidebar (Skill Passport, student Scholarship pages) – opens the 4 Quick Services of the Dashboard */
+.qsm{position:relative;display:none}
+.qsm-panel{position:absolute;top:calc(100% + 8px);right:0;width:320px;max-width:calc(100vw - 32px);background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:16px;box-shadow:0 12px 32px rgba(15,31,49,.18);z-index:60;text-align:left}
+.qsm-panel[hidden]{display:none}
+.qsm-head{display:flex;align-items:center;gap:var(--space-8);padding:var(--space-12) var(--space-20);border-bottom:1px solid var(--color-border-default);color:var(--color-primary-600)}
+.qsm-head h5{margin:0;font-size:var(--font-size-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.qsm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-20) var(--space-8);padding:var(--space-20)}
+.qsm-item{display:flex;flex-direction:column;align-items:center;gap:var(--space-8);text-align:center;text-decoration:none;color:var(--color-text-body);font-size:var(--font-size-body);line-height:var(--line-height-body);border-radius:12px;padding:var(--space-4)}
+.qsm-item:hover{color:var(--color-text-heading)}
+.qsm-item:hover .qsm-ic{box-shadow:0 0 0 2px var(--color-border-hover)}
+.qsm-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.qsm-ic{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;transition:box-shadow .15s}
+.qsm-item.is-purple .qsm-ic{background:var(--color-cat-purple-bg)}
+.qsm-item.is-green .qsm-ic{background:var(--color-cat-green-bg)}
+.qsm-item.is-blue .qsm-ic{background:var(--color-cat-blue-bg)}
+.qsm-item.is-orange .qsm-ic{background:var(--color-cat-orange-bg)}
+@media (max-width:575.98px){.qsm{position:static}.qsm-panel{position:fixed;top:72px;left:16px;right:16px;width:auto;max-width:none}}
+.app.is-sch .qsm{display:block}
+@media (max-width:400px){.app.is-sch .qsm{display:none}}
+
 .app.is-sch .h-schnav{display:flex;align-items:center;gap:var(--space-8);margin-left:auto}
 .app.is-sch .h-right{margin-left:var(--space-8)}
 .app.is-sch .h-home{display:inline-flex}
@@ -1607,6 +1665,10 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 000 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0022 9.8C22 5.5 17.5 2 12 2z"/></svg>
         <span class="nav-label">Design System</span>
       </a>
+      <a href="#mobile-app" data-view="mobile-app" data-tip="Mobile App">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10.5 18.5h3"/></svg>
+        <span class="nav-label">Mobile App</span>
+      </a>
       <a href="#responsive" data-view="responsive" data-tip="Responsive">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="11" rx="1.5"/><path d="M6 19h6M9 15v4"/><rect x="17" y="9" width="5" height="11" rx="1.2"/></svg>
         <span class="nav-label">Responsive</span>
@@ -1645,6 +1707,18 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
       <div class="h-right">
         <!-- Demo role switcher (Phase 4): Student / Help Center / Commissioner Office -->
         <a class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon h-home" href="#dashboard" title="Dashboard" aria-label="Go to Dashboard"><span data-icon="home:f:16"></span></a>
+        <div class="qsm" id="qsm">
+        <button class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon qsm-btn" type="button" id="qsmBtn" title="Quick Services" aria-label="Quick Services" aria-haspopup="true" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></button>
+        <div class="qsm-panel" id="qsmPanel" role="menu" aria-label="Quick Services" hidden>
+          <div class="qsm-head"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/></svg><h5>Quick Services</h5></div>
+          <div class="qsm-grid">
+            <a class="qsm-item is-purple" role="menuitem" href="#scholarships"><span class="qsm-ic"><img src="icons/live/qs-scholarship.svg" alt="" width="28" height="28"></span><span>Scholarship</span></a>
+            <a class="qsm-item is-green" role="menuitem" href="#" data-qsm-soon="Attendance"><span class="qsm-ic"><img src="icons/live/qs-attendance.svg" alt="" width="28" height="28"></span><span>Attendance</span></a>
+            <a class="qsm-item is-blue" role="menuitem" href="#jobs"><span class="qsm-ic"><img src="icons/live/qs-career.svg" alt="" width="28" height="28"></span><span>Career &amp; Placement</span></a>
+            <a class="qsm-item is-orange" role="menuitem" href="skill-passport.html"><span class="qsm-ic"><img src="icons/live/qs-skill-passport.svg" alt="" width="28" height="28"></span><span>Skill Passport</span></a>
+          </div>
+        </div>
+      </div>
         <div class="ui-select role-sel" id="roleSel" data-options="Student|Help Center|Commissioner Office" data-value="Student" title="Switch role (demo)" aria-label="Role"></div>
         <button class="icon-btn" title="Notifications">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 00-5-5.9V4a1 1 0 00-2 0v1.1A6 6 0 006 11v5l-2 2v1h16v-1z"/></svg>
@@ -3343,6 +3417,86 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 
       </div><!-- /PANEL: ACCORDION -->
 
+    </main>
+
+    <!-- ===== VIEW: Mobile App (18/11) – the mobile app screens drawn at phone width (430px), name-wise, so they can be copied to Figma ===== -->
+    <main class="content" id="view-mobile-app" hidden>
+      <div class="page-head">
+        <div>
+          <h3>Mobile App</h3>
+          <p>Mobile app screens drawn at phone width (430px), with the web portal text. Student side only: the app shows the scholarships; Apply Now opens the web portal.</p>
+        </div>
+      </div>
+      <div class="mob-screens">
+    <section class="mob-screen" id="mobMain">
+      <div class="mob-label"><b>Scholarship Main Page</b><span>Mobile App › Scholarship Flow · 430 × 932</span></div>
+      <div class="mob-frame">
+        <header class="mob-head"><div class="mob-status"><b>9:41</b><span class="mob-status-ic" aria-hidden="true"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 4.2a9 9 0 0113 0M4 7a5.4 5.4 0 018 0"/><circle cx="8" cy="10" r="1" fill="currentColor"/></svg><svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x="0.5" y="0.5" width="22" height="11" rx="3.5" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><rect x="24" y="4" width="2" height="4" rx="1" fill="currentColor" opacity=".5"/></svg></span></div><div class="mob-bar"><h4>Scholarship</h4></div></header>
+        <div class="mob-body">
+          <h6 class="mob-title">Scholarships open for 2026-27</h6>
+          <article class="mob-card">
+          <h5>Chief Minister Scholarship Scheme (CMSS)</h5>
+          <p class="mob-dept">Education Department, Government of Gujarat</p>
+          <span class="mob-tag">Grant Amount</span>
+          <p class="mob-desc">Tuition fee assistance for Diploma and UG students from special categories.</p>
+          <p class="mob-by">Apply by 15/12/2026</p>
+          <div class="mob-btns"><button class="ui-btn ui-btn-outline" type="button" data-mob="mobCMSS">See Eligibility</button><button class="ui-btn ui-btn-primary" type="button" data-mob="apply">Apply Now</button></div>
+        </article>
+          <article class="mob-card">
+          <h5>Mukhyamantri Yuva Swavalamban Yojana (MYSY)</h5>
+          <p class="mob-dept">Education Department, Government of Gujarat</p>
+          <span class="mob-tag">Grant Amount</span>
+          <p class="mob-desc">Tuition, hostel and book assistance for meritorious students.</p>
+          <p class="mob-by">Apply by 30/11/2026</p>
+          <div class="mob-btns"><button class="ui-btn ui-btn-outline" type="button" data-mob="mobMYSY">See Eligibility</button><button class="ui-btn ui-btn-primary" type="button" data-mob="apply">Apply Now</button></div>
+        </article>
+          <div class="mob-info"><b>Apply on the web portal</b><span>Tap Apply Now to open the USK web portal in your browser and fill in the application form.</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="mob-screen" id="mobCMSS">
+      <div class="mob-label"><b>Scholarship View Details – CMSS</b><span>Opens from See Eligibility · 430 × 932</span></div>
+      <div class="mob-frame">
+        <header class="mob-head"><div class="mob-status"><b>9:41</b><span class="mob-status-ic" aria-hidden="true"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 4.2a9 9 0 0113 0M4 7a5.4 5.4 0 018 0"/><circle cx="8" cy="10" r="1" fill="currentColor"/></svg><svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x="0.5" y="0.5" width="22" height="11" rx="3.5" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><rect x="24" y="4" width="2" height="4" rx="1" fill="currentColor" opacity=".5"/></svg></span></div><div class="mob-bar"><button class="mob-back" type="button" data-mob="mobMain" aria-label="Back"><span data-icon="arrow-left:l:20"></span></button><h4>Scholarship Details</h4></div></header>
+        <div class="mob-body">
+          <article class="mob-card">
+            <h5>Chief Minister Scholarship Scheme (CMSS)</h5>
+            <p class="mob-dept">Education Department, Government of Gujarat</p>
+            <span class="mob-tag">Benefit</span>
+            <p class="mob-desc">Tuition fee reimbursement for Diploma / UG courses (MYSY assistance, if any, is adjusted).</p>
+            <div class="mob-info"><b>Application period: 01/10/2026 – 15/12/2026</b><span>Check your eligibility and keep all documents ready before applying.</span></div>
+            <h6>Eligibility checks</h6>
+            <ul class="mob-list"><li><b>Special category</b> – At least one of the 7 categories below applies to you.</li><li><b>Education pathway</b> – Class 10 → Diploma, Diploma → UG, or Class 12 Science / General → UG.</li><li><b>Family income</b> – Annual family income from all sources ₹4,50,000 or less.</li><li><b>Domicile</b> – Gujarat domicile.</li></ul>
+            <h6>Special categories and supporting documents</h6>
+            <ul class="mob-list"><li><b>Category 1</b> – Girl who passed from a school / college in a taluka where female literacy is below 50% (current KCG taluka list).<em>Documents: School / College Taluka Proof (to be confirmed)</em></li><li><b>Category 2</b> – Child of Army / para-military / Reserve Police / Gujarat Police personnel who died on duty (war, terrorism, Naxalism) or became permanently disabled on duty.<em>Documents: Competent Authority Certificate</em></li><li><b>Category 3</b> – Child of an organised-sector worker, salt worker, silicosis-affected worker, or a landless unorganised worker who died in an accident (not construction workers).<em>Documents: As per worker type – Bonafide + Worker ID, Family Identity Card, Medical + Labour Officer certificates, or Labour Officer inquiry report</em></li><li><b>Category 4</b> – Student, father, mother or guardian with a disability of 40% or more.<em>Documents: UDID Card or Disability Certificate</em></li><li><b>Category 5</b> – Child of a widow mother who has not remarried.<em>Documents: Father's Death Certificate, Widow Certificate and Non-Remarriage Affidavit</em></li><li><b>Category 6</b> – Orphan – both parents have died (not adopted).<em>Documents: Parents' Death Certificates, Orphanage Certificate or Orphan Certificate; Guardian Affidavit if living with a relative</em></li><li><b>Category 7</b> – Child of a divorced or abandoned (Tyakta) mother who has not remarried.<em>Documents: Divorce proof + Non-Remarriage Affidavit, or Mamlatdar / Gazetted Officer certificate or Abandonment Affidavit</em></li></ul>
+            <p class="mob-note">You choose your category on the web portal when you apply.</p>
+            <button class="ui-btn ui-btn-primary ui-btn-lg ui-btn-block" type="button" data-mob="apply">Apply Scholarship Now</button>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="mob-screen" id="mobMYSY">
+      <div class="mob-label"><b>Scholarship View Details – MYSY</b><span>Opens from See Eligibility · 430 × 932</span></div>
+      <div class="mob-frame">
+        <header class="mob-head"><div class="mob-status"><b>9:41</b><span class="mob-status-ic" aria-hidden="true"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 4.2a9 9 0 0113 0M4 7a5.4 5.4 0 018 0"/><circle cx="8" cy="10" r="1" fill="currentColor"/></svg><svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x="0.5" y="0.5" width="22" height="11" rx="3.5" stroke="currentColor" opacity=".5"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><rect x="24" y="4" width="2" height="4" rx="1" fill="currentColor" opacity=".5"/></svg></span></div><div class="mob-bar"><button class="mob-back" type="button" data-mob="mobMain" aria-label="Back"><span data-icon="arrow-left:l:20"></span></button><h4>Scholarship Details</h4></div></header>
+        <div class="mob-body">
+          <article class="mob-card">
+            <h5>Mukhyamantri Yuva Swavalamban Yojana (MYSY)</h5>
+            <p class="mob-dept">Education Department, Government of Gujarat</p>
+            <span class="mob-tag">Benefit</span>
+            <p class="mob-desc">Tuition fee, hostel and book assistance as per the MYSY rules.</p>
+            <div class="mob-info"><b>Application period: 01/10/2026 – 30/11/2026</b><span>Check your eligibility and keep all documents ready before applying.</span></div>
+            <h6>Eligibility checks</h6>
+            <ul class="mob-list"><li><b>Admission pathway</b> – UG after Class 12 Science / General or Diploma; Diploma after Class 10.</li><li><b>Eligible course</b> – Course is in the MYSY eligible course list.</li><li><b>MBBS</b> – MBBS admission must be through NEET.</li><li><b>Seat type</b> – Not admitted on an NRI seat.</li><li><b>Previous marks</b> – Class 10 / Class 12: 80 percentile or more. Diploma: 65% or more.</li><li><b>Family income</b> – Annual family income ₹6,00,000 or less.</li><li><b>Domicile</b> – Gujarat domicile.</li></ul>
+            <h6>Special cases</h6>
+            <ul class="mob-list"><li>Main earning member of the family died: considered for MYSY for the remaining period of the course.</li><li>Child of a Gujarat-domicile Army / para-military jawan who died on duty (war, terrorism, Naxalism): marks and income limits are not applied.</li><li>Integrated course of up to 6 years after Class 10: first 3 years as Class 10 → Diploma, last 3 years as Diploma → Degree.</li><li>College outside Gujarat: eligible for MYSY.</li></ul>
+            
+            <button class="ui-btn ui-btn-primary ui-btn-lg ui-btn-block" type="button" data-mob="apply">Apply Scholarship Now</button>
+          </article>
+        </div>
+      </div>
+    </section>
+      </div>
     </main>
 
     <!-- ===== VIEW: Responsive ===== -->
@@ -7037,6 +7191,33 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#lgLan
 // Help Desk and footer links are not built yet
 document.querySelectorAll("[data-lgsoon]").forEach(a => a.addEventListener("click", e => { e.preventDefault(); toast(`${a.dataset.lgsoon} will be added soon`); }));
 // Sidebar "Log out" → back to Sign In
+
+/* Mobile App screens: See Eligibility / back scroll to the screen, Apply Now shows what it will do */
+(function () {
+  const root = document.getElementById("view-mobile-app");
+  if (!root) return;
+  root.addEventListener("click", e => {
+    const t = e.target.closest("[data-mob]"); if (!t) return;
+    if (t.dataset.mob === "apply") { toast("Apply Now opens the web portal in the phone browser"); return; }
+    const el = document.getElementById(t.dataset.mob);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  });
+})();
+/* Quick Services menu (dots button in the header) */
+(function () {
+  const btn = document.getElementById("qsmBtn"), panel = document.getElementById("qsmPanel");
+  if (!btn || !panel) return;
+  const close = () => { panel.hidden = true; btn.setAttribute("aria-expanded", "false"); };
+  btn.addEventListener("click", e => { e.stopPropagation(); const open = panel.hidden; panel.hidden = !open; btn.setAttribute("aria-expanded", String(open)); });
+  panel.addEventListener("click", e => {
+    const a = e.target.closest(".qsm-item"); if (!a) return;
+    if (a.dataset.qsmSoon) { e.preventDefault(); toast(a.dataset.qsmSoon + " will be added soon"); }
+    close();
+  });
+  document.addEventListener("click", e => { if (!panel.hidden && !e.target.closest("#qsm")) close(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) { close(); btn.focus(); } });
+  addEventListener("hashchange", close);
+})();
 $(".logout").addEventListener("click", () => { try { lgStore?.removeItem("usk-student"); } catch (e) {} lgShow(false); toast("Logged out"); });
 $(".h-logout").addEventListener("click", () => $(".logout").click()); // Dashboard header Log out (same action)
 // Remembered identifier (only the email / ID is remembered, never the password)
@@ -8472,7 +8653,7 @@ function showView(name) {
   $$("[data-schnav]").forEach(a => { const on = schFull && a.dataset.schnav === schTab; a.classList.toggle("is-active", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   const navName = name === "ver-view" ? HC.from : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
   $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === navName));
-  $(".h-title h2").textContent = ({ dashboard: "Dashboard", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications" })[name] || "Student Profile";
+  $(".h-title h2").textContent = ({ dashboard: "Dashboard", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App" })[name] || "Student Profile";
   if (name === "hc") { hcInit(); hcRender(); }
   if (name === "co") { coInit(); coRender(); }
   if (name === "ver-view") { vvOpen(); vvUpdatedAdd(); }

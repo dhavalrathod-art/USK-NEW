@@ -15,11 +15,11 @@
    Uses only USK Design System tokens and components.
    Earlier versions: skill-passport-design1.html (tabs).
    ===================================================== */
-:root{ --sp-max:1280px; --sp-header-h:64px; --sp-rail:320px; --sp-jbar-h:52px; }
+:root{ --sp-max:none; --sp-header-h:64px; --sp-rail:320px; --sp-jbar-h:52px; }
 body{font-family:var(--font-family-base);background:var(--color-bg-page);color:var(--color-text-body);font-size:var(--font-size-body);min-height:100vh;display:flex;flex-direction:column}
 a{color:var(--color-text-link)}
 [hidden]{display:none !important}
-.sp-wrap{width:100%;max-width:var(--sp-max);margin:0 auto;padding:0 var(--space-page)}
+.sp-wrap{width:100%;max-width:var(--sp-max);margin:0 auto;padding:0 var(--space-20)}
 
 /* ---------- Header ---------- */
 .sp-header{position:sticky;top:0;z-index:50;background:var(--color-bg-header);border-bottom:1px solid var(--color-border-default);height:var(--sp-header-h)}
@@ -346,8 +346,8 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
 .sp-pass-row{justify-content:space-between;gap:var(--space-12);min-height:36px}
 .sp-pass-row small{display:inline;white-space:nowrap}
 .sp-pass-row b{margin-left:auto;min-width:0}
-.sp-pass-foot{justify-content:center}
-.sp-pass .sp-btn-resume{display:flex;align-items:center;justify-content:center;gap:var(--space-8);width:100%;margin-top:var(--space-12);padding:var(--space-8) 0;border:0;background:none;font-family:inherit;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-inverse, #fff);color:var(--color-text-inverse);cursor:pointer}
+.sp-pass-foot{justify-content:center;padding-top:var(--space-16);margin-bottom:var(--space-8)}
+.sp-pass .sp-btn-resume{display:flex;align-items:center;justify-content:center;gap:var(--space-8);width:100%;margin-top:var(--space-12);padding:var(--space-8) 0 var(--space-12);border:0;background:none;font-family:inherit;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-inverse, #fff);color:var(--color-text-inverse);cursor:pointer}
 .sp-pass .sp-btn-resume:hover{color:var(--color-accent-300);text-decoration:underline}
 .sp-pass .sp-btn-resume:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring);border-radius:6px}
 /* 3 dots (and View) stay at the top right of every card */
@@ -361,6 +361,39 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
 .sp-statuscard .sp-stat small{min-width:0;overflow-wrap:anywhere;color:var(--color-text-secondary);font-size:var(--font-size-caption)}
 .sp-statuscard .sp-stat b{font-size:var(--font-size-h5);color:var(--color-text-heading)}
 @media (max-width:767.98px){.sp-statuscard .sp-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Tablet (576-1099px): the Passport card is full width, so the details sit 50% / 50% */
+@media (min-width:576px) and (max-width:1099.98px){.sp-pass-list{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--space-32)}}
+
+/* Header = the scholarship header of index.html (18/11), but only Home, Quick Services, bell, settings, avatar, Log out – no role dropdown and no Scholarship / My Applications buttons (user: only the Home icon here). */
+.sp-header .sp-wrap{padding:0 var(--space-20)}
+.sp-header .sp-head-actions{margin-left:auto;gap:10px}
+.sp-icon-btn{background:none;border:0;display:grid;place-items:center;width:34px;height:34px;border-radius:8px;color:#1f2937;position:relative;cursor:pointer}
+.sp-icon-btn:hover{background:var(--color-primary-50)}
+.sp-icon-btn:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-badge{position:absolute;top:0;right:-4px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:var(--color-accent-500);color:#fff;font-size:9.5px;font-weight:700;line-height:14px;text-align:center;border:2px solid #fff}
+.sp-avatar-h{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8b5e3c,#3d2a1d);color:#fff;display:grid;place-items:center;font-weight:600;font-size:12px;border:2px solid #fff;box-shadow:0 0 0 1px var(--color-border-default)}
+@media (max-width:575.98px){.sp-avatar-h{display:none}.sp-logout{width:32px;padding:0;justify-content:center}.sp-logout-t{display:none}}
+@media (max-width:400px){.sp-home{display:none}}
+
+/* Quick Services menu (18/11): the dots button in the header of pages without a sidebar (Skill Passport, student Scholarship pages) – opens the 4 Quick Services of the Dashboard */
+.qsm{position:relative;}
+.qsm-panel{position:absolute;top:calc(100% + 8px);right:0;width:320px;max-width:calc(100vw - 32px);background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:16px;box-shadow:0 12px 32px rgba(15,31,49,.18);z-index:60;text-align:left}
+.qsm-panel[hidden]{display:none}
+.qsm-head{display:flex;align-items:center;gap:var(--space-8);padding:var(--space-12) var(--space-20);border-bottom:1px solid var(--color-border-default);color:var(--color-primary-600)}
+.qsm-head h5{margin:0;font-size:var(--font-size-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.qsm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-20) var(--space-8);padding:var(--space-20)}
+.qsm-item{display:flex;flex-direction:column;align-items:center;gap:var(--space-8);text-align:center;text-decoration:none;color:var(--color-text-body);font-size:var(--font-size-body);line-height:var(--line-height-body);border-radius:12px;padding:var(--space-4)}
+.qsm-item:hover{color:var(--color-text-heading)}
+.qsm-item:hover .qsm-ic{box-shadow:0 0 0 2px var(--color-border-hover)}
+.qsm-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.qsm-ic{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;transition:box-shadow .15s}
+.qsm-item.is-purple .qsm-ic{background:var(--color-cat-purple-bg)}
+.qsm-item.is-green .qsm-ic{background:var(--color-cat-green-bg)}
+.qsm-item.is-blue .qsm-ic{background:var(--color-cat-blue-bg)}
+.qsm-item.is-orange .qsm-ic{background:var(--color-cat-orange-bg)}
+@media (max-width:575.98px){.qsm{position:static}.qsm-panel{position:fixed;top:72px;left:16px;right:16px;width:auto;max-width:none}}
+@media (max-width:400px){.qsm-btn{display:none}}
 </style>
 </head>
 <body>
@@ -368,15 +401,28 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
 <!-- ============ HEADER ============ -->
 <header class="sp-header">
   <div class="sp-wrap">
-    <a class="sp-brand" href="index.html" aria-label="USK home">
+    <a class="sp-brand" href="index.html#dashboard" aria-label="USK home">
       <img src="LOGO-USK-sm.png" alt="Uccha-Shiksha Samiksha Kendra logo">
       <span><b>UCCHA-SHIKSHA SAMIKSHA KENDRA</b><small>Higher Education Department - Gujarat</small></span>
     </a>
     <div class="sp-head-actions">
-      <a class="sp-head-btn is-optional" href="index.html" title="Home" aria-label="Home"><span data-icon="home:f:18"></span></a>
-      <button class="sp-head-btn is-optional" type="button" title="All services" aria-label="All services"><svg class="ui-icon ui-icon-18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></button>
-      <button class="sp-head-btn" type="button" title="Notifications" aria-label="Notifications, 3 new"><span data-icon="bell:f:18"></span><span class="sp-dot"></span></button>
-      <button class="sp-user" type="button" aria-label="Profile menu"><span class="sp-avatar-sm">AP</span><span class="sp-user-name">Aarav</span><span data-icon="chevron-down:l:16"></span></button>
+      <a class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon sp-home" href="index.html#dashboard" title="Dashboard" aria-label="Go to Dashboard"><span data-icon="home:f:16"></span></a>
+      <div class="qsm" id="qsm">
+        <button class="ui-btn ui-btn-outline ui-btn-sm ui-btn-icon qsm-btn" type="button" id="qsmBtn" title="Quick Services" aria-label="Quick Services" aria-haspopup="true" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></button>
+        <div class="qsm-panel" id="qsmPanel" role="menu" aria-label="Quick Services" hidden>
+          <div class="qsm-head"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="13" y="3" width="8" height="6" rx="1.5"/><rect x="13" y="11" width="8" height="10" rx="1.5"/><rect x="3" y="15" width="8" height="6" rx="1.5"/></svg><h5>Quick Services</h5></div>
+          <div class="qsm-grid">
+            <a class="qsm-item is-purple" role="menuitem" href="index.html#scholarships"><span class="qsm-ic"><img src="icons/live/qs-scholarship.svg" alt="" width="28" height="28"></span><span>Scholarship</span></a>
+            <a class="qsm-item is-green" role="menuitem" href="#" data-qsm-soon="Attendance"><span class="qsm-ic"><img src="icons/live/qs-attendance.svg" alt="" width="28" height="28"></span><span>Attendance</span></a>
+            <a class="qsm-item is-blue" role="menuitem" href="index.html#jobs"><span class="qsm-ic"><img src="icons/live/qs-career.svg" alt="" width="28" height="28"></span><span>Career &amp; Placement</span></a>
+            <a class="qsm-item is-orange" role="menuitem" href="skill-passport.html"><span class="qsm-ic"><img src="icons/live/qs-skill-passport.svg" alt="" width="28" height="28"></span><span>Skill Passport</span></a>
+          </div>
+        </div>
+      </div>
+      <button class="sp-icon-btn" type="button" title="Notifications" aria-label="Notifications, 10 new"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 00-5-5.9V4a1 1 0 00-2 0v1.1A6 6 0 006 11v5l-2 2v1h16v-1z"/></svg><span class="sp-badge">10</span></button>
+      <button class="sp-icon-btn" type="button" title="Settings" aria-label="Settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M19.4 13a7.6 7.6 0 000-2l2.1-1.6-2-3.5-2.5 1a7.4 7.4 0 00-1.7-1L15 3h-4l-.4 2.9a7.4 7.4 0 00-1.7 1l-2.5-1-2 3.5L6.6 11a7.6 7.6 0 000 2l-2.1 1.6 2 3.5 2.5-1a7.4 7.4 0 001.7 1L11 21h4l.4-2.9a7.4 7.4 0 001.7-1l2.5 1 2-3.5zM13 15.5A3.5 3.5 0 1116.5 12 3.5 3.5 0 0113 15.5z" transform="translate(-1 0)"/></svg></button>
+      <div class="sp-avatar-h" aria-hidden="true">JS</div>
+      <button class="ui-btn ui-btn-outline ui-btn-sm sp-logout" type="button" id="spLogout" title="Log out"><span data-icon="logout:l:16"></span><span class="sp-logout-t">Log out</span></button>
     </div>
   </div>
 </header>
@@ -864,6 +910,23 @@ spy();
 document.addEventListener("click", e => { const b = e.target.closest("[data-soon]"); if (b) toast(`${b.dataset.soon} will be added soon`); });
 $("#spGenerate").addEventListener("click", () => toast("Skill Passport PDF will be generated soon"));
 $("#spShare").addEventListener("click", () => toast("Share link will be added soon"));
+
+/* Quick Services menu (dots button in the header) */
+(function () {
+  const btn = document.getElementById("qsmBtn"), panel = document.getElementById("qsmPanel");
+  if (!btn || !panel) return;
+  const close = () => { panel.hidden = true; btn.setAttribute("aria-expanded", "false"); };
+  btn.addEventListener("click", e => { e.stopPropagation(); const open = panel.hidden; panel.hidden = !open; btn.setAttribute("aria-expanded", String(open)); });
+  panel.addEventListener("click", e => {
+    const a = e.target.closest(".qsm-item"); if (!a) return;
+    if (a.dataset.qsmSoon) { e.preventDefault(); toast(a.dataset.qsmSoon + " will be added soon"); }
+    close();
+  });
+  document.addEventListener("click", e => { if (!panel.hidden && !e.target.closest("#qsm")) close(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !panel.hidden) { close(); btn.focus(); } });
+  addEventListener("hashchange", close);
+})();
+$("#spLogout").addEventListener("click", () => { try { sessionStorage.removeItem("usk-student"); } catch (e) {} location.href = "index.html"; });
 $("#spResume").addEventListener("click", () => toast("Resume download will be added soon"));
 
 /* Show / hide masked values */
