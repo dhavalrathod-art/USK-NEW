@@ -373,11 +373,12 @@ body.ui-drawer-lock{overflow:hidden}
 .ui-acc-head > .ui-icon-box{width:34px;height:34px}
 .ui-acc-chev{width:18px;height:18px;color:var(--acc-icon);flex-shrink:0;transition:transform .25s}
 .ui-acc-item.is-open .ui-acc-chev{transform:rotate(180deg)}
-.ui-acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+.ui-acc-panel{display:grid;grid-template-rows:0fr;overflow:hidden;transition:grid-template-rows .25s ease}
 .ui-acc-item.is-open > .ui-acc-panel{grid-template-rows:1fr}
 .ui-acc-panel > div{overflow:hidden}
-.ui-acc-content{padding:4px 16px 16px 16px;font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body)}
+.ui-acc-content{padding:4px 16px 16px 16px;font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body);opacity:1;transition:opacity .15s ease}
 .ui-acc-item.is-open .ui-acc-content{padding-top:14px;border-top:1px solid var(--acc-border)}
+.ui-acc-item:not(.is-open) .ui-acc-content{padding:0;opacity:0}
 .ui-acc.is-separated{border:0;background:none;display:flex;flex-direction:column;gap:10px;overflow:visible}
 .ui-acc.is-separated .ui-acc-item{border:1px solid var(--acc-border);border-radius:10px;overflow:hidden;background:#fff}
 .ui-acc.is-separated .ui-acc-item + .ui-acc-item{border-top:1px solid var(--acc-border)}
@@ -570,9 +571,12 @@ body.ui-dragging{cursor:grabbing;user-select:none}
 .ui-filter-btn > svg:last-child{transition:transform .2s}
 .ui-filter-btn[aria-expanded="true"] > svg:last-child{transform:rotate(180deg)}
 .ui-filter-cnt{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#fff;color:var(--color-accent-700);font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);display:inline-grid;place-items:center}
-.ui-filter-cnt[hidden],.ui-filter-panel[hidden]{display:none}
-.ui-filter-panel{margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px dashed var(--color-border-strong)}
-.ui-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+.ui-filter-cnt[hidden]{display:none}
+/* Panel opens / closes with a slow slide (.3s, same feel as the Student Applications filter). It stays in the layout
+   while [hidden] (height 0, invisible, not focusable) so the close can animate too; overflow becomes visible only after
+   the open finishes, so dropdown menus inside are not cut off. Pages keep toggling the `hidden` attribute as before. */
+.ui-filter-panel{interpolate-size:allow-keywords;height:auto;overflow:visible;opacity:1;visibility:visible;margin-top:var(--space-16);padding-top:var(--space-16);border-top:1px dashed var(--color-border-strong);transition:height .3s ease,opacity .3s ease,margin-top .3s ease,padding-top .3s ease,border-color .3s ease,overflow 0s .3s,visibility 0s;transition-behavior:allow-discrete}
+.ui-filter-panel[hidden]{display:block;height:0;overflow:hidden;opacity:0;visibility:hidden;margin-top:0;padding-top:0;border-top-color:transparent;border-top-width:0;transition:height .3s ease,opacity .2s ease,margin-top .3s ease,padding-top .3s ease,border-color .3s ease,overflow 0s,visibility 0s .3s}.ui-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
 .ui-filter-grid > .ui-field[hidden]{display:none}
 .ui-filter-acts{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-16)}
 .ui-filter-btns{display:flex;gap:var(--space-btn-group);margin-left:auto}
