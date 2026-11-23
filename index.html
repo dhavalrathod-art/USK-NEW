@@ -8441,6 +8441,7 @@ const SF_WORK = ["Organised sector worker", "Salt worker", "Silicosis affected /
 const SF_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const SF_INC_API = { no: "INC/AHD/2026/45120", amt: "240000", date: "12/06/2026" };   // sample: this number is "received" from the income API
 const SF_AADHAAR_LAST4 = "4321";                                                       // sample: last 4 digits given by DigiLocker
+const SF_AADHAAR_TEST = "12341234" + SF_AADHAAR_LAST4;                                   // testing: prefilled sample Aadhaar (matches DigiLocker)
 // Prefilled values from verified sources (differs per student; here one sample student)
 const SF_PREFILL = {
   name: ["Aarav Patel", "DigiLocker"], dob: ["14/03/2005", "DigiLocker"], gender: ["Male", "DigiLocker"],
@@ -8621,6 +8622,8 @@ function sfStart() {                                           // new applicatio
   F = { files: {} }; SRC = {};
   Object.entries(SCH.code === "MYSY" ? SF_MYSY_PREFILL() : SF_PREFILL).forEach(([k, [v, s]]) => { F[k] = v; SRC[k] = s; });
   F.instCountry = "India";                                     // default India (editable)
+  F.incNo = SF_INC_API.no;                                     // testing (23/11): sample numbers prefilled (editable) – the student still clicks Fetch / Verify
+  F.aadhaar = SF_AADHAAR_TEST;
   F.files.dPhoto = { name: "Photo_from_DigiLocker.jpg", size: 48000, auto: true };
   SF.step = 0; SF.maxStep = 0; SF.sub = 0; SF.seen = {}; SF.draftId = SCH.resumeId; SCH.resumeId = null;
 }
@@ -9090,6 +9093,7 @@ function sfStartRenewal() {
   Object.entries(st.verified || {}).forEach(([k, [v, s]]) => { F[k] = v; SRC[k] = s; });
   Object.assign(F, (prev && prev.data) || {});                      // earlier manual data (editable)
   ["incNo", "incAmt", "incDate"].forEach(k => { F[k] = ""; delete SRC[k]; }); delete F.incApi; // income asked again every year
+  F.incNo = SF_INC_API.no;                                          // testing (23/11): sample number prefilled, Fetch still needed
   F.resDecl = "Yes";                                                // result declared – default Yes
   F.aadhaar = "XXXX XXXX " + SF_AADHAAR_LAST4; F.aadOk = true; SRC.aadhaar = "DigiLocker"; // verified in the Fresh application
 }
