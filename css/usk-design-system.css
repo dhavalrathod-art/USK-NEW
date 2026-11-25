@@ -305,7 +305,7 @@ textarea.ui-input{height:auto;min-height:88px;padding:10px var(--input-padding-x
   --modal-bg:var(--color-bg-surface);          --modal-footer-bg:var(--color-gray-50);
   --modal-border:var(--color-border-default);  --modal-backdrop:var(--color-bg-overlay);
   --modal-radius:12px; --modal-shadow:0 24px 48px rgba(15,31,49,.28);
-  --modal-w-sm:440px; --modal-w-md:600px; --modal-w-lg:840px;
+  --modal-w-sm:440px; --modal-w-md:600px; --modal-w-lg:840px; --modal-w-xl:960px;
 }
 .ui-modal-backdrop{position:fixed;inset:0;z-index:85;background:var(--modal-backdrop);display:flex;align-items:center;justify-content:center;padding:24px 16px;opacity:0;visibility:hidden;transition:opacity .2s,visibility 0s .2s}
 .ui-modal-backdrop.is-open{opacity:1;visibility:visible;transition:opacity .2s}
@@ -314,6 +314,7 @@ textarea.ui-input{height:auto;min-height:88px;padding:10px var(--input-padding-x
 .ui-modal-backdrop.is-open .ui-modal{transform:none}
 .ui-modal-sm{max-width:var(--modal-w-sm)}
 .ui-modal-lg{max-width:var(--modal-w-lg)}
+.ui-modal-xl{max-width:var(--modal-w-xl)}  /* 24/11: wide tables (min-width 860px) fit without a sideways scroll */
 .ui-modal-head{display:flex;align-items:center;gap:12px;padding:16px 20px;background:var(--modal-header-bg);color:var(--modal-header-text);flex-shrink:0}
 .ui-modal-icon{width:40px;height:40px;border-radius:8px;background:var(--modal-icon-bg);color:var(--modal-icon-color);display:grid;place-items:center;flex-shrink:0}
 .ui-modal-icon svg{width:22px;height:22px}
@@ -324,6 +325,15 @@ textarea.ui-input{height:auto;min-height:88px;padding:10px var(--input-padding-x
 .ui-modal-close:hover{background:rgba(255,255,255,.12)}
 .ui-modal-close:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(255,255,255,.35)}
 .ui-modal-close svg{width:20px;height:20px}
+/* Confirm modal (25/11): short yes / no questions – no navy header, no ×; centred tone icon, title, one message, Cancel + one action */
+.ui-modal.ui-confirm{max-width:var(--modal-w-sm);text-align:center}
+.ui-confirm-body{display:flex;flex-direction:column;align-items:center;gap:var(--space-8);padding:var(--space-24) var(--space-24) var(--space-20)}
+.ui-confirm-icon{width:56px;height:56px;margin-bottom:var(--space-8);border-radius:50%;display:grid;place-items:center;flex-shrink:0;background:var(--color-primary-50);color:var(--color-primary-600)}
+.ui-confirm-icon.is-success{background:var(--color-success-bg);color:var(--color-success)}
+.ui-confirm-icon.is-danger{background:var(--color-error-bg);color:var(--color-error)}
+.ui-confirm-body h4{margin:0;font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ui-confirm-body p{margin:0;max-width:340px;font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-secondary)}
+.ui-confirm-foot{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);padding:0 var(--space-24) var(--space-24)}
 .ui-modal-body{padding:20px;overflow:auto;flex:1;color:var(--color-text-body);font-size:var(--font-size-body);line-height:var(--line-height-body)}
 .ui-modal-foot{display:flex;justify-content:flex-end;gap:10px;padding:14px 20px;background:var(--modal-footer-bg);border-top:1px solid var(--modal-border);flex-shrink:0}
 body.ui-modal-lock{overflow:hidden}
@@ -584,8 +594,17 @@ body.ui-dragging{cursor:grabbing;user-select:none}
 .ui-filter-count b{color:var(--color-primary-600)}
 .ui-filter-chips{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8);margin-top:var(--space-12)}
 .ui-filter-chips:empty{display:none}
-.ui-filter-chips .ui-chip{height:28px;font-weight:var(--font-weight-medium)}
-.ui-filter-chips .ui-chip b{font-weight:var(--font-weight-semibold);margin-right:2px}
+/* Filter chip = the Student Application look: grey label, navy value, round tinted × that turns red on hover */
+.ui-filter-chips .ui-chip{height:28px;padding:0 6px 0 12px;font-weight:var(--font-weight-regular)}
+.ui-filter-chips .ui-chip b{font-weight:var(--font-weight-semibold);color:var(--color-gray-600);margin-right:2px}
+.ui-filter-chips .ui-chip button{width:16px;height:16px;background:var(--color-primary-100);color:var(--color-primary-600);cursor:pointer}
+.ui-filter-chips .ui-chip button svg{width:10px;height:10px}
+.ui-filter-chips .ui-chip button:hover,.ui-filter-chips .ui-chip button:focus-visible{background:var(--color-error);color:var(--color-text-inverse)}
+.ui-filter-chips .ui-chip button:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:1px}
+/* "Clear all" after the chips – same look as the Student Application filter (red, underlined text link); shown only with 2+ chips */
+.ui-filter-clear{border:0;background:none;padding:0 var(--space-4);font:inherit;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-error);text-decoration:underline;cursor:pointer}
+.ui-filter-clear:hover{color:var(--color-error-text)}
+.ui-filter-clear:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px;border-radius:4px}
 @media (max-width:1199.98px){.ui-filter-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:991.98px){.ui-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:575.98px){.ui-filter{padding:var(--space-16)}.ui-filter-grid{grid-template-columns:1fr}.ui-filter-btns{width:100%}.ui-filter-btns .ui-btn{flex:1}}

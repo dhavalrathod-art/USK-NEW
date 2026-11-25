@@ -443,7 +443,41 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ver-tabs{display:flex;gap:var(--space-8);margin-bottom:var(--space-16)}
 .ver-tabs button{min-width:96px}
 /* VER-07 (19/11): statistics cards on Help Center / Commissionerate Office lists */
-.ver-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16);margin-bottom:var(--space-16)}
+.ver-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--space-16);margin-bottom:var(--space-16)}
+/* 25/11 (Spec v11): eligibility summary, calculated amount, approved count, progress table */
+.ver-elg{border-left:4px solid var(--color-info);background:var(--color-info-bg)}
+.ver-elg .table-wrap{background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:8px}
+.ver-elg-t td{vertical-align:top;white-space:normal}
+.ver-elg-t td:nth-child(3){min-width:200px}
+.ver-elg-na{color:var(--color-text-secondary);font-style:italic}
+.ver-elg-src{font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ver-elg-src.is-ver{color:var(--color-success-text)}
+.ver-elg-doc{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8)}
+.ver-amt-total{display:flex;justify-content:space-between;align-items:center;gap:var(--space-12);margin-top:var(--space-16);padding:var(--space-12) var(--space-16);border-radius:8px;background:var(--color-primary-50);border:1px solid var(--color-primary-100)}
+.ver-amt-total span{font-weight:var(--font-weight-medium);color:var(--color-text-body)}
+.ver-amt-total b{font-size:var(--font-size-h4);color:var(--color-text-heading)}
+.ver-amt-notes{display:grid;gap:var(--space-4);margin-top:var(--space-12)}
+.ver-amt-notes li{display:flex;gap:var(--space-8);align-items:flex-start;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ver-amt-notes li svg{flex:none;margin-top:1px}
+.ver-co-top{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:var(--space-16);margin-bottom:var(--space-16)}
+.ver-co-top>.card{margin:0}
+.ver-cnt{display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-20)}
+.ver-cnt>div>span{display:block;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ver-cnt>div>b{display:block;font-size:var(--font-size-h2);line-height:var(--line-height-h2);color:var(--color-text-heading)}
+.ver-cnt>div>small{display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ver-prog{margin-bottom:var(--space-16)}
+.ver-prog-head{display:flex;align-items:center;gap:var(--space-12);width:100%;padding:var(--space-16) var(--space-20);background:none;border:0;text-align:left;cursor:pointer;color:var(--color-text-heading)}
+.ver-prog-tt{flex:1;display:flex;flex-direction:column}
+.ver-prog-tt>small{font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ver-prog-chev{display:inline-flex;transition:transform .2s}
+.ver-prog-head[aria-expanded="false"] .ver-prog-chev{transform:rotate(-90deg)}
+.ver-prog-t,.ver-elg-t{min-width:560px}
+#coProg{padding:0 var(--space-20) var(--space-20)}
+#coProg[hidden]{display:none}
+.ver-prog-t tbody tr[data-co-prog]{cursor:pointer}
+.ver-prog-t tbody tr[data-co-prog]:hover,.ver-prog-t tbody tr.is-sel{background:var(--color-primary-50)}
+.ver-prog-t tfoot td{font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+@media (max-width:767.98px){.ver-co-top{grid-template-columns:1fr}}
 .ver-stat{padding:var(--space-16) var(--space-20);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface)}
 .ver-stat b{display:block;font-size:var(--font-size-h3);line-height:var(--line-height-h3);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
 .ver-stat span{display:block;margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
@@ -479,6 +513,16 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ver-step-act{margin-top:var(--space-12)}
 .ver-step-auto{display:inline-flex;align-items:center;gap:4px;font-size:var(--font-size-caption);font-weight:var(--font-weight-medium);color:var(--color-success-text)}
 .ver-step-auto.is-ret{color:var(--color-error-text)}
+/* Update page after a Return (25/11): query box per returned step, red marks on what to fix, view-only approved documents */
+.up-q{display:flex;gap:var(--space-8);align-items:flex-start;padding:var(--space-12);margin-bottom:var(--space-16);border:1px solid var(--color-error-border);border-radius:8px;background:var(--color-error-bg);color:var(--color-error-text);font-size:var(--font-size-body-sm)}
+.up-q svg{flex:none;margin-top:1px}
+.up-q > div{display:flex;flex-direction:column;gap:2px}
+.up-q b{font-weight:var(--font-weight-semibold)}
+.ui-input.up-fix{border-color:var(--color-error)}
+.sf-doc.up-doc.is-ret{border-color:var(--color-error);background:var(--color-error-bg)}
+.up-doc-q{display:flex;align-items:flex-start;gap:4px;margin-top:4px;font-size:var(--font-size-caption);color:var(--color-error-text)}
+.up-leg-ret{color:var(--color-error-text)}
+.sf-docs-lbl{margin:var(--space-8) 0 var(--space-4);font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em}
 .ver-gr{padding:var(--space-20);margin-bottom:var(--space-16)}
 .ver-phase{display:flex;align-items:center;justify-content:space-between;gap:var(--space-16);flex-wrap:wrap;padding:var(--space-16) var(--space-20);margin-bottom:var(--space-12)}
 .ver-phase-info{display:flex;flex-direction:column;gap:2px}
@@ -498,8 +542,6 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 @media (max-width:767.98px){.ver-cls{grid-template-columns:1fr}}
 @media (max-width:575.98px){.role-sel{width:132px}.ver-bar-btns{width:100%}.ver-bar-btns .ui-btn{flex:1}.ver-log time{width:72px}}
 /* Phase 4b: status tracker, update, notifications, updated items */
-.st-clock{display:flex;align-items:center;gap:var(--space-8);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
-.st-clock b{color:var(--color-text-heading)}
 .st-card .st-top{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap}
 .st-card .ui-form-sec-head h5{display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap}
 .st-steps{margin-top:var(--space-16)}
@@ -516,9 +558,23 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ver-upd-list li{display:flex;gap:var(--space-8);font-size:var(--font-size-body);color:var(--color-text-body)}
 .ver-upd-list svg{flex:none;margin-top:2px;color:var(--color-info)}
 .ver-upd-list s{color:var(--color-text-secondary)}
+.ver-upd-list li.is-doc{align-items:center}
+.ver-upd-list li.is-doc>span{flex:1;min-width:0}
+.ver-upd-list li.is-doc>svg{margin-top:0}
+.ver-upd-list li.is-doc>.ui-btn{flex:none}
+/* 25/11: flash on the item that still needs an action (Help Center Forward) */
+@keyframes verFlash{0%,70%{border-color:var(--color-error);box-shadow:0 0 0 3px var(--color-error-bg)}100%{box-shadow:none}}
+.ver-flash{animation:verFlash 2.5s ease-out;border-color:var(--color-error)!important}
+@media (prefers-reduced-motion:reduce){.ver-flash{animation:none}}
+.ver-prog-t tfoot td{padding:13px 12px;font-size:11.5px;border-top:1px solid var(--table-head-border);background:var(--table-head-bg);white-space:nowrap}
+.up-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-16);flex-wrap:wrap}
+.up-foot-info{display:flex;align-items:flex-start;gap:var(--space-12);flex:1 1 320px;min-width:0}
+.up-foot-info>div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.up-foot-info>div>b{font-size:var(--font-size-body);color:var(--color-text-heading)}
+.up-foot-info>div>span:not(.ui-help){font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.doc-dummy h2{font-size:var(--font-size-h3)}
 .ver-new{color:var(--color-success-text)}
 .sf-kv > div.is-updated{padding:var(--space-8);margin:calc(var(--space-8) * -1);border-radius:6px;background:var(--color-info-bg);outline:1px solid var(--color-info-border)}
-@media (max-width:575.98px){.st-clock{width:100%}}
 /* very small phones (≤ 400px): keep the header in one row – narrower role switcher, no Settings icon; ≤ 340px also no avatar */
 @media (max-width:400px){.role-sel{width:112px}.h-right .icon-btn[title="Settings"]{display:none}}
 @media (max-width:340px){.h-right .avatar{display:none}}
@@ -673,8 +729,6 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .cjp-head{align-items:center;gap:var(--space-12);flex-wrap:wrap}
 .cjp-head > .ui-btn{flex:none}
 /* Advanced Filter → DS .ui-filter (17/11) */
-.cjp-clear{border:0;background:none;padding:0 var(--space-4);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-error-text);cursor:pointer}
-.cjp-clear:hover{text-decoration:underline}
 .cjp-table{overflow:hidden}
 .cjp-table td .ui-acts{gap:var(--space-4)}
 .cjp-empty td{padding:var(--space-40) var(--space-16)!important;text-align:center;color:var(--color-text-secondary)}
@@ -1942,6 +1996,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       </a>
       <a href="#hc" data-view="hc" data-tip="Verify Applications" data-role="hc" hidden><span data-icon="document:f:18"></span><span class="nav-label">Verify Applications</span></a>
       <a href="#co" data-view="co" data-tip="Review Applications" data-role="co" hidden><span data-icon="view:f:18"></span><span class="nav-label">Review Applications</span></a>
+      <a href="#co-phase" data-view="co-phase" data-tip="Phase – Application" data-role="co" hidden><span data-icon="document:f:18"></span><span class="nav-label">Phase – Application</span></a>
       <a href="#cogent" data-view="cogent" data-tip="Dashboard" data-role="cogent" hidden><span data-icon="home:f:18"></span><span class="nav-label">Dashboard</span></a>
       <a href="#kcg-lots" data-view="kcg-lots" data-tip="Lot List" data-role="kcg" hidden><span data-icon="document:f:18"></span><span class="nav-label">Lot List</span></a>
       <!-- KSY 3-level review roles (18/11) -->
@@ -1957,7 +2012,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 3h6a2 2 0 012 2v2h3a2 2 0 012 2v4H2V9a2 2 0 012-2h3V5a2 2 0 012-2zm0 4h6V5H9z"/><path d="M2 15h8v1a1 1 0 001 1h2a1 1 0 001-1v-1h8v4a2 2 0 01-2 2H4a2 2 0 01-2-2z"/></svg>
         <span class="nav-label">Kaushalya Sahaay Yojana</span>
       </a>
-      <a href="#company-job" data-view="company-job" data-tip="Company Job Post">
+      <a href="#company-job" data-view="company-job" data-tip="Company Job Post" data-role-hide="hc co kcg">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5L14 3.5zM11 11v3H8v2h3v3h2v-3h3v-2h-3v-3h-2z"/></svg>
         <span class="nav-label">Company Job Post</span>
       </a>
@@ -3455,6 +3510,12 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
             <small>Form modal with dropdown and textarea. Footer: Cancel + Submit.</small>
             <button class="ui-btn ui-btn-primary" data-modal-open="mdRemark">Open Modal</button>
           </div>
+          <div class="md-ex">
+            <span class="bt-use-t">Confirm · Small · No header</span>
+            <b>Confirm modal</b>
+            <small>Short yes / no question: tone icon, title, one message. No navy header and no ×. Footer: Cancel + one action.</small>
+            <button class="ui-btn ui-btn-primary" data-modal-open="mdConfirmDemo">Open Modal</button>
+          </div>
         </div>
         <div class="ds-note" style="margin:18px 0 0">
           <span class="ds-note-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></span>
@@ -3466,6 +3527,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
               <li>Use only <b>one Primary button</b> in the footer. Use Danger instead of Primary when the action deletes or rejects.</li>
               <li>A modal must close with ×, Cancel and the <b>Esc</b> key. Forms with unsaved data should not close on a backdrop click.</li>
               <li>Don't open a modal on top of another modal.</li>
+              <li><b>Confirm modal</b> (<code>.ui-confirm</code>) for short yes / no questions (Forward, Approve, Return, Delete): no navy header and no ×; a centred icon in the tone of the action (navy, green <code>is-success</code>, red <code>is-danger</code>), a question as the title and one short message. Cancel + one action button (Danger for return / delete). Closes with Cancel or Esc.</li>
             </ul>
           </div>
         </div>
@@ -4070,11 +4132,11 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
           <div id="sfBody"></div>
           <section class="card sf-foot" id="sfFoot">
             <p class="sf-lockinfo"><span data-icon="lock:o:16"></span>Fields with a lock icon are filled in from your verified records (DigiLocker / Agency data) and cannot be changed.</p>
+            <p class="sf-lockinfo"><span data-icon="info:o:16"></span>Your details are saved when you click Next.</p>
             <div class="sf-foot-row">
               <button class="ui-btn ui-btn-outline" type="button" id="sfPrev"><span data-icon="arrow-left:l:16"></span>Back</button>
               <span class="ui-help sf-pending" id="sfPending"></span>
               <div class="sf-foot-btns">
-                <button class="ui-btn ui-btn-soft" type="button" id="sfDraft">Save as Draft</button>
                 <button class="ui-btn ui-btn-primary" type="button" id="sfNext">Next<span data-icon="arrow-right:l:16"></span></button>
               </div>
             </div>
@@ -4086,7 +4148,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 
     <!-- ===== VIEW: Help Center – application list (HC-01) ===== -->
     <main class="content" id="view-hc" hidden>
-      <div class="page-head"><div><h3>Verify Applications</h3><p>Scholarship applications of your college that are Submitted or Resubmitted.</p></div></div>
+      <div class="page-head"><div><h3>Verify Applications</h3><p>Scholarship applications of your college: Submitted and Resubmitted to review, Forwarded to see (read only).</p></div></div>
       <div class="ver-stats" id="hcStats"></div>
       <section class="card ui-filter">
         <div class="ui-filter-top">
@@ -4115,7 +4177,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       <section class="card table-card">
         <div class="ma-toolbar"><span id="hcCount"></span><span>Latest first</span></div>
         <div class="table-wrap"><table>
-          <thead><tr><th>Application ID</th><th>Student Name</th><th>Scholarship</th><th>College</th><th>Course</th><th>Application Type</th><th>Submitted / Resubmitted</th><th>Status</th><th>Action</th></tr></thead>
+          <thead><tr><th>Application ID</th><th>Student Name</th><th>Course</th><th>Application Type</th><th>Submitted / Resubmitted</th><th>Status</th><th>Action</th></tr></thead>
           <tbody id="hcBody"></tbody>
         </table></div>
       </section>
@@ -4123,9 +4185,14 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 
     <!-- ===== VIEW: Commissioner Office – application list (CO-01) ===== -->
     <main class="content" id="view-co" hidden>
-      <div class="page-head"><div><h3>Review Applications</h3><p>Applications forwarded by the Help Center for your department (Under Review).</p></div></div>
+      <div class="page-head"><div><h3>Review Applications</h3><p>Applications forwarded by the Help Center for your department. To Review is shown by default.</p></div></div>
       <div class="ver-tabs" role="tablist" aria-label="Scholarship" id="coTabs"></div>
       <div class="ver-stats" id="coStats"></div>
+      <!-- CO-01 / VER-27 (25/11): progress table by course group / course type – counts only, no seats; a row click filters the list -->
+      <section class="card ver-prog">
+        <button class="ver-prog-head" type="button" id="coProgBtn" aria-expanded="true" aria-controls="coProg"><span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span><span class="ver-prog-tt"><b>Progress</b><small id="coProgSub"></small></span><span class="ver-prog-chev" data-icon="chevron-down:l:16"></span></button>
+        <div id="coProg"></div>
+      </section>
       <section class="card ui-filter">
         <div class="ui-filter-top">
           <div class="ui-filter-title"><span class="ui-icon-box is-primary"><span data-icon="filter:f:18"></span></span><h5>Advanced Filter</h5></div>
@@ -4134,9 +4201,11 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <div class="ui-filter-panel" id="coAdv" hidden>
           <div class="ui-filter-grid">
             <div class="ui-field"><label class="ui-label" for="coSearch">Search</label><input class="ui-input" id="coSearch" placeholder="Application ID or student name" autocomplete="off"></div>
-            <div class="ui-field"><span class="ui-label">College</span><div class="ui-select" id="coCollege" data-search></div></div>
-            <div class="ui-field"><span class="ui-label" id="coClsLbl">Department</span><div class="ui-select" id="coCls"></div></div>
-            <div class="ui-field" id="coGroupWrap"><span class="ui-label">Course group</span><div class="ui-select" id="coGroup"></div></div>
+            <div class="ui-field"><span class="ui-label">Academic Year</span><div class="ui-select" id="coYear"></div></div>
+            <div class="ui-field"><span class="ui-label">Application Type</span><div class="ui-select" id="coType"></div></div>
+            <div class="ui-field"><span class="ui-label">Status</span><div class="ui-select" id="coStatus"></div></div>
+            <div class="ui-field"><span class="ui-label" id="coClsLbl">Course group</span><div class="ui-select" id="coCls" data-search></div></div>
+            <div class="ui-field" id="coCatWrap"><span class="ui-label">Special Category</span><div class="ui-select" id="coCat"></div></div>
           </div>
           <div class="ui-filter-acts">
             <span class="ui-filter-count" id="coPreview"></span>
@@ -4155,8 +4224,11 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
           <tbody id="coBody"></tbody>
         </table></div>
       </section>
-      <!-- CO-07/VER-22/23: Approved applications group automatically into a Phase (Office + Scholarship + Academic Year); Send Lot to KCG sends only the not-yet-sent ones -->
-      <div class="page-head" style="margin-top:var(--space-32)"><div><h3 style="font-size:var(--font-size-h5)">Phase – Ready for KCG</h3><p>Approved applications of this scholarship, grouped by office and academic year. Send Lot to KCG sends only the ones not yet sent.</p></div></div>
+    </main>
+
+    <!-- ===== VIEW: Phase – Application (25/11; moved out from under the Review table into its own menu) – CO-07/VER-22/23: approved applications grouped by office + scholarship + academic year; Send Lot to KCG sends only the not-yet-sent ones ===== -->
+    <main class="content" id="view-co-phase" hidden>
+      <div class="page-head"><div><h3>Phase – Application</h3><p>Approved applications, grouped by office, scholarship and academic year. Send Lot to KCG sends only the ones not yet sent.</p></div></div>
       <div id="coPhases"></div>
     </main>
 
@@ -4234,8 +4306,6 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
           <h3>My Applications</h3>
           <p>All your scholarship applications in one place. Continue a draft, view a submitted application or download it.</p>
         </div>
-        <!-- Demo only: moves "today" so the 15-day Send back timeline (reminders day 10 / 13 / 14, expiry) can be seen -->
-        <div class="st-clock"><span id="maClock"></span><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" id="maClockBtn" title="Demo: move the date by one day">+1 day</button></div>
       </div>
 
       <!-- List – filters sit in the table head (Design System Table Type 4: filter icon → search + checkbox list, chips above the table) -->
@@ -5250,7 +5320,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 </div>
 <!-- ===== Scholarships – eligibility criteria (read-only, CMSS-02 / MYSY-02) ===== -->
 <div class="ui-modal-backdrop" id="mdSchElig">
-  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdSchEligTitle">
+  <div class="ui-modal ui-modal-xl" role="dialog" aria-modal="true" aria-labelledby="mdSchEligTitle">
     <div class="ui-modal-head">
       <span class="ui-modal-icon"><span data-icon="award:f:20"></span></span>
       <div class="ui-modal-title"><h4 id="mdSchEligTitle"></h4><p id="mdSchEligSub"></p></div>
@@ -5272,18 +5342,44 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
   <div class="ui-drawer-body" id="drNotiBody"></div>
   <div class="ui-drawer-foot"><button class="ui-btn ui-btn-outline" data-drawer-close>Close</button><a class="ui-btn ui-btn-primary" href="#my-apps" data-drawer-close>My Applications</a></div>
 </aside>
+<!-- ===== Document viewer (25/11): every uploaded scholarship document opens here – one common dummy document for the demo ===== -->
+<aside class="ui-drawer ui-drawer-lg" id="drDoc" role="dialog" aria-modal="true" aria-labelledby="drDocTitle">
+  <div class="ui-modal-head">
+    <span class="ui-modal-icon"><span data-icon="document:f:22"></span></span>
+    <div class="ui-modal-title"><h4 id="drDocTitle">Document</h4><p id="drDocSub"></p></div>
+    <button class="ui-modal-close" data-drawer-close title="Close"><span data-icon="close:l:20"></span></button>
+  </div>
+  <div class="ui-drawer-tools">
+    <span class="ui-file"><span data-icon="document:f:18"></span><b id="drDocFile">document.pdf</b><span>PDF · 240 KB</span></span>
+    <button class="ui-btn ui-btn-outline ui-btn-icon ui-btn-sm" data-zoom="-1" title="Zoom out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"/></svg></button>
+    <span class="ui-zoom">100%</span>
+    <button class="ui-btn ui-btn-outline ui-btn-icon ui-btn-sm" data-zoom="1" title="Zoom in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button class="ui-btn ui-btn-soft ui-btn-sm" type="button" data-toast="Downloading the document"><span data-icon="download:l:14"></span>Download</button>
+  </div>
+  <div class="ui-viewer">
+    <div class="ui-viewer-page dr-cert doc-dummy"><div>
+      <img src="LOGO-USK-sm.png" alt="">
+      <span class="sub">Government of Gujarat · Sample document</span>
+      <h2 id="drDocName">Document</h2>
+      <p>This is a sample document shown for the demo. The real uploaded file opens here.</p>
+      <h3 id="drDocStudent">Student</h3>
+      <p id="drDocApp">Application ID</p>
+      <div class="sign"><span>Uploaded on: <b id="drDocDate">–</b></span><span>Issuing Authority</span></div>
+    </div></div>
+  </div>
+  <div class="ui-drawer-foot"><button class="ui-btn ui-btn-outline" data-drawer-close>Close</button></div>
+</aside>
 <!-- ===== Help Center – Lock confirmation (HC-03) ===== -->
 <div class="ui-modal-backdrop" id="mdVerLock" data-static>
-  <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdVerLockTitle">
-    <div class="ui-modal-head">
-      <span class="ui-modal-icon"><span data-icon="arrow-right:l:20"></span></span>
-      <div class="ui-modal-title"><h4 id="mdVerLockTitle">Forward Application</h4><p>It goes to the Commissionerate Office of the student's department. You cannot take it back after Forward.</p></div>
-      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+  <div class="ui-modal ui-confirm" role="alertdialog" aria-modal="true" aria-labelledby="mdVerLockTitle" aria-describedby="mdVerLockText">
+    <div class="ui-confirm-body">
+      <span class="ui-confirm-icon"><span data-icon="arrow-right:l:24"></span></span>
+      <h4 id="mdVerLockTitle">Forward this application?</h4>
+      <p id="mdVerLockText">It goes to the Commissionerate Office of the student's department. You cannot take it back.</p>
     </div>
-    <div class="ui-modal-body"><p class="cjp-del-text">Have you reviewed all documents?</p></div>
-    <div class="ui-modal-foot">
+    <div class="ui-confirm-foot">
       <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
-      <button class="ui-btn ui-btn-primary" id="verLockYes"><span data-icon="arrow-right:l:16"></span>Confirm</button>
+      <button class="ui-btn ui-btn-primary" id="verLockYes">Forward</button>
     </div>
   </div>
 </div>
@@ -5326,16 +5422,29 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 </div>
 <!-- ===== Commissionerate Office – Approve / Return confirmation (CO-04 / 05, VER-11 / 12, 19/11 spec update step 3) ===== -->
 <div class="ui-modal-backdrop" id="mdCoAct" data-static>
-  <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdCoActTitle">
-    <div class="ui-modal-head">
-      <span class="ui-modal-icon"><span data-icon="check:l:20"></span></span>
-      <div class="ui-modal-title"><h4 id="mdCoActTitle">Approve Application</h4><p id="mdCoActSub"></p></div>
-      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+  <div class="ui-modal ui-confirm" role="alertdialog" aria-modal="true" aria-labelledby="mdCoActTitle" aria-describedby="mdCoActSub">
+    <div class="ui-confirm-body">
+      <span class="ui-confirm-icon is-success" id="mdCoActIcon"><span data-icon="check:l:24"></span></span>
+      <h4 id="mdCoActTitle">Approve this application?</h4>
+      <p id="mdCoActSub"></p>
     </div>
-    <div class="ui-modal-body"><p class="cjp-del-text">Are you sure?</p></div>
-    <div class="ui-modal-foot">
+    <div class="ui-confirm-foot">
       <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
       <button class="ui-btn ui-btn-primary" id="mdCoActYes">Approve</button>
+    </div>
+  </div>
+</div>
+<!-- Design System demo of the Confirm modal (25/11) -->
+<div class="ui-modal-backdrop" id="mdConfirmDemo" data-static>
+  <div class="ui-modal ui-confirm" role="alertdialog" aria-modal="true" aria-labelledby="mdConfirmDemoTitle" aria-describedby="mdConfirmDemoText">
+    <div class="ui-confirm-body">
+      <span class="ui-confirm-icon is-danger"><span data-icon="delete:f:24"></span></span>
+      <h4 id="mdConfirmDemoTitle">Delete this record?</h4>
+      <p id="mdConfirmDemoText">The record is removed for good. You cannot undo this.</p>
+    </div>
+    <div class="ui-confirm-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-danger" data-modal-close>Delete</button>
     </div>
   </div>
 </div>
@@ -6213,7 +6322,8 @@ function openModal(id) {
   m.classList.add("is-open");
   document.body.classList.add("ui-modal-lock");
   m.offsetWidth; // apply the open styles before moving focus
-  m.querySelector(".ui-modal-close").focus();
+  const f = m.querySelector(".ui-modal-close") || m.querySelector("[data-modal-close]") || m.querySelector("button");   // 25/11: a Confirm modal has no × – focus Cancel instead
+  if (f) f.focus();
 }
 function closeModal(m) {
   if (!m) return;
@@ -7030,11 +7140,12 @@ const maD = (dd, mm, yy, h = 11, mi = 0) => new Date(yy, mm - 1, dd, h, mi);
 const MA_APPS = [
   { id: "01232324334343", scheme: "MYSY", year: "2026-27", type: "Fresh", status: "Submitted", date: maD(5, 11, 2026, 16, 42), course: "BE/B-Tech – Computer Engineering", sem: "Semester 5", fee: 78000 },
   { id: "01232324335120", scheme: "CMSS", year: "2026-27", type: "Fresh", status: "Draft", date: maD(10, 11, 2026), step: 3, deadline: maD(30, 11, 2026, 23, 59) },
-  { id: "01232324220871", scheme: "MYSY", year: "2025-26", type: "Renewal", status: "Submitted", date: maD(12, 9, 2025, 10, 15), course: "BE/B-Tech – Computer Engineering", sem: "Semester 3", fee: 74500 },
-  { id: "01232324219045", scheme: "CMSS", year: "2025-26", type: "Fresh", status: "Submitted", date: maD(20, 8, 2025, 14, 5), course: "BE/B-Tech – Computer Engineering", sem: "Semester 3", fee: 74500 },
+  { id: "01232324331876", scheme: "PMS-SC", year: "2026-27", type: "Fresh", status: "Resubmitted", date: maD(8, 11, 2026, 15, 20), course: "BE/B-Tech – Computer Engineering", sem: "Semester 5", fee: 78000 },   // 25/11: sample Resubmitted row
+  { id: "01232324220871", scheme: "MYSY", year: "2025-26", type: "Renewal", status: "Approved", date: maD(12, 9, 2025, 10, 15), course: "BE/B-Tech – Computer Engineering", sem: "Semester 3", fee: 74500 },
+  { id: "01232324219045", scheme: "CMSS", year: "2025-26", type: "Fresh", status: "Approved", date: maD(20, 8, 2025, 14, 5), course: "BE/B-Tech – Computer Engineering", sem: "Semester 3", fee: 74500 },
   { id: "01232324110093", scheme: "PMS-SC", year: "2025-26", type: "Delayed", status: "Draft", date: maD(2, 10, 2025), step: 2, deadline: maD(31, 10, 2025, 23, 59) },
-  { id: "01232324102277", scheme: "CMSS", year: "2024-25", type: "Renewal Delayed", status: "Submitted", date: maD(14, 12, 2024, 12, 30), course: "BE/B-Tech – Computer Engineering", sem: "Semester 1", fee: 71000 },
-  { id: "01232324108812", scheme: "MYSY", year: "2024-25", type: "Fresh", status: "Submitted", date: maD(18, 9, 2024, 9, 50), course: "BE/B-Tech – Computer Engineering", sem: "Semester 1", fee: 71000 }
+  { id: "01232324102277", scheme: "CMSS", year: "2024-25", type: "Renewal Delayed", status: "Approved", date: maD(14, 12, 2024, 12, 30), course: "BE/B-Tech – Computer Engineering", sem: "Semester 1", fee: 71000 },
+  { id: "01232324108812", scheme: "MYSY", year: "2024-25", type: "Fresh", status: "Approved", date: maD(18, 9, 2024, 9, 50), course: "BE/B-Tech – Computer Engineering", sem: "Semester 1", fee: 71000 }
 ];
 // Same student for every application (only the logged-in student's applications are listed)
 const MA_STUDENT = { name: "Parmar Shruten Mahendrabhai", aadhaar: "XXXX XXXX 4321" };
@@ -7042,7 +7153,7 @@ const MA = { scheme: new Set(), year: new Set(), status: new Set(), current: nul
 const maTime = dt => `${fmt(dt)} ${String(dt.getHours()).padStart(2, "0")}:${String(dt.getMinutes()).padStart(2, "0")}`;
 const maRupee = n => "₹ " + n.toLocaleString("en-IN");
 const maOpen = a => a.status === "Draft" && MA.today <= a.deadline;
-const maBadge = s => `<span class="ui-badge ui-badge-${({ Draft: "neutral", Submitted: "review", Resubmitted: "review", "Under Review": "shortlisted", Returned: "warning", Approved: "approved", Expired: "rejected" })[s] || "neutral"}">${s}</span>`;
+const maBadge = s => `<span class="ui-badge ui-badge-${({ Draft: "neutral", Submitted: "review", Resubmitted: "review", "Under Review": "shortlisted", Returned: "warning", Approved: "approved" })[s] || "neutral"}">${s}</span>`;
 
 // Filters in the table head (Scholarship / Academic Year / Status), same as Design System Table Type 4.
 // Each column keeps a Set of picked values; options come from the student's own applications.
@@ -7108,7 +7219,7 @@ function maRender() {
       <td><span class="ma-id">${a.id}</span></td>
       <td><span class="ma-scheme"><b>${a.scheme}</b><small>${esc(MA_SCHEMES[a.scheme])}</small></span></td>
       <td>${a.year}</td><td>${a.type}</td>
-      <td>${a.status === "Submitted" ? fmt(a.date) : "–"}</td>
+      <td>${a.status !== "Draft" ? fmt(a.date) : "–"}</td>
       <td>${maBadge(a.status)}</td>
       <td>${act}</td></tr>`;
   }).join("") || `<tr><td colspan="7"><div class="ma-empty"><span class="ui-icon-box is-primary">${iconSvg("search", "l", 24)}</span><b>No applications found.</b><span>Change the filters in the table head, or clear them.</span></div></td></tr>`;
@@ -7173,7 +7284,7 @@ function maOpenView() {
       <div class="ma-docs">${(a.docs || MA_DOCS).map(n => `<div class="ui-file-row"><span class="ui-icon-box is-primary">${iconSvg("document", "f", 18)}</span><div><b>${n}.pdf</b><small>PDF · uploaded ${fmt(a.date)}</small></div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-ma-doc="${n}">${iconSvg("view", "f", 14)}View</button></div>`).join("")}</div>
     </section>`;
 }
-$("#maDetail").addEventListener("click", e => { const b = e.target.closest("[data-ma-doc]"); if (b) toast(`Opening ${b.dataset.maDoc}.pdf`); });
+$("#maDetail").addEventListener("click", e => { const b = e.target.closest("[data-ma-doc]"); if (b) { const a = MA_APPS.find(x => x.id === MA.current); verDocView(b.dataset.maDoc, a ? { id: a.id, name: DB_STUDENT.name, date: a.date } : null); } });
 $("#maVDownload").addEventListener("click", () => maDownload(MA_APPS.find(x => x.id === MA.current)));
 
 // Download Application – COM-02. PDF title "<Scholarship> Application", file "<Scholarship>_<Application ID>.pdf", Aadhaar masked.
@@ -7515,7 +7626,7 @@ function cjpRender() {
   cjpPager(pages);
   // filter chips + count on the Filter button
   const keys = Object.keys(f);
-  $("#cjpChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${CJP_F_LABEL[k]}:</b>${esc(f[k])}<button type="button" data-cjp-rm="${k}" title="Remove ${CJP_F_LABEL[k]} filter" aria-label="Remove ${CJP_F_LABEL[k]} filter">${iconSvg("close", "l", 12)}</button></span>`).join("") + `<button class="cjp-clear" type="button" data-cjp-clear>Clear all</button>` : "";
+  $("#cjpChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${CJP_F_LABEL[k]}:</b>${esc(f[k])}<button type="button" data-cjp-rm="${k}" title="Remove ${CJP_F_LABEL[k]} filter" aria-label="Remove ${CJP_F_LABEL[k]} filter">${iconSvg("close", "l", 12)}</button></span>`).join("") + (keys.length > 1 ? `<button class="ui-filter-clear" type="button" data-cjp-clear>Clear all</button>` : "") : "";
   $("#cjpCnt").hidden = !keys.length; $("#cjpCnt").textContent = keys.length;
 }
 function cjpPager(pages) {
@@ -8442,6 +8553,8 @@ const SF_MONTHS = ["January", "February", "March", "April", "May", "June", "July
 const SF_INC_API = { no: "INC/AHD/2026/45120", amt: "240000", date: "12/06/2026" };   // sample: this number is "received" from the income API
 const SF_AADHAAR_LAST4 = "4321";                                                       // sample: last 4 digits given by DigiLocker
 const SF_AADHAAR_TEST = "12341234" + SF_AADHAAR_LAST4;                                   // testing: prefilled sample Aadhaar (matches DigiLocker)
+// 25/11: the scholarship is paid by DBT to the bank account seeded with the Aadhaar – tell the student, and ask them to link it first if it is not
+const sfAadhaarBank = () => `<div class="sf-note sf-full">${iconSvg("info", "o", 16)}<span><b>The scholarship is paid to the bank account linked with this Aadhaar.</b> The amount is sent by DBT to the bank account that is linked (seeded) with your Aadhaar number – bank details are not asked in this form. If your Aadhaar is not linked with your bank account yet, visit your bank and link it first, otherwise the payment cannot be made.</span></div>`;
 // Prefilled values from verified sources (differs per student; here one sample student)
 const SF_PREFILL = {
   name: ["Aarav Patel", "DigiLocker"], dob: ["14/03/2005", "DigiLocker"], gender: ["Male", "DigiLocker"],
@@ -8536,7 +8649,7 @@ const SF_CMSS_SECS = [
       { k: "incDate", l: "Income Certificate Issue Date", t: "date", r: true, en: () => F.incApi === false, v: v => !sfDateOk(v) ? "Enter a valid date (dd/mm/yyyy)." : sfFuture(v) ? "Issue date cannot be a future date." : "" }] }
   ],
   [ // 5 Aadhaar
-    { t: "Aadhaar Verification", p: "Enter your Aadhaar number and verify it with DigiLocker. Bank details are not taken from Aadhaar.", f: [
+    { t: "Aadhaar Verification", p: "Enter your Aadhaar number and verify it with DigiLocker.", f: [
       { k: "aadhaar", l: "Aadhaar Card Number", t: "aadhaar", r: true, ph: "12 digits" }] }
   ],
   [], // 6 Upload Documents (built from SF docs)
@@ -8579,9 +8692,9 @@ function sfCmssDocs() {
     if (F.orphanLive === "With a guardian") g.push({ t: "Category 6 – Living with a relative", mode: "all", items: [{ k: "c6d", l: "Guardian Affidavit" }] });
   }
   if (sfHas("7")) {
-    if (F.mMarital === "Divorced") g.push({ t: "Category 7.1 – Divorced mother", mode: "custom", rule: "Upload any one divorce proof AND the Non-Remarriage Affidavit",
+    if (F.mMarital === "Divorced") g.push({ t: "Category 7.1 – Divorced mother", mode: "custom", split: 5, rule: "Upload any one of the 5 divorce proofs. The Non-Remarriage Affidavit is mandatory.",
       ok: () => ["c71a", "c71b", "c71c", "c71d", "c71e"].some(k => F.files[k]) && F.files.c71f,
-      items: [{ k: "c71a", l: "Divorce Decree" }, { k: "c71b", l: "Sessions Court Order" }, { k: "c71c", l: "Ulema Certificate" }, { k: "c71d", l: "Court Petition Copy" }, { k: "c71e", l: "Divorce Affidavit" }, { k: "c71f", l: "Non-Remarriage Affidavit" }] });
+      items: [{ k: "c71a", l: "Divorce Decree" }, { k: "c71b", l: "Sessions Court Order" }, { k: "c71c", l: "Ulema Certificate" }, { k: "c71d", l: "Court Petition Copy" }, { k: "c71e", l: "Divorce Affidavit" }, { k: "c71f", l: "Non-Remarriage Affidavit", req: true }] });
     else if (/^Abandoned/.test(F.mMarital || "")) g.push({ t: "Category 7.2 – Abandoned (Tyakta) mother", mode: "any", items: [{ k: "c72a", l: "Mamlatdar Certificate" }, { k: "c72b", l: "Gazetted Officer Certificate" }, { k: "c72c", l: "Abandonment Affidavit" }] });
     else g.push({ t: "Category 7 – Divorced / Tyakta mother", info: "Select the mother's marital status (Divorced or Abandoned) in Family Details to see the documents." });
   }
@@ -8664,6 +8777,7 @@ function sfStepHtml(i) {
     if (i === 3 && s.t === "Income Details") extra = F.incApi === true ? `<div class="sf-note is-ok sf-full">${iconSvg("check", "l", 16)}<span>Income details received from the income API (locked).</span></div>` : F.incApi === false ? `<div class="sf-note is-warn sf-full">${iconSvg("warning", "f", 16)}<span>Details were not received. Enter the income yourself and upload the Income Certificate in Upload Documents.</span></div>` : "";
     else if (i === 4) extra = F.aadOk ? `<div class="sf-note is-ok sf-full">${iconSvg("check", "l", 16)}<span>Verified with DigiLocker · XXXX XXXX ${SF_AADHAAR_LAST4}. Your DigiLocker photo is added to Upload Documents.</span></div>` : "";
     else extra = "";
+    if (i === 4) extra = sfAadhaarBank() + extra;
     return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>${esc(s.t)}</h5><p>${esc(s.p)}</p></div><div class="sf-grid">${s.f.map(sfFieldHtml).join("")}${extra}</div></section>`;
   }).join("");
 }
@@ -8679,15 +8793,20 @@ function sfDocsHtml() {
   return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>${SCH.code === "MYSY" ? "Documents" : "Common Documents"}</h5><p>${SCH.code === "MYSY" ? "Only the documents that apply to you are needed. Your photo is taken from DigiLocker. Aadhaar Card, Bank Passbook and Self-Declaration are not collected." : "Needed for every student. Your photo is taken from DigiLocker."}</p></div><div class="sf-docs">${common.items.map(sfDocHtml).join("")}</div></section>
     ${SCH.code === "MYSY" ? "" : `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Category-wise Documents</h5><p>Only the documents of the categories you selected are needed.</p></div>
     ${cats.map(c => `<div class="sf-grp"><div class="sf-grp-head"><span class="sf-tag">YOUR CATEGORY</span><b>${esc(c.t)}</b><small>${c.info ? "" : c.mode === "any" ? "Upload any one" : c.mode === "custom" ? esc(c.rule) : "Upload all"}</small></div>
-      ${c.info ? `<div class="sf-note is-warn">${iconSvg("info", "o", 16)}<span>${esc(c.info)}</span></div>` : `<div class="sf-docs">${c.items.map(d => sfDocHtml({ ...d, r: c.mode === "all" && d.r !== false })).join("")}</div>`}</div>`).join("") || `<p class="sf-note">${iconSvg("info", "o", 16)}<span>No category documents.</span></p>`}</section>`}
+      ${c.info ? `<div class="sf-note is-warn">${iconSvg("info", "o", 16)}<span>${esc(c.info)}</span></div>` : `${c.split ? `<p class="sf-docs-lbl">Any one of these ${c.split}</p><div class="sf-docs">${c.items.slice(0, c.split).map(d => sfDocHtml({ ...d, r: false })).join("")}</div><p class="sf-docs-lbl">Mandatory</p><div class="sf-docs">${c.items.slice(c.split).map(d => sfDocHtml({ ...d, r: true })).join("")}</div>` : `<div class="sf-docs">${c.items.map(d => sfDocHtml({ ...d, r: (c.mode === "all" && d.r !== false) || !!d.req })).join("")}</div>`}`}</div>`).join("") || `<p class="sf-note">${iconSvg("info", "o", 16)}<span>No category documents.</span></p>`}</section>`}
     <input type="file" id="sfFile" hidden>`;
+}
+function sfDocRows() {                                         // 25/11: a document name can repeat in 2 categories (Non-Remarriage Affidavit in Cat 5 and 7.1) – add the category so every row is unique for the Help Center's Approve / Query
+  const rows = sfDocGroups().flatMap(g => (g.items || []).filter(d => F.files[d.k]).map(d => ({ g, d })));
+  const n = {}; rows.forEach(({ d }) => { n[d.l] = (n[d.l] || 0) + 1; });
+  return rows.map(({ g, d }) => [n[d.l] > 1 ? `${d.l} (${g.t.split(" – ")[0]})` : d.l, F.files[d.k].name, d.auto || ""]);
 }
 // Review rows: [label, value, source]
 function sfReviewData() {
   const vis = (i) => sfSecs()[i].filter(s => !s.show || s.show()).flatMap(s => s.f).filter(f => (sfEn(f) || SRC[f.k]) && String(F[f.k] ?? "").trim() !== "" && f.t !== "aadhaar");
   return [0, 1, 2, 3].map(i => [SF_STEPS[i], i, vis(i).map(f => [f.l.replace(/\?$/, ""), /^(fees|mysyAmt|incAmt|tuition|otherFees|totalFees)$/.test(f.k) ? maRupee(+F[f.k]) : F[f.k], SRC[f.k] || ""])])
     .concat([["Aadhaar Verification", 4, [["Aadhaar Number", `XXXX XXXX ${SF_AADHAAR_LAST4}`, "DigiLocker"]]],
-      ["Uploaded Documents", 5, sfDocGroups().flatMap(g => (g.items || []).filter(d => F.files[d.k]).map(d => [d.l, F.files[d.k].name, d.auto || ""]))]]);
+      ["Uploaded Documents", 5, sfDocRows()]]);
 }
 function sfReviewHtml() {
   const data = sfReviewData(), rows = data.slice(0, 5).flatMap(d => d[2]);
@@ -8791,17 +8910,18 @@ $("#sfPrev").addEventListener("click", () => {                 // back one sub-s
 $("#sfNext").addEventListener("click", () => {
   if ($("#sfNext").disabled) return;
   if (SF.sub < sfSubsOf(SF.step).length - 1) return sfGo(SF.step, SF.sub + 1);   // next sub-step of this step
-  if (SF.step < 6) return sfGo(SF.step + 1);
+  if (SF.step < 6) { sfGo(SF.step + 1); sfSaveDraft(); return; }              // 25/11 (VER-28): a completed step is saved when Next is clicked – no Save as Draft button
   sfSubmit();
 });
-$("#sfDraft").addEventListener("click", () => { sfSaveDraft(); toast("Saved as draft. Continue it from My Applications."); });
 
-// ---------- draft (COM-01.2) ----------
+// ---------- draft (COM-01 / 01.2, VER-28) ----------
+// Saved on Next only: the completed steps are kept; the step being filled when the student leaves is not saved.
+// The draft is created when the first step is completed. Continue opens the form at the first step not completed (SF.step after Next).
 function sfSaveDraft() {
   const s = SCH_LIST.find(x => x.code === SCH.code);
   let a = MA_APPS.find(x => x.id === SF.draftId);
   if (!a) { SF.draftId = "0123" + String(Date.now()).slice(-10); a = { id: SF.draftId, scheme: SCH.code, year: SCH.year, type: SCH.type, status: "Draft" }; MA_APPS.unshift(a); }
-  Object.assign(a, { date: new Date(), step: SF.step + 1, deadline: s.deadline, form: { F: JSON.parse(JSON.stringify(F)), SRC: { ...SRC }, cats: [...SCH.cats], sm: { ...SM }, step: SF.step, sub: SF.sub, seen: { ...(SF.seen || {}) }, maxStep: SF.maxStep } });
+  Object.assign(a, { date: new Date(), step: SF.step + 1, deadline: s.deadline, form: { F: JSON.parse(JSON.stringify(F)), SRC: { ...SRC }, cats: [...SCH.cats], sm: { ...SM }, step: SF.step, sub: 0, seen: { ...(SF.seen || {}) }, maxStep: SF.maxStep } });
   maRender();
 }
 function sfContinueDraft(a) {                                   // My Applications → Continue (a draft made by this form)
@@ -8858,10 +8978,11 @@ function sfSubmit() {
   let a = MA_APPS.find(x => x.id === SF.draftId);
   if (!a) { a = { id: "0123" + String(Date.now()).slice(-10) }; MA_APPS.unshift(a); }
   const rv = sfReviewData();
-  Object.assign(a, { scheme: SCH.code, year: SCH.year, type: SCH.type, status: "Submitted", date: new Date(), course: `${F.program} – ${F.course}`, sem: F.studyYear, fee: +F.fees,
+  Object.assign(a, { scheme: SCH.code, year: SCH.year, type: SCH.type, status: "Submitted", date: new Date(), course: `${F.program} – ${F.course}`, sem: F.studyYear, fee: +(F.fees || F.tuition) || 0,
     details: rv.slice(0, 5).map(([t, , list]) => [t, list.map(([l, v, src]) => [l, String(v), src ? 1 : 0])]), docs: rv[5][2].map(r => r[0]) });
   delete a.form; delete a.step; delete a.deadline;
   verFromForm(a, rv);                                         // goes to the Help Center list (Phase 4)
+  { const vr = VER.find(x => x.id === a.id); if (vr) { vr.cats = SCH.code === "CMSS" ? [...SCH.cats] : []; vr.special = SCH.code === "MYSY" ? (SM.jawan === "Yes" ? "jawan" : SM.earner === "Yes" ? "earner" : "") : ""; } }   // 25/11: for the eligibility summary
   SF.draftId = null; maRender();
   $("#sfStepsCard").hidden = true; $("#sfSubsCard").hidden = true; $("#sfFoot").hidden = true; $("#sfBody").innerHTML = ""; $("#sfLayout").classList.add("is-done");
   $("#sfDone").hidden = false;
@@ -8936,6 +9057,10 @@ const smPin = v => /^\d{6}$/.test(v) ? "" : "Enter a valid 6 digit pin code.";
 const smPctV = v => /^\d{1,3}(\.\d{1,2})?$/.test(v) && +v <= 100 ? "" : "Enter a number from 0 to 100.";
 const smName = v => /^[a-z .'-]+$/i.test(v) ? "" : "Use letters only.";
 const smHostel = () => yes("hostel");
+const SF_HOSTEL_TYPES = ["Government hostel", "Private hostel", "Paying guest or rented room", "With a relative or guardian"];
+// MYSY-05.10 / 07.5: Private hostel → Hostel Fees Receipt, Paying guest or rented room → Rent Agreement, other types → no hostel document
+const smHostelDocs = (pre) => !yes("hostel") ? [] : F.hType === "Private hostel" ? [{ k: pre + "Hostel", l: "Hostel Fees Receipt", r: true, note: "Hostel Type: Private hostel" }]
+  : F.hType === "Paying guest or rented room" ? [{ k: pre + "Rent", l: "Rent Agreement", r: true, note: "Hostel Type: Paying guest or rented room" }] : [];
 const SF_MYSY_SECS = [
   [ // 1 Basic Details (MYSY-05.1, 05.2)
     { t: "Personal Details", p: "Prefilled from your verified records. Fill only what is missing.", f: [
@@ -8990,7 +9115,7 @@ const SF_MYSY_SECS = [
       { k: "totalFees", l: "Total Fees (₹)", t: "num", r: false, calc: true }] },
     { t: "Hostel Details", p: "Hostel fields are needed only if you stay in a hostel.", f: [
       { k: "hostel", l: "Are You Hosteller?", t: "radio", r: true, full: true, kids: ["hType", "hRoom", "hBlock", "hName", "hAddr", "hPin", "hDist", "hTal", "hVil"] },
-      { k: "hType", l: "Hostel Type", t: "sel", o: ["Government hostel", "Grant-in-aid hostel", "College hostel", "Private hostel"], r: smHostel, en: smHostel },
+      { k: "hType", l: "Hostel Type", t: "sel", o: SF_HOSTEL_TYPES, r: smHostel, en: smHostel },   // 25/11 (MYSY-05.6): 4 types; the type decides the document and the hostel benefit
       { k: "hRoom", l: "Hostel Room No", t: "text", r: smHostel, en: smHostel }, { k: "hBlock", l: "Hostel Block No", t: "text", r: smHostel, en: smHostel },
       { k: "hName", l: "Hostel Name", t: "text", r: smHostel, en: smHostel }, { k: "hAddr", l: "Hostel Address", t: "area", max: 250, r: smHostel, en: smHostel },
       { k: "hPin", l: "Hostel Pincode", t: "text", r: smHostel, en: smHostel, v: smPin },
@@ -9010,7 +9135,7 @@ const SF_MYSY_SECS = [
       { k: "incDate", l: "Income Certificate Issue Date", t: "date", r: true, en: () => F.incApi === false, v: v => !sfDateOk(v) ? "Enter a valid date (dd/mm/yyyy)." : sfFuture(v) ? "Issue date cannot be a future date." : "" }] }
   ],
   [ // 5 Aadhaar (MYSY-05.9)
-    { t: "Aadhaar Verification", p: "Enter your Aadhaar number and verify it with DigiLocker. Bank details are not taken from Aadhaar.", f: [
+    { t: "Aadhaar Verification", p: "Enter your Aadhaar number and verify it with DigiLocker.", f: [
       { k: "aadhaar", l: "Aadhaar Card Number", t: "aadhaar", r: true, ph: "12 digits" }] }
   ],
   [], []
@@ -9023,7 +9148,7 @@ function sfMysyDocs() {
     { k: "dDom", l: "Domicile Certificate", r: true },
     { k: mk[0], l: mk[1], r: true, note: `Last passed: ${L}` },
     { k: "dAdm", l: "Admission Letter", r: true }, { k: "dTui", l: "Tuition Fee Receipts", r: true },
-    ...(yes("hostel") ? [{ k: "dHostel", l: "Hostel Fees Receipt", r: true, note: "You are a hosteller" }] : []),
+    ...smHostelDocs("d"),
     { k: "dInc", l: "Income Certificate", r: F.incApi === false, note: F.incApi === false ? "Needed because the income was not received from the income API." : "Not needed – income received from the income API." }] }];
 }
 // MYSY-06: Step 1 admission AND Step 2 marks AND Step 3 income AND Step 4 domicile (special cases applied)
@@ -9128,7 +9253,7 @@ function sfRenewDocs() {
     ...(mysy ? [{ k: "rTui", l: "Tuition Fee Receipts", r: true, note: "Current academic year" }] : []),
     { k: "rPrin", l: "Principal / Head of Institution Certificate", r: true, note: "Annexure 5 (Gujarati) / Annexure 6 (English) – also gives your attendance" },
     ...(!mysy ? [{ k: "rFee", l: "Fee Payment Receipt", r: true, note: "Current academic year" }] : []),
-    ...(mysy && yes("hostel") ? [{ k: "rHostel", l: "Hostel Fees Receipt", r: true, note: "You are a hosteller" }] : []),
+    ...(mysy ? smHostelDocs("r") : []),
     { k: "dInc", l: "Income Certificate", r: F.incApi === false, note: F.incApi === false ? "Needed because the income was not received from the income API." : "Not needed – income received from the income API." },
     ...(!decl ? [{ k: "rSelf", l: `Self-Declaration – ${ann}`, r: true, note: "Because your result is not declared yet" }] : [])] }];
 }
@@ -9154,6 +9279,7 @@ function roleSet(r, go) {
   ROLE = ROLE_NAME[r] ? r : "student";
   try { sessionStorage.setItem("usk-role", ROLE); } catch (e) {}
   $$(".nav a[data-role]").forEach(a => a.hidden = a.dataset.role !== ROLE);
+  $$(".nav a[data-role-hide]").forEach(a => a.hidden = a.dataset.roleHide.split(" ").includes(ROLE));   // hidden only for the listed roles
   notiBadge();                                                      // the bell shows the student's unread notifications
   const sel = $("#roleSel"); if (cjpVal(sel) !== ROLE_NAME[ROLE]) cjpSel(sel, Object.values(ROLE_NAME), ROLE_NAME[ROLE]);
   if (go) location.hash === "#" + ROLE_HOME[ROLE] ? showView(ROLE_HOME[ROLE]) : (location.hash = ROLE_HOME[ROLE]);
@@ -9194,12 +9320,13 @@ function verSeed(o) {
     ["Fees Details", [["Annual Institute Fees", maRupee(o.fee), ""]]],
     ["Family Details", [["Father's Name", o.father, ""], ["Mother's Name", o.mother, ""], ["Annual Family Income", maRupee(o.income), o.api ? "Income API" : ""], ["Income Certificate Number", o.incNo, o.api ? "Income API" : ""]]],
     ["Aadhaar Verification", [["Aadhaar Number", "XXXX XXXX " + o.aad, "DigiLocker"]]]];
-  return { year: "2026-27", remarks: [], log: [{ d: o.date, t: "Submitted by the student" }], docs: ["Student Photograph", "Domicile Certificate", "Previous Qualification Marksheet", "Fee Payment Receipt", ...(o.api ? [] : ["Income Certificate"])], sections: sec, ...o };
+  Object.entries(o.extra || {}).forEach(([t, list]) => { const s = sec.find(x => x[0] === t); if (s) s[1].push(...list); });   // 25/11: extra sample fields (amount / summary demo)
+  return { year: "2026-27", remarks: [], log: [{ d: o.date, t: "Submitted by the student" }], docs: ["Student Photograph", "Domicile Certificate", "Previous Qualification Marksheet", "Fee Payment Receipt", ...(o.api ? [] : ["Income Certificate"]), ...(o.moreDocs || [])], sections: sec, ...o };
 }
 const VER = [
-  verSeed({ id: "0123987650011", name: "Patel Mihir Rajeshbhai", scheme: "CMSS", type: "Fresh", college: VER_COLLEGES[0], program: "BE/B-Tech", course: "Mechanical Engineering", dept: "Technical", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(12, 11), status: "Submitted", dob: "11/01/2008", gender: "Male", cat: "SEBC", mob: "98XXXX1001", mail: "m•••••r@gmail.com", addr: "Maninagar, Ahmedabad", city: "Ahmedabad", dom: "DOM2024AHD1101", fee: 64000, father: "Rajeshbhai Patel", mother: "Kokilaben Patel", income: 310000, incNo: "INC/AHD/2026/10011", api: true, aad: "1001" }),
+  verSeed({ id: "0123987650011", name: "Patel Mihir Rajeshbhai", scheme: "CMSS", type: "Fresh", college: VER_COLLEGES[0], program: "BE/B-Tech", course: "Mechanical Engineering", dept: "Technical", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(12, 11), status: "Submitted", dob: "11/01/2008", gender: "Male", cat: "SEBC", mob: "98XXXX1001", mail: "m•••••r@gmail.com", addr: "Maninagar, Ahmedabad", city: "Ahmedabad", dom: "DOM2024AHD1101", fee: 64000, father: "Rajeshbhai Patel", mother: "Kokilaben Patel", income: 310000, incNo: "INC/AHD/2026/10011", api: true, aad: "1001", cats: ["5"], moreDocs: ["Father's Death Certificate (Category 5)", "Non-Remarriage Affidavit (Category 5)"] }),
   verSeed({ id: "0123987650012", name: "Desai Krupa Nileshbhai", scheme: "MYSY", type: "Fresh", college: VER_COLLEGES[0], program: "BE/B-Tech", course: "Computer Engineering", dept: "Technical", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(13, 11), status: "Submitted", dob: "05/06/2008", gender: "Female", cat: "General", mob: "97XXXX2002", mail: "k•••••a@gmail.com", addr: "Vastrapur, Ahmedabad", city: "Ahmedabad", dom: "DOM2024AHD2210", fee: 78000, father: "Nileshbhai Desai", mother: "Reena Desai", income: 520000, incNo: "INC/AHD/2026/10012", api: false, aad: "2002" }),
-  verSeed({ id: "0123987650013", name: "Joshi Dev Rakeshbhai", scheme: "CMSS", type: "Delayed", college: VER_COLLEGES[0], program: "Diploma Engineering", course: "Civil Engineering", dept: "Diploma", sem: "Year 2 / Semester 3", prev: "Class 10", date: vD(15, 11), status: "Resubmitted", dob: "19/02/2009", gender: "Male", cat: "SC", mob: "99XXXX3003", mail: "d•••••v@gmail.com", addr: "Naroda, Ahmedabad", city: "Ahmedabad", dom: "DOM2023AHD3303", fee: 18000, father: "Late Rakeshbhai Joshi", mother: "Meena Joshi", income: 190000, incNo: "INC/AHD/2026/10013", api: true, aad: "3003",
+  verSeed({ id: "0123987650013", name: "Joshi Dev Rakeshbhai", scheme: "CMSS", type: "Delayed", college: VER_COLLEGES[0], program: "Diploma Engineering", course: "Civil Engineering", dept: "Diploma", sem: "Year 2 / Semester 3", prev: "Class 10", date: vD(15, 11), status: "Resubmitted", dob: "19/02/2009", gender: "Male", cat: "SC", mob: "99XXXX3003", mail: "d•••••v@gmail.com", addr: "Naroda, Ahmedabad", city: "Ahmedabad", dom: "DOM2023AHD3303", fee: 18000, father: "Late Rakeshbhai Joshi", mother: "Meena Joshi", income: 190000, incNo: "INC/AHD/2026/10013", api: true, aad: "3003", cats: ["5"],
     remarks: [{ act: "Send back", d: vD(6, 11), by: "Help Center – LDCE", html: "<ul><li><b>Fee Payment Receipt</b> is not readable – upload a clear copy.</li><li>Check the <u>Domicile Certificate Number</u>.</li></ul>" }],
     log: [{ d: vD(2, 11), t: "Submitted by the student" }, { d: vD(6, 11), t: "Sent back by Help Center – LDCE" }, { d: vD(15, 11), t: "Resubmitted by the student (2 updated items)" }],
     updated: [{ sec: "Basic Details", l: "Domicile Certificate Number", old: "DOM2023AHD3330", nw: "DOM2023AHD3303" }, { doc: "Fee Payment Receipt", file: "Fee_Receipt_clear_copy.pdf" }] }),
@@ -9208,17 +9335,22 @@ const VER = [
     remarks: [{ act: "Returned", d: vD(10, 11), by: "Commissionerate of Technical Education", html: "<b>Semester 4 result</b> is not uploaded – upload the latest marksheet and resubmit." }],
     sendBack: vD(10, 11),
     log: [{ d: vD(4, 11), t: "Submitted by the student" }, { d: vD(8, 11), t: "Forwarded by Help Center – LDCE (Department: Technical)" }, { d: vD(10, 11), t: "Returned by Commissionerate of Technical Education" }] }),
-  verSeed({ id: "0123987650015", name: "Rana Harsh Vikram", scheme: "CMSS", type: "Renewal", college: VER_COLLEGES[0], program: "BE/B-Tech", course: "Electrical Engineering", dept: "Technical", sem: "Year 3 / Semester 5", prev: "Class 12 – Science", date: vD(20, 10), status: "Expired", dob: "30/12/2005", gender: "Male", cat: "ST", mob: "95XXXX5005", mail: "h•••••h@gmail.com", addr: "Bopal, Ahmedabad", city: "Bopal", dom: "DOM2022AHD5505", fee: 66000, father: "Vikram Rana", mother: "Asha Rana", income: 280000, incNo: "INC/AHD/2026/10015", api: true, aad: "5005",
+  verSeed({ id: "0123987650015", name: "Rana Harsh Vikram", scheme: "CMSS", type: "Renewal", college: VER_COLLEGES[0], program: "BE/B-Tech", course: "Electrical Engineering", dept: "Technical", sem: "Year 3 / Semester 5", prev: "Class 12 – Science", date: vD(20, 10), status: "Returned", dob: "30/12/2005", gender: "Male", cat: "ST", mob: "95XXXX5005", mail: "h•••••h@gmail.com", addr: "Bopal, Ahmedabad", city: "Bopal", dom: "DOM2022AHD5505", fee: 66000, father: "Vikram Rana", mother: "Asha Rana", income: 280000, incNo: "INC/AHD/2026/10015", api: true, aad: "5005",
     remarks: [{ act: "Returned", d: vD(25, 10), by: "Commissionerate of Technical Education", html: "Upload the <b>Principal Certificate (Annexure 5)</b>." }],
     sendBack: vD(25, 10),
-    log: [{ d: vD(20, 10), t: "Submitted by the student" }, { d: vD(22, 10), t: "Forwarded by Help Center – LDCE (Department: Technical)" }, { d: vD(25, 10), t: "Returned by Commissionerate of Technical Education" }, { d: vD(10, 11), t: "Expired – not resubmitted within 15 days" }] }),
+    log: [{ d: vD(20, 10), t: "Submitted by the student" }, { d: vD(22, 10), t: "Forwarded by Help Center – LDCE (Department: Technical)" }, { d: vD(25, 10), t: "Returned by Commissionerate of Technical Education" }] }),
   verSeed({ id: "0123987650016", name: "Shah Pooja Anil", scheme: "MYSY", type: "Fresh", college: VER_COLLEGES[1], program: "BE/B-Tech", course: "Information Technology", dept: "Technical", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(14, 11), status: "Submitted", dob: "14/04/2008", gender: "Female", cat: "SEBC", mob: "94XXXX6006", mail: "p•••••a@gmail.com", addr: "Chandkheda, Ahmedabad", city: "Chandkheda", dom: "DOM2024AHD6606", fee: 72000, father: "Anil Shah", mother: "Bina Shah", income: 450000, incNo: "INC/AHD/2026/10016", api: true, aad: "6006" }),
-  verSeed({ id: "0123987650017", name: "Vora Aman Iqbal", scheme: "CMSS", type: "Fresh", college: VER_COLLEGES[2], program: "B.Sc", course: "Physics", dept: "Higher Education", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(11, 11), status: "Submitted", dob: "08/08/2008", gender: "Male", cat: "General", mob: "93XXXX7007", mail: "a•••••n@gmail.com", addr: "Sector 21, Gandhinagar", city: "Gandhinagar", dom: "DOM2024GNR7707", fee: 15000, father: "Iqbal Vora", mother: "Rubina Vora", income: 240000, incNo: "INC/GNR/2026/10017", api: true, aad: "7007" }),
-  verSeed({ id: "0123987650018", name: "Trivedi Jay Mukesh", scheme: "CMSS", type: "Fresh", college: VER_COLLEGES[0], program: "BE/B-Tech", course: "Computer Engineering", dept: "Technical", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(3, 11), status: "Under Review", group: VER_GROUPS[5], locked: vD(8, 11), office: VER_OFFICES.Technical, dob: "17/07/2008", gender: "Male", cat: "SEBC", mob: "92XXXX8008", mail: "j•••••y@gmail.com", addr: "Satellite, Ahmedabad", city: "Ahmedabad", dom: "DOM2024AHD8808", fee: 78000, father: "Mukesh Trivedi", mother: "Daksha Trivedi", income: 260000, incNo: "INC/AHD/2026/10018", api: true, aad: "8008",
+  verSeed({ id: "0123987650017", name: "Vora Aman Iqbal", scheme: "CMSS", type: "Fresh", college: VER_COLLEGES[2], program: "B.Sc", course: "Physics", dept: "Higher Education", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(11, 11), status: "Submitted", dob: "08/08/2008", gender: "Male", cat: "General", mob: "93XXXX7007", mail: "a•••••n@gmail.com", addr: "Sector 21, Gandhinagar", city: "Gandhinagar", dom: "DOM2024GNR7707", fee: 15000, father: "Iqbal Vora", mother: "Rubina Vora", income: 240000, incNo: "INC/GNR/2026/10017", api: true, aad: "7007", cats: ["4"], moreDocs: ["UDID Card or Disability Certificate (Category 4)"] }),
+  verSeed({ id: "0123987650018", name: "Trivedi Jay Mukesh", scheme: "CMSS", type: "Fresh", college: VER_COLLEGES[0], program: "BE/B-Tech", course: "Computer Engineering", dept: "Technical", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(3, 11), status: "Under Review", group: VER_GROUPS[5], locked: vD(8, 11), office: VER_OFFICES.Technical, dob: "17/07/2008", gender: "Male", cat: "SEBC", mob: "92XXXX8008", mail: "j•••••y@gmail.com", addr: "Satellite, Ahmedabad", city: "Ahmedabad", dom: "DOM2024AHD8808", fee: 78000, father: "Mukesh Trivedi", mother: "Daksha Trivedi", income: 260000, incNo: "INC/AHD/2026/10018", api: true, aad: "8008", cats: ["5"],
     log: [{ d: vD(3, 11), t: "Submitted by the student" }, { d: vD(8, 11), t: "Forwarded by Help Center – LDCE (Department: Technical, Course group set) to Commissionerate of Technical Education" }] }),
   verSeed({ id: "0123987650019", name: "Parikh Riya Hemant", scheme: "MYSY", type: "Fresh", college: VER_COLLEGES[1], program: "BE/B-Tech", course: "Electronics & Communication", dept: "Technical", sem: "Year 1 / Semester 1", prev: "Class 12 – Science", date: vD(1, 11), status: "Under Review", courseType: VER_TYPES[1], locked: vD(9, 11), office: VER_OFFICES.Technical, dob: "03/03/2008", gender: "Female", cat: "General", mob: "91XXXX9009", mail: "r•••••a@gmail.com", addr: "Motera, Ahmedabad", city: "Ahmedabad", dom: "DOM2024AHD9909", fee: 74000, father: "Hemant Parikh", mother: "Nita Parikh", income: 380000, incNo: "INC/AHD/2026/10019", api: true, aad: "9009",
+    extra: { "Basic Details": [["Taluka", "Patan", "Agency data"]], "Admission Details": [["Class 12 Percentile", "91.4", ""], ["Institute Taluka", "Gandhinagar", "Agency data"], ["Admission on TFW Seat?", "No", "Agency data"], ["Admission on NRI Seat?", "No", ""]],
+      "Fees Details": [["Are You Hosteller?", "Yes", ""], ["Hostel Type", "Paying guest or rented room", ""]] }, moreDocs: ["Admission Letter", "Rent Agreement"],
     log: [{ d: vD(1, 11), t: "Submitted by the student" }, { d: vD(9, 11), t: "Forwarded by Help Center – VGEC (Course Type set) to Commissionerate of Technical Education" }] })
 ];
+// 25/11: the returned sample rows were forwarded before – give them their office, forward date and classification (office list / progress table)
+VER.forEach(r => { if (r.status !== "Returned" || r.office) return; const sug = VER_SUGGEST[r.program] || {}; const f = r.log.find(l => /^Forwarded/.test(l.t));
+  r.office = VER_OFFICES[r.dept] || VER_OFFICES.Other; r.locked = f ? f.d : r.date; if (r.scheme === "CMSS") r.group = sug.group || VER_GROUPS[5]; else r.courseType = sug.type || VER_TYPES[1]; });
 // A student submits from the form → joins the Help Center list (Phase 1b/2/3 submit calls this)
 function verFromForm(a, rv) {
   const get = (sec, l) => ((rv.find(r => r[0] === sec) || [, , []])[2].find(x => x[0] === l) || [])[1] || "";
@@ -9231,44 +9363,47 @@ function verFromForm(a, rv) {
   VER.unshift(r);
 }
 const verSetStatus = (r, s) => { r.status = s; if (r.ma) { r.ma.status = s; maRender(); } };
-const VER_BADGE = { Submitted: "review", Resubmitted: "review", Returned: "warning", Expired: "rejected", "Under Review": "shortlisted", Approved: "approved", Draft: "neutral" };
+const VER_BADGE = { Submitted: "review", Resubmitted: "review", Returned: "warning", "Under Review": "shortlisted", Approved: "approved", Draft: "neutral" };   // 25/11 (VER-15): no Expired status
 const verBadge = s => `<span class="ui-badge ui-badge-${VER_BADGE[s] || "neutral"}">${esc(s)}</span>`;
 const verTime = d => `${fmt(d)} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
 const verShort = c => (c.match(/^[^,]+/) || [c])[0].replace(/^Government Engineering College/, "GEC").replace(/^Vishwakarma Government Engineering College/, "VGEC").replace(/^L\.D\. College of Engineering/, "LDCE");
 
 // ---------- Help Center list (HC-01, VER-01) ----------
 const HC = { college: VER_COLLEGES[0], scheme: "All", year: "All", type: "All", status: "All", q: "", current: null, from: "hc" };
-// VER-01 (19/11): the Help Center table shows only Submitted / Resubmitted now – Returned/Expired are with the student, Under Review/Approved are with the Commissionerate Office
+// VER-01 (19/11): the Help Center table shows only Submitted / Resubmitted now – Returned is with the student, Under Review/Approved are with the Commissionerate Office
 const HC_STATUSES = ["Submitted", "Resubmitted"];
+// 25/11 (user): the Help Center also sees the applications it forwarded – status "Forwarded" (Under Review), read only
+const HC_LIST_ST = ["Submitted", "Resubmitted", "Under Review"];
+const hcStLabel = s => s === "Under Review" ? "Forwarded" : s;
 function hcInit() {
   cjpSel($("#hcCollege"), VER_COLLEGES, HC.college); cjpSel($("#hcScheme"), ["All", "CMSS", "MYSY"], HC.scheme); cjpSel($("#hcYear"), ["All", "2026-27"], HC.year);
-  cjpSel($("#hcType"), ["All", "Fresh", "Delayed", "Renewal", "Renewal Delayed"], HC.type); cjpSel($("#hcStatus"), ["All", ...HC_STATUSES], HC.status); $("#hcSearch").value = HC.q;
+  cjpSel($("#hcType"), ["All", "Fresh", "Delayed", "Renewal", "Renewal Delayed"], HC.type); cjpSel($("#hcStatus"), ["All", "Submitted", "Resubmitted", "Forwarded"], HC.status); $("#hcSearch").value = HC.q;
 }
 // VER-07 (19/11): statistics cards – scoped to the selected college + scholarship only, every application counted once by its current status
 function hcStats() {
   const scoped = VER.filter(r => r.college === HC.college && (HC.scheme === "All" || r.scheme === HC.scheme));
-  return { total: scoped.length, toReview: scoped.filter(r => HC_STATUSES.includes(r.status)).length, forwarded: scoped.filter(r => r.status === "Under Review").length };
+  return { total: scoped.length, toReview: scoped.filter(r => HC_STATUSES.includes(r.status)).length, forwarded: scoped.filter(r => r.status === "Under Review").length, returned: scoped.filter(r => r.status === "Returned").length };
 }
 function hcRender() {
   const list = hcList(HC).sort((a, b) => b.date - a.date); hcChips();
   const st = hcStats();
-  $("#hcStats").innerHTML = `<div class="ver-stat"><b>${st.total}</b><span>Total Applications</span></div><div class="ver-stat"><b>${st.toReview}</b><span>To Review</span></div><div class="ver-stat"><b>${st.forwarded}</b><span>Forwarded</span></div>`;
+  $("#hcStats").innerHTML = `<div class="ver-stat"><b>${st.total}</b><span>Total Applications</span></div><div class="ver-stat"><b>${st.toReview}</b><span>To Review</span></div><div class="ver-stat"><b>${st.forwarded}</b><span>Forwarded</span></div><div class="ver-stat"><b>${st.returned}</b><span>Returned</span></div>`;
   $("#hcCount").textContent = `${list.length} application${list.length === 1 ? "" : "s"}`;
-  $("#hcBody").innerHTML = list.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span></td><td>${r.scheme}</td><td title="${esc(r.college)}">${esc(verShort(r.college))}</td>
-    <td>${esc(r.program)}<br><small>${esc(r.course)}</small></td><td>${esc(r.type)}</td><td>${verTime(r.date)}</td><td>${verBadge(r.status)}</td>
+  $("#hcBody").innerHTML = list.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span></td>
+    <td>${esc(r.program)}<br><small>${esc(r.course)}</small></td><td>${esc(r.type)}</td><td>${verTime(r.date)}</td><td><span class="ui-badge ui-badge-${VER_BADGE[r.status] || "neutral"}">${hcStLabel(r.status)}</span></td>
     <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#ver-view" data-ver="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`).join("")
-    || `<tr class="ver-empty"><td colspan="9">No applications to verify.</td></tr>`;
+    || `<tr class="ver-empty"><td colspan="7">No applications to verify.</td></tr>`;
 }
 // Advanced Filter (17/11, DS .ui-filter): the fields are a draft – Apply filters the list, Cancel clears all and closes
 const HC_F = { college: "College", scheme: "Scholarship", year: "Academic Year", type: "Application Type", status: "Status", q: "Search" };
 const hcDef = () => ({ college: VER_COLLEGES[0], scheme: "All", year: "All", type: "All", status: "All", q: "" });
 const hcRead = () => ({ college: cjpVal($("#hcCollege")) || VER_COLLEGES[0], scheme: cjpVal($("#hcScheme")) || "All", year: cjpVal($("#hcYear")) || "All", type: cjpVal($("#hcType")) || "All", status: cjpVal($("#hcStatus")) || "All", q: $("#hcSearch").value.trim() });
-const hcList = f => { const q = f.q.toLowerCase(); return VER.filter(r => HC_STATUSES.includes(r.status) && r.college === f.college && (f.scheme === "All" || r.scheme === f.scheme) && (f.year === "All" || r.year === f.year)
-  && (f.type === "All" || r.type === f.type) && (f.status === "All" || r.status === f.status) && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q))); };
+const hcList = f => { const q = f.q.toLowerCase(); return VER.filter(r => HC_LIST_ST.includes(r.status) && r.college === f.college && (f.scheme === "All" || r.scheme === f.scheme) && (f.year === "All" || r.year === f.year)
+  && (f.type === "All" || r.type === f.type) && (f.status === "All" || hcStLabel(r.status) === f.status) && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q))); };
 const hcPreview = () => { const n = hcList(hcRead()).length; $("#hcPreview").innerHTML = `<b>${n}</b> ${n === 1 ? "application matches" : "applications match"} these filters`; };
 function hcChips() {
   const d = hcDef(), keys = Object.keys(HC_F).filter(k => HC[k] !== d[k]);
-  $("#hcChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${HC_F[k]}:</b>${esc(k === "college" ? verShort(HC[k]) : HC[k])}<button type="button" data-hc-rm="${k}" title="Remove ${HC_F[k]} filter" aria-label="Remove ${HC_F[k]} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + `<button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-hc-clear>Clear all</button>` : "";
+  $("#hcChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${HC_F[k]}:</b>${esc(k === "college" ? verShort(HC[k]) : HC[k])}<button type="button" data-hc-rm="${k}" title="Remove ${HC_F[k]} filter" aria-label="Remove ${HC_F[k]} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + (keys.length > 1 ? `<button class="ui-filter-clear" type="button" data-hc-clear>Clear all</button>` : "") : "";
   $("#hcCnt").hidden = !keys.length; $("#hcCnt").textContent = keys.length;
 }
 const hcClose = () => { $("#hcAdv").hidden = true; $("#hcFilterBtn").setAttribute("aria-expanded", false); };
@@ -9282,40 +9417,57 @@ $("#hcChips").addEventListener("click", e => { const rm = e.target.closest("[dat
 $("#hcBody").addEventListener("click", e => { const a = e.target.closest("[data-ver]"); if (a) { HC.current = a.dataset.ver; HC.from = "hc"; } });
 
 // ---------- Commissioner Office list (CO-01, VER-12) ----------
-const CO = { tab: "CMSS", cls: "All", group: "All", college: "All", q: "" };
+// 25/11 (CO-01 v11): the list shows To Review (default), Returned and Approved; filters Academic Year, Application Type, Status, Course group + Special Category (CMSS) / Course Type (MYSY); progress table by group
+const CO_ST = { "To Review": "Under Review", Returned: "Returned", Approved: "Approved" };
+const CO_CATS = ["1", "2", "3", "4", "5", "6", "7"].map(n => "Category " + n);
+const CO = { tab: "CMSS", year: "All", type: "All", status: "To Review", cls: "All", cat: "All", q: "" };
 function coInit() {
   $("#coTabs").innerHTML = ["CMSS", "MYSY"].map(t => `<button class="ui-btn ${t === CO.tab ? "ui-btn-primary" : "ui-btn-outline"}" type="button" role="tab" aria-selected="${t === CO.tab}" data-co-tab="${t}">${t}</button>`).join("");
   const cmss = CO.tab === "CMSS";
-  $("#coClsLbl").textContent = cmss ? "Department" : "Course Type";
-  cjpSel($("#coCls"), ["All", ...(cmss ? VER_DEPTS : VER_TYPES)], CO.cls);
-  $("#coGroupWrap").hidden = !cmss; cjpSel($("#coGroup"), ["All", ...VER_GROUPS], CO.group);
-  cjpSel($("#coCollege"), ["All", ...VER_COLLEGES], CO.college); $("#coSearch").value = CO.q;
-  $("#coHead").innerHTML = `<tr><th>Application ID</th><th>Student Name</th><th>College</th><th>Course</th>${cmss ? "<th>Department</th><th>Course group</th>" : "<th>Course Type</th>"}<th>Application Type</th><th>Tuition fee</th><th>Locked on</th><th>Action</th></tr>`;
+  $("#coClsLbl").textContent = cmss ? "Course group" : "MYSY Course Type";
+  cjpSel($("#coCls"), ["All", ...(cmss ? VER_GROUPS : VER_TYPES)], CO.cls);
+  $("#coCatWrap").hidden = !cmss; cjpSel($("#coCat"), ["All", ...CO_CATS], CO.cat);
+  cjpSel($("#coYear"), ["All", "2026-27"], CO.year); cjpSel($("#coType"), ["All", "Fresh", "Delayed", "Renewal", "Renewal Delayed"], CO.type);
+  cjpSel($("#coStatus"), ["All", ...Object.keys(CO_ST)], CO.status); $("#coSearch").value = CO.q;
+  $("#coHead").innerHTML = `<tr><th>Application ID</th><th>Student Name</th><th>Application Type</th><th>Department</th><th>${cmss ? "Course group" : "MYSY Course Type"}</th><th>Forwarded by Help Center on</th><th>Status</th><th>Action</th></tr>`;
 }
 // CO-01/VER-07 (19/11): stats cards scoped to the selected scholarship tab only
+const coScoped = () => VER.filter(r => r.scheme === CO.tab && r.office);
 function coStats() {
-  const scoped = VER.filter(r => r.scheme === CO.tab);
+  const scoped = coScoped();
   return { toReview: scoped.filter(r => r.status === "Under Review").length, returned: scoped.filter(r => r.status === "Returned").length, approved: scoped.filter(r => r.status === "Approved").length };
+}
+const coStLabel = s => s === "Under Review" ? "To Review" : s;
+function coProgRender() {
+  const cmss = CO.tab === "CMSS", key = r => cmss ? verGroupOf(r) : verTypeOf(r), all = coScoped().filter(r => ["Under Review", "Returned", "Approved"].includes(r.status));
+  const groups = (cmss ? VER_GROUPS : VER_TYPES).filter(g => all.some(r => key(r) === g));
+  const cnt = (list, s) => list.filter(r => r.status === s).length;
+  $("#coProgSub").textContent = `By ${cmss ? "course group" : "course type"} · ${CO.year === "All" ? "all years" : "Academic year " + CO.year} · counts only, seats are checked in the final lot`;
+  $("#coProg").innerHTML = `<div class="table-wrap"><table class="ver-prog-t"><thead><tr><th>${cmss ? "Course group" : "Course Type"}</th><th>Approved</th><th>To Review</th><th>Returned</th></tr></thead><tbody>
+    ${groups.map(g => { const l = all.filter(r => key(r) === g); return `<tr class="${CO.cls === g ? "is-sel" : ""}" data-co-prog="${esc(g)}" tabindex="0" role="button" aria-label="Filter the list by ${esc(g)}"><td>${esc(g.replace(/ \(.*$/, ""))}</td><td>${cnt(l, "Approved")}</td><td>${cnt(l, "Under Review")}</td><td>${cnt(l, "Returned")}</td></tr>`; }).join("")
+      || `<tr class="ver-empty"><td colspan="4">No forwarded applications yet.</td></tr>`}
+    </tbody>${groups.length ? `<tfoot><tr><td>Total</td><td>${cnt(all, "Approved")}</td><td>${cnt(all, "Under Review")}</td><td>${cnt(all, "Returned")}</td></tr></tfoot>` : ""}</table></div>`;
 }
 function coRender() {
   const cmss = CO.tab === "CMSS", list = coList(CO).sort((a, b) => b.locked - a.locked); coChips();
   const st = coStats();
   $("#coStats").innerHTML = `<div class="ver-stat"><b>${st.toReview}</b><span>To Review</span></div><div class="ver-stat"><b>${st.returned}</b><span>Returned</span></div><div class="ver-stat"><b>${st.approved}</b><span>Approved</span></div>`;
+  coProgRender();
   $("#coCount").textContent = `${list.length} application${list.length === 1 ? "" : "s"}`;
-  $("#coBody").innerHTML = list.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span></td><td title="${esc(r.college)}">${esc(verShort(r.college))}</td><td>${esc(r.program)}<br><small>${esc(r.course)}</small></td>
-    ${cmss ? `<td>${esc(r.dept)}</td><td>${esc(r.group || "–")}</td>` : `<td>${esc((r.courseType || "–").replace(/ \(.*$/, ""))}</td>`}<td>${esc(r.type)}</td><td>${maRupee(r.fee)}</td><td>${fmt(r.locked)}</td>
+  $("#coBody").innerHTML = list.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span><br><small>${esc(r.program)} – ${esc(r.course)}</small></td><td>${esc(r.type)}</td><td>${esc(r.dept || "–")}</td>
+    <td>${esc((cmss ? verGroupOf(r) : verTypeOf(r)).replace(/ \(.*$/, "") || "–")}</td><td>${r.locked ? fmt(r.locked) : "–"}</td><td><span class="ui-badge ui-badge-${VER_BADGE[r.status] || "neutral"}">${coStLabel(r.status)}</span></td>
     <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#ver-view" data-ver="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`).join("")
-    || `<tr class="ver-empty"><td colspan="${cmss ? 10 : 9}">No applications to review.</td></tr>`;
+    || `<tr class="ver-empty"><td colspan="8">No applications to review.</td></tr>`;
   coPhaseRender();
 }
 // CO-07/VER-22/23: Phase cards for the current scholarship tab, one per office + academic year
 function coPhasePending(p) { return p.apps.filter(id => { const r = VER.find(x => x.id === id); return r && r.lotNo == null; }); }
 function coPhaseRender() {
-  const phases = PHASE.filter(p => p.scheme === CO.tab);
+  const phases = PHASE;                                                // 25/11: own page – every scholarship
   $("#coPhases").innerHTML = phases.length ? phases.map(p => { const pending = coPhasePending(p), sent = p.apps.length - pending.length;
-    return `<section class="card ver-phase"><div class="ver-phase-info"><b>${esc(p.office)}</b><span>Academic year ${p.year} · ${p.apps.length} approved · ${sent} already sent${p.lots.length ? ` (${p.lots.length} lot${p.lots.length === 1 ? "" : "s"})` : ""}</span></div>
+    return `<section class="card ver-phase"><div class="ver-phase-info"><b>${esc(p.scheme)} · ${esc(p.office)}</b><span>Academic year ${p.year} · ${p.apps.length} approved · ${sent} already sent${p.lots.length ? ` (${p.lots.length} lot${p.lots.length === 1 ? "" : "s"})` : ""}</span></div>
       <button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-send-lot="${esc(p.key)}" ${pending.length ? "" : "disabled"}>${iconSvg("arrow-right", "l", 14)}Send Lot to KCG${pending.length ? ` (${pending.length})` : ""}</button></section>`; }).join("")
-    : `<section class="card ver-empty" style="padding:var(--space-20)">No applications of ${CO.tab} are approved yet.</section>`;
+    : `<section class="card ver-empty" style="padding:var(--space-20)">No applications are approved yet. Approved applications appear here, grouped into a Phase.</section>`;
 }
 $("#coPhases").addEventListener("click", e => {
   const b = e.target.closest("[data-send-lot]"); if (!b) return;
@@ -9335,17 +9487,22 @@ $("#sendLotYes").addEventListener("click", () => {
 });
 $("#coTabs").addEventListener("click", e => { const b = e.target.closest("[data-co-tab]"); if (!b || b.dataset.coTab === CO.tab) return; CO.tab = b.dataset.coTab; Object.assign(CO, coDef()); coInit(); coRender(); coClose(); });
 // Advanced Filter (17/11, DS .ui-filter) – same behaviour as the Help Center list; the CMSS / MYSY tabs stay above it
-const coDef = () => ({ cls: "All", group: "All", college: "All", q: "" });
-const coLbl = k => ({ cls: CO.tab === "CMSS" ? "Department" : "Course Type", group: "Course group", college: "College", q: "Search" })[k];
-const coRead = () => ({ cls: cjpVal($("#coCls")) || "All", group: CO.tab === "CMSS" ? cjpVal($("#coGroup")) || "All" : "All", college: cjpVal($("#coCollege")) || "All", q: $("#coSearch").value.trim() });
-const coList = f => { const cmss = CO.tab === "CMSS", q = f.q.toLowerCase(); return VER.filter(r => r.status === "Under Review" && r.scheme === CO.tab && (f.college === "All" || r.college === f.college)
-  && (f.cls === "All" || (cmss ? r.dept === f.cls : r.courseType === f.cls)) && (!cmss || f.group === "All" || r.group === f.group) && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q))); };
+const coDef = () => ({ year: "All", type: "All", status: "To Review", cls: "All", cat: "All", q: "" });
+const coLbl = k => ({ year: "Academic Year", type: "Application Type", status: "Status", cls: CO.tab === "CMSS" ? "Course group" : "Course Type", cat: "Special Category", q: "Search" })[k];
+const coRead = () => ({ year: cjpVal($("#coYear")) || "All", type: cjpVal($("#coType")) || "All", status: cjpVal($("#coStatus")) || "All", cls: cjpVal($("#coCls")) || "All", cat: CO.tab === "CMSS" ? cjpVal($("#coCat")) || "All" : "All", q: $("#coSearch").value.trim() });
+const coList = f => { const cmss = CO.tab === "CMSS", q = f.q.toLowerCase(); return coScoped().filter(r => (f.status === "All" ? Object.values(CO_ST).includes(r.status) : r.status === CO_ST[f.status])
+  && (f.year === "All" || r.year === f.year) && (f.type === "All" || r.type === f.type) && (f.cls === "All" || (cmss ? verGroupOf(r) : verTypeOf(r)) === f.cls)
+  && (!cmss || f.cat === "All" || (r.cats || []).includes(f.cat.replace("Category ", ""))) && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q))); };
 const coPreview = () => { const n = coList(coRead()).length; $("#coPreview").innerHTML = `<b>${n}</b> ${n === 1 ? "application matches" : "applications match"} these filters`; };
 function coChips() {
-  const keys = ["q", "college", "cls", "group"].filter(k => CO[k] !== coDef()[k]);
-  $("#coChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${coLbl(k)}:</b>${esc(k === "college" ? verShort(CO[k]) : CO[k])}<button type="button" data-co-rm="${k}" title="Remove ${coLbl(k)} filter" aria-label="Remove ${coLbl(k)} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + `<button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-co-clear>Clear all</button>` : "";
+  const keys = ["q", "year", "type", "status", "cls", "cat"].filter(k => CO[k] !== coDef()[k]);
+  $("#coChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${coLbl(k)}:</b>${esc(String(CO[k]).replace(/ \(.*$/, ""))}<button type="button" data-co-rm="${k}" title="Remove ${coLbl(k)} filter" aria-label="Remove ${coLbl(k)} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + (keys.length > 1 ? `<button class="ui-filter-clear" type="button" data-co-clear>Clear all</button>` : "") : "";
   $("#coCnt").hidden = !keys.length; $("#coCnt").textContent = keys.length;
 }
+$("#coProgBtn").addEventListener("click", () => { const open = $("#coProgBtn").getAttribute("aria-expanded") === "true"; $("#coProgBtn").setAttribute("aria-expanded", !open); $("#coProg").hidden = open; });
+const coProgPick = tr => { const g = tr.dataset.coProg; CO.cls = CO.cls === g ? "All" : g; coInit(); coRender(); };
+$("#coProg").addEventListener("click", e => { const tr = e.target.closest("[data-co-prog]"); if (tr) coProgPick(tr); });
+$("#coProg").addEventListener("keydown", e => { const tr = e.target.closest("[data-co-prog]"); if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); coProgPick(tr); } });
 const coClose = () => { $("#coAdv").hidden = true; $("#coFilterBtn").setAttribute("aria-expanded", false); };
 $("#coFilterBtn").addEventListener("click", () => { const open = $("#coAdv").hidden; $("#coAdv").hidden = !open; $("#coFilterBtn").setAttribute("aria-expanded", open); if (open) { coInit(); coPreview(); $("#coSearch").focus(); } });
 $("#coAdv").addEventListener("input", coPreview);
@@ -9389,7 +9546,7 @@ const kcgPreview = () => { const f = kcgRead(), n = kcgRows().filter(r => (f.sch
 function kcgChips() {
   const keys = Object.keys(kcgDef()).filter(k => KCG[k] !== kcgDef()[k]);
   const lbl = { scheme: "Scholarship", office: "Office", year: "Academic Year", q: "Search" };
-  $("#kcgChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${lbl[k]}:</b>${esc(KCG[k])}<button type="button" data-kcg-rm="${k}" title="Remove ${lbl[k]} filter" aria-label="Remove ${lbl[k]} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + `<button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-kcg-clear>Clear all</button>` : "";
+  $("#kcgChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${lbl[k]}:</b>${esc(KCG[k])}<button type="button" data-kcg-rm="${k}" title="Remove ${lbl[k]} filter" aria-label="Remove ${lbl[k]} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + (keys.length > 1 ? `<button class="ui-filter-clear" type="button" data-kcg-clear>Clear all</button>` : "") : "";
   $("#kcgCnt").hidden = !keys.length; $("#kcgCnt").textContent = keys.length;
 }
 const kcgClose = () => { $("#kcgAdv").hidden = true; $("#kcgFilterBtn").setAttribute("aria-expanded", false); };
@@ -9407,8 +9564,10 @@ function kcgRender() {
 // KCG-02: one Excel (CSV, opens in Excel) file per scholarship, with the full Aadhaar number – KCG role only
 function kcgExportCsv(scheme, rows) {
   const cmss = scheme === "CMSS", esc2 = v => `"${String(v == null ? "" : v).replace(/"/g, '""')}"`;
-  const head = ["Lot No", "Office", "Academic Year", "Application ID", "Student Name", "College", cmss ? "Department" : "Course Type", ...(cmss ? ["Course Group"] : []), "Tuition Fee", ...(cmss ? [] : ["Hostel Fee"]), "Aadhaar Number"];
-  const body = rows.map(({ lotNo, office, year, r }) => [lotNo, office, year, r.id, r.name, r.college, cmss ? r.dept : (r.courseType || "").replace(/ \(.*$/, ""), ...(cmss ? [r.group || ""] : []), r.fee, ...(cmss ? [] : [verFindField(r, "hostel") || "0"]), verFullAadhaar(r)].map(esc2).join(","));
+  // 25/11 (AMT-COM-01): the sanctioned amount (frozen on Approve) goes into the Excel; MYSY also shows its three parts
+  const head = ["Lot No", "Office", "Academic Year", "Application ID", "Student Name", "College", cmss ? "Department" : "Course Type", ...(cmss ? ["Course Group"] : []), "Tuition Fee", ...(cmss ? [] : ["Tuition Assistance", "Hostel Assistance", "Books Assistance"]), "Sanctioned Amount", "Aadhaar Number"];
+  const body = rows.map(({ lotNo, office, year, r }) => { const am = r.amount || verAmount(r), p = am.parts || {};
+    return [lotNo, office, year, r.id, r.name, r.college, cmss ? r.dept : (r.courseType || "").replace(/ \(.*$/, ""), ...(cmss ? [r.group || ""] : []), r.fee, ...(cmss ? [] : [p.tuition || 0, p.hostel || 0, p.books || 0]), r.sanctioned != null ? r.sanctioned : am.total, verFullAadhaar(r)].map(esc2).join(","); });
   const csv = "﻿" + [head.map(esc2).join(","), ...body].join("\r\n");
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" }), url = URL.createObjectURL(blob), a = document.createElement("a");
   a.href = url; a.download = `KCG_${scheme}_Export.csv`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
@@ -9434,6 +9593,135 @@ $("#kcgBody").addEventListener("change", e => { const cb = e.target.closest("[da
 $("#kcgBody").addEventListener("click", e => { const b = e.target.closest("[data-kcg-export]"); if (!b) return; const row = kcgRows().find(r => r.key === b.dataset.kcgExport); if (row) kcgExportLots([row]); });
 $("#kcgExportSel").addEventListener("click", () => { const rows = kcgRows().filter(r => KCG.sel.has(r.key)); if (rows.length) kcgExportLots(rows); });
 
+// 25/11: every document View opens the document drawer with one common dummy document (demo – no real files are stored)
+function verDocView(name, r) {
+  const n = String(name || "Document").replace(/\.pdf$/i, "");
+  $("#drDocTitle").textContent = n; $("#drDocName").textContent = n;
+  $("#drDocSub").textContent = r ? `${r.name || ""} · Application ${r.id}` : "Uploaded document";
+  $("#drDocFile").textContent = n.replace(/[^\w]+/g, "_").replace(/^_|_$/g, "") + ".pdf";
+  $("#drDocStudent").textContent = r && r.name ? r.name : "Student"; $("#drDocApp").textContent = r ? `Application ID ${r.id}` : "";
+  $("#drDocDate").textContent = r && r.date ? fmt(r.date) : "–";
+  openDrawer2("drDoc");
+}
+// ---------- 25/11 (Business Rule v7 / Spec v11): field lookup, Amount (AMT-*), Eligibility summary (VER-26), Earlier rounds, Approved count ----------
+function verFieldS(r, label) {                                         // [value, source] of the first field whose label is / starts with `label`
+  for (const [, list] of r.sections) { const hit = list.find(([l]) => l === label || l.startsWith(label + " ") || l.startsWith(label + "(")); if (hit) return [hit[1], hit[2] || ""]; }
+  return ["", ""];
+}
+const verField = (r, label) => verFieldS(r, label)[0];
+const verNum = v => +String(v || "").replace(/[^\d.]/g, "") || 0;
+const verYes = (r, label) => /^yes$/i.test(String(verField(r, label)).trim());
+const verGroupOf = r => r.group || (r.cls && r.cls.group) || "";
+const verTypeOf = r => r.courseType || (r.cls && r.cls.type) || "";
+// AMT-CMSS-01…06 (GR para 12): [share of the fee, limit] by course group; a share of 0 = a fixed amount
+const AMT_CMSS = { "Medical": [0.5, 500000], "Dental": [0.5, 500000], "Ayurveda / Homeopathy": [0.5, 100000], "B.Sc Nursing, Physiotherapy & Paramedical": [0.5, 100000],
+  "Engineering / Tech / Pharmacy - Diploma to Degree": [0.5, 100000], "Engineering / Tech / Pharmacy - Degree after Class 12": [0.5, 100000], "Diploma after Class 10": [0.5, 50000],
+  "UG Science (PCM)": [0, 10000], "UG Science (PCB)": [0, 10000], "UG Commerce / Arts": [0, 10000] };
+// AMT-MYSY-01 / 03: tuition limit + books by course type (General UG: no books amount in the document)
+const AMT_MYSY = { [VER_TYPES[0]]: { lim: 200000, books: 10000 }, [VER_TYPES[1]]: { lim: 50000, books: 5000 }, [VER_TYPES[2]]: { lim: 25000, books: 3000 }, [VER_TYPES[3]]: { lim: 10000, books: null } };
+const rup = n => "₹" + Math.round(n).toLocaleString("en-IN");
+// AMT-COM-01: calculated automatically; the office sees it read-only; frozen as the sanctioned amount on Approve; the student never sees it
+function verAmount(r) {
+  if (r.status === "Approved" && r.amount) return r.amount;            // frozen after Approve
+  const rows = [], notes = ["Rounded to the nearest rupee – rounding is to be confirmed (AMT-COM-02)."];
+  if (r.scheme === "CMSS") {
+    const g = verGroupOf(r), rule = AMT_CMSS[g];
+    if (!rule) return { ok: false, total: 0, rows, notes: ["Course group is not set yet (set by the Help Center)."] };
+    const fee = verNum(verField(r, "Annual Institute Fees")) || r.fee || 0;
+    const recv = verYes(r, "MYSY Assistance Already Received?") ? verNum(verField(r, "MYSY Assistance Amount")) : 0;
+    const base = rule[0] ? Math.min(rule[0] * fee, rule[1]) : rule[1];
+    const total = Math.round(Math.max(0, Math.min(base, fee - recv)));
+    rows.push(["Annual Institute Fees", rup(fee), "Entered by the student (Fees Details)"],
+      ["Course group", g, "Set by the Help Center"],
+      ["CMSS amount", rup(base), rule[0] ? `50% of the fee, up to ${rup(rule[1])} (AMT-CMSS)` : `Fixed ${rup(rule[1])} (AMT-CMSS-06)`],
+      ["MYSY tuition assistance already received", rup(recv), "Deducted – CMSS + MYSY within 100% of the fee (AMT-CMSS-07)"]);
+    notes.push("The GR calculates on the annual tuition fee; the form field is Annual Institute Fees – to confirm (AMT-CMSS-00).");
+    if (rule[0]) notes.push("Self-financed condition of the GR – to confirm.");
+    return { ok: true, total, rows, notes };
+  }
+  const t = verTypeOf(r), rule = AMT_MYSY[t];
+  if (!rule) return { ok: false, total: 0, rows, notes: ["Course type is not set yet (set by the Help Center)."] };
+  if (/interior design|planning|hotel management/i.test(`${r.program} ${r.course}`)) return { ok: false, total: 0, rows, notes: ["No amount rule for Interior Design, Planning and Hotel Management until confirmed (AMT-MYSY-05)."] };
+  const fee = verNum(verField(r, "Yearly Tuition Fee")) || r.fee || 0, tfw = verYes(r, "Admission on TFW Seat?");
+  const tuition = tfw ? 0 : Math.min(0.5 * fee, rule.lim);
+  const hType = verField(r, "Hostel Type"), stTal = verField(r, "Taluka"), colTal = verField(r, "Institute Taluka");
+  const hostelOk = verYes(r, "Are You Hosteller?") && /^(Private hostel|Paying guest or rented room)$/.test(hType) && !!stTal && !!colTal && stTal !== colTal;
+  const hostel = hostelOk ? 12000 : 0, books = rule.books || 0;
+  rows.push(["Yearly Tuition Fee", rup(fee), "Entered by the student (Fees Details)"],
+    ["Course type", t.replace(/ \(.*$/, ""), "Set by the Help Center"],
+    ["Tuition assistance", rup(tuition), tfw ? "TFW seat – no tuition benefit (AMT-MYSY-01)" : `50% of the fee, up to ${rup(rule.lim)} (AMT-MYSY-01)`],
+    ["Hostel assistance", rup(hostel), hostelOk ? "₹1,200 × 10 months – private hostel / rented room outside the home taluka (AMT-MYSY-02)" : "Not given – not a private hostel / rented room outside the home taluka (AMT-MYSY-02)"],
+    ["Books assistance", rule.books == null ? "Not given" : rup(books), rule.books == null ? "No amount for General UG in the document – to confirm (AMT-MYSY-03)" : "Fixed by course type (AMT-MYSY-03)"]);
+  notes.push("50% of the fee or the full fee up to the limit – to confirm (AMT-MYSY-01). Books every year or once – to confirm.");
+  return { ok: true, total: Math.round(tuition + hostel + books), rows, notes, parts: { tuition: Math.round(tuition), hostel, books } };
+}
+function verAmountCard(r) {
+  const a = verAmount(r), frozen = r.status === "Approved" && r.amount;
+  return `<section class="card sf-sec ver-amt"><div class="ui-form-sec-head"><h5>${frozen ? "Sanctioned Amount" : "Calculated Amount"}</h5><p>${frozen ? "Frozen on Approve. Goes into the KCG Excel." : "Calculated automatically from the Amount rules. Read only. Saved as the sanctioned amount when you approve. The student does not see it."}</p></div>
+    ${a.ok ? `<div class="sf-kv">${a.rows.map(([l, v, s]) => `<div><span>${esc(l)}</span><b>${esc(v)}</b><i>${esc(s)}</i></div>`).join("")}</div>
+    <div class="ver-amt-total"><span>${r.scheme === "MYSY" ? "MYSY total (Tuition + Hostel + Books)" : "Sanctioned amount"}</span><b>${rup(a.total)}</b></div>` : ""}
+    <ul class="ver-amt-notes">${a.notes.map(n => `<li>${iconSvg("info", "o", 14)}<span>${esc(n)}</span></li>`).join("")}</ul></section>`;
+}
+// VER-26 / HC-02.2 / CO-02.1: the fields the eligibility rules use, in one highlighted read-only section (no pass / fail column)
+function verElgRows(r) {
+  const renew = /Renewal/.test(r.type), rows = [];
+  const add = (crit, label, rule, doc, alt) => { const [v, s] = label ? verFieldS(r, label) : [alt || "", ""]; rows.push({ crit, v: v || alt || "", s, rule, doc }); };
+  if (r.scheme === "CMSS") {
+    if (renew) {
+      add("Previous year marks", "Previous Year / Semester Marks", "Minimum 50%", "Previous Year Marksheet");
+      add("Attendance", "Attendance in Previous Year", "Minimum 75%", "Principal / Head of Institution Certificate");
+      add("Annual family income", "Annual Family Income", "Up to ₹4,50,000", "Income Certificate");
+      return rows;
+    }
+    const cats = (r.cats || []).map(c => SCH_CRIT.CMSS.cats.find(x => x[0] === c)).filter(Boolean);
+    if (cats.length) cats.forEach(c => rows.push({ crit: `Special category ${c[0]}`, v: c[1], s: "Declaration", rule: "At least one category applies (ELG-CMSS-01)", doc: c[2], cat: true }));
+    else rows.push({ crit: "Special category", v: "", s: "", rule: "At least one category applies (ELG-CMSS-01)", doc: "" });
+    add("Education pathway", "Previous Qualification", "Class 10 → Diploma, Diploma → Degree, Class 12 → UG (ELG-CMSS-02)", "Previous Qualification Marksheet");
+    add("Annual family income", "Annual Family Income", "Up to ₹4,50,000 (ELG-CMSS-03)", "Income Certificate");
+    add("Domicile", "Domicile State", "Gujarat (ELG-CMSS-04)", "Domicile Certificate");
+    return rows;
+  }
+  const jawan = r.special === "jawan";
+  if (renew) {
+    add("Previous year marks", "Previous Year / Semester Marks", "Minimum 50%", "Marksheet of the Previous Year");
+    add("Attendance", "Attendance in Previous Year", "Minimum 75%", "Principal / Head of Institution Certificate");
+    add("ATKT", "Do you have an ATKT?", "Cleared in the first attempt with minimum 50% marks", "Marksheet of the Previous Year");
+    add("Annual family income", "Annual Family Income", jawan ? "Limit not applied (special case)" : "Up to ₹6,00,000", "Income Certificate");
+    return rows;
+  }
+  add("Education pathway and course", "Previous Qualification", "Class 12 → UG or Class 10 → Diploma; eligible course; NEET for MBBS (ELG-MYSY-F01)", "Previous Qualification Marksheet");
+  const mk = ["Class 12 Percentile", "Class 10 Percentile", "Diploma Percentage", "Percentile"].map(l => verFieldS(r, l)).find(x => x[0]) || ["", ""];
+  rows.push({ crit: "Marks", v: mk[0], s: mk[1] || "Declaration", rule: jawan ? "Limit not applied (special case)" : "Class 10 / 12 percentile minimum 80, Diploma minimum 65% (ELG-MYSY-F02)", doc: "Previous Qualification Marksheet" });
+  add("Annual family income", "Annual Family Income", jawan ? "Limit not applied (special case)" : "Up to ₹6,00,000 (ELG-MYSY-F03)", "Income Certificate");
+  add("Domicile", "Domicile State", "Gujarat (ELG-MYSY-F04)", "Domicile Certificate");
+  add("NRI seat", "Admission on NRI Seat?", "No", "Admission Letter", "No");
+  rows.push({ crit: "Special case", v: { jawan: "Parent (jawan) died on duty", earner: "Main earning member passed away", integrated: "6-year integrated course" }[r.special] || "None", s: "Declaration", rule: "SPC-MYSY-01 to 04", doc: "" });
+  return rows;
+}
+function verElgCard(r) {
+  const rows = verElgRows(r), has = n => r.docs.includes(n);
+  const docCell = x => { if (!x.doc) return `<span class="ver-elg-na">No document</span>`; const names = x.doc.split(/[;,] | \+ | and | or /).map(s => s.trim()).filter(has);
+    if (x.cat) return `<span>${esc(x.doc)}</span><span class="ui-badge ui-badge-${names.length || r.docs.some(n => /Category/.test(n)) ? "approved" : "neutral"}">${names.length || r.docs.some(n => /Category/.test(n)) ? "Uploaded" : "See documents"}</span>`;
+    return has(x.doc) ? `<button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-vv-doc="${esc(x.doc)}">${iconSvg("view", "f", 14)}${esc(x.doc)}</button>` : `<span class="ver-elg-na">No document</span>`; };
+  const src = s => s === "Declaration" ? "From the declaration" : s ? `Verified by ${s}` : "Entered by student";
+  return `<section class="card sf-sec ver-elg"><div class="ui-form-sec-head"><h5>Eligibility summary</h5><p>The details the eligibility rules use, in one place. For reference – the eligibility check ran when the student submitted.</p></div>
+    <div class="table-wrap"><table class="ver-elg-t"><thead><tr><th>Criterion</th><th>Student's value</th><th>Rule / limit</th><th>Source</th><th>Document</th></tr></thead><tbody>
+    ${rows.map(x => `<tr><td><b>${esc(x.crit)}</b></td><td>${x.v ? esc(x.v) : `<span class="ver-elg-na">Not available</span>`}</td><td>${esc(x.rule)}</td><td>${x.v ? `<span class="ver-elg-src${x.s && x.s !== "Declaration" ? " is-ver" : ""}">${esc(src(x.s))}</span>` : "–"}</td><td><div class="ver-elg-doc">${docCell(x)}</div></td></tr>`).join("")}
+    </tbody></table></div></section>`;
+}
+// HC-02: what happened to the application before (submitted, forwarded, returned, resubmitted)
+function verRoundsCard(r) {
+  const ev = r.log.filter(l => /^(Submitted|Forwarded|Returned|Resubmitted|Sent back)/.test(l.t));
+  const earlier = ev.length > 1 ? ev.slice(0, -1) : [];
+  return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Earlier rounds</h5><p>${earlier.length ? "What happened to this application before this round." : "This is the first submission – there are no earlier rounds."}</p></div>
+    ${earlier.length ? `<ul class="ver-log">${earlier.slice().reverse().map(l => `<li><time>${fmt(l.d)}</time><span>${esc(l.t)}</span></li>`).join("")}</ul>` : ""}</section>`;
+}
+// CO-02.2 / VER-27: approved applications of this office, year and course group / type – count only
+function verApprovedCount(r) {
+  const cmss = r.scheme === "CMSS", g = cmss ? verGroupOf(r) : verTypeOf(r);
+  return VER.filter(x => x.status === "Approved" && x.office === r.office && x.year === r.year && x.scheme === r.scheme && (cmss ? verGroupOf(x) : verTypeOf(x)) === g).length;
+}
+
 // ---------- Review page (HC-02 / HC-02.1 / CO-02, VER-02 / 03 / 04 / 13) ----------
 function vvOpen() {
   const r = VER.find(x => x.id === HC.current), co = HC.from === "co";
@@ -9458,9 +9746,8 @@ function vvOpen() {
   const mark = s => s ? `<i class="is-ver">${iconSvg("check", "l", 12)}Verified by ${esc(s)}</i>` : locked || co ? `<i class="is-ver">${iconSvg("check", "l", 12)}Verified by Help Center</i>` : `<i>Entered by student</i>`;
   const rmk = r.remarks.length ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Earlier remarks</h5><p>All rounds, latest first.</p></div><div class="ver-remarks">${r.remarks.slice().reverse().map(m => `<div class="ver-rmk"><div class="ver-rmk-h"><b>${esc(m.act)}</b><span>${verTime(m.d)}</span><span>${esc(m.by)}</span></div><div class="ver-rmk-b">${m.html}</div></div>`).join("")}</div></section>` : "";
   const cmss = r.scheme === "CMSS", c = r.cls, ro = co || locked;
-  const cls = `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>${cmss ? "Department and Course group" : "MYSY Course Type"}</h5><p>${ro ? "Set by the Help Center before Forward." : "Needed before Forward. A suggestion comes from the earlier classification of the same program; you can change it."}</p></div>
-    <div class="ver-cls">${cmss ? `<div class="ui-field" data-cls="dept"><span class="ui-label">Department${ro ? "" : '<span class="ui-req">*</span>'}</span>${ro ? `<input class="ui-input" readonly value="${esc(c.dept)}">` : `<div class="ui-select" id="vvDept" data-search></div>`}<span class="ui-help" hidden></span></div>
-      <div class="ui-field" data-cls="group"><span class="ui-label">Course group${ro ? "" : '<span class="ui-req">*</span>'}${!ro && c.sugGroup ? `<span class="ver-sug">${iconSvg("info", "o", 12)}Suggested</span>` : ""}</span>${ro ? `<input class="ui-input" readonly value="${esc(c.group)}">` : `<div class="ui-select" id="vvGroup" data-search></div>`}<span class="ui-help" hidden></span></div>`
+  const cls = `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>${cmss ? "Course group" : "MYSY Course Type"}</h5><p>${ro ? "Set by the Help Center before Forward." : "Needed before Forward. A suggestion comes from the earlier classification of the same program; you can change it."}${cmss ? " The department comes from the admission data and is handled by the system." : ""}</p></div>
+    <div class="ver-cls">${cmss ? `<div class="ui-field" data-cls="group"><span class="ui-label">Course group${ro ? "" : '<span class="ui-req">*</span>'}${!ro && c.sugGroup ? `<span class="ver-sug">${iconSvg("info", "o", 12)}Suggested</span>` : ""}</span>${ro ? `<input class="ui-input" readonly value="${esc(c.group)}">` : `<div class="ui-select" id="vvGroup" data-search></div>`}<span class="ui-help" hidden></span></div>`
     : `<div class="ui-field sf-full" data-cls="type"><span class="ui-label">MYSY Course Type${ro ? "" : '<span class="ui-req">*</span>'}${!ro && c.sugType ? `<span class="ver-sug">${iconSvg("info", "o", 12)}Suggested</span>` : ""}</span>${ro ? `<input class="ui-input" readonly value="${esc(c.type)}">` : `<div class="ui-select" id="vvType"></div>`}<span class="ui-help" hidden></span></div>`}
       ${co ? `<div class="ui-field"><span class="ui-label">Tuition fee</span><input class="ui-input" readonly value="${maRupee(r.fee)}"></div>` : ""}</div></section>`;
   // VER-05/08: per-document Approve / Query (editable for the Help Center while Submitted/Resubmitted; read only after)
@@ -9477,6 +9764,8 @@ function vvOpen() {
   }).join("")}</div></section>`;
   $("#vvBody").innerHTML = `
     <div class="ver-legend" style="margin-bottom:var(--space-12)"><span class="is-ver">${iconSvg("check", "l", 12)}Verified by DigiLocker / Agency data – no action needed</span>${ro ? "" : "<span>Entered by student – reviewed step by step by the Commissionerate Office</span>"}</div>
+    ${verElgCard(r)}
+    ${verRoundsCard(r)}
     ${rmk}
     ${r.sections.map(([t, list]) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${esc(t)}</h5></div><div class="sf-kv">${list.map(([l, v, s]) => `<div><span>${esc(l)}</span><b>${esc(v)}</b>${mark(s)}</div>`).join("")}</div></section>`).join("")}
     ${docsCard}
@@ -9484,7 +9773,7 @@ function vvOpen() {
     ${co ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Activity log</h5><p>Help Center actions and remarks of earlier rounds.</p></div><ul class="ver-log">${r.log.slice().reverse().map(l => `<li><time>${fmt(l.d)}</time><span>${esc(l.t)}</span></li>`).join("")}</ul></section>` : ""}
     ${ro ? "" : `<section class="card ver-bar"><span class="ui-help">Forward sends the application to the Commissionerate Office of your department. The Help Center cannot return, hold or reject an application.</span>
       <div class="ver-bar-btns"><button class="ui-btn ui-btn-primary" type="button" data-vv-act="forward">${iconSvg("arrow-right", "l", 16)}Forward</button></div></section>`}`;
-  if (!ro) { if (cmss) { cjpSel($("#vvDept"), VER_DEPTS, c.dept); cjpSel($("#vvGroup"), VER_GROUPS, c.group); } else cjpSel($("#vvType"), VER_TYPES, c.type); }
+  if (!ro) { if (cmss) { cjpSel($("#vvGroup"), VER_GROUPS, c.group); } else cjpSel($("#vvType"), VER_TYPES, c.type); }
   scrollTo(0, 0);
 }
 $("#vvBody").addEventListener("ui-select-change", e => {
@@ -9498,51 +9787,58 @@ $("#vvBody").addEventListener("ui-select-change", e => {
 $("#vvBody").addEventListener("change", e => {
   const d = e.target.closest("[data-doc]"), s = e.target.closest("[data-step]");
   const r = VER.find(x => x.id === HC.current); if (!r) return;
-  if (d) { r.docDecisions[d.dataset.doc].d = d.value; vvOpen(); return; }
-  if (s) { r.coSteps[s.dataset.step].d = s.value; vvOpen(); }                 // CO-04 (step 3): per-step Approve / Return
+  const y = scrollY, keep = () => { vvOpen(); vvUpdatedAdd(); scrollTo(0, y); };   // 25/11: re-render in place – no jump to the top of the page
+  const cd = e.target.closest("[data-codoc]");
+  if (d) { r.docDecisions[d.dataset.doc].d = d.value; keep(); return; }
+  if (cd) { const n = cd.dataset.codoc, x = r.coDocs[n]; x.d = cd.value; if (cd.value === "Return" && !x.remarks && r.docDecisions[n].remarks) x.remarks = r.docDecisions[n].remarks; keep(); return; }
+  if (s) { r.coSteps[s.dataset.step].d = s.value; keep(); }                   // CO-04 (step 3): per-step Approve / Return
 });
 $("#vvBody").addEventListener("input", e => {
-  const t = e.target.closest("[data-doc-remarks]"), s = e.target.closest("[data-step-remarks]");
+  const t = e.target.closest("[data-doc-remarks]"), s = e.target.closest("[data-step-remarks]"), cq = e.target.closest("[data-codoc-remarks]");
   const r = VER.find(x => x.id === HC.current); if (!r) return;
   if (t) { r.docDecisions[t.dataset.docRemarks].remarks = t.value; if (t.value.trim()) { const h = t.nextElementSibling; if (h) { h.hidden = true; h.textContent = ""; } } return; }
-  if (s) {                                                                    // don't re-render on every keystroke – keep textarea focus, just re-check the Return button
-    r.coSteps[s.dataset.stepRemarks].remarks = e.target.value;
+  if (cq) r.coDocs[cq.dataset.codocRemarks].remarks = cq.value;              // 25/11: the office edits the Help Center's query text
+  if (s || cq) {                                                              // don't re-render on every keystroke – keep textarea focus, just re-check the Return button
+    if (s) r.coSteps[s.dataset.stepRemarks].remarks = e.target.value;
     if (e.target.value.trim()) { const h = e.target.nextElementSibling; if (h) { h.hidden = true; h.textContent = ""; } }
     const steps = verCoSteps(r);
     const btn = $('#vvBody [data-co-act="return"]');
-    if (btn) btn.disabled = !(steps.some(d => verCoState(r, d) === "returned") && !steps.some(d => verCoState(r, d) === "returned" && !r.coSteps[d.key].remarks.trim()));
+    if (btn) btn.disabled = !(steps.some(d => verCoState(r, d) === "returned") && !steps.some(d => verCoState(r, d) === "returned" && verCoMissing(r, d)));
   }
 });
 $("#vvBody").addEventListener("click", e => {
   const d = e.target.closest("[data-vv-doc]"), a = e.target.closest("[data-vv-act]");
-  if (d) return toast(`Opening ${d.dataset.vvDoc}`);
+  if (d) return verDocView(d.dataset.vvDoc, VER.find(x => x.id === HC.current));
   if (!a) return;
   const r = VER.find(x => x.id === HC.current);
   if (a.dataset.vvAct !== "forward") return;
-  const cmss = r.scheme === "CMSS", c = r.cls, missCls = cmss ? !(c.dept && c.group) : !c.type;
+  const cmss = r.scheme === "CMSS", c = r.cls, missCls = cmss ? !c.group : !c.type;
   if (missCls) {                                                  // VER-03: classification first
-    if (cmss) { if (!c.dept) cjpErr($('#vvBody [data-cls="dept"]'), "Select the department and course group before forwarding."); if (!c.group) cjpErr($('#vvBody [data-cls="group"]'), "Select the department and course group before forwarding."); }
+    if (cmss) cjpErr($('#vvBody [data-cls="group"]'), "Select the course group before forwarding.");
     else cjpErr($('#vvBody [data-cls="type"]'), "Select the course type before forwarding.");
-    $('#vvBody [data-cls]').scrollIntoView({ block: "center", behavior: "smooth" });
-    return toast(cmss ? "Select the department and course group before forwarding." : "Select the course type before forwarding.");
+    $('#vvBody [data-cls]').scrollIntoView({ block: "center", behavior: "smooth" }); verFlash($('#vvBody [data-cls]').closest(".sf-sec"));
+    return toast(cmss ? "Select the course group before forwarding." : "Select the course type before forwarding.");
   }
   const undecided = r.docs.find(n => !r.docDecisions[n].d);
-  if (undecided) { $(`#vvBody [data-doc-row="${CSS.escape(undecided)}"]`).scrollIntoView({ block: "center", behavior: "smooth" }); return toast("Mark every document Approve or Query before forwarding."); }
+  if (undecided) { const rows = r.docs.filter(n => !r.docDecisions[n].d).map(n => $(`#vvBody [data-doc-row="${CSS.escape(n)}"]`)); rows[0].scrollIntoView({ block: "center", behavior: "smooth" }); rows.forEach(verFlash); return toast("Mark every document Approve or Query before forwarding."); }
   const noRemarks = r.docs.find(n => r.docDecisions[n].d === "Query" && !r.docDecisions[n].remarks.trim());
   if (noRemarks) {
     const row = $(`#vvBody [data-doc-row="${CSS.escape(noRemarks)}"]`), h = row.querySelector(".ui-help");
     if (h) { h.hidden = false; h.innerHTML = HELP_ICON["is-error"] + "Remarks is mandatory for a Query."; }
-    row.scrollIntoView({ block: "center", behavior: "smooth" }); return toast("Add remarks for every document marked Query.");
+    row.scrollIntoView({ block: "center", behavior: "smooth" }); verFlash(row); return toast("Add remarks for every document marked Query.");
   }
   openModal("mdVerLock");
 });
+// 25/11: a red border for ~2.5 s on the item that still needs an action (with the scroll)
+function verFlash(el) { if (!el) return; el.classList.remove("ver-flash"); el.offsetWidth; el.classList.add("ver-flash"); setTimeout(() => el.classList.remove("ver-flash"), 2600); }
 $("#verLockYes").addEventListener("click", () => {
   const r = VER.find(x => x.id === HC.current); if (!r) return;
-  if (r.scheme === "CMSS") { r.dept = r.cls.dept; r.group = r.cls.group; } else r.courseType = r.cls.type;
+  if (r.scheme === "CMSS") { r.dept = r.cls.dept || r.dept || "Technical"; r.group = r.cls.group; } else r.courseType = r.cls.type;   // 25/11: department from the admission data (backend), not picked by the Help Center
   r.locked = new Date(); r.office = VER_OFFICES[r.dept] || "Commissionerate Office";
   if (r.coSteps) Object.values(r.coSteps).forEach(s => { if (!s.locked) { s.d = ""; s.remarks = ""; } });   // VER-18: on a resubmit the Commissionerate Office reviews only the returned steps again
+  if (r.coDocs && !(r.coSteps && r.coSteps.docs && r.coSteps.docs.locked)) r.coDocs = undefined;            // 25/11: office document decisions start again from the Help Center's new marks
   verSetStatus(r, "Under Review");
-  r.log.push({ d: new Date(), t: `Forwarded by Help Center (${r.scheme === "CMSS" ? `Department: ${r.dept}, Course group: ${r.group}` : `Course Type: ${r.courseType.replace(/ \(.*$/, "")}`}) to ${r.office}` });
+  r.log.push({ d: new Date(), t: `Forwarded by Help Center (${r.scheme === "CMSS" ? `Course group: ${r.group}` : `Course Type: ${r.courseType.replace(/ \(.*$/, "")}`}) to ${r.office}` });
   closeModal($("#mdVerLock")); toast(`${r.id} forwarded to ${r.office}`);
   location.hash = "hc";
 });
@@ -9576,21 +9872,34 @@ function verCoSteps(r) {                                            // VER-10: t
   return [...r.sections.filter(([t]) => t !== "Aadhaar Verification").map(([t, list], si) => ({ key: "sec" + si, title: t, list })),
            { key: "docs", title: "Uploaded Documents", list: null }];
 }
-const verCoAuto = (r, d) => d.key === "docs" ? r.docs.every(n => r.docDecisions[n] && r.docDecisions[n].d === "Approve") : d.list.every(([, , s]) => s);
+const verCoAuto = (r, d) => d.key === "docs" ? false : d.list.every(([, , s]) => s);   // 25/11: documents are decided per document by the office (verCoDocsHtml)
 function verCoState(r, d) {                                          // "auto" | "locked" | "approved" | "returned" | "pending"
   if (verCoAuto(r, d)) return "auto";
   const st = r.coSteps[d.key];
+  if (d.key === "docs") return st.locked ? "locked" : r.docs.some(n => r.coDocs && r.coDocs[n] && r.coDocs[n].d === "Return") ? "returned" : "approved";
   return st.locked ? "locked" : st.d === "Approved" ? "approved" : st.d === "Returned" ? "returned" : "pending";
+}
+// remarks missing on a returned step (documents: on any returned document)
+const verCoMissing = (r, d) => d.key === "docs" ? r.docs.some(n => r.coDocs[n].d === "Return" && !r.coDocs[n].remarks.trim()) : !r.coSteps[d.key].remarks.trim();
+function verCoDocsHtml(r, ro) {                                      // 25/11: the office decides per document; a Help Center Query starts as Return with its text, which the office can edit
+  return `<div class="sf-docs">${r.docs.map((n, i) => { const dd = r.docDecisions[n], x = r.coDocs[n];
+    const hc = dd.d === "Query" ? `<span class="ver-doc-badge is-query">${iconSvg("warning", "o", 14)}Query from Help Center</span>` : `<span class="ver-doc-badge is-ok">${iconSvg("check", "l", 14)}Approved by Help Center</span>`;
+    const dec = ro ? (x.d === "Return" ? `<span class="ver-step-auto is-ret">${iconSvg("warning", "o", 14)}Returned${x.remarks ? ": " + esc(x.remarks) : ""}</span>` : `<span class="ver-step-auto">${iconSvg("check", "l", 14)}Approved</span>`)
+      : `<div class="ver-doc-radios" role="radiogroup" aria-label="Office decision for ${esc(n)}">
+          <label class="cjp-radio"><input type="radio" name="vvcodoc-${i}" value="Approve" data-codoc="${esc(n)}" ${x.d === "Approve" ? "checked" : ""}>Approve</label>
+          <label class="cjp-radio"><input type="radio" name="vvcodoc-${i}" value="Return" data-codoc="${esc(n)}" ${x.d === "Return" ? "checked" : ""}>Return</label></div>
+        ${x.d === "Return" ? `<label class="ui-label" for="cq-${i}">${dd.d === "Query" ? "Query from the Help Center – you can edit it before returning" : "Remarks for the student"}<span class="ui-req">*</span></label><textarea class="ui-input" id="cq-${i}" data-codoc-remarks="${esc(n)}" placeholder="Remarks for this document (mandatory)">${esc(x.remarks)}</textarea><span class="ui-help" hidden></span>` : ""}`;
+    return `<div class="ver-doc" data-codoc-row="${esc(n)}"><div class="ver-doc-top"><div class="sf-doc-name"><b>${esc(n)}</b>${hc}</div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-vv-doc="${esc(n)}">${iconSvg("view", "f", 14)}View</button></div>${dec}</div>`; }).join("")}</div>`;
 }
 function verCoStepCard(r, d, ro) {
   const state = verCoState(r, d), st = r.coSteps[d.key];
   const body = d.key === "docs"
-    ? `<div class="sf-docs">${r.docs.map(n => { const dd = r.docDecisions[n];
-        const badge = dd.d === "Approve" ? `<span class="ver-doc-badge is-ok">${iconSvg("check", "l", 14)}Approved by Help Center</span>` : `<span class="ver-doc-badge is-query">${iconSvg("warning", "o", 14)}Query${dd.remarks ? ": " + esc(dd.remarks) : ""}</span>`;
-        return `<div class="ver-doc"><div class="ver-doc-top"><div class="sf-doc-name"><b>${esc(n)}</b></div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-vv-doc="${esc(n)}">${iconSvg("view", "f", 14)}View</button></div>${badge}</div>`; }).join("")}</div>`
+    ? verCoDocsHtml(r, ro || st.locked)
     : `<div class="sf-kv">${d.list.map(([l, v, s]) => `<div><span>${esc(l)}</span><b>${esc(v)}</b>${s ? `<i class="is-ver">${iconSvg("check", "l", 12)}Verified by ${esc(s)}</i>` : "<i>Entered by student</i>"}</div>`).join("")}</div>`;
-  const canAct = !ro && (state === "pending" || state === "returned" || state === "approved");
-  const action = state === "auto" ? `<span class="ver-step-auto">${iconSvg("check", "l", 14)}Approved automatically – every field is verified</span>`
+  const canAct = !ro && d.key !== "docs" && (state === "pending" || state === "returned" || state === "approved");
+  const nRet = d.key === "docs" ? r.docs.filter(n => r.coDocs[n].d === "Return").length : 0;
+  const action = d.key === "docs" && state !== "locked" ? `<span class="ver-step-auto${nRet ? " is-ret" : ""}">${nRet ? iconSvg("warning", "o", 14) + `${nRet} document${nRet === 1 ? "" : "s"} will be returned to the student` : iconSvg("check", "l", 14) + "All documents approved"}</span>`
+    : state === "auto" ? `<span class="ver-step-auto">${iconSvg("check", "l", 14)}Approved automatically – every field is verified</span>`
     : state === "locked" ? `<span class="ver-step-auto">${iconSvg("check", "l", 14)}Approved by the Commissionerate Office (locked)</span>`
     : canAct ? `<div class="ver-doc-radios" role="radiogroup" aria-label="Decision for ${esc(d.title)}">
         <label class="cjp-radio"><input type="radio" name="vvstep-${d.key}" value="Approved" data-step="${d.key}" ${st.d === "Approved" ? "checked" : ""}>Approve</label>
@@ -9604,6 +9913,8 @@ function verCoInit(r) {                                             // shared la
   r.docs.forEach(n => { if (!r.docDecisions[n]) r.docDecisions[n] = { d: "Approve", remarks: "" }; });
   if (!r.coSteps) r.coSteps = {};
   verCoSteps(r).forEach(d => { if (!r.coSteps[d.key]) r.coSteps[d.key] = { d: "", remarks: "", locked: false }; });
+  if (!r.coDocs) r.coDocs = {};                                     // 25/11: office decision per document – starts from the Help Center's mark (Query → Return with the same text)
+  r.docs.forEach(n => { if (!r.coDocs[n]) { const q = r.docDecisions[n] && r.docDecisions[n].d === "Query"; r.coDocs[n] = { d: q ? "Return" : "Approve", remarks: q ? r.docDecisions[n].remarks : "" }; } });
 }
 function coReviewBody(r) {
   verCoInit(r);
@@ -9614,15 +9925,17 @@ function coReviewBody(r) {
   const rmk = r.remarks.length ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Earlier remarks</h5><p>All rounds, latest first.</p></div><div class="ver-remarks">${r.remarks.slice().reverse().map(m => `<div class="ver-rmk"><div class="ver-rmk-h"><b>${esc(m.act)}</b><span>${verTime(m.d)}</span><span>${esc(m.by)}</span></div><div class="ver-rmk-b">${m.html}</div></div>`).join("")}</div></section>` : "";
   const aad = r.sections.find(([t]) => t === "Aadhaar Verification");
   const aadCard = aad ? `<section class="card sf-sec ver-step is-approved"><div class="sf-rv-head"><h5>${esc(aad[0])}</h5></div><div class="sf-kv">${aad[1].map(([l, v, s]) => `<div><span>${esc(l)}</span><b>${esc(v)}</b><i class="is-ver">${iconSvg("check", "l", 12)}Verified by ${esc(s)}</i></div>`).join("")}</div><div class="ver-step-act"><span class="ver-step-auto">${iconSvg("info", "o", 14)}Not reviewed by the Commissionerate Office</span></div></section>` : "";
+  const cmss = r.scheme === "CMSS", grp = cmss ? verGroupOf(r) : verTypeOf(r);
+  const countCard = `<section class="card ver-cnt"><span class="ui-icon-box is-success">${iconSvg("check", "l", 20)}</span><div><span>Approved in this course ${cmss ? "group" : "type"}</span><b>${verApprovedCount(r)}</b><small>${esc((grp || "Not set").replace(/ \(.*$/, ""))} · ${r.year} · this office</small></div></section>`;
   const allApproved = steps.every(d => ["auto", "locked", "approved"].includes(verCoState(r, d)));
   const anyReturned = steps.some(d => verCoState(r, d) === "returned");
-  const returnedNoRemarks = steps.some(d => verCoState(r, d) === "returned" && !r.coSteps[d.key].remarks.trim());
+  const returnedNoRemarks = steps.some(d => verCoState(r, d) === "returned" && verCoMissing(r, d));
   const actionBar = ro ? "" : `<section class="card ver-bar"><span class="ui-help">Approve needs every step Approved. Return needs remarks on every returned step.</span>
     <div class="ver-bar-btns">
       <button class="ui-btn ui-btn-danger-soft" type="button" data-co-act="return" ${anyReturned && !returnedNoRemarks ? "" : "disabled"}>${iconSvg("warning", "o", 16)}Return</button>
       <button class="ui-btn ui-btn-primary" type="button" data-co-act="approve" ${allApproved ? "" : "disabled"}>${iconSvg("check", "l", 16)}Approve</button>
     </div></section>`;
-  return `${grCard}${rmk}${aadCard}${steps.map(d => verCoStepCard(r, d, ro)).join("")}
+  return `<div class="ver-co-top">${countCard}${grCard}</div>${verElgCard(r)}${verAmountCard(r)}${rmk}${aadCard}${steps.map(d => verCoStepCard(r, d, ro)).join("")}
     <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Activity log</h5></div><ul class="ver-log">${r.log.slice().reverse().map(l => `<li><time>${fmt(l.d)}</time><span>${esc(l.t)}</span></li>`).join("")}</ul></section>
     ${actionBar}`;
 }
@@ -9632,11 +9945,14 @@ $("#vvBody").addEventListener("click", e => {
   const r = VER.find(x => x.id === HC.current); if (!r) return;
   CO_ACT = c.dataset.coAct;
   if (CO_ACT === "return") {                                        // VER-12: remarks mandatory on every returned step
-    const bad = verCoSteps(r).find(d => verCoState(r, d) === "returned" && !r.coSteps[d.key].remarks.trim());
-    if (bad) { const row = $(`#vvBody [data-step-row="${bad.key}"]`), h = row.querySelector(".ui-help"); if (h) { h.hidden = false; h.innerHTML = HELP_ICON["is-error"] + "Remarks is mandatory for a returned step."; } row.scrollIntoView({ block: "center", behavior: "smooth" }); return toast("Add remarks for every returned step."); }
+    const bad = verCoSteps(r).find(d => verCoState(r, d) === "returned" && verCoMissing(r, d));
+    if (bad) { const row = bad.key === "docs" ? $(`#vvBody [data-codoc-row="${CSS.escape(r.docs.find(n => r.coDocs[n].d === "Return" && !r.coDocs[n].remarks.trim()))}"]`) : $(`#vvBody [data-step-row="${bad.key}"]`), h = row.querySelector(".ui-help"); if (h) { h.hidden = false; h.innerHTML = HELP_ICON["is-error"] + "Remarks is mandatory for a returned step."; } row.scrollIntoView({ block: "center", behavior: "smooth" }); return toast("Add remarks for every returned step."); }
   }
-  $("#mdCoActTitle").textContent = CO_ACT === "approve" ? "Approve Application" : "Return Application";
-  $("#mdCoActSub").textContent = CO_ACT === "approve" ? "This is final. The student is notified and the application is added to the Phase." : "The student gets the remarks by mail and in the app, and can resubmit within 15 days.";
+  const ap = CO_ACT === "approve";                                  // 25/11: Confirm modal – tone icon, short title, one message
+  $("#mdCoActIcon").className = "ui-confirm-icon " + (ap ? "is-success" : "is-danger");
+  $("#mdCoActIcon").innerHTML = ap ? iconSvg("check", "l", 24) : iconSvg("warning", "o", 24);
+  $("#mdCoActTitle").textContent = ap ? "Approve this application?" : "Return this application?";
+  $("#mdCoActSub").textContent = ap ? "This is final. The student is notified and the application is added to the Phase." : "The student gets the remarks by mail and in the app, and can resubmit at any time.";
   $("#mdCoActYes").className = "ui-btn " + (CO_ACT === "approve" ? "ui-btn-primary" : "ui-btn-danger");
   $("#mdCoActYes").textContent = CO_ACT === "approve" ? "Approve" : "Return";
   openModal("mdCoAct");
@@ -9646,17 +9962,19 @@ $("#mdCoActYes").addEventListener("click", () => {
   const steps = verCoSteps(r); closeModal($("#mdCoAct"));
   if (CO_ACT === "approve") {                                       // VER-11/22: final, notifies the student, added to the Phase
     steps.forEach(d => { if (verCoState(r, d) === "approved") r.coSteps[d.key].locked = true; });
+    r.amount = verAmount(r); r.sanctioned = r.amount.total;          // AMT-COM-01: frozen as the sanctioned amount
     verSetStatus(r, "Approved"); r.log.push({ d: new Date(VER_CLOCK), t: `Approved by ${r.office}` });
     verAddToPhase(r); notify(r, "Application approved", `${r.scheme} application ${r.id} is approved by ${r.office}. It has been added for payment processing.`);
     toast(`${r.id} approved`);
-  } else {                                                           // VER-12/13: 15-day timeline reused; approved steps lock, returned steps stay open for the next round
+  } else {                                                           // VER-12/13: approved steps lock, returned steps stay open for the next round (VER-14: no time limit)
     const returned = steps.filter(d => verCoState(r, d) === "returned");
     steps.filter(d => verCoState(r, d) === "approved").forEach(d => { r.coSteps[d.key].locked = true; });
-    const html = `<ul>${returned.map(d => `<li><b>${esc(d.title)}:</b> ${esc(r.coSteps[d.key].remarks.trim())}</li>`).join("")}</ul>`;
+    const html = `<ul>${returned.map(d => d.key === "docs" ? r.docs.filter(n => r.coDocs[n].d === "Return").map(n => `<li><b>Uploaded Documents – ${esc(n)}:</b> ${esc(r.coDocs[n].remarks.trim())}</li>`).join("") : `<li><b>${esc(d.title)}:</b> ${esc(r.coSteps[d.key].remarks.trim())}</li>`).join("")}</ul>`;
+    r.docs.forEach(n => { const q = r.docDecisions[n]; if (q && q.d === "Query" && r.coDocs[n].d === "Return" && r.coDocs[n].remarks.trim() !== q.remarks.trim()) r.log.push({ d: new Date(VER_CLOCK), t: `Help Center query on ${n} edited by ${r.office}` }); });
     r.remarks.push({ act: "Returned", d: new Date(VER_CLOCK), by: r.office, html });
-    r.sendBack = new Date(VER_CLOCK); r.reminded = [];
+    r.sendBack = new Date(VER_CLOCK);
     verSetStatus(r, "Returned"); r.log.push({ d: new Date(VER_CLOCK), t: `Returned by ${r.office}` });
-    notify(r, "Application returned", `${r.scheme} application ${r.id} was returned by ${r.office}. Check the remarks and resubmit within 15 days.`);
+    notify(r, "Application returned", `${r.scheme} application ${r.id} was returned by ${r.office}. Check the remarks, update and resubmit.`);
     toast(`${r.id} returned`);
   }
   location.hash = "co";
@@ -9664,38 +9982,29 @@ $("#mdCoActYes").addEventListener("click", () => {
 
 /* ================= VERIFICATION – Phase 4b: student status, Update / Resubmit, timeline, notifications =================
    COM-03 progress tracker · COM-04 Update / Resubmit (VER-08 / 09 / 10 / 18) · HC-05 updated items (VER-11)
-   HC-07 15-day timeline, reminders day 10 / 13 / 14, Expired (VER-16 / 17) · COM-05 notifications (mail + in-app). */
-const VER_DAY = 864e5;
-let VER_CLOCK = new Date();                                           // "today" for the timeline – the demo "+1 day" button moves it
+   COM-05 notifications (mail + in-app). 25/11 (VER-14/15/21): no time limit after a Return, no reminders, no Expired status. */
+const VER_CLOCK = new Date();                                         // "today"
 const NOTI = [];                                                      // student notifications (newest first)
 const verOfMa = a => VER.find(r => r.ma === a || r.id === a.id);
 const verPlain = html => { const d = document.createElement("div"); d.innerHTML = html.replace(/<li>/g, "<li>• ").replace(/<\/(li|p|div)>/g, "$&\n"); return d.textContent.replace(/\n{2,}/g, "\n").trim(); };
-const verDaysSince = d => Math.floor((new Date(VER_CLOCK.getFullYear(), VER_CLOCK.getMonth(), VER_CLOCK.getDate()) - new Date(d.getFullYear(), d.getMonth(), d.getDate())) / VER_DAY);
-const verDue = r => new Date(r.sendBack.getFullYear(), r.sendBack.getMonth(), r.sendBack.getDate() + 15);
-const verDaysLeft = r => 15 - verDaysSince(r.sendBack);
 const verCanUpdate = r => r && r.status === "Returned";       // 19/11: Return is the only "student can act" status now (On Hold is gone)
-function notify(r, title, text) {                                     // COM-05: every event goes by mail and in-app (only the student's own applications)
+function notify(r, title, text) {                                     // COM-05: Return and Approve go by mail and in-app (only the student's own applications)
   if (!r.ma) return;
   NOTI.unshift({ d: new Date(VER_CLOCK), title, text, id: r.id, read: false }); notiBadge();
 }
-// HC-07: run the system check for the current "today"
-function verTick() {
-  VER.forEach(r => {
-    if (r.status !== "Returned" || !r.sendBack) return;
-    const days = verDaysSince(r.sendBack); r.reminded = r.reminded || [];
-    [10, 13, 14].forEach(n => { if (days >= n && days <= 15 && !r.reminded.includes(n)) { r.reminded.push(n); notify(r, "Reminder: correct your application", `${r.scheme} application ${r.id}: ${15 - n} day${15 - n === 1 ? "" : "s"} left to update and resubmit (by ${fmt(verDue(r))}).`); } });
-    if (days > 15) {
-      verSetStatus(r, "Expired"); r.log.push({ d: new Date(VER_CLOCK), t: "Expired – not resubmitted within 15 days (expiry mail sent)" });
-      notify(r, "Application expired", `${r.scheme} application ${r.id} was not resubmitted within 15 days. You cannot update it now.`);
-    }
-  });
-}
-// Notification on Return will be wired again when the Commissionerate Office's Return (CO-04) is built in the next step.
+// 25/11 (COM-04/05): the Help Center gets an in-app notification (no mail) when a student resubmits
+const HC_NOTI = [];
 
 // ---------- header bell + notifications drawer ----------
 function notiBadge() {
-  const n = NOTI.filter(x => !x.read).length, b = $(".h-right .badge-count");
-  if (b) { b.textContent = n; b.hidden = !n || ROLE !== "student"; }
+  const list = ROLE === "hc" ? HC_NOTI : NOTI, n = list.filter(x => !x.read).length, b = $(".h-right .badge-count");
+  if (b) { b.textContent = n; b.hidden = !n || (ROLE !== "student" && ROLE !== "hc"); }
+}
+function hcNotiOpen() {                                                // 25/11 (COM-04/05): Help Center gets an in-app notification when a student resubmits
+  $("#drNotiBody").innerHTML = HC_NOTI.length ? `<ul class="noti-list">${HC_NOTI.map(x => `<li class="${x.read ? "" : "is-new"}"><b>${esc(x.title)}</b><p>${esc(x.text)}</p><small>${verTime(x.d)} · in the app (no mail)</small></li>`).join("")}</ul>`
+    : `<div class="ma-empty"><span class="ui-icon-box is-primary">${iconSvg("bell", "o", 24)}</span><b>No notifications yet.</b><span>You are told here when a student resubmits a returned application.</span></div>`;
+  HC_NOTI.forEach(x => x.read = true); notiBadge();
+  openDrawer2("drNoti");
 }
 function notiOpen() {
   $("#drNotiBody").innerHTML = NOTI.length ? `<ul class="noti-list">${NOTI.map(x => `<li class="${x.read ? "" : "is-new"}"><b>${esc(x.title)}</b><p>${esc(x.text)}</p><small>${verTime(x.d)} · sent by mail and in the app</small></li>`).join("")}</ul>`
@@ -9703,35 +10012,33 @@ function notiOpen() {
   NOTI.forEach(x => x.read = true); notiBadge();
   openDrawer2("drNoti");
 }
-$('.h-right .icon-btn[title="Notifications"]').addEventListener("click", () => { if (ROLE === "student") notiOpen(); else toast("Notifications are for students in this demo"); });
+$('.h-right .icon-btn[title="Notifications"]').addEventListener("click", () => { if (ROLE === "student") notiOpen(); else if (ROLE === "hc") hcNotiOpen(); else toast("Notifications are for students and the Help Center in this demo"); });
 
 // ---------- COM-03: status + progress tracker on View Application ----------
 const ST_TEXT = {
   Submitted: "Waiting for the Help Center of your college. No action needed.",
-  Returned: "The Commissionerate Office returned your application. Update it and resubmit within 15 days.",
+  Returned: "The Commissionerate Office returned your application. Update it and resubmit.",
   Resubmitted: "You corrected your application. It is waiting for the Help Center. No action needed.",
   "Under Review": "Forwarded by the Help Center and now with the Commissionerate Office. No action needed.",
-  Approved: "Approved by the Commissionerate Office. No action needed. The amount is not shown here.",
-  Expired: "15 days passed after Return. You cannot update it now."
+  Approved: "Approved by the Commissionerate Office. No action needed. The amount is not shown here."
 };
 function stTracker(a) {
   // sample rows of My Applications are not in the verification list (VER) → the tracker uses the row's own status, no remarks
   const r = verOfMa(a) || { status: a.status, remarks: [] };
   const s = r.status;
-  // 19/11: Return/Expired happen AFTER forwarding, so they fail at the Commissionerate Office step (2), not the Help Center step (1)
-  const step = s === "Under Review" ? 2 : s === "Approved" ? 3 : /Returned|Expired/.test(s) ? 2 : 1;
-  const dot = (i, t, tag) => `<li class="ui-step${i < step ? " is-done" : i === step ? (/Returned|Expired/.test(s) && i === 2 ? " is-failed" : " is-current") : ""}"><span class="ui-step-dot">${i < step ? iconSvg("check", "l", 18) : i + 1}</span><div class="ui-step-body"><span class="ui-step-title">${t}</span>${tag ? `<span class="ui-step-tag">${tag}</span>` : ""}</div></li>`;
+  // 19/11: Return happens AFTER forwarding, so it fails at the Commissionerate Office step (2), not the Help Center step (1)
+  const step = s === "Under Review" ? 2 : s === "Approved" ? 3 : s === "Returned" ? 2 : 1;
+  const dot = (i, t, tag) => `<li class="ui-step${i < step ? " is-done" : i === step ? (s === "Returned" && i === 2 ? " is-failed" : " is-current") : ""}"><span class="ui-step-dot">${i < step ? iconSvg("check", "l", 18) : i + 1}</span><div class="ui-step-body"><span class="ui-step-title">${t}</span>${tag ? `<span class="ui-step-tag">${tag}</span>` : ""}</div></li>`;
   const last = r.remarks[r.remarks.length - 1];
-  const rem = (s === "Returned" || s === "Expired") && last ? `<div class="ver-rmk" style="margin-top:var(--space-16)"><div class="ver-rmk-h"><b>Remarks from the Commissionerate Office</b><span>${verTime(last.d)}</span></div><div class="ver-rmk-b">${last.html}</div></div>` : "";
+  const rem = s === "Returned" && last ? `<div class="ver-rmk" style="margin-top:var(--space-16)"><div class="ver-rmk-h"><b>Remarks from the Commissionerate Office</b><span>${verTime(last.d)}</span></div><div class="ver-rmk-b">${last.html}</div></div>` : "";
   const msg = ST_TEXT[s] || "Status is not available right now.";
-  const due = s === "Returned" ? ` Resubmit by <b>${fmt(verDue(r))}</b> (${Math.max(0, verDaysLeft(r))} day${verDaysLeft(r) === 1 ? "" : "s"} left).` : "";
-  return `<section class="card ma-sec st-card"><div class="st-top"><div class="ui-form-sec-head"><h5>Status ${maBadge(s)}</h5><p>${esc(msg)}${due}</p></div>${verCanUpdate(r) ? `<a class="ui-btn ui-btn-primary ui-btn-sm" href="#ma-update" data-ma-upd="${a.id}">${iconSvg("edit", "f", 14)}Update Application</a>` : ""}</div>
+  return `<section class="card ma-sec st-card"><div class="st-top"><div class="ui-form-sec-head"><h5>Status ${maBadge(s)}</h5><p>${esc(msg)}</p></div>${verCanUpdate(r) ? `<a class="ui-btn ui-btn-primary ui-btn-sm" href="#ma-update" data-ma-upd="${a.id}">${iconSvg("edit", "f", 14)}Update Application</a>` : ""}</div>
     <ol class="ui-steps st-steps" aria-label="Application progress">${dot(0, "Submitted", fmt(a.date))}${dot(1, "Help Center", step === 1 ? s : "Done")}${dot(2, "Commissionerate Office", step === 2 ? s : "")}${dot(3, "Approved", "")}</ol>${rem}</section>`;
 }
 // function declarations (hoisted): maRender runs at page load, before this block; VER is not ready then → try / catch
 function maUpdBtn(a) { try { const r = verOfMa(a); return verCanUpdate(r) ? `<a class="ui-act ui-act-edit" href="#ma-update" data-ma-upd="${a.id}" title="Update application" aria-label="Update application ${a.id}">${iconSvg("edit", "f", 18)}</a>` : ""; } catch (e) { return ""; } }
 function maStNote(a) { try { return maStNote2(a); } catch (e) { return ""; } }
-const maStNote2 = a => { const r = verOfMa(a); if (!r) return ""; return r.status === "Returned" ? `<span class="ma-dead st-left">${Math.max(0, verDaysLeft(r))} day${verDaysLeft(r) === 1 ? "" : "s"} left to resubmit</span>` : r.status === "Expired" ? `<span class="ma-dead">Expired – no action possible</span>` : ""; };
+const maStNote2 = a => { const r = verOfMa(a); if (!r) return ""; return r.status === "Returned" ? `<span class="ma-dead st-left">Update and resubmit</span>` : ""; };
 document.addEventListener("click", e => { const u = e.target.closest("[data-ma-upd]"); if (u) MA.current = u.dataset.maUpd; });
 
 // ---------- COM-04: Update / Resubmit ----------
@@ -9749,15 +10056,21 @@ function upOpen() {
   $("#upTitle").textContent = `Update ${r.scheme} Application`;
   const last = r.remarks[r.remarks.length - 1];
   $("#upBody").innerHTML = `
-    <div class="sch-deadline">${iconSvg("calendar", "o", 16)}<span>Resubmit by <b>${fmt(verDue(r))}</b> · ${Math.max(0, verDaysLeft(r))} day${verDaysLeft(r) === 1 ? "" : "s"} left. Resubmit is allowed after the application deadline.</span></div>
+    <div class="sch-deadline">${iconSvg("info", "o", 16)}<span>Update the parts the Commissionerate Office returned and resubmit. Resubmit is allowed also after the application deadline.</span></div>
     <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Remarks from the Commissionerate Office</h5><p>${esc(last.by)} · ${verTime(last.d)}</p></div><div class="ver-rmk"><div class="ver-rmk-b">${last.html}</div></div></section>
-    <div class="ver-legend" style="margin-bottom:var(--space-12)"><span class="is-ver">${iconSvg("lock", "o", 12)}Verified by DigiLocker / Agency data – cannot be changed</span><span>Fields you entered and your documents can be changed</span>${anyReturned ? `<span>${iconSvg("lock", "o", 12)}A step the Commissionerate Office already approved is also locked</span>` : ""}</div>
-    ${r.sections.map(([t, list], si) => `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>${esc(t)}</h5></div><div class="sf-grid">${list.map(([l, v, s], fi) => s
+    <div class="ver-legend" style="margin-bottom:var(--space-12)"><span class="is-ver">${iconSvg("lock", "o", 12)}Verified by DigiLocker / Agency data – cannot be changed</span>${anyReturned ? `<span class="up-leg-ret">Red = returned, correct this part</span><span>Green = approved, view only</span>` : "<span>Fields you entered and your documents can be changed</span>"}</div>
+    ${r.sections.map(([t, list], si) => { const open = secOk(si), rk = anyReturned && open && r.coSteps["sec" + si] ? r.coSteps["sec" + si].remarks : "";
+      return `<section class="card sf-sec${anyReturned ? (open ? " ver-step is-returned" : " ver-step is-approved") : ""}"><div class="ui-form-sec-head"><h5>${esc(t)}</h5>${anyReturned ? `<p>${open ? "Returned – correct the details marked in red and resubmit." : "Approved – view only."}</p>` : ""}</div>
+        ${rk ? `<div class="up-q">${iconSvg("warning", "o", 16)}<div><b>Query from ${esc(r.office || "the Commissionerate Office")}</b><span>${esc(rk)}</span></div></div>` : ""}
+        <div class="sf-grid">${list.map(([l, v, s], fi) => s
       ? `<div class="ui-field"><span class="ui-label">${esc(l)}<span class="sf-src">${iconSvg("lock", "o", 12)}${esc(s)}</span></span><input class="ui-input" readonly value="${esc(v)}"></div>`
-      : secOk(si) ? `<div class="ui-field"><label class="ui-label" for="up-${si}-${fi}">${esc(l)}</label><input class="ui-input" id="up-${si}-${fi}" data-up="${si}:${fi}" value="${esc(v)}" autocomplete="off"></div>`
-      : `<div class="ui-field"><span class="ui-label">${esc(l)}<span class="sf-src">${iconSvg("lock", "o", 12)}Approved – locked</span></span><input class="ui-input" readonly value="${esc(v)}"></div>`).join("")}</div></section>`).join("")}
-    <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Documents</h5><p>${docsOk() ? "Replace a document if the remarks ask for it. PDF, max 2 MB." : "This step was already approved by the Commissionerate Office, so these documents are locked."}</p></div><div class="sf-docs">${r.docs.map((n, i) => `<div class="sf-doc" data-updoc="${i}"><div class="sf-doc-name"><b>${esc(n)}</b><small data-upname>Current file · uploaded ${fmt(r.date)}</small></div><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-up-file="${i}" ${docsOk() ? "" : "disabled"}>${iconSvg("upload", "l", 14)}Replace</button><span class="ui-help" hidden></span></div>`).join("")}</div><input type="file" id="upFile" accept=".pdf" hidden></section>
-    <section class="card sf-foot"><span class="ui-help" id="upHint"></span><div class="sf-foot-btns"><a class="ui-btn ui-btn-outline" href="#my-apps">Cancel</a><button class="ui-btn ui-btn-primary" type="button" id="upSend" disabled>Resubmit</button></div></section>`;
+      : open ? `<div class="ui-field"><label class="ui-label" for="up-${si}-${fi}">${esc(l)}</label><input class="ui-input${anyReturned ? " up-fix" : ""}" id="up-${si}-${fi}" data-up="${si}:${fi}" value="${esc(v)}" autocomplete="off"></div>`
+      : `<div class="ui-field"><span class="ui-label">${esc(l)}<span class="sf-src">${iconSvg("lock", "o", 12)}Approved – locked</span></span><input class="ui-input" readonly value="${esc(v)}"></div>`).join("")}</div></section>`; }).join("")}
+    ${(() => { const docRet = n => !anyReturned || !!(r.coDocs && r.coDocs[n] && r.coDocs[n].d === "Return"), nRet = r.docs.filter(docRet).length;
+      return `<section class="card sf-sec${anyReturned ? (nRet ? " ver-step is-returned" : " ver-step is-approved") : ""}"><div class="ui-form-sec-head"><h5>Documents</h5><p>${anyReturned ? (nRet ? `Replace only the ${nRet === 1 ? "document" : nRet + " documents"} marked in red. The other documents are approved – view only. PDF, max 2 MB.` : "All documents are approved – view only.") : "Replace a document if the remarks ask for it. PDF, max 2 MB."}</p></div><div class="sf-docs">${r.docs.map((n, i) => { const ret = docRet(n), q = anyReturned && ret ? r.coDocs[n] : null;
+        return `<div class="sf-doc up-doc${q ? " is-ret" : ""}" data-updoc="${i}"><div class="sf-doc-name"><b>${esc(n)}</b><small data-upname>Current file · uploaded ${fmt(r.date)}</small>${q && q.remarks ? `<span class="up-doc-q">${iconSvg("warning", "o", 14)}${esc(q.remarks)}</span>` : ""}</div>${ret ? `<button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-up-file="${i}">${iconSvg("upload", "l", 14)}Replace</button>` : `<button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-up-view="${esc(n)}">${iconSvg("view", "f", 14)}View</button>`}<span class="ui-help" hidden></span></div>`; }).join("")}</div><input type="file" id="upFile" accept=".pdf" hidden></section>`; })()}
+    <section class="card sf-foot up-foot"><div class="up-foot-info"><span class="ui-icon-box is-info">${iconSvg("info", "o", 18)}</span><div><b>Before you resubmit</b><span>${anyReturned ? "Only the parts marked in red can be changed." : "Change the fields and documents the remarks ask for."} After you resubmit, the Help Center checks your application again.</span><span class="ui-help" id="upHint"></span></div></div>
+      <div class="sf-foot-btns"><a class="ui-btn ui-btn-outline" href="#my-apps">Cancel</a><button class="ui-btn ui-btn-primary" type="button" id="upSend" disabled>Resubmit</button></div></section>`;
   upSync(); scrollTo(0, 0);
 }
 function upChanges() {                                             // VER-10: changed = differs from the last submitted value; a new file counts
@@ -9773,12 +10086,13 @@ function upSync() {
   $("#upHint").classList.toggle("is-error", !n);
 }
 $("#upBody").addEventListener("input", e => { const k = e.target.dataset.up; if (!k) return; UP.vals[k] = e.target.value; upSync(); });
-$("#upBody").addEventListener("click", e => { const b = e.target.closest("[data-up-file]"); if (!b) return; UP.fileIdx = b.dataset.upFile; $("#upFile").click(); });
+$("#upBody").addEventListener("click", e => { const vw = e.target.closest("[data-up-view]"); if (vw) return verDocView(vw.dataset.upView, UP.r); const b = e.target.closest("[data-up-file]"); if (!b) return; UP.fileIdx = b.dataset.upFile; $("#upFile").accept = /Photo/.test(UP.r.docs[b.dataset.upFile]) ? ".jpg,.jpeg,.png" : ".pdf"; $("#upFile").click(); });
 $("#upBody").addEventListener("change", e => {
   if (e.target.id !== "upFile") return;
   const f = e.target.files[0], i = UP.fileIdx; e.target.value = ""; if (!f) return;
   const row = $(`#upBody [data-updoc="${i}"]`), h = row.querySelector(".ui-help");
-  const msg = !/\.pdf$/i.test(f.name) ? "Only PDF files are allowed." : f.size > 2 * 1024 * 1024 ? "File size must be up to 2 MB." : "";
+  const img = /Photo/.test(UP.r.docs[i]);                           // 25/11: the photograph is an image (JPG / PNG), every other document a PDF
+  const msg = (img ? !/\.(jpe?g|png)$/i.test(f.name) : !/\.pdf$/i.test(f.name)) ? (img ? "Only JPG / JPEG / PNG files are allowed." : "Only PDF files are allowed.") : f.size > 2 * 1024 * 1024 ? "File size must be up to 2 MB." : "";
   h.hidden = !msg; h.className = "ui-help" + (msg ? " is-error" : ""); h.innerHTML = msg ? HELP_ICON["is-error"] + msg : "";
   if (msg) return;
   UP.files[i] = { name: f.name, size: f.size }; row.querySelector("[data-upname]").textContent = `New file: ${f.name} (${fmtSize(f.size)})`; upSync();
@@ -9789,8 +10103,10 @@ $("#upBody").addEventListener("click", e => {
   ch.forEach(c => { if (c.l) r.sections[c.si][1][c.fi][1] = c.nw; });
   r.updated = ch.map(({ sec, l, old, nw, doc, file }) => ({ sec, l, old, nw, doc, file }));
   r.date = new Date(VER_CLOCK); r.sar = undefined;
+  r.docs.forEach(n => { const x = r.docDecisions && r.docDecisions[n]; if (x && (x.d === "Query" || (r.coDocs && r.coDocs[n] && r.coDocs[n].d === "Return"))) { x.d = ""; x.remarks = ""; } });   // 25/11: the Help Center checks these documents again with empty radios – the old query text is not shown
   verSetStatus(r, "Resubmitted");
   r.log.push({ d: new Date(VER_CLOCK), t: `Resubmitted by the student (${ch.length} updated item${ch.length === 1 ? "" : "s"})` });
+  HC_NOTI.unshift({ d: new Date(VER_CLOCK), title: "Application resubmitted", text: `${r.name} resubmitted ${r.scheme} application ${r.id}. It is in your list to review.`, id: r.id, college: r.college, read: false });   // COM-04/05: Help Center – in-app only, no mail
   toast("Application resubmitted. The Help Center will check it again.");
   location.hash = "my-apps";
 });
@@ -9799,16 +10115,12 @@ $("#upBody").addEventListener("click", e => {
 function vvUpdatedAdd() {
   const r = VER.find(x => x.id === HC.current); if (!r || r.status !== "Resubmitted" || !r.updated || HC.from === "co") return;
   const card = `<section class="card sf-sec ver-upd"><div class="ui-form-sec-head"><h5>${r.updated.length} updated</h5><p>Changed by the student since the last submit. Check whether the remarks are fixed.</p></div>
-    <ul class="ver-upd-list">${r.updated.map(u => u.doc ? `<li>${iconSvg("document", "o", 16)}<span><b>${esc(u.doc)}</b> – new file <i>${esc(u.file)}</i> <button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-vv-doc="${esc(u.file)}">${iconSvg("view", "f", 14)}View</button></span></li>`
+    <ul class="ver-upd-list">${r.updated.map(u => u.doc ? `<li class="is-doc">${iconSvg("document", "o", 16)}<span><b>${esc(u.doc)}</b> – new file <i>${esc(u.file)}</i></span><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-vv-doc="${esc(u.doc)}">${iconSvg("view", "f", 14)}View</button></li>`
       : `<li>${iconSvg("edit", "o", 16)}<span><b>${esc(u.l)}</b> <small>(${esc(u.sec)})</small><br><s>${esc(u.old || "–")}</s> → <b class="ver-new">${esc(u.nw)}</b></span></li>`).join("")}</ul></section>`;
   const first = $("#vvBody .ver-legend"); if (first) first.insertAdjacentHTML("afterend", card);
   r.updated.forEach(u => { if (u.l) $$("#vvBody .sf-kv > div").forEach(d => { if (d.querySelector("span")?.textContent === u.l && d.closest(".sf-sec")?.querySelector("h5")?.textContent === u.sec) d.classList.add("is-updated"); }); });
 }
-// Help Center "Send back" again on an Expired / any application: new timeline + reminders reset (handled by the handler above via sendBack)
-// ---------- demo clock (system timeline) ----------
-function verClockRender() { const el = $("#maClock"); if (el) el.innerHTML = `Demo date: <b>${fmt(VER_CLOCK)}</b>`; }
-$("#maClockBtn").addEventListener("click", () => { VER_CLOCK = new Date(VER_CLOCK.getTime() + VER_DAY); verTick(); verClockRender(); maRender(); toast(`Demo date moved to ${fmt(VER_CLOCK)} – reminders / expiry checked`); });
-verClockRender();
+// 25/11: the demo "+1 day" clock is removed – no timeline after a Return (VER-14)
 
 /* ================= KAUSHALYA SAHAAY YOJANA (KSY, 18/11) – Phase 1a: module + eligibility, student side only =================
    New scheme (not a Scholarship): ₹2,000 one-time, 20-day internship in Semester VI, 3 approvals (Nodal Officer → Principal → NEP Cell, KCG) before payment.
@@ -10407,15 +10719,16 @@ function showView(name) {
   $$("[data-schnav]").forEach(a => { const on = schFull && a.dataset.schnav === schTab; a.classList.toggle("is-active", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   const navName = name === "ver-view" ? HC.from : name === "ksy-review" ? "ksy-" + KSY.reviewRole : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
   $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === navName));
-  $(".h-title h2").textContent = ({ dashboard: "Dashboard", cogent: "Cogent", profile: "My Profile", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App", ksy: "Kaushalya Sahaay Yojana", "ksy-form": "Kaushalya Sahaay Yojana", "ksy-nodal": "KSY – Nodal Officer", "ksy-principal": "KSY – Principal", "ksy-nep": "KSY – NEP Cell, KCG", "ksy-review": "Kaushalya Sahaay Yojana", "kcg-lots": "KCG – Lot List", "app-flows": "Mobile App", "app-login": "Mobile App", "att-dash": ATT_COLLEGE, "att-history": ATT_COLLEGE })[name] || "Student Profile";
+  $(".h-title h2").textContent = ({ dashboard: "Dashboard", cogent: "Cogent", "co-phase": "Phase – Application", profile: "My Profile", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App", ksy: "Kaushalya Sahaay Yojana", "ksy-form": "Kaushalya Sahaay Yojana", "ksy-nodal": "KSY – Nodal Officer", "ksy-principal": "KSY – Principal", "ksy-nep": "KSY – NEP Cell, KCG", "ksy-review": "Kaushalya Sahaay Yojana", "kcg-lots": "KCG – Lot List", "app-flows": "Mobile App", "app-login": "Mobile App", "att-dash": ATT_COLLEGE, "att-history": ATT_COLLEGE })[name] || "Student Profile";
   if (name === "hc") { hcInit(); hcRender(); }
   if (name === "co") { coInit(); coRender(); }
+  if (name === "co-phase") coPhaseRender();
   if (name === "kcg-lots") { kcgInit(); kcgRender(); }
   if (name === "att-dash") attDashRender();
   if (name === "att-history") attHistRender();
   if (name === "ver-view") { vvOpen(); vvUpdatedAdd(); }
   if (name === "ma-update") upOpen();
-  if (name === "my-apps") { verTick(); verClockRender(); maRender(); }
+  if (name === "my-apps") maRender();
   if (name === "sch-declare") sdOpen();    // CMSS declaration form (needs Apply Now first)
   if (name === "sch-form") sfOpen();       // CMSS application form (after the declaration or Continue draft)
   if (name === "scholarships") schRender();
