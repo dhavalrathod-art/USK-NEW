@@ -337,6 +337,10 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ksy-checks li.is-fail svg{color:var(--color-error)}
 .ksy-checks b{display:block;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
 .ksy-checks small{display:block;margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ksy-mynote{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap;padding:var(--space-16) var(--space-20);margin-top:var(--space-16);font-size:var(--font-size-body);color:var(--color-text-body)}
+.ksy-mynote > svg{flex:none;color:var(--color-icon-primary)}
+.ksy-mynote > span{flex:1;min-width:200px}
+#ksyMyBody tr.is-sel td{background:var(--color-primary-50)}
 .ksy-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-20);padding-top:var(--space-16);border-top:1px solid var(--color-border-default)}
 /* ===== Unnati Yojana (25/11) – page-level, DS tokens only ===== */
 .un-tabs{display:flex;gap:var(--space-8);flex-wrap:wrap;margin-bottom:var(--space-16)}
@@ -405,6 +409,9 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sf-inline{display:flex;gap:var(--space-8)}
 .sf-inline .ui-input{flex:1;min-width:0}
 .sf-inline .ui-btn{flex:none}
+.sf-grid > .ui-field[data-field="aadhaar"]{grid-column:1/-1}
+.ui-field[data-field="aadhaar"] .sf-inline{max-width:560px}
+@media (max-width:575.98px){.ui-field[data-field="aadhaar"] .sf-inline{flex-wrap:wrap}.ui-field[data-field="aadhaar"] .sf-inline .ui-input{flex-basis:100%}.ui-field[data-field="aadhaar"] .sf-inline .ui-btn{width:100%;justify-content:center}}
 .sf-note{display:flex;align-items:flex-start;gap:var(--space-8);padding:var(--space-12);border-radius:8px;border:1px solid var(--color-info-border);background:var(--color-info-bg);font-size:var(--font-size-body-sm);color:var(--color-info-text)}
 .sf-note svg{flex:none;margin-top:1px}
 .sf-note.is-ok{border-color:var(--color-success-border);background:var(--color-success-bg);color:var(--color-success-text)}
@@ -444,6 +451,9 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sf-kv i svg{width:12px;height:12px}
 .sf-decl{display:flex;align-items:flex-start;gap:var(--space-12);font-size:var(--font-size-body);color:var(--color-text-body);cursor:pointer}
 .sf-decl input{margin-top:3px;flex:none}
+.sf-consent{padding:var(--space-12) var(--space-16);border:1px solid var(--color-border-strong);border-radius:8px;background:var(--color-bg-surface);font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm)}
+.sf-consent b{display:block;margin-bottom:2px;font-size:var(--font-size-body);color:var(--color-text-heading)}
+.sf-consent.is-on{border-color:var(--color-primary-600);background:var(--color-primary-50)}
 /* footer + success */
 .sf-foot{padding:var(--space-16) var(--space-20)}
 .sf-foot[hidden],.sf-steps-card[hidden],.sf-done[hidden]{display:none}
@@ -507,9 +517,11 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ver-prog-t tbody tr[data-co-prog]:hover,.ver-prog-t tbody tr.is-sel{background:var(--color-primary-50)}
 .ver-prog-t tfoot td{font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
 @media (max-width:767.98px){.ver-co-top{grid-template-columns:1fr}}
-.ver-stat{padding:var(--space-16) var(--space-20);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface)}
-.ver-stat b{display:block;font-size:var(--font-size-h3);line-height:var(--line-height-h3);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
-.ver-stat span{display:block;margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ver-stat{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-16) var(--space-20);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface)}
+.ver-stat > .ui-icon-box{width:44px;height:44px;flex:none}
+.ver-stat-tx{min-width:0}
+.ver-stat-tx > b{display:block;font-size:var(--font-size-h3);line-height:var(--line-height-h3);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.ver-stat-tx > span{display:block;margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
 @media (max-width:575.98px){.ver-stats{grid-template-columns:1fr}}
 /* per-document decision (Approve / Query) – HC-02, VER-05 */
 .ver-doc{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-12) var(--space-16);border:1px solid var(--color-border-default);border-radius:8px}
@@ -1061,15 +1073,27 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 
 /* 2.5 Featured Schemes (19/11, user: Kaushalya Sahaay Yojana + Unnati Yojana, right above Quick Services) */
 .db-feat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16)}
-.db-feat{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-16) var(--space-20);border-radius:12px;border:1px solid var(--color-border-default);background:var(--color-bg-surface);cursor:pointer;transition:box-shadow .2s,border-color .2s;width:100%;text-align:left;font:inherit}
-.db-feat:hover{box-shadow:0 4px 14px rgba(15,31,49,.08);border-color:var(--color-border-hover)}
+/* 26/11 (user: highlight the benefit – "₹2,000 malse"): tinted card in a category colour (DS --color-cat-*), big benefit box on the right */
+.db-feat{--feat:var(--color-primary-600);--feat-bg:var(--color-primary-50);--feat-bd:var(--color-primary-100);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--space-16);padding:var(--space-20);border-radius:12px;border:1px solid var(--feat-bd);background:var(--feat-bg);cursor:pointer;transition:box-shadow .2s,transform .2s;width:100%;text-align:left;font:inherit}
+.db-feat.is-green{--feat:var(--color-cat-green);--feat-bg:var(--color-cat-green-bg);--feat-bd:var(--color-cat-green-border)}
+.db-feat.is-blue{--feat:var(--color-cat-blue);--feat-bg:var(--color-cat-blue-bg);--feat-bd:var(--color-cat-blue-border)}
+.db-feat:hover{box-shadow:0 6px 18px rgba(15,31,49,.10);transform:translateY(-1px)}
 .db-feat:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
-.db-feat .ui-icon-box{width:48px;height:48px;flex:none}
-.db-feat-txt{flex:1;min-width:0}
+.db-feat-ic{width:48px;height:48px;border-radius:10px;display:grid;place-items:center;background:var(--color-bg-surface);border:1px solid var(--feat-bd);color:var(--feat)}
+.db-feat-txt{min-width:0}
 .db-feat-txt b{display:block;font-size:var(--font-size-h6);line-height:var(--line-height-h6);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
 .db-feat-txt small{display:block;margin-top:2px;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary)}
-.db-feat-go{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--color-bg-page);color:var(--color-primary-600)}
+.db-feat-cta{display:inline-flex;align-items:center;gap:var(--space-4);margin-top:var(--space-8);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--feat)}
+.db-feat:hover .db-feat-cta{text-decoration:underline;text-underline-offset:2px}
+.db-feat-amt{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:132px;padding:var(--space-12) var(--space-16);border-radius:10px;background:var(--color-bg-surface);border:1px solid var(--feat-bd);text-align:center}
+.db-feat-amt b{font-size:var(--font-size-display);line-height:var(--line-height-display);font-weight:var(--font-weight-bold);color:var(--feat);white-space:nowrap}
+.db-feat-amt small{font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-secondary)}
+.db-feat-amt small:first-child{font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:.4px}
+@media (max-width:1199.98px){.db-feat-amt{min-width:112px}.db-feat-amt b{font-size:var(--font-size-h1);line-height:var(--line-height-h1)}}
 @media (max-width:767.98px){.db-feat-grid{grid-template-columns:1fr}}
+@media (max-width:575.98px){.db-feat{grid-template-columns:auto minmax(0,1fr);padding:var(--space-16)}
+  .db-feat-amt{grid-column:1/-1;flex-direction:row;align-items:baseline;justify-content:flex-start;gap:var(--space-8);min-width:0;padding:var(--space-8) var(--space-12)}
+  .db-feat-amt b{font-size:var(--font-size-h4);line-height:var(--line-height-h4)}}
 /* Mobile App icon – fixed bottom-left on the Dashboard only (20/11), opens #app-flows */
 .db-appfab{position:fixed;left:var(--space-20);bottom:var(--space-20);z-index:40;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--color-primary-600);color:var(--color-text-inverse);box-shadow:0 6px 18px rgba(15,31,49,.25);transition:background .2s}
 .db-appfab[hidden]{display:none}
@@ -1255,6 +1279,21 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 .db-qs.is-orange{background:var(--color-cat-orange-bg);border-color:var(--color-cat-orange-border)} .db-qs.is-orange .db-qs-ic{color:var(--color-cat-orange)} .db-qs.is-orange .db-qs-go{background:var(--color-cat-orange)}
 /* 4. Schemes · 5. Scholarships · 6. Announcement · 7. Internships · 8. Events (cards) */
 .db-grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-16)}
+/* Recommended Government Schemes card (26/11, user screenshot) – the tone comes from DB_TONE; all colours are DS tokens */
+.db-scheme{--sc:var(--color-neutral-text);--sc-bg:var(--color-neutral-bg);--sc-bd:var(--color-neutral-border);position:relative;display:flex;flex-direction:column;gap:var(--space-12);min-width:0;padding:var(--space-20);border:1px solid var(--color-border-default);border-radius:12px;
+  background:radial-gradient(circle at 100% 100%,transparent 0 30px,var(--sc-bg) 31px 46px,transparent 47px 60px,var(--sc-bg) 61px 76px,transparent 77px) no-repeat,var(--color-bg-surface);transition:box-shadow .2s,transform .2s}
+.db-scheme:hover{box-shadow:0 6px 18px rgba(15,31,49,.08);transform:translateY(-1px)}
+.db-scheme.is-primary{--sc:var(--color-primary-600);--sc-bg:var(--color-primary-50);--sc-bd:var(--color-primary-100)}
+.db-scheme.is-accent{--sc:var(--color-accent-700);--sc-bg:var(--color-accent-50);--sc-bd:var(--color-accent-200)}
+.db-scheme.is-success{--sc:var(--color-success);--sc-bg:var(--color-success-bg);--sc-bd:var(--color-success-border)}
+.db-scheme.is-info{--sc:var(--color-info);--sc-bg:var(--color-info-bg);--sc-bd:var(--color-info-border)}
+.db-scheme.is-warning{--sc:var(--color-warning-text);--sc-bg:var(--color-warning-bg);--sc-bd:var(--color-warning-border)}
+.db-scheme.is-error{--sc:var(--color-error);--sc-bg:var(--color-error-bg);--sc-bd:var(--color-error-border)}
+.db-scheme-tag{align-self:flex-start;max-width:100%;padding:var(--space-4) var(--space-12);border-radius:6px;background:var(--sc-bg);color:var(--sc);font-size:var(--font-size-caption);line-height:var(--line-height-caption);font-weight:var(--font-weight-semibold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.db-scheme b{font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.db-scheme p{flex:1;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-secondary);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.db-scheme-btn{position:relative;align-self:flex-start;margin-top:var(--space-4);background:var(--sc);border:1px solid var(--sc);color:var(--color-text-inverse)}
+.db-scheme-btn:hover{filter:brightness(.92)}
 .db-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16)}
 .db-grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16);align-items:start}
 .db-box{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-16);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface);text-align:left;min-width:0}
@@ -2096,7 +2135,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       <!-- Dashboard only (no sidebar there): logo in the header -->
       <div class="lg-brand h-brand"><img src="LOGO-USK-sm.png" alt="Uccha-Shiksha Samiksha Kendra logo"><span><b>UCCHA-SHIKSHA SAMIKSHA KENDRA</b><small>Higher Education Department - Gujarat</small></span></div>
       <!-- Student scholarship pages only (full width, like Skill Passport): Scholarship / My Applications + Home -->
-      <nav class="h-schnav" aria-label="Scholarships">
+      <nav class="h-schnav" id="hSchNav" aria-label="Scholarships">
         <a class="ui-btn ui-btn-ghost ui-btn-sm" href="#scholarships" data-schnav="scholarships"><span data-icon="graduation:f:16"></span>Scholarship</a>
         <a class="ui-btn ui-btn-ghost ui-btn-sm" href="#my-apps" data-schnav="my-apps"><span data-icon="user:o:16"></span>My Applications</a>
       </nav>
@@ -2181,18 +2220,19 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 
         <!-- 2.5 Featured Schemes (19/11, user: Kaushalya Sahaay Yojana + Unnati Yojana, right above Quick Services) -->
         <section class="db-card">
-          <div class="db-head"><h4><span data-icon="award:f:20"></span>Featured Schemes</h4></div>
+          <div class="db-head"><h4><span data-icon="award:f:20"></span>Sahay Yojana</h4></div>
+          <!-- 26/11 (user): the benefit is the hero of each card, so the student sees at once what they get -->
           <div class="db-feat-grid">
-            <button class="db-feat" type="button" data-dbgo="#ksy">
-              <span class="ui-icon-box is-primary"><span data-icon="briefcase:f:20"></span></span>
-              <span class="db-feat-txt"><b>Kaushalya Sahaay Yojana</b><small>₹2,000 internship assistance for third-year students</small></span>
-              <span class="db-feat-go"><span data-icon="arrow-right:l:16"></span></span>
+            <button class="db-feat is-green" type="button" data-dbgo="#ksy">
+              <span class="db-feat-ic"><span data-icon="briefcase:f:20"></span></span>
+              <span class="db-feat-txt"><b>Kaushalya Sahaay Yojana</b><small>For third-year students who complete a 20-day internship.</small><span class="db-feat-cta">Check eligibility &amp; apply<span data-icon="arrow-right:l:14"></span></span></span>
+              <span class="db-feat-amt"><small>You get</small><b>₹2,000</b><small>one-time, by DBT</small></span>
             </button>
             <!-- Unnati Yojana (25/11): opens its real flow -->
-            <button class="db-feat" type="button" data-dbgo="#unnati">
-              <span class="ui-icon-box is-info"><span data-icon="award:f:20"></span></span>
-              <span class="db-feat-txt"><b>Unnati Yojana</b><small>Course fee reimbursed for approved certificate courses</small></span>
-              <span class="db-feat-go"><span data-icon="arrow-right:l:16"></span></span>
+            <button class="db-feat is-blue" type="button" data-dbgo="#unnati">
+              <span class="db-feat-ic"><span data-icon="award:f:20"></span></span>
+              <span class="db-feat-txt"><b>Unnati Yojana</b><small>For an approved certificate course in AI, Data, Cloud, Cybersecurity and more.</small><span class="db-feat-cta">Propose a course<span data-icon="arrow-right:l:14"></span></span></span>
+              <span class="db-feat-amt"><small>You get</small><b>100%</b><small>of the course fee back</small></span>
             </button>
           </div>
         </section>
@@ -4643,13 +4683,30 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         </div>
         <p class="ksy-note"><span data-icon="info:o:16"></span>KCG (CEO) must approve your course before it starts. After you complete it, submit the completion certificate and fee receipt. Payment is by DBT to the bank account linked with your Aadhaar.</p>
       </section>
+      <div id="unMyNote"></div>
+    </main>
+
+    <!-- ===== VIEW: Unnati Yojana – My Applications (26/11, header menu like Scholarships) ===== -->
+    <main class="content" id="view-unnati-my" hidden>
+      <div class="page-head"><div><h3>My Applications</h3><p>Your Unnati Yojana applications, latest first. Open one to see where it is.</p></div></div>
       <section class="card table-card">
-        <div class="un-head"><div><h5>My Unnati Applications</h5><p>Latest first. Open an application to see where it is.</p></div></div>
         <div class="table-wrap"><table>
           <thead><tr><th>Application ID</th><th>Course</th><th>Applicant Type</th><th>Enrollment</th><th>Course Dates</th><th>Status</th><th>Action</th></tr></thead>
           <tbody id="unMyBody"></tbody>
         </table></div>
       </section>
+    </main>
+
+    <!-- ===== VIEW: Kaushalya Sahaay Yojana – My Applications (26/11, header menu like Scholarships) ===== -->
+    <main class="content" id="view-ksy-my" hidden>
+      <div class="page-head"><div><h3>My Applications</h3><p>Your Kaushalya Sahaay Yojana applications. Click View to see the status of one.</p></div></div>
+      <section class="card table-card">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Application ID</th><th>Internship</th><th>Duration</th><th>Submitted Date</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="ksyMyBody"></tbody>
+        </table></div>
+      </section>
+      <div id="ksyMyStatus"></div>
     </main>
 
     <!-- ===== VIEW: Unnati Yojana – Application form (4 steps: Applicant, Course, Documents, Review) ===== -->
@@ -8532,7 +8589,8 @@ function dbRender() {
       <div><div class="ui-progress" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Attendance this month"><i style="width:${pct}%"></i></div><div class="db-hint">${pct}% attendance this month</div></div></div>`;
 }
 function dbRenderLists() {
-  $("#dbSchemes").innerHTML = dbSlice("sch", DB_SCHEMES).map(x => `<div class="db-box">${dbTag(DB_TONE[x.c], x.dept)}<b>${esc(x.name)}</b><p>${esc(x.desc)}</p><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" data-dbscheme="${x.id}">View Details</button></div>`).join("");
+  // 26/11 (user screenshot): tinted department tag, title, 3-line description, solid View Details in the card's tone, soft rings bottom-right
+  $("#dbSchemes").innerHTML = dbSlice("sch", DB_SCHEMES).map(x => `<div class="db-scheme is-${DB_TONE[x.c] || "neutral"}"><span class="db-scheme-tag" title="${esc(x.dept)}">${esc(x.dept)}</span><b>${esc(x.name)}</b><p title="${esc(x.desc)}">${esc(x.desc)}</p><button class="ui-btn ui-btn-sm db-scheme-btn" type="button" data-dbscheme="${x.id}">View Details</button></div>`).join("");
   $("#dbSchol").innerHTML = dbSlice("schl", DB_SCHOL).map(x => `<button class="db-box db-click" type="button" data-dbext="${esc(x[2])}" title="Opens the official website in a new tab"><span class="db-box-top"><b>${esc(x[2])}</b>${dbTag(DB_TONE[x[1]], x[0])}</span><span class="db-box-foot is-nowrap"><span>${esc(x[3])}</span>${iconSvg("external", "l", 16)}</span></button>`).join("");
   const ann = dbSlice("ann", dbPub);
   $("#dbAnn").innerHTML = ann.length ? ann.map(a => `<div class="db-box db-click" role="button" tabindex="0" data-dbann="${a.id}" title="Open announcement details"><span class="db-box-top"><b>${esc(a.title)}${dbIsNew(a) ? ` ${dbTag("error", "NEW")}` : ""}</b>${dbTag(DB_ANN_CAT[a.cat], a.cat)}</span><p>${esc(a.summary)}</p>
@@ -8759,6 +8817,8 @@ const SF_INC_API = { no: "INC/AHD/2026/45120", amt: "240000", date: "12/06/2026"
 const SF_AADHAAR_LAST4 = "4321";                                                       // sample: last 4 digits given by DigiLocker
 const SF_AADHAAR_TEST = "12341234" + SF_AADHAAR_LAST4;                                   // testing: prefilled sample Aadhaar (matches DigiLocker)
 // 25/11: the scholarship is paid by DBT to the bank account seeded with the Aadhaar – tell the student, and ask them to link it first if it is not
+const SF_AAD_CONSENT = "I agree that my Aadhaar number is used to verify my identity with DigiLocker, and that the scholarship amount is paid by DBT to the bank account linked (seeded) with this Aadhaar.";
+const sfAadConsent = () => `<label class="sf-decl sf-consent sf-full${F.aadConsent ? " is-on" : ""}"><input class="ui-cb" type="checkbox" data-sf-consent ${F.aadConsent ? "checked" : ""} ${F.aadOk && F.aadConsent ? "disabled" : ""}><span><b>Consent for Aadhaar use<span class="ui-req">*</span></b>${esc(SF_AAD_CONSENT)}</span></label>`;
 const sfAadhaarBank = () => `<div class="sf-note sf-full">${iconSvg("info", "o", 16)}<span><b>The scholarship is paid to the bank account linked with this Aadhaar.</b> The amount is sent by DBT to the bank account that is linked (seeded) with your Aadhaar number – bank details are not asked in this form. If your Aadhaar is not linked with your bank account yet, visit your bank and link it first, otherwise the payment cannot be made.</span></div>`;
 // Prefilled values from verified sources (differs per student; here one sample student)
 const SF_PREFILL = {
@@ -8930,6 +8990,7 @@ function sfPendingOf(step, sub) {                             // names of mandat
   secs.forEach(s => { if (s.show && !s.show()) return; s.f.forEach(f => {
     if (!sfEn(f)) return;
     const v = String(F[f.k] ?? "").trim();
+    if (f.t === "aadhaar" && !F.aadConsent) out.push("Consent for Aadhaar use");
     if (f.t === "aadhaar" ? !F.aadOk : f.t === "fetch" ? (!v || F.incApi === undefined) : (sfReq(f) && !v) || (v && sfErrOf(f))) out.push(f.l.replace(/\?$/, ""));
   }); });
   return out;
@@ -8967,7 +9028,7 @@ function sfFieldHtml(f) {
   else if (f.t === "radio") ctl = `<div class="cjp-radios sf-radios" role="radiogroup" aria-label="${esc(f.l)}">${["Yes", "No"].map(o => `<label class="cjp-radio"><input type="radio" name="sf-${f.k}" value="${o}" data-k="${f.k}" ${v === o ? "checked" : ""} ${dis}>${o}</label>`).join("")}</div>`;
   else if (f.t === "area") ctl = `<textarea class="ui-input" data-k="${f.k}" maxlength="${f.max || 250}" rows="2" ${dis}>${esc(v)}</textarea><span class="sf-count" data-count="${f.k}">${String(v).length} / ${f.max || 250}</span>`;
   else if (f.t === "fetch") ctl = `<div class="sf-inline"><input class="ui-input" data-k="${f.k}" value="${esc(v)}" placeholder="${esc(f.ph || "")}" ${F.incApi ? "readonly" : ""}><button class="ui-btn ui-btn-outline" type="button" data-sf-fetch ${F.incApi ? "disabled" : ""}>${F.incApi ? "Fetched" : "Fetch"}</button></div>`;
-  else if (f.t === "aadhaar") ctl = `<div class="sf-inline"><input class="ui-input" data-k="aadhaar" value="${esc(v)}" placeholder="12 digits" inputmode="numeric" maxlength="12" ${F.aadOk ? "readonly" : ""}><button class="ui-btn ui-btn-primary" type="button" data-sf-aadhaar ${F.aadOk ? "disabled" : ""}>${F.aadOk ? "Verified" : "Verify with DigiLocker"}</button></div>`;
+  else if (f.t === "aadhaar") ctl = `<div class="sf-inline"><input class="ui-input" data-k="aadhaar" value="${esc(v)}" placeholder="12 digits" inputmode="numeric" maxlength="12" ${F.aadOk ? "readonly" : ""}><button class="ui-btn ui-btn-primary" type="button" data-sf-aadhaar ${F.aadOk || !F.aadConsent ? "disabled" : ""} title="${F.aadOk || F.aadConsent ? "" : "Tick the consent below to verify"}">${F.aadOk ? "Verified" : "Verify with DigiLocker"}</button></div>`;
   else if (f.t === "date") ctl = `<input class="ui-input" type="date" data-k="${f.k}" value="${cjpDmyToIso(v)}" ${dis} ${ro}>`;
   else ctl = `<input class="ui-input" data-k="${f.k}" value="${esc(v)}" placeholder="${esc(f.ph || "")}" ${f.t === "num" ? 'inputmode="decimal"' : ""} ${dis} ${ro} autocomplete="off">`;
   const err = sfErrOf(f);
@@ -8982,7 +9043,7 @@ function sfStepHtml(i) {
     if (i === 3 && s.t === "Income Details") extra = F.incApi === true ? `<div class="sf-note is-ok sf-full">${iconSvg("check", "l", 16)}<span>Income details received from the income API (locked).</span></div>` : F.incApi === false ? `<div class="sf-note is-warn sf-full">${iconSvg("warning", "f", 16)}<span>Details were not received. Enter the income yourself and upload the Income Certificate in Upload Documents.</span></div>` : "";
     else if (i === 4) extra = F.aadOk ? `<div class="sf-note is-ok sf-full">${iconSvg("check", "l", 16)}<span>Verified with DigiLocker · XXXX XXXX ${SF_AADHAAR_LAST4}. Your DigiLocker photo is added to Upload Documents.</span></div>` : "";
     else extra = "";
-    if (i === 4) extra = sfAadhaarBank() + extra;
+    if (i === 4) extra = sfAadConsent() + sfAadhaarBank() + extra;
     return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>${esc(s.t)}</h5><p>${esc(s.p)}</p></div><div class="sf-grid">${s.f.map(sfFieldHtml).join("")}${extra}</div></section>`;
   }).join("");
 }
@@ -9010,7 +9071,7 @@ function sfDocRows() {                                         // 25/11: a docum
 function sfReviewData() {
   const vis = (i) => sfSecs()[i].filter(s => !s.show || s.show()).flatMap(s => s.f).filter(f => (sfEn(f) || SRC[f.k]) && String(F[f.k] ?? "").trim() !== "" && f.t !== "aadhaar");
   return [0, 1, 2, 3].map(i => [SF_STEPS[i], i, vis(i).map(f => [f.l.replace(/\?$/, ""), /^(fees|mysyAmt|incAmt|tuition|otherFees|totalFees)$/.test(f.k) ? maRupee(+F[f.k]) : F[f.k], SRC[f.k] || ""])])
-    .concat([["Aadhaar Verification", 4, [["Aadhaar Number", `XXXX XXXX ${SF_AADHAAR_LAST4}`, "DigiLocker"]]],
+    .concat([["Aadhaar Verification", 4, [["Aadhaar Number", `XXXX XXXX ${SF_AADHAAR_LAST4}`, "DigiLocker"], ["Consent for Aadhaar use", F.aadConsent ? "Given" : "Not given", ""]]],
       ["Uploaded Documents", 5, sfDocRows()]]);
 }
 function sfReviewHtml() {
@@ -9060,6 +9121,7 @@ $("#sfBody").addEventListener("input", e => {
 });
 function sfClearKids(f) { (f.kids || []).forEach(k => { F[k] = ""; sfClearKids(sfField(k) || {}); }); }
 $("#sfBody").addEventListener("change", e => {
+  if (e.target.matches("[data-sf-consent]")) { F.aadConsent = e.target.checked; SF.touched = true; const y = scrollY; sfRender(); scrollTo(0, y); return; }
   const el = e.target; if (el.type !== "radio" || !el.dataset.k) return;
   const f = sfField(el.dataset.k); F[f.k] = el.value; if (el.value === "No") sfClearKids(f); SF.touched = true;
   sfRender();
@@ -9602,6 +9664,8 @@ function hcInit() {
   cjpSel($("#hcType"), ["All", "Fresh", "Delayed", "Renewal", "Renewal Delayed"], HC.type); cjpSel($("#hcStatus"), ["All", "Submitted", "Resubmitted", "Forwarded"], HC.status); $("#hcSearch").value = HC.q;
 }
 // VER-07 (19/11): statistics cards – scoped to the selected college + scholarship only, every application counted once by its current status
+// 26/11 (user): status cards with an icon – one helper for every verification page (Help Center, Commissionerate Office, Phase)
+function verStat(n, label, icon, tone) { const [nm, st] = icon.split(":"); return `<div class="ver-stat"><span class="ui-icon-box is-${tone}">${iconSvg(nm, st, 20)}</span><div class="ver-stat-tx"><b>${n}</b><span>${esc(label)}</span></div></div>`; }
 function hcStats() {
   const scoped = VER.filter(r => r.college === HC.college && (HC.scheme === "All" || r.scheme === HC.scheme));
   return { total: scoped.length, toReview: scoped.filter(r => HC_STATUSES.includes(r.status)).length, forwarded: scoped.filter(r => r.status === "Under Review").length, returned: scoped.filter(r => r.status === "Returned").length };
@@ -9609,7 +9673,7 @@ function hcStats() {
 function hcRender() {
   const list = hcList(HC).sort((a, b) => b.date - a.date); hcChips();
   const st = hcStats();
-  $("#hcStats").innerHTML = `<div class="ver-stat"><b>${st.total}</b><span>Total Applications</span></div><div class="ver-stat"><b>${st.toReview}</b><span>To Review</span></div><div class="ver-stat"><b>${st.forwarded}</b><span>Forwarded</span></div><div class="ver-stat"><b>${st.returned}</b><span>Returned</span></div>`;
+  $("#hcStats").innerHTML = verStat(st.total, "Total Applications", "document:f", "primary") + verStat(st.toReview, "To Review", "view:f", "info") + verStat(st.forwarded, "Forwarded", "arrow-right:l", "success") + verStat(st.returned, "Returned", "warning:f", "warning");
   $("#hcCount").textContent = `${list.length} application${list.length === 1 ? "" : "s"}`;
   $("#hcBody").innerHTML = list.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span></td>
     <td>${esc(r.program)}<br><small>${esc(r.course)}</small></td><td>${esc(r.type)}</td><td>${verTime(r.date)}</td><td><span class="ui-badge ui-badge-${VER_BADGE[r.status] || "neutral"}">${hcStLabel(r.status)}</span></td>
@@ -9673,7 +9737,7 @@ function coProgRender() {
 function coRender() {
   const cmss = CO.tab === "CMSS", list = coList(CO).sort((a, b) => b.locked - a.locked); coChips();
   const st = coStats();
-  $("#coStats").innerHTML = `<div class="ver-stat"><b>${st.toReview}</b><span>To Review</span></div><div class="ver-stat"><b>${st.returned}</b><span>Returned</span></div><div class="ver-stat"><b>${st.approved}</b><span>Approved</span></div>`;
+  $("#coStats").innerHTML = verStat(st.toReview, "To Review", "view:f", "info") + verStat(st.returned, "Returned", "warning:f", "warning") + verStat(st.approved, "Approved", "check:l", "success");
   coProgRender();
   $("#coCount").textContent = `${list.length} application${list.length === 1 ? "" : "s"}`;
   $("#coBody").innerHTML = list.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span><br><small>${esc(r.program)} – ${esc(r.course)}</small></td><td>${esc(r.type)}</td><td>${esc(r.dept || "–")}</td>
@@ -9727,9 +9791,8 @@ function coPhaseRender() {
   tab("#cpScheme", [["CMSS", "CMSS"], ["MYSY", "MYSY"]], CP.scheme, "data-cp-scheme");
   tab("#cpView", [["apps", "Approved applications"], ["lots", "Lots"]], CP.view, "data-cp-view");
   const all = cpApproved(), inLot = all.filter(r => r.lotNo != null).length, lots = cpLots();
-  const stat = (n, t) => `<div class="ver-stat"><b>${n}</b><span>${t}</span></div>`;
-  $("#cpStats").innerHTML = CP.view === "apps" ? stat(all.length, "Approved") + stat(all.length - inLot, "Not yet in a lot") + stat(inLot, "In lots")
-    : stat(lots.length, "Lots created") + stat(inLot, "Applications in lots") + stat(all.length - inLot, "Not yet in a lot");
+  $("#cpStats").innerHTML = CP.view === "apps" ? verStat(all.length, "Approved", "check:l", "success") + verStat(all.length - inLot, "Not yet in a lot", "warning:f", "warning") + verStat(inLot, "In lots", "document:f", "primary")
+    : verStat(lots.length, "Lots created", "document:f", "primary") + verStat(inLot, "Applications in lots", "check:l", "success") + verStat(all.length - inLot, "Not yet in a lot", "warning:f", "warning");
   $("#cpApps").hidden = CP.view !== "apps"; $("#cpLots").hidden = CP.view !== "lots";
   if (CP.view === "lots") return cpLotsRender(lots);
   cpChips();
@@ -10493,8 +10556,10 @@ function ksyRender() {
   if (KSY.applied) { btn.disabled = false; btn.innerHTML = `Apply Now${iconSvg("arrow-right", "l", 16)}`; $("#ksyMsg").innerHTML = "An application already exists, but you can still open the form below to see it (demo)."; $("#ksyMsg").classList.remove("is-error"); }
   else if (fails.length) { btn.disabled = true; btn.innerHTML = `Apply Now${iconSvg("arrow-right", "l", 16)}`; $("#ksyMsg").innerHTML = `${HELP_ICON["is-error"] || ""}Not eligible yet: ${esc(fails[0].l)}.`; $("#ksyMsg").classList.add("is-error"); }
   else { btn.disabled = false; btn.innerHTML = `Apply Now${iconSvg("arrow-right", "l", 16)}`; $("#ksyMsg").innerHTML = "You meet all the automatic checks."; $("#ksyMsg").classList.remove("is-error"); }
-  $("#ksyStatus").innerHTML = KSY.applied ? ksyStatusHtml() : "";
+  const mine = ksyMine().length;                                       // 26/11: the status tracker lives on My Applications now
+  $("#ksyStatus").innerHTML = mine ? `<section class="card ksy-mynote">${iconSvg("info", "o", 16)}<span>You have <b>${mine}</b> Kaushalya Sahaay Yojana application${mine === 1 ? "" : "s"}. Track the status in My Applications.</span><a class="ui-btn ui-btn-outline ui-btn-sm" href="#ksy-my">My Applications${iconSvg("arrow-right", "l", 14)}</a></section>` : "";
 }
+$("#ksyMyBody").addEventListener("click", e => { const b = e.target.closest("[data-ksy-my]"); if (b) { KSY.myId = b.dataset.ksyMy; ksyMyRender(); $("#ksyMyStatus").scrollIntoView({ behavior: "smooth", block: "start" }); } });
 $("#ksyApply").addEventListener("click", () => { if (!$("#ksyApply").disabled) location.hash = "ksy-form"; });
 
 /* ================= KSY APPLICATION FORM (Phase 2, 18/11) – 4 steps + Review, per the doc ("The form has four steps and a review screen") =================
@@ -10786,8 +10851,16 @@ $("#krBody").addEventListener("click", e => {
   ksyOpenAct(KSY.reviewRole, a.dataset.krAct, [KSY.reviewId]);
 });
 /* ---------- Student side: application status + 3-stage tracker on #view-ksy ---------- */
-function ksyStatusHtml() {
-  const r = KSY_APPS.find(a => a.id === KSY.appId); if (!r) return "";
+const ksyMine = () => KSY_APPS.filter(a => a.name === KSY.student.name).sort((a, b) => b.date - a.date);
+function ksyMyRender() {                                              // 26/11: student "My Applications" for Kaushalya Sahaay Yojana
+  const list = ksyMine(); if (!list.some(a => a.id === KSY.myId)) KSY.myId = list[0] ? list[0].id : null;
+  $("#ksyMyBody").innerHTML = list.map(a => `<tr${a.id === KSY.myId ? ' class="is-sel"' : ""}><td><span class="ma-id">${esc(a.id)}</span></td><td>${esc(a.company)}</td><td>${a.days} days</td><td>${fmt(a.date)}</td><td><span class="ui-badge ${ksyBadgeCls(a.status)}">${esc(a.status)}</span></td>
+    <td><div class="ui-acts"><button class="ui-act ui-act-view" type="button" data-ksy-my="${esc(a.id)}" title="View status" aria-label="View status of ${esc(a.id)}">${iconSvg("view", "f", 18)}</button></div></td></tr>`).join("")
+    || `<tr class="ver-empty"><td colspan="6">You have not applied yet. Go to Kaushalya Sahaay Yojana and click Apply Now.</td></tr>`;
+  $("#ksyMyStatus").innerHTML = KSY.myId ? ksyStatusHtml(KSY.myId) : "";
+}
+function ksyStatusHtml(id = KSY.appId) {
+  const r = KSY_APPS.find(a => a.id === id); if (!r) return "";
   const stages = ["nodal", "principal", "nep"], names = ["Nodal Officer", "Principal", "NEP Cell, KCG", "Payment (DBT)"];
   const cur = r.stage === "rejected" ? -1 : r.stage !== "done" ? stages.indexOf(r.stage) : r.paid ? 4 : 3;
   const rejIdx = r.stage === "rejected" ? stages.indexOf(r.rejectedAt) : -1;
@@ -10896,7 +10969,11 @@ function unSeed(o) {
 ].forEach(unSeed);
 const UN = { draftId: null, step: 0, maxStep: 0, f: null, rid: null, cmpId: null, cmp: null, tab: { principal: "rec", ucons: "app", uadmin: "app", uceo: "app" }, act: null };
 
-/* ---------- student page: my applications ---------- */
+/* ---------- student page: my applications (26/11: own page #unnati-my, header menu) ---------- */
+function unNoteRender() {
+  const mine = UN_APPS.filter(r => r.own), ready = mine.filter(r => r.stage === "approved").length;
+  $("#unMyNote").innerHTML = mine.length ? `<section class="card ksy-mynote">${iconSvg("info", "o", 16)}<span>You have <b>${mine.length}</b> Unnati Yojana application${mine.length === 1 ? "" : "s"}${ready ? ` – <b>${ready}</b> approved, waiting for your completion evidence` : ""}. Track them in My Applications.</span><a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati-my">My Applications${iconSvg("arrow-right", "l", 14)}</a></section>` : "";
+}
 function unMyRender() {
   const list = UN_APPS.filter(r => r.own).sort((a, b) => b.date - a.date);
   $("#unMyBody").innerHTML = list.map(r => {
@@ -11092,7 +11169,7 @@ function unSubmit() {
     <p>Your course proposal has gone to your ${esc(unSigner(r.f.type))} for recommendation.</p>
     <p><b>Application ID</b><br><span class="ma-id">${esc(r.id)}</span></p>
     <p>Do not start the course before KCG (CEO) approves it – otherwise it is not eligible for payment.</p>
-    <a class="ui-btn ui-btn-primary" href="#unnati">Back to Unnati Yojana</a>`;
+    <a class="ui-btn ui-btn-primary" href="#unnati-my">Go to My Applications</a>`;
   toast("Application submitted"); scrollTo(0, 0);
 }
 
@@ -11126,7 +11203,7 @@ $("#ucBody").addEventListener("click", e => {
     const now = new Date(), c = UN.cmp;
     r.completion = { cert: c.cert, receipt: c.receipt, enroll: c.enroll, amount: +r.f.fee, d: now }; r.stage = "inst-ver"; r.since = now;
     r.log.push({ d: now, t: "Completion evidence submitted by the applicant" }); UN.cmp = null;
-    toast("Completion submitted to your institution"); location.hash = "unnati";
+    toast("Completion submitted to your institution"); location.hash = "unnati-my";
   }
 });
 $("#ucBody").addEventListener("keydown", e => { const dr = e.target.closest("[data-uc-drop]"); if (dr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); dr.parentElement.querySelector("[data-uc-file]").click(); } });
@@ -11195,7 +11272,7 @@ function unTracker(r) {
     <div><h6>Course Approval</h6>${unSteps(A, aCur, aFail)}</div><div><h6>Completion &amp; Payment</h6>${unSteps(P, pCur, pFail)}</div></div>${pend}${msg}</section>`;
 }
 function unReviewRender() {
-  const r = UN_APPS.find(x => x.id === UN.rid), back = ROLE === "student" ? "unnati" : ROLE === "principal" ? "un-inst" : "un-kcg";
+  const r = UN_APPS.find(x => x.id === UN.rid), back = ROLE === "student" ? "unnati-my" : ROLE === "principal" ? "un-inst" : "un-kcg";
   $("#urBack").href = "#" + back;
   if (!r || (ROLE === "student" && !r.own)) { $("#urTitle").textContent = "Application not found"; $("#urSub").textContent = ""; $("#urBody").innerHTML = ""; return; }
   const f = r.f, kcg = ["ucons", "uadmin", "uceo"].includes(ROLE);
@@ -11444,23 +11521,39 @@ $("#attExport").addEventListener("click", () => {                         // Exc
 });
 
 /* ================= SIDEBAR VIEWS ================= */
+const H_SCH_NAV = {
+  sch: ["Scholarships", [["scholarships", "graduation:f:16", "Scholarship"], ["my-apps", "user:o:16", "My Applications"]]],
+  ksy: ["Kaushalya Sahaay Yojana", [["ksy", "briefcase:f:16", "Kaushalya Sahaay Yojana"], ["ksy-my", "user:o:16", "My Applications"]]],
+  un: ["Unnati Yojana", [["unnati", "award:f:16", "Unnati Yojana"], ["unnati-my", "user:o:16", "My Applications"]]]
+};
+function hSchNavSet(mod) {                                             // the header's 2 module buttons, same markup / look for every module
+  const nav = $("#hSchNav"); if (nav.dataset.mod === mod) return;
+  const [label, links] = H_SCH_NAV[mod]; nav.dataset.mod = mod; nav.setAttribute("aria-label", label);
+  nav.innerHTML = links.map(([v, ic, t]) => { const [n, st, z] = ic.split(":"); return `<a class="ui-btn ui-btn-ghost ui-btn-sm" href="#${v}" data-schnav="${v}" title="${t}">${iconSvg(n, st, +z)}${t}</a>`; }).join("");
+}
 function showView(name) {
   if (!document.getElementById("view-" + name)) name = "dashboard";
   if (name === "dashboard" && ROLE !== "student") name = ROLE_HOME[ROLE];   // Help Center / Commissioner Office have no student dashboard
   $$(".content[id^='view-']").forEach(v => v.hidden = v.id !== "view-" + name);
-  const schFull = ROLE === "student" && /^(scholarships|sch-declare|sch-form|my-apps|my-apps-view|ma-update)$/.test(name); // student scholarship pages: full width (17/11)
+  // 26/11 (user): Kaushalya Sahaay Yojana + Unnati Yojana work like Scholarships – full width, no sidebar, 2 module buttons in the header
+  const modOf = n => /^(scholarships|sch-declare|sch-form|my-apps|my-apps-view|ma-update)$/.test(n) ? "sch" : /^(ksy|ksy-form|ksy-my)$/.test(n) ? "ksy" : /^(unnati|unnati-form|unnati-complete|unnati-my|un-review)$/.test(n) ? "un" : "";
+  const schMod = ROLE === "student" ? modOf(name) : "";
+  const schFull = !!schMod; // student scholarship / KSY / Unnati pages: full width (17/11, 26/11)
+  if (schMod) hSchNavSet(schMod);
   const pfFull = ROLE === "student" && /^(profile|app-flows|app-login)$/.test(name); // Student Profile: full width too (19/11), same header pattern as Skill Passport/Scholarships but no Scholarship/My Applications nav
   $("#app").classList.toggle("is-dash", name === "dashboard" || schFull || pfFull); // Dashboard + student scholarship pages + Profile have no sidebar
   $("#app").classList.toggle("is-sch", schFull);
   $("#app").classList.toggle("is-pf", pfFull);
   $("#app").classList.toggle("is-att", /^att-/.test(name));            // Attendance module: own 2-link sidebar + Home / Quick Services in the header (20/11)
-  const schTab = /^(my-apps|my-apps-view|ma-update)$/.test(name) ? "my-apps" : "scholarships";
+  const schTab = schMod === "ksy" ? (name === "ksy-my" ? "ksy-my" : "ksy") : schMod === "un" ? (/^(unnati-my|un-review|unnati-complete)$/.test(name) ? "unnati-my" : "unnati") : /^(my-apps|my-apps-view|ma-update)$/.test(name) ? "my-apps" : "scholarships";
   $$("[data-schnav]").forEach(a => { const on = schFull && a.dataset.schnav === schTab; a.classList.toggle("is-active", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   const navName = name === "un-review" ? (ROLE === "student" ? "unnati" : ROLE === "principal" ? "un-inst" : "un-kcg") : name === "unnati-complete" ? "unnati" : name === "ver-view" ? HC.from : name === "ksy-review" ? "ksy-" + KSY.reviewRole : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
   $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === navName));
   $(".h-title h2").textContent = ({ dashboard: "Dashboard", cogent: "Cogent", "co-phase": "Phase – Application", profile: "My Profile", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App", ksy: "Kaushalya Sahaay Yojana", "ksy-form": "Kaushalya Sahaay Yojana", "ksy-nodal": "KSY – Nodal Officer", "ksy-principal": "KSY – Principal", "ksy-nep": "KSY – NEP Cell, KCG", "ksy-review": "Kaushalya Sahaay Yojana", "kcg-lots": "KCG – Lot List", "app-flows": "Mobile App", "app-login": "Mobile App", "att-dash": ATT_COLLEGE, "att-history": ATT_COLLEGE })[name] || "Student Profile";
   if (/^(unnati|un-)/.test(name)) $(".h-title h2").textContent = "Unnati Yojana";
-  if (name === "unnati") unMyRender();
+  if (name === "unnati-my") unMyRender();
+  if (name === "ksy-my") ksyMyRender();
+  if (name === "unnati") unNoteRender();
   if (name === "unnati-form") unOpenForm();
   if (name === "unnati-complete") unCmpOpen();
   if (name === "un-inst") unInstRender();
