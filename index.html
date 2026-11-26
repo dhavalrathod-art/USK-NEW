@@ -101,11 +101,12 @@ svg{flex-shrink:0}
 .adv{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
 .adv.open{grid-template-rows:1fr}
 .adv > div{overflow:hidden}
+.adv.open > div{overflow:visible;transition:overflow 0s .3s;transition-behavior:allow-discrete} /* DS dropdown menus are not cut off once the panel is open */
 .adv-inner{padding-top:16px;margin-top:14px;border-top:1px dashed var(--line)}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 16px;margin-bottom:14px}
 .field label{display:block;font-size:10.5px;font-weight:600;color:#374151;text-transform:uppercase;margin-bottom:6px;letter-spacing:.2px}
 .field label .req{color:var(--red)}
-.field select,.field input{width:100%;height:36px;border:1px solid var(--input-border);background:var(--input-bg);border-radius:6px;padding:0 10px;font-size:12px;color:var(--text);outline:0}
+.field select,.field input{width:100%;height:38px;border:1px solid var(--input-border);background:var(--input-bg);border-radius:6px;padding:0 10px;font-size:12px;color:var(--text);outline:0}
 .field select:hover,.field input:hover{border-color:var(--color-border-hover)}
 .field select.has,.field input:not(:placeholder-shown){background:#fff;border-color:var(--color-border-strong)}
 .field select:focus,.field input:focus{border-color:var(--color-border-focus);background:#fff;box-shadow:0 0 0 3px var(--color-focus-ring)}
@@ -337,6 +338,30 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ksy-checks b{display:block;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
 .ksy-checks small{display:block;margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
 .ksy-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-20);padding-top:var(--space-16);border-top:1px solid var(--color-border-default)}
+/* ===== Unnati Yojana (25/11) – page-level, DS tokens only ===== */
+.un-tabs{display:flex;gap:var(--space-8);flex-wrap:wrap;margin-bottom:var(--space-16)}
+.un-card{padding:var(--space-20);margin-bottom:var(--space-16)}
+.un-head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;padding:var(--space-16) var(--space-20);border-bottom:1px solid var(--color-border-default)}
+.un-head h5{font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.un-head p{margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.un-sub{display:block;margin-top:2px;font-size:var(--font-size-caption);color:var(--color-text-secondary);white-space:normal}
+.un-bud{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-12)}
+.un-bud > div{padding:var(--space-12);border:1px solid var(--color-border-default);border-radius:8px;min-width:0}
+.un-bud span{display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.un-bud b{display:block;margin-top:2px;font-size:var(--font-size-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.un-bud > .un-bud-bar{grid-column:1/-1;border:0;padding:0}
+.un-bud-bar .ui-progress{height:8px;border-radius:4px;margin-top:var(--space-8)}
+.un-bud-bar .ui-progress i.is-ok{background:var(--color-success)}
+.un-bud-bar .ui-progress i.is-warn{background:var(--color-warning)}
+.un-bud-bar .ui-progress i.is-high{background:var(--color-error)}
+.un-track{display:grid;gap:var(--space-20)}
+.un-track h6{margin-bottom:var(--space-12);font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.3px}
+.un-pend{display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap;margin-top:var(--space-16);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.un-letter{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-bottom:var(--space-12)}
+.un-decls{display:grid;gap:var(--space-12)}
+.un-acts-cell{display:flex;align-items:center;gap:var(--space-8)}
+@media (max-width:991.98px){.un-bud{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:575.98px){.un-bud{grid-template-columns:1fr}}
 @media (max-width:767.98px){.ksy-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:575.98px){.ksy-info-grid{grid-template-columns:1fr}.ksy-foot{flex-direction:column;align-items:stretch}.ksy-foot .ui-btn{width:100%}}
 /* application form (CMSS-05) */
@@ -456,11 +481,15 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ver-amt-total{display:flex;justify-content:space-between;align-items:center;gap:var(--space-12);margin-top:var(--space-16);padding:var(--space-12) var(--space-16);border-radius:8px;background:var(--color-primary-50);border:1px solid var(--color-primary-100)}
 .ver-amt-total span{font-weight:var(--font-weight-medium);color:var(--color-text-body)}
 .ver-amt-total b{font-size:var(--font-size-h4);color:var(--color-text-heading)}
-.ver-amt-notes{display:grid;gap:var(--space-4);margin-top:var(--space-12)}
-.ver-amt-notes li{display:flex;gap:var(--space-8);align-items:flex-start;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
-.ver-amt-notes li svg{flex:none;margin-top:1px}
-.ver-co-top{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:var(--space-16);margin-bottom:var(--space-16)}
-.ver-co-top>.card{margin:0}
+.ver-amt-list{display:grid}
+.ver-amt-list div{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px dashed var(--color-border-default)}
+.ver-amt-list dt{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ver-amt-list dd{font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);text-align:right;overflow-wrap:anywhere}
+.ver-amt-na{display:flex;align-items:center;gap:var(--space-8);padding:var(--space-12) var(--space-16);border-radius:8px;background:var(--color-bg-page);border:1px dashed var(--color-border-strong);font-weight:var(--font-weight-medium);color:var(--color-text-secondary)}
+.ver-amt-foot{margin-top:var(--space-12);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ver-co-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);align-items:start;gap:var(--space-16);margin-bottom:var(--space-16)}
+.ver-co-top>.card,.ver-co-left>.card{margin:0}
+.ver-co-left{display:grid;gap:var(--space-16);align-content:start}
 .ver-cnt{display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-20)}
 .ver-cnt>div>span{display:block;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
 .ver-cnt>div>b{display:block;font-size:var(--font-size-h2);line-height:var(--line-height-h2);color:var(--color-text-heading)}
@@ -524,10 +553,15 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .up-leg-ret{color:var(--color-error-text)}
 .sf-docs-lbl{margin:var(--space-8) 0 var(--space-4);font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.04em}
 .ver-gr{padding:var(--space-20);margin-bottom:var(--space-16)}
-.ver-phase{display:flex;align-items:center;justify-content:space-between;gap:var(--space-16);flex-wrap:wrap;padding:var(--space-16) var(--space-20);margin-bottom:var(--space-12)}
-.ver-phase-info{display:flex;flex-direction:column;gap:2px}
-.ver-phase-info span{font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
-@media (max-width:575.98px){.ver-phase{flex-direction:column;align-items:stretch}.ver-phase button{width:100%}}
+/* Phase – Application (CO-07 / CO-07.1, Spec 14) */
+.cp-tabsrow{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--space-12);flex-wrap:wrap}
+.cp-all{display:inline-flex;align-items:center;gap:var(--space-8);font-size:var(--font-size-body);font-weight:var(--font-weight-medium);color:var(--color-text-heading);cursor:pointer}
+.ui-bulk .cp-send{margin-left:auto}
+#cpApps[hidden],#cpLots[hidden]{display:none}
+.cp-lots .ui-acc-head .ui-badge{flex:none}
+.cp-lot-body{padding:0}
+.cp-lot-t{min-width:760px}
+@media (max-width:575.98px){.ui-bulk .cp-send{width:100%;margin-left:0}.cp-lots .ui-acc-head .ui-badge{display:none}}
 /* rich text remarks */
 .ver-rte{border:1px solid var(--input-border);border-radius:var(--input-radius);background:var(--input-bg)}
 .ver-rte.is-error{border-color:var(--input-border-error)}
@@ -2002,6 +2036,10 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       <!-- KSY 3-level review roles (18/11) -->
       <a href="#ksy-nodal" data-view="ksy-nodal" data-tip="KSY Applications" data-role="nodal" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
       <a href="#ksy-principal" data-view="ksy-principal" data-tip="KSY Applications" data-role="principal" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
+      <a href="#un-inst" data-view="un-inst" data-tip="Unnati Applications" data-role="principal" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Applications</span></a>
+      <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="ucons" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
+      <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="uadmin" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
+      <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="uceo" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
       <a href="#ksy-nep" data-view="ksy-nep" data-tip="KSY Applications" data-role="nep" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
       <a href="#my-apps" data-view="my-apps" data-tip="My Applications" data-role="student">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 2h8v3H8z"/><path fill-rule="evenodd" d="M6 4h1v2h10V4h1a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2zm2 7v2h8v-2H8zm0 4v2h5v-2H8z"/></svg>
@@ -2012,7 +2050,9 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 3h6a2 2 0 012 2v2h3a2 2 0 012 2v4H2V9a2 2 0 012-2h3V5a2 2 0 012-2zm0 4h6V5H9z"/><path d="M2 15h8v1a1 1 0 001 1h2a1 1 0 001-1v-1h8v4a2 2 0 01-2 2H4a2 2 0 01-2-2z"/></svg>
         <span class="nav-label">Kaushalya Sahaay Yojana</span>
       </a>
-      <a href="#company-job" data-view="company-job" data-tip="Company Job Post" data-role-hide="hc co kcg">
+      <!-- Unnati Yojana (25/11): course-fee reimbursement – a separate module like KSY -->
+      <a href="#unnati" data-view="unnati" data-tip="Unnati Yojana" data-role="student"><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
+      <a href="#company-job" data-view="company-job" data-tip="Company Job Post" data-role-hide="hc co kcg ucons uadmin uceo">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5L14 3.5zM11 11v3H8v2h3v3h2v-3h3v-2h-3v-3h-2z"/></svg>
         <span class="nav-label">Company Job Post</span>
       </a>
@@ -2081,7 +2121,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
           </div>
         </div>
       </div>
-        <div class="ui-select role-sel" id="roleSel" data-options="Student|Help Center|Commissioner Office|Nodal Officer|Principal|NEP Cell, KCG|KCG|Cogent|Company" data-value="Student" title="Switch role (demo)" aria-label="Role"></div>
+        <div class="ui-select role-sel" id="roleSel" data-options="Student|Help Center|Commissioner Office|Nodal Officer|Principal|NEP Cell, KCG|KCG|Consultant – KCG|Admin – KCG|CEO – KCG|Cogent|Company" data-value="Student" title="Switch role (demo)" aria-label="Role"></div>
         <button class="icon-btn" title="Notifications">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 00-5-5.9V4a1 1 0 00-2 0v1.1A6 6 0 006 11v5l-2 2v1h16v-1z"/></svg>
           <span class="badge-count">10</span>
@@ -2148,10 +2188,10 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
               <span class="db-feat-txt"><b>Kaushalya Sahaay Yojana</b><small>₹2,000 internship assistance for third-year students</small></span>
               <span class="db-feat-go"><span data-icon="arrow-right:l:16"></span></span>
             </button>
-            <!-- Unnati Yojana (19/11): flow not built yet, user will give the details next – placeholder toast for now -->
-            <button class="db-feat" type="button" data-dbsoon="Unnati Yojana">
+            <!-- Unnati Yojana (25/11): opens its real flow -->
+            <button class="db-feat" type="button" data-dbgo="#unnati">
               <span class="ui-icon-box is-info"><span data-icon="award:f:20"></span></span>
-              <span class="db-feat-txt"><b>Unnati Yojana</b><small>Details coming soon</small></span>
+              <span class="db-feat-txt"><b>Unnati Yojana</b><small>Course fee reimbursed for approved certificate courses</small></span>
               <span class="db-feat-go"><span data-icon="arrow-right:l:16"></span></span>
             </button>
           </div>
@@ -4228,8 +4268,52 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 
     <!-- ===== VIEW: Phase – Application (25/11; moved out from under the Review table into its own menu) – CO-07/VER-22/23: approved applications grouped by office + scholarship + academic year; Send Lot to KCG sends only the not-yet-sent ones ===== -->
     <main class="content" id="view-co-phase" hidden>
-      <div class="page-head"><div><h3>Phase – Application</h3><p>Approved applications, grouped by office, scholarship and academic year. Send Lot to KCG sends only the ones not yet sent.</p></div></div>
-      <div id="coPhases"></div>
+      <div class="page-head"><div><h3>Phase – Application</h3><p>Approved applications of your office. Select the ones to send and click Send to KCG – each send creates a new lot.</p></div></div>
+      <div class="cp-tabsrow">
+        <div class="ver-tabs" role="tablist" aria-label="Scholarship" id="cpScheme"></div>
+        <div class="ver-tabs" role="tablist" aria-label="View" id="cpView"></div>
+      </div>
+      <div class="ver-stats" id="cpStats"></div>
+      <!-- CO-07 (Spec 14): approved applications – select and Send to KCG -->
+      <div id="cpApps">
+        <section class="card ui-filter">
+          <div class="ui-filter-top">
+            <div class="ui-filter-title"><span class="ui-icon-box is-primary"><span data-icon="filter:f:18"></span></span><h5>Advanced Filter</h5></div>
+            <button class="ui-btn ui-btn-accent ui-filter-btn" type="button" id="cpFilterBtn" aria-expanded="false" aria-controls="cpAdv"><span data-icon="filter:f:16"></span>Filter<span class="ui-filter-cnt" id="cpCnt" hidden>0</span><span data-icon="chevron-down:l:14"></span></button>
+          </div>
+          <div class="ui-filter-panel" id="cpAdv" hidden>
+            <div class="ui-filter-grid">
+              <div class="ui-field"><label class="ui-label" for="cpSearch">Search</label><input class="ui-input" id="cpSearch" placeholder="Application ID or student name" autocomplete="off"></div>
+              <div class="ui-field"><span class="ui-label">Academic Year</span><div class="ui-select" id="cpYear"></div></div>
+              <div class="ui-field"><span class="ui-label">Show</span><div class="ui-select" id="cpShow"></div></div>
+              <div class="ui-field"><span class="ui-label">Application Type</span><div class="ui-select" id="cpType"></div></div>
+              <div class="ui-field"><span class="ui-label" id="cpClsLbl">Course group</span><div class="ui-select" id="cpCls" data-search></div></div>
+            </div>
+            <div class="ui-filter-acts">
+              <span class="ui-filter-count" id="cpPreview"></span>
+              <div class="ui-filter-btns">
+                <button class="ui-btn ui-btn-primary" type="button" id="cpApply"><span data-icon="check:l:16"></span>Apply</button>
+                <button class="ui-btn ui-btn-danger" type="button" id="cpCancel"><span data-icon="close:l:16"></span>Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div class="ui-filter-chips" id="cpChips"></div>
+        </section>
+        <section class="card table-card">
+          <div class="ui-bulk">
+            <label class="cp-all"><input type="checkbox" class="ui-cb" id="cpAll">Select all not yet in a lot</label>
+            <span class="ui-bulk-count"><b id="cpSelTxt">No applications selected</b></span>
+            <button class="ui-btn ui-btn-primary cp-send" type="button" id="cpSend" disabled><span data-icon="arrow-right:l:16"></span>Send to KCG</button>
+          </div>
+          <div class="table-wrap"><table>
+            <thead><tr><th style="width:44px"><span class="sr-only">Select</span></th><th>Application ID</th><th>Student Name</th><th>Application Type</th><th id="cpClsTh">Course group</th><th>Approved on</th><th>Sanctioned Amount</th><th>Lot</th><th>Action</th></tr></thead>
+            <tbody id="cpBody"></tbody>
+          </table></div>
+          <div class="t-foot"><div class="showing" id="cpShowing"></div><div class="pager" id="cpPager"></div></div>
+        </section>
+      </div>
+      <!-- CO-07.1 (Spec 14): the lots this office created, one accordion item per lot -->
+      <div id="cpLots" hidden></div>
     </main>
 
     <!-- ===== VIEW: KCG – Lot List (KCG-01) + Export Excel (KCG-02) ===== -->
@@ -4541,6 +4625,104 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       <div id="krBody"></div>
     </main>
 
+
+    <!-- ===== VIEW: Unnati Yojana – student / faculty / officer applicant (25/11, UNNATI_Functional_Specification) ===== -->
+    <main class="content" id="view-unnati" hidden>
+      <div class="page-head">
+        <div>
+          <h3>Unnati Yojana</h3>
+          <p>Get the fee of a certified course in an emerging area reimbursed by the Knowledge Consortium of Gujarat (KCG).</p>
+        </div>
+        <button class="ui-btn ui-btn-primary" type="button" id="unNew"><span data-icon="plus:l:16"></span>New Application</button>
+      </div>
+      <section class="card ksy-info">
+        <div class="ksy-info-grid">
+          <div><span>Assistance</span><b>Course fee reimbursed</b></div>
+          <div><span>Courses</span><b>AI, Data Analytics, Cloud, Cybersecurity, Financial Modeling, Business Intelligence</b></div>
+          <div><span>Who can apply</span><b>Students, faculty and staff of Government / GIA colleges, government universities and higher education offices</b></div>
+        </div>
+        <p class="ksy-note"><span data-icon="info:o:16"></span>KCG (CEO) must approve your course before it starts. After you complete it, submit the completion certificate and fee receipt. Payment is by DBT to the bank account linked with your Aadhaar.</p>
+      </section>
+      <section class="card table-card">
+        <div class="un-head"><div><h5>My Unnati Applications</h5><p>Latest first. Open an application to see where it is.</p></div></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Application ID</th><th>Course</th><th>Applicant Type</th><th>Enrollment</th><th>Course Dates</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="unMyBody"></tbody>
+        </table></div>
+      </section>
+    </main>
+
+    <!-- ===== VIEW: Unnati Yojana – Application form (4 steps: Applicant, Course, Documents, Review) ===== -->
+    <main class="content" id="view-unnati-form" hidden>
+      <div class="page-head sch-head">
+        <div><h3>Unnati Yojana – Course Proposal</h3><p>Proposal form for a certified course. Fields with * are mandatory.</p></div>
+        <a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati"><span data-icon="arrow-left:l:14"></span>Unnati Yojana</a>
+      </div>
+      <section class="card sf-steps-card" id="unStepsCard">
+        <ol class="ui-steps sf-steps" id="unSteps" aria-label="Application steps"></ol>
+        <div class="sf-mstep" id="unMStep"></div>
+      </section>
+      <div id="unBody"></div>
+      <section class="card sf-foot" id="unFoot">
+        <div class="sf-foot-row">
+          <button class="ui-btn ui-btn-outline" type="button" id="unPrev"><span data-icon="arrow-left:l:16"></span>Back</button>
+          <span class="ui-help sf-pending" id="unPending"></span>
+          <div class="sf-foot-btns">
+            <button class="ui-btn ui-btn-soft" type="button" id="unDraft">Save as Draft</button>
+            <button class="ui-btn ui-btn-primary" type="button" id="unNext">Next<span data-icon="arrow-right:l:16"></span></button>
+          </div>
+        </div>
+      </section>
+      <section class="card sf-done" id="unDone" hidden></section>
+    </main>
+
+    <!-- ===== VIEW: Unnati Yojana – Submit completion (only after the CEO, KCG granted prior approval) ===== -->
+    <main class="content" id="view-unnati-complete" hidden>
+      <div class="page-head sch-head">
+        <div><h3>Submit Course Completion</h3><p id="ucSub"></p></div>
+        <a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati"><span data-icon="arrow-left:l:14"></span>Unnati Yojana</a>
+      </div>
+      <div id="ucBody"></div>
+    </main>
+
+    <!-- ===== VIEW: Unnati Yojana – Institution (Principal / Registrar / competent authority) ===== -->
+    <main class="content" id="view-un-inst" hidden>
+      <div class="page-head"><div><h3>Unnati Yojana – Institution</h3><p>Recommend course proposals after checking the signed recommendation letter, and verify completion evidence before it goes to KCG for payment.</p></div></div>
+      <div class="un-tabs" id="unInstTabs" role="tablist"></div>
+      <section class="card table-card">
+        <div class="ma-toolbar"><span id="unInstCount"></span><span>Batch-based first, then oldest first</span></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Application ID</th><th>Applicant</th><th>Institution</th><th>Course</th><th>Enrollment</th><th>Course Fee</th><th>Days Pending</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="unInstBody"></tbody>
+        </table></div>
+      </section>
+    </main>
+
+    <!-- ===== VIEW: Unnati Yojana – KCG (Consultant / Admin / CEO; one view, rendered by role) ===== -->
+    <main class="content" id="view-un-kcg" hidden>
+      <div class="page-head"><div><h3 id="unKcgTitle">Unnati Yojana – KCG</h3><p id="unKcgSub"></p></div></div>
+      <section class="card un-card">
+        <div class="sf-rv-head"><h5>Budget &amp; Beneficiary Tracker</h5><span class="ui-badge ui-badge-neutral">For tracking only – not a hard limit</span></div>
+        <div class="un-bud" id="unBudget"></div>
+      </section>
+      <div class="un-tabs" id="unKcgTabs" role="tablist"></div>
+      <section class="card table-card">
+        <div class="ma-toolbar"><span id="unKcgCount"></span><span>Batch-based first, then oldest first</span></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Application ID</th><th>Applicant</th><th>Institution</th><th>Course</th><th>Enrollment</th><th>Course Fee</th><th>Days Pending</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="unKcgBody"></tbody>
+        </table></div>
+      </section>
+    </main>
+
+    <!-- ===== VIEW: Unnati Yojana – one application (shared by applicant, Institution, Consultant, Admin, CEO) ===== -->
+    <main class="content" id="view-un-review" hidden>
+      <div class="page-head sch-head">
+        <div><h3 id="urTitle"></h3><p id="urSub"></p></div>
+        <a class="ui-btn ui-btn-outline ui-btn-sm" id="urBack" href="#unnati"><span data-icon="arrow-left:l:14"></span>Back</a>
+      </div>
+      <div id="urBody"></div>
+    </main>
 
     <!-- ===== VIEW: Company Job Post → Create / Edit Job Posting (one form for both) ===== -->
     <main class="content" id="view-company-job-form" hidden>
@@ -5049,14 +5231,14 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
           <div class="adv-inner">
             <div class="grid4">
               <div class="field"><label>Student Name</label><input type="text" data-k="name" placeholder="Search by student name" autocomplete="off"></div>
-              <div class="field"><label>University <span class="req">*</span></label><select data-k="university"><option value="">Select university</option></select></div>
-              <div class="field"><label>Institute <span class="req">*</span></label><select data-k="institute"><option value="">Select institute</option></select></div>
-              <div class="field"><label>State</label><select data-k="state"><option value="">Select state</option></select></div>
-              <div class="field"><label>District</label><select data-k="district" disabled><option value="">Select district</option></select></div>
-              <div class="field"><label>Taluka</label><select data-k="taluka" disabled><option value="">Select taluka</option></select></div>
-              <div class="field"><label>Program</label><select data-k="program"><option value="">Select program</option></select></div>
-              <div class="field"><label>Select Program <span class="req">*</span></label><select data-k="branch"><option value="">Select branch/subject</option></select></div>
-              <div class="field"><label>Current Semester/Year</label><select data-k="semester"><option value="">Select current semester/year</option></select></div>
+              <div class="field"><label>University <span class="req">*</span></label><div class="ui-select" data-k="university" data-ph="Select university" data-options="All" data-value="All" data-search aria-label="university"></div></div>
+              <div class="field"><label>Institute <span class="req">*</span></label><div class="ui-select" data-k="institute" data-ph="Select institute" data-options="All" data-value="All" data-search aria-label="institute"></div></div>
+              <div class="field"><label>State</label><div class="ui-select" data-k="state" data-ph="Select state" data-options="All" data-value="All" data-search aria-label="state"></div></div>
+              <div class="field"><label>District</label><div class="ui-select" data-k="district" data-ph="Select district" data-options="All" data-value="All" data-search aria-label="district"></div></div>
+              <div class="field"><label>Taluka</label><div class="ui-select" data-k="taluka" data-ph="Select taluka" data-options="All" data-value="All" data-search aria-label="taluka"></div></div>
+              <div class="field"><label>Program</label><div class="ui-select" data-k="program" data-ph="Select program" data-options="All" data-value="All" data-search aria-label="program"></div></div>
+              <div class="field"><label>Select Program <span class="req">*</span></label><div class="ui-select" data-k="branch" data-ph="Select branch/subject" data-options="All" data-value="All" data-search aria-label="branch/subject"></div></div>
+              <div class="field"><label>Current Semester/Year</label><div class="ui-select" data-k="semester" data-ph="Select current semester/year" data-options="All" data-value="All" data-search aria-label="current semester/year"></div></div>
               <div class="field"><label>From Date</label><input type="date" data-k="from"></div>
               <div class="field"><label>To Date</label><input type="date" data-k="to"></div>
             </div>
@@ -5082,7 +5264,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <div class="t-toolbar">
           <div class="sel" id="selInfo">No rows selected</div>
           <div class="r">
-            <select class="per" id="perPage"><option>5</option><option selected>10</option><option>25</option><option>50</option></select>
+            <div class="ui-select att-per" id="perPage" data-options="5|10|25|50" data-value="10" aria-label="Rows per page"></div>
             <button class="btn btn-light" id="exportBtn">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M4 21h16"/></svg> Export Excel
             </button>
@@ -5460,22 +5642,43 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
     <div class="ui-modal-foot"><span></span><button class="ui-btn ui-btn-primary" data-modal-close>Close</button></div>
   </div>
 </div>
-<!-- ===== Commissionerate Office – Send Lot to KCG (CO-07, VER-22/23, 19/11 spec update step 4) ===== -->
+<!-- ===== Commissionerate Office – Send to KCG (CO-07, VER-23, Spec 14): DS confirm modal ===== -->
 <div class="ui-modal-backdrop" id="mdSendLot" data-static>
-  <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdSendLotTitle">
-    <div class="ui-modal-head">
-      <span class="ui-modal-icon"><span data-icon="arrow-right:l:20"></span></span>
-      <div class="ui-modal-title"><h4 id="mdSendLotTitle">Send Lot to KCG</h4><p id="mdSendLotSub"></p></div>
-      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+  <div class="ui-modal ui-confirm" role="alertdialog" aria-modal="true" aria-labelledby="mdSendLotTitle" aria-describedby="mdSendLotSub">
+    <div class="ui-confirm-body">
+      <span class="ui-confirm-icon"><span data-icon="arrow-right:l:24"></span></span>
+      <h4 id="mdSendLotTitle">Send to KCG?</h4>
+      <p id="mdSendLotSub"></p>
     </div>
-    <div class="ui-modal-body"><p class="cjp-del-text">An application is never sent twice – only the ones not yet sent go in this lot.</p></div>
-    <div class="ui-modal-foot">
+    <div class="ui-confirm-foot">
       <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
-      <button class="ui-btn ui-btn-primary" id="sendLotYes"><span data-icon="arrow-right:l:16"></span>Send Lot</button>
+      <button class="ui-btn ui-btn-primary" id="sendLotYes">Confirm</button>
     </div>
   </div>
 </div>
 <!-- ===== Kaushalya Sahaay Yojana – Approve / Reject (Phase 3, 18/11): one modal for Nodal Officer, Principal, NEP Cell, single or bulk ===== -->
+<!-- ===== Unnati Yojana – Recommend / Clear / Approve / Reject (one modal for every role) ===== -->
+<div class="ui-modal-backdrop" id="mdUnAct" data-static>
+  <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdUnActTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="edit:f:20"></span></span>
+      <div class="ui-modal-title"><h4 id="mdUnActTitle">Approve</h4><p id="mdUnActSub"></p></div>
+      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="ui-field">
+        <label class="ui-label" for="unActReason">Remarks<span class="ui-req" id="unActReq" hidden>*</span></label>
+        <textarea class="ui-input" id="unActReason" rows="4"></textarea>
+        <span class="ui-help" id="unActHelp" hidden></span>
+      </div>
+      <label class="sf-decl" id="unActDeclRow" hidden style="margin-top:var(--space-16)"><input class="ui-cb" type="checkbox" id="unActDecl"><span>I have verified the completion certificate and the fee receipt, and I certify this beneficiary to KCG for payment.</span></label>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" id="unActYes">Confirm</button>
+    </div>
+  </div>
+</div>
 <div class="ui-modal-backdrop" id="mdKsyAct" data-static>
   <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdKsyActTitle">
     <div class="ui-modal-head">
@@ -5712,10 +5915,10 @@ function filtered({ skipCol = null, adv = S.adv } = {}) {
 /* ================= ADVANCED FILTER ================= */
 const sel = k => $(`.adv [data-k="${k}"]`);
 function fillSelect(k, items, placeholder) {
-  const el = sel(k), cur = S.draft[k] || "";
-  el.innerHTML = `<option value="">${placeholder}</option>` + items.map(v => `<option ${v===cur?"selected":""}>${esc(v)}</option>`).join("");
-  el.disabled = !items.length;
-  el.classList.toggle("has", !!cur);
+  const el = sel(k);                                  // DS .ui-select (25/11): "All" = no filter, like every other Advanced Filter
+  el.dataset.ph = placeholder;
+  el.classList.toggle("is-disabled", !items.length);
+  cjpSel(el, ["All", ...items], S.draft[k] || "All");
 }
 function syncSelects() {
   const d = S.draft;
@@ -5732,16 +5935,18 @@ function syncSelects() {
   const n = filtered({ adv: d }).length;
   $("#preview").innerHTML = `<b style="color:var(--primary)">${n}</b> application${n===1?"":"s"} match these filters`;
 }
-$("#adv").addEventListener("change", e => {
-  const k = e.target.dataset.k; if (!k) return;
-  S.draft[k] = e.target.value || undefined;
+function advSet(k, v) {
+  if (S.draft[k] === v) return;                     // initSelect fires ui-select-change on every rebuild – ignore no-op changes
+  S.draft[k] = v;
   // reset dependent fields
   if (k === "state") { delete S.draft.district; delete S.draft.taluka; }
   if (k === "district") delete S.draft.taluka;
   if (k === "university") delete S.draft.institute;
   if (k === "program") delete S.draft.branch;
   syncSelects();
-});
+}
+$("#adv").addEventListener("change", e => { const k = e.target.dataset.k; if (k && e.target.matches("input")) advSet(k, e.target.value || undefined); });
+$("#adv").addEventListener("ui-select-change", e => { const k = e.target.dataset.k, v = e.detail[0]; if (k) advSet(k, v && v !== "All" ? v : undefined); });
 // Student Name: update the match count while typing, Enter applies
 sel("name").addEventListener("input", e => { S.draft.name = e.target.value.trim() ? e.target.value : undefined; syncSelects(); });
 sel("name").addEventListener("keydown", e => { if (e.key === "Enter") $("#applyBtn").click(); });
@@ -5846,7 +6051,7 @@ $("#pager").addEventListener("click", e => {
   const b = e.target.closest("button[data-p]"); if (!b || b.disabled) return;
   S.page = +b.dataset.p; render();
 });
-$("#perPage").addEventListener("change", e => { S.per = +e.target.value; S.page = 1; render(); });
+$("#perPage").addEventListener("ui-select-change", e => { const v = +e.detail[0] || 10; if (v === S.per) return; S.per = v; S.page = 1; render(); });
 
 $("#tbody").addEventListener("click", e => {
   const cb = e.target.closest(".cb");
@@ -9273,8 +9478,8 @@ function sfRenewElig() {
    Phase 4b (next): student Update / Resubmit (COM-04), updated items (HC-05), 15-day timeline / reminders / expiry (HC-07),
    notifications (COM-05), progress tracker (COM-03). */
 let ROLE = "student";
-const ROLE_NAME = { student: "Student", hc: "Help Center", co: "Commissioner Office", nodal: "Nodal Officer", principal: "Principal", nep: "NEP Cell, KCG", kcg: "KCG", cogent: "Cogent", company: "Company" };
-const ROLE_HOME = { student: "dashboard", hc: "hc", co: "co", nodal: "ksy-nodal", principal: "ksy-principal", nep: "ksy-nep", kcg: "kcg-lots", cogent: "cogent", company: "company-job" };
+const ROLE_NAME = { student: "Student", hc: "Help Center", co: "Commissioner Office", nodal: "Nodal Officer", principal: "Principal", nep: "NEP Cell, KCG", kcg: "KCG", ucons: "Consultant – KCG", uadmin: "Admin – KCG", uceo: "CEO – KCG", cogent: "Cogent", company: "Company" };
+const ROLE_HOME = { student: "dashboard", hc: "hc", co: "co", nodal: "ksy-nodal", principal: "ksy-principal", nep: "ksy-nep", kcg: "kcg-lots", ucons: "un-kcg", uadmin: "un-kcg", uceo: "un-kcg", cogent: "cogent", company: "company-job" };
 function roleSet(r, go) {
   ROLE = ROLE_NAME[r] ? r : "student";
   try { sessionStorage.setItem("usk-role", ROLE); } catch (e) {}
@@ -9351,6 +9556,23 @@ const VER = [
 // 25/11: the returned sample rows were forwarded before – give them their office, forward date and classification (office list / progress table)
 VER.forEach(r => { if (r.status !== "Returned" || r.office) return; const sug = VER_SUGGEST[r.program] || {}; const f = r.log.find(l => /^Forwarded/.test(l.t));
   r.office = VER_OFFICES[r.dept] || VER_OFFICES.Other; r.locked = f ? f.d : r.date; if (r.scheme === "CMSS") r.group = sug.group || VER_GROUPS[5]; else r.courseType = sug.type || VER_TYPES[1]; });
+// 26/11 (Spec 14, CO-07): approved sample rows for the Phase list – per scholarship 2 not yet in a lot + 1 already sent in Lot 1
+[["0123987650021", "Bhatt Kavya Ramesh", "CMSS", "Female", "Fresh", "BE/B-Tech", "Computer Engineering", VER_GROUPS[5], 82000, 18, null],
+ ["0123987650022", "Solanki Rohan Dinesh", "CMSS", "Male", "Delayed", "Diploma Engineering", "Mechanical Engineering", VER_GROUPS[6], 46000, 19, null],
+ ["0123987650023", "Chauhan Meera Vijay", "CMSS", "Female", "Fresh", "BE/B-Tech", "Civil Engineering", VER_GROUPS[5], 90000, 14, 1],
+ ["0123987650024", "Dave Arjun Mahesh", "MYSY", "Male", "Fresh", "BE/B-Tech", "Information Technology", VER_TYPES[1], 64000, 20, null],
+ ["0123987650025", "Gohil Isha Prakash", "MYSY", "Female", "Renewal", "Diploma Engineering", "Electrical Engineering", VER_TYPES[2], 30000, 21, null],
+ ["0123987650026", "Rathod Neel Kishor", "MYSY", "Male", "Fresh", "BE/B-Tech", "Chemical Engineering", VER_TYPES[1], 70000, 13, 1]
+].forEach(([id, name, scheme, gender, type, program, course, cls, fee, appD, lot], i) => {
+  const r = verSeed({ id, name, scheme, type, college: VER_COLLEGES[i % 3], program, course, dept: "Technical", sem: "Year 1 / Semester 1", prev: program === "Diploma Engineering" ? "Class 10" : "Class 12 – Science",
+    date: vD(appD - 8, 11), status: "Approved", office: VER_OFFICES.Technical, locked: vD(appD - 3, 11), dob: "10/0" + (i + 1) + "/2008", gender, cat: "SEBC", mob: "9" + (i + 1) + "XXXX20" + (i + 21), mail: "s•••••" + i + "@gmail.com",
+    addr: "Ahmedabad", city: "Ahmedabad", dom: "DOM2024AHD20" + (i + 21), fee, father: name.split(" ")[2] + " " + name.split(" ")[0], mother: "–", income: 240000 + i * 20000, incNo: "INC/AHD/2026/200" + (i + 21), api: true, aad: "20" + (i + 21),
+    ...(scheme === "CMSS" ? { group: cls, cats: ["5"] } : { courseType: cls, extra: { "Admission Details": [["Admission on TFW Seat?", "No", "Agency data"]] } }),
+    log: [{ d: vD(appD - 8, 11), t: "Submitted by the student" }, { d: vD(appD - 3, 11), t: "Forwarded by Help Center to Commissionerate of Technical Education" }, { d: vD(appD, 11), t: "Approved by Commissionerate of Technical Education" }] });
+  r.approvedAt = vD(appD, 11); VER.push(r); verAddToPhase(r);
+  if (lot) { const p = PHASE.find(x => x.key === `${r.office}__${r.scheme}__${r.year}`), l = p.lots.find(x => x.no === lot) || (p.lots.push({ no: lot, date: vD(16, 11), apps: [] }), p.lots[p.lots.length - 1]);
+    l.apps.push(r.id); r.lotNo = lot; r.lotSentAt = l.date; r.log.push({ d: l.date, t: `Sent to KCG in Lot ${lot}` }); }
+});
 // A student submits from the form → joins the Help Center list (Phase 1b/2/3 submit calls this)
 function verFromForm(a, rv) {
   const get = (sec, l) => ((rv.find(r => r[0] === sec) || [, , []])[2].find(x => x[0] === l) || [])[1] || "";
@@ -9458,32 +9680,115 @@ function coRender() {
     <td>${esc((cmss ? verGroupOf(r) : verTypeOf(r)).replace(/ \(.*$/, "") || "–")}</td><td>${r.locked ? fmt(r.locked) : "–"}</td><td><span class="ui-badge ui-badge-${VER_BADGE[r.status] || "neutral"}">${coStLabel(r.status)}</span></td>
     <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#ver-view" data-ver="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`).join("")
     || `<tr class="ver-empty"><td colspan="8">No applications to review.</td></tr>`;
-  coPhaseRender();
 }
-// CO-07/VER-22/23: Phase cards for the current scholarship tab, one per office + academic year
-function coPhasePending(p) { return p.apps.filter(id => { const r = VER.find(x => x.id === id); return r && r.lotNo == null; }); }
+// ---------- CO-07 / CO-07.1 (Spec 14, VER-23): Phase = this office's approved applications; select → Send to KCG creates a new lot; Lots tab ----------
+const CP = { scheme: "CMSS", view: "apps", page: 1, per: 10, sel: new Set(), open: null };
+const cpDef = () => ({ year: "All", show: "Not yet in a lot", type: "All", cls: "All", q: "" });
+Object.assign(CP, cpDef());
+const CP_SHOW = ["Not yet in a lot", "In a lot", "All"];
+const cpClsOf = r => (r.scheme === "CMSS" ? verGroupOf(r) : verTypeOf(r));
+const cpShort = s => String(s || "").replace(/ \(.*$/, "") || "–";
+const cpApproved = () => VER.filter(r => r.status === "Approved" && r.office && r.scheme === CP.scheme);
+const cpApprovedOn = r => r.approvedAt || (r.log.slice().reverse().find(l => /^Approved by/.test(l.t)) || {}).d || null;
+function cpSanct(r) { if (r.sanctioned == null) { r.amount = verAmount(r); r.sanctioned = r.amount.ok ? r.amount.total : null; } return r.sanctioned; }
+const cpLotTxt = r => r.lotNo != null ? `Lot ${r.lotNo} – sent on ${fmt(r.lotSentAt)}` : "Not yet in a lot";
+function cpLots() { return PHASE.filter(p => p.scheme === CP.scheme).flatMap(p => p.lots.map(l => ({ key: `${p.key}__${l.no}`, office: p.office, year: p.year, no: l.no, date: l.date, apps: l.apps }))).sort((a, b) => b.date - a.date || b.no - a.no); }
+function cpList(f = CP) {
+  const q = f.q.toLowerCase();
+  return cpApproved().filter(r => (f.year === "All" || r.year === f.year) && (f.show === "All" || (f.show === "In a lot") === (r.lotNo != null))
+    && (f.type === "All" || r.type === f.type) && (f.cls === "All" || cpClsOf(r) === f.cls) && (!q || r.id.includes(q) || r.name.toLowerCase().includes(q)))
+    .sort((a, b) => (cpApprovedOn(b) || 0) - (cpApprovedOn(a) || 0));
+}
+const cpLbl = k => ({ q: "Search", year: "Academic Year", show: "Show", type: "Application Type", cls: CP.scheme === "CMSS" ? "Course group" : "Course Type" })[k];
+const cpRead = () => ({ q: $("#cpSearch").value.trim(), year: cjpVal($("#cpYear")) || "All", show: cjpVal($("#cpShow")) || CP_SHOW[0], type: cjpVal($("#cpType")) || "All", cls: cjpVal($("#cpCls")) || "All" });
+function cpInit() {
+  $("#cpSearch").value = CP.q;
+  cjpSel($("#cpYear"), ["All", "2026-27"], CP.year);
+  cjpSel($("#cpShow"), CP_SHOW, CP.show);
+  cjpSel($("#cpType"), ["All", "Fresh", "Delayed", "Renewal", "Renewal Delayed"], CP.type);
+  cjpSel($("#cpCls"), ["All", ...(CP.scheme === "CMSS" ? VER_GROUPS : VER_TYPES)], CP.cls);
+  $("#cpClsLbl").textContent = $("#cpClsTh").textContent = CP.scheme === "CMSS" ? "Course group" : "Course Type";
+}
+const cpPreview = () => { const n = cpList(cpRead()).length; $("#cpPreview").innerHTML = `<b>${n}</b> ${n === 1 ? "application matches" : "applications match"} these filters`; };
+const cpClose = () => { $("#cpAdv").hidden = true; $("#cpFilterBtn").setAttribute("aria-expanded", false); };
+function cpChips() {
+  const d = cpDef(), keys = Object.keys(d).filter(k => CP[k] !== d[k]);
+  $("#cpChips").innerHTML = keys.length ? keys.map(k => `<span class="ui-chip"><b>${cpLbl(k)}:</b>${esc(cpShort(CP[k]))}<button type="button" data-cp-rm="${k}" title="Remove ${cpLbl(k)} filter" aria-label="Remove ${cpLbl(k)} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + (keys.length > 1 ? `<button class="ui-filter-clear" type="button" data-cp-clear>Clear all</button>` : "") : "";
+  $("#cpCnt").hidden = !keys.length; $("#cpCnt").textContent = keys.length;
+}
+function cpBulk() {
+  const free = cpList().filter(r => r.lotNo == null), n = CP.sel.size;
+  $("#cpSelTxt").textContent = n ? `${n} application${n > 1 ? "s" : ""} selected` : "No applications selected";
+  $("#cpSend").disabled = !n; $("#cpSend").innerHTML = `${iconSvg("arrow-right", "l", 16)}Send to KCG${n ? ` (${n})` : ""}`;
+  $("#cpAll").disabled = !free.length; $("#cpAll").checked = free.length > 0 && free.every(r => CP.sel.has(r.id));
+}
 function coPhaseRender() {
-  const phases = PHASE;                                                // 25/11: own page – every scholarship
-  $("#coPhases").innerHTML = phases.length ? phases.map(p => { const pending = coPhasePending(p), sent = p.apps.length - pending.length;
-    return `<section class="card ver-phase"><div class="ver-phase-info"><b>${esc(p.scheme)} · ${esc(p.office)}</b><span>Academic year ${p.year} · ${p.apps.length} approved · ${sent} already sent${p.lots.length ? ` (${p.lots.length} lot${p.lots.length === 1 ? "" : "s"})` : ""}</span></div>
-      <button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-send-lot="${esc(p.key)}" ${pending.length ? "" : "disabled"}>${iconSvg("arrow-right", "l", 14)}Send Lot to KCG${pending.length ? ` (${pending.length})` : ""}</button></section>`; }).join("")
-    : `<section class="card ver-empty" style="padding:var(--space-20)">No applications are approved yet. Approved applications appear here, grouped into a Phase.</section>`;
+  const tab = (id, list, cur, attr) => { $(id).innerHTML = list.map(([v, t]) => `<button class="ui-btn ${v === cur ? "ui-btn-primary" : "ui-btn-outline"}" type="button" role="tab" aria-selected="${v === cur}" ${attr}="${v}">${t}</button>`).join(""); };
+  tab("#cpScheme", [["CMSS", "CMSS"], ["MYSY", "MYSY"]], CP.scheme, "data-cp-scheme");
+  tab("#cpView", [["apps", "Approved applications"], ["lots", "Lots"]], CP.view, "data-cp-view");
+  const all = cpApproved(), inLot = all.filter(r => r.lotNo != null).length, lots = cpLots();
+  const stat = (n, t) => `<div class="ver-stat"><b>${n}</b><span>${t}</span></div>`;
+  $("#cpStats").innerHTML = CP.view === "apps" ? stat(all.length, "Approved") + stat(all.length - inLot, "Not yet in a lot") + stat(inLot, "In lots")
+    : stat(lots.length, "Lots created") + stat(inLot, "Applications in lots") + stat(all.length - inLot, "Not yet in a lot");
+  $("#cpApps").hidden = CP.view !== "apps"; $("#cpLots").hidden = CP.view !== "lots";
+  if (CP.view === "lots") return cpLotsRender(lots);
+  cpChips();
+  const list = cpList(); CP.sel = new Set([...CP.sel].filter(id => list.some(r => r.id === id && r.lotNo == null)));
+  const pages = Math.max(1, Math.ceil(list.length / CP.per)); CP.page = Math.min(CP.page, pages);
+  const from = (CP.page - 1) * CP.per, rows = list.slice(from, from + CP.per);
+  $("#cpBody").innerHTML = rows.map(r => { const s = cpSanct(r), on = cpApprovedOn(r), lot = r.lotNo != null;
+    return `<tr><td><input type="checkbox" class="ui-cb" data-cp-row="${r.id}" ${CP.sel.has(r.id) ? "checked" : ""} ${lot ? "disabled" : ""} aria-label="Select ${r.id}"></td><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span></td><td>${esc(r.type)}</td>
+      <td>${esc(cpShort(cpClsOf(r)))}</td><td>${on ? fmt(on) : "–"}</td><td>${s != null ? rup(s) : "Amount not available"}</td>
+      <td><span class="ui-badge ${lot ? "ui-badge-approved" : "ui-badge-neutral"}">${esc(cpLotTxt(r))}</span></td>
+      <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#ver-view" data-ver="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`; }).join("")
+    || `<tr class="ver-empty"><td colspan="9">No applications found.</td></tr>`;
+  $("#cpShowing").textContent = list.length ? `Showing ${from + 1} to ${from + rows.length} of ${list.length} entries` : "Showing 0 entries";
+  $("#cpPager").innerHTML = pages > 1 ? pagerHtml(CP.page, pages) : "";
+  cpBulk();
 }
-$("#coPhases").addEventListener("click", e => {
-  const b = e.target.closest("[data-send-lot]"); if (!b) return;
-  const p = PHASE.find(x => x.key === b.dataset.sendLot); if (!p) return;
-  const pending = coPhasePending(p); if (!pending.length) return;
-  $("#mdSendLotSub").textContent = `${pending.length} application${pending.length === 1 ? "" : "s"} of ${p.scheme} · ${esc(p.office)} · Academic year ${p.year} will be sent as the next lot. This cannot be undone.`;
-  $("#mdSendLot").dataset.phase = p.key;
-  openModal("mdSendLot");
+function cpLotsRender(lots) {
+  const byId = id => VER.find(x => x.id === id);
+  $("#cpLots").innerHTML = lots.length ? `<div class="ui-acc cp-lots">${lots.map(l => { const apps = l.apps.map(byId).filter(Boolean), total = apps.reduce((t, r) => t + (cpSanct(r) || 0), 0), open = CP.open === l.key;
+    return `<div class="ui-acc-item${open ? " is-open" : ""}" data-cp-lot="${esc(l.key)}">
+      <button class="ui-acc-head" type="button" aria-expanded="${open}"><span class="ui-acc-title"><b>Lot ${l.no} · ${esc(l.office)}</b><small>Created on ${fmt(l.date)} · ${apps.length} application${apps.length === 1 ? "" : "s"} · Sanctioned amount ${rup(total)} · Academic year ${l.year}</small></span><span class="ui-badge ui-badge-approved">Sent to KCG</span><svg class="ui-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="ui-acc-panel"><div><div class="ui-acc-content cp-lot-body"><div class="table-wrap"><table class="cp-lot-t">
+        <thead><tr><th>Application ID</th><th>Student Name</th><th>Application Type</th><th>${CP.scheme === "CMSS" ? "Course group" : "Course Type"}</th><th>Approved on</th><th>Sanctioned Amount</th><th>Action</th></tr></thead>
+        <tbody>${apps.map(r => `<tr><td><span class="ma-id">${r.id}</span></td><td><span class="ver-name">${esc(r.name)}</span></td><td>${esc(r.type)}</td><td>${esc(cpShort(cpClsOf(r)))}</td><td>${cpApprovedOn(r) ? fmt(cpApprovedOn(r)) : "–"}</td><td>${cpSanct(r) != null ? rup(cpSanct(r)) : "Amount not available"}</td>
+          <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#ver-view" data-ver="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`).join("")}</tbody></table></div></div></div></div></div>`; }).join("")}</div>`
+    : `<section class="card ma-none"><div class="ma-empty"><span class="ui-icon-box is-primary">${iconSvg("document", "o", 24)}</span><b>No lots yet.</b><span>Select approved applications and click Send to KCG to create the first lot.</span></div></section>`;
+}
+$("#cpScheme").addEventListener("click", e => { const b = e.target.closest("[data-cp-scheme]"); if (!b || b.dataset.cpScheme === CP.scheme) return; Object.assign(CP, cpDef(), { scheme: b.dataset.cpScheme, page: 1, sel: new Set(), open: null }); cpInit(); cpClose(); coPhaseRender(); });
+$("#cpView").addEventListener("click", e => { const b = e.target.closest("[data-cp-view]"); if (!b || b.dataset.cpView === CP.view) return; CP.view = b.dataset.cpView; coPhaseRender(); });
+$("#cpFilterBtn").addEventListener("click", () => { const open = $("#cpAdv").hidden; $("#cpAdv").hidden = !open; $("#cpFilterBtn").setAttribute("aria-expanded", open); if (open) { cpInit(); cpPreview(); $("#cpSearch").focus(); } });
+$("#cpAdv").addEventListener("input", cpPreview);
+$("#cpAdv").addEventListener("ui-select-change", cpPreview);
+$("#cpSearch").addEventListener("keydown", e => { if (e.key === "Enter") $("#cpApply").click(); });
+$("#cpApply").addEventListener("click", () => { Object.assign(CP, cpRead(), { page: 1 }); coPhaseRender(); cpClose(); toast("Filters applied"); });
+$("#cpCancel").addEventListener("click", () => { Object.assign(CP, cpDef(), { page: 1 }); cpInit(); coPhaseRender(); cpClose(); });
+$("#cpChips").addEventListener("click", e => { const rm = e.target.closest("[data-cp-rm]"), all = e.target.closest("[data-cp-clear]"); if (rm) CP[rm.dataset.cpRm] = cpDef()[rm.dataset.cpRm]; else if (all) Object.assign(CP, cpDef()); else return; CP.page = 1; cpInit(); coPhaseRender(); });
+$("#cpPager").addEventListener("click", e => { const b = e.target.closest("[data-p]"); if (!b || b.disabled) return; CP.page = +b.dataset.p; coPhaseRender(); });
+$("#cpBody").addEventListener("change", e => { const cb = e.target.closest("[data-cp-row]"); if (!cb) return; cb.checked ? CP.sel.add(cb.dataset.cpRow) : CP.sel.delete(cb.dataset.cpRow); cpBulk(); });
+$("#cpAll").addEventListener("change", e => { const free = cpList().filter(r => r.lotNo == null); if (e.target.checked) free.forEach(r => CP.sel.add(r.id)); else free.forEach(r => CP.sel.delete(r.id)); coPhaseRender(); });   // every page, current filters
+["#cpBody", "#cpLots"].forEach(s => $(s).addEventListener("click", e => { const a = e.target.closest("[data-ver]"); if (a) { HC.current = a.dataset.ver; HC.from = "co"; } }));
+$("#cpLots").addEventListener("click", e => { const it = e.target.closest(".ui-acc-head") && e.target.closest("[data-cp-lot]"); if (it) CP.open = it.classList.contains("is-open") ? null : it.dataset.cpLot; });
+$("#cpSend").addEventListener("click", () => {
+  const ids = [...CP.sel].filter(id => { const r = VER.find(x => x.id === id); return r && r.lotNo == null; }); if (!ids.length) return;
+  const groups = {}; ids.forEach(id => { const r = VER.find(x => x.id === id); verAddToPhase(r); (groups[`${r.office}__${r.scheme}__${r.year}`] ||= []).push(id); });
+  const keys = Object.keys(groups), next = keys.length === 1 ? PHASE.find(p => p.key === keys[0]).lots.length + 1 : null;
+  $("#mdSendLotTitle").textContent = `Send ${ids.length} application${ids.length > 1 ? "s" : ""} to KCG?`;
+  $("#mdSendLotSub").textContent = next ? `A new lot, Lot ${next}, will be created with these applications.` : `A new lot will be created for each office and academic year (${keys.length} lots) with these applications.`;
+  $("#mdSendLot")._groups = groups; openModal("mdSendLot");
 });
 $("#sendLotYes").addEventListener("click", () => {
-  const p = PHASE.find(x => x.key === $("#mdSendLot").dataset.phase); if (!p) return;
-  const pending = coPhasePending(p); if (!pending.length) return closeModal($("#mdSendLot"));
-  const no = p.lots.length + 1, date = new Date(VER_CLOCK);
-  p.lots.push({ no, date, apps: pending.slice() });
-  pending.forEach(id => { const r = VER.find(x => x.id === id); if (!r) return; r.lotNo = no; r.lotSentAt = date; r.log.push({ d: date, t: `Added to Lot ${no}, sent to KCG` }); });
-  closeModal($("#mdSendLot")); coPhaseRender(); toast(`Lot ${no} sent to KCG (${pending.length} application${pending.length === 1 ? "" : "s"})`);
+  const groups = $("#mdSendLot")._groups || {}, date = new Date(), made = [];
+  Object.entries(groups).forEach(([key, ids]) => {
+    const p = PHASE.find(x => x.key === key); if (!p) return;
+    const free = ids.filter(id => { const r = VER.find(x => x.id === id); return r && r.lotNo == null; }); if (!free.length) return;
+    const no = p.lots.length + 1; p.lots.push({ no, date, apps: free }); made.push(no);
+    free.forEach(id => { const r = VER.find(x => x.id === id); r.lotNo = no; r.lotSentAt = date; r.log.push({ d: date, t: `Sent to KCG in Lot ${no}` }); });
+  });
+  $("#mdSendLot")._groups = null; CP.sel.clear(); closeModal($("#mdSendLot")); coPhaseRender();
+  toast(made.length ? `Lot ${made.join(", ")} created and sent to KCG` : "Nothing to send");
 });
 $("#coTabs").addEventListener("click", e => { const b = e.target.closest("[data-co-tab]"); if (!b || b.dataset.coTab === CO.tab) return; CO.tab = b.dataset.coTab; Object.assign(CO, coDef()); coInit(); coRender(); coClose(); });
 // Advanced Filter (17/11, DS .ui-filter) – same behaviour as the Help Center list; the CMSS / MYSY tabs stay above it
@@ -9617,50 +9922,38 @@ const verTypeOf = r => r.courseType || (r.cls && r.cls.type) || "";
 const AMT_CMSS = { "Medical": [0.5, 500000], "Dental": [0.5, 500000], "Ayurveda / Homeopathy": [0.5, 100000], "B.Sc Nursing, Physiotherapy & Paramedical": [0.5, 100000],
   "Engineering / Tech / Pharmacy - Diploma to Degree": [0.5, 100000], "Engineering / Tech / Pharmacy - Degree after Class 12": [0.5, 100000], "Diploma after Class 10": [0.5, 50000],
   "UG Science (PCM)": [0, 10000], "UG Science (PCB)": [0, 10000], "UG Commerce / Arts": [0, 10000] };
-// AMT-MYSY-01 / 03: tuition limit + books by course type (General UG: no books amount in the document)
-const AMT_MYSY = { [VER_TYPES[0]]: { lim: 200000, books: 10000 }, [VER_TYPES[1]]: { lim: 50000, books: 5000 }, [VER_TYPES[2]]: { lim: 25000, books: 3000 }, [VER_TYPES[3]]: { lim: 10000, books: null } };
+// AMT-MYSY-01 / 03 (Business Rule 9): tuition = MIN(Yearly Tuition Fee, limit of the course); books fixed by the course.
+// Interior Design / Planning / Hotel Management get books 5,000 but are not in the tuition list of the rule → tuition 0.
+const AMT_MYSY = { [VER_TYPES[0]]: { lim: 200000, books: 10000 }, [VER_TYPES[1]]: { lim: 50000, books: 5000 }, [VER_TYPES[2]]: { lim: 25000, books: 3000 }, [VER_TYPES[3]]: { lim: 10000, books: 0 } };
+const AMT_MYSY_NO_TUITION = /interior design|planning|hotel management/i;
 const rup = n => "₹" + Math.round(n).toLocaleString("en-IN");
-// AMT-COM-01: calculated automatically; the office sees it read-only; frozen as the sanctioned amount on Approve; the student never sees it
+// CO-02.3: calculated automatically from the Amount sheet; read only; calculated again until Approve, then saved as the sanctioned amount (CO-03); the student never sees it
 function verAmount(r) {
   if (r.status === "Approved" && r.amount) return r.amount;            // frozen after Approve
-  const rows = [], notes = ["Rounded to the nearest rupee – rounding is to be confirmed (AMT-COM-02)."];
   if (r.scheme === "CMSS") {
-    const g = verGroupOf(r), rule = AMT_CMSS[g];
-    if (!rule) return { ok: false, total: 0, rows, notes: ["Course group is not set yet (set by the Help Center)."] };
-    const fee = verNum(verField(r, "Annual Institute Fees")) || r.fee || 0;
+    const g = verGroupOf(r), rule = AMT_CMSS[g], fee = verNum(verField(r, "Annual Institute Fees")) || r.fee || 0;
+    if (!rule || !fee) return { ok: false, total: 0, rows: [] };       // a value needed is missing → "Amount not available"
     const recv = verYes(r, "MYSY Assistance Already Received?") ? verNum(verField(r, "MYSY Assistance Amount")) : 0;
-    const base = rule[0] ? Math.min(rule[0] * fee, rule[1]) : rule[1];
-    const total = Math.round(Math.max(0, Math.min(base, fee - recv)));
-    rows.push(["Annual Institute Fees", rup(fee), "Entered by the student (Fees Details)"],
-      ["Course group", g, "Set by the Help Center"],
-      ["CMSS amount", rup(base), rule[0] ? `50% of the fee, up to ${rup(rule[1])} (AMT-CMSS)` : `Fixed ${rup(rule[1])} (AMT-CMSS-06)`],
-      ["MYSY tuition assistance already received", rup(recv), "Deducted – CMSS + MYSY within 100% of the fee (AMT-CMSS-07)"]);
-    notes.push("The GR calculates on the annual tuition fee; the form field is Annual Institute Fees – to confirm (AMT-CMSS-00).");
-    if (rule[0]) notes.push("Self-financed condition of the GR – to confirm.");
-    return { ok: true, total, rows, notes };
+    const base = rule[0] ? Math.min(rule[0] * fee, rule[1]) : rule[1];  // AMT-CMSS-01…06
+    const total = Math.round(Math.max(0, Math.min(base, fee - recv))); // AMT-CMSS-07: CMSS + MYSY within 100% of the fee
+    return { ok: true, total, rows: [["Course group", g], ["Annual fee", rup(fee)], ["MYSY tuition received", rup(recv)], ["CMSS amount (as per the course group)", rup(base)]] };
   }
-  const t = verTypeOf(r), rule = AMT_MYSY[t];
-  if (!rule) return { ok: false, total: 0, rows, notes: ["Course type is not set yet (set by the Help Center)."] };
-  if (/interior design|planning|hotel management/i.test(`${r.program} ${r.course}`)) return { ok: false, total: 0, rows, notes: ["No amount rule for Interior Design, Planning and Hotel Management until confirmed (AMT-MYSY-05)."] };
-  const fee = verNum(verField(r, "Yearly Tuition Fee")) || r.fee || 0, tfw = verYes(r, "Admission on TFW Seat?");
-  const tuition = tfw ? 0 : Math.min(0.5 * fee, rule.lim);
+  const t = verTypeOf(r), rule = AMT_MYSY[t], fee = verNum(verField(r, "Yearly Tuition Fee")) || r.fee || 0;
+  if (!rule || !fee) return { ok: false, total: 0, rows: [] };
+  const tfw = verYes(r, "Admission on TFW Seat?"), noTuition = AMT_MYSY_NO_TUITION.test(`${r.program} ${r.course}`);
+  const tuition = tfw || noTuition ? 0 : Math.min(fee, rule.lim);
   const hType = verField(r, "Hostel Type"), stTal = verField(r, "Taluka"), colTal = verField(r, "Institute Taluka");
-  const hostelOk = verYes(r, "Are You Hosteller?") && /^(Private hostel|Paying guest or rented room)$/.test(hType) && !!stTal && !!colTal && stTal !== colTal;
-  const hostel = hostelOk ? 12000 : 0, books = rule.books || 0;
-  rows.push(["Yearly Tuition Fee", rup(fee), "Entered by the student (Fees Details)"],
-    ["Course type", t.replace(/ \(.*$/, ""), "Set by the Help Center"],
-    ["Tuition assistance", rup(tuition), tfw ? "TFW seat – no tuition benefit (AMT-MYSY-01)" : `50% of the fee, up to ${rup(rule.lim)} (AMT-MYSY-01)`],
-    ["Hostel assistance", rup(hostel), hostelOk ? "₹1,200 × 10 months – private hostel / rented room outside the home taluka (AMT-MYSY-02)" : "Not given – not a private hostel / rented room outside the home taluka (AMT-MYSY-02)"],
-    ["Books assistance", rule.books == null ? "Not given" : rup(books), rule.books == null ? "No amount for General UG in the document – to confirm (AMT-MYSY-03)" : "Fixed by course type (AMT-MYSY-03)"]);
-  notes.push("50% of the fee or the full fee up to the limit – to confirm (AMT-MYSY-01). Books every year or once – to confirm.");
-  return { ok: true, total: Math.round(tuition + hostel + books), rows, notes, parts: { tuition: Math.round(tuition), hostel, books } };
+  const hostel = verYes(r, "Are You Hosteller?") && /^(Private hostel|Paying guest or rented room)$/.test(hType) && !!stTal && !!colTal && stTal !== colTal ? 12000 : 0;   // AMT-MYSY-02
+  const books = rule.books || 0;
+  return { ok: true, total: Math.round(tuition + hostel + books), rows: [["Tuition", rup(tuition)], ["Hostel", rup(hostel)], ["Books", rup(books)]], parts: { tuition: Math.round(tuition), hostel, books } };
 }
 function verAmountCard(r) {
   const a = verAmount(r), frozen = r.status === "Approved" && r.amount;
-  return `<section class="card sf-sec ver-amt"><div class="ui-form-sec-head"><h5>${frozen ? "Sanctioned Amount" : "Calculated Amount"}</h5><p>${frozen ? "Frozen on Approve. Goes into the KCG Excel." : "Calculated automatically from the Amount rules. Read only. Saved as the sanctioned amount when you approve. The student does not see it."}</p></div>
-    ${a.ok ? `<div class="sf-kv">${a.rows.map(([l, v, s]) => `<div><span>${esc(l)}</span><b>${esc(v)}</b><i>${esc(s)}</i></div>`).join("")}</div>
-    <div class="ver-amt-total"><span>${r.scheme === "MYSY" ? "MYSY total (Tuition + Hostel + Books)" : "Sanctioned amount"}</span><b>${rup(a.total)}</b></div>` : ""}
-    <ul class="ver-amt-notes">${a.notes.map(n => `<li>${iconSvg("info", "o", 14)}<span>${esc(n)}</span></li>`).join("")}</ul></section>`;
+  return `<section class="card sf-sec ver-amt"><div class="sf-rv-head"><h5>${frozen ? "Sanctioned Amount" : "Calculated Amount"}</h5><span class="ui-badge ui-badge-neutral">Read only</span></div>
+    ${a.ok ? `<dl class="ver-amt-list">${a.rows.map(([l, v]) => `<div><dt>${esc(l)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
+    <div class="ver-amt-total"><span>${r.scheme === "MYSY" ? "Total" : "Sanctioned amount"}</span><b>${rup(a.total)}</b></div>`
+    : `<p class="ver-amt-na">${iconSvg("info", "o", 16)}<span>Amount not available</span></p>`}
+    <p class="ver-amt-foot">${frozen ? "Saved on Approve. It goes into the KCG Excel." : "Calculated automatically. Saved as the sanctioned amount when you approve. The student does not see it."}</p></section>`;
 }
 // VER-26 / HC-02.2 / CO-02.1: the fields the eligibility rules use, in one highlighted read-only section (no pass / fail column)
 function verElgRows(r) {
@@ -9935,7 +10228,7 @@ function coReviewBody(r) {
       <button class="ui-btn ui-btn-danger-soft" type="button" data-co-act="return" ${anyReturned && !returnedNoRemarks ? "" : "disabled"}>${iconSvg("warning", "o", 16)}Return</button>
       <button class="ui-btn ui-btn-primary" type="button" data-co-act="approve" ${allApproved ? "" : "disabled"}>${iconSvg("check", "l", 16)}Approve</button>
     </div></section>`;
-  return `<div class="ver-co-top">${countCard}${grCard}</div>${verElgCard(r)}${verAmountCard(r)}${rmk}${aadCard}${steps.map(d => verCoStepCard(r, d, ro)).join("")}
+  return `<div class="ver-co-top"><div class="ver-co-left">${countCard}${grCard}</div>${verAmountCard(r)}</div>${verElgCard(r)}${rmk}${aadCard}${steps.map(d => verCoStepCard(r, d, ro)).join("")}
     <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Activity log</h5></div><ul class="ver-log">${r.log.slice().reverse().map(l => `<li><time>${fmt(l.d)}</time><span>${esc(l.t)}</span></li>`).join("")}</ul></section>
     ${actionBar}`;
 }
@@ -10511,6 +10804,452 @@ function ksyStatusHtml() {
 }
 
 
+/* ================= UNNATI YOJANA (25/11) – "UNNATI_Functional_Specification (1) (1).pdf" + paper form "unnati_form (1).pdf" =================
+   Applicant (Student / Faculty / Officer-Employee) submits a course proposal + signed recommendation letter
+   → Institution (Principal role) recommends → KCG Consultant → Admin → CEO grants prior approval
+   → applicant completes the course and submits certificate + fee receipt → Institution verifies
+   → Consultant → Admin → CEO approves payment → DBT (simulated, sample UTR). In memory only. */
+const UN_BUDGET = 10000000;                                  // Rs. 1 crore overall scheme budget – tracked, not a hard cap (C07 / C08)
+const UN_TYPES = ["Student", "Faculty", "Officer / Employee"];
+const UN_CATS = ["Artificial Intelligence", "Data Analytics", "Cloud Computing", "Cybersecurity", "Financial Modeling", "Business Intelligence", "Other emerging technology"];
+const UN_PROVIDERS = ["Google", "Microsoft", "Coursera", "SWAYAM", "NPTEL", "Other"];
+const UN_COLLEGE_CAT = ["Government College", "Grant-in-Aid (GIA) College", "Government University"];   // private / self-financed: not covered (A07)
+const UN_OFFICES = ["Commissionerate of Higher Education (CHE)", "Knowledge Consortium of Gujarat (KCG)", "Granth Nirman Board", "SCOPE", "Other higher education office"];
+const UN_STEPS = ["Applicant Details", "Course Details", "Documents", "Review"];
+const UN_FLOW = { "inst-rec": "a-cons", "a-cons": "a-admin", "a-admin": "a-ceo", "a-ceo": "approved", "inst-ver": "p-cons", "p-cons": "p-admin", "p-admin": "p-ceo", "p-ceo": "paid" };
+const UN_STAGE = {
+  draft: { st: "Draft", badge: "neutral" },
+  "inst-rec": { st: "With Institution", badge: "review" },
+  "a-cons": { st: "With KCG Consultant", badge: "shortlisted" },
+  "a-admin": { st: "With KCG Admin", badge: "shortlisted" },
+  "a-ceo": { st: "With CEO, KCG", badge: "shortlisted" },
+  approved: { st: "Approved – complete the course", badge: "approved" },
+  "inst-ver": { st: "Completion with Institution", badge: "review" },
+  "p-cons": { st: "Payment – with KCG Consultant", badge: "shortlisted" },
+  "p-admin": { st: "Payment – with KCG Admin", badge: "shortlisted" },
+  "p-ceo": { st: "Payment – with CEO, KCG", badge: "shortlisted" },
+  paid: { st: "Paid via DBT", badge: "approved" },
+  rejected: { st: "Rejected", badge: "rejected" }
+};
+const UN_ROLE = {                                            // each role's two queues (spec: Institution "Recommendation" / "Completion Verification"; KCG "Course Approval" / "Final Verification & Payment")
+  principal: { who: "Institution", tabs: [["rec", "Recommendation", "inst-rec"], ["ver", "Completion Verification", "inst-ver"]] },
+  ucons: { who: "Consultant – KCG", tabs: [["app", "Course Approval", "a-cons"], ["pay", "Final Verification & Payment", "p-cons"]], sub: "First-level technical and eligibility review of course proposals and completion evidence." },
+  uadmin: { who: "Admin – KCG", tabs: [["app", "Course Approval", "a-admin"], ["pay", "Final Verification & Payment", "p-admin"]], sub: "Administrative review – budget, beneficiary limits and paperwork completeness." },
+  uceo: { who: "CEO – KCG", tabs: [["app", "Course Approval", "a-ceo"], ["pay", "Final Verification & Payment", "p-ceo"]], sub: "Final sign-off: grant prior approval, and approve payment release by DBT." }
+};
+const UN_ACT = {                                             // stage → [action button, past-tense remark, can reject]
+  "inst-rec": ["Recommend & Forward to KCG", "Recommended and forwarded", true],
+  "a-cons": ["Clear", "Cleared", true], "a-admin": ["Clear", "Cleared", true], "a-ceo": ["Grant Prior Approval", "Prior approval granted", true],
+  "inst-ver": ["Verify & Forward to KCG", "Completion verified and forwarded", true],
+  "p-cons": ["Clear", "Cleared", false], "p-admin": ["Clear", "Cleared", false], "p-ceo": ["Approve Payment & Initiate DBT", "Payment approved, DBT initiated", false]
+};
+const UN_WHO = { "inst-rec": "Institution", "inst-ver": "Institution", "a-cons": "Consultant – KCG", "p-cons": "Consultant – KCG", "a-admin": "Admin – KCG", "p-admin": "Admin – KCG", "a-ceo": "CEO – KCG", "p-ceo": "CEO – KCG" };
+const UN_TODAY = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
+const unDay = n => new Date(UN_TODAY.getTime() + n * 864e5);
+const unRs = n => "₹" + Math.round(+n || 0).toLocaleString("en-IN");
+const unInst = r => r.f.type === "Officer / Employee" ? r.f.office : r.f.college;
+const unSigner = t => t === "Officer / Employee" ? "Competent Authority" : t === "Faculty" ? "Principal / Registrar" : "Principal";
+const unDays = (a, b) => { const x = cjpDate(a), y = cjpDate(b); return x && y && y >= x ? Math.round((y - x) / 864e5) + 1 : 0; };
+const unPending = r => Math.max(0, Math.floor((UN_TODAY - new Date(r.since).setHours(0, 0, 0, 0)) / 864e5));
+const unBadge = r => `<span class="ui-badge ui-badge-${UN_STAGE[r.stage].badge}">${esc(UN_STAGE[r.stage].st)}</span>`;
+const unEnroll = r => r.f.enroll === "Batch Based Enrollment" ? `<span class="ui-badge ui-badge-warning">Batch · ${esc(r.f.start)}</span>` : `<span class="ui-badge ui-badge-neutral">Open</span>`;
+const unPendBadge = r => { const n = unPending(r), t = n <= 3 ? "approved" : n <= 7 ? "warning" : "rejected"; return `<span class="ui-badge ui-badge-${t}">${n} day${n === 1 ? "" : "s"}</span>`; };
+
+function unBlank() {
+  return { type: "Student", name: DB_STUDENT.name, designation: "", dept: "", gender: "Male", email: DB_STUDENT.email, mobile: DB_STUDENT.mobile,
+    stream: DB_STUDENT.programme + " · " + DB_STUDENT.branch, semester: DB_STUDENT.semester, college: "L.D. College of Engineering, Ahmedabad", collegeType: "Technical", collegeCat: "", area: "", office: "",
+    course: "", provider: "", providerOther: "", category: "", mode: "", coordinator: "", enroll: "", start: "", end: "", perDay: "", fee: "", relevance: "",
+    catalog: null, letter: null, decl1: false, decl2: false };
+}
+/* ---------- sample data: every queue has rows by default ---------- */
+const UN_APPS = [];
+function unSeed(o) {
+  const f = Object.assign(unBlank(), o.f, { start: fmt(unDay(o.startIn)), end: fmt(unDay(o.startIn + o.len - 1)), decl1: true, decl2: true,
+    catalog: { name: "Course_Catalog.pdf", size: 412000 }, letter: { name: "Signed_Recommendation_Letter.pdf", size: 238000 } });
+  const r = { id: o.id, own: !!o.own, f, stage: o.stage, date: unDay(-o.ago), since: unDay(-o.since), remarks: [], log: [{ d: unDay(-o.ago), t: "Submitted by the applicant" }] };
+  if (o.stage === "draft") { r.step = o.step || 0; r.log = []; UN_APPS.push(r); return; }
+  const chain = ["inst-rec", "a-cons", "a-admin", "a-ceo", "approved", "inst-ver", "p-cons", "p-admin", "p-ceo", "paid"];
+  const end = o.stage === "rejected" ? chain.indexOf(o.rejectedAt) : chain.indexOf(o.stage);
+  let d = o.ago;
+  for (let i = 0; i < end; i++) {
+    const s = chain[i]; if (s === "approved") { d = Math.max(o.since + 1, d - 3); r.completion = { cert: { name: "Completion_Certificate.pdf", size: 301000 }, receipt: { name: "Fee_Receipt.pdf", size: 120000 }, enroll: { name: "Enrollment_Details.pdf", size: 98000 }, amount: +f.fee, d: unDay(-d) }; r.log.push({ d: unDay(-d), t: "Completion evidence submitted by the applicant" }); continue; }
+    d = Math.max(o.since, d - 2);
+    r.remarks.push({ act: UN_ACT[s][1], by: UN_WHO[s], text: "", d: unDay(-d) }); r.log.push({ d: unDay(-d), t: `${UN_ACT[s][1]} by ${UN_WHO[s]}` });
+  }
+  if (o.stage === "rejected") { r.rejectedAt = o.rejectedAt; r.remarks.push({ act: "Rejected", by: UN_WHO[o.rejectedAt], text: o.reason, d: unDay(-o.since) }); r.log.push({ d: unDay(-o.since), t: `Rejected by ${UN_WHO[o.rejectedAt]}: ${o.reason}` }); }
+  if (o.stage === "paid") { r.paid = { utr: "UTR" + o.id.slice(-6) + "417", d: unDay(-o.since), amount: +f.fee }; }
+  UN_APPS.push(r);
+}
+[
+  { id: "UN2026110012", own: true, stage: "draft", step: 1, ago: 1, since: 1, startIn: 30, len: 56, f: { course: "Cloud Computing", provider: "NPTEL", category: "Cloud Computing", mode: "Online", enroll: "Open Enrollment" } },
+  { id: "UN2026110002", own: true, stage: "a-admin", ago: 8, since: 3, startIn: 12, len: 28, f: { course: "Microsoft Azure Fundamentals (AZ-900)", provider: "Microsoft", category: "Cloud Computing", mode: "Online", coordinator: "Ms. Neha Kapoor", enroll: "Batch Based Enrollment", perDay: "2", fee: "4500", relevance: "Cloud skills are asked for in most software jobs; this course prepares me for the AZ-900 exam.", collegeCat: "Government College", area: "Urban" } },
+  { id: "UN2026110001", own: true, stage: "approved", ago: 30, since: 14, startIn: -10, len: 45, f: { course: "Google Data Analytics Professional Certificate", provider: "Coursera", category: "Data Analytics", mode: "Online", coordinator: "Mr. Rohan Mehta", enroll: "Open Enrollment", perDay: "2", fee: "3999", relevance: "Data analysis with SQL, spreadsheets and Tableau improves my employability in data roles.", collegeCat: "Government College", area: "Urban" } },
+  { id: "UN2026110003", stage: "inst-rec", ago: 2, since: 2, startIn: 9, len: 42, f: { name: "Priya Mehta", gender: "Female", email: "priya.mehta@vgec.ac.in", mobile: "9824012345", stream: "BE/B-Tech · Information Technology", semester: "Sem-6", college: "Vishwakarma Government Engineering College, Chandkheda", collegeCat: "Government College", area: "Urban", course: "Cybersecurity Essentials", provider: "SWAYAM", category: "Cybersecurity", mode: "Online", coordinator: "Dr. A. K. Sharma", enroll: "Batch Based Enrollment", perDay: "1.5", fee: "2500", relevance: "Security basics for web developers – a priority emerging area." } },
+  { id: "UN2026110004", stage: "a-cons", ago: 9, since: 5, startIn: 20, len: 35, f: { type: "Faculty", name: "Dr. Kiran Shah", designation: "Assistant Professor", dept: "Computer Engineering", gender: "Female", email: "kiran.shah@gecg28.ac.in", mobile: "9825098250", college: "Government Engineering College, Gandhinagar", collegeType: "Technical", collegeCat: "Government College", area: "Urban", course: "AI for Educators", provider: "Coursera", category: "Artificial Intelligence", mode: "Online", coordinator: "Prof. Mira Rao", enroll: "Open Enrollment", perDay: "1", fee: "6999", relevance: "Using AI tools in teaching methods and in student assessment." } },
+  { id: "UN2026110005", stage: "a-ceo", ago: 16, since: 9, startIn: 6, len: 5, f: { type: "Officer / Employee", name: "Nirav Desai", designation: "Data Officer", gender: "Male", email: "nirav.desai@kcg.gov.in", mobile: "9909012345", office: "Knowledge Consortium of Gujarat (KCG)", course: "Power BI Data Analyst (PL-300)", provider: "Microsoft", category: "Business Intelligence", mode: "Offline", coordinator: "Mr. Sameer Joshi", enroll: "Batch Based Enrollment", perDay: "6", fee: "12000", relevance: "Dashboards for the scheme monitoring work of the office." } },
+  { id: "UN2026110006", stage: "inst-ver", ago: 50, since: 1, startIn: -40, len: 30, f: { name: "Hetal Joshi", gender: "Female", email: "hetal.joshi@ldce.ac.in", mobile: "9825011122", stream: "BE/B-Tech · Information Technology", semester: "Sem-7", collegeCat: "Government College", area: "Urban", course: "Financial Modeling & Valuation", provider: "Other", providerOther: "Corporate Finance Institute", category: "Financial Modeling", mode: "Online", coordinator: "Mr. Paul Martin", enroll: "Open Enrollment", perDay: "2", fee: "5499", relevance: "Financial modeling for fintech roles." } },
+  { id: "UN2026110007", stage: "p-cons", ago: 60, since: 4, startIn: -50, len: 84, f: { type: "Faculty", name: "Prof. Mehul Trivedi", designation: "Associate Professor", dept: "Information Technology", email: "mehul.trivedi@vgec.ac.in", mobile: "9879012345", college: "Vishwakarma Government Engineering College, Chandkheda", collegeType: "Technical", collegeCat: "Government College", area: "Urban", course: "Machine Learning", provider: "NPTEL", category: "Artificial Intelligence", mode: "Online", coordinator: "Prof. B. Ravindran", enroll: "Batch Based Enrollment", perDay: "1", fee: "1000", relevance: "ML for the new AI elective I teach." } },
+  { id: "UN2026110008", stage: "p-admin", ago: 55, since: 2, startIn: -45, len: 30, f: { name: "Sneha Rana", gender: "Female", email: "sneha.rana@gecg28.ac.in", mobile: "9998012345", college: "Government Engineering College, Gandhinagar", stream: "BE/B-Tech · Computer Engineering", semester: "Sem-7", collegeCat: "Government College", area: "Rural", course: "Google Cloud Digital Leader", provider: "Google", category: "Cloud Computing", mode: "Online", coordinator: "Ms. Ananya Iyer", enroll: "Open Enrollment", perDay: "2", fee: "3500", relevance: "Cloud basics for campus placement." } },
+  { id: "UN2026110009", stage: "p-ceo", ago: 70, since: 8, startIn: -60, len: 40, f: { type: "Officer / Employee", name: "Kunal Shah", designation: "Section Officer", gender: "Male", email: "kunal.shah@che.gujarat.gov.in", mobile: "9427012345", office: "Commissionerate of Higher Education (CHE)", course: "Google Cybersecurity Professional Certificate", provider: "Coursera", category: "Cybersecurity", mode: "Online", coordinator: "Mr. Arjun Nair", enroll: "Open Enrollment", perDay: "1", fee: "4200", relevance: "Securing the department's portals and data." } },
+  { id: "UN2026110010", stage: "paid", ago: 80, since: 6, startIn: -70, len: 42, f: { name: "Rahul Patel", email: "rahul.patel@ldce.ac.in", mobile: "9825033344", stream: "BE/B-Tech · Computer Engineering", semester: "Sem-7", collegeCat: "Government College", area: "Urban", course: "Data Science with Python", provider: "SWAYAM", category: "Data Analytics", mode: "Online", coordinator: "Dr. P. K. Singh", enroll: "Open Enrollment", perDay: "1.5", fee: "2999", relevance: "Python for data analysis." } },
+  { id: "UN2026110011", stage: "rejected", rejectedAt: "a-cons", reason: "Blockchain basics is not one of the scheme's priority areas. Apply for a course in an emerging area listed in the GR.", ago: 12, since: 6, startIn: 15, len: 20, f: { name: "Jay Thakkar", email: "jay.thakkar@gecg28.ac.in", mobile: "9825055566", college: "Government Engineering College, Gandhinagar", stream: "BE/B-Tech · Electrical Engineering", semester: "Sem-5", collegeCat: "Government College", area: "Rural", course: "Blockchain Basics", provider: "Coursera", category: "Other emerging technology", mode: "Online", coordinator: "Mr. Vikram Das", enroll: "Open Enrollment", perDay: "1", fee: "2800", relevance: "Interest in blockchain." } }
+].forEach(unSeed);
+const UN = { draftId: null, step: 0, maxStep: 0, f: null, rid: null, cmpId: null, cmp: null, tab: { principal: "rec", ucons: "app", uadmin: "app", uceo: "app" }, act: null };
+
+/* ---------- student page: my applications ---------- */
+function unMyRender() {
+  const list = UN_APPS.filter(r => r.own).sort((a, b) => b.date - a.date);
+  $("#unMyBody").innerHTML = list.map(r => {
+    const acts = r.stage === "draft"
+      ? `<button class="ui-act ui-act-edit" type="button" data-un-cont="${r.id}" title="Continue application" aria-label="Continue application ${r.id}">${iconSvg("edit", "f", 18)}</button>`
+      : `<a class="ui-act ui-act-view" href="#un-review" data-un-view="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a>`;
+    const cmp = r.stage === "approved" ? `<button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-un-cmp="${r.id}">Submit Completion</button>` : "";
+    return `<tr><td><span class="ma-id">${esc(r.id)}</span></td><td><b>${esc(r.f.course || "Untitled course")}</b><span class="un-sub">${esc(r.f.provider === "Other" ? r.f.providerOther : r.f.provider || "–")}</span></td><td>${esc(r.f.type)}</td>
+      <td>${r.f.enroll ? unEnroll(r) : "–"}</td><td>${r.f.start ? esc(r.f.start) + " – " + esc(r.f.end) : "–"}</td><td>${unBadge(r)}</td><td><div class="un-acts-cell"><div class="ui-acts">${acts}</div>${cmp}</div></td></tr>`;
+  }).join("") || `<tr class="ver-empty"><td colspan="7">You have not applied for Unnati Yojana yet. Click New Application to propose a course.</td></tr>`;
+}
+$("#unNew").addEventListener("click", () => { UN.draftId = null; UN.f = unBlank(); UN.step = 0; UN.maxStep = 0; location.hash = "unnati-form"; });
+$("#unMyBody").addEventListener("click", e => {
+  const c = e.target.closest("[data-un-cont]"), v = e.target.closest("[data-un-view]"), k = e.target.closest("[data-un-cmp]");
+  if (c) { const r = UN_APPS.find(x => x.id === c.dataset.unCont); UN.draftId = r.id; UN.f = JSON.parse(JSON.stringify(r.f)); UN.step = r.step || 0; UN.maxStep = UN.step; location.hash = "unnati-form"; }
+  if (v) { e.preventDefault(); unOpenReview(v.dataset.unView); }
+  if (k) { UN.cmpId = k.dataset.unCmp; UN.cmp = null; location.hash = "unnati-complete"; }
+});
+
+/* ---------- application form ---------- */
+const unReq = '<span class="ui-req">*</span>';
+function unInp(k, l, attrs = "", full) { return `<div class="ui-field${full ? " sf-full" : ""}"><label class="ui-label" for="un-${k}">${l}${unReq}</label><input class="ui-input" id="un-${k}" data-un="${k}" value="${esc(UN.f[k] || "")}" ${attrs} autocomplete="off"><span class="ui-help" hidden></span></div>`; }
+function unSel(k, l, opts, full) { return `<div class="ui-field${full ? " sf-full" : ""}"><span class="ui-label">${l}${unReq}</span><div class="ui-select" data-un="${k}" data-ph="Select ${esc(l.toLowerCase())}" data-options="${opts.map(esc).join("|")}" data-value="${esc(UN.f[k] || "")}"${opts.length > 6 ? " data-search" : ""} aria-label="${esc(l)}"></div></div>`; }
+function unRad(k, l, opts, full) { return `<div class="ui-field${full ? " sf-full" : ""}"><span class="ui-label">${l}${unReq}</span><div class="cjp-radios" role="radiogroup" aria-label="${esc(l)}">${opts.map(o => `<label class="cjp-radio"><input type="radio" name="un-${k}" value="${esc(o)}" data-un="${k}" ${UN.f[k] === o ? "checked" : ""}>${esc(o)}</label>`).join("")}</div></div>`; }
+function unFile(k, label, note) {
+  const f = UN.f[k];
+  return f
+    ? `<div class="ui-field sf-full"><span class="ui-label">${label}${unReq}</span><div class="sf-doc"><div class="sf-doc-name"><b>${label}</b><small>${note}</small></div><span class="sf-doc-file">${iconSvg("check", "l", 16)}<b title="${esc(f.name)}">${esc(f.name)}</b><small>${fmtSize(f.size)}</small></span><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-fview="${k}">${iconSvg("view", "f", 14)}View</button><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-frm="${k}">${iconSvg("delete", "f", 14)}Remove</button></div></div>`
+    : `<div class="ui-field sf-full"><span class="ui-label">${label}${unReq}</span><div class="ui-drop" data-un-drop="${k}" tabindex="0" role="button" aria-label="Upload ${esc(label)}"><span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span><b>Drag and drop your file here, or <u>click to browse</u></b><small>${note}</small></div><span class="ui-help" hidden></span><input type="file" accept=".pdf" hidden data-un-file="${k}"></div>`;
+}
+function unStepHtml(i) {
+  const f = UN.f, T = f.type;
+  if (i === 0) {
+    let who;
+    if (T === "Student") who = `${kfRoField("Name of Student", f.name)}${kfRoField("Stream", f.stream)}${kfRoField("Semester", f.semester)}${kfRoField("Gender", f.gender)}${kfRoField("E-Mail ID", f.email)}${kfRoField("Contact Details", f.mobile)}
+      ${kfRoField("Name of College", f.college, true)}${unSel("collegeType", "Type of College", ["Technical", "Higher"])}${unSel("collegeCat", "College Category", UN_COLLEGE_CAT)}${unRad("area", "Area", ["Urban", "Rural"])}`;
+    else if (T === "Faculty") who = `${unInp("name", "Name of Faculty")}${unInp("designation", "Designation")}${unInp("dept", "Department")}${unSel("gender", "Gender", ["Male", "Female", "Other"])}${unInp("email", "E-Mail ID", 'type="email"')}${unInp("mobile", "Contact Details", 'inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"')}
+      ${unInp("college", "Name of College / University", "", true)}${unSel("collegeType", "Type of College", ["Technical", "Higher"])}${unSel("collegeCat", "College Category", UN_COLLEGE_CAT)}${unRad("area", "Area", ["Urban", "Rural"])}`;
+    else who = `${unInp("name", "Name of Officer / Employee")}${unInp("designation", "Designation")}${unSel("office", "Office / Institution", UN_OFFICES)}${unSel("gender", "Gender", ["Male", "Female", "Other"])}${unInp("email", "E-Mail ID", 'type="email"')}${unInp("mobile", "Contact Details", 'inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"')}`;
+    return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Applicant Type</h5><p>Students and faculty of Government / GIA colleges and government universities, and staff of higher education offices can apply.</p></div><div class="sf-grid">${unRad("type", "I am applying as", UN_TYPES, true)}</div></section>
+      <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Personal Profile</h5><p>${T === "Student" ? "From your student profile. Read only, except the college details below." : "Enter your details as in your service records."}</p></div><div class="sf-grid">${who}</div>
+      <div class="sf-note sf-full" style="margin-top:var(--space-16)">${iconSvg("info", "o", 16)}<span>Private and self-financed institutions are not covered by the GR, so they are not in the College Category list.</span></div></section>`;
+  }
+  if (i === 1) {
+    const days = unDays(f.start, f.end);
+    return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Certified Course</h5><p>Online or offline certificate course in an emerging area, from a recognised provider.</p></div><div class="sf-grid">
+      ${unInp("course", "Name of Course", 'maxlength="120" placeholder="(e.g. Google Data Analytics Professional Certificate)"', true)}
+      ${unSel("provider", "Course Provider", UN_PROVIDERS)}${f.provider === "Other" ? unInp("providerOther", "Provider Name") : ""}${unSel("category", "Course Category", UN_CATS)}
+      ${unRad("mode", "Course Mode", ["Online", "Offline"])}${unInp("coordinator", "Course Coordinator")}
+      ${unRad("enroll", "Enrollment Type", ["Open Enrollment", "Batch Based Enrollment"], true)}
+      ${f.enroll === "Batch Based Enrollment" ? `<div class="sf-note is-warn sf-full">${iconSvg("warning", "o", 16)}<span>Batch based: the provider fixes the start date. KCG sees this date and reviews your application with priority, so you do not miss the batch.</span></div>` : f.enroll ? `<div class="sf-note sf-full">${iconSvg("info", "o", 16)}<span>Open enrollment: flexible start, no fixed batch.</span></div>` : ""}
+      <div class="ui-field"><label class="ui-label" for="un-start">Course Start Date${unReq}</label><input class="ui-input" type="date" id="un-start" data-un-date="start" value="${cjpDmyToIso(f.start)}"><span class="ui-help" hidden></span></div>
+      <div class="ui-field"><label class="ui-label" for="un-end">Course End Date${unReq}</label><input class="ui-input" type="date" id="un-end" data-un-date="end" value="${cjpDmyToIso(f.end)}"><span class="ui-help" hidden></span></div>
+      <div class="ui-field"><span class="ui-label">Course Total Duration</span><input class="ui-input" readonly id="unDur" value="${days ? days + " days" : "Calculated from the dates"}"></div>
+      ${unInp("perDay", "Course Per Day Duration (hours)", 'inputmode="decimal" placeholder="(e.g. 2)"')}${unInp("fee", "Course Examination Fees (₹)", 'inputmode="numeric" placeholder="(e.g. 4500)"')}
+      <div class="ui-field sf-full"><label class="ui-label" for="un-relevance">Relevance of the course${unReq}</label><textarea class="ui-input" id="un-relevance" data-un="relevance" rows="3" maxlength="500" placeholder="How does this course help with emerging technology, teaching methods or employability?">${esc(f.relevance)}</textarea><span class="ui-help" id="unRelCount">${(f.relevance || "").length} / 500</span></div>
+    </div></section>`;
+  }
+  if (i === 2) return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Attachments</h5><p>PDF only, up to 5 MB each.</p></div><div class="sf-grid">
+      ${unFile("catalog", "Catalog of Course", "Course brochure or syllabus from the provider · PDF · max 5 MB")}
+      <div class="sf-full un-letter"><span class="ui-help">Download the letter format, get it signed and sealed by your ${esc(unSigner(f.type))}, then upload the scanned copy.</span><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" id="unLetterDl"><span data-icon="download:l:14"></span>Download Letter Format</button></div>
+      ${unFile("letter", "Signed Recommendation Letter", `Signed and sealed by the ${unSigner(f.type)} · PDF · max 5 MB`)}
+    </div></section>`;
+  const prov = f.provider === "Other" ? f.providerOther : f.provider;
+  const appl = T === "Student" ? [["Applicant Type", T], ["Name", f.name], ["Stream", f.stream], ["Semester", f.semester], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile], ["College", f.college], ["Type of College", f.collegeType], ["College Category", f.collegeCat], ["Area", f.area]]
+    : T === "Faculty" ? [["Applicant Type", T], ["Name", f.name], ["Designation", f.designation], ["Department", f.dept], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile], ["College / University", f.college], ["Type of College", f.collegeType], ["College Category", f.collegeCat], ["Area", f.area]]
+    : [["Applicant Type", T], ["Name", f.name], ["Designation", f.designation], ["Office / Institution", f.office], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile]];
+  const crs = [["Name of Course", f.course], ["Course Provider", prov], ["Course Category", f.category], ["Course Mode", f.mode], ["Course Coordinator", f.coordinator], ["Enrollment Type", f.enroll], ["Course Dates", f.start + " – " + f.end], ["Total Duration", unDays(f.start, f.end) + " days"], ["Per Day Duration", f.perDay + " hours"], ["Course Examination Fees", unRs(f.fee)], ["Relevance", f.relevance]];
+  const sec = (t, rows, go) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${t}</h5><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-go="${go}">${iconSvg("edit", "f", 14)}Edit</button></div><div class="sf-kv">${rows.map(([l, v]) => `<div><span>${esc(l)}</span><b>${esc(v || "–")}</b></div>`).join("")}</div></section>`;
+  return sec("Applicant Details", appl, 0) + sec("Course Details", crs, 1) + sec("Attachments", [["Catalog of Course", f.catalog && f.catalog.name], ["Signed Recommendation Letter", f.letter && f.letter.name]], 2)
+    + `<section class="card sf-sec"><div class="un-decls">
+      <label class="sf-decl"><input class="ui-cb" type="checkbox" data-un-decl="decl1" ${f.decl1 ? "checked" : ""}><span>I hereby declare that the above particulars of facts and information stated are correct to the best of my belief and knowledge.</span></label>
+      <label class="sf-decl"><input class="ui-cb" type="checkbox" data-un-decl="decl2" ${f.decl2 ? "checked" : ""}><span>I hereby declare that I have not taken any other assistance or scholarship for the above course.</span></label></div></section>`;
+}
+const unEmailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || ""), unMobOk = v => /^[6-9]\d{9}$/.test(v || "");
+function unPendingOf(i) {
+  const f = UN.f, out = [], need = (k, l) => { if (!String(f[k] || "").trim()) out.push(l); };
+  if (i === 0) {
+    need("type", "Applicant Type");
+    if (f.type !== "Student") { need("name", "Name"); need("designation", "Designation"); if (f.type === "Faculty") need("dept", "Department"); need("gender", "Gender"); if (!unEmailOk(f.email)) out.push("E-Mail ID (valid email)"); if (!unMobOk(f.mobile)) out.push("Contact Details (10-digit mobile)"); }
+    if (f.type === "Officer / Employee") need("office", "Office / Institution");
+    else { if (f.type === "Faculty") need("college", "Name of College / University"); need("collegeType", "Type of College"); need("collegeCat", "College Category"); need("area", "Area"); }
+  }
+  if (i === 1) {
+    need("course", "Name of Course"); need("provider", "Course Provider"); if (f.provider === "Other") need("providerOther", "Provider Name"); need("category", "Course Category");
+    need("mode", "Course Mode"); need("coordinator", "Course Coordinator"); need("enroll", "Enrollment Type");
+    const s = cjpDate(f.start), e = cjpDate(f.end);
+    if (!s) out.push("Course Start Date"); else if (s <= UN_TODAY) out.push("Course Start Date (must be after today – KCG approves before the course starts)");
+    if (!e) out.push("Course End Date"); else if (s && e < s) out.push("Course End Date (on or after the start date)");
+    const p = +f.perDay; if (!(p >= 0.5 && p <= 12)) out.push("Per Day Duration (0.5 to 12 hours)");
+    if (!(+f.fee > 0)) out.push("Course Examination Fees");
+    need("relevance", "Relevance of the course");
+  }
+  if (i === 2) { if (!f.catalog) out.push("Catalog of Course"); if (!f.letter) out.push("Signed Recommendation Letter"); }
+  if (i === 3) { if (!f.decl1 || !f.decl2) out.push("Both declarations"); }
+  return out;
+}
+function unRender() {
+  const i = UN.step;
+  $("#unSteps").innerHTML = UN_STEPS.map((t, n) => `<li class="ui-step${n < i ? " is-done" : n === i ? " is-current" : ""}" ${n === i ? 'aria-current="step"' : ""} ${n <= UN.maxStep && n !== i ? `data-un-go="${n}" tabindex="0" role="button"` : ""}><span class="ui-step-dot">${n < i ? iconSvg("check", "l", 18) : n + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(t)}</span></div></li>`).join("");
+  $("#unMStep").innerHTML = `<span>Step ${i + 1} of ${UN_STEPS.length}</span><b>${esc(UN_STEPS[i])}</b><div class="ui-progress"><i style="width:${(i + 1) / UN_STEPS.length * 100}%"></i></div>`;
+  $("#unBody").innerHTML = unStepHtml(i);
+  $$("#unBody [data-icon]").forEach(el => { const [n, s, z] = el.dataset.icon.split(":"); el.outerHTML = iconSvg(n, s, +z); });
+  $$("#unBody .ui-select[data-options]").forEach(initSelect);
+  $("#unPrev").disabled = i === 0;
+  $("#unNext").innerHTML = i === 3 ? "Submit Application" : `Next${iconSvg("arrow-right", "l", 16)}`;
+  unSync();
+}
+function unSync() {
+  const p = unPendingOf(UN.step);
+  $("#unNext").disabled = p.length > 0;
+  $("#unPending").innerHTML = p.length ? `${HELP_ICON["is-error"] || ""}Complete: ${esc(p.slice(0, 3).join(", "))}${p.length > 3 ? ` and ${p.length - 3} more` : ""}` : UN.step === 3 ? "Ready to submit." : "All mandatory details of this step are filled.";
+  $("#unPending").classList.toggle("is-error", p.length > 0);
+}
+function unGo(n) { UN.step = n; UN.maxStep = Math.max(UN.maxStep, n); unRender(); scrollTo(0, 0); }
+function unOpenForm() {
+  if (!UN.f) { UN.f = unBlank(); UN.step = 0; UN.maxStep = 0; UN.draftId = null; }
+  $("#unDone").hidden = true; $("#unStepsCard").hidden = false; $("#unFoot").hidden = false; unRender();
+}
+$("#unBody").addEventListener("input", e => {
+  const k = e.target.dataset.un, d = e.target.dataset.unDate;
+  if (k && e.target.type !== "radio") {
+    let v = e.target.value; if (k === "mobile" || k === "fee") { v = v.replace(/\D/g, ""); if (v !== e.target.value) e.target.value = v; } if (k === "perDay") { v = v.replace(/[^\d.]/g, ""); if (v !== e.target.value) e.target.value = v; }
+    UN.f[k] = v; if (k === "relevance") $("#unRelCount").textContent = `${v.length} / 500`; unSync();
+  }
+  if (d) { UN.f[d] = cjpIsoToDmy(e.target.value); const n = unDays(UN.f.start, UN.f.end); $("#unDur").value = n ? n + " days" : "Calculated from the dates"; unSync(); }
+});
+$("#unBody").addEventListener("change", e => {
+  const t = e.target;
+  if (t.type === "radio" && t.dataset.un) {
+    const k = t.dataset.un; if (k === "type" && UN.f.type !== t.value) { const keep = UN.f, b = unBlank(); UN.f = Object.assign(b, { type: t.value, course: keep.course, provider: keep.provider, providerOther: keep.providerOther, category: keep.category, mode: keep.mode, coordinator: keep.coordinator, enroll: keep.enroll, start: keep.start, end: keep.end, perDay: keep.perDay, fee: keep.fee, relevance: keep.relevance, catalog: keep.catalog, letter: keep.letter });
+      if (t.value !== "Student") Object.assign(UN.f, { name: "", email: "", mobile: "", gender: "", stream: "", semester: "", college: "", collegeType: "" }); return unRender(); }
+    UN.f[k] = t.value; if (k === "enroll") return unRender(); unSync();
+  }
+  if (t.dataset.unDecl) { UN.f[t.dataset.unDecl] = t.checked; unSync(); }
+  if (t.dataset.unFile) {
+    const k = t.dataset.unFile, file = t.files[0], fld = t.closest(".ui-field"); t.value = ""; if (!file) return;
+    if (!/\.pdf$/i.test(file.name)) return cjpErr(fld, "Only PDF files are allowed.");
+    if (file.size > 5 * 1024 * 1024) return cjpErr(fld, "File size must be up to 5 MB.");
+    UN.f[k] = { name: file.name, size: file.size }; unRender();
+  }
+});
+$("#unBody").addEventListener("ui-select-change", e => {
+  const k = e.target.dataset.un; if (!k) return; const v = e.detail[0] || "";
+  if ((UN.f[k] || "") === v) return;
+  UN.f[k] = v; if (k === "provider") { if (v !== "Other") UN.f.providerOther = ""; return unRender(); } unSync();
+});
+$("#unBody").addEventListener("click", e => {
+  const go = e.target.closest("[data-un-go]"); if (go) return unGo(+go.dataset.unGo);
+  const dr = e.target.closest("[data-un-drop]"); if (dr) return dr.parentElement.querySelector("[data-un-file]").click();
+  const rm = e.target.closest("[data-un-frm]"); if (rm) { UN.f[rm.dataset.unFrm] = null; return unRender(); }
+  const fv = e.target.closest("[data-un-fview]"); if (fv) return verDocView(fv.dataset.unFview === "catalog" ? "Catalog of Course" : "Signed Recommendation Letter", { name: UN.f.name, id: UN.draftId || "(not submitted yet)", date: new Date() });
+  if (e.target.closest("#unLetterDl")) unLetter();
+});
+$("#unBody").addEventListener("keydown", e => { const dr = e.target.closest("[data-un-drop]"); if (dr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); dr.parentElement.querySelector("[data-un-file]").click(); } });
+$("#unBody").addEventListener("dragover", e => { const dr = e.target.closest("[data-un-drop]"); if (dr) { e.preventDefault(); dr.classList.add("is-over"); } });
+$("#unBody").addEventListener("dragleave", e => { const dr = e.target.closest("[data-un-drop]"); if (dr) dr.classList.remove("is-over"); });
+$("#unBody").addEventListener("drop", e => {
+  const dr = e.target.closest("[data-un-drop]"); if (!dr) return; e.preventDefault(); dr.classList.remove("is-over");
+  const inp = dr.parentElement.querySelector("[data-un-file]"); const dt = new DataTransfer(); if (e.dataTransfer.files[0]) { dt.items.add(e.dataTransfer.files[0]); inp.files = dt.files; inp.dispatchEvent(new Event("change", { bubbles: true })); }
+});
+$("#unSteps").addEventListener("click", e => { const go = e.target.closest("[data-un-go]"); if (go) unGo(+go.dataset.unGo); });
+$("#unPrev").addEventListener("click", () => { if (UN.step > 0) unGo(UN.step - 1); });
+$("#unNext").addEventListener("click", () => { if ($("#unNext").disabled) return; if (UN.step < 3) return unGo(UN.step + 1); unSubmit(); });
+function unLetter() {                                         // the provided letter format (spec: applicant downloads it, gets it signed offline, uploads the scan)
+  const f = UN.f, who = unSigner(f.type);
+  try {
+    const { jsPDF } = window.jspdf, doc = new jsPDF({ unit: "mm", format: "a4" }); let y = 24;
+    const line = (t, size = 11, bold) => { doc.setFont("helvetica", bold ? "bold" : "normal"); doc.setFontSize(size); doc.splitTextToSize(t, 170).forEach(l => { doc.text(l, 20, y); y += size * 0.5; }); y += 2; };
+    line("Recommendation Letter – UNNATI Courses", 15, true); line("To,\nThe CEO, Knowledge Consortium of Gujarat (KCG), Education Department, Gandhinagar"); y += 4;
+    line(`Subject: Recommendation for the UNNATI course proposal of ${f.name || "________________"}`, 11, true);
+    line(`This is to recommend ${f.name || "________________"} (${f.type}${f.designation ? ", " + f.designation : ""}) of ${(f.type === "Officer / Employee" ? f.office : f.college) || "________________"} for the certified course "${f.course || "________________"}" offered by ${(f.provider === "Other" ? f.providerOther : f.provider) || "________________"}, from ${f.start || "__/__/____"} to ${f.end || "__/__/____"}, course fee ${f.fee ? "Rs. " + (+f.fee).toLocaleString("en-IN") : "________"}, under the UNNATI scheme.`);
+    line("The particulars given in the proposal have been checked and are found correct."); y += 24;
+    line(`Signature and seal of the ${who}`, 11, true); line("Name: ____________________     Date: ____/____/________");
+    doc.save("UNNATI_Recommendation_Letter_Format.pdf"); toast("Letter format downloaded");
+  } catch (err) { toast("Unable to download. Please try again."); }
+}
+function unSaveDraft(silent) {
+  let r = UN_APPS.find(x => x.id === UN.draftId);
+  if (!r) { r = { id: "UN" + String(Date.now()).slice(-10), own: true, stage: "draft", date: new Date(), since: new Date(), remarks: [], log: [] }; UN_APPS.unshift(r); UN.draftId = r.id; }
+  r.f = JSON.parse(JSON.stringify(UN.f)); r.step = UN.step; r.date = new Date();
+  if (!silent) toast("Draft saved. Continue it from Unnati Yojana.");
+}
+$("#unDraft").addEventListener("click", () => unSaveDraft());
+function unSubmit() {
+  unSaveDraft(true);
+  const r = UN_APPS.find(x => x.id === UN.draftId), now = new Date();
+  Object.assign(r, { stage: "inst-rec", date: now, since: now }); delete r.step;
+  r.log.push({ d: now, t: "Submitted by the applicant" });
+  UN.f = null; UN.draftId = null;
+  $("#unStepsCard").hidden = true; $("#unFoot").hidden = true; $("#unBody").innerHTML = ""; $("#unDone").hidden = false;
+  $("#unDone").innerHTML = `<span class="ui-icon-box is-success">${iconSvg("check", "l", 28)}</span><h4>Application Submitted</h4>
+    <p>Your course proposal has gone to your ${esc(unSigner(r.f.type))} for recommendation.</p>
+    <p><b>Application ID</b><br><span class="ma-id">${esc(r.id)}</span></p>
+    <p>Do not start the course before KCG (CEO) approves it – otherwise it is not eligible for payment.</p>
+    <a class="ui-btn ui-btn-primary" href="#unnati">Back to Unnati Yojana</a>`;
+  toast("Application submitted"); scrollTo(0, 0);
+}
+
+/* ---------- completion submission (only after the CEO's prior approval – B10) ---------- */
+function unCmpOpen() {
+  const r = UN_APPS.find(x => x.id === UN.cmpId);
+  if (!r || r.stage !== "approved") { $("#ucSub").textContent = ""; $("#ucBody").innerHTML = `<section class="card ma-notfound"><div class="ma-empty"><span class="ui-icon-box is-warning">${iconSvg("warning", "o", 24)}</span><b>Completion can be submitted only after KCG (CEO) approves the course.</b><a class="ui-btn ui-btn-outline" href="#unnati">${iconSvg("arrow-left", "l", 16)}Back to Unnati Yojana</a></div></section>`; return; }
+  UN.cmp = UN.cmp || { cert: null, receipt: null, enroll: null, decl: false };
+  const c = UN.cmp, f = r.f;
+  const up = (k, l) => c[k]
+    ? `<div class="sf-doc"><div class="sf-doc-name"><b>${l}<span class="ui-req">*</span></b><small>PDF · max 5 MB</small></div><span class="sf-doc-file">${iconSvg("check", "l", 16)}<b title="${esc(c[k].name)}">${esc(c[k].name)}</b><small>${fmtSize(c[k].size)}</small></span><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-uc-rm="${k}">${iconSvg("delete", "f", 14)}Remove</button></div>`
+    : `<div class="ui-field"><span class="ui-label">${l}${unReq}</span><div class="ui-drop" data-uc-drop="${k}" tabindex="0" role="button" aria-label="Upload ${esc(l)}"><span class="ui-drop-ic">${iconSvg("upload", "l", 24)}</span><b>Drag and drop your file here, or <u>click to browse</u></b><small>PDF · max 5 MB</small></div><span class="ui-help" hidden></span><input type="file" accept=".pdf" hidden data-uc-file="${k}"></div>`;
+  const ok = c.cert && c.receipt && c.enroll && c.decl;
+  $("#ucSub").innerHTML = `Application <b>${esc(r.id)}</b> · ${esc(f.course)}`;
+  $("#ucBody").innerHTML = `
+    <section class="card sf-sec"><div class="sf-rv-head"><h5>Approved Course</h5>${unBadge(r)}</div><div class="sf-kv">
+      <div><span>Name of Course</span><b>${esc(f.course)}</b></div><div><span>Course Provider</span><b>${esc(f.provider === "Other" ? f.providerOther : f.provider)}</b></div><div><span>Course Dates</span><b>${esc(f.start)} – ${esc(f.end)}</b></div>
+      <div><span>Course Examination Fees</span><b>${unRs(f.fee)}</b></div><div><span>Prior approval</span><b>Granted by CEO, KCG</b></div><div><span>KCG Approval Order</span><b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-uc-order>${iconSvg("view", "f", 14)}View</button></b></div></div></section>
+    <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Completion Evidence</h5><p>Upload after you complete the course. Your institution verifies these before KCG releases the payment.</p></div><div class="sf-docs">${up("cert", "Completion Certificate")}${up("receipt", "Fee Receipt")}${up("enroll", "Enrollment Details")}</div></section>
+    <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Reimbursement</h5><p>Paid by DBT to the bank account linked with your Aadhaar. No bank details are needed here.</p></div><div class="sf-grid">
+      ${kfRoField("Name", f.name)}${kfRoField("Amount Claimed", unRs(f.fee) + " (course fee)")}${kfRoField("Payment Mode", "DBT – Aadhaar-linked bank account")}</div></section>
+    <section class="card sf-sec"><label class="sf-decl"><input class="ui-cb" type="checkbox" id="ucDecl" ${c.decl ? "checked" : ""}><span>I hereby declare that the above particulars of facts and information stated are correct to the best of my belief and knowledge.</span></label></section>
+    <section class="card sf-foot"><div class="sf-foot-row"><span class="ui-help sf-pending${ok ? "" : " is-error"}">${ok ? "Ready to submit." : (HELP_ICON["is-error"] || "") + "Upload the 3 documents and tick the declaration."}</span><div class="sf-foot-btns"><a class="ui-btn ui-btn-outline" href="#unnati">Cancel</a><button class="ui-btn ui-btn-primary" type="button" id="ucSubmit" ${ok ? "" : "disabled"}>Submit Completion</button></div></div></section>`;
+}
+$("#ucBody").addEventListener("click", e => {
+  const dr = e.target.closest("[data-uc-drop]"); if (dr) return dr.parentElement.querySelector("[data-uc-file]").click();
+  const rm = e.target.closest("[data-uc-rm]"); if (rm) { UN.cmp[rm.dataset.ucRm] = null; return unCmpOpen(); }
+  const r = UN_APPS.find(x => x.id === UN.cmpId);
+  if (e.target.closest("[data-uc-order]")) return verDocView("KCG Approval Order", { name: r.f.name, id: r.id, date: r.since });
+  if (e.target.closest("#ucSubmit")) {
+    const now = new Date(), c = UN.cmp;
+    r.completion = { cert: c.cert, receipt: c.receipt, enroll: c.enroll, amount: +r.f.fee, d: now }; r.stage = "inst-ver"; r.since = now;
+    r.log.push({ d: now, t: "Completion evidence submitted by the applicant" }); UN.cmp = null;
+    toast("Completion submitted to your institution"); location.hash = "unnati";
+  }
+});
+$("#ucBody").addEventListener("keydown", e => { const dr = e.target.closest("[data-uc-drop]"); if (dr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); dr.parentElement.querySelector("[data-uc-file]").click(); } });
+$("#ucBody").addEventListener("change", e => {
+  const t = e.target;
+  if (t.id === "ucDecl") { UN.cmp.decl = t.checked; return unCmpOpen(); }
+  if (t.dataset.ucFile) {
+    const k = t.dataset.ucFile, file = t.files[0], fld = t.closest(".ui-field"); t.value = ""; if (!file) return;
+    if (!/\.pdf$/i.test(file.name)) return cjpErr(fld, "Only PDF files are allowed.");
+    if (file.size > 5 * 1024 * 1024) return cjpErr(fld, "File size must be up to 5 MB.");
+    UN.cmp[k] = { name: file.name, size: file.size }; unCmpOpen();
+  }
+});
+
+/* ---------- Institution / KCG queues ---------- */
+function unQueue(stage) { return UN_APPS.filter(r => r.stage === stage).sort((a, b) => ((b.f.enroll === "Batch Based Enrollment") - (a.f.enroll === "Batch Based Enrollment")) || (a.since - b.since)); }
+function unRow(r) {
+  return `<tr><td><span class="ma-id">${esc(r.id)}</span></td><td><b>${esc(r.f.name)}</b><span class="un-sub">${esc(r.f.type)}</span></td><td>${esc(unInst(r))}</td><td>${esc(r.f.course)}<span class="un-sub">${esc(r.f.category)}</span></td>
+    <td>${unEnroll(r)}</td><td>${unRs(r.f.fee)}</td><td>${unPendBadge(r)}</td><td>${unBadge(r)}</td>
+    <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#un-review" data-un-view="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`;
+}
+function unTabs(role, el) {
+  const info = UN_ROLE[role];
+  $(el).innerHTML = info.tabs.map(([k, t, st]) => `<button class="ui-btn ${UN.tab[role] === k ? "ui-btn-primary" : "ui-btn-outline"}" type="button" role="tab" aria-selected="${UN.tab[role] === k}" data-un-tab="${k}">${esc(t)} (${unQueue(st).length})</button>`).join("");
+  return info.tabs.find(x => x[0] === UN.tab[role])[2];
+}
+function unInstRender() {
+  const st = unTabs("principal", "#unInstTabs"), list = unQueue(st);
+  $("#unInstCount").innerHTML = `<b>${list.length}</b> application${list.length === 1 ? "" : "s"}`;
+  $("#unInstBody").innerHTML = list.map(unRow).join("") || `<tr class="ver-empty"><td colspan="9">Nothing waiting here.</td></tr>`;
+}
+function unKcgRender() {
+  const info = UN_ROLE[ROLE]; if (!info || ROLE === "principal") return;
+  $("#unKcgTitle").textContent = `Unnati Yojana – ${info.who.replace(" – KCG", ", KCG")}`; $("#unKcgSub").textContent = info.sub;
+  const paid = UN_APPS.filter(r => r.stage === "paid"), paidAmt = paid.reduce((s, r) => s + (r.paid ? r.paid.amount : 0), 0);
+  const committed = UN_APPS.filter(r => ["approved", "inst-ver", "p-cons", "p-admin", "p-ceo"].includes(r.stage)).reduce((s, r) => s + (+r.f.fee || 0), 0);
+  const pct = (paidAmt + committed) / UN_BUDGET * 100, tone = pct < 60 ? "is-ok" : pct < 85 ? "is-warn" : "is-high";
+  $("#unBudget").innerHTML = `<div><span>Overall budget</span><b>${unRs(UN_BUDGET)}</b></div><div><span>Paid via DBT</span><b>${unRs(paidAmt)}</b></div>
+    <div><span>Approved, not yet paid</span><b>${unRs(committed)}</b></div><div><span>Beneficiaries paid</span><b>${paid.length}</b></div>
+    <div class="un-bud-bar"><span>${pct.toFixed(2)}% of the budget is paid or committed · ${unRs(UN_BUDGET - paidAmt - committed)} left</span><div class="ui-progress" role="progressbar" aria-valuenow="${pct.toFixed(1)}" aria-valuemin="0" aria-valuemax="100"><i class="${tone}" style="width:${Math.max(pct, 0.5)}%"></i></div></div>`;
+  const st = unTabs(ROLE, "#unKcgTabs"), list = unQueue(st);
+  $("#unKcgCount").innerHTML = `<b>${list.length}</b> application${list.length === 1 ? "" : "s"}`;
+  $("#unKcgBody").innerHTML = list.map(unRow).join("") || `<tr class="ver-empty"><td colspan="9">Nothing waiting here.</td></tr>`;
+}
+$("#unInstTabs").addEventListener("click", e => { const b = e.target.closest("[data-un-tab]"); if (b) { UN.tab.principal = b.dataset.unTab; unInstRender(); } });
+$("#unKcgTabs").addEventListener("click", e => { const b = e.target.closest("[data-un-tab]"); if (b) { UN.tab[ROLE] = b.dataset.unTab; unKcgRender(); } });
+["#unInstBody", "#unKcgBody"].forEach(s => $(s).addEventListener("click", e => { const v = e.target.closest("[data-un-view]"); if (v) { e.preventDefault(); unOpenReview(v.dataset.unView); } }));
+
+/* ---------- one application (progress, details, documents, action bar) ---------- */
+function unOpenReview(id) { UN.rid = id; location.hash === "#un-review" ? unReviewRender() : (location.hash = "un-review"); }
+function unSteps(names, cur, fail) {
+  return `<ol class="ui-steps">${names.map((t, i) => `<li class="ui-step${i === fail ? " is-failed" : i < cur ? " is-done" : i === cur ? " is-current" : ""}"><span class="ui-step-dot">${i < cur && i !== fail ? iconSvg("check", "l", 16) : i + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(t)}</span></div></li>`).join("")}</ol>`;
+}
+function unTracker(r) {
+  const A = ["Submitted", "Institution", "Consultant", "Admin", "CEO – Prior Approval"], P = ["Completion", "Institution", "Consultant", "Admin", "CEO – Payment", "Paid (DBT)"];
+  const ai = { "inst-rec": 1, "a-cons": 2, "a-admin": 3, "a-ceo": 4 }, pi = { approved: 0, "inst-ver": 1, "p-cons": 2, "p-admin": 3, "p-ceo": 4 };
+  const s = r.stage === "rejected" ? r.rejectedAt : r.stage;
+  let aCur = s in ai ? ai[s] : 5, pCur = s in pi ? pi[s] : s === "paid" ? 6 : -1, aFail = -1, pFail = -1;
+  if (r.stage === "rejected") { if (s in ai) aFail = ai[s]; else { pFail = pi[s]; } }
+  const pend = !["paid", "rejected", "approved"].includes(r.stage) ? `<div class="un-pend">At this stage for ${unPendBadge(r)} <span>· now with <b>${esc(UN_WHO[r.stage] || "")}</b></span></div>` : "";
+  const rej = r.stage === "rejected" ? (r.remarks.slice().reverse().find(m => m.act === "Rejected") || {}) : null;
+  const msg = rej ? `<p class="ui-help is-error" style="margin-top:var(--space-12)">Rejected by ${esc(rej.by)}: ${esc(rej.text)}</p>`
+    : r.stage === "approved" ? `<p class="ui-help is-success" style="margin-top:var(--space-12)">Prior approval granted by the CEO, KCG. Complete the course and then submit the completion certificate and fee receipt.</p>`
+    : r.stage === "paid" ? `<p class="ui-help is-success" style="margin-top:var(--space-12)">${unRs(r.paid.amount)} paid via DBT (${esc(r.paid.utr)}) on ${fmt(r.paid.d)}.</p>` : "";
+  return `<section class="card sf-sec"><div class="sf-rv-head"><h5>Progress</h5>${unBadge(r)}</div><div class="un-track">
+    <div><h6>Course Approval</h6>${unSteps(A, aCur, aFail)}</div><div><h6>Completion &amp; Payment</h6>${unSteps(P, pCur, pFail)}</div></div>${pend}${msg}</section>`;
+}
+function unReviewRender() {
+  const r = UN_APPS.find(x => x.id === UN.rid), back = ROLE === "student" ? "unnati" : ROLE === "principal" ? "un-inst" : "un-kcg";
+  $("#urBack").href = "#" + back;
+  if (!r || (ROLE === "student" && !r.own)) { $("#urTitle").textContent = "Application not found"; $("#urSub").textContent = ""; $("#urBody").innerHTML = ""; return; }
+  const f = r.f, kcg = ["ucons", "uadmin", "uceo"].includes(ROLE);
+  const myQ = (UN_ROLE[ROLE] || { tabs: [] }).tabs.map(t => t[2]), canAct = myQ.includes(r.stage);
+  $("#urTitle").textContent = `Unnati Yojana – ${r.id}`;
+  $("#urSub").innerHTML = `${esc(f.name)} · ${esc(f.type)} · ${esc(unInst(r))}`;
+  const batch = kcg && f.enroll === "Batch Based Enrollment" && !["paid", "rejected"].includes(r.stage) && cjpDate(f.start) >= UN_TODAY
+    ? `<div class="sf-note is-warn" style="margin-bottom:var(--space-16)">${iconSvg("warning", "o", 16)}<span><b>Batch-based course – the batch starts on ${esc(f.start)}.</b> Please review this application quickly so the applicant does not miss the batch.</span></div>` : "";
+  const prov = f.provider === "Other" ? f.providerOther : f.provider;
+  const appl = f.type === "Student" ? [["Applicant Type", f.type], ["Name", f.name], ["Stream", f.stream], ["Semester", f.semester], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile], ["College", f.college], ["Type of College", f.collegeType], ["College Category", f.collegeCat], ["Area", f.area]]
+    : f.type === "Faculty" ? [["Applicant Type", f.type], ["Name", f.name], ["Designation", f.designation], ["Department", f.dept], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile], ["College / University", f.college], ["Type of College", f.collegeType], ["College Category", f.collegeCat], ["Area", f.area]]
+    : [["Applicant Type", f.type], ["Name", f.name], ["Designation", f.designation], ["Office / Institution", f.office], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile]];
+  const crs = [["Name of Course", f.course], ["Course Provider", prov], ["Course Category", f.category], ["Course Mode", f.mode], ["Course Coordinator", f.coordinator], ["Enrollment Type", f.enroll], ["Course Dates", f.start + " – " + f.end], ["Total Duration", unDays(f.start, f.end) + " days"], ["Per Day Duration", f.perDay + " hours"], ["Course Examination Fees", unRs(f.fee)], ["Relevance", f.relevance]];
+  const kv = (t, rows) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${t}</h5></div><div class="sf-kv">${rows.map(([l, v]) => `<div><span>${esc(l)}</span><b>${esc(v || "–")}</b></div>`).join("")}</div></section>`;
+  const doc = (l, file) => `<div class="sf-doc"><div class="sf-doc-name"><b>${esc(l)}</b><small>${esc(file ? file.name : "PDF")}</small></div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-ur-doc="${esc(l)}">${iconSvg("view", "f", 14)}View</button></div>`;
+  const rmk = r.remarks.length ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Remarks</h5><p>Every stage, latest first.</p></div><div class="ver-remarks">${r.remarks.slice().reverse().map(m => `<div class="ver-rmk"><div class="ver-rmk-h"><b>${esc(m.act)} by ${esc(m.by)}</b><span>${fmt(m.d)}</span></div><div class="ver-rmk-b">${m.text ? esc(m.text) : "<i>No remarks</i>"}</div></div>`).join("")}</div></section>` : "";
+  const cmp = r.completion ? `<section class="card sf-sec"><div class="sf-rv-head"><h5>Completion Evidence</h5><span class="ui-help">Submitted on ${fmt(r.completion.d)} · amount claimed ${unRs(r.completion.amount)}</span></div><div class="sf-docs">${doc("Completion Certificate", r.completion.cert)}${doc("Fee Receipt", r.completion.receipt)}${doc("Enrollment Details", r.completion.enroll)}${["approved", "inst-ver", "p-cons", "p-admin", "p-ceo", "paid"].includes(r.stage) ? doc("KCG Approval Order", { name: "KCG_Approval_Order.pdf" }) : ""}</div></section>` : "";
+  const pay = r.paid ? kv("Payment", [["Amount", unRs(r.paid.amount)], ["Mode", "DBT – Aadhaar-linked bank account"], ["UTR", r.paid.utr], ["Paid On", fmt(r.paid.d)]]) : "";
+  const act = canAct ? UN_ACT[r.stage] : null;
+  const help = { "inst-rec": "Check the applicant's signed recommendation letter, then recommend and forward the proposal to KCG, or reject it with a reason.", "inst-ver": "Check the completion certificate and fee receipt, then verify and forward to KCG for payment, or reject with a reason.", "a-ceo": "Only your sign-off grants prior approval – the applicant can then start reporting completion.", "p-ceo": "Approving releases the course fee by DBT to the applicant's Aadhaar-linked bank account." }[r.stage] || "Review the application and clear it to the next level" + (act && act[2] ? ", or reject it with a reason." : ".");
+  $("#urBody").innerHTML = `${batch}${unTracker(r)}${rmk}${kv("Applicant Details", appl)}${kv("Course Details", crs)}
+    <section class="card sf-sec"><div class="sf-rv-head"><h5>Attachments</h5></div><div class="sf-docs">${doc("Catalog of Course", f.catalog)}${doc("Signed Recommendation Letter", f.letter)}</div></section>${cmp}${pay}
+    ${act ? `<section class="card ver-bar"><span class="ui-help">${esc(UN_ROLE[ROLE].who)}: ${esc(help)}</span><div class="ver-bar-btns">${act[2] ? `<button class="ui-btn ui-btn-danger-soft" type="button" data-ur-act="reject">Reject</button>` : ""}<button class="ui-btn ui-btn-primary" type="button" data-ur-act="ok">${esc(act[0])}</button></div></section>` : ""}`;
+  scrollTo(0, 0);
+}
+$("#urBody").addEventListener("click", e => {
+  const r = UN_APPS.find(x => x.id === UN.rid);
+  const d = e.target.closest("[data-ur-doc]"); if (d) return verDocView(d.dataset.urDoc, { name: r.f.name, id: r.id, date: r.date });
+  const a = e.target.closest("[data-ur-act]"); if (!a) return;
+  const act = UN_ACT[r.stage], rej = a.dataset.urAct === "reject", ver = r.stage === "inst-ver" && !rej;
+  UN.act = { id: r.id, stage: r.stage, rej };
+  $("#mdUnActTitle").textContent = rej ? "Reject Application" : act[0];
+  $("#mdUnActSub").textContent = rej ? "The applicant is told the reason. This cannot be undone." : UN_FLOW[r.stage] === "approved" ? "The applicant can then complete the course and submit the completion evidence." : UN_FLOW[r.stage] === "paid" ? `${unRs(r.f.fee)} is paid by DBT to the applicant's Aadhaar-linked bank account.` : `The application moves to ${UN_WHO[UN_FLOW[r.stage]]}.`;
+  $("#unActReq").hidden = !rej; $("#unActReason").value = ""; $("#unActHelp").hidden = true; $("#unActDeclRow").hidden = !ver; $("#unActDecl").checked = false;
+  $("#unActYes").textContent = rej ? "Reject" : act[0]; $("#unActYes").className = rej ? "ui-btn ui-btn-danger" : "ui-btn ui-btn-primary";
+  openModal("mdUnAct"); setTimeout(() => $("#unActReason").focus(), 60);
+});
+$("#unActYes").addEventListener("click", () => {
+  const A = UN.act; if (!A) return; const r = UN_APPS.find(x => x.id === A.id); if (!r || r.stage !== A.stage) return;
+  const text = $("#unActReason").value.trim(), help = $("#unActHelp"), by = UN_WHO[r.stage], now = new Date();
+  const err = m => { help.hidden = false; help.className = "ui-help is-error"; help.innerHTML = (HELP_ICON["is-error"] || "") + esc(m); };
+  if (A.rej && !text) return err("Add a reason for rejecting.");
+  if (!A.rej && r.stage === "inst-ver" && !$("#unActDecl").checked) return err("Tick the declaration to verify and forward.");
+  if (A.rej) { r.rejectedAt = r.stage; r.stage = "rejected"; r.remarks.push({ act: "Rejected", by, text, d: now }); r.log.push({ d: now, t: `Rejected by ${by}: ${text}` }); }
+  else {
+    const past = UN_ACT[r.stage][1]; r.remarks.push({ act: past, by, text, d: now }); r.log.push({ d: now, t: `${past} by ${by}` });
+    r.stage = UN_FLOW[r.stage];
+    if (r.stage === "paid") r.paid = { utr: "UTR" + String(Date.now()).slice(-6) + Math.floor(100 + Math.random() * 900), d: now, amount: +r.f.fee };
+  }
+  r.since = now; UN.act = null; closeModal($("#mdUnAct"));
+  toast(A.rej ? "Application rejected" : r.stage === "paid" ? "Payment approved – DBT initiated" : r.stage === "approved" ? "Prior approval granted" : `Forwarded to ${UN_WHO[r.stage]}`);
+  location.hash = ROLE === "principal" ? "un-inst" : "un-kcg";
+});
+
 /* ================= ATTENDANCE (20/11) – content of the live student-attendance.gyandiksha.in (Dashboard + Attendance History), Design System look =================
    Sample data only (no backend): Sundays = Week Off, a few holidays, some absent days; "today" 20/11/2026 is punched in, not yet out. */
 const ATT_TODAY = new Date(2026, 10, 20);
@@ -10717,12 +11456,19 @@ function showView(name) {
   $("#app").classList.toggle("is-att", /^att-/.test(name));            // Attendance module: own 2-link sidebar + Home / Quick Services in the header (20/11)
   const schTab = /^(my-apps|my-apps-view|ma-update)$/.test(name) ? "my-apps" : "scholarships";
   $$("[data-schnav]").forEach(a => { const on = schFull && a.dataset.schnav === schTab; a.classList.toggle("is-active", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-  const navName = name === "ver-view" ? HC.from : name === "ksy-review" ? "ksy-" + KSY.reviewRole : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
+  const navName = name === "un-review" ? (ROLE === "student" ? "unnati" : ROLE === "principal" ? "un-inst" : "un-kcg") : name === "unnati-complete" ? "unnati" : name === "ver-view" ? HC.from : name === "ksy-review" ? "ksy-" + KSY.reviewRole : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
   $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === navName));
   $(".h-title h2").textContent = ({ dashboard: "Dashboard", cogent: "Cogent", "co-phase": "Phase – Application", profile: "My Profile", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App", ksy: "Kaushalya Sahaay Yojana", "ksy-form": "Kaushalya Sahaay Yojana", "ksy-nodal": "KSY – Nodal Officer", "ksy-principal": "KSY – Principal", "ksy-nep": "KSY – NEP Cell, KCG", "ksy-review": "Kaushalya Sahaay Yojana", "kcg-lots": "KCG – Lot List", "app-flows": "Mobile App", "app-login": "Mobile App", "att-dash": ATT_COLLEGE, "att-history": ATT_COLLEGE })[name] || "Student Profile";
+  if (/^(unnati|un-)/.test(name)) $(".h-title h2").textContent = "Unnati Yojana";
+  if (name === "unnati") unMyRender();
+  if (name === "unnati-form") unOpenForm();
+  if (name === "unnati-complete") unCmpOpen();
+  if (name === "un-inst") unInstRender();
+  if (name === "un-kcg") unKcgRender();
+  if (name === "un-review") unReviewRender();
   if (name === "hc") { hcInit(); hcRender(); }
   if (name === "co") { coInit(); coRender(); }
-  if (name === "co-phase") coPhaseRender();
+  if (name === "co-phase") { cpInit(); coPhaseRender(); }
   if (name === "kcg-lots") { kcgInit(); kcgRender(); }
   if (name === "att-dash") attDashRender();
   if (name === "att-history") attHistRender();
