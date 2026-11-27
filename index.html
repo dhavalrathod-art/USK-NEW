@@ -346,25 +346,14 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 /* ===== Unnati Yojana (25/11) – page-level, DS tokens only ===== */
 .un-tabs{display:flex;gap:var(--space-8);flex-wrap:wrap;margin-bottom:var(--space-16)}
 .un-card{padding:var(--space-20);margin-bottom:var(--space-16)}
-.un-head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;padding:var(--space-16) var(--space-20);border-bottom:1px solid var(--color-border-default)}
-.un-head h5{font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
-.un-head p{margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
 .un-sub{display:block;margin-top:2px;font-size:var(--font-size-caption);color:var(--color-text-secondary);white-space:normal}
-.un-bud{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-12)}
+.un-bud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-12)}
 .un-bud > div{padding:var(--space-12);border:1px solid var(--color-border-default);border-radius:8px;min-width:0}
 .un-bud span{display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
 .un-bud b{display:block;margin-top:2px;font-size:var(--font-size-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
-.un-bud > .un-bud-bar{grid-column:1/-1;border:0;padding:0}
-.un-bud-bar .ui-progress{height:8px;border-radius:4px;margin-top:var(--space-8)}
-.un-bud-bar .ui-progress i.is-ok{background:var(--color-success)}
-.un-bud-bar .ui-progress i.is-warn{background:var(--color-warning)}
-.un-bud-bar .ui-progress i.is-high{background:var(--color-error)}
-.un-track{display:grid;gap:var(--space-20)}
-.un-track h6{margin-bottom:var(--space-12);font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.3px}
-.un-pend{display:flex;align-items:center;gap:var(--space-8);flex-wrap:wrap;margin-top:var(--space-16);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
-.un-letter{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-bottom:var(--space-12)}
 .un-decls{display:grid;gap:var(--space-12)}
 .un-acts-cell{display:flex;align-items:center;gap:var(--space-8)}
+.un-head-btns{display:flex;gap:var(--space-8);flex-wrap:wrap}
 @media (max-width:991.98px){.un-bud{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:575.98px){.un-bud{grid-template-columns:1fr}}
 @media (max-width:767.98px){.ksy-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -2324,9 +2313,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       <a href="#ksy-nodal" data-view="ksy-nodal" data-tip="KSY Applications" data-role="nodal" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
       <a href="#ksy-principal" data-view="ksy-principal" data-tip="KSY Applications" data-role="principal" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
       <a href="#un-inst" data-view="un-inst" data-tip="Unnati Applications" data-role="principal" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Applications</span></a>
-      <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="ucons" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
-      <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="uadmin" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
-      <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="uceo" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
+      <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="kcg" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
       <a href="#ksy-nep" data-view="ksy-nep" data-tip="KSY Applications" data-role="nep" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
       <a href="#ksy-nep-pay" data-view="ksy-nep-pay" data-tip="Ready for Payment" data-role="nep" hidden><span data-icon="award:f:18"></span><span class="nav-label">Ready for Payment</span></a>
       <a href="#my-apps" data-view="my-apps" data-tip="My Applications" data-role="student">
@@ -2340,7 +2327,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       </a>
       <!-- Unnati Yojana (25/11): course-fee reimbursement – a separate module like KSY -->
       <a href="#unnati" data-view="unnati" data-tip="Unnati Yojana" data-role="student"><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
-      <a href="#company-job" data-view="company-job" data-tip="Company Job Post" data-role-hide="hc co kcg ucons uadmin uceo nep">
+      <a href="#company-job" data-view="company-job" data-tip="Company Job Post" data-role-hide="hc co kcg nep">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5L14 3.5zM11 11v3H8v2h3v3h2v-3h3v-2h-3v-3h-2z"/></svg>
         <span class="nav-label">Company Job Post</span>
       </a>
@@ -2409,7 +2396,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
           </div>
         </div>
       </div>
-        <div class="ui-select role-sel" id="roleSel" data-options="Student|Help Center|Commissioner Office|Nodal Officer|Principal|NEP Cell, KCG|KCG|Consultant – KCG|Admin – KCG|CEO – KCG|Cogent|Company" data-value="Student" title="Switch role (demo)" aria-label="Role"></div>
+        <div class="ui-select role-sel" id="roleSel" data-options="Student|Help Center|Commissioner Office|Nodal Officer|Principal|NEP Cell, KCG|KCG|Cogent|Company" data-value="Student" title="Switch role (demo)" aria-label="Role"></div>
         <button class="icon-btn" title="Notifications">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="#1f2937"><path d="M12 22a2 2 0 002-2h-4a2 2 0 002 2zm6-6V11a6 6 0 00-5-5.9V4a1 1 0 00-2 0v1.1A6 6 0 006 11v5l-2 2v1h16v-1z"/></svg>
           <span class="badge-count">10</span>
@@ -4921,32 +4908,35 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
     </main>
 
 
-    <!-- ===== VIEW: Unnati Yojana – student / faculty / officer applicant (25/11, UNNATI_Functional_Specification) ===== -->
+    <!-- ===== VIEW: Unnati Yojana – applicant landing page (27/11: UNNATI_Functional_Specifications (1).xlsx – UNN-03 Student / UNN-04 Faculty, Officer, Employee) ===== -->
     <main class="content" id="view-unnati" hidden>
       <div class="page-head">
         <div>
           <h3>Unnati Yojana</h3>
-          <p>Get the fee of a certified course in an emerging area reimbursed by the Knowledge Consortium of Gujarat (KCG).</p>
+          <p>Get the fee of a certified course in an emerging area paid back by the Knowledge Consortium of Gujarat (KCG).</p>
         </div>
-        <button class="ui-btn ui-btn-primary" type="button" id="unNew"><span data-icon="plus:l:16"></span>New Application</button>
+        <div class="un-head-btns">
+          <button class="ui-btn ui-btn-outline" type="button" data-un-new="staff" title="Demo: the form for faculty, officers and employees"><span data-icon="user:o:16"></span>Faculty / Staff Form (Demo)</button>
+          <button class="ui-btn ui-btn-primary" type="button" data-un-new="student"><span data-icon="plus:l:16"></span>New Application</button>
+        </div>
       </div>
       <section class="card ksy-info">
         <div class="ksy-info-grid">
-          <div><span>Assistance</span><b>Course fee reimbursed</b></div>
-          <div><span>Courses</span><b>AI, Data Analytics, Cloud, Cybersecurity, Financial Modeling, Business Intelligence</b></div>
-          <div><span>Who can apply</span><b>Students, faculty and staff of Government / GIA colleges, government universities and higher education offices</b></div>
+          <div><span>Assistance</span><b>Full course examination fee paid back by DBT</b></div>
+          <div><span>Courses</span><b>Online or offline certificate courses in AI, Data Analytics, Cloud, Cybersecurity, Financial Modeling, Business Intelligence</b></div>
+          <div><span>Who can apply</span><b>Students and faculty of Government / grant-in-aid colleges and Government universities, and officers / employees of Higher Education offices</b></div>
         </div>
-        <p class="ksy-note"><span data-icon="info:o:16"></span>KCG (CEO) must approve your course before it starts. After you complete it, submit the completion certificate and fee receipt. Payment is by DBT to the bank account linked with your Aadhaar.</p>
+        <p class="ksy-note"><span data-icon="info:o:16"></span>Your institution signs and forwards your application, and KCG approves the course before it starts. After the course ends, claim the reimbursement with the completion certificate and fee receipt. The amount is paid by DBT to the bank account linked with your Aadhaar.</p>
       </section>
       <div id="unMyNote"></div>
     </main>
 
-    <!-- ===== VIEW: Unnati Yojana – My Applications (26/11, header menu like Scholarships) ===== -->
+    <!-- ===== VIEW: Unnati Yojana – My Applications ===== -->
     <main class="content" id="view-unnati-my" hidden>
-      <div class="page-head"><div><h3>My Applications</h3><p>Your Unnati Yojana applications, latest first. Open one to see where it is.</p></div></div>
+      <div class="page-head"><div><h3>My Applications</h3><p>Your Unnati Yojana applications, latest first. Claim the reimbursement of an approved course after it ends.</p></div></div>
       <section class="card table-card">
         <div class="table-wrap"><table>
-          <thead><tr><th>Application ID</th><th>Course</th><th>Applicant Type</th><th>Enrollment</th><th>Course Dates</th><th>Status</th><th>Action</th></tr></thead>
+          <thead><tr><th>Application ID</th><th>Course</th><th>Applicant Type</th><th>Course Dates</th><th>Applied On</th><th>Status</th><th>Action</th></tr></thead>
           <tbody id="unMyBody"></tbody>
         </table></div>
       </section>
@@ -4963,10 +4953,10 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       </section>
     </main>
 
-    <!-- ===== VIEW: Unnati Yojana – Application form (4 steps: Applicant, Course, Documents, Review) ===== -->
+    <!-- ===== VIEW: Unnati Yojana – Application form (Student 6 steps / Faculty, Officer, Employee 5 steps; saved on Next) ===== -->
     <main class="content" id="view-unnati-form" hidden>
       <div class="page-head sch-head">
-        <div><h3>Unnati Yojana – Course Proposal</h3><p>Proposal form for a certified course. Fields with * are mandatory.</p></div>
+        <div><h3 id="unFormTitle">Unnati Yojana – Application</h3><p>Apply for a certified course. Fields with * are mandatory.</p></div>
         <a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati"><span data-icon="arrow-left:l:14"></span>Unnati Yojana</a>
       </div>
       <div class="sf-layout" id="unLayout">
@@ -4977,11 +4967,12 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <div class="sf-main">
       <div id="unBody"></div>
       <section class="card sf-foot" id="unFoot">
+        <p class="sf-lockinfo" id="unLockInfo"><span data-icon="lock:o:16"></span>Fields with a lock icon are filled in from your verified records (DigiLocker / Agency data) and cannot be changed.</p>
+        <p class="sf-lockinfo"><span data-icon="info:o:16"></span>Your details are saved when you click Next.</p>
         <div class="sf-foot-row">
           <button class="ui-btn ui-btn-outline" type="button" id="unPrev"><span data-icon="arrow-left:l:16"></span>Back</button>
           <span class="ui-help sf-pending" id="unPending"></span>
           <div class="sf-foot-btns">
-            <button class="ui-btn ui-btn-soft" type="button" id="unDraft">Save as Draft</button>
             <button class="ui-btn ui-btn-primary" type="button" id="unNext">Next<span data-icon="arrow-right:l:16"></span></button>
           </div>
         </div>
@@ -4991,46 +4982,54 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       </div>
     </main>
 
-    <!-- ===== VIEW: Unnati Yojana – Submit completion (only after the CEO, KCG granted prior approval) ===== -->
+    <!-- ===== VIEW: Unnati Yojana – Reimbursement claim (UNN-05: Approved application, after the Course End Date) ===== -->
     <main class="content" id="view-unnati-complete" hidden>
       <div class="page-head sch-head">
-        <div><h3>Submit Course Completion</h3><p id="ucSub"></p></div>
-        <a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati"><span data-icon="arrow-left:l:14"></span>Unnati Yojana</a>
+        <div><h3>Reimbursement</h3><p id="ucSub"></p></div>
+        <a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati-my"><span data-icon="arrow-left:l:14"></span>My Applications</a>
       </div>
       <div id="ucBody"></div>
     </main>
 
-    <!-- ===== VIEW: Unnati Yojana – Institution (Principal / Registrar / competent authority) ===== -->
+    <!-- ===== VIEW: Unnati Yojana – Institution (Principal / Registrar / Authority): UNN-INS-01 applications + UNN-INS-02 claims ===== -->
     <main class="content" id="view-un-inst" hidden>
-      <div class="page-head"><div><h3>Unnati Yojana – Institution</h3><p>Recommend course proposals after checking the signed recommendation letter, and verify completion evidence before it goes to KCG for payment.</p></div></div>
+      <div class="page-head"><div><h3>Unnati Yojana – Institution</h3><p>Sign and forward the applications of your institution to KCG, and certify the reimbursement claims before you forward the certified list to KCG.</p></div></div>
       <div class="un-tabs" id="unInstTabs" role="tablist"></div>
+      <div class="ver-stats" id="unInstStats"></div>
+      <div id="unInstFlt"></div>
       <section class="card table-card">
-        <div class="ma-toolbar"><span id="unInstCount"></span><span>Batch-based first, then oldest first</span></div>
+        <div class="ui-bulk" id="unInstBulk" hidden>
+          <span class="ui-bulk-count"><b id="unInstBulkText">No claims selected</b></span>
+          <button class="ui-btn ui-btn-primary" type="button" id="unInstFwd" disabled><span data-icon="arrow-right:l:16"></span>Forward Certified List to KCG (0)</button>
+        </div>
+        <div class="ma-toolbar"><span id="unInstCount"></span><span>Oldest first</span></div>
         <div class="table-wrap"><table>
-          <thead><tr><th>Application ID</th><th>Applicant</th><th>Institution</th><th>Course</th><th>Enrollment</th><th>Course Fee</th><th>Days Pending</th><th>Status</th><th>Action</th></tr></thead>
+          <thead id="unInstHead"></thead>
           <tbody id="unInstBody"></tbody>
         </table></div>
       </section>
     </main>
 
-    <!-- ===== VIEW: Unnati Yojana – KCG (Consultant / Admin / CEO; one view, rendered by role) ===== -->
+    <!-- ===== VIEW: Unnati Yojana – KCG (one KCG role): UNN-KCG-01 applications + UNN-KCG-02 claims ===== -->
     <main class="content" id="view-un-kcg" hidden>
-      <div class="page-head"><div><h3 id="unKcgTitle">Unnati Yojana – KCG</h3><p id="unKcgSub"></p></div></div>
-      <section class="card un-card">
-        <div class="sf-rv-head"><h5>Budget &amp; Beneficiary Tracker</h5><span class="ui-badge ui-badge-neutral">For tracking only – not a hard limit</span></div>
+      <div class="page-head"><div><h3>Unnati Yojana – KCG</h3><p>Approve the courses forwarded by the institutions before they start, and approve the payment of the certified claims by DBT.</p></div></div>
+      <div class="un-tabs" id="unKcgTabs" role="tablist"></div>
+      <div class="ver-stats" id="unKcgStats"></div>
+      <section class="card un-card" id="unBudgetCard" hidden>
+        <div class="sf-rv-head"><h5>Budget</h5><span class="ui-badge ui-badge-neutral">For information – a payment is not blocked</span></div>
         <div class="un-bud" id="unBudget"></div>
       </section>
-      <div class="un-tabs" id="unKcgTabs" role="tablist"></div>
+      <div id="unKcgFlt"></div>
       <section class="card table-card">
-        <div class="ma-toolbar"><span id="unKcgCount"></span><span>Batch-based first, then oldest first</span></div>
+        <div class="ma-toolbar"><span id="unKcgCount"></span><span>Oldest first</span></div>
         <div class="table-wrap"><table>
-          <thead><tr><th>Application ID</th><th>Applicant</th><th>Institution</th><th>Course</th><th>Enrollment</th><th>Course Fee</th><th>Days Pending</th><th>Status</th><th>Action</th></tr></thead>
+          <thead id="unKcgHead"></thead>
           <tbody id="unKcgBody"></tbody>
         </table></div>
       </section>
     </main>
 
-    <!-- ===== VIEW: Unnati Yojana – one application (shared by applicant, Institution, Consultant, Admin, CEO) ===== -->
+    <!-- ===== VIEW: Unnati Yojana – one application (applicant, Institution, KCG) ===== -->
     <main class="content" id="view-un-review" hidden>
       <div class="page-head sch-head">
         <div><h3 id="urTitle"></h3><p id="urSub"></p></div>
@@ -6019,23 +6018,15 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
   </div>
 </div>
 <!-- ===== Kaushalya Sahaay Yojana – Approve / Reject (Phase 3, 18/11): one modal for Nodal Officer, Principal, NEP Cell, single or bulk ===== -->
-<!-- ===== Unnati Yojana – Recommend / Clear / Approve / Reject (one modal for every role) ===== -->
+<!-- ===== Unnati Yojana – Sign and Forward / Certify / Forward list / Approve / Approve Payment (27/11: one confirm modal, no reject anywhere) ===== -->
 <div class="ui-modal-backdrop" id="mdUnAct" data-static>
-  <div class="ui-modal ui-modal-sm" role="dialog" aria-modal="true" aria-labelledby="mdUnActTitle">
-    <div class="ui-modal-head">
-      <span class="ui-modal-icon"><span data-icon="edit:f:20"></span></span>
-      <div class="ui-modal-title"><h4 id="mdUnActTitle">Approve</h4><p id="mdUnActSub"></p></div>
-      <button class="ui-modal-close" data-modal-close title="Close"><span data-icon="close:l:20"></span></button>
+  <div class="ui-modal ui-confirm" role="alertdialog" aria-modal="true" aria-labelledby="mdUnActTitle" aria-describedby="mdUnActSub">
+    <div class="ui-confirm-body">
+      <span class="ui-confirm-icon" id="mdUnActIcon"><span data-icon="arrow-right:l:24"></span></span>
+      <h4 id="mdUnActTitle">Confirm</h4>
+      <p id="mdUnActSub"></p>
     </div>
-    <div class="ui-modal-body">
-      <div class="ui-field">
-        <label class="ui-label" for="unActReason">Remarks<span class="ui-req" id="unActReq" hidden>*</span></label>
-        <textarea class="ui-input" id="unActReason" rows="4"></textarea>
-        <span class="ui-help" id="unActHelp" hidden></span>
-      </div>
-      <label class="sf-decl" id="unActDeclRow" hidden style="margin-top:var(--space-16)"><input class="ui-cb" type="checkbox" id="unActDecl"><span>I have verified the completion certificate and the fee receipt, and I certify this beneficiary to KCG for payment.</span></label>
-    </div>
-    <div class="ui-modal-foot">
+    <div class="ui-confirm-foot">
       <button class="ui-btn ui-btn-outline" data-modal-close>Cancel</button>
       <button class="ui-btn ui-btn-primary" id="unActYes">Confirm</button>
     </div>
@@ -9983,8 +9974,8 @@ function sfRenewElig() {
    Phase 4b (next): student Update / Resubmit (COM-04), updated items (HC-05), 15-day timeline / reminders / expiry (HC-07),
    notifications (COM-05), progress tracker (COM-03). */
 let ROLE = "student";
-const ROLE_NAME = { student: "Student", hc: "Help Center", co: "Commissioner Office", nodal: "Nodal Officer", principal: "Principal", nep: "NEP Cell, KCG", kcg: "KCG", ucons: "Consultant – KCG", uadmin: "Admin – KCG", uceo: "CEO – KCG", cogent: "Cogent", company: "Company" };
-const ROLE_HOME = { student: "dashboard", hc: "hc", co: "co", nodal: "ksy-nodal", principal: "ksy-principal", nep: "ksy-nep", kcg: "kcg-lots", ucons: "un-kcg", uadmin: "un-kcg", uceo: "un-kcg", cogent: "cogent", company: "company-job" };
+const ROLE_NAME = { student: "Student", hc: "Help Center", co: "Commissioner Office", nodal: "Nodal Officer", principal: "Principal", nep: "NEP Cell, KCG", kcg: "KCG", cogent: "Cogent", company: "Company" };
+const ROLE_HOME = { student: "dashboard", hc: "hc", co: "co", nodal: "ksy-nodal", principal: "ksy-principal", nep: "ksy-nep", kcg: "kcg-lots", cogent: "cogent", company: "company-job" };
 function roleSet(r, go) {
   ROLE = ROLE_NAME[r] ? r : "student";
   try { sessionStorage.setItem("usk-role", ROLE); } catch (e) {}
@@ -11329,102 +11320,102 @@ function ksyStatusHtml(id = KSY.appId) {
 }
 
 
-/* ================= UNNATI YOJANA (25/11) – "UNNATI_Functional_Specification (1) (1).pdf" + paper form "unnati_form (1).pdf" =================
-   Applicant (Student / Faculty / Officer-Employee) submits a course proposal + signed recommendation letter
-   → Institution (Principal role) recommends → KCG Consultant → Admin → CEO grants prior approval
-   → applicant completes the course and submits certificate + fee receipt → Institution verifies
-   → Consultant → Admin → CEO approves payment → DBT (simulated, sample UTR). In memory only. */
-const UN_BUDGET = 10000000;                                  // Rs. 1 crore overall scheme budget – tracked, not a hard cap (C07 / C08)
-const UN_TYPES = ["Student", "Faculty", "Officer / Employee"];
-const UN_CATS = ["Artificial Intelligence", "Data Analytics", "Cloud Computing", "Cybersecurity", "Financial Modeling", "Business Intelligence", "Other emerging technology"];
-const UN_PROVIDERS = ["Google", "Microsoft", "Coursera", "SWAYAM", "NPTEL", "Other"];
-const UN_COLLEGE_CAT = ["Government College", "Grant-in-Aid (GIA) College", "Government University"];   // private / self-financed: not covered (A07)
-const UN_OFFICES = ["Commissionerate of Higher Education (CHE)", "Knowledge Consortium of Gujarat (KCG)", "Granth Nirman Board", "SCOPE", "Other higher education office"];
-const UN_STEPS = ["Applicant Details", "Course Details", "Documents", "Review"];
-const UN_FLOW = { "inst-rec": "a-cons", "a-cons": "a-admin", "a-admin": "a-ceo", "a-ceo": "approved", "inst-ver": "p-cons", "p-cons": "p-admin", "p-admin": "p-ceo", "p-ceo": "paid" };
+/* ================= UNNATI YOJANA (27/11 rebuild) – "UNNATI_Functional_Specifications (1).xlsx" =================
+   UNN-03 Student form (6 steps) / UNN-04 Faculty, Officer, Employee form (5 steps) – saved on Next, no Save as draft
+   → Institution (Principal role) Sign and Forward (UNN-INS-01) → KCG Approve + Approval Order (UNN-KCG-01)
+   → applicant Reimbursement after the Course End Date (UNN-05) → Institution Certify + Forward Certified List (UNN-INS-02)
+   → KCG Approve Payment → Paid by DBT (UNN-KCG-02, simulated UTR). No reject / return anywhere. In memory only. */
+const UN_BUDGET = 10000000;                                  // scheme budget for the year as per the GR – shown for information only
+const UN_STAFF_TYPES = ["Faculty", "Officer", "Employee"];
+const UN_TYPES_ALL = ["Student", "Faculty", "Officer", "Employee"];
+const UN_CATS = ["Artificial Intelligence", "Data Analytics", "Cloud Computing", "Cybersecurity", "Financial Modeling", "Business Intelligence"];
+const UN_COURSES = [                                         // "lists maintained for UNNATI" – sample list (the real list is not given yet)
+  ["Google Data Analytics Professional Certificate", "Data Analytics"], ["Data Science with Python (SWAYAM)", "Data Analytics"],
+  ["Microsoft Azure Fundamentals (AZ-900)", "Cloud Computing"], ["Google Cloud Digital Leader", "Cloud Computing"], ["AWS Cloud Practitioner Essentials", "Cloud Computing"],
+  ["Cybersecurity Essentials (SWAYAM)", "Cybersecurity"], ["Google Cybersecurity Professional Certificate", "Cybersecurity"],
+  ["Machine Learning (NPTEL)", "Artificial Intelligence"], ["AI for Everyone (Coursera)", "Artificial Intelligence"],
+  ["Power BI Data Analyst (PL-300)", "Business Intelligence"], ["Financial Modeling & Valuation Analyst (FMVA)", "Financial Modeling"]
+];
+const UN_INSTITUTIONS = VER_COLLEGES.concat(["Gujarat University, Ahmedabad", "Commissionerate of Higher Education (CHE)", "Knowledge Consortium of Gujarat (KCG)", "Granth Nirman Board", "SCOPE"]);
+const UN_STEPS = { student: [["basic", "Basic Details"], ["acad", "Academic Details"], ["course", "Course Details"], ["aad", "Aadhaar Verification"], ["docs", "Upload Documents"], ["decl", "Declaration"]],
+  staff: [["basic", "Basic Details"], ["course", "Course Details"], ["aad", "Aadhaar Verification"], ["docs", "Upload Documents"], ["decl", "Declaration"]] };
 const UN_STAGE = {
-  draft: { st: "Draft", badge: "neutral" },
-  "inst-rec": { st: "With Institution", badge: "review" },
-  "a-cons": { st: "With KCG Consultant", badge: "shortlisted" },
-  "a-admin": { st: "With KCG Admin", badge: "shortlisted" },
-  "a-ceo": { st: "With CEO, KCG", badge: "shortlisted" },
-  approved: { st: "Approved – complete the course", badge: "approved" },
-  "inst-ver": { st: "Completion with Institution", badge: "review" },
-  "p-cons": { st: "Payment – with KCG Consultant", badge: "shortlisted" },
-  "p-admin": { st: "Payment – with KCG Admin", badge: "shortlisted" },
-  "p-ceo": { st: "Payment – with CEO, KCG", badge: "shortlisted" },
-  paid: { st: "Paid via DBT", badge: "approved" },
-  rejected: { st: "Rejected", badge: "rejected" }
+  draft: { st: "Draft", badge: "neutral" }, submitted: { st: "Submitted", badge: "review" }, forwarded: { st: "Forwarded", badge: "shortlisted" },
+  approved: { st: "Approved", badge: "approved" }, claim: { st: "Claim Submitted", badge: "review" }, claimfwd: { st: "Claim Forwarded", badge: "shortlisted" }, paid: { st: "Paid", badge: "approved" }
 };
-const UN_ROLE = {                                            // each role's two queues (spec: Institution "Recommendation" / "Completion Verification"; KCG "Course Approval" / "Final Verification & Payment")
-  principal: { who: "Institution", tabs: [["rec", "Recommendation", "inst-rec"], ["ver", "Completion Verification", "inst-ver"]] },
-  ucons: { who: "Consultant – KCG", tabs: [["app", "Course Approval", "a-cons"], ["pay", "Final Verification & Payment", "p-cons"]], sub: "First-level technical and eligibility review of course proposals and completion evidence." },
-  uadmin: { who: "Admin – KCG", tabs: [["app", "Course Approval", "a-admin"], ["pay", "Final Verification & Payment", "p-admin"]], sub: "Administrative review – budget, beneficiary limits and paperwork completeness." },
-  uceo: { who: "CEO – KCG", tabs: [["app", "Course Approval", "a-ceo"], ["pay", "Final Verification & Payment", "p-ceo"]], sub: "Final sign-off: grant prior approval, and approve payment release by DBT." }
-};
-const UN_ACT = {                                             // stage → [action button, past-tense remark, can reject]
-  "inst-rec": ["Recommend & Forward to KCG", "Recommended and forwarded", true],
-  "a-cons": ["Clear", "Cleared", true], "a-admin": ["Clear", "Cleared", true], "a-ceo": ["Grant Prior Approval", "Prior approval granted", true],
-  "inst-ver": ["Verify & Forward to KCG", "Completion verified and forwarded", true],
-  "p-cons": ["Clear", "Cleared", false], "p-admin": ["Clear", "Cleared", false], "p-ceo": ["Approve Payment & Initiate DBT", "Payment approved, DBT initiated", false]
-};
-const UN_WHO = { "inst-rec": "Institution", "inst-ver": "Institution", "a-cons": "Consultant – KCG", "p-cons": "Consultant – KCG", "a-admin": "Admin – KCG", "p-admin": "Admin – KCG", "a-ceo": "CEO – KCG", "p-ceo": "CEO – KCG" };
+const UN_ORDER = ["submitted", "forwarded", "approved", "claim", "claimfwd", "paid"];
+const UN_AAD_CONSENT = "I agree that my Aadhaar number is used to verify my identity with DigiLocker, and that the course amount is paid by DBT to the bank account linked (seeded) with this Aadhaar.";
+const UN_DECL1 = "I declare that the above particulars of facts and information stated are correct to the best of my belief and knowledge.";
+const UN_DECL2 = "I declare that the above requested course did not take any kind of assistance / scholarship.";
+const UN_SRC_STUDENT = { name: "DigiLocker", gender: "DigiLocker", email: "Agency data", mobile: "Agency data", college: "Agency data", collegeType: "Agency data", stream: "Agency data", semester: "Agency data" };
 const UN_TODAY = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; })();
 const unDay = n => new Date(UN_TODAY.getTime() + n * 864e5);
 const unRs = n => "₹" + Math.round(+n || 0).toLocaleString("en-IN");
-const unInst = r => r.f.type === "Officer / Employee" ? r.f.office : r.f.college;
-const unSigner = t => t === "Officer / Employee" ? "Competent Authority" : t === "Faculty" ? "Principal / Registrar" : "Principal";
+const unInst = r => (r.kind === "student" ? r.f.college : r.f.inst) || "–";
+const unSigner = inst => /University/i.test(inst || "") ? "Registrar" : /College/i.test(inst || "") ? "Principal" : "Competent Authority";
 const unDays = (a, b) => { const x = cjpDate(a), y = cjpDate(b); return x && y && y >= x ? Math.round((y - x) / 864e5) + 1 : 0; };
-const unPending = r => Math.max(0, Math.floor((UN_TODAY - new Date(r.since).setHours(0, 0, 0, 0)) / 864e5));
 const unBadge = r => `<span class="ui-badge ui-badge-${UN_STAGE[r.stage].badge}">${esc(UN_STAGE[r.stage].st)}</span>`;
-const unEnroll = r => r.f.enroll === "Batch Based Enrollment" ? `<span class="ui-badge ui-badge-warning">Batch · ${esc(r.f.start)}</span>` : `<span class="ui-badge ui-badge-neutral">Open</span>`;
-const unPendBadge = r => { const n = unPending(r), t = n <= 3 ? "approved" : n <= 7 ? "warning" : "rejected"; return `<span class="ui-badge ui-badge-${t}">${n} day${n === 1 ? "" : "s"}</span>`; };
+const unMaskMail = v => { const [a, b] = String(v || "").split("@"); return b ? a.slice(0, 1) + "•••••" + a.slice(-1) + "@" + b : v; };
+const unMaskMob = v => v ? String(v).slice(0, 2) + "XXXX" + String(v).slice(-4) : v;
+const unAt = (r, k) => r.stage !== "draft" && UN_ORDER.indexOf(r.stage) >= UN_ORDER.indexOf(k);   // reached stage k (or later)
+const unEnded = r => { const e = cjpDate(r.f.end); return !!e && UN_TODAY > e; };
+const unEarly = r => { const s = cjpDate(r.f.start); return !!(s && r.appr && s < new Date(r.appr.d).setHours(0, 0, 0, 0)); };   // APP-UNN-05
 
-function unBlank() {
-  return { type: "Student", name: DB_STUDENT.name, designation: "", dept: "", gender: "Male", email: DB_STUDENT.email, mobile: DB_STUDENT.mobile,
-    stream: DB_STUDENT.programme + " · " + DB_STUDENT.branch, semester: DB_STUDENT.semester, college: "L.D. College of Engineering, Ahmedabad", collegeType: "Technical", collegeCat: "", area: "", office: "",
-    course: "", provider: "", providerOther: "", category: "", mode: "", coordinator: "", enroll: "", start: "", end: "", perDay: "", fee: "", relevance: "",
-    catalog: null, letter: null, decl1: false, decl2: false };
+function unBlank(kind) {
+  const base = { course: "", mode: "", coordinator: "", start: "", end: "", perDay: "", fee: "", category: "", aadhaar: SF_AADHAAR_TEST, aadConsent: false, aadOk: false, photo: null, catalog: null, decl1: false, decl2: false };
+  return kind === "student"
+    ? Object.assign(base, { name: DB_STUDENT.name, gender: "Male", email: DB_STUDENT.email, mobile: DB_STUDENT.mobile, college: "L.D. College of Engineering, Ahmedabad", collegeType: "Technical", area: "", stream: DB_STUDENT.programme + " · " + DB_STUDENT.branch, semester: DB_STUDENT.semester })
+    : Object.assign(base, { type: "", name: "", gender: "", email: "", mobile: "", inst: "", designation: "", dept: "", empId: "" });
 }
-/* ---------- sample data: every queue has rows by default ---------- */
+
+/* ---------- sample data: every list has rows by default ---------- */
 const UN_APPS = [];
 function unSeed(o) {
-  const f = Object.assign(unBlank(), o.f, { start: fmt(unDay(o.startIn)), end: fmt(unDay(o.startIn + o.len - 1)), decl1: true, decl2: true,
-    catalog: { name: "Course_Catalog.pdf", size: 412000 }, letter: { name: "Signed_Recommendation_Letter.pdf", size: 238000 } });
-  const r = { id: o.id, own: !!o.own, f, stage: o.stage, date: unDay(-o.ago), since: unDay(-o.since), remarks: [], log: [{ d: unDay(-o.ago), t: "Submitted by the applicant" }] };
-  if (o.stage === "draft") { r.step = o.step || 0; r.log = []; UN_APPS.push(r); return; }
-  const chain = ["inst-rec", "a-cons", "a-admin", "a-ceo", "approved", "inst-ver", "p-cons", "p-admin", "p-ceo", "paid"];
-  const end = o.stage === "rejected" ? chain.indexOf(o.rejectedAt) : chain.indexOf(o.stage);
-  let d = o.ago;
-  for (let i = 0; i < end; i++) {
-    const s = chain[i]; if (s === "approved") { d = Math.max(o.since + 1, d - 3); r.completion = { cert: { name: "Completion_Certificate.pdf", size: 301000 }, receipt: { name: "Fee_Receipt.pdf", size: 120000 }, enroll: { name: "Enrollment_Details.pdf", size: 98000 }, amount: +f.fee, d: unDay(-d) }; r.log.push({ d: unDay(-d), t: "Completion evidence submitted by the applicant" }); continue; }
-    d = Math.max(o.since, d - 2);
-    r.remarks.push({ act: UN_ACT[s][1], by: UN_WHO[s], text: "", d: unDay(-d) }); r.log.push({ d: unDay(-d), t: `${UN_ACT[s][1]} by ${UN_WHO[s]}` });
-  }
-  if (o.stage === "rejected") { r.rejectedAt = o.rejectedAt; r.remarks.push({ act: "Rejected", by: UN_WHO[o.rejectedAt], text: o.reason, d: unDay(-o.since) }); r.log.push({ d: unDay(-o.since), t: `Rejected by ${UN_WHO[o.rejectedAt]}: ${o.reason}` }); }
-  if (o.stage === "paid") { r.paid = { utr: "UTR" + o.id.slice(-6) + "417", d: unDay(-o.since), amount: +f.fee }; }
+  const f = Object.assign(unBlank(o.kind), o.f, { start: fmt(unDay(o.startIn)), end: fmt(unDay(o.startIn + o.len - 1)), aadConsent: true, aadOk: true, decl1: true, decl2: true,
+    catalog: { name: "Course_Catalog.pdf", size: 412000 }, photo: o.kind === "student" ? { name: "DigiLocker_Photo.jpg", size: 48000, auto: "DigiLocker" } : null });
+  if (o.kind === "student" && !o.own) Object.assign(f, { aadhaar: "XXXXXXXX" + SF_AADHAAR_LAST4 });
+  const d = o.d || {}, r = { id: o.id, own: !!o.own, kind: o.kind, f, stage: o.stage, date: unDay(-(d.sub || 1)), log: [] };
+  if (o.stage === "draft") { r.step = o.step || 0; Object.assign(f, { start: "", end: "", aadConsent: false, aadOk: false, decl1: false, decl2: false, catalog: null, photo: null }); UN_APPS.push(r); return; }
+  r.sub = unDay(-d.sub); r.log.push({ d: r.sub, t: "Submitted by the applicant" });
+  const who = unSigner(unInst(r));
+  if (d.fwd != null) { r.fwd = { d: unDay(-d.fwd), by: who }; r.log.push({ d: r.fwd.d, t: `Signed and forwarded by the ${who}` }); }
+  if (d.appr != null) { r.appr = { d: unDay(-d.appr), order: "KCG/UNNATI/2026/" + o.id.slice(-4) }; r.log.push({ d: r.appr.d, t: "Approved by the CEO, KCG – Approval Order generated" }); }
+  if (d.claim != null) { r.claim = { cert: { name: "Completion_Certificate.pdf", size: 301000 }, receipt: { name: "Fee_Receipt.pdf", size: 120000 }, d: unDay(-d.claim) }; r.log.push({ d: r.claim.d, t: "Reimbursement claim submitted by the applicant" }); }
+  if (d.cert != null) { r.cert = { d: unDay(-d.cert), by: who }; r.log.push({ d: r.cert.d, t: `Claim certified by the ${who}` }); }
+  if (d.cfwd != null) { r.cfwd = { d: unDay(-d.cfwd) }; r.log.push({ d: r.cfwd.d, t: "Claim forwarded to KCG in the certified list" }); }
+  if (d.paid != null) { r.paid = { d: unDay(-d.paid), utr: "UTR" + o.id.slice(-6) + "417", amount: +f.fee }; r.log.push({ d: r.paid.d, t: "Payment approved by the CEO, KCG – paid by DBT" }); }
   UN_APPS.push(r);
 }
+const unC = (n, extra) => Object.assign({ course: UN_COURSES[n][0], category: UN_COURSES[n][1] }, extra);
+const UN_ST = (name, gender, email, mobile, college, stream, semester, area) => ({ name, gender, email, mobile, college, stream, semester, area, collegeType: "Technical" });
+const UN_SF = (type, name, gender, email, mobile, inst, designation, dept, empId) => ({ type, name, gender, email, mobile, inst, designation, dept, empId });
 [
-  { id: "UN2026110012", own: true, stage: "draft", step: 1, ago: 1, since: 1, startIn: 30, len: 56, f: { course: "Cloud Computing", provider: "NPTEL", category: "Cloud Computing", mode: "Online", enroll: "Open Enrollment" } },
-  { id: "UN2026110002", own: true, stage: "a-admin", ago: 8, since: 3, startIn: 12, len: 28, f: { course: "Microsoft Azure Fundamentals (AZ-900)", provider: "Microsoft", category: "Cloud Computing", mode: "Online", coordinator: "Ms. Neha Kapoor", enroll: "Batch Based Enrollment", perDay: "2", fee: "4500", relevance: "Cloud skills are asked for in most software jobs; this course prepares me for the AZ-900 exam.", collegeCat: "Government College", area: "Urban" } },
-  { id: "UN2026110001", own: true, stage: "approved", ago: 30, since: 14, startIn: -10, len: 45, f: { course: "Google Data Analytics Professional Certificate", provider: "Coursera", category: "Data Analytics", mode: "Online", coordinator: "Mr. Rohan Mehta", enroll: "Open Enrollment", perDay: "2", fee: "3999", relevance: "Data analysis with SQL, spreadsheets and Tableau improves my employability in data roles.", collegeCat: "Government College", area: "Urban" } },
-  { id: "UN2026110003", stage: "inst-rec", ago: 2, since: 2, startIn: 9, len: 42, f: { name: "Priya Mehta", gender: "Female", email: "priya.mehta@vgec.ac.in", mobile: "9824012345", stream: "BE/B-Tech · Information Technology", semester: "Sem-6", college: "Vishwakarma Government Engineering College, Chandkheda", collegeCat: "Government College", area: "Urban", course: "Cybersecurity Essentials", provider: "SWAYAM", category: "Cybersecurity", mode: "Online", coordinator: "Dr. A. K. Sharma", enroll: "Batch Based Enrollment", perDay: "1.5", fee: "2500", relevance: "Security basics for web developers – a priority emerging area." } },
-  { id: "UN2026110004", stage: "a-cons", ago: 9, since: 5, startIn: 20, len: 35, f: { type: "Faculty", name: "Dr. Kiran Shah", designation: "Assistant Professor", dept: "Computer Engineering", gender: "Female", email: "kiran.shah@gecg28.ac.in", mobile: "9825098250", college: "Government Engineering College, Gandhinagar", collegeType: "Technical", collegeCat: "Government College", area: "Urban", course: "AI for Educators", provider: "Coursera", category: "Artificial Intelligence", mode: "Online", coordinator: "Prof. Mira Rao", enroll: "Open Enrollment", perDay: "1", fee: "6999", relevance: "Using AI tools in teaching methods and in student assessment." } },
-  { id: "UN2026110005", stage: "a-ceo", ago: 16, since: 9, startIn: 6, len: 5, f: { type: "Officer / Employee", name: "Nirav Desai", designation: "Data Officer", gender: "Male", email: "nirav.desai@kcg.gov.in", mobile: "9909012345", office: "Knowledge Consortium of Gujarat (KCG)", course: "Power BI Data Analyst (PL-300)", provider: "Microsoft", category: "Business Intelligence", mode: "Offline", coordinator: "Mr. Sameer Joshi", enroll: "Batch Based Enrollment", perDay: "6", fee: "12000", relevance: "Dashboards for the scheme monitoring work of the office." } },
-  { id: "UN2026110006", stage: "inst-ver", ago: 50, since: 1, startIn: -40, len: 30, f: { name: "Hetal Joshi", gender: "Female", email: "hetal.joshi@ldce.ac.in", mobile: "9825011122", stream: "BE/B-Tech · Information Technology", semester: "Sem-7", collegeCat: "Government College", area: "Urban", course: "Financial Modeling & Valuation", provider: "Other", providerOther: "Corporate Finance Institute", category: "Financial Modeling", mode: "Online", coordinator: "Mr. Paul Martin", enroll: "Open Enrollment", perDay: "2", fee: "5499", relevance: "Financial modeling for fintech roles." } },
-  { id: "UN2026110007", stage: "p-cons", ago: 60, since: 4, startIn: -50, len: 84, f: { type: "Faculty", name: "Prof. Mehul Trivedi", designation: "Associate Professor", dept: "Information Technology", email: "mehul.trivedi@vgec.ac.in", mobile: "9879012345", college: "Vishwakarma Government Engineering College, Chandkheda", collegeType: "Technical", collegeCat: "Government College", area: "Urban", course: "Machine Learning", provider: "NPTEL", category: "Artificial Intelligence", mode: "Online", coordinator: "Prof. B. Ravindran", enroll: "Batch Based Enrollment", perDay: "1", fee: "1000", relevance: "ML for the new AI elective I teach." } },
-  { id: "UN2026110008", stage: "p-admin", ago: 55, since: 2, startIn: -45, len: 30, f: { name: "Sneha Rana", gender: "Female", email: "sneha.rana@gecg28.ac.in", mobile: "9998012345", college: "Government Engineering College, Gandhinagar", stream: "BE/B-Tech · Computer Engineering", semester: "Sem-7", collegeCat: "Government College", area: "Rural", course: "Google Cloud Digital Leader", provider: "Google", category: "Cloud Computing", mode: "Online", coordinator: "Ms. Ananya Iyer", enroll: "Open Enrollment", perDay: "2", fee: "3500", relevance: "Cloud basics for campus placement." } },
-  { id: "UN2026110009", stage: "p-ceo", ago: 70, since: 8, startIn: -60, len: 40, f: { type: "Officer / Employee", name: "Kunal Shah", designation: "Section Officer", gender: "Male", email: "kunal.shah@che.gujarat.gov.in", mobile: "9427012345", office: "Commissionerate of Higher Education (CHE)", course: "Google Cybersecurity Professional Certificate", provider: "Coursera", category: "Cybersecurity", mode: "Online", coordinator: "Mr. Arjun Nair", enroll: "Open Enrollment", perDay: "1", fee: "4200", relevance: "Securing the department's portals and data." } },
-  { id: "UN2026110010", stage: "paid", ago: 80, since: 6, startIn: -70, len: 42, f: { name: "Rahul Patel", email: "rahul.patel@ldce.ac.in", mobile: "9825033344", stream: "BE/B-Tech · Computer Engineering", semester: "Sem-7", collegeCat: "Government College", area: "Urban", course: "Data Science with Python", provider: "SWAYAM", category: "Data Analytics", mode: "Online", coordinator: "Dr. P. K. Singh", enroll: "Open Enrollment", perDay: "1.5", fee: "2999", relevance: "Python for data analysis." } },
-  { id: "UN2026110011", stage: "rejected", rejectedAt: "a-cons", reason: "Blockchain basics is not one of the scheme's priority areas. Apply for a course in an emerging area listed in the GR.", ago: 12, since: 6, startIn: 15, len: 20, f: { name: "Jay Thakkar", email: "jay.thakkar@gecg28.ac.in", mobile: "9825055566", college: "Government Engineering College, Gandhinagar", stream: "BE/B-Tech · Electrical Engineering", semester: "Sem-5", collegeCat: "Government College", area: "Rural", course: "Blockchain Basics", provider: "Coursera", category: "Other emerging technology", mode: "Online", coordinator: "Mr. Vikram Das", enroll: "Open Enrollment", perDay: "1", fee: "2800", relevance: "Interest in blockchain." } }
+  // the signed-in student's own applications
+  { id: "UN2026110012", own: true, kind: "student", stage: "draft", step: 2, startIn: 30, len: 56, f: { area: "Urban" }, d: { sub: 1 } },
+  { id: "UN2026110002", own: true, kind: "student", stage: "submitted", startIn: 12, len: 28, f: unC(2, { mode: "Online", coordinator: "Ms. Neha Kapoor", perDay: "2", fee: "4500", area: "Urban" }), d: { sub: 3 } },
+  { id: "UN2026110013", own: true, kind: "student", stage: "approved", startIn: -6, len: 40, f: unC(7, { mode: "Online", coordinator: "Prof. B. Ravindran", perDay: "1", fee: "1000", area: "Urban" }), d: { sub: 16, fwd: 14, appr: 9 } },
+  { id: "UN2026110001", own: true, kind: "student", stage: "approved", startIn: -50, len: 45, f: unC(0, { mode: "Online", coordinator: "Mr. Rohan Mehta", perDay: "2", fee: "3999", area: "Urban" }), d: { sub: 62, fwd: 60, appr: 55 } },
+  { id: "UN2026110014", own: true, kind: "student", stage: "approved", startIn: -30, len: 25, f: unC(5, { mode: "Online", coordinator: "Dr. A. K. Sharma", perDay: "1.5", fee: "2500", area: "Urban" }), d: { sub: 36, fwd: 33, appr: 26 } },
+  { id: "UN2026110015", own: true, kind: "student", stage: "paid", startIn: -90, len: 30, f: unC(8, { mode: "Online", coordinator: "Ms. Ananya Iyer", perDay: "1", fee: "2999", area: "Urban" }), d: { sub: 100, fwd: 98, appr: 94, claim: 50, cert: 48, cfwd: 47, paid: 40 } },
+  // other applicants – Institution and KCG lists
+  { id: "UN2026110003", kind: "student", stage: "submitted", startIn: 9, len: 42, f: Object.assign(UN_ST("Priya Mehta", "Female", "priya.mehta@vgec.ac.in", "9824012345", VER_COLLEGES[1], "BE/B-Tech · Information Technology", "Sem-6", "Urban"), unC(5, { mode: "Online", coordinator: "Dr. A. K. Sharma", perDay: "1.5", fee: "2500" })), d: { sub: 2 } },
+  { id: "UN2026110004", kind: "staff", stage: "submitted", startIn: 20, len: 35, f: Object.assign(UN_SF("Faculty", "Dr. Kiran Shah", "Female", "kiran.shah@gecg28.ac.in", "9825098250", VER_COLLEGES[2], "Assistant Professor", "Computer Engineering", "GECG-1043"), unC(8, { mode: "Online", coordinator: "Prof. Mira Rao", perDay: "1", fee: "6999" })), d: { sub: 4 } },
+  { id: "UN2026110005", kind: "staff", stage: "forwarded", startIn: 6, len: 5, f: Object.assign(UN_SF("Officer", "Nirav Desai", "Male", "nirav.desai@kcg.gov.in", "9909012345", "Knowledge Consortium of Gujarat (KCG)", "Data Officer", "Monitoring Cell", ""), unC(9, { mode: "Offline", coordinator: "Mr. Sameer Joshi", perDay: "6", fee: "12000" })), d: { sub: 9, fwd: 6 } },
+  { id: "UN2026110007", kind: "staff", stage: "forwarded", startIn: 15, len: 84, f: Object.assign(UN_SF("Faculty", "Prof. Mehul Trivedi", "Male", "mehul.trivedi@vgec.ac.in", "9879012345", VER_COLLEGES[1], "Associate Professor", "Information Technology", "VGEC-0877"), unC(7, { mode: "Online", coordinator: "Prof. B. Ravindran", perDay: "1", fee: "1000" })), d: { sub: 7, fwd: 3 } },
+  { id: "UN2026110006", kind: "student", stage: "approved", startIn: 4, len: 30, f: Object.assign(UN_ST("Hetal Joshi", "Female", "hetal.joshi@ldce.ac.in", "9825011122", VER_COLLEGES[0], "BE/B-Tech · Information Technology", "Sem-7", "Urban"), unC(10, { mode: "Online", coordinator: "Mr. Paul Martin", perDay: "2", fee: "5499" })), d: { sub: 12, fwd: 10, appr: 5 } },
+  { id: "UN2026110008", kind: "student", stage: "claim", startIn: -45, len: 30, f: Object.assign(UN_ST("Sneha Rana", "Female", "sneha.rana@gecg28.ac.in", "9998012345", VER_COLLEGES[2], "BE/B-Tech · Computer Engineering", "Sem-7", "Rural"), unC(3, { mode: "Online", coordinator: "Ms. Ananya Iyer", perDay: "2", fee: "3500" })), d: { sub: 58, fwd: 55, appr: 50, claim: 4 } },
+  { id: "UN2026110009", kind: "staff", stage: "claim", startIn: -60, len: 40, f: Object.assign(UN_SF("Employee", "Kunal Shah", "Male", "kunal.shah@che.gujarat.gov.in", "9427012345", "Commissionerate of Higher Education (CHE)", "Section Officer", "Scholarship Branch", "CHE-2210"), unC(6, { mode: "Online", coordinator: "Mr. Arjun Nair", perDay: "1", fee: "4200" })), d: { sub: 72, fwd: 70, appr: 64, claim: 6, cert: 2 } },
+  { id: "UN2026110016", kind: "student", stage: "claim", startIn: -40, len: 28, f: Object.assign(UN_ST("Rahul Patel", "Male", "rahul.patel@ldce.ac.in", "9825033344", VER_COLLEGES[0], "BE/B-Tech · Computer Engineering", "Sem-7", "Urban"), unC(1, { mode: "Online", coordinator: "Dr. P. K. Singh", perDay: "1.5", fee: "2999" })), d: { sub: 50, fwd: 48, appr: 44, claim: 5, cert: 1 } },
+  { id: "UN2026110010", kind: "student", stage: "claimfwd", startIn: -70, len: 42, f: Object.assign(UN_ST("Jay Thakkar", "Male", "jay.thakkar@gecg28.ac.in", "9825055566", VER_COLLEGES[2], "BE/B-Tech · Electrical Engineering", "Sem-7", "Rural"), unC(4, { mode: "Online", coordinator: "Mr. Vikram Das", perDay: "1", fee: "4200" })), d: { sub: 80, fwd: 78, appr: 74, claim: 12, cert: 9, cfwd: 8 } },
+  { id: "UN2026110011", kind: "staff", stage: "claimfwd", startIn: -65, len: 30, f: Object.assign(UN_SF("Faculty", "Dr. Meera Solanki", "Female", "meera.solanki@gujaratuniversity.ac.in", "9427098765", "Gujarat University, Ahmedabad", "Professor", "Statistics", "GU-0451"), unC(9, { mode: "Offline", coordinator: "Mr. Sameer Joshi", perDay: "4", fee: "9500" })), d: { sub: 76, fwd: 73, appr: 70, claim: 10, cert: 7, cfwd: 5 } },
+  { id: "UN2026110017", kind: "student", stage: "paid", startIn: -110, len: 42, f: Object.assign(UN_ST("Foram Desai", "Female", "foram.desai@vgec.ac.in", "9825077788", VER_COLLEGES[1], "BE/B-Tech · Computer Engineering", "Sem-8", "Urban"), unC(2, { mode: "Online", coordinator: "Ms. Neha Kapoor", perDay: "2", fee: "4500" })), d: { sub: 125, fwd: 122, appr: 118, claim: 60, cert: 57, cfwd: 56, paid: 50 } }
 ].forEach(unSeed);
-const UN = { draftId: null, step: 0, maxStep: 0, f: null, rid: null, cmpId: null, cmp: null, tab: { principal: "rec", ucons: "app", uadmin: "app", uceo: "app" }, act: null };
+const UN = { draftId: null, kind: "student", step: 0, maxStep: 0, f: null, rid: null, cmpId: null, cmp: null, tab: { principal: "app", kcg: "app" }, act: null, sel: new Set(), flt: {} };
 
-/* ---------- student page: my applications (26/11: own page #unnati-my, header menu) ---------- */
+/* ---------- applicant: landing note + My Applications ---------- */
 function unNoteRender() {
-  const mine = UN_APPS.filter(r => r.own), ready = mine.filter(r => r.stage === "approved").length;
-  $("#unMyNote").innerHTML = mine.length ? `<section class="card ksy-mynote">${iconSvg("info", "o", 16)}<span>You have <b>${mine.length}</b> Unnati Yojana application${mine.length === 1 ? "" : "s"}${ready ? ` – <b>${ready}</b> approved, waiting for your completion evidence` : ""}. Track them in My Applications.</span><a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati-my">My Applications${iconSvg("arrow-right", "l", 14)}</a></section>` : "";
+  const mine = UN_APPS.filter(r => r.own), ready = mine.filter(r => r.stage === "approved" && unEnded(r)).length;
+  $("#unMyNote").innerHTML = mine.length ? `<section class="card ksy-mynote">${iconSvg("info", "o", 16)}<span>You have <b>${mine.length}</b> Unnati Yojana application${mine.length === 1 ? "" : "s"}${ready ? ` – <b>${ready}</b> ready for reimbursement` : ""}. Track them in My Applications.</span><a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati-my">My Applications${iconSvg("arrow-right", "l", 14)}</a></section>` : "";
 }
 function unMyRender() {
   const list = UN_APPS.filter(r => r.own).sort((a, b) => b.date - a.date);
@@ -11432,153 +11423,197 @@ function unMyRender() {
     const acts = r.stage === "draft"
       ? `<button class="ui-act ui-act-edit" type="button" data-un-cont="${r.id}" title="Continue application" aria-label="Continue application ${r.id}">${iconSvg("edit", "f", 18)}</button>`
       : `<a class="ui-act ui-act-view" href="#un-review" data-un-view="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a>`;
-    const cmp = r.stage === "approved" ? `<button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-un-cmp="${r.id}">Submit Completion</button>` : "";
-    return `<tr><td><span class="ma-id">${esc(r.id)}</span></td><td><b>${esc(r.f.course || "Untitled course")}</b><span class="un-sub">${esc(r.f.provider === "Other" ? r.f.providerOther : r.f.provider || "–")}</span></td><td>${esc(r.f.type)}</td>
-      <td>${r.f.enroll ? unEnroll(r) : "–"}</td><td>${r.f.start ? esc(r.f.start) + " – " + esc(r.f.end) : "–"}</td><td>${unBadge(r)}</td><td><div class="un-acts-cell"><div class="ui-acts">${acts}</div>${cmp}</div></td></tr>`;
-  }).join("") || `<tr class="ver-empty"><td colspan="7">You have not applied for Unnati Yojana yet. Click New Application to propose a course.</td></tr>`;
+    const rb = r.stage !== "approved" ? "" : unEnded(r)
+      ? `<button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-un-cmp="${r.id}">Reimbursement</button>`
+      : `<button class="ui-btn ui-btn-primary ui-btn-sm" type="button" disabled title="Available after the Course End Date (${esc(r.f.end)})">Reimbursement</button>`;
+    const type = r.kind === "student" ? "Student" : r.f.type || "–";
+    return `<tr><td><span class="ma-id">${esc(r.id)}</span></td><td><b>${esc(r.f.course || "Course not selected yet")}</b><span class="un-sub">${esc(r.f.category || "–")}</span></td><td>${esc(type)}</td>
+      <td>${r.f.start ? esc(r.f.start) + " – " + esc(r.f.end) : "–"}</td><td>${r.sub ? fmt(r.sub) : "–"}</td><td>${unBadge(r)}</td><td><div class="un-acts-cell"><div class="ui-acts">${acts}</div>${rb}</div></td></tr>`;
+  }).join("") || `<tr class="ver-empty"><td colspan="7">You have not applied for Unnati Yojana yet. Click New Application to apply for a course.</td></tr>`;
 }
-$("#unNew").addEventListener("click", () => { UN.draftId = null; UN.f = unBlank(); UN.step = 0; UN.maxStep = 0; location.hash = "unnati-form"; });
+$("#view-unnati").addEventListener("click", e => {
+  const b = e.target.closest("[data-un-new]"); if (!b) return;
+  UN.kind = b.dataset.unNew; UN.draftId = null; UN.f = unBlank(UN.kind); UN.step = 0; UN.maxStep = 0; location.hash = "unnati-form";
+});
 $("#unMyBody").addEventListener("click", e => {
   const c = e.target.closest("[data-un-cont]"), v = e.target.closest("[data-un-view]"), k = e.target.closest("[data-un-cmp]");
-  if (c) { const r = UN_APPS.find(x => x.id === c.dataset.unCont); UN.draftId = r.id; UN.f = JSON.parse(JSON.stringify(r.f)); UN.step = r.step || 0; UN.maxStep = UN.step; location.hash = "unnati-form"; }
+  if (c) { const r = UN_APPS.find(x => x.id === c.dataset.unCont); UN.kind = r.kind; UN.draftId = r.id; UN.f = JSON.parse(JSON.stringify(r.f)); UN.step = r.step || 0; UN.maxStep = UN.step; location.hash = "unnati-form"; }
   if (v) { e.preventDefault(); unOpenReview(v.dataset.unView); }
   if (k) { UN.cmpId = k.dataset.unCmp; UN.cmp = null; location.hash = "unnati-complete"; }
 });
 
 /* ---------- application form ---------- */
 const unReq = '<span class="ui-req">*</span>';
-function unInp(k, l, attrs = "", full) { return `<div class="ui-field${full ? " sf-full" : ""}"><label class="ui-label" for="un-${k}">${l}${unReq}</label><input class="ui-input" id="un-${k}" data-un="${k}" value="${esc(UN.f[k] || "")}" ${attrs} autocomplete="off"><span class="ui-help" hidden></span></div>`; }
-function unSel(k, l, opts, full) { return `<div class="ui-field${full ? " sf-full" : ""}"><span class="ui-label">${l}${unReq}</span><div class="ui-select" data-un="${k}" data-ph="Select ${esc(l.toLowerCase())}" data-options="${opts.map(esc).join("|")}" data-value="${esc(UN.f[k] || "")}"${opts.length > 6 ? " data-search" : ""} aria-label="${esc(l)}"></div></div>`; }
-function unRad(k, l, opts, full) { return `<div class="ui-field${full ? " sf-full" : ""}"><span class="ui-label">${l}${unReq}</span><div class="cjp-radios" role="radiogroup" aria-label="${esc(l)}">${opts.map(o => `<label class="cjp-radio"><input type="radio" name="un-${k}" value="${esc(o)}" data-un="${k}" ${UN.f[k] === o ? "checked" : ""}>${esc(o)}</label>`).join("")}</div></div>`; }
-function unFile(k, label, note) {
-  const f = UN.f[k];
-  return f
-    ? `<div class="ui-field sf-full"><span class="ui-label">${label}${unReq}</span><div class="sf-doc"><div class="sf-doc-name"><b>${label}</b><small>${note}</small></div><span class="sf-doc-file">${iconSvg("check", "l", 16)}<b title="${esc(f.name)}">${esc(f.name)}</b><small>${fmtSize(f.size)}</small></span><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-fview="${k}">${iconSvg("view", "f", 14)}View</button><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-frm="${k}">${iconSvg("delete", "f", 14)}Remove</button></div></div>`
-    : `<div class="ui-field sf-full"><span class="ui-label">${label}${unReq}</span><div class="ui-drop" data-un-drop="${k}" tabindex="0" role="button" aria-label="Upload ${esc(label)}"><span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span><b>Drag and drop your file here, or <u>click to browse</u></b><small>${note}</small></div><span class="ui-help" hidden></span><input type="file" accept=".pdf" hidden data-un-file="${k}"></div>`;
+const unSrc = k => UN.kind === "student" ? UN_SRC_STUDENT[k] : "";
+function unRo(l, v, src, full) { return `<div class="ui-field${full ? " sf-full" : ""}"><span class="ui-label">${esc(l)}${src ? `<span class="sf-src">${iconSvg("lock", "o", 12)}${esc(src)}</span>` : ""}</span><input class="ui-input" readonly value="${esc(v || "")}"></div>`; }
+function unInp(k, l, attrs = "", opt) {
+  const s = unSrc(k); if (s && UN.f[k]) return unRo(l, k === "email" ? unMaskMail(UN.f[k]) : k === "mobile" ? unMaskMob(UN.f[k]) : UN.f[k], s);
+  return `<div class="ui-field"><label class="ui-label" for="un-${k}">${l}${opt ? "" : unReq}</label><input class="ui-input" id="un-${k}" data-un="${k}" value="${esc(UN.f[k] || "")}" ${attrs} autocomplete="off"><span class="ui-help" hidden></span></div>`;
 }
-function unStepHtml(i) {
-  const f = UN.f, T = f.type;
-  if (i === 0) {
-    let who;
-    if (T === "Student") who = `${kfRoField("Name of Student", f.name)}${kfRoField("Stream", f.stream)}${kfRoField("Semester", f.semester)}${kfRoField("Gender", f.gender)}${kfRoField("E-Mail ID", f.email)}${kfRoField("Contact Details", f.mobile)}
-      ${kfRoField("Name of College", f.college, true)}${unSel("collegeType", "Type of College", ["Technical", "Higher"])}${unSel("collegeCat", "College Category", UN_COLLEGE_CAT)}${unRad("area", "Area", ["Urban", "Rural"])}`;
-    else if (T === "Faculty") who = `${unInp("name", "Name of Faculty")}${unInp("designation", "Designation")}${unInp("dept", "Department")}${unSel("gender", "Gender", ["Male", "Female", "Other"])}${unInp("email", "E-Mail ID", 'type="email"')}${unInp("mobile", "Contact Details", 'inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"')}
-      ${unInp("college", "Name of College / University", "", true)}${unSel("collegeType", "Type of College", ["Technical", "Higher"])}${unSel("collegeCat", "College Category", UN_COLLEGE_CAT)}${unRad("area", "Area", ["Urban", "Rural"])}`;
-    else who = `${unInp("name", "Name of Officer / Employee")}${unInp("designation", "Designation")}${unSel("office", "Office / Institution", UN_OFFICES)}${unSel("gender", "Gender", ["Male", "Female", "Other"])}${unInp("email", "E-Mail ID", 'type="email"')}${unInp("mobile", "Contact Details", 'inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"')}`;
-    return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Applicant Type</h5><p>Students and faculty of Government / GIA colleges and government universities, and staff of higher education offices can apply.</p></div><div class="sf-grid">${unRad("type", "I am applying as", UN_TYPES, true)}</div></section>
-      <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Personal Profile</h5><p>${T === "Student" ? "From your student profile. Read only, except the college details below." : "Enter your details as in your service records."}</p></div><div class="sf-grid">${who}</div>
-      <div class="sf-note sf-full" style="margin-top:var(--space-16)">${iconSvg("info", "o", 16)}<span>Private and self-financed institutions are not covered by the GR, so they are not in the College Category list.</span></div></section>`;
-  }
-  if (i === 1) {
-    const days = unDays(f.start, f.end);
-    return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Certified Course</h5><p>Online or offline certificate course in an emerging area, from a recognised provider.</p></div><div class="sf-grid">
-      ${unInp("course", "Name of Course", 'maxlength="120" placeholder="(e.g. Google Data Analytics Professional Certificate)"', true)}
-      ${unSel("provider", "Course Provider", UN_PROVIDERS)}${f.provider === "Other" ? unInp("providerOther", "Provider Name") : ""}${unSel("category", "Course Category", UN_CATS)}
-      ${unRad("mode", "Course Mode", ["Online", "Offline"])}${unInp("coordinator", "Course Coordinator")}
-      ${unRad("enroll", "Enrollment Type", ["Open Enrollment", "Batch Based Enrollment"], true)}
-      ${f.enroll === "Batch Based Enrollment" ? `<div class="sf-note is-warn sf-full">${iconSvg("warning", "o", 16)}<span>Batch based: the provider fixes the start date. KCG sees this date and reviews your application with priority, so you do not miss the batch.</span></div>` : f.enroll ? `<div class="sf-note sf-full">${iconSvg("info", "o", 16)}<span>Open enrollment: flexible start, no fixed batch.</span></div>` : ""}
-      <div class="ui-field"><label class="ui-label" for="un-start">Course Start Date${unReq}</label><input class="ui-input" type="date" id="un-start" data-un-date="start" value="${cjpDmyToIso(f.start)}"><span class="ui-help" hidden></span></div>
-      <div class="ui-field"><label class="ui-label" for="un-end">Course End Date${unReq}</label><input class="ui-input" type="date" id="un-end" data-un-date="end" value="${cjpDmyToIso(f.end)}"><span class="ui-help" hidden></span></div>
-      <div class="ui-field"><span class="ui-label">Course Total Duration</span><input class="ui-input" readonly id="unDur" value="${days ? days + " days" : "Calculated from the dates"}"></div>
+function unSel(k, l, opts, full) {
+  const s = unSrc(k); if (s && UN.f[k]) return unRo(l, UN.f[k], s, full);
+  return `<div class="ui-field${full ? " sf-full" : ""}"><span class="ui-label">${l}${unReq}</span><div class="ui-select" data-un="${k}" data-ph="Select ${esc(l.toLowerCase())}" data-options="${opts.map(esc).join("|")}" data-value="${esc(UN.f[k] || "")}"${opts.length > 6 ? " data-search" : ""} aria-label="${esc(l)}"></div><span class="ui-help" hidden></span></div>`;
+}
+function unRad(k, l, opts) { return `<div class="ui-field"><span class="ui-label">${l}${unReq}</span><div class="cjp-radios" role="radiogroup" aria-label="${esc(l)}">${opts.map(o => `<label class="cjp-radio"><input type="radio" name="un-${k}" value="${esc(o)}" data-un="${k}" ${UN.f[k] === o ? "checked" : ""}>${esc(o)}</label>`).join("")}</div></div>`; }
+function unFileRow(k, label, note, accept) {
+  const f = UN.f[k];
+  if (f) return `<div class="sf-doc"><div class="sf-doc-name"><b>${label}<span class="ui-req">*</span></b><small>${note}</small></div><span class="sf-doc-file">${iconSvg("check", "l", 16)}<b title="${esc(f.name)}">${esc(f.name)}</b><small>${fmtSize(f.size)} · Uploaded</small></span>
+    <button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-fview="${k}">${iconSvg("view", "f", 14)}View</button>${f.auto ? `<span class="sf-src">${iconSvg("lock", "o", 12)}${esc(f.auto)}</span>` : `<button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-frm="${k}">${iconSvg("delete", "f", 14)}Replace</button>`}</div>`;
+  return `<div class="ui-field"><span class="ui-label">${label}${unReq}</span><div class="ui-drop" data-un-drop="${k}" tabindex="0" role="button" aria-label="Upload ${esc(label)}"><span class="ui-drop-ic">${iconSvg("upload", "l", 24)}</span><b>Drag and drop your file here, or <u>click to browse</u></b><small>${note}</small></div><span class="ui-help" hidden></span><input type="file" accept="${accept}" hidden data-un-file="${k}"></div>`;
+}
+const unSec = (t, p, body) => `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>${t}</h5><p>${p}</p></div><div class="sf-grid">${body}</div></section>`;
+const unKey = () => UN_STEPS[UN.kind][UN.step][0];
+function unPersonalRows(r) {
+  const f = r.f, st = r.kind === "student";
+  return st ? [["Name Of Student", f.name], ["Gender", f.gender], ["E-Mail ID", unMaskMail(f.email)], ["Contact Details", unMaskMob(f.mobile)]]
+    : [["Applicant Type", f.type], ["Full Name", f.name], ["Gender", f.gender], ["E-Mail ID", unMaskMail(f.email)], ["Contact Details", unMaskMob(f.mobile)]];
+}
+function unAcadRows(r) {
+  const f = r.f;
+  return r.kind === "student" ? [["Name Of College", f.college], ["Type Of College", f.collegeType], ["Area", f.area], ["Stream", f.stream], ["Semester", f.semester]]
+    : [["Name Of College / University / Office", f.inst], ["Designation", f.designation], ["Department / Subject", f.dept], ["Employee ID", f.empId || "–"]];
+}
+function unCourseRows(r) {
+  const f = r.f, n = unDays(f.start, f.end);
+  return [["Name Of Course", f.course], ["Course Category", f.category], ["Course Mode", f.mode], ["Course Coordinator", f.coordinator], ["Course Start Date", f.start], ["Course End Date", f.end], ["Course Total Duration", n ? n + " days" : "–"], ["Course Per Day Duration", f.perDay ? f.perDay + " hours" : "–"], ["Course Examination Fees", f.fee ? unRs(f.fee) : "–"]];
+}
+function unStepHtml() {
+  const f = UN.f, k = unKey(), st = UN.kind === "student";
+  if (k === "basic" && st) return unSec("Personal Details", "Taken from your verified records. A field with a lock icon cannot be changed.",
+    `${unInp("name", "Name Of Student")}${unSel("gender", "Gender", ["Male", "Female", "Other"])}${unInp("email", "E-Mail ID Of Student", 'type="email"')}${unInp("mobile", "Contact Details Of Student", 'inputmode="numeric" maxlength="10" placeholder="10 digit mobile number"')}`);
+  if (k === "basic") return unSec("Personal Details", "Select who is applying, then check and fill your details.",
+      `${unSel("type", "Applicant Type", UN_STAFF_TYPES)}${unInp("name", "Full Name")}${unSel("gender", "Gender", ["Male", "Female", "Other"])}${unInp("email", "E-Mail ID", 'type="email"')}${unInp("mobile", "Contact Details", 'inputmode="numeric" maxlength="10" placeholder="10 digit mobile number"')}`)
+    + unSec("Employment Details", "Your application goes to the Principal / Registrar / authority of the institution you select.",
+      `${unSel("inst", "Name Of College / University / Office", UN_INSTITUTIONS, true)}${unInp("designation", "Designation")}${unInp("dept", "Department / Subject")}${unInp("empId", "Employee ID", "", true)}`);
+  if (k === "acad") return unSec("Current Academic Details", "From your admission record. Select the Area.",
+    `${unInp("college", "Name Of College")}${unInp("collegeType", "Type Of College (Higher)")}${unRad("area", "Area", ["Urban", "Rural"])}${unInp("stream", "Stream")}${unInp("semester", "Semester")}`);
+  if (k === "course") {
+    const n = unDays(f.start, f.end), s = cjpDate(f.start), e = cjpDate(f.end);
+    const sErr = s && s < UN_TODAY ? "Course Start Date must be today or a later date." : "", eErr = s && e && e <= s ? "Course End Date must be after the Course Start Date." : "";
+    const help = m => m ? `<span class="ui-help is-error">${HELP_ICON["is-error"] || ""}${esc(m)}</span>` : `<span class="ui-help" hidden></span>`;
+    return unSec("Certified Course", "Online or offline certificate course. KCG approves it before it starts, so the start date must be today or later.",
+      `${unSel("course", "Name Of Course", UN_COURSES.map(c => c[0]), true)}${unRad("mode", "Course Mode", ["Online", "Offline"])}${unInp("coordinator", "Course Coordinator")}
+      <div class="ui-field"><label class="ui-label" for="un-start">Course Start Date${unReq}</label><input class="ui-input${sErr ? " is-error" : ""}" type="date" id="un-start" data-un-date="start" value="${cjpDmyToIso(f.start)}">${help(sErr)}</div>
+      <div class="ui-field"><label class="ui-label" for="un-end">Course End Date${unReq}</label><input class="ui-input${eErr ? " is-error" : ""}" type="date" id="un-end" data-un-date="end" value="${cjpDmyToIso(f.end)}">${help(eErr)}</div>
+      <div class="ui-field"><span class="ui-label">Course Total Duration<span class="sf-src">${iconSvg("lock", "o", 12)}Calculated</span></span><input class="ui-input" readonly id="unDur" value="${n ? n + " days" : "Calculated from the dates"}"></div>
       ${unInp("perDay", "Course Per Day Duration (hours)", 'inputmode="decimal" placeholder="(e.g. 2)"')}${unInp("fee", "Course Examination Fees (₹)", 'inputmode="numeric" placeholder="(e.g. 4500)"')}
-      <div class="ui-field sf-full"><label class="ui-label" for="un-relevance">Relevance of the course${unReq}</label><textarea class="ui-input" id="un-relevance" data-un="relevance" rows="3" maxlength="500" placeholder="How does this course help with emerging technology, teaching methods or employability?">${esc(f.relevance)}</textarea><span class="ui-help" id="unRelCount">${(f.relevance || "").length} / 500</span></div>
-    </div></section>`;
+      ${unSel("category", "Course Category", UN_CATS)}
+      <div class="sf-note sf-full">${iconSvg("info", "o", 16)}<span>The Course Examination Fees is the amount paid back to you by DBT after the course is completed and the claim is approved.</span></div>`);
   }
-  if (i === 2) return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Attachments</h5><p>PDF only, up to 5 MB each.</p></div><div class="sf-grid">
-      ${unFile("catalog", "Catalog of Course", "Course brochure or syllabus from the provider · PDF · max 5 MB")}
-      <div class="sf-full un-letter"><span class="ui-help">Download the letter format, get it signed and sealed by your ${esc(unSigner(f.type))}, then upload the scanned copy.</span><button class="ui-btn ui-btn-outline ui-btn-sm" type="button" id="unLetterDl"><span data-icon="download:l:14"></span>Download Letter Format</button></div>
-      ${unFile("letter", "Signed Recommendation Letter", `Signed and sealed by the ${unSigner(f.type)} · PDF · max 5 MB`)}
+  if (k === "aad") return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Aadhaar Verification</h5><p>Your application is submitted with this verified Aadhaar. The amount is paid by DBT to the bank account linked with it – bank details are not asked.</p></div><div class="sf-grid">
+      <div class="ui-field" data-field="aadhaar"><label class="ui-label" for="unAadhaar">Aadhaar Card Number${unReq}</label>
+        <div class="sf-inline"><input class="ui-input" id="unAadhaar" value="${esc(f.aadhaar)}" placeholder="12 digits" inputmode="numeric" maxlength="12" ${f.aadOk ? "readonly" : ""}><button class="ui-btn ui-btn-primary" type="button" id="unAadVerify" ${f.aadOk || !f.aadConsent ? "disabled" : ""} title="${f.aadOk || f.aadConsent ? "" : "Tick the consent below to verify"}">${f.aadOk ? "Verified" : "Verify with DigiLocker"}</button></div>
+        ${f.aadOk ? `<span class="ui-help is-success">${iconSvg("check", "l", 14)}Aadhaar verified with DigiLocker · last 4 digits ${SF_AADHAAR_LAST4}.${st ? " Your DigiLocker photo is added to Upload Documents." : ""}</span>` : `<span class="ui-help" hidden></span>`}</div>
+      <label class="sf-decl sf-consent sf-full${f.aadConsent ? " is-on" : ""}"><input class="ui-cb" type="checkbox" id="unAadConsent" ${f.aadConsent ? "checked" : ""} ${f.aadOk && f.aadConsent ? "disabled" : ""}><span><b>Consent for Aadhaar use<span class="ui-req">*</span></b>${esc(UN_AAD_CONSENT)}</span></label>
     </div></section>`;
-  const prov = f.provider === "Other" ? f.providerOther : f.provider;
-  const appl = T === "Student" ? [["Applicant Type", T], ["Name", f.name], ["Stream", f.stream], ["Semester", f.semester], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile], ["College", f.college], ["Type of College", f.collegeType], ["College Category", f.collegeCat], ["Area", f.area]]
-    : T === "Faculty" ? [["Applicant Type", T], ["Name", f.name], ["Designation", f.designation], ["Department", f.dept], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile], ["College / University", f.college], ["Type of College", f.collegeType], ["College Category", f.collegeCat], ["Area", f.area]]
-    : [["Applicant Type", T], ["Name", f.name], ["Designation", f.designation], ["Office / Institution", f.office], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile]];
-  const crs = [["Name of Course", f.course], ["Course Provider", prov], ["Course Category", f.category], ["Course Mode", f.mode], ["Course Coordinator", f.coordinator], ["Enrollment Type", f.enroll], ["Course Dates", f.start + " – " + f.end], ["Total Duration", unDays(f.start, f.end) + " days"], ["Per Day Duration", f.perDay + " hours"], ["Course Examination Fees", unRs(f.fee)], ["Relevance", f.relevance]];
+  if (k === "docs") return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Upload Documents</h5><p>Maximum file size 2 MB per file.</p></div><div class="sf-docs">
+      ${st ? unFileRow("photo", "Colour Photograph", "jpeg / jpg / png · max 2 MB", ".jpg,.jpeg,.png") : ""}${unFileRow("catalog", "Catalog Of Course", "Course brochure or syllabus · PDF · max 2 MB", ".pdf")}</div></section>`;
+  // declaration + review
+  const r = { kind: UN.kind, f };
   const sec = (t, rows, go) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${t}</h5><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-go="${go}">${iconSvg("edit", "f", 14)}Edit</button></div><div class="sf-kv">${rows.map(([l, v]) => `<div><span>${esc(l)}</span><b>${esc(v || "–")}</b></div>`).join("")}</div></section>`;
-  return sec("Applicant Details", appl, 0) + sec("Course Details", crs, 1) + sec("Attachments", [["Catalog of Course", f.catalog && f.catalog.name], ["Signed Recommendation Letter", f.letter && f.letter.name]], 2)
-    + `<section class="card sf-sec"><div class="un-decls">
-      <label class="sf-decl"><input class="ui-cb" type="checkbox" data-un-decl="decl1" ${f.decl1 ? "checked" : ""}><span>I hereby declare that the above particulars of facts and information stated are correct to the best of my belief and knowledge.</span></label>
-      <label class="sf-decl"><input class="ui-cb" type="checkbox" data-un-decl="decl2" ${f.decl2 ? "checked" : ""}><span>I hereby declare that I have not taken any other assistance or scholarship for the above course.</span></label></div></section>`;
+  const idx = key => UN_STEPS[UN.kind].findIndex(s => s[0] === key);
+  return sec("Personal Details", unPersonalRows(r), idx("basic")) + sec(st ? "Current Academic Details" : "Employment Details", unAcadRows(r), st ? idx("acad") : idx("basic")) + sec("Course Details", unCourseRows(r), idx("course"))
+    + `<section class="card sf-sec"><div class="sf-rv-head"><h5>Aadhaar Verification</h5><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-un-go="${idx("aad")}">${iconSvg("edit", "f", 14)}Edit</button></div><div class="sf-kv"><div><span>Aadhaar Number</span><b>XXXX XXXX ${SF_AADHAAR_LAST4} <span class="ui-badge ui-badge-approved">Verified</span></b></div><div><span>Consent for Aadhaar use</span><b>${f.aadConsent ? "Given" : "Not given"}</b></div></div></section>`
+    + sec("Uploaded Documents", (st ? [["Colour Photograph", f.photo && f.photo.name]] : []).concat([["Catalog Of Course", f.catalog && f.catalog.name]]), idx("docs"))
+    + `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Declaration</h5><p>Tick both to submit. Your application then goes to the ${esc(unSigner(st ? f.college : f.inst))} of ${esc(st ? f.college : f.inst || "your institution")}.</p></div><div class="un-decls">
+      <label class="sf-decl"><input class="ui-cb" type="checkbox" data-un-decl="decl1" ${f.decl1 ? "checked" : ""}><span>${esc(UN_DECL1)}</span></label>
+      <label class="sf-decl"><input class="ui-cb" type="checkbox" data-un-decl="decl2" ${f.decl2 ? "checked" : ""}><span>${esc(UN_DECL2)}</span></label></div></section>`;
 }
 const unEmailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v || ""), unMobOk = v => /^[6-9]\d{9}$/.test(v || "");
-function unPendingOf(i) {
-  const f = UN.f, out = [], need = (k, l) => { if (!String(f[k] || "").trim()) out.push(l); };
-  if (i === 0) {
-    need("type", "Applicant Type");
-    if (f.type !== "Student") { need("name", "Name"); need("designation", "Designation"); if (f.type === "Faculty") need("dept", "Department"); need("gender", "Gender"); if (!unEmailOk(f.email)) out.push("E-Mail ID (valid email)"); if (!unMobOk(f.mobile)) out.push("Contact Details (10-digit mobile)"); }
-    if (f.type === "Officer / Employee") need("office", "Office / Institution");
-    else { if (f.type === "Faculty") need("college", "Name of College / University"); need("collegeType", "Type of College"); need("collegeCat", "College Category"); need("area", "Area"); }
+function unPendingOf(key) {
+  const f = UN.f, out = [], need = (k, l) => { if (!String(f[k] || "").trim()) out.push(l); }, st = UN.kind === "student";
+  if (key === "basic") {
+    if (!st) need("type", "Applicant Type");
+    need("name", st ? "Name Of Student" : "Full Name"); need("gender", "Gender");
+    if (!unEmailOk(f.email)) out.push("E-Mail ID (valid email)"); if (!unMobOk(f.mobile)) out.push("Contact Details (10 digit mobile)");
+    if (!st) { need("inst", "Name Of College / University / Office"); need("designation", "Designation"); need("dept", "Department / Subject"); }
   }
-  if (i === 1) {
-    need("course", "Name of Course"); need("provider", "Course Provider"); if (f.provider === "Other") need("providerOther", "Provider Name"); need("category", "Course Category");
-    need("mode", "Course Mode"); need("coordinator", "Course Coordinator"); need("enroll", "Enrollment Type");
+  if (key === "acad") { need("college", "Name Of College"); need("collegeType", "Type Of College"); need("area", "Area"); need("stream", "Stream"); need("semester", "Semester"); }
+  if (key === "course") {
+    need("course", "Name Of Course"); need("mode", "Course Mode"); need("coordinator", "Course Coordinator");
     const s = cjpDate(f.start), e = cjpDate(f.end);
-    if (!s) out.push("Course Start Date"); else if (s <= UN_TODAY) out.push("Course Start Date (must be after today – KCG approves before the course starts)");
-    if (!e) out.push("Course End Date"); else if (s && e < s) out.push("Course End Date (on or after the start date)");
-    const p = +f.perDay; if (!(p >= 0.5 && p <= 12)) out.push("Per Day Duration (0.5 to 12 hours)");
-    if (!(+f.fee > 0)) out.push("Course Examination Fees");
-    need("relevance", "Relevance of the course");
+    if (!s) out.push("Course Start Date"); else if (s < UN_TODAY) out.push("Course Start Date (today or a later date)");
+    if (!e) out.push("Course End Date"); else if (s && e <= s) out.push("Course End Date (after the start date)");
+    if (!(+f.perDay > 0 && +f.perDay <= 24)) out.push("Course Per Day Duration"); if (!(+f.fee > 0)) out.push("Course Examination Fees"); need("category", "Course Category");
   }
-  if (i === 2) { if (!f.catalog) out.push("Catalog of Course"); if (!f.letter) out.push("Signed Recommendation Letter"); }
-  if (i === 3) { if (!f.decl1 || !f.decl2) out.push("Both declarations"); }
-  return out;
+  if (key === "aad") { if (!f.aadConsent) out.push("Consent for Aadhaar use"); if (!f.aadOk) out.push("Aadhaar verification via DigiLocker"); }
+  if (key === "docs") { if (st && !f.photo) out.push("Colour Photograph"); if (!f.catalog) out.push("Catalog Of Course"); }
+  if (key === "decl") { UN_STEPS[UN.kind].slice(0, -1).forEach(([k]) => { if (unPendingOf(k).length) out.push("Complete the earlier steps"); }); if (!f.decl1 || !f.decl2) out.push("Both declarations"); }
+  return [...new Set(out)];
 }
 function unRender() {
-  const i = UN.step;
-  $("#unSteps").innerHTML = UN_STEPS.map((t, n) => `<li class="ui-step${n < i ? " is-done" : n === i ? " is-current" : ""}" ${n === i ? 'aria-current="step"' : ""} ${n <= UN.maxStep && n !== i ? `data-un-go="${n}" tabindex="0" role="button"` : ""}><span class="ui-step-dot">${n < i ? iconSvg("check", "l", 18) : n + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(t)}</span></div></li>`).join("");
-  $("#unMStep").innerHTML = `<span>Step ${i + 1} of ${UN_STEPS.length}</span><b>${esc(UN_STEPS[i])}</b><div class="ui-progress"><i style="width:${(i + 1) / UN_STEPS.length * 100}%"></i></div>`;
-  $("#unBody").innerHTML = unStepHtml(i);
-  $$("#unBody [data-icon]").forEach(el => { const [n, s, z] = el.dataset.icon.split(":"); el.outerHTML = iconSvg(n, s, +z); });
+  const i = UN.step, steps = UN_STEPS[UN.kind], last = steps.length - 1;
+  $("#unFormTitle").textContent = UN.kind === "student" ? "Unnati Yojana – Student Application" : "Unnati Yojana – Faculty / Officer / Employee Application";
+  $("#unLockInfo").hidden = UN.kind !== "student";
+  $("#unSteps").innerHTML = steps.map(([, t], n) => `<li class="ui-step${n < i ? " is-done" : n === i ? " is-current" : ""}" ${n === i ? 'aria-current="step"' : ""} ${n <= UN.maxStep && n !== i ? `data-un-go="${n}" tabindex="0" role="button"` : ""}><span class="ui-step-dot">${n < i ? iconSvg("check", "l", 18) : n + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(t)}</span></div></li>`).join("");
+  $("#unMStep").innerHTML = `<span>Step ${i + 1} of ${steps.length}</span><b>${esc(steps[i][1])}</b><div class="ui-progress"><i style="width:${(i + 1) / steps.length * 100}%"></i></div>`;
+  $("#unBody").innerHTML = unStepHtml();
   $$("#unBody .ui-select[data-options]").forEach(initSelect);
   $("#unPrev").disabled = i === 0;
-  $("#unNext").innerHTML = i === 3 ? "Submit Application" : `Next${iconSvg("arrow-right", "l", 16)}`;
+  $("#unNext").innerHTML = i === last ? "Submit Application" : `Next${iconSvg("arrow-right", "l", 16)}`;
   unSync();
 }
 function unSync() {
-  const p = unPendingOf(UN.step);
+  const p = unPendingOf(unKey()), last = UN.step === UN_STEPS[UN.kind].length - 1;
   $("#unNext").disabled = p.length > 0;
-  $("#unPending").innerHTML = p.length ? `${HELP_ICON["is-error"] || ""}Complete: ${esc(p.slice(0, 3).join(", "))}${p.length > 3 ? ` and ${p.length - 3} more` : ""}` : UN.step === 3 ? "Ready to submit." : "All mandatory details of this step are filled.";
+  $("#unPending").innerHTML = p.length ? `${HELP_ICON["is-error"] || ""}Complete: ${esc(p.slice(0, 3).join(", "))}${p.length > 3 ? ` and ${p.length - 3} more` : ""}` : last ? "Ready to submit." : "All mandatory details of this step are filled.";
   $("#unPending").classList.toggle("is-error", p.length > 0);
 }
 function unGo(n) { UN.step = n; UN.maxStep = Math.max(UN.maxStep, n); unRender(); scrollTo(0, 0); }
 function unOpenForm() {
-  if (!UN.f) { UN.f = unBlank(); UN.step = 0; UN.maxStep = 0; UN.draftId = null; }
+  if (!UN.f) { UN.kind = "student"; UN.f = unBlank("student"); UN.step = 0; UN.maxStep = 0; UN.draftId = null; }
   $("#unDone").hidden = true; $("#unStepsCard").hidden = false; $("#unLayout").classList.remove("is-done"); $("#unFoot").hidden = false; unRender();
 }
+function unSaveStep() {                                       // UNN-03 / UNN-04: the data of a step is saved when the applicant clicks Next
+  let r = UN_APPS.find(x => x.id === UN.draftId);
+  if (!r) { r = { id: "UN" + String(Date.now()).slice(-10), own: true, kind: UN.kind, stage: "draft", date: new Date(), log: [] }; UN_APPS.unshift(r); UN.draftId = r.id; }
+  r.f = JSON.parse(JSON.stringify(UN.f)); r.step = UN.step + 1; r.date = new Date();
+}
 $("#unBody").addEventListener("input", e => {
-  const k = e.target.dataset.un, d = e.target.dataset.unDate;
-  if (k && e.target.type !== "radio") {
-    let v = e.target.value; if (k === "mobile" || k === "fee") { v = v.replace(/\D/g, ""); if (v !== e.target.value) e.target.value = v; } if (k === "perDay") { v = v.replace(/[^\d.]/g, ""); if (v !== e.target.value) e.target.value = v; }
-    UN.f[k] = v; if (k === "relevance") $("#unRelCount").textContent = `${v.length} / 500`; unSync();
+  const t = e.target, k = t.dataset.un, d = t.dataset.unDate;
+  if (t.id === "unAadhaar") { const v = t.value.replace(/\D/g, ""); if (v !== t.value) t.value = v; UN.f.aadhaar = v; const h = t.closest(".ui-field").querySelector(".ui-help"); if (h) h.hidden = true; return; }
+  if (k && t.type !== "radio") {
+    let v = t.value; if (k === "mobile" || k === "fee") { v = v.replace(/\D/g, ""); if (v !== t.value) t.value = v; } if (k === "perDay") { v = v.replace(/[^\d.]/g, ""); if (v !== t.value) t.value = v; }
+    UN.f[k] = v; unSync();
   }
-  if (d) { UN.f[d] = cjpIsoToDmy(e.target.value); const n = unDays(UN.f.start, UN.f.end); $("#unDur").value = n ? n + " days" : "Calculated from the dates"; unSync(); }
+  if (d) { UN.f[d] = cjpIsoToDmy(t.value); const y = scrollY; unRender(); scrollTo(0, y); const el = $("#un-" + d); if (el) el.focus(); }
 });
 $("#unBody").addEventListener("change", e => {
   const t = e.target;
-  if (t.type === "radio" && t.dataset.un) {
-    const k = t.dataset.un; if (k === "type" && UN.f.type !== t.value) { const keep = UN.f, b = unBlank(); UN.f = Object.assign(b, { type: t.value, course: keep.course, provider: keep.provider, providerOther: keep.providerOther, category: keep.category, mode: keep.mode, coordinator: keep.coordinator, enroll: keep.enroll, start: keep.start, end: keep.end, perDay: keep.perDay, fee: keep.fee, relevance: keep.relevance, catalog: keep.catalog, letter: keep.letter });
-      if (t.value !== "Student") Object.assign(UN.f, { name: "", email: "", mobile: "", gender: "", stream: "", semester: "", college: "", collegeType: "" }); return unRender(); }
-    UN.f[k] = t.value; if (k === "enroll") return unRender(); unSync();
-  }
-  if (t.dataset.unDecl) { UN.f[t.dataset.unDecl] = t.checked; unSync(); }
+  if (t.type === "radio" && t.dataset.un) { UN.f[t.dataset.un] = t.value; return unSync(); }
+  if (t.dataset.unDecl) { UN.f[t.dataset.unDecl] = t.checked; return unSync(); }
+  if (t.id === "unAadConsent") { UN.f.aadConsent = t.checked; const y = scrollY; unRender(); return scrollTo(0, y); }
   if (t.dataset.unFile) {
     const k = t.dataset.unFile, file = t.files[0], fld = t.closest(".ui-field"); t.value = ""; if (!file) return;
-    if (!/\.pdf$/i.test(file.name)) return cjpErr(fld, "Only PDF files are allowed.");
-    if (file.size > 5 * 1024 * 1024) return cjpErr(fld, "File size must be up to 5 MB.");
+    if (k === "photo" ? !/\.(jpe?g|png)$/i.test(file.name) : !/\.pdf$/i.test(file.name)) return cjpErr(fld, k === "photo" ? "Only jpeg, jpg or png files are allowed." : "Only PDF files are allowed.");
+    if (file.size > 2 * 1024 * 1024) return cjpErr(fld, "File size must be up to 2 MB.");
     UN.f[k] = { name: file.name, size: file.size }; unRender();
   }
 });
 $("#unBody").addEventListener("ui-select-change", e => {
   const k = e.target.dataset.un; if (!k) return; const v = e.detail[0] || "";
   if ((UN.f[k] || "") === v) return;
-  UN.f[k] = v; if (k === "provider") { if (v !== "Other") UN.f.providerOther = ""; return unRender(); } unSync();
+  UN.f[k] = v;
+  if (k === "course") { const c = UN_COURSES.find(x => x[0] === v); if (c && !UN.f.category) { UN.f.category = c[1]; const y = scrollY; unRender(); return scrollTo(0, y); } }
+  unSync();
 });
 $("#unBody").addEventListener("click", e => {
   const go = e.target.closest("[data-un-go]"); if (go) return unGo(+go.dataset.unGo);
   const dr = e.target.closest("[data-un-drop]"); if (dr) return dr.parentElement.querySelector("[data-un-file]").click();
   const rm = e.target.closest("[data-un-frm]"); if (rm) { UN.f[rm.dataset.unFrm] = null; return unRender(); }
-  const fv = e.target.closest("[data-un-fview]"); if (fv) return verDocView(fv.dataset.unFview === "catalog" ? "Catalog of Course" : "Signed Recommendation Letter", { name: UN.f.name, id: UN.draftId || "(not submitted yet)", date: new Date() });
-  if (e.target.closest("#unLetterDl")) unLetter();
+  const fv = e.target.closest("[data-un-fview]"); if (fv) return verDocView(fv.dataset.unFview === "photo" ? "Colour Photograph" : "Catalog Of Course", { name: UN.f.name, id: UN.draftId || "(not submitted yet)", date: new Date() });
+  const aad = e.target.closest("#unAadVerify");                       // DigiLocker: same sample rule as the scholarship / KSY forms (last 4 digits)
+  if (aad && !aad.disabled) {
+    const box = aad.closest(".ui-field"), n = UN.f.aadhaar;
+    if (!/^\d{12}$/.test(n)) return cjpErr(box, "Enter a valid 12 digit Aadhaar number.");
+    aad.classList.add("is-loading"); aad.disabled = true;
+    setTimeout(() => {
+      if (n.slice(-4) === SF_AADHAAR_LAST4) {
+        UN.f.aadOk = true; if (UN.kind === "student" && !UN.f.photo) UN.f.photo = { name: "DigiLocker_Photo.jpg", size: 48000, auto: "DigiLocker" };
+        toast("Aadhaar verified with DigiLocker"); const y = scrollY; unRender(); scrollTo(0, y);
+      } else { aad.classList.remove("is-loading"); aad.disabled = false; cjpErr(box, "Aadhaar number does not match your DigiLocker Aadhaar."); }
+    }, 900);
+  }
 });
 $("#unBody").addEventListener("keydown", e => { const dr = e.target.closest("[data-un-drop]"); if (dr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); dr.parentElement.querySelector("[data-un-file]").click(); } });
 $("#unBody").addEventListener("dragover", e => { const dr = e.target.closest("[data-un-drop]"); if (dr) { e.preventDefault(); dr.classList.add("is-over"); } });
@@ -11589,73 +11624,62 @@ $("#unBody").addEventListener("drop", e => {
 });
 $("#unSteps").addEventListener("click", e => { const go = e.target.closest("[data-un-go]"); if (go) unGo(+go.dataset.unGo); });
 $("#unPrev").addEventListener("click", () => { if (UN.step > 0) unGo(UN.step - 1); });
-$("#unNext").addEventListener("click", () => { if ($("#unNext").disabled) return; if (UN.step < 3) return unGo(UN.step + 1); unSubmit(); });
-function unLetter() {                                         // the provided letter format (spec: applicant downloads it, gets it signed offline, uploads the scan)
-  const f = UN.f, who = unSigner(f.type);
-  try {
-    const { jsPDF } = window.jspdf, doc = new jsPDF({ unit: "mm", format: "a4" }); let y = 24;
-    const line = (t, size = 11, bold) => { doc.setFont("helvetica", bold ? "bold" : "normal"); doc.setFontSize(size); doc.splitTextToSize(t, 170).forEach(l => { doc.text(l, 20, y); y += size * 0.5; }); y += 2; };
-    line("Recommendation Letter – UNNATI Courses", 15, true); line("To,\nThe CEO, Knowledge Consortium of Gujarat (KCG), Education Department, Gandhinagar"); y += 4;
-    line(`Subject: Recommendation for the UNNATI course proposal of ${f.name || "________________"}`, 11, true);
-    line(`This is to recommend ${f.name || "________________"} (${f.type}${f.designation ? ", " + f.designation : ""}) of ${(f.type === "Officer / Employee" ? f.office : f.college) || "________________"} for the certified course "${f.course || "________________"}" offered by ${(f.provider === "Other" ? f.providerOther : f.provider) || "________________"}, from ${f.start || "__/__/____"} to ${f.end || "__/__/____"}, course fee ${f.fee ? "Rs. " + (+f.fee).toLocaleString("en-IN") : "________"}, under the UNNATI scheme.`);
-    line("The particulars given in the proposal have been checked and are found correct."); y += 24;
-    line(`Signature and seal of the ${who}`, 11, true); line("Name: ____________________     Date: ____/____/________");
-    doc.save("UNNATI_Recommendation_Letter_Format.pdf"); toast("Letter format downloaded");
-  } catch (err) { toast("Unable to download. Please try again."); }
-}
-function unSaveDraft(silent) {
-  let r = UN_APPS.find(x => x.id === UN.draftId);
-  if (!r) { r = { id: "UN" + String(Date.now()).slice(-10), own: true, stage: "draft", date: new Date(), since: new Date(), remarks: [], log: [] }; UN_APPS.unshift(r); UN.draftId = r.id; }
-  r.f = JSON.parse(JSON.stringify(UN.f)); r.step = UN.step; r.date = new Date();
-  if (!silent) toast("Draft saved. Continue it from Unnati Yojana.");
-}
-$("#unDraft").addEventListener("click", () => unSaveDraft());
+$("#unNext").addEventListener("click", () => {
+  if ($("#unNext").disabled) return;
+  if (UN.step < UN_STEPS[UN.kind].length - 1) { unSaveStep(); return unGo(UN.step + 1); }
+  unSubmit();
+});
 function unSubmit() {
-  unSaveDraft(true);
+  unSaveStep();
   const r = UN_APPS.find(x => x.id === UN.draftId), now = new Date();
-  Object.assign(r, { stage: "inst-rec", date: now, since: now }); delete r.step;
+  Object.assign(r, { stage: "submitted", date: now, sub: now }); delete r.step;
   r.log.push({ d: now, t: "Submitted by the applicant" });
   UN.f = null; UN.draftId = null;
+  const inst = unInst(r);
   $("#unStepsCard").hidden = true; $("#unLayout").classList.add("is-done"); $("#unFoot").hidden = true; $("#unBody").innerHTML = ""; $("#unDone").hidden = false;
   $("#unDone").innerHTML = `<span class="ui-icon-box is-success">${iconSvg("check", "l", 28)}</span><h4>Application Submitted</h4>
-    <p>Your course proposal has gone to your ${esc(unSigner(r.f.type))} for recommendation.</p>
+    <p>Your application has gone to the ${esc(unSigner(inst))} of ${esc(inst)} to sign and forward to KCG.</p>
     <p><b>Application ID</b><br><span class="ma-id">${esc(r.id)}</span></p>
-    <p>Do not start the course before KCG (CEO) approves it – otherwise it is not eligible for payment.</p>
+    <p>Start the course only after KCG approves it – a course started before the approval gets no assistance.</p>
     <a class="ui-btn ui-btn-primary" href="#unnati-my">Go to My Applications</a>`;
   toast("Application submitted"); scrollTo(0, 0);
 }
 
-/* ---------- completion submission (only after the CEO's prior approval – B10) ---------- */
+/* ---------- reimbursement claim (UNN-05: Approved application, after the Course End Date) ---------- */
 function unCmpOpen() {
   const r = UN_APPS.find(x => x.id === UN.cmpId);
-  if (!r || r.stage !== "approved") { $("#ucSub").textContent = ""; $("#ucBody").innerHTML = `<section class="card ma-notfound"><div class="ma-empty"><span class="ui-icon-box is-warning">${iconSvg("warning", "o", 24)}</span><b>Completion can be submitted only after KCG (CEO) approves the course.</b><a class="ui-btn ui-btn-outline" href="#unnati">${iconSvg("arrow-left", "l", 16)}Back to Unnati Yojana</a></div></section>`; return; }
-  UN.cmp = UN.cmp || { cert: null, receipt: null, enroll: null, decl: false };
-  const c = UN.cmp, f = r.f;
+  const stop = m => { $("#ucSub").textContent = ""; $("#ucBody").innerHTML = `<section class="card ma-notfound"><div class="ma-empty"><span class="ui-icon-box is-warning">${iconSvg("warning", "o", 24)}</span><b>${esc(m)}</b><a class="ui-btn ui-btn-outline" href="#unnati-my">${iconSvg("arrow-left", "l", 16)}Back to My Applications</a></div></section>`; };
+  if (!r || r.stage !== "approved") return stop("The reimbursement is available only for an Approved application.");
+  if (!unEnded(r)) return stop(`The reimbursement is available after the Course End Date (${r.f.end}).`);
+  UN.cmp = UN.cmp || { cert: null, receipt: null, decl: false };
+  const c = UN.cmp, f = r.f, early = unEarly(r);
   const up = (k, l) => c[k]
-    ? `<div class="sf-doc"><div class="sf-doc-name"><b>${l}<span class="ui-req">*</span></b><small>PDF · max 5 MB</small></div><span class="sf-doc-file">${iconSvg("check", "l", 16)}<b title="${esc(c[k].name)}">${esc(c[k].name)}</b><small>${fmtSize(c[k].size)}</small></span><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-uc-rm="${k}">${iconSvg("delete", "f", 14)}Remove</button></div>`
-    : `<div class="ui-field"><span class="ui-label">${l}${unReq}</span><div class="ui-drop" data-uc-drop="${k}" tabindex="0" role="button" aria-label="Upload ${esc(l)}"><span class="ui-drop-ic">${iconSvg("upload", "l", 24)}</span><b>Drag and drop your file here, or <u>click to browse</u></b><small>PDF · max 5 MB</small></div><span class="ui-help" hidden></span><input type="file" accept=".pdf" hidden data-uc-file="${k}"></div>`;
-  const ok = c.cert && c.receipt && c.enroll && c.decl;
+    ? `<div class="sf-doc"><div class="sf-doc-name"><b>${l}<span class="ui-req">*</span></b><small>PDF · max 2 MB</small></div><span class="sf-doc-file">${iconSvg("check", "l", 16)}<b title="${esc(c[k].name)}">${esc(c[k].name)}</b><small>${fmtSize(c[k].size)} · Uploaded</small></span><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-uc-view="${k}">${iconSvg("view", "f", 14)}View</button><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-uc-rm="${k}">${iconSvg("delete", "f", 14)}Replace</button></div>`
+    : `<div class="ui-field"><span class="ui-label">${l}${unReq}</span><div class="ui-drop" data-uc-drop="${k}" tabindex="0" role="button" aria-label="Upload ${esc(l)}"><span class="ui-drop-ic">${iconSvg("upload", "l", 24)}</span><b>Drag and drop your file here, or <u>click to browse</u></b><small>PDF · max 2 MB</small></div><span class="ui-help" hidden></span><input type="file" accept=".pdf" hidden data-uc-file="${k}"></div>`;
+  const ok = !early && c.cert && c.receipt && c.decl;
+  const hint = early ? "No assistance for a course started before the KCG approval." : ok ? "Ready to submit." : "Upload the 2 documents and tick the declaration.";
   $("#ucSub").innerHTML = `Application <b>${esc(r.id)}</b> · ${esc(f.course)}`;
   $("#ucBody").innerHTML = `
-    <section class="card sf-sec"><div class="sf-rv-head"><h5>Approved Course</h5>${unBadge(r)}</div><div class="sf-kv">
-      <div><span>Name of Course</span><b>${esc(f.course)}</b></div><div><span>Course Provider</span><b>${esc(f.provider === "Other" ? f.providerOther : f.provider)}</b></div><div><span>Course Dates</span><b>${esc(f.start)} – ${esc(f.end)}</b></div>
-      <div><span>Course Examination Fees</span><b>${unRs(f.fee)}</b></div><div><span>Prior approval</span><b>Granted by CEO, KCG</b></div><div><span>KCG Approval Order</span><b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-uc-order>${iconSvg("view", "f", 14)}View</button></b></div></div></section>
-    <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Completion Evidence</h5><p>Upload after you complete the course. Your institution verifies these before KCG releases the payment.</p></div><div class="sf-docs">${up("cert", "Completion Certificate")}${up("receipt", "Fee Receipt")}${up("enroll", "Enrollment Details")}</div></section>
-    <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Reimbursement</h5><p>Paid by DBT to the bank account linked with your Aadhaar. No bank details are needed here.</p></div><div class="sf-grid">
-      ${kfRoField("Name", f.name)}${kfRoField("Amount Claimed", unRs(f.fee) + " (course fee)")}${kfRoField("Payment Mode", "DBT – Aadhaar-linked bank account")}</div></section>
-    <section class="card sf-sec"><label class="sf-decl"><input class="ui-cb" type="checkbox" id="ucDecl" ${c.decl ? "checked" : ""}><span>I hereby declare that the above particulars of facts and information stated are correct to the best of my belief and knowledge.</span></label></section>
-    <section class="card sf-foot"><div class="sf-foot-row"><span class="ui-help sf-pending${ok ? "" : " is-error"}">${ok ? "Ready to submit." : (HELP_ICON["is-error"] || "") + "Upload the 3 documents and tick the declaration."}</span><div class="sf-foot-btns"><a class="ui-btn ui-btn-outline" href="#unnati">Cancel</a><button class="ui-btn ui-btn-primary" type="button" id="ucSubmit" ${ok ? "" : "disabled"}>Submit Completion</button></div></div></section>`;
+    ${early ? `<div class="sf-note is-warn" style="margin-bottom:var(--space-16)">${iconSvg("warning", "o", 16)}<span><b>No assistance for a course started before the KCG approval.</b> The course started on ${esc(f.start)}, and KCG approved it on ${fmt(r.appr.d)}.</span></div>` : ""}
+    <section class="card sf-sec"><div class="sf-rv-head"><h5>Approved Application</h5>${unBadge(r)}</div><div class="sf-kv">
+      <div><span>Application ID</span><b>${esc(r.id)}</b></div><div><span>Course Name</span><b>${esc(f.course)}</b></div><div><span>Course Start Date and End Date</span><b>${esc(f.start)} – ${esc(f.end)}</b></div>
+      <div><span>Course amount</span><b>${unRs(f.fee)}</b></div><div><span>Approval Order</span><b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-uc-order>${iconSvg("view", "f", 14)}${esc(r.appr.order)}</button></b></div><div><span>Payment</span><b>DBT to the Aadhaar-seeded bank account</b></div></div></section>
+    <section class="card sf-sec"><div class="ui-form-sec-head"><h5>Upload Documents</h5><p>Your institution checks these against the course dates and certifies the claim before it goes to KCG.</p></div><div class="sf-docs">${up("cert", "Completion Certificate")}${up("receipt", "Fee Receipt")}</div></section>
+    <section class="card sf-sec"><label class="sf-decl"><input class="ui-cb" type="checkbox" id="ucDecl" ${c.decl ? "checked" : ""} ${early ? "disabled" : ""}><span>${esc(UN_DECL1)}</span></label></section>
+    <section class="card sf-foot"><div class="sf-foot-row"><span class="ui-help sf-pending${ok ? "" : " is-error"}">${ok ? "" : HELP_ICON["is-error"] || ""}${esc(hint)}</span><div class="sf-foot-btns"><a class="ui-btn ui-btn-outline" href="#unnati-my">Cancel</a><button class="ui-btn ui-btn-primary" type="button" id="ucSubmit" ${ok ? "" : "disabled"}>Submit</button></div></div></section>`;
 }
 $("#ucBody").addEventListener("click", e => {
+  const r = UN_APPS.find(x => x.id === UN.cmpId);
   const dr = e.target.closest("[data-uc-drop]"); if (dr) return dr.parentElement.querySelector("[data-uc-file]").click();
   const rm = e.target.closest("[data-uc-rm]"); if (rm) { UN.cmp[rm.dataset.ucRm] = null; return unCmpOpen(); }
-  const r = UN_APPS.find(x => x.id === UN.cmpId);
-  if (e.target.closest("[data-uc-order]")) return verDocView("KCG Approval Order", { name: r.f.name, id: r.id, date: r.since });
-  if (e.target.closest("#ucSubmit")) {
+  const vw = e.target.closest("[data-uc-view]"); if (vw) return verDocView(vw.dataset.ucView === "cert" ? "Completion Certificate" : "Fee Receipt", { name: r.f.name, id: r.id, date: new Date() });
+  if (e.target.closest("[data-uc-order]")) return verDocView("Approval Order", { name: r.f.name, id: r.id, date: r.appr.d });
+  const sb = e.target.closest("#ucSubmit");
+  if (sb && !sb.disabled) {
     const now = new Date(), c = UN.cmp;
-    r.completion = { cert: c.cert, receipt: c.receipt, enroll: c.enroll, amount: +r.f.fee, d: now }; r.stage = "inst-ver"; r.since = now;
-    r.log.push({ d: now, t: "Completion evidence submitted by the applicant" }); UN.cmp = null;
-    toast("Completion submitted to your institution"); location.hash = "unnati-my";
+    r.claim = { cert: c.cert, receipt: c.receipt, d: now }; r.stage = "claim";
+    r.log.push({ d: now, t: "Reimbursement claim submitted by the applicant" }); UN.cmp = null;
+    toast("Claim submitted to your institution"); location.hash = "unnati-my";
   }
 });
 $("#ucBody").addEventListener("keydown", e => { const dr = e.target.closest("[data-uc-drop]"); if (dr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); dr.parentElement.querySelector("[data-uc-file]").click(); } });
@@ -11665,117 +11689,221 @@ $("#ucBody").addEventListener("change", e => {
   if (t.dataset.ucFile) {
     const k = t.dataset.ucFile, file = t.files[0], fld = t.closest(".ui-field"); t.value = ""; if (!file) return;
     if (!/\.pdf$/i.test(file.name)) return cjpErr(fld, "Only PDF files are allowed.");
-    if (file.size > 5 * 1024 * 1024) return cjpErr(fld, "File size must be up to 5 MB.");
+    if (file.size > 2 * 1024 * 1024) return cjpErr(fld, "File size must be up to 2 MB.");
     UN.cmp[k] = { name: file.name, size: file.size }; unCmpOpen();
   }
 });
 
-/* ---------- Institution / KCG queues ---------- */
-function unQueue(stage) { return UN_APPS.filter(r => r.stage === stage).sort((a, b) => ((b.f.enroll === "Batch Based Enrollment") - (a.f.enroll === "Batch Based Enrollment")) || (a.since - b.since)); }
-function unRow(r) {
-  return `<tr><td><span class="ma-id">${esc(r.id)}</span></td><td><b>${esc(r.f.name)}</b><span class="un-sub">${esc(r.f.type)}</span></td><td>${esc(unInst(r))}</td><td>${esc(r.f.course)}<span class="un-sub">${esc(r.f.category)}</span></td>
-    <td>${unEnroll(r)}</td><td>${unRs(r.f.fee)}</td><td>${unPendBadge(r)}</td><td>${unBadge(r)}</td>
-    <td><div class="ui-acts"><a class="ui-act ui-act-view" href="#un-review" data-un-view="${r.id}" title="View application" aria-label="View application ${r.id}">${iconSvg("view", "f", 18)}</a></div></td></tr>`;
+/* ---------- Institution / KCG lists (statistics cards + DS Advanced Filter + table) ---------- */
+const UN_LISTS = {
+  "principal-app": { rows: () => UN_APPS.filter(r => r.stage === "submitted"), empty: "No applications to forward.", fields: [["type", "Applicant Type", UN_TYPES_ALL], ["cat", "Course Category", UN_CATS]] },
+  "principal-claim": { rows: () => UN_APPS.filter(r => r.stage === "claim"), empty: "No claims to certify.", fields: [["type", "Applicant Type", UN_TYPES_ALL], ["certified", "Certified", ["Yes", "No"]]] },
+  "kcg-app": { rows: () => UN_APPS.filter(r => r.stage === "forwarded"), empty: "No applications to approve.", fields: [["type", "Applicant Type", UN_TYPES_ALL], ["inst", "Institution", UN_INSTITUTIONS], ["cat", "Course Category", UN_CATS]] },
+  "kcg-claim": { rows: () => UN_APPS.filter(r => r.stage === "claimfwd"), empty: "No claims to approve.", fields: [["type", "Applicant Type", UN_TYPES_ALL], ["inst", "Institution", UN_INSTITUTIONS], ["cat", "Course Category", UN_CATS]] }
+};
+const unType = r => r.kind === "student" ? "Student" : r.f.type;
+const unFltOf = key => UN.flt[key] || (UN.flt[key] = { search: "" });
+function unMatch(r, v) {
+  const q = (v.search || "").trim().toLowerCase();
+  if (q && !(r.id.toLowerCase().includes(q) || (r.f.name || "").toLowerCase().includes(q))) return false;
+  if (v.type && v.type !== "All" && unType(r) !== v.type) return false;
+  if (v.cat && v.cat !== "All" && r.f.category !== v.cat) return false;
+  if (v.inst && v.inst !== "All" && unInst(r) !== v.inst) return false;
+  if (v.certified && v.certified !== "All" && (v.certified === "Yes") !== !!r.cert) return false;
+  return true;
 }
-function unTabs(role, el) {
-  const info = UN_ROLE[role];
-  $(el).innerHTML = info.tabs.map(([k, t, st]) => `<button class="ui-btn ${UN.tab[role] === k ? "ui-btn-primary" : "ui-btn-outline"}" type="button" role="tab" aria-selected="${UN.tab[role] === k}" data-un-tab="${k}">${esc(t)} (${unQueue(st).length})</button>`).join("");
-  return info.tabs.find(x => x[0] === UN.tab[role])[2];
+function unFltHtml(key, wrap) {
+  const L = UN_LISTS[key], v = unFltOf(key), p = wrap.slice(1);
+  return `<section class="card ui-filter">
+    <div class="ui-filter-top"><div class="ui-filter-title"><span class="ui-icon-box is-primary">${iconSvg("filter", "f", 18)}</span><h5>Advanced Filter</h5></div>
+      <button class="ui-btn ui-btn-accent ui-filter-btn" type="button" data-unf-toggle aria-expanded="false" aria-controls="${p}Adv">${iconSvg("filter", "f", 16)}Filter<span class="ui-filter-cnt" data-unf-cnt hidden>0</span>${iconSvg("chevron-down", "l", 14)}</button></div>
+    <div class="ui-filter-panel" id="${p}Adv" hidden>
+      <div class="ui-filter-grid">
+        <div class="ui-field"><label class="ui-label" for="${p}Search">Search</label><input class="ui-input" id="${p}Search" data-unf="search" placeholder="Application ID or applicant name" autocomplete="off" value="${esc(v.search || "")}"></div>
+        ${L.fields.map(([k, l, o]) => `<div class="ui-field"><span class="ui-label">${l}</span><div class="ui-select" data-unf="${k}" data-options="All|${o.map(esc).join("|")}" data-value="${esc(v[k] || "All")}"${o.length > 6 ? " data-search" : ""} aria-label="${l}"></div></div>`).join("")}
+      </div>
+      <div class="ui-filter-acts"><span class="ui-filter-count" data-unf-preview></span><div class="ui-filter-btns">
+        <button class="ui-btn ui-btn-primary" type="button" data-unf-apply>${iconSvg("check", "l", 16)}Apply</button>
+        <button class="ui-btn ui-btn-danger" type="button" data-unf-cancel>${iconSvg("close", "l", 16)}Cancel</button></div></div>
+    </div>
+    <div class="ui-filter-chips" data-unf-chips></div></section>`;
 }
+function unFltRead(box) {
+  const v = { search: box.querySelector('[data-unf="search"]').value };
+  box.querySelectorAll('.ui-select[data-unf]').forEach(s => { v[s.dataset.unf] = cjpVal(s) || "All"; });
+  return v;
+}
+function unFltChips(key, box) {
+  const L = UN_LISTS[key], v = unFltOf(key), lab = Object.fromEntries([["search", "Search"]].concat(L.fields.map(f => [f[0], f[1]])));
+  const keys = Object.keys(lab).filter(k => v[k] && v[k] !== "All" && String(v[k]).trim());
+  box.querySelector("[data-unf-chips]").innerHTML = keys.map(k => `<span class="ui-chip"><b>${lab[k]}:</b>${esc(v[k])}<button type="button" data-unf-rm="${k}" title="Remove ${lab[k]} filter" aria-label="Remove ${lab[k]} filter">${iconSvg("close", "l", 14)}</button></span>`).join("") + (keys.length > 1 ? `<button class="ui-filter-clear" type="button" data-unf-clear>Clear all</button>` : "");
+  const cnt = box.querySelector("[data-unf-cnt]"); cnt.hidden = !keys.length; cnt.textContent = keys.length;
+}
+function unFltPreview(key, box) {
+  const n = UN_LISTS[key].rows().filter(r => unMatch(r, unFltRead(box))).length;
+  box.querySelector("[data-unf-preview]").innerHTML = `<b>${n}</b> ${key.endsWith("claim") ? "claim" : "application"}${n === 1 ? " matches" : "s match"} these filters`;
+}
+function unFltMount(key, wrap, render) {
+  const box = $(wrap); box.innerHTML = unFltHtml(key, wrap); box.dataset.key = key;
+  box.querySelectorAll(".ui-select[data-options]").forEach(initSelect);
+  unFltChips(key, box);
+  if (!box.dataset.wired) {
+    box.dataset.wired = "1";
+    const k = () => box.dataset.key, panel = () => box.querySelector(".ui-filter-panel"), tg = () => box.querySelector("[data-unf-toggle]");
+    const close = () => { panel().hidden = true; tg().setAttribute("aria-expanded", false); };
+    box.addEventListener("click", e => {
+      if (e.target.closest("[data-unf-toggle]")) { const open = panel().hidden; panel().hidden = !open; tg().setAttribute("aria-expanded", open); if (open) unFltPreview(k(), box); return; }
+      if (e.target.closest("[data-unf-apply]")) { UN.flt[k()] = unFltRead(box); close(); return box._render(); }
+      if (e.target.closest("[data-unf-cancel]")) { UN.flt[k()] = { search: "" }; return box._render(); }
+      const rm = e.target.closest("[data-unf-rm]"); if (rm) { const v = unFltOf(k()); v[rm.dataset.unfRm] = rm.dataset.unfRm === "search" ? "" : "All"; return box._render(); }
+      if (e.target.closest("[data-unf-clear]")) { UN.flt[k()] = { search: "" }; return box._render(); }
+    });
+    box.addEventListener("input", e => { if (e.target.dataset.unf) unFltPreview(k(), box); });
+    box.addEventListener("ui-select-change", () => unFltPreview(k(), box));
+  }
+  box._render = render;
+}
+function unTabs(el, role) {
+  const t = [["app", "Applications", role + "-app"], ["claim", "Reimbursement Claims", role + "-claim"]];
+  $(el).innerHTML = t.map(([k, l, key]) => `<button class="ui-btn ${UN.tab[role] === k ? "ui-btn-primary" : "ui-btn-outline"}" type="button" role="tab" aria-selected="${UN.tab[role] === k}" data-un-tab="${k}">${l} (${UN_LISTS[key].rows().length})</button>`).join("");
+  return role + "-" + UN.tab[role];
+}
+const unView = r => `<div class="ui-acts"><a class="ui-act ui-act-view" href="#un-review" data-un-view="${r.id}" title="View" aria-label="View ${r.id}">${iconSvg("view", "f", 18)}</a></div>`;
+const unWho = r => `<b>${esc(r.f.name)}</b>`;
 function unInstRender() {
-  const st = unTabs("principal", "#unInstTabs"), list = unQueue(st);
-  $("#unInstCount").innerHTML = `<b>${list.length}</b> application${list.length === 1 ? "" : "s"}`;
-  $("#unInstBody").innerHTML = list.map(unRow).join("") || `<tr class="ver-empty"><td colspan="9">Nothing waiting here.</td></tr>`;
+  const key = unTabs("#unInstTabs", "principal"), claims = key.endsWith("claim"), all = UN_APPS.filter(r => r.stage !== "draft");
+  $("#unInstStats").innerHTML = claims
+    ? verStat(all.filter(r => unAt(r, "claim")).length, "Total Claims", "document:f", "primary") + verStat(all.filter(r => r.stage === "claim" && !r.cert).length, "To Certify", "view:f", "info")
+      + verStat(all.filter(r => r.stage === "claim" && r.cert).length, "Certified (not forwarded yet)", "check:l", "warning") + verStat(all.filter(r => unAt(r, "claimfwd")).length, "Forwarded", "arrow-right:l", "success")
+    : verStat(all.length, "Total Applications", "document:f", "primary") + verStat(all.filter(r => r.stage === "submitted").length, "To Forward", "view:f", "info") + verStat(all.filter(r => unAt(r, "forwarded")).length, "Forwarded", "arrow-right:l", "success");
+  unFltMount(key, "#unInstFlt", unInstRender);
+  const v = unFltOf(key), list = UN_LISTS[key].rows().filter(r => unMatch(r, v)).sort((a, b) => claims ? a.claim.d - b.claim.d : a.sub - b.sub);
+  [...UN.sel].forEach(id => { const r = list.find(x => x.id === id); if (!r || !r.cert) UN.sel.delete(id); });
+  $("#unInstBulk").hidden = !claims;
+  $("#unInstCount").innerHTML = `<b>${list.length}</b> ${claims ? "claim" : "application"}${list.length === 1 ? "" : "s"}`;
+  const certable = list.filter(r => r.cert);
+  $("#unInstHead").innerHTML = claims
+    ? `<tr><th style="width:44px"><input type="checkbox" class="ui-cb" id="unInstAll" aria-label="Select all certified claims" ${certable.length ? "" : "disabled"} ${certable.length && certable.every(r => UN.sel.has(r.id)) ? "checked" : ""}></th><th>Application ID</th><th>Applicant Name</th><th>Course Name</th><th>Course Dates</th><th>Claim Submitted On</th><th>Certified</th><th>Status</th><th>Action</th></tr>`
+    : `<tr><th>Application ID</th><th>Applicant Name</th><th>Applicant Type</th><th>Course Name</th><th>Course Category</th><th>Applied On</th><th>Status</th><th>Action</th></tr>`;
+  $("#unInstBody").innerHTML = list.map(r => claims
+    ? `<tr><td><input type="checkbox" class="ui-cb" data-un-sel="${r.id}" aria-label="Select ${r.id}" ${r.cert ? "" : 'disabled title="Certify the claim first"'} ${UN.sel.has(r.id) ? "checked" : ""}></td><td><span class="ma-id">${esc(r.id)}</span></td><td>${unWho(r)}<span class="un-sub">${esc(unType(r))}</span></td><td>${esc(r.f.course)}</td><td>${esc(r.f.start)} – ${esc(r.f.end)}</td><td>${fmt(r.claim.d)}</td><td><span class="ui-badge ui-badge-${r.cert ? "approved" : "neutral"}">${r.cert ? "Yes" : "No"}</span></td><td>${unBadge(r)}</td><td>${unView(r)}</td></tr>`
+    : `<tr><td><span class="ma-id">${esc(r.id)}</span></td><td>${unWho(r)}</td><td>${esc(unType(r))}</td><td>${esc(r.f.course)}</td><td>${esc(r.f.category)}</td><td>${fmt(r.sub)}</td><td>${unBadge(r)}</td><td>${unView(r)}</td></tr>`).join("")
+    || `<tr class="ver-empty"><td colspan="${claims ? 9 : 8}">${esc(UN_LISTS[key].rows().length ? (claims ? "No claims found." : "No applications found.") : UN_LISTS[key].empty)}</td></tr>`;
+  unInstBulkSync();
 }
+function unInstBulkSync() {
+  const n = UN.sel.size;
+  $("#unInstBulkText").textContent = n ? `${n} certified claim${n === 1 ? "" : "s"} selected` : "No claims selected";
+  $("#unInstFwd").disabled = !n; $("#unInstFwd").innerHTML = `${iconSvg("arrow-right", "l", 16)}Forward Certified List to KCG (${n})`;
+}
+$("#unInstBody").addEventListener("change", e => { const c = e.target.closest("[data-un-sel]"); if (c) { c.checked ? UN.sel.add(c.dataset.unSel) : UN.sel.delete(c.dataset.unSel); unInstRender(); } });
+$("#unInstHead").addEventListener("change", e => {
+  if (e.target.id !== "unInstAll") return;
+  $$("#unInstBody [data-un-sel]:not(:disabled)").forEach(c => e.target.checked ? UN.sel.add(c.dataset.unSel) : UN.sel.delete(c.dataset.unSel)); unInstRender();
+});
+$("#unInstFwd").addEventListener("click", () => { if (UN.sel.size) unAsk("fwdlist", [...UN.sel]); });
 function unKcgRender() {
-  const info = UN_ROLE[ROLE]; if (!info || ROLE === "principal") return;
-  $("#unKcgTitle").textContent = `Unnati Yojana – ${info.who.replace(" – KCG", ", KCG")}`; $("#unKcgSub").textContent = info.sub;
-  const paid = UN_APPS.filter(r => r.stage === "paid"), paidAmt = paid.reduce((s, r) => s + (r.paid ? r.paid.amount : 0), 0);
-  const committed = UN_APPS.filter(r => ["approved", "inst-ver", "p-cons", "p-admin", "p-ceo"].includes(r.stage)).reduce((s, r) => s + (+r.f.fee || 0), 0);
-  const pct = (paidAmt + committed) / UN_BUDGET * 100, tone = pct < 60 ? "is-ok" : pct < 85 ? "is-warn" : "is-high";
-  $("#unBudget").innerHTML = `<div><span>Overall budget</span><b>${unRs(UN_BUDGET)}</b></div><div><span>Paid via DBT</span><b>${unRs(paidAmt)}</b></div>
-    <div><span>Approved, not yet paid</span><b>${unRs(committed)}</b></div><div><span>Beneficiaries paid</span><b>${paid.length}</b></div>
-    <div class="un-bud-bar"><span>${pct.toFixed(2)}% of the budget is paid or committed · ${unRs(UN_BUDGET - paidAmt - committed)} left</span><div class="ui-progress" role="progressbar" aria-valuenow="${pct.toFixed(1)}" aria-valuemin="0" aria-valuemax="100"><i class="${tone}" style="width:${Math.max(pct, 0.5)}%"></i></div></div>`;
-  const st = unTabs(ROLE, "#unKcgTabs"), list = unQueue(st);
-  $("#unKcgCount").innerHTML = `<b>${list.length}</b> application${list.length === 1 ? "" : "s"}`;
-  $("#unKcgBody").innerHTML = list.map(unRow).join("") || `<tr class="ver-empty"><td colspan="9">Nothing waiting here.</td></tr>`;
+  const key = unTabs("#unKcgTabs", "kcg"), claims = key.endsWith("claim"), all = UN_APPS.filter(r => unAt(r, claims ? "claimfwd" : "forwarded"));
+  $("#unKcgStats").innerHTML = claims
+    ? verStat(all.length, "Total Claims", "document:f", "primary") + verStat(all.filter(r => r.stage === "claimfwd").length, "To Approve", "view:f", "info") + verStat(all.filter(r => r.stage === "paid").length, "Paid", "check:l", "success")
+    : verStat(all.length, "Total Applications", "document:f", "primary") + verStat(all.filter(r => r.stage === "forwarded").length, "To Approve", "view:f", "info") + verStat(all.filter(r => unAt(r, "approved")).length, "Approved", "check:l", "success");
+  $("#unBudgetCard").hidden = !claims;
+  if (claims) $("#unBudget").innerHTML = unBudgetHtml();
+  unFltMount(key, "#unKcgFlt", unKcgRender);
+  const v = unFltOf(key), list = UN_LISTS[key].rows().filter(r => unMatch(r, v)).sort((a, b) => claims ? a.cfwd.d - b.cfwd.d : a.fwd.d - b.fwd.d);
+  $("#unKcgCount").innerHTML = `<b>${list.length}</b> ${claims ? "claim" : "application"}${list.length === 1 ? "" : "s"}`;
+  $("#unKcgHead").innerHTML = claims
+    ? `<tr><th>Application ID</th><th>Applicant Name</th><th>Institution</th><th>Course Name</th><th>Course amount</th><th>Forwarded On</th><th>Status</th><th>Action</th></tr>`
+    : `<tr><th>Application ID</th><th>Applicant Name</th><th>Applicant Type</th><th>Institution</th><th>Course Name</th><th>Course Category</th><th>Course Dates</th><th>Course Examination Fees</th><th>Forwarded On</th><th>Status</th><th>Action</th></tr>`;
+  $("#unKcgBody").innerHTML = list.map(r => claims
+    ? `<tr><td><span class="ma-id">${esc(r.id)}</span></td><td>${unWho(r)}<span class="un-sub">${esc(unType(r))}</span></td><td>${esc(unInst(r))}</td><td>${esc(r.f.course)}</td><td>${unRs(r.f.fee)}</td><td>${fmt(r.cfwd.d)}</td><td>${unBadge(r)}</td><td>${unView(r)}</td></tr>`
+    : `<tr><td><span class="ma-id">${esc(r.id)}</span></td><td>${unWho(r)}</td><td>${esc(unType(r))}</td><td>${esc(unInst(r))}</td><td>${esc(r.f.course)}</td><td>${esc(r.f.category)}</td><td>${esc(r.f.start)} – ${esc(r.f.end)}</td><td>${unRs(r.f.fee)}</td><td>${fmt(r.fwd.d)}</td><td>${unBadge(r)}</td><td>${unView(r)}</td></tr>`).join("")
+    || `<tr class="ver-empty"><td colspan="${claims ? 8 : 11}">${esc(UN_LISTS[key].rows().length ? (claims ? "No claims found." : "No applications found.") : UN_LISTS[key].empty)}</td></tr>`;
 }
-$("#unInstTabs").addEventListener("click", e => { const b = e.target.closest("[data-un-tab]"); if (b) { UN.tab.principal = b.dataset.unTab; unInstRender(); } });
-$("#unKcgTabs").addEventListener("click", e => { const b = e.target.closest("[data-un-tab]"); if (b) { UN.tab[ROLE] = b.dataset.unTab; unKcgRender(); } });
+function unBudgetHtml() {
+  const paid = UN_APPS.filter(r => r.stage === "paid").reduce((s, r) => s + (r.paid ? r.paid.amount : 0), 0);
+  return `<div><span>Total Budget</span><b>${unRs(UN_BUDGET)}</b></div><div><span>Amount Paid</span><b>${unRs(paid)}</b></div><div><span>Balance</span><b>${unRs(UN_BUDGET - paid)}</b></div>`;
+}
+$("#unInstTabs").addEventListener("click", e => { const b = e.target.closest("[data-un-tab]"); if (b) { UN.tab.principal = b.dataset.unTab; UN.sel.clear(); unInstRender(); } });
+$("#unKcgTabs").addEventListener("click", e => { const b = e.target.closest("[data-un-tab]"); if (b) { UN.tab.kcg = b.dataset.unTab; unKcgRender(); } });
 ["#unInstBody", "#unKcgBody"].forEach(s => $(s).addEventListener("click", e => { const v = e.target.closest("[data-un-view]"); if (v) { e.preventDefault(); unOpenReview(v.dataset.unView); } }));
 
-/* ---------- one application (progress, details, documents, action bar) ---------- */
+/* ---------- one application (status, details, documents, action bar) ---------- */
 function unOpenReview(id) { UN.rid = id; location.hash === "#un-review" ? unReviewRender() : (location.hash = "un-review"); }
-function unSteps(names, cur, fail) {
-  return `<ol class="ui-steps">${names.map((t, i) => `<li class="ui-step${i === fail ? " is-failed" : i < cur ? " is-done" : i === cur ? " is-current" : ""}"><span class="ui-step-dot">${i < cur && i !== fail ? iconSvg("check", "l", 16) : i + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(t)}</span></div></li>`).join("")}</ol>`;
-}
 function unTracker(r) {
-  const A = ["Submitted", "Institution", "Consultant", "Admin", "CEO – Prior Approval"], P = ["Completion", "Institution", "Consultant", "Admin", "CEO – Payment", "Paid (DBT)"];
-  const ai = { "inst-rec": 1, "a-cons": 2, "a-admin": 3, "a-ceo": 4 }, pi = { approved: 0, "inst-ver": 1, "p-cons": 2, "p-admin": 3, "p-ceo": 4 };
-  const s = r.stage === "rejected" ? r.rejectedAt : r.stage;
-  let aCur = s in ai ? ai[s] : 5, pCur = s in pi ? pi[s] : s === "paid" ? 6 : -1, aFail = -1, pFail = -1;
-  if (r.stage === "rejected") { if (s in ai) aFail = ai[s]; else { pFail = pi[s]; } }
-  const pend = !["paid", "rejected", "approved"].includes(r.stage) ? `<div class="un-pend">At this stage for ${unPendBadge(r)} <span>· now with <b>${esc(UN_WHO[r.stage] || "")}</b></span></div>` : "";
-  const rej = r.stage === "rejected" ? (r.remarks.slice().reverse().find(m => m.act === "Rejected") || {}) : null;
-  const msg = rej ? `<p class="ui-help is-error" style="margin-top:var(--space-12)">Rejected by ${esc(rej.by)}: ${esc(rej.text)}</p>`
-    : r.stage === "approved" ? `<p class="ui-help is-success" style="margin-top:var(--space-12)">Prior approval granted by the CEO, KCG. Complete the course and then submit the completion certificate and fee receipt.</p>`
-    : r.stage === "paid" ? `<p class="ui-help is-success" style="margin-top:var(--space-12)">${unRs(r.paid.amount)} paid via DBT (${esc(r.paid.utr)}) on ${fmt(r.paid.d)}.</p>` : "";
-  return `<section class="card sf-sec"><div class="sf-rv-head"><h5>Progress</h5>${unBadge(r)}</div><div class="un-track">
-    <div><h6>Course Approval</h6>${unSteps(A, aCur, aFail)}</div><div><h6>Completion &amp; Payment</h6>${unSteps(P, pCur, pFail)}</div></div>${pend}${msg}</section>`;
+  const T = ["Submitted", "Signed & Forwarded", "Approved by KCG", "Claim Submitted", "Claim Certified & Forwarded", "Paid"];
+  const cur = r.stage === "claim" && r.cert ? 4 : r.stage === "paid" ? 6 : UN_ORDER.indexOf(r.stage) + 1;
+  const msg = ({ submitted: () => `Waiting for the ${unSigner(unInst(r))} of ${unInst(r)} to sign and forward it to KCG.`, forwarded: () => "Signed and forwarded. Waiting for the approval of KCG.",
+    approved: () => unEarly(r) ? `Approved on ${fmt(r.appr.d)}, but the course started on ${r.f.start} – before the approval, so no assistance is given.` : unEnded(r) ? "Approved. The course has ended – submit the reimbursement claim." : `Approved on ${fmt(r.appr.d)}. Complete the course; claim the reimbursement after ${r.f.end}.`,
+    claim: () => r.cert ? "Claim certified by the institution. Waiting to be forwarded to KCG." : "Claim submitted. Waiting for the institution to certify it.", claimfwd: () => "Claim forwarded to KCG. Waiting for the payment approval.",
+    paid: () => `${unRs(r.paid.amount)} paid by DBT (${r.paid.utr}) on ${fmt(r.paid.d)}.` }[r.stage] || (() => ""))();
+  return `<section class="card sf-sec"><div class="sf-rv-head"><h5>Status</h5>${unBadge(r)}</div>
+    <ol class="ui-steps" style="margin-top:var(--space-12)">${T.map((t, i) => `<li class="ui-step${i < cur ? " is-done" : i === cur ? " is-current" : ""}"><span class="ui-step-dot">${i < cur ? iconSvg("check", "l", 16) : i + 1}</span><div class="ui-step-body"><span class="ui-step-title">${esc(t)}</span></div></li>`).join("")}</ol>
+    <p class="ui-help${r.stage === "paid" ? " is-success" : ""}" style="margin-top:var(--space-12)">${esc(msg)}</p></section>`;
 }
 function unReviewRender() {
   const r = UN_APPS.find(x => x.id === UN.rid), back = ROLE === "student" ? "unnati-my" : ROLE === "principal" ? "un-inst" : "un-kcg";
   $("#urBack").href = "#" + back;
-  if (!r || (ROLE === "student" && !r.own)) { $("#urTitle").textContent = "Application not found"; $("#urSub").textContent = ""; $("#urBody").innerHTML = ""; return; }
-  const f = r.f, kcg = ["ucons", "uadmin", "uceo"].includes(ROLE);
-  const myQ = (UN_ROLE[ROLE] || { tabs: [] }).tabs.map(t => t[2]), canAct = myQ.includes(r.stage);
+  if (!r || r.stage === "draft" || (ROLE === "student" && !r.own)) { $("#urTitle").textContent = "Application not found"; $("#urSub").textContent = ""; $("#urBody").innerHTML = ""; return; }
+  const f = r.f, inst = unInst(r), st = r.kind === "student";
   $("#urTitle").textContent = `Unnati Yojana – ${r.id}`;
-  $("#urSub").innerHTML = `${esc(f.name)} · ${esc(f.type)} · ${esc(unInst(r))}`;
-  const batch = kcg && f.enroll === "Batch Based Enrollment" && !["paid", "rejected"].includes(r.stage) && cjpDate(f.start) >= UN_TODAY
-    ? `<div class="sf-note is-warn" style="margin-bottom:var(--space-16)">${iconSvg("warning", "o", 16)}<span><b>Batch-based course – the batch starts on ${esc(f.start)}.</b> Please review this application quickly so the applicant does not miss the batch.</span></div>` : "";
-  const prov = f.provider === "Other" ? f.providerOther : f.provider;
-  const appl = f.type === "Student" ? [["Applicant Type", f.type], ["Name", f.name], ["Stream", f.stream], ["Semester", f.semester], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile], ["College", f.college], ["Type of College", f.collegeType], ["College Category", f.collegeCat], ["Area", f.area]]
-    : f.type === "Faculty" ? [["Applicant Type", f.type], ["Name", f.name], ["Designation", f.designation], ["Department", f.dept], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile], ["College / University", f.college], ["Type of College", f.collegeType], ["College Category", f.collegeCat], ["Area", f.area]]
-    : [["Applicant Type", f.type], ["Name", f.name], ["Designation", f.designation], ["Office / Institution", f.office], ["Gender", f.gender], ["E-Mail ID", f.email], ["Contact Details", f.mobile]];
-  const crs = [["Name of Course", f.course], ["Course Provider", prov], ["Course Category", f.category], ["Course Mode", f.mode], ["Course Coordinator", f.coordinator], ["Enrollment Type", f.enroll], ["Course Dates", f.start + " – " + f.end], ["Total Duration", unDays(f.start, f.end) + " days"], ["Per Day Duration", f.perDay + " hours"], ["Course Examination Fees", unRs(f.fee)], ["Relevance", f.relevance]];
-  const kv = (t, rows) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${t}</h5></div><div class="sf-kv">${rows.map(([l, v]) => `<div><span>${esc(l)}</span><b>${esc(v || "–")}</b></div>`).join("")}</div></section>`;
+  $("#urSub").innerHTML = `${esc(f.name)} · ${esc(unType(r))} · ${esc(inst)}`;
+  const kv = (t, rows) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${t}</h5></div><div class="sf-kv">${rows.map(([l, v]) => `<div><span>${esc(l)}</span><b>${v && v.html ? v.html : esc(v || "–")}</b></div>`).join("")}</div></section>`;
   const doc = (l, file) => `<div class="sf-doc"><div class="sf-doc-name"><b>${esc(l)}</b><small>${esc(file ? file.name : "PDF")}</small></div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-ur-doc="${esc(l)}">${iconSvg("view", "f", 14)}View</button></div>`;
-  const rmk = r.remarks.length ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Remarks</h5><p>Every stage, latest first.</p></div><div class="ver-remarks">${r.remarks.slice().reverse().map(m => `<div class="ver-rmk"><div class="ver-rmk-h"><b>${esc(m.act)} by ${esc(m.by)}</b><span>${fmt(m.d)}</span></div><div class="ver-rmk-b">${m.text ? esc(m.text) : "<i>No remarks</i>"}</div></div>`).join("")}</div></section>` : "";
-  const cmp = r.completion ? `<section class="card sf-sec"><div class="sf-rv-head"><h5>Completion Evidence</h5><span class="ui-help">Submitted on ${fmt(r.completion.d)} · amount claimed ${unRs(r.completion.amount)}</span></div><div class="sf-docs">${doc("Completion Certificate", r.completion.cert)}${doc("Fee Receipt", r.completion.receipt)}${doc("Enrollment Details", r.completion.enroll)}${["approved", "inst-ver", "p-cons", "p-admin", "p-ceo", "paid"].includes(r.stage) ? doc("KCG Approval Order", { name: "KCG_Approval_Order.pdf" }) : ""}</div></section>` : "";
-  const pay = r.paid ? kv("Payment", [["Amount", unRs(r.paid.amount)], ["Mode", "DBT – Aadhaar-linked bank account"], ["UTR", r.paid.utr], ["Paid On", fmt(r.paid.d)]]) : "";
-  const act = canAct ? UN_ACT[r.stage] : null;
-  const help = { "inst-rec": "Check the applicant's signed recommendation letter, then recommend and forward the proposal to KCG, or reject it with a reason.", "inst-ver": "Check the completion certificate and fee receipt, then verify and forward to KCG for payment, or reject with a reason.", "a-ceo": "Only your sign-off grants prior approval – the applicant can then start reporting completion.", "p-ceo": "Approving releases the course fee by DBT to the applicant's Aadhaar-linked bank account." }[r.stage] || "Review the application and clear it to the next level" + (act && act[2] ? ", or reject it with a reason." : ".");
-  $("#urBody").innerHTML = `${batch}${unTracker(r)}${rmk}${kv("Applicant Details", appl)}${kv("Course Details", crs)}
-    <section class="card sf-sec"><div class="sf-rv-head"><h5>Attachments</h5></div><div class="sf-docs">${doc("Catalog of Course", f.catalog)}${doc("Signed Recommendation Letter", f.letter)}</div></section>${cmp}${pay}
-    ${act ? `<section class="card ver-bar"><span class="ui-help">${esc(UN_ROLE[ROLE].who)}: ${esc(help)}</span><div class="ver-bar-btns">${act[2] ? `<button class="ui-btn ui-btn-danger-soft" type="button" data-ur-act="reject">Reject</button>` : ""}<button class="ui-btn ui-btn-primary" type="button" data-ur-act="ok">${esc(act[0])}</button></div></section>` : ""}`;
+  const aad = kv("Aadhaar Verification", [["Aadhaar Number", { html: `XXXX XXXX ${SF_AADHAAR_LAST4} <span class="ui-badge ui-badge-approved">Verified</span>` }], ["Payment", "DBT to the Aadhaar-seeded bank account"]]);
+  const docs = `<section class="card sf-sec"><div class="sf-rv-head"><h5>Uploaded Documents</h5></div><div class="sf-docs">${st ? doc("Colour Photograph", f.photo) : ""}${doc("Catalog Of Course", f.catalog)}</div></section>`;
+  const sign = r.fwd ? kv("Sign and Seal of the Institution", [["Signed and sealed by", `${r.fwd.by}, ${inst}`], ["Forwarded On", fmt(r.fwd.d)]]) : "";
+  const order = r.appr ? `<section class="card sf-sec"><div class="sf-rv-head"><h5>Approval Order</h5></div><div class="sf-kv"><div><span>Order No.</span><b>${esc(r.appr.order)}</b></div><div><span>Approved On</span><b>${fmt(r.appr.d)} by the CEO, KCG</b></div></div><div class="sf-docs" style="margin-top:var(--space-12)">${doc("Approval Order", { name: r.appr.order.replace(/\//g, "_") + ".pdf" })}</div></section>` : "";
+  const claim = r.claim ? `<section class="card sf-sec"><div class="sf-rv-head"><h5>Reimbursement Claim</h5><span class="ui-help">Submitted on ${fmt(r.claim.d)} · course amount ${unRs(f.fee)}</span></div>
+    <div class="sf-kv" style="margin-bottom:var(--space-12)"><div><span>Course Start Date and End Date</span><b>${esc(f.start)} – ${esc(f.end)}</b></div><div><span>Certified by the institution</span><b>${r.cert ? `Yes – ${esc(r.cert.by)}, ${fmt(r.cert.d)}` : "No"}</b></div>${r.cfwd ? `<div><span>Forwarded to KCG</span><b>${fmt(r.cfwd.d)}</b></div>` : ""}</div>
+    <div class="sf-docs">${doc("Completion Certificate", r.claim.cert)}${doc("Fee Receipt", r.claim.receipt)}</div></section>` : "";
+  const pay = r.paid ? kv("Payment", [["Amount", unRs(r.paid.amount)], ["Mode", "DBT – Aadhaar-seeded bank account"], ["UTR", r.paid.utr], ["Paid On", fmt(r.paid.d)]]) : "";
+  const budget = ROLE === "kcg" && r.stage === "claimfwd" ? `<section class="card sf-sec"><div class="sf-rv-head"><h5>Budget</h5><span class="ui-badge ui-badge-neutral">For information</span></div><div class="un-bud">${unBudgetHtml()}</div></section>` : "";
+  const act = ROLE === "principal" && r.stage === "submitted" ? ["sign", "Sign and Forward", `Read the application, then sign and forward it to the CEO, KCG with the digital sign and seal of the ${unSigner(inst)}.`]
+    : ROLE === "principal" && r.stage === "claim" && !r.cert ? ["certify", "Certify", `Check the completion certificate against the course dates (${f.start} – ${f.end}) and the fee receipt, then certify the claim.`]
+    : ROLE === "kcg" && r.stage === "forwarded" ? ["approve", "Approve", "Approve the course in advance. An Approval Order is generated for the applicant."]
+    : ROLE === "kcg" && r.stage === "claimfwd" ? ["pay", "Approve Payment", `Check the documents. On approval ${unRs(f.fee)} is paid by DBT to the applicant's Aadhaar-seeded bank account.`] : null;
+  const note = ROLE === "principal" && r.stage === "claim" && r.cert ? `<div class="sf-note" style="margin-bottom:var(--space-16)">${iconSvg("info", "o", 16)}<span>This claim is certified. Select it in Reimbursement Claims and forward the certified list to KCG.</span></div>` : "";
+  $("#urBody").innerHTML = `${note}${unTracker(r)}${kv("Personal Details", unPersonalRows(r))}${kv(st ? "Current Academic Details" : "Employment Details", unAcadRows(r))}${kv("Course Details", unCourseRows(r))}${aad}${docs}${sign}${order}${claim}${budget}${pay}
+    ${act ? `<section class="card ver-bar"><span class="ui-help">${esc(act[2])}</span><div class="ver-bar-btns"><button class="ui-btn ui-btn-primary" type="button" data-ur-act="${act[0]}">${esc(act[1])}</button></div></section>` : ""}`;
   scrollTo(0, 0);
 }
 $("#urBody").addEventListener("click", e => {
   const r = UN_APPS.find(x => x.id === UN.rid);
-  const d = e.target.closest("[data-ur-doc]"); if (d) return verDocView(d.dataset.urDoc, { name: r.f.name, id: r.id, date: r.date });
-  const a = e.target.closest("[data-ur-act]"); if (!a) return;
-  const act = UN_ACT[r.stage], rej = a.dataset.urAct === "reject", ver = r.stage === "inst-ver" && !rej;
-  UN.act = { id: r.id, stage: r.stage, rej };
-  $("#mdUnActTitle").textContent = rej ? "Reject Application" : act[0];
-  $("#mdUnActSub").textContent = rej ? "The applicant is told the reason. This cannot be undone." : UN_FLOW[r.stage] === "approved" ? "The applicant can then complete the course and submit the completion evidence." : UN_FLOW[r.stage] === "paid" ? `${unRs(r.f.fee)} is paid by DBT to the applicant's Aadhaar-linked bank account.` : `The application moves to ${UN_WHO[UN_FLOW[r.stage]]}.`;
-  $("#unActReq").hidden = !rej; $("#unActReason").value = ""; $("#unActHelp").hidden = true; $("#unActDeclRow").hidden = !ver; $("#unActDecl").checked = false;
-  $("#unActYes").textContent = rej ? "Reject" : act[0]; $("#unActYes").className = rej ? "ui-btn ui-btn-danger" : "ui-btn ui-btn-primary";
-  openModal("mdUnAct"); setTimeout(() => $("#unActReason").focus(), 60);
+  const d = e.target.closest("[data-ur-doc]"); if (d) return verDocView(d.dataset.urDoc, { name: r.f.name, id: r.id, date: r.sub });
+  const a = e.target.closest("[data-ur-act]"); if (a) unAsk(a.dataset.urAct, [r.id]);
 });
+function unAsk(kind, ids) {
+  const r = UN_APPS.find(x => x.id === ids[0]), n = ids.length;
+  const C = {
+    sign: ["Sign and forward this application?", `Your digital sign and seal is added and the application goes to the CEO, KCG for approval.`, "", "Sign and Forward"],
+    certify: ["Certify this claim?", `You have checked the completion certificate against the course dates (${r.f.start} – ${r.f.end}) and the fee receipt. Your digital sign and seal is added.`, "is-success", "Certify"],
+    fwdlist: [`Forward ${n} certified claim${n === 1 ? "" : "s"} to KCG?`, "These claims go to KCG as the certified list of your institution for payment.", "", "Confirm"],
+    approve: ["Approve this course?", "The status becomes Approved and an Approval Order is generated for the applicant.", "is-success", "Approve"],
+    pay: ["Approve this payment?", `${unRs(r.f.fee)} is paid by DBT to the applicant's Aadhaar-seeded bank account.`, "is-success", "Approve Payment"]
+  }[kind];
+  UN.act = { kind, ids };
+  $("#mdUnActTitle").textContent = C[0]; $("#mdUnActSub").textContent = C[1];
+  $("#mdUnActIcon").className = "ui-confirm-icon" + (C[2] ? " " + C[2] : ""); $("#mdUnActIcon").innerHTML = iconSvg(C[2] ? "check" : "arrow-right", "l", 24);
+  $("#unActYes").textContent = C[3];
+  openModal("mdUnAct");
+}
 $("#unActYes").addEventListener("click", () => {
-  const A = UN.act; if (!A) return; const r = UN_APPS.find(x => x.id === A.id); if (!r || r.stage !== A.stage) return;
-  const text = $("#unActReason").value.trim(), help = $("#unActHelp"), by = UN_WHO[r.stage], now = new Date();
-  const err = m => { help.hidden = false; help.className = "ui-help is-error"; help.innerHTML = (HELP_ICON["is-error"] || "") + esc(m); };
-  if (A.rej && !text) return err("Add a reason for rejecting.");
-  if (!A.rej && r.stage === "inst-ver" && !$("#unActDecl").checked) return err("Tick the declaration to verify and forward.");
-  if (A.rej) { r.rejectedAt = r.stage; r.stage = "rejected"; r.remarks.push({ act: "Rejected", by, text, d: now }); r.log.push({ d: now, t: `Rejected by ${by}: ${text}` }); }
-  else {
-    const past = UN_ACT[r.stage][1]; r.remarks.push({ act: past, by, text, d: now }); r.log.push({ d: now, t: `${past} by ${by}` });
-    r.stage = UN_FLOW[r.stage];
-    if (r.stage === "paid") r.paid = { utr: "UTR" + String(Date.now()).slice(-6) + Math.floor(100 + Math.random() * 900), d: now, amount: +r.f.fee };
-  }
-  r.since = now; UN.act = null; closeModal($("#mdUnAct"));
-  toast(A.rej ? "Application rejected" : r.stage === "paid" ? "Payment approved – DBT initiated" : r.stage === "approved" ? "Prior approval granted" : `Forwarded to ${UN_WHO[r.stage]}`);
+  const A = UN.act; if (!A) return; const now = new Date();
+  A.ids.forEach(id => {
+    const r = UN_APPS.find(x => x.id === id); if (!r) return; const who = unSigner(unInst(r));
+    if (A.kind === "sign" && r.stage === "submitted") { r.fwd = { d: now, by: who }; r.stage = "forwarded"; r.log.push({ d: now, t: `Signed and forwarded by the ${who}` }); }
+    if (A.kind === "certify" && r.stage === "claim") { r.cert = { d: now, by: who }; r.log.push({ d: now, t: `Claim certified by the ${who}` }); }
+    if (A.kind === "fwdlist" && r.stage === "claim" && r.cert) { r.cfwd = { d: now }; r.stage = "claimfwd"; r.log.push({ d: now, t: "Claim forwarded to KCG in the certified list" }); }
+    if (A.kind === "approve" && r.stage === "forwarded") { r.appr = { d: now, order: "KCG/UNNATI/2026/" + r.id.slice(-4) }; r.stage = "approved"; r.log.push({ d: now, t: "Approved by the CEO, KCG – Approval Order generated" }); }
+    if (A.kind === "pay" && r.stage === "claimfwd") { r.paid = { d: now, utr: "UTR" + String(Date.now()).slice(-6) + Math.floor(100 + Math.random() * 900), amount: +r.f.fee }; r.stage = "paid"; r.log.push({ d: now, t: "Payment approved by the CEO, KCG – paid by DBT" }); }
+  });
+  UN.act = null; closeModal($("#mdUnAct"));
+  const n = A.ids.length;
+  toast({ sign: "Application signed and forwarded to KCG", certify: "Claim certified", fwdlist: `${n} certified claim${n === 1 ? "" : "s"} forwarded to KCG`, approve: "Course approved – Approval Order generated", pay: "Payment approved – paid by DBT" }[A.kind]);
+  if (A.kind === "fwdlist") { UN.sel.clear(); return unInstRender(); }
+  if (A.kind === "certify" || A.kind === "sign") UN.tab.principal = A.kind === "certify" ? "claim" : "app";
+  if (A.kind === "approve" || A.kind === "pay") UN.tab.kcg = A.kind === "pay" ? "claim" : "app";
   location.hash = ROLE === "principal" ? "un-inst" : "un-kcg";
 });
 
