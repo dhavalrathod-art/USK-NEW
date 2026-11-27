@@ -328,19 +328,20 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .ksy-info-grid b{font-size:var(--font-size-body);color:var(--color-text-heading)}
 .ksy-note{display:flex;align-items:flex-start;gap:var(--space-8);margin-top:var(--space-16);font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
 .ksy-note svg{flex:none;margin-top:1px;color:var(--color-icon-muted)}
-.ksy-checks{display:grid;gap:var(--space-12)}
-.ksy-checks li{display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-12) var(--space-16);border:1px solid var(--color-border-default);border-radius:8px}
+.ksy-checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-12)}
+@media (max-width:991.98px){.ksy-checks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:575.98px){.ksy-checks{grid-template-columns:1fr}}
+.ksy-checks li{display:flex;align-items:flex-start;gap:var(--space-8);min-width:0;padding:var(--space-12);border:1px solid var(--color-border-default);border-radius:8px}
 .ksy-checks li.is-ok{border-color:var(--color-success-border);background:var(--color-success-bg)}
 .ksy-checks li.is-fail{border-color:var(--color-error-border);background:var(--color-error-bg)}
 .ksy-checks svg{flex:none;margin-top:2px}
 .ksy-checks li.is-ok svg{color:var(--color-success)}
 .ksy-checks li.is-fail svg{color:var(--color-error)}
-.ksy-checks b{display:block;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
-.ksy-checks small{display:block;margin-top:2px;font-size:var(--font-size-body-sm);color:var(--color-text-secondary)}
+.ksy-checks b{display:block;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ksy-checks small{display:block;margin-top:2px;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
 .ksy-mynote{display:flex;align-items:center;gap:var(--space-12);flex-wrap:wrap;padding:var(--space-16) var(--space-20);margin-top:var(--space-16);font-size:var(--font-size-body);color:var(--color-text-body)}
 .ksy-mynote > svg{flex:none;color:var(--color-icon-primary)}
 .ksy-mynote > span{flex:1;min-width:200px}
-#ksyMyBody tr.is-sel td{background:var(--color-primary-50)}
 .ksy-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);flex-wrap:wrap;margin-top:var(--space-20);padding-top:var(--space-16);border-top:1px solid var(--color-border-default)}
 /* ===== Unnati Yojana (25/11) – page-level, DS tokens only ===== */
 .un-tabs{display:flex;gap:var(--space-8);flex-wrap:wrap;margin-bottom:var(--space-16)}
@@ -381,7 +382,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sf-side{padding:var(--space-24);position:sticky;top:80px}
 .sf-side[hidden],.sf-subs[hidden]{display:none}
 .sf-main{min-width:0;display:flex;flex-direction:column}
-.sf-main > #sfBody{display:flex;flex-direction:column}
+.sf-main > #sfBody,.sf-main > #kfBody,.sf-main > #unBody{display:flex;flex-direction:column}
 .sf-subs{padding:var(--space-20) var(--space-24);margin-bottom:var(--space-16)}
 .sf-steps-card{padding:var(--space-20) var(--space-24);margin-bottom:var(--space-16)}
 .sf-subs .ui-step{cursor:default}
@@ -1258,6 +1259,253 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 .ml-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:var(--space-16);padding:var(--space-24) var(--space-32) var(--space-40)}
 .ml-back{width:44px;height:44px;border-radius:50%;border:1px solid var(--color-border-default);background:var(--color-bg-surface);display:grid;place-items:center;color:var(--color-primary-600)}
 .ml-foot .ui-btn-block{flex:1}
+/* Mobile App – Skill Passport (26/11): one long screen, own mobile design, DS tokens only */
+.ms-frame{background:var(--color-bg-page);color:var(--color-text-body)}
+.ms-head{position:relative;background:var(--color-primary-600);color:var(--color-text-inverse);padding-bottom:72px;overflow:hidden}
+.ms-head::before,.ms-head::after{content:"";position:absolute;border-radius:50%;border:var(--space-12) solid rgba(255,255,255,.06);pointer-events:none}
+.ms-head::before{width:220px;height:220px;top:-80px;right:-70px}
+.ms-head::after{width:130px;height:130px;top:-30px;right:-20px}
+.ms-head .mob-status{color:var(--color-text-inverse)}
+.ms-bar{position:relative;display:flex;align-items:center;gap:var(--space-12);padding:var(--space-16) var(--space-16) 0}
+.ms-bar h4{flex:1;margin:0;font-size:var(--font-size-h5);line-height:var(--line-height-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-inverse)}
+.ms-ibtn{width:40px;height:40px;flex:none;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:var(--color-text-inverse);cursor:pointer}
+.ms-ibtn:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-accent-300)}
+.ms-id{position:relative;display:flex;align-items:center;gap:var(--space-16);padding:var(--space-24) var(--space-20) 0}
+.ms-ava{width:72px;height:72px;flex:none;display:grid;place-items:center;border-radius:50%;border:3px solid var(--color-bg-surface);background:var(--color-accent-500);font-size:var(--font-size-h3);font-weight:var(--font-weight-bold);color:var(--color-text-inverse)}
+.ms-id-tx{min-width:0}
+.ms-id-tx h3{margin:0;font-size:var(--font-size-h4);line-height:var(--line-height-h4);font-weight:var(--font-weight-bold);color:var(--color-text-inverse)}
+.ms-id-tx p{margin:var(--space-2) 0 0;font-size:var(--font-size-body-sm);opacity:.85}
+.ms-ver{display:inline-flex;align-items:center;gap:var(--space-4);margin-top:var(--space-8);padding:var(--space-2) var(--space-8);border-radius:999px;background:var(--color-accent-500);font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-text-inverse)}
+.ms-wrap{position:relative;margin-top:-52px;display:flex;flex-direction:column;gap:var(--space-16);padding:0 var(--space-16) var(--space-32)}
+.ms-card{background:var(--color-bg-surface);border:1px solid var(--color-border-default);border-radius:var(--space-16);padding:var(--space-16)}
+.ms-card-h{display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);margin-bottom:var(--space-4)}
+.ms-card-h b{font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ms-eye{display:inline-flex;align-items:center;gap:var(--space-4);min-height:40px;padding:0 var(--space-8);border:0;border-radius:var(--space-8);background:none;font:inherit;font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-primary-600);cursor:pointer}
+.ms-facts{list-style:none;margin:0;padding:0}
+.ms-facts li{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12);padding:var(--space-8) 0;border-bottom:1px dashed var(--color-border-default)}
+.ms-facts li:last-child{border-bottom:0}
+.ms-facts li > span{font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);letter-spacing:.04em;text-transform:uppercase;color:var(--color-text-secondary)}
+.ms-facts li > b{min-width:0;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);text-align:right;overflow-wrap:anywhere}
+.ms-soc{display:flex;gap:var(--space-8);margin-top:var(--space-12)}
+.ms-soc button{flex:1;height:40px;display:grid;place-items:center;border:1px solid var(--color-primary-100);border-radius:var(--space-12);background:var(--color-primary-50);color:var(--color-primary-600);cursor:pointer}
+.ms-cta{display:flex;flex-direction:column;gap:var(--space-8);margin-top:var(--space-16)}
+.ms-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-8)}
+.ms-stat{display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding:var(--space-12) var(--space-4);border:1px solid var(--color-border-default);border-radius:var(--space-12);background:var(--color-bg-surface);text-align:center}
+.ms-stat .ui-icon-box{width:32px;height:32px}
+.ms-stat b{font-size:var(--font-size-h5);line-height:1.2;font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.ms-stat > span:last-child{font-size:var(--font-size-badge);line-height:var(--line-height-badge);color:var(--color-text-secondary)}
+.ms-sec-h{display:flex;align-items:center;gap:var(--space-12);margin-bottom:var(--space-12)}
+.ms-sec-h .ui-icon-box{width:40px;height:40px;flex:none}
+.ms-sec-t{flex:1;min-width:0}
+.ms-sec-t h5{display:flex;align-items:center;gap:var(--space-8);margin:0;font-size:var(--font-size-body-lg);line-height:var(--line-height-body-lg);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ms-sec-t p{margin:0;font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-secondary)}
+.ms-cnt{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 var(--space-4);border-radius:999px;background:var(--color-primary-50);font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.ms-act{width:40px;height:40px;flex:none;display:grid;place-items:center;border:1px solid var(--color-border-default);border-radius:var(--space-12);background:var(--color-bg-surface);color:var(--color-primary-600);cursor:pointer}
+.ms-chips{display:flex;flex-wrap:wrap;gap:var(--space-8)}
+.ms-chip{padding:var(--space-4) var(--space-12);border:1px solid var(--color-border-default);border-radius:999px;background:var(--color-bg-page);font-size:var(--font-size-caption);font-weight:var(--font-weight-medium);color:var(--color-text-body)}
+.ms-chip.is-dark{border-color:var(--color-primary-600);background:var(--color-primary-600);color:var(--color-text-inverse)}
+.ms-list{display:flex;flex-direction:column;gap:var(--space-12)}
+.ms-item{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-12);border:1px solid var(--color-border-default);border-radius:var(--space-12)}
+.ms-item-top{display:flex;align-items:flex-start;gap:var(--space-12)}
+.ms-item-top .ui-icon-box{width:36px;height:36px;flex:none}
+.ms-item-tx{flex:1;min-width:0}
+.ms-item-tx h6{margin:0;font-size:var(--font-size-body);line-height:var(--line-height-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ms-item-tx small{display:block;margin-top:var(--space-2);font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-secondary)}
+.ms-more{width:32px;height:32px;flex:none;display:grid;place-items:center;margin:-4px -4px 0 0;border:0;border-radius:50%;background:none;color:var(--color-text-secondary);cursor:pointer}
+.ms-item > :not(.ms-item-top){margin-left:48px}
+.ms-meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-4) var(--space-12);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ms-meta b{font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ms-text{margin:0;font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-body)}
+.ms-link{display:inline-flex;align-items:center;gap:var(--space-4);align-self:flex-start;font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.ms-lbl{font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-secondary)}
+.ms-tl{list-style:none;margin:0;padding:0}
+.ms-tl li{position:relative;display:flex;gap:var(--space-12);padding-bottom:var(--space-16)}
+.ms-tl li:last-child{padding-bottom:0}
+.ms-tl li::before{content:"";position:absolute;left:15px;top:32px;bottom:0;width:2px;background:var(--color-border-default)}
+.ms-tl li:last-child::before{display:none}
+.ms-tl-dot{width:32px;height:32px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--color-primary-50);color:var(--color-primary-600)}
+.ms-tl li.is-now .ms-tl-dot{background:var(--color-accent-500);color:var(--color-text-inverse)}
+.ms-tl-tx span{font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-accent-700)}
+.ms-tl-tx b{display:block;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ms-tl-tx p{margin:var(--space-2) 0 0;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.ms-cgpa{display:flex;align-items:center;gap:var(--space-16);padding:var(--space-16);border-radius:var(--space-12);background:var(--color-primary-600);color:var(--color-text-inverse)}
+.ms-cgpa-big{flex:none;text-align:center}
+.ms-cgpa-big b{display:block;font-size:var(--font-size-display);line-height:1;font-weight:var(--font-weight-bold)}
+.ms-cgpa-big span{font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);letter-spacing:.08em;color:var(--color-accent-300)}
+.ms-cgpa-g{flex:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-8);padding-left:var(--space-16);border-left:1px solid rgba(255,255,255,.2)}
+.ms-cgpa-g b{display:block;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-bold)}
+.ms-cgpa-g span{font-size:var(--font-size-badge);opacity:.8}
+.ms-dl{display:inline-flex;align-items:center;gap:var(--space-4);margin-top:var(--space-12);padding:var(--space-4) var(--space-8);border-radius:999px;background:var(--color-success-bg);border:1px solid var(--color-success-border);font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-success-text)}
+.ms-sems{display:flex;flex-direction:column;margin-top:var(--space-12)}
+.ms-sem{display:flex;align-items:center;gap:var(--space-12);padding:var(--space-12) 0;border-top:1px solid var(--color-border-default)}
+.ms-sem-n{width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:var(--space-8);background:var(--color-primary-50);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-bold);color:var(--color-primary-600)}
+.ms-sem-tx{flex:1;min-width:0}
+.ms-sem-tx b{font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.ms-sem-tx small{display:block;font-size:var(--font-size-badge);color:var(--color-text-secondary)}
+.ms-bar-p{height:4px;margin-top:var(--space-4);border-radius:999px;background:var(--color-gray-100);overflow:hidden}
+.ms-bar-p i{display:block;height:100%;border-radius:inherit;background:var(--color-success)}
+.ms-sem-g{text-align:right}
+.ms-sem-g b{display:block;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.ms-sem-g span{font-size:var(--font-size-badge);color:var(--color-text-secondary)}
+.ms-sem > svg{flex:none;transform:rotate(-90deg);color:var(--color-text-secondary)}
+.ms-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-12)}
+.ms-kv div{min-width:0}
+.ms-kv span{display:block;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);letter-spacing:.04em;text-transform:uppercase;color:var(--color-text-secondary)}
+.ms-kv b{display:block;margin-top:var(--space-2);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-heading);overflow-wrap:anywhere}
+.ms-kv .is-full{grid-column:1/-1}
+/* Skill Passport – version 2 (26/11): centred profile, quick actions, horizontal sliders in some sections */
+.m2-head{position:relative;background:linear-gradient(180deg,var(--color-primary-800),var(--color-primary-600));color:var(--color-text-inverse);padding-bottom:var(--space-24);overflow:hidden;text-align:center}
+.m2-head::before{content:"";position:absolute;left:50%;top:70px;width:300px;height:300px;transform:translateX(-50%);border-radius:50%;border:1px solid rgba(255,255,255,.08);box-shadow:0 0 0 40px rgba(255,255,255,.03);pointer-events:none}
+.m2-head .mob-status{color:var(--color-text-inverse)}
+.m2-head .ms-bar{text-align:left}
+.m2-ava{position:relative;width:96px;height:96px;margin:var(--space-16) auto 0;display:grid;place-items:center;border-radius:50%;background:var(--color-accent-500);box-shadow:0 0 0 4px var(--color-primary-600),0 0 0 6px var(--color-accent-300);font-size:var(--font-size-h2);font-weight:var(--font-weight-bold);color:var(--color-text-inverse)}
+.m2-ava .m2-tick{position:absolute;right:0;bottom:2px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--color-primary-600);background:var(--color-success);color:var(--color-text-inverse)}
+.m2-head h3{position:relative;margin:var(--space-12) 0 0;font-size:var(--font-size-h3);line-height:var(--line-height-h3);font-weight:var(--font-weight-bold);color:var(--color-text-inverse)}
+.m2-head p{position:relative;margin:var(--space-2) var(--space-24) 0;font-size:var(--font-size-body-sm);opacity:.85}
+.m2-ids{position:relative;display:flex;justify-content:center;gap:var(--space-8);margin-top:var(--space-12);padding:0 var(--space-16)}
+.m2-ids span{padding:var(--space-4) var(--space-12);border-radius:999px;background:rgba(255,255,255,.12);font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold)}
+.m2-qa{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-8);margin-top:var(--space-20);padding:0 var(--space-16)}
+.m2-qa button{display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding:var(--space-8) 0;border:0;background:none;font:inherit;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-text-inverse);cursor:pointer}
+.m2-qa i{width:44px;height:44px;display:grid;place-items:center;border-radius:var(--space-12);background:rgba(255,255,255,.12)}
+.m2-qa button.is-gold i{background:var(--color-accent-500)}
+.m2-body{display:flex;flex-direction:column;gap:var(--space-24);padding:var(--space-20) 0 var(--space-32)}
+.m2-sec{display:flex;flex-direction:column;gap:var(--space-12)}
+.m2-sec-h{display:flex;align-items:center;gap:var(--space-8);padding:0 var(--space-16)}
+.m2-sec-h h5{flex:1;display:flex;align-items:center;gap:var(--space-8);margin:0;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.m2-sec-h a,.m2-sec-h button{display:inline-flex;align-items:center;gap:var(--space-4);min-height:40px;padding:0 var(--space-8);border:0;background:none;font:inherit;font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-primary-600);cursor:pointer}
+.m2-pad{padding:0 var(--space-16)}
+.m2-slider{display:flex;gap:var(--space-12);overflow-x:auto;scroll-snap-type:x mandatory;padding:var(--space-2) var(--space-16) var(--space-4);scroll-padding:0 var(--space-16);scrollbar-width:none}
+.m2-slider::-webkit-scrollbar{display:none}
+.m2-slider > *{flex:0 0 82%;scroll-snap-align:start;min-width:0}
+.m2-slider.is-small > *{flex-basis:30%}
+.m2-slider.is-mid > *{flex-basis:44%}
+.m2-dots{display:flex;justify-content:center;gap:var(--space-4)}
+.m2-dots i{width:6px;height:6px;border-radius:999px;background:var(--color-gray-200)}
+.m2-dots i.on{width:18px;background:var(--color-primary-600)}
+.m2-stat{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-12);border-radius:var(--space-16);background:var(--color-bg-surface);border:1px solid var(--color-border-default)}
+.m2-stat .ui-icon-box{width:32px;height:32px}
+.m2-stat b{font-size:var(--font-size-h3);line-height:1;font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.m2-stat span:last-child{font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.m2-tile{display:flex;flex-direction:column;gap:var(--space-8);padding:var(--space-16);border-radius:var(--space-16);background:var(--color-bg-surface);border:1px solid var(--color-border-default);overflow:hidden}
+.m2-tile-band{margin:calc(var(--space-16) * -1) calc(var(--space-16) * -1) var(--space-4);padding:var(--space-12) var(--space-16);display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);background:var(--color-primary-600);color:var(--color-text-inverse)}
+.m2-tile-band.is-gold{background:var(--color-accent-500)}
+.m2-tile-band.is-green{background:var(--color-success)}
+.m2-tile-band b{font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);letter-spacing:.06em;text-transform:uppercase}
+.m2-tile h6{margin:0;font-size:var(--font-size-body);line-height:var(--line-height-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.m2-tile small{font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.m2-tile .ms-text{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.m2-skills{display:flex;flex-wrap:wrap;gap:var(--space-8)}
+.m2-skill{display:inline-flex;align-items:center;gap:var(--space-4);padding:var(--space-8) var(--space-12);border-radius:var(--space-12);background:var(--color-bg-surface);border:1px solid var(--color-border-default);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-medium);color:var(--color-text-heading)}
+.m2-skill.is-top{border-color:var(--color-primary-600);background:var(--color-primary-50)}
+.m2-skill.is-top svg{color:var(--color-accent-500)}
+.m2-row{display:flex;flex-direction:column;border-radius:var(--space-16);background:var(--color-bg-surface);border:1px solid var(--color-border-default);overflow:hidden}
+.m2-row > div{display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-12) var(--space-16);border-top:1px solid var(--color-border-default)}
+.m2-row > div:first-child{border-top:0}
+.m2-row .ui-icon-box{width:36px;height:36px;flex:none}
+.m2-row-tx{flex:1;min-width:0}
+.m2-row-tx h6{margin:0;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.m2-row-tx small{display:block;margin-top:var(--space-2);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.m2-row-tx .ms-meta{margin-top:var(--space-4)}
+.m2-tl{display:flex;gap:0;overflow-x:auto;padding:var(--space-4) var(--space-16);scrollbar-width:none}
+.m2-tl::-webkit-scrollbar{display:none}
+.m2-tl > div{position:relative;flex:0 0 150px;padding-top:var(--space-24)}
+.m2-tl > div::before{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:var(--color-border-default)}
+.m2-tl > div::after{content:"";position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:var(--color-primary-600);box-shadow:0 0 0 4px var(--color-primary-50)}
+.m2-tl > div.is-now::after{background:var(--color-accent-500);box-shadow:0 0 0 4px var(--color-accent-100)}
+.m2-tl span{font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-accent-700)}
+.m2-tl b{display:block;padding-right:var(--space-12);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.m2-tl p{margin:var(--space-2) 0 0;padding-right:var(--space-12);font-size:var(--font-size-badge);color:var(--color-text-secondary)}
+.m2-sem{display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding:var(--space-16) var(--space-8);border-radius:var(--space-16);background:var(--color-bg-surface);border:1px solid var(--color-border-default);text-align:center}
+.m2-ring{--p:90;width:64px;height:64px;display:grid;place-items:center;border-radius:50%;background:conic-gradient(var(--color-success) calc(var(--p) * 1%),var(--color-gray-100) 0)}
+.m2-ring b{width:52px;height:52px;display:grid;place-items:center;border-radius:50%;background:var(--color-bg-surface);font-size:var(--font-size-body);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.m2-sem strong{font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.m2-sem small{font-size:var(--font-size-badge);color:var(--color-text-secondary)}
+.m2-seg{display:flex;padding:var(--space-4);border-radius:var(--space-12);background:var(--color-gray-100)}
+.m2-seg button{flex:1;min-height:40px;border:0;border-radius:var(--space-8);background:none;font:inherit;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);cursor:pointer}
+.m2-seg button.is-on{background:var(--color-bg-surface);color:var(--color-primary-600);box-shadow:0 1px 3px rgba(15,31,49,.12)}
+/* Skill Passport – version 3 (26/11): a real passport – ID page, stamps for certificates / awards, boarding-pass tickets, tabs, bottom nav */
+.m3-frame{background:var(--color-bg-page)}
+.m3-frame .mob-status{color:var(--color-text-heading)}
+.m3-top{display:flex;align-items:center;gap:var(--space-12);padding:var(--space-16) var(--space-16) 0}
+.m3-top h4{flex:1;margin:0;font-size:var(--font-size-h5);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.m3-ib{width:40px;height:40px;flex:none;display:grid;place-items:center;border:1px solid var(--color-border-default);border-radius:50%;background:var(--color-bg-surface);color:var(--color-primary-600);cursor:pointer}
+.m3-id{position:relative;margin:var(--space-16);padding:var(--space-16);border-radius:var(--space-16);background:var(--color-primary-700);color:var(--color-text-inverse);box-shadow:0 12px 24px rgba(15,31,49,.25);overflow:hidden}
+.m3-id::before{content:"";position:absolute;inset:6px;border:1px solid var(--color-accent-500);border-radius:var(--space-12);opacity:.55;pointer-events:none}
+.m3-id::after{content:"";position:absolute;right:-60px;bottom:-60px;width:200px;height:200px;border-radius:50%;border:24px solid rgba(255,255,255,.04);pointer-events:none}
+.m3-id-h{position:relative;display:flex;align-items:center;gap:var(--space-8);padding-bottom:var(--space-12);border-bottom:1px dashed rgba(255,255,255,.25)}
+.m3-emb{width:36px;height:36px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--color-accent-500);color:var(--color-text-inverse)}
+.m3-id-h div{flex:1;line-height:1.25}
+.m3-id-h small{display:block;font-size:var(--font-size-badge);letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-300)}
+.m3-id-h b{font-size:var(--font-size-body-lg);font-weight:var(--font-weight-bold);letter-spacing:.06em;text-transform:uppercase}
+.m3-ver{display:inline-flex;align-items:center;gap:var(--space-4);padding:var(--space-2) var(--space-8);border-radius:999px;background:var(--color-success);font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold)}
+.m3-id-b{position:relative;display:grid;grid-template-columns:96px minmax(0,1fr);gap:var(--space-16);padding-top:var(--space-12)}
+.m3-photo{height:120px;display:grid;place-items:center;border-radius:var(--space-8);background:var(--color-accent-500);border:2px solid var(--color-accent-300);font-size:var(--font-size-h1);font-weight:var(--font-weight-bold)}
+.m3-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-8) var(--space-12);align-content:start}
+.m3-fields div{min-width:0}
+.m3-fields .is-full{grid-column:1/-1}
+.m3-fields span{display:block;font-size:var(--font-size-badge);letter-spacing:.06em;text-transform:uppercase;color:var(--color-accent-300)}
+.m3-fields b{display:block;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);overflow-wrap:anywhere}
+.m3-mrz{position:relative;margin-top:var(--space-12);padding:var(--space-8);border-radius:var(--space-8);background:rgba(255,255,255,.06);font-size:var(--font-size-caption);line-height:1.5;letter-spacing:.18em;color:rgba(255,255,255,.75);white-space:nowrap;overflow:hidden}
+.m3-acts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-8);margin:0 var(--space-16)}
+.m3-tabs{position:sticky;top:0;z-index:2;display:flex;gap:var(--space-4);margin:var(--space-20) 0 0;padding:var(--space-8) var(--space-16);background:var(--color-bg-page);border-bottom:1px solid var(--color-border-default);overflow-x:auto;scrollbar-width:none}
+.m3-tabs::-webkit-scrollbar{display:none}
+.m3-tabs button{flex:none;display:inline-flex;align-items:center;gap:var(--space-4);min-height:40px;padding:0 var(--space-12);border:0;border-radius:999px;background:none;font:inherit;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary);cursor:pointer}
+.m3-tabs button.is-on{background:var(--color-primary-600);color:var(--color-text-inverse)}
+.m3-body{display:flex;flex-direction:column;gap:var(--space-24);padding:var(--space-20) var(--space-16) var(--space-24)}
+.m3-h{display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);margin-bottom:var(--space-12)}
+.m3-h h5{display:flex;align-items:center;gap:var(--space-8);margin:0;font-size:var(--font-size-body-lg);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.m3-h button{display:inline-flex;align-items:center;gap:var(--space-4);min-height:40px;padding:0 var(--space-8);border:0;background:none;font:inherit;font-size:var(--font-size-caption);font-weight:var(--font-weight-semibold);color:var(--color-primary-600);cursor:pointer}
+.m3-skills{display:flex;flex-wrap:wrap;gap:var(--space-8)}
+.m3-skills span{display:inline-flex;align-items:center;gap:var(--space-8);padding:var(--space-8) var(--space-12);border-radius:var(--space-8);background:var(--color-bg-surface);border-left:3px solid var(--color-accent-500);box-shadow:0 1px 2px rgba(15,31,49,.08);font-size:var(--font-size-body-sm);font-weight:var(--font-weight-medium);color:var(--color-text-heading)}
+.m3-stamps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16) var(--space-12)}
+.m3-stamp{--st:var(--color-success);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-2);padding:var(--space-16);border-radius:50%;border:2px dashed var(--st);box-shadow:inset 0 0 0 6px var(--color-bg-page),inset 0 0 0 7px var(--st);background:var(--color-bg-surface);color:var(--st);text-align:center;transform:rotate(-5deg)}
+.m3-stamp:nth-child(even){transform:rotate(4deg)}
+.m3-stamp.is-gold{--st:var(--color-accent-700)}
+.m3-stamp small{font-size:var(--font-size-badge);font-weight:var(--font-weight-bold);letter-spacing:.1em;text-transform:uppercase}
+.m3-stamp b{font-size:var(--font-size-caption);line-height:1.3;font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.m3-stamp span{font-size:var(--font-size-badge);color:var(--color-text-secondary)}
+.m3-tix{display:flex;flex-direction:column;gap:var(--space-12)}
+.m3-tik{position:relative;border-radius:var(--space-16);background:var(--color-bg-surface);box-shadow:0 1px 3px rgba(15,31,49,.1)}
+.m3-tik-a{display:flex;align-items:flex-start;gap:var(--space-12);padding:var(--space-16)}
+.m3-tik-a .ui-icon-box{width:40px;height:40px;flex:none}
+.m3-tik-a div{flex:1;min-width:0}
+.m3-tik-a h6{margin:0;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.m3-tik-a small{display:block;margin-top:var(--space-2);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.m3-tik-cut{position:relative;height:0;margin:0 var(--space-16);border-top:2px dashed var(--color-border-default)}
+.m3-tik-cut::before,.m3-tik-cut::after{content:"";position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:var(--color-bg-page)}
+.m3-tik-cut::before{left:-26px}
+.m3-tik-cut::after{right:-26px}
+.m3-tik-b{display:flex;flex-direction:column;gap:var(--space-12);padding:var(--space-16)}
+.m3-fromto{display:flex;align-items:center;gap:var(--space-8)}
+.m3-fromto div{min-width:0}
+.m3-fromto div:last-child{text-align:right}
+.m3-fromto span{display:block;font-size:var(--font-size-badge);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary)}
+.m3-fromto b{font-size:var(--font-size-body-lg);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.m3-fromto i{flex:1;position:relative;display:flex;align-items:center;justify-content:center;height:24px;font-style:normal;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.m3-fromto i::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px dotted var(--color-primary-100)}
+.m3-fromto i em{position:relative;padding:0 var(--space-8);background:var(--color-bg-surface);font-style:normal}
+.m3-list{display:flex;flex-direction:column;gap:var(--space-12)}
+.m3-doc{display:flex;gap:var(--space-12);padding:var(--space-16);border-radius:var(--space-16);background:var(--color-bg-surface);box-shadow:0 1px 3px rgba(15,31,49,.1)}
+.m3-doc .ui-icon-box{width:40px;height:40px;flex:none}
+.m3-doc > div{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-8)}
+.m3-doc h6{margin:0;font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-text-heading)}
+.m3-doc small{font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.m3-chart{padding:var(--space-16);border-radius:var(--space-16);background:var(--color-bg-surface);box-shadow:0 1px 3px rgba(15,31,49,.1)}
+.m3-chart-top{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--space-12);margin-bottom:var(--space-16)}
+.m3-chart-top b{font-size:var(--font-size-display);line-height:1;font-weight:var(--font-weight-bold);color:var(--color-primary-600)}
+.m3-chart-top span{display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.m3-bars{display:flex;align-items:flex-end;gap:var(--space-12);height:150px;padding-top:var(--space-20);border-bottom:1px solid var(--color-border-default)}
+.m3-bars div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.m3-bars b{font-size:var(--font-size-caption);font-weight:var(--font-weight-bold);color:var(--color-text-heading)}
+.m3-bars i{display:block;width:100%;max-width:40px;margin-top:var(--space-4);border-radius:var(--space-8) var(--space-8) 0 0;background:var(--color-primary-600)}
+.m3-bars div.is-best i{background:var(--color-accent-500)}
+.m3-bars-x{display:flex;gap:var(--space-12);margin-top:var(--space-8)}
+.m3-bars-x span{flex:1;text-align:center;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary)}
+.m3-nav{position:sticky;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);margin-top:auto;padding:var(--space-8) var(--space-8) var(--space-16);background:var(--color-bg-surface);border-top:1px solid var(--color-border-default)}
+.m3-nav span{display:flex;flex-direction:column;align-items:center;gap:var(--space-2);padding:var(--space-4) 0;font-size:var(--font-size-badge);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary)}
+.m3-nav span.is-on{color:var(--color-primary-600)}
+.m3-nav span.is-on svg{color:var(--color-accent-500)}
+.ms-foot-note{display:flex;align-items:flex-start;gap:var(--space-8);margin:0;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
 @media (max-width:575.98px){.ml-frame{border-radius:var(--space-16)}.ml-art{margin:var(--space-16) var(--space-16) 0}.ml-copy{padding:var(--space-24) var(--space-20) 0}.ml-foot{padding:var(--space-24) var(--space-20) var(--space-32)}.ml-copy h2{font-size:var(--font-size-h3);line-height:var(--line-height-h3)}}
 
 /* 3. Quick Services */
@@ -2080,6 +2328,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="uadmin" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
       <a href="#un-kcg" data-view="un-kcg" data-tip="Unnati Yojana" data-role="uceo" hidden><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
       <a href="#ksy-nep" data-view="ksy-nep" data-tip="KSY Applications" data-role="nep" hidden><span data-icon="document:f:18"></span><span class="nav-label">KSY Applications</span></a>
+      <a href="#ksy-nep-pay" data-view="ksy-nep-pay" data-tip="Ready for Payment" data-role="nep" hidden><span data-icon="award:f:18"></span><span class="nav-label">Ready for Payment</span></a>
       <a href="#my-apps" data-view="my-apps" data-tip="My Applications" data-role="student">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 2h8v3H8z"/><path fill-rule="evenodd" d="M6 4h1v2h10V4h1a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2zm2 7v2h8v-2H8zm0 4v2h5v-2H8z"/></svg>
         <span class="nav-label">My Applications</span>
@@ -2091,7 +2340,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       </a>
       <!-- Unnati Yojana (25/11): course-fee reimbursement – a separate module like KSY -->
       <a href="#unnati" data-view="unnati" data-tip="Unnati Yojana" data-role="student"><span data-icon="award:f:18"></span><span class="nav-label">Unnati Yojana</span></a>
-      <a href="#company-job" data-view="company-job" data-tip="Company Job Post" data-role-hide="hc co kcg ucons uadmin uceo">
+      <a href="#company-job" data-view="company-job" data-tip="Company Job Post" data-role-hide="hc co kcg ucons uadmin uceo nep">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5L14 3.5zM11 11v3H8v2h3v3h2v-3h3v-2h-3v-3h-2z"/></svg>
         <span class="nav-label">Company Job Post</span>
       </a>
@@ -2188,7 +2437,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 
     <!-- ===== VIEW: Student Dashboard (first page after Sign In; layout from USK_Prototype, rebuilt with the Design System) ===== -->
     <main class="content" id="view-dashboard" hidden>
-      <a class="db-appfab" href="#app-flows" title="Mobile App" aria-label="Open Mobile App screens" hidden><span data-icon="phone:f:20"></span></a>
+      <a class="db-appfab d-none" href="#app-flows" title="Mobile App" aria-label="Open Mobile App screens"><span data-icon="phone:f:20"></span></a>
       <div class="db" id="dbRoot">
         <!-- 1. Profile banner -->
         <section class="db-card db-profile" aria-label="Student profile">
@@ -4496,10 +4745,12 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <div><h3>Kaushalya Sahaay Yojana – Application</h3><p id="kfSub">Academic year <b id="kfYear"></b> · Internship: <b id="kfCompany"></b></p></div>
         <a class="ui-btn ui-btn-outline ui-btn-sm" href="#ksy"><span data-icon="arrow-left:l:14"></span>Kaushalya Sahaay Yojana</a>
       </div>
-      <section class="card sf-steps-card" id="kfStepsCard">
-        <ol class="ui-steps sf-steps" id="kfSteps" aria-label="Application steps"></ol>
-        <div class="sf-mstep" id="kfMStep"></div>
-      </section>
+      <div class="sf-layout" id="kfLayout">
+        <aside class="card sf-side" id="kfStepsCard">
+          <ol class="ui-steps is-vertical sf-steps" id="kfSteps" aria-label="Application steps"></ol>
+          <div class="sf-mstep" id="kfMStep"></div>
+        </aside>
+        <div class="sf-main">
       <div id="kfBody"></div>
       <section class="card sf-foot" id="kfFoot">
         <div class="sf-foot-row">
@@ -4511,6 +4762,8 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         </div>
       </section>
       <section class="card sf-done" id="kfDone" hidden></section>
+        </div>
+      </div>
     </main>
 
     <!-- ===== VIEW: My Applications → View Application (read-only) – COM-01.1 ===== -->
@@ -4640,9 +4893,11 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
           <tbody id="ksyNepBody"></tbody>
         </table></div>
       </section>
+    </main>
 
-      <!-- Disbursement (doc section 7 – the doc itself leaves this step pending; a simple "Mark as Paid" DBT simulation) -->
-      <div class="page-head" style="margin-top:var(--space-32)"><div><h3 style="font-size:var(--font-size-h5)">Ready for Payment</h3><p>Approved for the Direct Benefit Transfer (DBT) of ₹2,000. Marking paid here is a demo for the actual payment step, which the department has not finalised yet.</p></div></div>
+    <!-- ===== VIEW: KSY – NEP Cell, KCG – Ready for Payment (26/11: own sidebar menu). Disbursement (doc section 7 – the doc itself leaves this step pending; a simple "Mark as Paid" DBT simulation) ===== -->
+    <main class="content" id="view-ksy-nep-pay" hidden>
+      <div class="page-head"><div><h3>Ready for Payment</h3><p>Approved for the Direct Benefit Transfer (DBT) of ₹2,000. Marking paid here is a demo for the actual payment step, which the department has not finalised yet.</p></div></div>
       <section class="card table-card">
         <div class="ui-bulk">
           <span class="ui-bulk-count"><b id="ksyPayBulkText">No applications selected</b></span>
@@ -4699,14 +4954,13 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
 
     <!-- ===== VIEW: Kaushalya Sahaay Yojana – My Applications (26/11, header menu like Scholarships) ===== -->
     <main class="content" id="view-ksy-my" hidden>
-      <div class="page-head"><div><h3>My Applications</h3><p>Your Kaushalya Sahaay Yojana applications. Click View to see the status of one.</p></div></div>
+      <div class="page-head"><div><h3>My Applications</h3><p>Your Kaushalya Sahaay Yojana applications. Click View to see an application with its status.</p></div></div>
       <section class="card table-card">
         <div class="table-wrap"><table>
           <thead><tr><th>Application ID</th><th>Internship</th><th>Duration</th><th>Submitted Date</th><th>Status</th><th>Action</th></tr></thead>
           <tbody id="ksyMyBody"></tbody>
         </table></div>
       </section>
-      <div id="ksyMyStatus"></div>
     </main>
 
     <!-- ===== VIEW: Unnati Yojana – Application form (4 steps: Applicant, Course, Documents, Review) ===== -->
@@ -4715,10 +4969,12 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <div><h3>Unnati Yojana – Course Proposal</h3><p>Proposal form for a certified course. Fields with * are mandatory.</p></div>
         <a class="ui-btn ui-btn-outline ui-btn-sm" href="#unnati"><span data-icon="arrow-left:l:14"></span>Unnati Yojana</a>
       </div>
-      <section class="card sf-steps-card" id="unStepsCard">
-        <ol class="ui-steps sf-steps" id="unSteps" aria-label="Application steps"></ol>
-        <div class="sf-mstep" id="unMStep"></div>
-      </section>
+      <div class="sf-layout" id="unLayout">
+        <aside class="card sf-side" id="unStepsCard">
+          <ol class="ui-steps is-vertical sf-steps" id="unSteps" aria-label="Application steps"></ol>
+          <div class="sf-mstep" id="unMStep"></div>
+        </aside>
+        <div class="sf-main">
       <div id="unBody"></div>
       <section class="card sf-foot" id="unFoot">
         <div class="sf-foot-row">
@@ -4731,6 +4987,8 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         </div>
       </section>
       <section class="card sf-done" id="unDone" hidden></section>
+        </div>
+      </div>
     </main>
 
     <!-- ===== VIEW: Unnati Yojana – Submit completion (only after the CEO, KCG granted prior approval) ===== -->
@@ -4951,7 +5209,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <a class="card af-item" href="#app-login"><span class="ui-icon-box is-primary"><span data-icon="lock:f:20"></span></span><b>LOGIN FLOW<small>4 screens</small></b><span class="af-go"><span data-icon="arrow-right:l:16"></span></span></a>
         <div class="card af-item"><span class="ui-icon-box is-primary"><span data-icon="document:f:20"></span></span><b>COMMON SCREEN &amp; MODAL</b></div>
         <div class="card af-item"><span class="ui-icon-box is-primary"><span data-icon="calendar:f:20"></span></span><b>EVENTS &amp; GOVERNMENT SCHEMES &amp; ANNOUNCEMENT FLOW</b></div>
-        <div class="card af-item"><span class="ui-icon-box is-primary"><span data-icon="award:f:20"></span></span><b>SKILL PASSPORT FLOW</b></div>
+        <a class="card af-item" href="#app-passport"><span class="ui-icon-box is-primary"><span data-icon="award:f:20"></span></span><b>SKILL PASSPORT FLOW<small>1 screen · 3 versions</small></b><span class="af-go"><span data-icon="arrow-right:l:16"></span></span></a>
       </div>
     </main>
 
@@ -5024,6 +5282,53 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
             </div>
             <div class="ml-foot"><button class="ml-back" type="button" aria-label="Back"><span data-icon="arrow-left:l:18"></span></button><button class="ui-btn ui-btn-primary ui-btn-lg ui-btn-block" type="button">Get Started<span data-icon="arrow-right:l:16"></span></button></div>
           </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== VIEW: Mobile App – Skill Passport Flow (26/11): one long screen with all the web Skill Passport content, own mobile design ===== -->
+    <main class="content" id="view-app-passport" hidden>
+      <div class="card pf-head-card">
+        <div class="page-head af-head">
+          <div class="pf-title-row"><span class="ui-icon-box is-primary"><span data-icon="award:f:18"></span></span><div><h3>Skill Passport Flow</h3><p>Student Skill Passport · 3 versions · 430 px wide, long screens</p></div></div>
+          <a class="ui-btn ui-btn-outline ui-btn-sm" href="#app-flows"><span data-icon="arrow-left:l:14"></span>Back</a>
+        </div>
+      </div>
+      <div class="mob-screens">
+        <div class="mob-screen">
+          <div class="mob-label"><b>Skill Passport 01</b><span>The whole passport on one scrolling screen: identity, counts, skills, experience, research and academics.</span></div>
+          <div class="ml-frame ms-frame">
+            <div class="ms-head">
+              <div class="mob-status" data-ml-status></div>
+              <div class="ms-bar"><button class="ms-ibtn" type="button" aria-label="Back"><span data-icon="arrow-left:l:20"></span></button><h4>Skill Passport</h4><button class="ms-ibtn" type="button" aria-label="Share passport"><span data-icon="share:f:18"></span></button></div>
+              <div class="ms-id"><span class="ms-ava">AP</span><div class="ms-id-tx"><h3>Aarav Patel</h3><p>L.D. College of Engineering, Ahmedabad</p><span class="ms-ver"><span data-icon="check:l:14"></span>Verified</span></div></div>
+            </div>
+            <div class="ms-wrap" id="msBody"></div>
+          </div>
+        </div>
+        <div class="mob-screen">
+          <div class="mob-label"><b>Skill Passport 01 – Version 2</b><span>Same content, more app-like: centred profile, quick actions and swipe sliders for counts, certificates, internships, achievements, projects, journey and semesters.</span></div>
+          <div class="ml-frame ms-frame">
+            <div class="m2-head">
+              <div class="mob-status" data-ml-status></div>
+              <div class="ms-bar"><button class="ms-ibtn" type="button" aria-label="Back"><span data-icon="arrow-left:l:20"></span></button><h4>Skill Passport</h4><button class="ms-ibtn" type="button" aria-label="Settings"><span data-icon="settings:f:18"></span></button></div>
+              <div class="m2-ava">AP<span class="m2-tick" title="Verified"><span data-icon="check:l:14"></span></span></div>
+              <h3>Aarav Patel</h3>
+              <p>BE/B-Tech · Computer Engineering<br>L.D. College of Engineering, Ahmedabad</p>
+              <div class="m2-ids"><span>APAAR 45XXXX7781</span><span>CGPA 9.42</span></div>
+              <div class="m2-qa">
+                <button class="is-gold" type="button"><i><span data-icon="resume:f:20"></span></i>Passport</button>
+                <button type="button"><i><span data-icon="download:l:20"></span></i>Resume</button>
+                <button type="button"><i><span data-icon="share:f:20"></span></i>Share</button>
+                <button type="button"><i><span data-icon="user:f:20"></span></i>Profile</button>
+              </div>
+            </div>
+            <div class="m2-body" id="msBody2"></div>
+          </div>
+        </div>
+        <div class="mob-screen">
+          <div class="mob-label"><b>Skill Passport 01 – Version 3</b><span>A real passport: ID page with a machine-readable strip, tabs, certificates and awards as passport stamps, internships and projects as boarding-pass tickets, an SGPA bar chart and a bottom nav.</span></div>
+          <div class="ml-frame ms-frame m3-frame" id="msFrame3"></div>
         </div>
       </div>
     </main>
@@ -8432,6 +8737,145 @@ document.querySelectorAll("[data-lgsoon]").forEach(a => a.addEventListener("clic
 
 // Login Flow screens (20/11): reuse the one phone status bar markup instead of copying it into every frame
 $$("[data-ml-status]").forEach(el => { el.innerHTML = $(".mob-status:not([data-ml-status])").innerHTML; });
+/* Mobile App – Skill Passport screen (26/11): same content as skill-passport.html (sample data copied by hand), own mobile layout */
+const MSP = {
+  facts: [["APAAR / ABC ID", "45XXXX7781", "452819367781"], ["Email", "a•••••l@gmail.com", "aarav.patel.ldce@gmail.com"], ["Mobile", "98XXXX3210", "9876543210"], ["Date of Birth", "14/03/2005"], ["Gender", "Male"]],
+  skills: ["Java", "Python", "SQL", "Spring Boot", "React JS", "Data Structures and Algorithms", "Git", "Docker"],
+  certs: [["AWS Certified Cloud Practitioner", "Amazon Web Services · 18/06/2026", "Cloud Computing", "AWS-CCP-58H2K9", "International"], ["Java Programming Fundamentals", "NPTEL · IIT Kharagpur · 12/04/2026", "Java", "NPTEL26CS41S3", "National"]],
+  interns: [["Nexora Softech", "Web Development", "01/05/2026 – 30/06/2026", "02 Months", ["React JS", "REST APIs", "Git", "JavaScript", "HTML", "CSS"], "Internship_Certificate.pdf"], ["Sabar Fintech", "Backend Engineering", "08/12/2025 – 06/01/2026", "01 Month", ["Spring Boot", "SQL"], "Completion_Letter.pdf"]],
+  special: [["State Level Winner", "State", "Smart Gujarat Hackathon 2025 · Agri-Tech Track", "Student Startup & Innovation Hub · 15/02/2026", "Problem Solving"], ["Best Innovation Award", "University", "GTU Innovation Fest 2026", "GTU Innovation Council · 20/03/2026", "Ideation"]],
+  diss: [["Intrusion Detection in IoT Networks using Machine Learning", "Approved", "Dr. Mehul Patel", "15/04/2026", "A+", "A lightweight machine-learning model that detects unusual traffic in IoT networks in real time, tested on the CIC-IoT dataset with 96% accuracy and low memory use on edge devices."], ["Smart Traffic Signal Control using Reinforcement Learning", "Under Review", "Prof. Nirav Shah", "02/06/2026", "Pending", "A reinforcement-learning agent that adjusts signal timing from live camera counts, simulated on a 12-junction map of Ahmedabad with 18% shorter average waiting time."]],
+  research: [["A Lightweight Deep Learning Approach for IoT Intrusion Detection", "Published", "International Journal of Computer Applications · Journal", "Published 12/05/2026", "First Author", "Dr. Mehul Patel, Riya Shah", "10.5120/ijca2026-0123"], ["Comparative Study of Container Security Tools", "Under Review", "National Conference on Emerging Technologies (NCET) · Conference", "Submitted 20/08/2026", "Co-author", "", ""]],
+  projects: [["Smart Campus Attendance System", "Major Project", "Face-recognition attendance for classrooms with a teacher dashboard and monthly reports for the institute.", ["Java", "Spring Boot", "MySQL", "OpenCV"], "Semester 7 · Team 4 · Team Lead · 07/2026 – 11/2026", "View on GitHub", "github:f"], ["Library Management Portal", "Mini Project", "Book issue, return and fine tracking for the college library, with email reminders for due dates.", ["Hibernate", "SQL", "JavaScript"], "Semester 5 · Team 3 · Developer · 01/2026 – 04/2026", "Live Demo", "external:l"]],
+  journey: [["2020-2021", "SSC Completed", "Completed SSC with 91.20% from GSEB."], ["2022-2023", "HSC Completed", "Completed HSC with 86.40% from GSEB."], ["2023-2024", "BE/B-Tech – Computer Engineering", "Currently pursuing at L.D. College of Engineering, Ahmedabad.", true]],
+  current: [["University", "Gujarat Technological University", true], ["Institute", "L.D. College of Engineering, Ahmedabad", true], ["Degree / Program", "BE/B-Tech"], ["Branch", "Computer Engineering"], ["Enrollment No.", "230280107014"], ["Admission Year", "2023-2024"]],
+  sems: [["I", "DEC 2023 (WINTER)", 5, 20, "9.25"], ["II", "MAY 2024 (SUMMER)", 6, 22, "9.23"], ["III", "DEC 2024 (WINTER)", 6, 21, "9.62"], ["IV", "MAY 2025 (SUMMER)", 6, 21, "9.29"], ["V", "DEC 2025 (WINTER)", 5, 20, "9.75"]],
+  prev: [["SSC Academic Records", "Secondary School", [["Board Name", "GSEB"], ["Passing Year", "2020-2021"], ["School Name", "Shree Swaminarayan Vidyalaya", 1], ["Seat Number", "B 4XXXX17"], ["Percentage", "91.20%"]]], ["HSC Academic Records", "Higher Secondary School", [["Board Name", "GSEB"], ["Stream", "Science"], ["School Name", "Shree Swaminarayan Vidyalaya", 1], ["Seat Number", "E 1XXXX52"], ["Passing Year", "2022-2023"], ["Percentage", "86.40%"]]]],
+  show: false
+};
+function mspRender() {
+  const box = $("#msBody"); if (!box) return;
+  const ic = (t, sz) => { const [n, st] = t.split(":"); return iconSvg(n, st, sz); };
+  const badge = st => `<span class="ui-badge ${st === "Approved" || st === "Published" ? "ui-badge-approved" : "ui-badge-review"}">${esc(st)}</span>`;
+  const more = `<button class="ms-more" type="button" aria-label="More actions">${ic("more:f", 18)}</button>`;
+  const sec = (icon, tone, title, sub, n, act, body) => `<section class="ms-card"><div class="ms-sec-h"><span class="ui-icon-box is-${tone}">${ic(icon, 18)}</span><div class="ms-sec-t"><h5>${esc(title)}${n != null ? `<span class="ms-cnt">${n}</span>` : ""}</h5><p>${esc(sub)}</p></div>${act ? `<button class="ms-act" type="button" aria-label="${act === "edit" ? "Edit" : "Add"} ${esc(title)}">${ic(act === "edit" ? "edit:f" : "plus:l", 18)}</button>` : ""}</div>${body}</section>`;
+  const chips = (a, dark) => `<div class="ms-chips">${a.map(k => `<span class="ms-chip${dark ? " is-dark" : ""}">${esc(k)}</span>`).join("")}</div>`;
+  const item = (icon, tone, title, sub, extra, right) => `<div class="ms-item"><div class="ms-item-top"><span class="ui-icon-box is-${tone}">${ic(icon, 16)}</span><div class="ms-item-tx"><h6>${esc(title)}</h6><small>${esc(sub)}</small></div>${right || more}</div>${extra}</div>`;
+  const stats = [["star:f", "error", MSP.skills.length, "Skills"], ["award:f", "success", MSP.certs.length, "Certificates"], ["briefcase:f", "info", MSP.interns.length, "Internships"], ["trophy:f", "success", MSP.special.length, "Achievements"], ["book:f", "primary", MSP.diss.length, "Dissertation"], ["research:f", "warning", MSP.research.length, "Research"], ["code:f", "primary", MSP.projects.length, "Projects"], ["graduation:f", "primary", MSP.sems.length, "Semesters"]];
+  box.innerHTML = `
+    <section class="ms-card">
+      <div class="ms-card-h"><b>Personal details</b><button class="ms-eye" type="button" data-ms-eye aria-pressed="${MSP.show}">${ic(MSP.show ? "eye-off:o" : "view:o", 16)}${MSP.show ? "Hide" : "Show"}</button></div>
+      <ul class="ms-facts">${MSP.facts.map(f => `<li><span>${esc(f[0])}</span><b>${esc(MSP.show && f[2] ? f[2] : f[1])}</b></li>`).join("")}</ul>
+      <div class="ms-soc">${["linkedin", "github", "instagram", "facebook"].map(n => `<button type="button" aria-label="Open your ${n} profile">${ic(n + ":f", 18)}</button>`).join("")}</div>
+      <div class="ms-cta"><button class="ui-btn ui-btn-accent ui-btn-lg ui-btn-block" type="button">${ic("resume:f", 18)}Generate Passport</button><button class="ui-btn ui-btn-outline ui-btn-block" type="button">${ic("download:l", 16)}Download Resume</button></div>
+    </section>
+    <div class="ms-stats">${stats.map(([i, t, n, l]) => `<div class="ms-stat"><span class="ui-icon-box is-${t}">${ic(i, 16)}</span><b>${n}</b><span>${l}</span></div>`).join("")}</div>
+    ${sec("briefcase:f", "primary", "Job Oriented Skill", "Skills that prepare you for career opportunities.", MSP.skills.length, "edit", chips(MSP.skills))}
+    ${sec("award:f", "success", "Certifications", "Recognized learning. Real progress.", MSP.certs.length, "add", `<div class="ms-list">${MSP.certs.map(c => item("award:f", "success", c[0], c[1], `<div class="ms-meta"><span class="ms-chip is-dark">${esc(c[2])}</span><span>ID <b>${esc(c[3])}</b></span><span>Level <b>${esc(c[4])}</b></span></div>`)).join("")}</div>`)}
+    ${sec("briefcase:f", "info", "Internship", "Your practical experience and industry exposure.", MSP.interns.length, "add", `<div class="ms-list">${MSP.interns.map(x => item("briefcase:f", "info", x[0], x[1], `<div class="ms-meta">${ic("calendar:o", 14)}<b>${esc(x[2])}</b><span>${esc(x[3])}</span></div><span class="ms-lbl">Skills used</span>${chips(x[4])}<a class="ms-link" href="#" onclick="return false">${ic("document:o", 14)}${esc(x[5])}</a>`)).join("")}</div>`)}
+    ${sec("trophy:f", "success", "Special Achievements", "Awards and recognitions you have earned.", MSP.special.length, "add", `<div class="ms-list">${MSP.special.map(x => item("trophy:f", "success", x[0], x[2], `<div class="ms-meta"><span class="ui-badge ui-badge-neutral">${esc(x[1])}</span><span>${esc(x[3])}</span></div>${chips([x[4]])}`)).join("")}</div>`)}
+    ${sec("book:f", "primary", "College Dissertation", "Your final-year dissertation or thesis.", MSP.diss.length, "add", `<div class="ms-list">${MSP.diss.map(x => item("book:f", "primary", x[0], "Guide " + x[2], `<div class="ms-meta">${badge(x[1])}<span>Submitted <b>${esc(x[3])}</b></span><span>Grade <b>${esc(x[4])}</b></span></div><p class="ms-text">${esc(x[5])}</p>`)).join("")}</div>`)}
+    ${sec("research:f", "warning", "Research Details", "Papers, journals and conference publications.", MSP.research.length, "add", `<div class="ms-list">${MSP.research.map(x => item("research:f", "warning", x[0], x[2], `<div class="ms-meta">${badge(x[1])}<span>${esc(x[3])}</span><span>Role <b>${esc(x[4])}</b></span></div>${x[5] ? `<p class="ms-text">Co-authors: ${esc(x[5])}</p>` : ""}${x[6] ? `<span class="ms-link">${ic("link:l", 14)}DOI: ${esc(x[6])}</span>` : ""}`)).join("")}</div>`)}
+    ${sec("code:f", "primary", "College Projects", "Projects you built during your course.", MSP.projects.length, "add", `<div class="ms-list">${MSP.projects.map(x => item("code:f", "primary", x[0], x[1], `<p class="ms-text">${esc(x[2])}</p>${chips(x[3])}<div class="ms-meta">${esc(x[4])}</div><span class="ms-link">${ic(x[6], 14)}${esc(x[5])}</span>`)).join("")}</div>`)}
+    ${sec("star:f", "accent", "Your Journey", "A timeline of your learning and experiences.", null, "", `<ul class="ms-tl">${MSP.journey.map(j => `<li class="${j[3] ? "is-now" : ""}"><span class="ms-tl-dot">${ic("graduation:f", 16)}</span><div class="ms-tl-tx"><span>${esc(j[0])}${j[3] ? " · Now" : ""}</span><b>${esc(j[1])}</b><p>${esc(j[2])}</p></div></li>`).join("")}</ul>`)}
+    ${sec("graduation:f", "primary", "Current Academic Record", "Your current educational journey.", null, "", `<div class="ms-kv">${MSP.current.map(c => `<div class="${c[2] ? "is-full" : ""}"><span>${esc(c[0])}</span><b>${esc(c[1])}</b></div>`).join("")}</div>`)}
+    ${sec("document:f", "primary", "Semester-wise Performance", "Tap a semester to see its marks.", MSP.sems.length, "", `<div class="ms-cgpa"><div class="ms-cgpa-big"><b>9.42</b><span>CGPA</span></div><div class="ms-cgpa-g"><div><b>104</b><span>Total credits</span></div><div><b>28</b><span>Courses</span></div><div><b>980</b><span>Credit points</span></div><div><b>5</b><span>Semesters</span></div></div></div>
+      <span class="ms-dl">${ic("check:l", 14)}Trusted Source: DigiLocker</span>
+      <div class="ms-sems">${MSP.sems.map(m => `<div class="ms-sem"><span class="ms-sem-n">${m[0]}</span><div class="ms-sem-tx"><b>Semester ${m[0]}</b><small>${m[2]} Courses · ${m[3]} Credits · ${esc(m[1])}</small><div class="ms-bar-p"><i style="width:${parseFloat(m[4]) * 10}%"></i></div></div><div class="ms-sem-g"><b>${m[4]}</b><span>SGPA</span></div>${ic("chevron-down:l", 16)}</div>`).join("")}</div>`)}
+    ${sec("home:f", "primary", "Previous Academic Records", "Your previous educational journey.", MSP.prev.length, "", `<div class="ms-list">${MSP.prev.map(p => `<div class="ms-item"><div class="ms-item-top"><span class="ui-icon-box is-primary">${ic("graduation:f", 16)}</span><div class="ms-item-tx"><h6>${esc(p[0])}</h6><small>${esc(p[1])}</small></div><button class="ms-more" type="button" aria-label="Edit ${esc(p[0])}">${ic("edit:f", 16)}</button></div><div class="ms-kv">${p[2].map(r => `<div class="${r[2] ? "is-full" : ""}"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("")}</div></div>`).join("")}</div>`)}
+    <p class="ms-foot-note">${ic("info:o", 16)}Academic records come from DigiLocker. Other details are added by you and can be edited.</p>`;
+}
+mspRender();
+document.addEventListener("click", e => { if (e.target.closest("[data-ms-eye]")) { MSP.show = !MSP.show; mspRender(); } });
+/* Version 2 (26/11): same MSP data, sliders (scroll-snap) in some sections; the dots follow the slider */
+const MSP2 = { tab: "diss" };
+function msp2Render() {
+  const box = $("#msBody2"); if (!box) return;
+  const ic = (t, sz) => { const [n, st] = t.split(":"); return iconSvg(n, st, sz); };
+  const badge = st => `<span class="ui-badge ${st === "Approved" || st === "Published" ? "ui-badge-approved" : "ui-badge-review"}">${esc(st)}</span>`;
+  const head = (title, n, link) => `<div class="m2-sec-h"><h5>${esc(title)}${n != null ? `<span class="ms-cnt">${n}</span>` : ""}</h5>${link ? `<button type="button">${esc(link)}${ic("arrow-right:l", 14)}</button>` : ""}</div>`;
+  const slider = (items, cls) => `<div class="m2-slider${cls ? " " + cls : ""}" data-m2-slider>${items.join("")}</div>${items.length > 1 && !cls ? `<div class="m2-dots">${items.map((_, k) => `<i class="${k ? "" : "on"}"></i>`).join("")}</div>` : ""}`;
+  const chips = a => `<div class="ms-chips">${a.map(k => `<span class="ms-chip">${esc(k)}</span>`).join("")}</div>`;
+  const stats = [["star:f", "error", MSP.skills.length, "Skills"], ["award:f", "success", MSP.certs.length, "Certificates"], ["briefcase:f", "info", MSP.interns.length, "Internships"], ["trophy:f", "success", MSP.special.length, "Achievements"], ["book:f", "primary", MSP.diss.length, "Dissertation"], ["research:f", "warning", MSP.research.length, "Research"], ["code:f", "primary", MSP.projects.length, "Projects"], ["graduation:f", "primary", MSP.sems.length, "Semesters"]];
+  const tabList = MSP2.tab === "diss"
+    ? MSP.diss.map(x => `<div><span class="ui-icon-box is-primary">${ic("book:f", 16)}</span><div class="m2-row-tx"><h6>${esc(x[0])}</h6><small>Guide ${esc(x[2])} · Submitted ${esc(x[3])}</small><div class="ms-meta">${badge(x[1])}<span>Grade <b>${esc(x[4])}</b></span></div></div></div>`)
+    : MSP.research.map(x => `<div><span class="ui-icon-box is-warning">${ic("research:f", 16)}</span><div class="m2-row-tx"><h6>${esc(x[0])}</h6><small>${esc(x[2])}</small><div class="ms-meta">${badge(x[1])}<span>${esc(x[3])}</span><span>Role <b>${esc(x[4])}</b></span></div></div></div>`);
+  box.innerHTML = `
+    <div class="m2-sec">${head("Overview", null, "")}${slider(stats.map(([i, t, n, l]) => `<div class="m2-stat"><span class="ui-icon-box is-${t}">${ic(i, 16)}</span><b>${n}</b><span>${l}</span></div>`), "is-small")}</div>
+    <div class="m2-sec">${head("Job Oriented Skill", MSP.skills.length, "Edit")}<div class="m2-pad m2-skills">${MSP.skills.map((k, n) => `<span class="m2-skill${n < 3 ? " is-top" : ""}">${n < 3 ? ic("star:f", 14) : ""}${esc(k)}</span>`).join("")}</div></div>
+    <div class="m2-sec">${head("Certifications", MSP.certs.length, "Add")}${slider(MSP.certs.map(c => `<div class="m2-tile"><div class="m2-tile-band is-green"><b>${esc(c[4])}</b>${ic("award:f", 18)}</div><h6>${esc(c[0])}</h6><small>${esc(c[1])}</small><div class="ms-meta"><span class="ms-chip is-dark">${esc(c[2])}</span><span>ID <b>${esc(c[3])}</b></span></div></div>`))}</div>
+    <div class="m2-sec">${head("Internship", MSP.interns.length, "Add")}${slider(MSP.interns.map(x => `<div class="m2-tile"><div class="m2-tile-band"><b>${esc(x[3])}</b>${ic("briefcase:f", 18)}</div><h6>${esc(x[0])}</h6><small>${esc(x[1])} · ${esc(x[2])}</small>${chips(x[4])}<span class="ms-link">${ic("document:o", 14)}${esc(x[5])}</span></div>`))}</div>
+    <div class="m2-sec">${head("Special Achievements", MSP.special.length, "Add")}${slider(MSP.special.map(x => `<div class="m2-tile"><div class="m2-tile-band is-gold"><b>${esc(x[1])} level</b>${ic("trophy:f", 18)}</div><h6>${esc(x[0])}</h6><small>${esc(x[2])}</small><small>${esc(x[3])}</small>${chips([x[4]])}</div>`))}</div>
+    <div class="m2-sec">${head("Dissertation & Research", null, "Add")}<div class="m2-pad"><div class="m2-seg" role="tablist"><button type="button" role="tab" class="${MSP2.tab === "diss" ? "is-on" : ""}" aria-selected="${MSP2.tab === "diss"}" data-m2-tab="diss">Dissertation (${MSP.diss.length})</button><button type="button" role="tab" class="${MSP2.tab === "res" ? "is-on" : ""}" aria-selected="${MSP2.tab === "res"}" data-m2-tab="res">Research (${MSP.research.length})</button></div></div><div class="m2-pad"><div class="m2-row">${tabList.join("")}</div></div></div>
+    <div class="m2-sec">${head("College Projects", MSP.projects.length, "Add")}${slider(MSP.projects.map(x => `<div class="m2-tile"><div class="m2-tile-band"><b>${esc(x[1])}</b>${ic("code:f", 18)}</div><h6>${esc(x[0])}</h6><p class="ms-text">${esc(x[2])}</p>${chips(x[3])}<small>${esc(x[4])}</small><span class="ms-link">${ic(x[6], 14)}${esc(x[5])}</span></div>`))}</div>
+    <div class="m2-sec">${head("Your Journey", null, "View all")}<div class="m2-tl">${MSP.journey.map(j => `<div class="${j[3] ? "is-now" : ""}"><span>${esc(j[0])}</span><b>${esc(j[1])}</b><p>${esc(j[2])}</p></div>`).join("")}</div></div>
+    <div class="m2-sec">${head("Semester-wise Performance", MSP.sems.length, "")}<div class="m2-pad"><div class="ms-cgpa"><div class="ms-cgpa-big"><b>9.42</b><span>CGPA</span></div><div class="ms-cgpa-g"><div><b>104</b><span>Total credits</span></div><div><b>28</b><span>Courses</span></div><div><b>980</b><span>Credit points</span></div><div><b>${MSP.sems.length}</b><span>Semesters</span></div></div></div><span class="ms-dl">${ic("check:l", 14)}Trusted Source: DigiLocker</span></div>${slider(MSP.sems.map(m => `<div class="m2-sem"><span class="m2-ring" style="--p:${parseFloat(m[4]) * 10}"><b>${m[4]}</b></span><strong>Semester ${m[0]}</strong><small>${m[3]} Credits · ${m[2]} Courses</small><small>${esc(m[1])}</small></div>`), "is-mid")}</div>
+    <div class="m2-sec">${head("Academic Records", null, "")}<div class="m2-pad"><div class="m2-row">
+      <div><span class="ui-icon-box is-primary">${ic("graduation:f", 16)}</span><div class="m2-row-tx"><h6>BE/B-Tech · Computer Engineering</h6><small>Gujarat Technological University · L.D. College of Engineering, Ahmedabad</small><small>Enrollment 230280107014 · Admission 2023-2024</small></div></div>
+      ${MSP.prev.map(p => `<div><span class="ui-icon-box is-info">${ic("book:f", 16)}</span><div class="m2-row-tx"><h6>${esc(p[0].replace(" Academic Records", ""))} · ${esc(p[2].find(r => r[0] === "Percentage")[1])}</h6><small>${esc(p[2].find(r => r[0] === "School Name")[1])} · ${esc(p[2].find(r => r[0] === "Board Name")[1])} · ${esc(p[2].find(r => r[0] === "Passing Year")[1])}</small></div></div>`).join("")}
+    </div></div></div>
+    <div class="m2-pad"><p class="ms-foot-note">${ic("info:o", 16)}Academic records come from DigiLocker. Other details are added by you and can be edited.</p></div>`;
+}
+msp2Render();
+document.addEventListener("click", e => { const t = e.target.closest("[data-m2-tab]"); if (t) { MSP2.tab = t.dataset.m2Tab; msp2Render(); } });
+/* Version 3 (26/11): passport theme. Tabs switch the content (Skills · Experience · Research · Academics) */
+const MSP3 = { tab: "skills" };
+function msp3Render() {
+  const fr = $("#msFrame3"); if (!fr) return;
+  const ic = (t, sz) => { const [n, st] = t.split(":"); return iconSvg(n, st, sz); };
+  const badge = st => `<span class="ui-badge ${st === "Approved" || st === "Published" ? "ui-badge-approved" : "ui-badge-review"}">${esc(st)}</span>`;
+  const chips = a => `<div class="ms-chips">${a.map(k => `<span class="ms-chip">${esc(k)}</span>`).join("")}</div>`;
+  const h = (t, n, act) => `<div class="m3-h"><h5>${esc(t)}${n != null ? `<span class="ms-cnt">${n}</span>` : ""}</h5>${act ? `<button type="button">${ic(act === "Edit" ? "edit:f" : "plus:l", 14)}${act}</button>` : ""}</div>`;
+  const tabs = [["skills", "star:f", "Skills"], ["exp", "briefcase:f", "Experience"], ["res", "research:f", "Research"], ["acad", "graduation:f", "Academics"]];
+  const ticket = (icon, tone, title, sub, from, to, mid, extra) => `<div class="m3-tik"><div class="m3-tik-a"><span class="ui-icon-box is-${tone}">${ic(icon, 18)}</span><div><h6>${esc(title)}</h6><small>${esc(sub)}</small></div></div><div class="m3-tik-cut"></div><div class="m3-tik-b"><div class="m3-fromto"><div><span>From</span><b>${esc(from)}</b></div><i><em>${esc(mid)}</em></i><div><span>To</span><b>${esc(to)}</b></div></div>${extra}</div></div>`;
+  const sg = MSP.sems.map(m => parseFloat(m[4])), best = Math.max(...sg);
+  let body = "";
+  if (MSP3.tab === "skills") body = `
+    <div>${h("Job Oriented Skill", MSP.skills.length, "Edit")}<div class="m3-skills">${MSP.skills.map(k => `<span>${esc(k)}</span>`).join("")}</div></div>
+    <div>${h("Stamps", MSP.certs.length + MSP.special.length, "Add")}<div class="m3-stamps">
+      ${MSP.certs.map(c => `<div class="m3-stamp"><small>Certified</small><b>${esc(c[0])}</b><span>${esc(c[1].split(" · ")[0])}</span><span>${esc(c[1].split(" · ").pop())}</span></div>`).join("")}
+      ${MSP.special.map(x => `<div class="m3-stamp is-gold"><small>${esc(x[1])} award</small><b>${esc(x[0])}</b><span>${esc(x[2].split(" · ")[0])}</span><span>${esc(x[3].split(" · ").pop())}</span></div>`).join("")}
+    </div></div>
+    <div>${h("Certificate details", MSP.certs.length, "")}<div class="m3-list">${MSP.certs.map(c => `<div class="m3-doc"><span class="ui-icon-box is-success">${ic("award:f", 18)}</span><div><h6>${esc(c[0])}</h6><small>${esc(c[1])}</small><div class="ms-meta"><span class="ms-chip is-dark">${esc(c[2])}</span><span>ID <b>${esc(c[3])}</b></span><span>Level <b>${esc(c[4])}</b></span></div></div></div>`).join("")}</div></div>`;
+  if (MSP3.tab === "exp") body = `
+    <div>${h("Internship", MSP.interns.length, "Add")}<div class="m3-tix">${MSP.interns.map(x => { const [f, t] = x[2].split(" – "); return ticket("briefcase:f", "info", x[0], x[1], f, t, x[3], `<span class="ms-lbl">Skills used</span>${chips(x[4])}<span class="ms-link">${ic("document:o", 14)}${esc(x[5])}</span>`); }).join("")}</div></div>
+    <div>${h("College Projects", MSP.projects.length, "Add")}<div class="m3-tix">${MSP.projects.map(x => { const m = x[4].match(/(\d\d\/\d{4}) – (\d\d\/\d{4})/); return ticket("code:f", "primary", x[0], x[1] + " · " + x[4].split(" · ").slice(0, 3).join(" · "), m[1], m[2], "Project", `<p class="ms-text">${esc(x[2])}</p>${chips(x[3])}<span class="ms-link">${ic(x[6], 14)}${esc(x[5])}</span>`); }).join("")}</div></div>
+    <div>${h("Your Journey", null, "")}<ul class="ms-tl">${MSP.journey.map(j => `<li class="${j[3] ? "is-now" : ""}"><span class="ms-tl-dot">${ic("graduation:f", 16)}</span><div class="ms-tl-tx"><span>${esc(j[0])}${j[3] ? " · Now" : ""}</span><b>${esc(j[1])}</b><p>${esc(j[2])}</p></div></li>`).join("")}</ul></div>`;
+  if (MSP3.tab === "res") body = `
+    <div>${h("College Dissertation", MSP.diss.length, "Add")}<div class="m3-list">${MSP.diss.map(x => `<div class="m3-doc"><span class="ui-icon-box is-primary">${ic("book:f", 18)}</span><div><h6>${esc(x[0])}</h6><small>Guide ${esc(x[2])} · Submitted ${esc(x[3])}</small><div class="ms-meta">${badge(x[1])}<span>Grade <b>${esc(x[4])}</b></span></div><p class="ms-text">${esc(x[5])}</p></div></div>`).join("")}</div></div>
+    <div>${h("Research Details", MSP.research.length, "Add")}<div class="m3-list">${MSP.research.map(x => `<div class="m3-doc"><span class="ui-icon-box is-warning">${ic("research:f", 18)}</span><div><h6>${esc(x[0])}</h6><small>${esc(x[2])}</small><div class="ms-meta">${badge(x[1])}<span>${esc(x[3])}</span><span>Role <b>${esc(x[4])}</b></span></div>${x[5] ? `<small>Co-authors: ${esc(x[5])}</small>` : ""}${x[6] ? `<span class="ms-link">${ic("link:l", 14)}DOI: ${esc(x[6])}</span>` : ""}</div></div>`).join("")}</div></div>`;
+  if (MSP3.tab === "acad") body = `
+    <div>${h("Semester-wise Performance", MSP.sems.length, "")}<div class="m3-chart"><div class="m3-chart-top"><div><b>9.42</b><span>CGPA · 104 credits · 28 courses</span></div><span class="ms-dl">${ic("check:l", 14)}DigiLocker</span></div>
+      <div class="m3-bars">${MSP.sems.map((m, k) => `<div class="${sg[k] === best ? "is-best" : ""}"><b>${m[4]}</b><i style="height:${Math.round((sg[k] - 8) / 2 * 100)}%"></i></div>`).join("")}</div>
+      <div class="m3-bars-x">${MSP.sems.map(m => `<span>Sem ${m[0]}</span>`).join("")}</div></div></div>
+    <div>${h("Current Academic Record", null, "")}<div class="m3-doc"><span class="ui-icon-box is-primary">${ic("graduation:f", 18)}</span><div><div class="ms-kv">${MSP.current.map(c => `<div class="${c[2] ? "is-full" : ""}"><span>${esc(c[0])}</span><b>${esc(c[1])}</b></div>`).join("")}</div></div></div></div>
+    <div>${h("Previous Academic Records", MSP.prev.length, "")}<div class="m3-list">${MSP.prev.map(p => `<div class="m3-doc"><span class="ui-icon-box is-info">${ic("book:f", 18)}</span><div><h6>${esc(p[0])}</h6><small>${esc(p[1])}</small><div class="ms-kv">${p[2].map(r => `<div class="${r[2] ? "is-full" : ""}"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("")}</div></div></div>`).join("")}</div></div>`;
+  fr.innerHTML = `
+    <div class="mob-status">${$(".mob-status:not([data-ml-status])").innerHTML}</div>
+    <div class="m3-top"><button class="m3-ib" type="button" aria-label="Back">${ic("arrow-left:l", 20)}</button><h4>My Skill Passport</h4><button class="m3-ib" type="button" aria-label="Share passport">${ic("share:f", 18)}</button></div>
+    <div class="m3-id">
+      <div class="m3-id-h"><span class="m3-emb">${ic("award:f", 18)}</span><div><small>Government of Gujarat</small><b>Skill Passport</b></div><span class="m3-ver">${ic("check:l", 12)}Verified</span></div>
+      <div class="m3-id-b"><span class="m3-photo">AP</span><div class="m3-fields">
+        <div class="is-full"><span>Name</span><b>Aarav Patel</b></div>
+        <div><span>APAAR / ABC ID</span><b>45XXXX7781</b></div><div><span>Date of Birth</span><b>14/03/2005</b></div>
+        <div><span>Gender</span><b>Male</b></div><div><span>Mobile</span><b>98XXXX3210</b></div>
+        <div class="is-full"><span>Institute</span><b>L.D. College of Engineering, Ahmedabad</b></div>
+      </div></div>
+      <div class="m3-mrz">P&lt;IND&lt;PATEL&lt;&lt;AARAV&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>45XXXX7781&lt;GTU&lt;CE&lt;2023&lt;CGPA942&lt;&lt;&lt;</div>
+    </div>
+    <div class="m3-acts"><button class="ui-btn ui-btn-accent ui-btn-block" type="button">${ic("resume:f", 16)}Generate Passport</button><button class="ui-btn ui-btn-outline ui-btn-block" type="button">${ic("download:l", 16)}Resume</button></div>
+    <div class="m3-tabs" role="tablist">${tabs.map(([k, i, l]) => `<button type="button" role="tab" class="${MSP3.tab === k ? "is-on" : ""}" aria-selected="${MSP3.tab === k}" data-m3-tab="${k}">${ic(i, 14)}${l}</button>`).join("")}</div>
+    <div class="m3-body">${body}<p class="ms-foot-note">${ic("info:o", 16)}Academic records come from DigiLocker. Other details are added by you and can be edited.</p></div>
+    <nav class="m3-nav" aria-label="App navigation"><span>${ic("home:f", 20)}Home</span><span class="is-on">${ic("award:f", 20)}Passport</span><span>${ic("briefcase:f", 20)}Jobs</span><span>${ic("user:f", 20)}Profile</span></nav>`;
+}
+msp3Render();
+document.addEventListener("click", e => { const t = e.target.closest("[data-m3-tab]"); if (t) { MSP3.tab = t.dataset.m3Tab; msp3Render(); } });
+document.addEventListener("scroll", e => {                              // slider dots follow the card in view
+  const sl = e.target.closest ? e.target.closest("[data-m2-slider]") : null; if (!sl) return;
+  const dots = sl.nextElementSibling; if (!dots || !dots.classList.contains("m2-dots")) return;
+  const w = sl.firstElementChild.getBoundingClientRect().width + 12, n = Math.round(sl.scrollLeft / w);
+  [...dots.children].forEach((d, k) => d.classList.toggle("on", k === Math.min(n, dots.children.length - 1)));
+}, true);
 /* Mobile App screens: See Eligibility / back scroll to the screen, Apply Now shows what it will do */
 (function () {
   const root = document.getElementById("view-mobile-app");
@@ -8819,7 +9263,6 @@ const SF_AADHAAR_TEST = "12341234" + SF_AADHAAR_LAST4;                          
 // 25/11: the scholarship is paid by DBT to the bank account seeded with the Aadhaar – tell the student, and ask them to link it first if it is not
 const SF_AAD_CONSENT = "I agree that my Aadhaar number is used to verify my identity with DigiLocker, and that the scholarship amount is paid by DBT to the bank account linked (seeded) with this Aadhaar.";
 const sfAadConsent = () => `<label class="sf-decl sf-consent sf-full${F.aadConsent ? " is-on" : ""}"><input class="ui-cb" type="checkbox" data-sf-consent ${F.aadConsent ? "checked" : ""} ${F.aadOk && F.aadConsent ? "disabled" : ""}><span><b>Consent for Aadhaar use<span class="ui-req">*</span></b>${esc(SF_AAD_CONSENT)}</span></label>`;
-const sfAadhaarBank = () => `<div class="sf-note sf-full">${iconSvg("info", "o", 16)}<span><b>The scholarship is paid to the bank account linked with this Aadhaar.</b> The amount is sent by DBT to the bank account that is linked (seeded) with your Aadhaar number – bank details are not asked in this form. If your Aadhaar is not linked with your bank account yet, visit your bank and link it first, otherwise the payment cannot be made.</span></div>`;
 // Prefilled values from verified sources (differs per student; here one sample student)
 const SF_PREFILL = {
   name: ["Aarav Patel", "DigiLocker"], dob: ["14/03/2005", "DigiLocker"], gender: ["Male", "DigiLocker"],
@@ -9043,7 +9486,7 @@ function sfStepHtml(i) {
     if (i === 3 && s.t === "Income Details") extra = F.incApi === true ? `<div class="sf-note is-ok sf-full">${iconSvg("check", "l", 16)}<span>Income details received from the income API (locked).</span></div>` : F.incApi === false ? `<div class="sf-note is-warn sf-full">${iconSvg("warning", "f", 16)}<span>Details were not received. Enter the income yourself and upload the Income Certificate in Upload Documents.</span></div>` : "";
     else if (i === 4) extra = F.aadOk ? `<div class="sf-note is-ok sf-full">${iconSvg("check", "l", 16)}<span>Verified with DigiLocker · XXXX XXXX ${SF_AADHAAR_LAST4}. Your DigiLocker photo is added to Upload Documents.</span></div>` : "";
     else extra = "";
-    if (i === 4) extra = sfAadConsent() + sfAadhaarBank() + extra;
+    if (i === 4) extra = sfAadConsent() + extra;   // 26/11 (user): the bank-link note is removed – the consent checkbox already says it
     return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>${esc(s.t)}</h5><p>${esc(s.p)}</p></div><div class="sf-grid">${s.f.map(sfFieldHtml).join("")}${extra}</div></section>`;
   }).join("");
 }
@@ -10513,7 +10956,7 @@ function ksySeedApp(spec, idx) {
       basic: [["Full Name", spec.name], ["APAAR ID", "45281936" + (7790 + idx)], ["Gender", idx % 2 ? "Male" : "Female"], ["Date of Birth", "12/08/2005"], ["Mobile", "98XXXX32" + (10 + idx)], ["Email", spec.name.split(" ")[0].toLowerCase() + "•••••@gmail.com"]],
       academic: [["University", spec.university], ["College", spec.college], ["Programme", spec.programme + " · " + spec.branch], ["Semester", "Semester VI"]],
       internship: [["Company", spec.company], ["Duration", spec.from + " – " + spec.to + " (" + days + " days)"], ["Reporting Manager", spec.manager], ["Reporting Manager Contact", "98765" + (43210 + idx)], ["Internship Report", "Internship_Report.pdf"]],
-      bank: [["Account Holder Name", spec.name], ["Bank Name", "State Bank of India · " + spec.college.split(",")[0]], ["Account Number", "123456789" + (10 + idx)], ["IFSC Code", "SBIN000" + (1230 + idx)]]
+      aadhaar: [["Aadhaar Number", "XXXX XXXX " + (4321 + idx * 7) + " (Verified with DigiLocker)"], ["Consent for Aadhaar use", "Given"], ["Payment", "DBT to the bank account linked with this Aadhaar"]]
     },
     remarks: [], log: [{ d: sub, t: "Submitted by the student" }]
   };
@@ -10551,7 +10994,7 @@ function ksyChecks() {
 }
 function ksyRender() {
   const checks = ksyChecks(), fails = checks.filter(c => !c.ok);
-  $("#ksyChecks").innerHTML = checks.map(c => `<li class="${c.ok ? "is-ok" : "is-fail"}">${iconSvg(c.ok ? "check" : "close", "l", 18)}<div><b>${esc(c.l)}</b><small>${esc(c.d)}</small></div></li>`).join("");
+  $("#ksyChecks").innerHTML = checks.map(c => `<li class="${c.ok ? "is-ok" : "is-fail"}">${iconSvg(c.ok ? "check" : "close", "l", 16)}<div><b>${esc(c.l)}</b><small>${esc(c.d)}</small></div></li>`).join("");
   const btn = $("#ksyApply");
   if (KSY.applied) { btn.disabled = false; btn.innerHTML = `Apply Now${iconSvg("arrow-right", "l", 16)}`; $("#ksyMsg").innerHTML = "An application already exists, but you can still open the form below to see it (demo)."; $("#ksyMsg").classList.remove("is-error"); }
   else if (fails.length) { btn.disabled = true; btn.innerHTML = `Apply Now${iconSvg("arrow-right", "l", 16)}`; $("#ksyMsg").innerHTML = `${HELP_ICON["is-error"] || ""}Not eligible yet: ${esc(fails[0].l)}.`; $("#ksyMsg").classList.add("is-error"); }
@@ -10559,14 +11002,16 @@ function ksyRender() {
   const mine = ksyMine().length;                                       // 26/11: the status tracker lives on My Applications now
   $("#ksyStatus").innerHTML = mine ? `<section class="card ksy-mynote">${iconSvg("info", "o", 16)}<span>You have <b>${mine}</b> Kaushalya Sahaay Yojana application${mine === 1 ? "" : "s"}. Track the status in My Applications.</span><a class="ui-btn ui-btn-outline ui-btn-sm" href="#ksy-my">My Applications${iconSvg("arrow-right", "l", 14)}</a></section>` : "";
 }
-$("#ksyMyBody").addEventListener("click", e => { const b = e.target.closest("[data-ksy-my]"); if (b) { KSY.myId = b.dataset.ksyMy; ksyMyRender(); $("#ksyMyStatus").scrollIntoView({ behavior: "smooth", block: "start" }); } });
+$("#ksyMyBody").addEventListener("click", e => { const b = e.target.closest("[data-ksy-my]"); if (b) ksyOpenReview("student", b.dataset.ksyMy); });   // 26/11: View = full application page
 $("#ksyApply").addEventListener("click", () => { if (!$("#ksyApply").disabled) location.hash = "ksy-form"; });
 
 /* ================= KSY APPLICATION FORM (Phase 2, 18/11) – 4 steps + Review, per the doc ("The form has four steps and a review screen") =================
    Basic Details + Academic Details are fully read-only (from SSO, same as KSY.student). Internship Details is mostly read-only (from Skill Passport / KSY.student.intern);
    only Reporting Manager, Reporting Manager Contact and the Internship Report upload are typed by the student. Bank Details is fully typed (test values only – see the note on the step). */
-const KSY_STEPS = ["Basic Details", "Academic Details", "Internship Details", "Bank Details", "Review"];
-const KF = { step: 0, maxStep: 0, manager: "", managerPhone: "", bank: { holder: "", name: "", branch: "", acc: "", ifsc: "" }, file: null, decl: false };
+const KSY_STEPS = ["Basic Details", "Academic Details", "Internship Details", "Aadhaar Verification", "Review"];
+const KF = { step: 0, maxStep: 0, manager: "", managerPhone: "", aadhaar: SF_AADHAAR_TEST, aadConsent: false, aadOk: false, file: null, decl: false };   // 26/11: Aadhaar (DBT) instead of bank details
+const KSY_AAD_CONSENT = "I agree that my Aadhaar number is used to verify my identity with DigiLocker, and that the assistance of ₹2,000 is paid by DBT to the bank account linked (seeded) with this Aadhaar.";
+const kfAadRows = () => [["Aadhaar Number", "XXXX XXXX " + SF_AADHAAR_LAST4 + " (Verified with DigiLocker)"], ["Consent for Aadhaar use", KF.aadConsent ? "Given" : "Not given"], ["Payment", "DBT to the bank account linked with this Aadhaar"]];
 function kfRoField(label, value, full) { return `<div class="ui-field${full ? " sf-full" : ""}"><span class="ui-label">${esc(label)}</span><input class="ui-input" readonly value="${esc(value)}"></div>`; }
 function kfStepHtml(i) {
   const s = KSY.student;
@@ -10596,21 +11041,18 @@ function kfStepHtml(i) {
       <input type="file" id="kfFile" accept=".pdf" hidden>
     </div></section>`;
   }
-  if (i === 3) return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Bank Details</h5><p>For the Direct Benefit Transfer (DBT) of ₹2,000 after approval.</p></div>
-    <div class="sf-note sf-full" style="margin-bottom:var(--space-16)">${iconSvg("info", "o", 16)}<span>This is a prototype form – please enter test values only, never your real bank details. IFSC format example: <b>SBIN0001234</b>.</span></div>
-    <div class="sf-grid">
-      <div class="ui-field"><label class="ui-label" for="kfHolder">Account Holder Name<span class="ui-req">*</span></label><input class="ui-input" id="kfHolder" value="${esc(KF.bank.holder)}" autocomplete="off"></div>
-      <div class="ui-field"><label class="ui-label" for="kfBank">Bank Name<span class="ui-req">*</span></label><input class="ui-input" id="kfBank" value="${esc(KF.bank.name)}" autocomplete="off"></div>
-      <div class="ui-field"><label class="ui-label" for="kfBranch">Branch Name<span class="ui-req">*</span></label><input class="ui-input" id="kfBranch" value="${esc(KF.bank.branch)}" autocomplete="off"></div>
-      <div class="ui-field"><label class="ui-label" for="kfAcc">Account Number<span class="ui-req">*</span></label><input class="ui-input" id="kfAcc" value="${esc(KF.bank.acc)}" inputmode="numeric" autocomplete="off"></div>
-      <div class="ui-field"><label class="ui-label" for="kfIfsc">IFSC Code<span class="ui-req">*</span></label><input class="ui-input" id="kfIfsc" value="${esc(KF.bank.ifsc)}" maxlength="11" autocomplete="off" style="text-transform:uppercase"></div>
+  if (i === 3) return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Aadhaar Verification</h5><p>The ₹2,000 is paid by DBT to the bank account linked with your Aadhaar. Bank details are not asked.</p></div><div class="sf-grid">
+      <div class="ui-field" data-field="aadhaar"><label class="ui-label" for="kfAadhaar">Aadhaar Card Number<span class="ui-req">*</span></label>
+        <div class="sf-inline"><input class="ui-input" id="kfAadhaar" value="${esc(KF.aadhaar)}" placeholder="12 digits" inputmode="numeric" maxlength="12" ${KF.aadOk ? "readonly" : ""}><button class="ui-btn ui-btn-primary" type="button" id="kfAadVerify" ${KF.aadOk || !KF.aadConsent ? "disabled" : ""} title="${KF.aadOk || KF.aadConsent ? "" : "Tick the consent below to verify"}">${KF.aadOk ? "Verified" : "Verify with DigiLocker"}</button></div>
+        ${KF.aadOk ? `<span class="ui-help is-success">${iconSvg("check", "l", 14)}Aadhaar verified with DigiLocker.</span>` : ""}</div>
+      <label class="sf-decl sf-consent sf-full${KF.aadConsent ? " is-on" : ""}"><input class="ui-cb" type="checkbox" id="kfAadConsent" ${KF.aadConsent ? "checked" : ""} ${KF.aadOk && KF.aadConsent ? "disabled" : ""}><span><b>Consent for Aadhaar use<span class="ui-req">*</span></b>${esc(KSY_AAD_CONSENT)}</span></label>
     </div></section>`;
   // i === 4 Review
   const rows = [
     ["Basic Details", [["Full Name", s.name], ["APAAR ID", s.apaar], ["Gender", s.gender], ["Date of Birth", s.dob], ["Mobile", s.mobileMasked], ["Email", s.emailMasked]]],
     ["Academic Details", [["University", s.university], ["College", s.college], ["Programme", s.programme + " · " + s.branch], ["Semester", s.semester]]],
     ["Internship Details", [["Company", s.intern.company], ["Duration", s.intern.from + " – " + s.intern.to + " (" + ksyDays(s.intern.from, s.intern.to) + " days)"], ["Reporting Manager", KF.manager], ["Reporting Manager Contact", KF.managerPhone], ["Internship Report", KF.file ? KF.file.name : "–"]]],
-    ["Bank Details", [["Account Holder Name", KF.bank.holder], ["Bank Name", KF.bank.name + " · " + KF.bank.branch], ["Account Number", KF.bank.acc], ["IFSC Code", KF.bank.ifsc]]]
+    ["Aadhaar Verification", kfAadRows()]
   ];
   return rows.map(([t, list], idx) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${esc(t)}</h5><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-kf-go="${idx === 2 ? 2 : idx === 3 ? 3 : idx}">${iconSvg("edit", "f", 14)}Edit</button></div>
     <div class="sf-kv">${list.map(([l, v]) => `<div><span>${esc(l)}</span><b>${esc(v || "–")}</b></div>`).join("")}</div></section>`).join("")
@@ -10618,7 +11060,7 @@ function kfStepHtml(i) {
 }
 function kfPendingOf(step) {
   if (step === 2) { const out = []; if (!KF.manager.trim()) out.push("Reporting Manager"); if (!KF.managerPhone.trim()) out.push("Reporting Manager Contact Details"); if (!KF.file) out.push("Internship Report"); return out; }
-  if (step === 3) { const b = KF.bank, out = []; if (!b.holder.trim()) out.push("Account Holder Name"); if (!b.name.trim()) out.push("Bank Name"); if (!b.branch.trim()) out.push("Branch Name"); if (!/^\d{6,20}$/.test(b.acc.trim())) out.push("Account Number"); if (!/^[A-Za-z]{4}0[A-Za-z0-9]{6}$/.test(b.ifsc.trim())) out.push("IFSC Code"); return out; }
+  if (step === 3) { const out = []; if (!KF.aadConsent) out.push("Consent for Aadhaar use"); if (!KF.aadOk) out.push("Aadhaar Card Number"); return out; }
   if (step === 4) return KF.decl ? [] : ["Declaration"];
   return [];
 }
@@ -10639,24 +11081,33 @@ function kfSync() {
   $("#kfPending").classList.toggle("is-error", p.length > 0);
 }
 function kfGo(n) { KF.step = n; KF.maxStep = Math.max(KF.maxStep, n); kfRender(); scrollTo(0, 0); }
-function kfOpen() { if (!KSY.applied) { KF.step = 0; KF.maxStep = 0; } $("#kfDone").hidden = true; $("#kfStepsCard").hidden = false; $("#kfFoot").hidden = false; kfRender(); }
+function kfOpen() { if (!KSY.applied) { KF.step = 0; KF.maxStep = 0; } $("#kfDone").hidden = true; $("#kfStepsCard").hidden = false; $("#kfLayout").classList.remove("is-done"); $("#kfFoot").hidden = false; kfRender(); }
 $("#kfBody").addEventListener("input", e => {
   const id = e.target.id;
   if (id === "kfManager") KF.manager = e.target.value;
   else if (id === "kfManagerPhone") KF.managerPhone = e.target.value;
-  else if (id === "kfHolder") KF.bank.holder = e.target.value;
-  else if (id === "kfBank") KF.bank.name = e.target.value;
-  else if (id === "kfBranch") KF.bank.branch = e.target.value;
-  else if (id === "kfAcc") KF.bank.acc = e.target.value.replace(/\D/g, "");
-  else if (id === "kfIfsc") KF.bank.ifsc = e.target.value.toUpperCase();
+  else if (id === "kfAadhaar") { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 12); KF.aadhaar = e.target.value; }
   else return;
   kfSync();
 });
-$("#kfBody").addEventListener("change", e => { if (e.target.id === "kfDecl") { KF.decl = e.target.checked; kfSync(); } });
+$("#kfBody").addEventListener("change", e => {
+  if (e.target.id === "kfDecl") { KF.decl = e.target.checked; kfSync(); }
+  if (e.target.id === "kfAadConsent") { KF.aadConsent = e.target.checked; const y = scrollY; kfRender(); scrollTo(0, y); }
+});
 $("#kfBody").addEventListener("click", e => {
   const go = e.target.closest("[data-kf-go]"); if (go) return kfGo(+go.dataset.kfGo);
   if (e.target.closest("#kfDrop")) return $("#kfFile").click();
   if (e.target.closest("#kfFileRm")) { KF.file = null; kfRender(); }
+  const aad = e.target.closest("#kfAadVerify");                       // DigiLocker: same sample rule as the scholarship form (last 4 digits)
+  if (aad && !aad.disabled) {
+    const box = aad.closest(".ui-field"), n = KF.aadhaar;
+    if (!/^\d{12}$/.test(n)) return cjpErr(box, "Enter a valid 12 digit Aadhaar number.");
+    aad.classList.add("is-loading"); aad.disabled = true;
+    setTimeout(() => {
+      if (n.slice(-4) === SF_AADHAAR_LAST4) { KF.aadOk = true; toast("Aadhaar verified with DigiLocker"); const y = scrollY; kfRender(); scrollTo(0, y); }
+      else { aad.classList.remove("is-loading"); aad.disabled = false; cjpErr(box, "Aadhaar number does not match your DigiLocker Aadhaar."); }
+    }, 900);
+  }
 });
 $("#kfBody").addEventListener("keydown", e => { if (e.target.closest("#kfDrop") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); $("#kfFile").click(); } });
 $("#kfBody").addEventListener("change", e => {
@@ -10680,11 +11131,11 @@ function kfSubmit() {
     basic: [["Full Name", s.name], ["APAAR ID", s.apaar], ["Gender", s.gender], ["Date of Birth", s.dob], ["Mobile", s.mobileMasked], ["Email", s.emailMasked]],
     academic: [["University", s.university], ["College", s.college], ["Programme", s.programme + " · " + s.branch], ["Semester", s.semester]],
     internship: [["Company", s.intern.company], ["Duration", s.intern.from + " – " + s.intern.to + " (" + days + " days)"], ["Reporting Manager", KF.manager], ["Reporting Manager Contact", KF.managerPhone], ["Internship Report", KF.file ? KF.file.name : "–"]],
-    bank: [["Account Holder Name", KF.bank.holder], ["Bank Name", KF.bank.name + " · " + KF.bank.branch], ["Account Number", KF.bank.acc], ["IFSC Code", KF.bank.ifsc]]
+    aadhaar: kfAadRows()
   };
   KSY_APPS.unshift({ id: KSY.appId, name: s.name, college: s.college, company: s.intern.company, days, date: new Date(), status: "Submitted", stage: "nodal", details, remarks: [], log: [{ d: new Date(), t: "Submitted by the student" }] });
   KSY.applied = true; KSY.student.appliedBefore = true;
-  $("#kfStepsCard").hidden = true; $("#kfFoot").hidden = true; $("#kfBody").innerHTML = ""; $("#kfDone").hidden = false;
+  $("#kfStepsCard").hidden = true; $("#kfLayout").classList.add("is-done"); $("#kfFoot").hidden = true; $("#kfBody").innerHTML = ""; $("#kfDone").hidden = false;
   $("#kfDone").innerHTML = `<span class="ui-icon-box is-success" style="width:56px;height:56px;margin-bottom:var(--space-16)">${iconSvg("check", "l", 28)}</span>
     <h4>Application Submitted</h4>
     <p>Your Kaushalya Sahaay Yojana application has been submitted for review.</p>
@@ -10826,17 +11277,19 @@ $("#ksyPayYes").addEventListener("click", () => {
   ksyPayRender();
 });
 function krOpen() {
-  const id = KSY.reviewId, role = KSY.reviewRole, r = KSY_APPS.find(a => a.id === id), info = KSY_ROLE[role];
+  const id = KSY.reviewId, role = KSY.reviewRole, stu = role === "student", r = KSY_APPS.find(a => a.id === id), info = stu ? { listHash: "ksy-my" } : KSY_ROLE[role];
   $("#krBack").href = "#" + (info ? info.listHash : "ksy-nodal");
+  $("#krBack").lastChild.textContent = stu ? "My Applications" : "Back";
   if (!r || !info) { $("#krTitle").textContent = "Application not found"; $("#krSub").textContent = ""; $("#krBody").innerHTML = ""; return; }
-  const canAct = r.stage === role;
+  const canAct = !stu && r.stage === role;
   $("#krTitle").textContent = `Kaushalya Sahaay Yojana – ${r.id}`;
-  $("#krSub").innerHTML = `${esc(r.name)} · ${esc(r.college)} · <span class="ui-badge ${ksyBadgeCls(r.status)}">${esc(r.status)}</span>`;
+  $("#krSub").innerHTML = stu ? `Submitted on ${fmt(r.date)} · <span class="ui-badge ${ksyBadgeCls(r.status)}">${esc(r.status)}</span>` : `${esc(r.name)} · ${esc(r.college)} · <span class="ui-badge ${ksyBadgeCls(r.status)}">${esc(r.status)}</span>`;
   const rmk = r.remarks.length ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Earlier remarks</h5><p>All stages, latest first.</p></div><div class="ver-remarks">${r.remarks.slice().reverse().map(m => `<div class="ver-rmk"><div class="ver-rmk-h"><b>${esc(m.act)} by ${esc(m.by)}</b><span>${fmt(m.d)}</span></div><div class="ver-rmk-b">${m.text ? esc(m.text) : "<i>No remarks</i>"}</div></div>`).join("")}</div></section>` : "";
-  const secs = [["Basic Details", r.details.basic], ["Academic Details", r.details.academic], ["Internship Details", r.details.internship], ["Bank Details", r.details.bank]];
+  const secs = [["Basic Details", r.details.basic], ["Academic Details", r.details.academic], ["Internship Details", r.details.internship], ["Aadhaar Verification", r.details.aadhaar || r.details.bank || []]];
   const reportName = (r.details.internship.find(x => x[0] === "Internship Report") || [])[1] || "Internship_Report.pdf";
   const budget = role === "nep" ? `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Budget Check</h5><p>Per the scheme's overall budget (doc section 1).</p></div><div class="sf-kv"><div><span>Total Budget</span><b>₹42.51 crore</b></div><div><span>This Application</span><b>₹2,000</b></div><div><span>Within Budget</span><b>Yes</b></div></div></section>` : "";
   $("#krBody").innerHTML = `
+    ${stu ? ksyStatusHtml(r.id).replace(' style="margin-top:var(--space-16)"', "") : ""}
     ${rmk}
     ${secs.map(([t, list]) => `<section class="card sf-sec"><div class="sf-rv-head"><h5>${esc(t)}</h5></div><div class="sf-kv">${list.map(([l, v]) => `<div><span>${esc(l)}</span><b>${esc(v || "–")}</b></div>`).join("")}</div></section>`).join("")}
     <section class="card sf-sec"><div class="sf-rv-head"><h5>Uploaded Document</h5></div><div class="sf-docs"><div class="sf-doc"><div class="sf-doc-name"><b>${esc(reportName)}</b><small>PDF</small></div><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" data-kr-doc>${iconSvg("view", "f", 14)}View</button></div></div></section>
@@ -10854,10 +11307,9 @@ $("#krBody").addEventListener("click", e => {
 const ksyMine = () => KSY_APPS.filter(a => a.name === KSY.student.name).sort((a, b) => b.date - a.date);
 function ksyMyRender() {                                              // 26/11: student "My Applications" for Kaushalya Sahaay Yojana
   const list = ksyMine(); if (!list.some(a => a.id === KSY.myId)) KSY.myId = list[0] ? list[0].id : null;
-  $("#ksyMyBody").innerHTML = list.map(a => `<tr${a.id === KSY.myId ? ' class="is-sel"' : ""}><td><span class="ma-id">${esc(a.id)}</span></td><td>${esc(a.company)}</td><td>${a.days} days</td><td>${fmt(a.date)}</td><td><span class="ui-badge ${ksyBadgeCls(a.status)}">${esc(a.status)}</span></td>
-    <td><div class="ui-acts"><button class="ui-act ui-act-view" type="button" data-ksy-my="${esc(a.id)}" title="View status" aria-label="View status of ${esc(a.id)}">${iconSvg("view", "f", 18)}</button></div></td></tr>`).join("")
+  $("#ksyMyBody").innerHTML = list.map(a => `<tr><td><span class="ma-id">${esc(a.id)}</span></td><td>${esc(a.company)}</td><td>${a.days} days</td><td>${fmt(a.date)}</td><td><span class="ui-badge ${ksyBadgeCls(a.status)}">${esc(a.status)}</span></td>
+    <td><div class="ui-acts"><button class="ui-act ui-act-view" type="button" data-ksy-my="${esc(a.id)}" title="View" aria-label="View application ${esc(a.id)}">${iconSvg("view", "f", 18)}</button></div></td></tr>`).join("")
     || `<tr class="ver-empty"><td colspan="6">You have not applied yet. Go to Kaushalya Sahaay Yojana and click Apply Now.</td></tr>`;
-  $("#ksyMyStatus").innerHTML = KSY.myId ? ksyStatusHtml(KSY.myId) : "";
 }
 function ksyStatusHtml(id = KSY.appId) {
   const r = KSY_APPS.find(a => a.id === id); if (!r) return "";
@@ -11091,7 +11543,7 @@ function unSync() {
 function unGo(n) { UN.step = n; UN.maxStep = Math.max(UN.maxStep, n); unRender(); scrollTo(0, 0); }
 function unOpenForm() {
   if (!UN.f) { UN.f = unBlank(); UN.step = 0; UN.maxStep = 0; UN.draftId = null; }
-  $("#unDone").hidden = true; $("#unStepsCard").hidden = false; $("#unFoot").hidden = false; unRender();
+  $("#unDone").hidden = true; $("#unStepsCard").hidden = false; $("#unLayout").classList.remove("is-done"); $("#unFoot").hidden = false; unRender();
 }
 $("#unBody").addEventListener("input", e => {
   const k = e.target.dataset.un, d = e.target.dataset.unDate;
@@ -11164,7 +11616,7 @@ function unSubmit() {
   Object.assign(r, { stage: "inst-rec", date: now, since: now }); delete r.step;
   r.log.push({ d: now, t: "Submitted by the applicant" });
   UN.f = null; UN.draftId = null;
-  $("#unStepsCard").hidden = true; $("#unFoot").hidden = true; $("#unBody").innerHTML = ""; $("#unDone").hidden = false;
+  $("#unStepsCard").hidden = true; $("#unLayout").classList.add("is-done"); $("#unFoot").hidden = true; $("#unBody").innerHTML = ""; $("#unDone").hidden = false;
   $("#unDone").innerHTML = `<span class="ui-icon-box is-success">${iconSvg("check", "l", 28)}</span><h4>Application Submitted</h4>
     <p>Your course proposal has gone to your ${esc(unSigner(r.f.type))} for recommendation.</p>
     <p><b>Application ID</b><br><span class="ma-id">${esc(r.id)}</span></p>
@@ -11536,20 +11988,20 @@ function showView(name) {
   if (name === "dashboard" && ROLE !== "student") name = ROLE_HOME[ROLE];   // Help Center / Commissioner Office have no student dashboard
   $$(".content[id^='view-']").forEach(v => v.hidden = v.id !== "view-" + name);
   // 26/11 (user): Kaushalya Sahaay Yojana + Unnati Yojana work like Scholarships – full width, no sidebar, 2 module buttons in the header
-  const modOf = n => /^(scholarships|sch-declare|sch-form|my-apps|my-apps-view|ma-update)$/.test(n) ? "sch" : /^(ksy|ksy-form|ksy-my)$/.test(n) ? "ksy" : /^(unnati|unnati-form|unnati-complete|unnati-my|un-review)$/.test(n) ? "un" : "";
+  const modOf = n => /^(scholarships|sch-declare|sch-form|my-apps|my-apps-view|ma-update)$/.test(n) ? "sch" : /^(ksy|ksy-form|ksy-my|ksy-review)$/.test(n) ? "ksy" : /^(unnati|unnati-form|unnati-complete|unnati-my|un-review)$/.test(n) ? "un" : "";
   const schMod = ROLE === "student" ? modOf(name) : "";
   const schFull = !!schMod; // student scholarship / KSY / Unnati pages: full width (17/11, 26/11)
   if (schMod) hSchNavSet(schMod);
-  const pfFull = ROLE === "student" && /^(profile|app-flows|app-login)$/.test(name); // Student Profile: full width too (19/11), same header pattern as Skill Passport/Scholarships but no Scholarship/My Applications nav
+  const pfFull = ROLE === "student" && /^(profile|app-flows|app-login|app-passport)$/.test(name); // Student Profile: full width too (19/11), same header pattern as Skill Passport/Scholarships but no Scholarship/My Applications nav
   $("#app").classList.toggle("is-dash", name === "dashboard" || schFull || pfFull); // Dashboard + student scholarship pages + Profile have no sidebar
   $("#app").classList.toggle("is-sch", schFull);
   $("#app").classList.toggle("is-pf", pfFull);
   $("#app").classList.toggle("is-att", /^att-/.test(name));            // Attendance module: own 2-link sidebar + Home / Quick Services in the header (20/11)
-  const schTab = schMod === "ksy" ? (name === "ksy-my" ? "ksy-my" : "ksy") : schMod === "un" ? (/^(unnati-my|un-review|unnati-complete)$/.test(name) ? "unnati-my" : "unnati") : /^(my-apps|my-apps-view|ma-update)$/.test(name) ? "my-apps" : "scholarships";
+  const schTab = schMod === "ksy" ? (/^(ksy-my|ksy-review)$/.test(name) ? "ksy-my" : "ksy") : schMod === "un" ? (/^(unnati-my|un-review|unnati-complete)$/.test(name) ? "unnati-my" : "unnati") : /^(my-apps|my-apps-view|ma-update)$/.test(name) ? "my-apps" : "scholarships";
   $$("[data-schnav]").forEach(a => { const on = schFull && a.dataset.schnav === schTab; a.classList.toggle("is-active", on); if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   const navName = name === "un-review" ? (ROLE === "student" ? "unnati" : ROLE === "principal" ? "un-inst" : "un-kcg") : name === "unnati-complete" ? "unnati" : name === "ver-view" ? HC.from : name === "ksy-review" ? "ksy-" + KSY.reviewRole : name.replace(/-(skills|view|form)$/, "").replace(/^sch-.*/, "scholarships").replace(/^ma-update$/, "my-apps");
   $$(".nav a").forEach(a => a.classList.toggle("active", a.dataset.view === navName));
-  $(".h-title h2").textContent = ({ dashboard: "Dashboard", cogent: "Cogent", "co-phase": "Phase – Application", profile: "My Profile", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App", ksy: "Kaushalya Sahaay Yojana", "ksy-form": "Kaushalya Sahaay Yojana", "ksy-nodal": "KSY – Nodal Officer", "ksy-principal": "KSY – Principal", "ksy-nep": "KSY – NEP Cell, KCG", "ksy-review": "Kaushalya Sahaay Yojana", "kcg-lots": "KCG – Lot List", "app-flows": "Mobile App", "app-login": "Mobile App", "att-dash": ATT_COLLEGE, "att-history": ATT_COLLEGE })[name] || "Student Profile";
+  $(".h-title h2").textContent = ({ dashboard: "Dashboard", cogent: "Cogent", "co-phase": "Phase – Application", profile: "My Profile", jobs: "Job Opportunities", "company-job": "Company Job Post", "company-job-form": "Company Job Post", "my-apps": "My Applications", "my-apps-view": "My Applications", scholarships: "Scholarships", "sch-declare": "Scholarships", "sch-form": "Scholarships", hc: "Help Center", co: "Commissioner Office", "ver-view": HC.from === "co" ? "Commissioner Office" : "Help Center", "ma-update": "My Applications", "mobile-app": "Mobile App", ksy: "Kaushalya Sahaay Yojana", "ksy-form": "Kaushalya Sahaay Yojana", "ksy-nodal": "KSY – Nodal Officer", "ksy-principal": "KSY – Principal", "ksy-nep": "KSY – NEP Cell, KCG", "ksy-nep-pay": "KSY – NEP Cell, KCG", "ksy-review": "Kaushalya Sahaay Yojana", "kcg-lots": "KCG – Lot List", "app-flows": "Mobile App", "app-login": "Mobile App", "app-passport": "Mobile App", "att-dash": ATT_COLLEGE, "att-history": ATT_COLLEGE })[name] || "Student Profile";
   if (/^(unnati|un-)/.test(name)) $(".h-title h2").textContent = "Unnati Yojana";
   if (name === "unnati-my") unMyRender();
   if (name === "ksy-my") ksyMyRender();
@@ -11575,7 +12027,8 @@ function showView(name) {
   if (name === "ksy-form") kfOpen();
   if (name === "ksy-nodal") ksyListRender("nodal");
   if (name === "ksy-principal") ksyListRender("principal");
-  if (name === "ksy-nep") { ksyListRender("nep"); ksyPayRender(); }
+  if (name === "ksy-nep") ksyListRender("nep");
+  if (name === "ksy-nep-pay") ksyPayRender();
   if (name === "ksy-review") krOpen();
   if (name === "my-apps-view") { maOpenView(); const a = MA_APPS.find(x => x.id === MA.current); if (a && !$("#maDetail").hidden) $("#maDetail").insertAdjacentHTML("afterbegin", stTracker(a)); } // View Application + status tracker (COM-03)
   if (name === "company-job-form") cjpOpenForm(); // Create / Edit Job Posting (CJP.editId = the job being edited, or null)
