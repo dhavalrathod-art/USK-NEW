@@ -354,6 +354,9 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .un-decls{display:grid;gap:var(--space-12)}
 .un-acts-cell{display:flex;align-items:center;gap:var(--space-8)}
 .un-head-btns{display:flex;gap:var(--space-8);flex-wrap:wrap}
+.un-row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16) var(--space-20)}
+.un-row3 .ui-field{min-width:0}
+@media (max-width:767.98px){.un-row3{grid-template-columns:1fr}}
 @media (max-width:991.98px){.un-bud{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:575.98px){.un-bud{grid-template-columns:1fr}}
 @media (max-width:767.98px){.ksy-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -434,7 +437,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .sf-rv-head h5{font-size:var(--font-size-h6);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
 .sf-kv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-12) var(--space-20)}
 .sf-kv div{min-width:0}
-.sf-kv span{display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
+.sf-kv span:not(.ui-badge){display:block;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
 .sf-kv b{display:block;font-size:var(--font-size-body);font-weight:var(--font-weight-medium);color:var(--color-text-heading);overflow-wrap:anywhere}
 .sf-kv i{display:inline-flex;align-items:center;gap:4px;font-style:normal;font-size:var(--font-size-caption);color:var(--color-text-secondary)}
 .sf-kv i.is-ver{color:var(--color-success-text)}
@@ -5002,7 +5005,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
           <span class="ui-bulk-count"><b id="unInstBulkText">No claims selected</b></span>
           <button class="ui-btn ui-btn-primary" type="button" id="unInstFwd" disabled><span data-icon="arrow-right:l:16"></span>Forward Certified List to KCG (0)</button>
         </div>
-        <div class="ma-toolbar"><span id="unInstCount"></span><span>Oldest first</span></div>
+        <div class="ma-toolbar"><span id="unInstCount"></span><span>Latest first</span></div>
         <div class="table-wrap"><table>
           <thead id="unInstHead"></thead>
           <tbody id="unInstBody"></tbody>
@@ -5021,7 +5024,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
       </section>
       <div id="unKcgFlt"></div>
       <section class="card table-card">
-        <div class="ma-toolbar"><span id="unKcgCount"></span><span>Oldest first</span></div>
+        <div class="ma-toolbar"><span id="unKcgCount"></span><span>Latest first</span></div>
         <div class="table-wrap"><table>
           <thead id="unKcgHead"></thead>
           <tbody id="unKcgBody"></tbody>
@@ -11492,11 +11495,11 @@ function unStepHtml() {
     const sErr = s && s < UN_TODAY ? "Course Start Date must be today or a later date." : "", eErr = s && e && e <= s ? "Course End Date must be after the Course Start Date." : "";
     const help = m => m ? `<span class="ui-help is-error">${HELP_ICON["is-error"] || ""}${esc(m)}</span>` : `<span class="ui-help" hidden></span>`;
     return unSec("Certified Course", "Online or offline certificate course. KCG approves it before it starts, so the start date must be today or later.",
-      `${unSel("course", "Name Of Course", UN_COURSES.map(c => c[0]), true)}${unRad("mode", "Course Mode", ["Online", "Offline"])}${unInp("coordinator", "Course Coordinator")}
+      `<div class="sf-full un-row3">${unInp("course", "Name Of Course", 'maxlength="150" placeholder="(e.g. Google Data Analytics Professional Certificate)"')}${unInp("coordinator", "Course Coordinator")}${unRad("mode", "Course Mode", ["Online", "Offline"])}</div>
       <div class="ui-field"><label class="ui-label" for="un-start">Course Start Date${unReq}</label><input class="ui-input${sErr ? " is-error" : ""}" type="date" id="un-start" data-un-date="start" value="${cjpDmyToIso(f.start)}">${help(sErr)}</div>
       <div class="ui-field"><label class="ui-label" for="un-end">Course End Date${unReq}</label><input class="ui-input${eErr ? " is-error" : ""}" type="date" id="un-end" data-un-date="end" value="${cjpDmyToIso(f.end)}">${help(eErr)}</div>
       <div class="ui-field"><span class="ui-label">Course Total Duration<span class="sf-src">${iconSvg("lock", "o", 12)}Calculated</span></span><input class="ui-input" readonly id="unDur" value="${n ? n + " days" : "Calculated from the dates"}"></div>
-      ${unInp("perDay", "Course Per Day Duration (hours)", 'inputmode="decimal" placeholder="(e.g. 2)"')}${unInp("fee", "Course Examination Fees (₹)", 'inputmode="numeric" placeholder="(e.g. 4500)"')}
+      ${unInp("perDay", "Course Per Day Duration (hours)", 'inputmode="decimal" maxlength="5" placeholder="Up to 24 (e.g. 2)"')}${unInp("fee", "Course Examination Fees (₹)", 'inputmode="numeric" placeholder="(e.g. 4500)"')}
       ${unSel("category", "Course Category", UN_CATS)}
       <div class="sf-note sf-full">${iconSvg("info", "o", 16)}<span>The Course Examination Fees is the amount paid back to you by DBT after the course is completed and the claim is approved.</span></div>`);
   }
@@ -11573,7 +11576,7 @@ $("#unBody").addEventListener("input", e => {
   const t = e.target, k = t.dataset.un, d = t.dataset.unDate;
   if (t.id === "unAadhaar") { const v = t.value.replace(/\D/g, ""); if (v !== t.value) t.value = v; UN.f.aadhaar = v; const h = t.closest(".ui-field").querySelector(".ui-help"); if (h) h.hidden = true; return; }
   if (k && t.type !== "radio") {
-    let v = t.value; if (k === "mobile" || k === "fee") { v = v.replace(/\D/g, ""); if (v !== t.value) t.value = v; } if (k === "perDay") { v = v.replace(/[^\d.]/g, ""); if (v !== t.value) t.value = v; }
+    let v = t.value; if (k === "mobile" || k === "fee") { v = v.replace(/\D/g, ""); if (v !== t.value) t.value = v; } if (k === "perDay") { v = v.replace(/[^\d.]/g, ""); if (+v > 24) { v = UN.f.perDay || ""; t.value = v; return cjpErr(t.closest(".ui-field"), "Course Per Day Duration can be up to 24 hours."); } cjpErr(t.closest(".ui-field"), ""); if (v !== t.value) t.value = v; }
     UN.f[k] = v; unSync();
   }
   if (d) { UN.f[d] = cjpIsoToDmy(t.value); const y = scrollY; unRender(); scrollTo(0, y); const el = $("#un-" + d); if (el) el.focus(); }
@@ -11594,7 +11597,6 @@ $("#unBody").addEventListener("ui-select-change", e => {
   const k = e.target.dataset.un; if (!k) return; const v = e.detail[0] || "";
   if ((UN.f[k] || "") === v) return;
   UN.f[k] = v;
-  if (k === "course") { const c = UN_COURSES.find(x => x[0] === v); if (c && !UN.f.category) { UN.f.category = c[1]; const y = scrollY; unRender(); return scrollTo(0, y); } }
   unSync();
 });
 $("#unBody").addEventListener("click", e => {
@@ -11777,7 +11779,7 @@ function unInstRender() {
       + verStat(all.filter(r => r.stage === "claim" && r.cert).length, "Certified (not forwarded yet)", "check:l", "warning") + verStat(all.filter(r => unAt(r, "claimfwd")).length, "Forwarded", "arrow-right:l", "success")
     : verStat(all.length, "Total Applications", "document:f", "primary") + verStat(all.filter(r => r.stage === "submitted").length, "To Forward", "view:f", "info") + verStat(all.filter(r => unAt(r, "forwarded")).length, "Forwarded", "arrow-right:l", "success");
   unFltMount(key, "#unInstFlt", unInstRender);
-  const v = unFltOf(key), list = UN_LISTS[key].rows().filter(r => unMatch(r, v)).sort((a, b) => claims ? a.claim.d - b.claim.d : a.sub - b.sub);
+  const v = unFltOf(key), list = UN_LISTS[key].rows().filter(r => unMatch(r, v)).sort((a, b) => claims ? b.claim.d - a.claim.d : b.sub - a.sub);
   [...UN.sel].forEach(id => { const r = list.find(x => x.id === id); if (!r || !r.cert) UN.sel.delete(id); });
   $("#unInstBulk").hidden = !claims;
   $("#unInstCount").innerHTML = `<b>${list.length}</b> ${claims ? "claim" : "application"}${list.length === 1 ? "" : "s"}`;
@@ -11810,7 +11812,7 @@ function unKcgRender() {
   $("#unBudgetCard").hidden = !claims;
   if (claims) $("#unBudget").innerHTML = unBudgetHtml();
   unFltMount(key, "#unKcgFlt", unKcgRender);
-  const v = unFltOf(key), list = UN_LISTS[key].rows().filter(r => unMatch(r, v)).sort((a, b) => claims ? a.cfwd.d - b.cfwd.d : a.fwd.d - b.fwd.d);
+  const v = unFltOf(key), list = UN_LISTS[key].rows().filter(r => unMatch(r, v)).sort((a, b) => claims ? b.cfwd.d - a.cfwd.d : b.fwd.d - a.fwd.d);
   $("#unKcgCount").innerHTML = `<b>${list.length}</b> ${claims ? "claim" : "application"}${list.length === 1 ? "" : "s"}`;
   $("#unKcgHead").innerHTML = claims
     ? `<tr><th>Application ID</th><th>Applicant Name</th><th>Institution</th><th>Course Name</th><th>Course amount</th><th>Forwarded On</th><th>Status</th><th>Action</th></tr>`
