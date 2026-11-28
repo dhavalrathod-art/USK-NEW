@@ -394,6 +394,26 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
 .qsm-item.is-orange .qsm-ic{background:var(--color-cat-orange-bg)}
 @media (max-width:575.98px){.qsm{position:static}.qsm-panel{position:fixed;top:72px;left:16px;right:16px;width:auto;max-width:none}}
 @media (max-width:400px){.qsm-btn{display:none}}
+/* ===== Add Certificate modal + certificate slider (28/11) ===== */
+.sp-cf-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16)}
+.sp-cf-grid .is-full{grid-column:1/-1}
+.sp-cf-grid .ui-field{min-width:0}
+.sp-cf-file[hidden],.sp-cf-drop[hidden]{display:none}
+.sp-cf-count{margin-left:auto}
+.sp-cf-acts{gap:var(--space-8)}
+textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:vertical}
+.sp-cf-drop{padding:var(--space-20)}
+@media (max-width:575.98px){.sp-cf-grid{grid-template-columns:1fr}}
+.sp-slider{position:relative}
+.sp-slide-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - var(--space-12)) / 2);gap:var(--space-12);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.sp-slide-track::-webkit-scrollbar{display:none}
+.sp-slide-track > .sp-row{scroll-snap-align:start;grid-template-columns:auto minmax(0,1fr) auto}
+.sp-slide-track > .sp-row .sp-row-act{grid-column:auto;margin-left:0;justify-content:flex-end;align-self:start}
+.sp-dots{display:flex;justify-content:center;gap:var(--space-4);margin-top:var(--space-12)}
+.sp-sdot{width:8px;height:8px;border-radius:999px;border:0;padding:0;background:var(--color-gray-300);cursor:pointer;transition:width .2s,background .2s}
+.sp-sdot.is-active{width:24px;background:var(--color-primary-600)}
+.sp-sdot:focus-visible{outline:2px solid var(--color-focus-ring);outline-offset:2px}
+@media (max-width:767.98px){.sp-slide-track{grid-auto-columns:100%}}
 </style>
 </head>
 <body>
@@ -514,7 +534,7 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
             <div class="sp-head">
               <span class="ui-icon-box is-success"><span data-icon="graduation:f:20"></span></span>
               <div class="sp-head-txt"><h2 id="secCertsH">Certifications &amp; Achievements <i data-count="certs">0</i></h2><p>Recognized learning. Real progress.</p></div>
-              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-soon="Add Achievement"><span data-icon="plus:l:14"></span>Add</button></div>
+              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-modal-open="mdCert"><span data-icon="plus:l:14"></span>Add</button></div>
             </div>
             <div class="sp-cols c2" id="certList"></div>
           </section>
@@ -623,6 +643,81 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
     <span>© 2026 Higher Education Department, Govt. of Gujarat. All Rights Reserved.</span>
   </div>
 </footer>
+
+<!-- ============ MODAL: Add Certificate (28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdCert" data-static>
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdCertTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="award:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="mdCertTitle">Add Certificate</h4><p>Add a certificate you have earned. It shows in your Skill Passport.</p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="sp-cf-grid" id="cfForm">
+        <div class="ui-field is-full" data-cf="skill">
+          <label class="ui-label">Skill Name<span class="ui-req">*</span></label>
+          <div class="ui-select" id="cfSkill" data-ph="Select skill"></div>
+          <span class="ui-help" data-cf-err></span>
+        </div>
+        <div class="ui-field is-full" data-cf="file">
+          <label class="ui-label">Upload Certificate<span class="ui-req">*</span></label>
+          <div class="ui-drop sp-cf-drop" id="cfDrop" tabindex="0" role="button" aria-label="Upload certificate">
+            <span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span>
+            <b>Drag &amp; drop your certificate here or <u>browse</u></b>
+            <small>PDF, JPEG or JPG · up to 2 MB</small>
+          </div>
+          <input type="file" id="cfFileIn" accept=".pdf,.jpg,.jpeg,application/pdf,image/jpeg" hidden>
+          <div class="ui-file-row sp-cf-file" id="cfFileRow" hidden>
+            <span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span>
+            <div><b id="cfFileName"></b><small id="cfFileSize"></small></div>
+            <div class="ui-acts sp-cf-acts"><button class="ui-act ui-act-view" type="button" id="cfFileView" title="View certificate" aria-label="View uploaded certificate"><span data-icon="view:f:18"></span></button><button class="ui-btn ui-btn-danger-soft ui-btn-sm" type="button" id="cfFileRm">Remove</button></div>
+          </div>
+          <span class="ui-help" data-cf-err></span>
+        </div>
+        <div class="sp-info is-full" role="note"><span data-icon="info:f:18"></span>Upload a document and we'll automatically extract and fill in the details. If any information isn't detected, you can enter it manually.</div>
+        <div class="ui-field" data-cf="title">
+          <label class="ui-label" for="cfTitle">Certificate Name<span class="ui-req">*</span></label>
+          <input class="ui-input" id="cfTitle" maxlength="120" placeholder="e.g. AWS Certified Cloud Practitioner">
+          <span class="ui-help" data-cf-err></span>
+        </div>
+        <div class="ui-field" data-cf="by">
+          <label class="ui-label" for="cfBy">Organization Name<span class="ui-req">*</span></label>
+          <input class="ui-input" id="cfBy" maxlength="120" placeholder="e.g. Amazon Web Services">
+          <span class="ui-help" data-cf-err></span>
+        </div>
+        <div class="ui-field" data-cf="level">
+          <label class="ui-label">Certificate Level<span class="ui-req">*</span></label>
+          <div class="ui-select" id="cfLevel" data-ph="Select level" data-options="International|National|State|University|College"></div>
+          <span class="ui-help" data-cf-err></span>
+        </div>
+        <div class="ui-field" data-cf="id">
+          <label class="ui-label" for="cfId">Certificate ID</label>
+          <input class="ui-input" id="cfId" maxlength="40" placeholder="e.g. AWS-CCP-58H2K9">
+          <span class="ui-help" data-cf-err></span>
+        </div>
+        <div class="ui-field" data-cf="date">
+          <label class="ui-label" for="cfDate">Issued Date<span class="ui-req">*</span></label>
+          <input class="ui-input" id="cfDate" type="date">
+          <span class="ui-help" data-cf-err></span>
+        </div>
+        <div class="ui-field" data-cf="exp">
+          <label class="ui-label" for="cfExp">Expiry Date</label>
+          <input class="ui-input" id="cfExp" type="date">
+          <span class="ui-help" data-cf-err>Leave empty if it does not expire.</span>
+        </div>
+        <div class="ui-field is-full" data-cf="desc">
+          <label class="ui-label" for="cfDesc">Description<span class="ui-req">*</span></label>
+          <textarea class="ui-input sp-cf-desc" id="cfDesc" maxlength="250" rows="3" placeholder="What did you learn in this course?"></textarea>
+          <span class="ui-help" data-cf-help><span data-cf-err></span><span class="sp-cf-count" id="cfCount">0 / 250 characters</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="cfSave">Save Certification</button>
+    </div>
+  </div>
+</div>
 
 <!-- ============ MODAL: Add / Edit Job Oriented Skills ============ -->
 <div class="ui-modal-backdrop" id="mdSkills" data-static>
@@ -778,13 +873,53 @@ function listRows(key, items, rowFn) {
 const row = (iconBox, main, act) => `<article class="sp-row">${iconBox}<div class="sp-row-main">${main}</div><div class="sp-row-act">${act}</div></article>`;
 const box = (tone, icon) => `<span class="ui-icon-box ${tone}">${iconSvg(icon, "f", 18)}</span>`;
 
-function renderCerts() {
-  $("#certList").innerHTML = listRows("certs", CERTS, c => row(box("is-success", "award"),
+function certRow(c) {
+  return row(box("is-success", "award"),
     `<h3>${esc(c.title)}</h3><div class="sp-row-sub">${esc(c.by)} · ${c.date}</div>
      <div class="sp-row-meta"><span class="sp-tag">${esc(c.skill)}</span><span>ID <b>${esc(c.id || "–")}</b></span><span>Level <b>${esc(c.level)}</b></span></div>`,
-    viewBtn("View certificate", "Certificate viewer") + MORE_BTN));
+    viewBtn("View certificate", "Certificate viewer") + MORE_BTN);
+}
+/* Certificates: 2 cards side by side; 3 or more → a slider (2 per view, 1 on phones) with dots + auto scroll every 4 s */
+const CS = { timer: 0, pause: false, st: 0 };
+function renderCerts() {
+  const el = $("#certList");
+  clearInterval(CS.timer);
+  if (CERTS.length <= 2) {
+    el.className = "sp-cols c2"; el.innerHTML = CERTS.map(certRow).join("");
+  } else {
+    el.className = "sp-slider";
+    el.innerHTML = `<div class="sp-slide-track" id="certTrack" aria-label="Certificates">${CERTS.map(certRow).join("")}</div>
+      <div class="sp-dots" id="certDots" role="group" aria-label="Choose certificates"></div>`;
+    certDots();
+    $("#certTrack").addEventListener("scroll", () => { clearTimeout(CS.st); CS.st = setTimeout(certDotSync, 80); });
+    el.onmouseenter = () => CS.pause = true;
+    el.onmouseleave = () => CS.pause = false;
+    el.onfocusin = () => CS.pause = true;
+    el.onfocusout = e => { if (!el.contains(e.relatedTarget)) CS.pause = false; };
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) CS.timer = setInterval(() => {
+      if (CS.pause || document.hidden || document.body.classList.contains("ui-modal-lock")) return;
+      const i = certPage();
+      certGo(i + 1 >= certPages() ? 0 : i + 1);
+    }, 4000);
+  }
   setCount("certs", CERTS.length);
 }
+const certPer = () => matchMedia("(max-width:767.98px)").matches ? 1 : 2;
+const certPages = () => Math.max(1, CERTS.length - certPer() + 1);   // one dot = one step of one card
+function certPage() {
+  const tr = $("#certTrack"), c = tr && tr.firstElementChild; if (!c) return 0;
+  const w = c.getBoundingClientRect().width + 12;
+  return Math.min(certPages() - 1, Math.round(tr.scrollLeft / w));
+}
+function certGo(i) { const tr = $("#certTrack"), c = tr && tr.children[i]; if (c) tr.scrollTo({ left: c.offsetLeft - tr.firstElementChild.offsetLeft }); }
+function certDots() {
+  const d = $("#certDots"); if (!d) return;
+  d.innerHTML = Array.from({ length: certPages() }, (_, i) => `<button class="sp-sdot" type="button" data-certdot="${i}" aria-label="Show certificate ${i + 1}"></button>`).join("");
+  certDotSync();
+}
+function certDotSync() { const i = certPage(); $$("#certDots .sp-sdot").forEach((b, k) => { b.classList.toggle("is-active", k === i); b.setAttribute("aria-current", k === i ? "true" : "false"); }); }
+document.addEventListener("click", e => { const b = e.target.closest("[data-certdot]"); if (b) { certGo(+b.dataset.certdot); setTimeout(certDotSync, 450); } });
+addEventListener("resize", () => { if ($("#certTrack")) certDots(); });
 function skillChips(list, id) {
   const show = list.slice(0, 3), more = list.length - show.length;
   return `<div class="sp-skills" data-skills="${id}">${show.map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("")}${more > 0 ? `<button class="sp-skill is-sm is-more" type="button" data-more="${id}" aria-expanded="false" title="Show all skills">+${more} More</button>` : ""}</div>`;
@@ -994,6 +1129,102 @@ document.addEventListener("keydown", e => {
 });
 
 /* ================= JOB ORIENTED SKILLS ================= */
+/* ================= ADD CERTIFICATE (modal #mdCert, 28/11) ================= */
+const CF = { file: null, skill: "", level: "" };
+function cfSelect(el, opts, key) {   // Design System .ui-select (single), same markup as initSelect in index.html
+  const chev = '<svg class="ui-select-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>';
+  const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>';
+  el.innerHTML = `<div class="ui-select-trigger" role="button" tabindex="0" aria-haspopup="listbox"><span class="ui-select-value is-ph"></span>${chev}</div>
+    <div class="ui-select-menu"><div class="ui-select-list" role="listbox">${opts.map(o => `<div class="ui-option" role="option" data-v="${esc(o)}"><span>${esc(o)}</span><span class="ui-check">${tick}</span></div>`).join("")}</div></div>`;
+  const trig = el.firstElementChild;
+  const sync = () => {
+    const v = CF[key], val = el.querySelector(".ui-select-value");
+    val.textContent = v || el.dataset.ph; val.classList.toggle("is-ph", !v); el.classList.toggle("is-filled", !!v);
+    el.querySelectorAll(".ui-option").forEach(o => o.classList.toggle("is-selected", o.dataset.v === v));
+  };
+  const toggle = () => { const open = !el.classList.contains("is-open"); cfCloseSel(); el.classList.toggle("is-open", open); };
+  trig.addEventListener("click", toggle);
+  trig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+  el.querySelector(".ui-select-list").addEventListener("click", e => {
+    const o = e.target.closest(".ui-option"); if (!o) return;
+    CF[key] = o.dataset.v; el.classList.remove("is-open"); sync(); cfErr(key, ""); trig.focus();
+  });
+  sync();
+}
+const cfCloseSel = () => $$(".sp-cf-grid .ui-select.is-open").forEach(x => x.classList.remove("is-open"));
+document.addEventListener("click", e => { if (!e.target.closest(".sp-cf-grid .ui-select")) cfCloseSel(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $(".sp-cf-grid .ui-select.is-open")) { e.stopImmediatePropagation(); cfCloseSel(); } }, true);
+function cfErr(key, msg) {
+  const f = $(`[data-cf="${key}"]`); if (!f) return;
+  const h = f.querySelector("[data-cf-err]");
+  if (h.dataset.def === undefined) h.dataset.def = h.textContent;
+  h.textContent = msg || h.dataset.def;
+  (f.querySelector("[data-cf-help]") || h).classList.toggle("is-error", !!msg);
+  f.querySelector(".ui-input")?.classList.toggle("is-error", !!msg);
+  f.querySelector(".ui-select")?.classList.toggle("is-error", !!msg);
+  f.querySelector(".ui-drop")?.classList.toggle("is-error", !!msg);
+}
+const cfIsoToDmy = v => v ? v.split("-").reverse().join("/") : "";
+const cfToday = () => { const d = new Date(); return new Date(d - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
+function cfReset() {
+  cfFree(); CF.skill = ""; CF.level = "";
+  ["cfTitle", "cfBy", "cfId", "cfDate", "cfExp", "cfDesc"].forEach(id => $("#" + id).value = "");
+  $("#cfDate").max = cfToday();
+  cfSelect($("#cfSkill"), [...new Set([...SK.saved, ...SKILL_OPTIONS])], "skill");
+  cfSelect($("#cfLevel"), $("#cfLevel").dataset.options.split("|"), "level");
+  ["skill", "file", "title", "by", "level", "id", "date", "exp", "desc"].forEach(k => cfErr(k, ""));
+  cfFileRender(); $("#cfCount").textContent = "0 / 250 characters";
+  $("#mdCert .ui-modal-body").scrollTop = 0;
+}
+$("#mdCert").addEventListener("modal:open", cfReset);
+function cfFileRender() {
+  $("#cfDrop").hidden = !!CF.file; $("#cfFileRow").hidden = !CF.file;
+  if (CF.file) { $("#cfFileName").textContent = CF.file.name; $("#cfFileSize").textContent = (CF.file.size / 1024 / 1024).toFixed(2) + " MB"; }
+}
+function cfTake(f) {
+  if (!f) return;
+  if (!/\.(pdf|jpe?g)$/i.test(f.name)) return cfErr("file", "Only PDF, JPEG or JPG files are allowed.");
+  if (f.size > 2 * 1024 * 1024) return cfErr("file", "File size must be up to 2 MB.");
+  cfFree(); CF.file = { name: f.name, size: f.size, url: URL.createObjectURL(f) }; cfErr("file", ""); cfFileRender();
+}
+$("#cfDrop").addEventListener("click", () => $("#cfFileIn").click());
+$("#cfDrop").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("#cfFileIn").click(); } });
+$("#cfDrop").addEventListener("dragover", e => { e.preventDefault(); $("#cfDrop").classList.add("is-over"); });
+$("#cfDrop").addEventListener("dragleave", () => $("#cfDrop").classList.remove("is-over"));
+$("#cfDrop").addEventListener("drop", e => { e.preventDefault(); $("#cfDrop").classList.remove("is-over"); cfTake(e.dataTransfer.files[0]); });
+$("#cfFileIn").addEventListener("change", e => { cfTake(e.target.files[0]); e.target.value = ""; });
+$("#cfFileRm").addEventListener("click", () => { cfFree(); cfFileRender(); $("#cfDrop").focus(); });
+/* View = open the uploaded file itself (PDF / JPG) in a new browser tab – no modal on top of the modal */
+function cfFree() { if (CF.file?.url) URL.revokeObjectURL(CF.file.url); CF.file = null; }
+$("#cfFileView").addEventListener("click", () => {
+  if (!CF.file?.url) return;
+  const a = document.createElement("a"); a.href = CF.file.url; a.target = "_blank"; a.rel = "noopener"; a.click();
+});
+$("#cfDesc").addEventListener("input", e => { $("#cfCount").textContent = e.target.value.length + " / 250 characters"; });
+$("#cfForm").addEventListener("input", e => { const f = e.target.closest("[data-cf]"); if (f) cfErr(f.dataset.cf, ""); });
+$("#cfSave").addEventListener("click", () => {
+  const v = id => $("#" + id).value.trim(), errs = [];
+  const need = (k, ok, msg) => { if (!ok) { cfErr(k, msg); errs.push(k); } };
+  need("skill", CF.skill, "Select a skill.");
+  need("file", CF.file, "Upload the certificate.");
+  need("title", v("cfTitle"), "Enter the certificate name.");
+  need("by", v("cfBy"), "Enter the organization name.");
+  need("level", CF.level, "Select the certificate level.");
+  const d = v("cfDate"), x = v("cfExp");
+  need("date", d && d <= cfToday(), d ? "Issued date cannot be a future date." : "Select the issued date.");
+  if (x && d) need("exp", x > d, "Expiry date must be after the issued date.");
+  need("desc", v("cfDesc"), "Enter a short description.");
+  if (errs.length) {
+    $(`[data-cf="${errs[0]}"]`).scrollIntoView({ block: "center", behavior: "smooth" });
+    return toast("Please fill in the required details.");
+  }
+  CERTS.push({ skill: CF.skill, title: v("cfTitle"), by: v("cfBy"), date: cfIsoToDmy(d), id: v("cfId"), level: CF.level, exp: cfIsoToDmy(x), desc: v("cfDesc"), file: CF.file.name });
+  renderCerts(); hydrate($("#certList"));
+  closeModal($("#mdCert"));
+  toast("Certificate added");
+  if ($("#certTrack")) setTimeout(() => { certGo(certPages() - 1); setTimeout(certDotSync, 450); }, 150);
+});
+
 const SKILL_OPTIONS = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Angular", "Vue.js", "Node.js", "Java", "Spring Boot", "Hibernate", "Python", "Django", "Machine Learning", "Data Analysis", "SQL", "MySQL", "MongoDB", "PHP", "Laravel", "C", "C++", "C#", ".NET", "Docker", "Git", "Linux", "AWS", "Figma", "UI/UX Design", "Communication", "Problem Solving", "Teamwork", "MS Excel", "Tally"];
 const SK = { saved: ["Java", "Python", "SQL", "Spring Boot", "React JS", "Data Structures and Algorithms", "Git", "Docker"], draft: [], max: 15, active: 0, opts: [] };
 const skCombo = $("#mdSkCombo"), skIn = $("#mdSkIn"), skList = $("#mdSkList");

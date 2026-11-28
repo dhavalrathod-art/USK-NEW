@@ -356,6 +356,9 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .un-head-btns{display:flex;gap:var(--space-8);flex-wrap:wrap}
 .un-row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16) var(--space-20)}
 .un-row3 .ui-field{min-width:0}
+.un-row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16) var(--space-20)}
+.un-row2 .ui-field{min-width:0}
+@media (max-width:575.98px){.un-row2{grid-template-columns:1fr}}
 @media (max-width:767.98px){.un-row3{grid-template-columns:1fr}}
 @media (max-width:991.98px){.un-bud{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:575.98px){.un-bud{grid-template-columns:1fr}}
@@ -11333,11 +11336,11 @@ const UN_STAFF_TYPES = ["Faculty", "Officer", "Employee"];
 const UN_TYPES_ALL = ["Student", "Faculty", "Officer", "Employee"];
 const UN_CATS = ["Artificial Intelligence", "Data Analytics", "Cloud Computing", "Cybersecurity", "Financial Modeling", "Business Intelligence"];
 const UN_COURSES = [                                         // "lists maintained for UNNATI" – sample list (the real list is not given yet)
-  ["Google Data Analytics Professional Certificate", "Data Analytics"], ["Data Science with Python (SWAYAM)", "Data Analytics"],
-  ["Microsoft Azure Fundamentals (AZ-900)", "Cloud Computing"], ["Google Cloud Digital Leader", "Cloud Computing"], ["AWS Cloud Practitioner Essentials", "Cloud Computing"],
-  ["Cybersecurity Essentials (SWAYAM)", "Cybersecurity"], ["Google Cybersecurity Professional Certificate", "Cybersecurity"],
-  ["Machine Learning (NPTEL)", "Artificial Intelligence"], ["AI for Everyone (Coursera)", "Artificial Intelligence"],
-  ["Power BI Data Analyst (PL-300)", "Business Intelligence"], ["Financial Modeling & Valuation Analyst (FMVA)", "Financial Modeling"]
+  ["Google Data Analytics Professional Certificate", "Data Analytics", "Google (Coursera)"], ["Data Science with Python (SWAYAM)", "Data Analytics", "SWAYAM"],
+  ["Microsoft Azure Fundamentals (AZ-900)", "Cloud Computing", "Microsoft Learn"], ["Google Cloud Digital Leader", "Cloud Computing", "Google Cloud"], ["AWS Cloud Practitioner Essentials", "Cloud Computing", "AWS Skill Builder"],
+  ["Cybersecurity Essentials (SWAYAM)", "Cybersecurity", "SWAYAM"], ["Google Cybersecurity Professional Certificate", "Cybersecurity", "Google (Coursera)"],
+  ["Machine Learning (NPTEL)", "Artificial Intelligence", "NPTEL"], ["AI for Everyone (Coursera)", "Artificial Intelligence", "Coursera"],
+  ["Power BI Data Analyst (PL-300)", "Business Intelligence", "Microsoft Learn"], ["Financial Modeling & Valuation Analyst (FMVA)", "Financial Modeling", "Corporate Finance Institute"]
 ];
 const UN_INSTITUTIONS = VER_COLLEGES.concat(["Gujarat University, Ahmedabad", "Commissionerate of Higher Education (CHE)", "Knowledge Consortium of Gujarat (KCG)", "Granth Nirman Board", "SCOPE"]);
 const UN_STEPS = { student: [["basic", "Basic Details"], ["acad", "Academic Details"], ["course", "Course Details"], ["aad", "Aadhaar Verification"], ["docs", "Upload Documents"], ["decl", "Declaration"]],
@@ -11365,7 +11368,7 @@ const unEnded = r => { const e = cjpDate(r.f.end); return !!e && UN_TODAY > e; }
 const unEarly = r => { const s = cjpDate(r.f.start); return !!(s && r.appr && s < new Date(r.appr.d).setHours(0, 0, 0, 0)); };   // APP-UNN-05
 
 function unBlank(kind) {
-  const base = { course: "", mode: "", coordinator: "", start: "", end: "", perDay: "", fee: "", category: "", aadhaar: SF_AADHAAR_TEST, aadConsent: false, aadOk: false, photo: null, catalog: null, decl1: false, decl2: false };
+  const base = { course: "", provider: "", mode: "", coordinator: "", start: "", end: "", perDay: "", fee: "", category: "", aadhaar: SF_AADHAAR_TEST, aadConsent: false, aadOk: false, photo: null, catalog: null, decl1: false, decl2: false };
   return kind === "student"
     ? Object.assign(base, { name: DB_STUDENT.name, gender: "Male", email: DB_STUDENT.email, mobile: DB_STUDENT.mobile, college: "L.D. College of Engineering, Ahmedabad", collegeType: "Technical", area: "", stream: DB_STUDENT.programme + " · " + DB_STUDENT.branch, semester: DB_STUDENT.semester })
     : Object.assign(base, { type: "", name: "", gender: "", email: "", mobile: "", inst: "", designation: "", dept: "", empId: "" });
@@ -11389,7 +11392,7 @@ function unSeed(o) {
   if (d.paid != null) { r.paid = { d: unDay(-d.paid), utr: "UTR" + o.id.slice(-6) + "417", amount: +f.fee }; r.log.push({ d: r.paid.d, t: "Payment approved by the CEO, KCG – paid by DBT" }); }
   UN_APPS.push(r);
 }
-const unC = (n, extra) => Object.assign({ course: UN_COURSES[n][0], category: UN_COURSES[n][1] }, extra);
+const unC = (n, extra) => Object.assign({ course: UN_COURSES[n][0], category: UN_COURSES[n][1], provider: UN_COURSES[n][2] }, extra);
 const UN_ST = (name, gender, email, mobile, college, stream, semester, area) => ({ name, gender, email, mobile, college, stream, semester, area, collegeType: "Technical" });
 const UN_SF = (type, name, gender, email, mobile, inst, designation, dept, empId) => ({ type, name, gender, email, mobile, inst, designation, dept, empId });
 [
@@ -11478,7 +11481,7 @@ function unAcadRows(r) {
 }
 function unCourseRows(r) {
   const f = r.f, n = unDays(f.start, f.end);
-  return [["Name Of Course", f.course], ["Course Category", f.category], ["Course Mode", f.mode], ["Course Coordinator", f.coordinator], ["Course Start Date", f.start], ["Course End Date", f.end], ["Course Total Duration", n ? n + " days" : "–"], ["Course Per Day Duration", f.perDay ? f.perDay + " hours" : "–"], ["Course Examination Fees", f.fee ? unRs(f.fee) : "–"]];
+  return [["Name Of Course", f.course], ["Training Provider / Platform", f.provider], ["Course Category", f.category], ["Course Mode", f.mode], ["Course Coordinator", f.coordinator], ["Course Start Date", f.start], ["Course End Date", f.end], ["Course Total Duration", n ? n + " days" : "–"], ["Course Per Day Duration", f.perDay ? f.perDay + " hours" : "–"], ["Course Examination Fees", f.fee ? unRs(f.fee) : "–"]];
 }
 function unStepHtml() {
   const f = UN.f, k = unKey(), st = UN.kind === "student";
@@ -11495,12 +11498,12 @@ function unStepHtml() {
     const sErr = s && s < UN_TODAY ? "Course Start Date must be today or a later date." : "", eErr = s && e && e <= s ? "Course End Date must be after the Course Start Date." : "";
     const help = m => m ? `<span class="ui-help is-error">${HELP_ICON["is-error"] || ""}${esc(m)}</span>` : `<span class="ui-help" hidden></span>`;
     return unSec("Certified Course", "Online or offline certificate course. KCG approves it before it starts, so the start date must be today or later.",
-      `<div class="sf-full un-row3">${unInp("course", "Name Of Course", 'maxlength="150" placeholder="(e.g. Google Data Analytics Professional Certificate)"')}${unInp("coordinator", "Course Coordinator")}${unRad("mode", "Course Mode", ["Online", "Offline"])}</div>
-      <div class="ui-field"><label class="ui-label" for="un-start">Course Start Date${unReq}</label><input class="ui-input${sErr ? " is-error" : ""}" type="date" id="un-start" data-un-date="start" value="${cjpDmyToIso(f.start)}">${help(sErr)}</div>
+      `<div class="sf-full un-row2">${unInp("course", "Name Of Course", 'maxlength="150" placeholder="(e.g. Google Data Analytics Professional Certificate)"')}${unInp("coordinator", "Course Coordinator")}</div>
+      <div class="sf-full un-row3">${unRad("mode", "Course Mode", ["Online", "Offline"])}${unInp("provider", "Training Provider / Platform", 'maxlength="100" placeholder="(e.g. Google, Coursera, NPTEL)"')}${unInp("category", "Course Category", 'maxlength="100" placeholder="(e.g. Data Analytics, Cloud Computing)"')}</div>
+      <div class="sf-full un-row3"><div class="ui-field"><label class="ui-label" for="un-start">Course Start Date${unReq}</label><input class="ui-input${sErr ? " is-error" : ""}" type="date" id="un-start" data-un-date="start" value="${cjpDmyToIso(f.start)}">${help(sErr)}</div>
       <div class="ui-field"><label class="ui-label" for="un-end">Course End Date${unReq}</label><input class="ui-input${eErr ? " is-error" : ""}" type="date" id="un-end" data-un-date="end" value="${cjpDmyToIso(f.end)}">${help(eErr)}</div>
-      <div class="ui-field"><span class="ui-label">Course Total Duration<span class="sf-src">${iconSvg("lock", "o", 12)}Calculated</span></span><input class="ui-input" readonly id="unDur" value="${n ? n + " days" : "Calculated from the dates"}"></div>
-      ${unInp("perDay", "Course Per Day Duration (hours)", 'inputmode="decimal" maxlength="5" placeholder="Up to 24 (e.g. 2)"')}${unInp("fee", "Course Examination Fees (₹)", 'inputmode="numeric" placeholder="(e.g. 4500)"')}
-      ${unSel("category", "Course Category", UN_CATS)}
+      <div class="ui-field"><span class="ui-label">Course Total Duration<span class="sf-src">${iconSvg("lock", "o", 12)}Calculated</span></span><input class="ui-input" readonly id="unDur" value="${n ? n + " days" : "Calculated from the dates"}"></div></div>
+      <div class="sf-full un-row2">${unInp("perDay", "Course Per Day Duration (hours)", 'inputmode="decimal" maxlength="5" placeholder="Up to 24 (e.g. 2)"')}${unInp("fee", "Course Examination Fees (₹)", 'inputmode="numeric" placeholder="(e.g. 4500)"')}</div>
       <div class="sf-note sf-full">${iconSvg("info", "o", 16)}<span>The Course Examination Fees is the amount paid back to you by DBT after the course is completed and the claim is approved.</span></div>`);
   }
   if (k === "aad") return `<section class="card sf-sec"><div class="ui-form-sec-head"><h5>Aadhaar Verification</h5><p>Your application is submitted with this verified Aadhaar. The amount is paid by DBT to the bank account linked with it – bank details are not asked.</p></div><div class="sf-grid">
@@ -11533,7 +11536,7 @@ function unPendingOf(key) {
   }
   if (key === "acad") { need("college", "Name Of College"); need("collegeType", "Type Of College"); need("area", "Area"); need("stream", "Stream"); need("semester", "Semester"); }
   if (key === "course") {
-    need("course", "Name Of Course"); need("mode", "Course Mode"); need("coordinator", "Course Coordinator");
+    need("course", "Name Of Course"); need("provider", "Training Provider / Platform"); need("mode", "Course Mode"); need("coordinator", "Course Coordinator");
     const s = cjpDate(f.start), e = cjpDate(f.end);
     if (!s) out.push("Course Start Date"); else if (s < UN_TODAY) out.push("Course Start Date (today or a later date)");
     if (!e) out.push("Course End Date"); else if (s && e <= s) out.push("Course End Date (after the start date)");
@@ -11697,11 +11700,12 @@ $("#ucBody").addEventListener("change", e => {
 });
 
 /* ---------- Institution / KCG lists (statistics cards + DS Advanced Filter + table) ---------- */
+const unCatList = () => [...new Set(UN_APPS.map(r => (r.f.category || "").trim()).filter(Boolean))].sort();   // Course Category is typed now (28/11)
 const UN_LISTS = {
-  "principal-app": { rows: () => UN_APPS.filter(r => r.stage === "submitted"), empty: "No applications to forward.", fields: [["type", "Applicant Type", UN_TYPES_ALL], ["cat", "Course Category", UN_CATS]] },
+  "principal-app": { rows: () => UN_APPS.filter(r => r.stage === "submitted"), empty: "No applications to forward.", get fields() { return [["type", "Applicant Type", UN_TYPES_ALL], ["cat", "Course Category", unCatList()]]; } },
   "principal-claim": { rows: () => UN_APPS.filter(r => r.stage === "claim"), empty: "No claims to certify.", fields: [["type", "Applicant Type", UN_TYPES_ALL], ["certified", "Certified", ["Yes", "No"]]] },
-  "kcg-app": { rows: () => UN_APPS.filter(r => r.stage === "forwarded"), empty: "No applications to approve.", fields: [["type", "Applicant Type", UN_TYPES_ALL], ["inst", "Institution", UN_INSTITUTIONS], ["cat", "Course Category", UN_CATS]] },
-  "kcg-claim": { rows: () => UN_APPS.filter(r => r.stage === "claimfwd"), empty: "No claims to approve.", fields: [["type", "Applicant Type", UN_TYPES_ALL], ["inst", "Institution", UN_INSTITUTIONS], ["cat", "Course Category", UN_CATS]] }
+  "kcg-app": { rows: () => UN_APPS.filter(r => r.stage === "forwarded"), empty: "No applications to approve.", get fields() { return [["type", "Applicant Type", UN_TYPES_ALL], ["inst", "Institution", UN_INSTITUTIONS], ["cat", "Course Category", unCatList()]]; } },
+  "kcg-claim": { rows: () => UN_APPS.filter(r => r.stage === "claimfwd"), empty: "No claims to approve.", get fields() { return [["type", "Applicant Type", UN_TYPES_ALL], ["inst", "Institution", UN_INSTITUTIONS], ["cat", "Course Category", unCatList()]]; } }
 };
 const unType = r => r.kind === "student" ? "Student" : r.f.type;
 const unFltOf = key => UN.flt[key] || (UN.flt[key] = { search: "" });
