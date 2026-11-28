@@ -401,6 +401,53 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
 .sp-cf-file[hidden],.sp-cf-drop[hidden]{display:none}
 .sp-cf-count{margin-left:auto}
 .sp-cf-acts{gap:var(--space-8)}
+/* View in the Add / Edit modal = preview under the file row, Show / Hide (option 1, final 28/11) */
+#mdCert .ui-modal-foot [hidden],.sp-cf-prev[hidden]{display:none}
+.sp-cf-prev{margin-top:var(--space-8);border:1px solid var(--color-border-default);border-radius:8px;overflow:hidden;background:var(--color-bg-page)}
+.sp-cf-prev-head{display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);padding:var(--space-8) var(--space-12);background:#fff;border-bottom:1px solid var(--color-border-default);font-size:var(--font-size-body-sm);color:var(--color-text-heading)}
+.sp-cf-prev-body{height:420px;display:grid;place-items:center;padding:var(--space-8);overflow:auto}
+.sp-cf-prev-body iframe{width:100%;height:100%;border:0;background:#fff;border-radius:4px}
+.sp-cf-prev-body > img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;background:#fff}
+.sp-cf-acts .ui-act.is-on{background:var(--color-primary-50)}
+@media (max-width:575.98px){.sp-cf-prev-body{height:320px}}
+/* College project – Add / Edit modal + View modal (28/11) */
+.ui-menu-item[hidden]{display:none}
+.sp-pj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16)}
+.sp-pj-grid .is-full{grid-column:1/-1}
+.sp-pj-grid .ui-field{min-width:0}
+.sp-pj-grid textarea.ui-input{min-height:96px;padding-top:var(--space-8);resize:vertical}
+.sp-pj-skhead{font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-text-secondary)}
+.sp-pj-grid .ui-chips{margin:0}
+.sp-pj-file[hidden],.sp-pj-drop[hidden]{display:none}
+.sp-pj-drop{padding:var(--space-20)}
+@media (max-width:767.98px){.sp-pj-grid{grid-template-columns:1fr}}
+.sp-pv-sec{margin-top:var(--space-20)}
+.sp-pv-sec h5{margin:0 0 var(--space-8);font-size:var(--font-size-overline);line-height:var(--line-height-overline);font-weight:var(--font-weight-semibold);letter-spacing:.3px;text-transform:uppercase;color:var(--color-text-secondary)}
+.sp-pv-sec p{margin:0;font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body);white-space:pre-line}
+.sp-pv-sec .sp-skills{margin:0}
+#mdProjView .sp-kv{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:575.98px){#mdProjView .sp-kv{grid-template-columns:1fr 1fr}}
+/* Sample certificate page (dummy document) – drawer + modal preview; same look as index.html .dr-cert */
+.sp-doc{width:min(620px,100%);min-width:0;aspect-ratio:1.414;padding:22px;background:#fffdf8;box-shadow:0 6px 20px rgba(15,31,49,.15)}
+.sp-doc > div{height:100%;border:3px double var(--color-accent-600);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:20px}
+.sp-doc img{height:56px;width:auto}
+.sp-doc .sub{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--color-accent-700);font-weight:600}
+.sp-doc h2{margin:0;font-family:Georgia,serif;font-size:clamp(16px,3.4vw,24px);overflow-wrap:anywhere;color:var(--color-primary-600)}
+.sp-doc p{margin:0;font-size:12px;color:var(--color-text-secondary)}
+.sp-doc h3{margin:0;font-family:Georgia,serif;font-size:20px;color:var(--color-text-heading);border-bottom:1px solid var(--color-accent-300);padding:0 24px 4px}
+.sp-doc .sign{display:flex;justify-content:space-between;gap:12px;width:86%;margin-top:12px;font-size:10.5px;color:var(--color-text-secondary)}
+.sp-doc .sign span{border-top:1px solid var(--color-border-hover);padding-top:4px}
+.sp-cf-prev-body .sp-doc{width:100%;max-width:520px}
+@media (max-width:575.98px){.sp-doc{aspect-ratio:auto;padding:12px}.sp-doc > div{padding:16px 12px}.sp-doc .sign{width:100%;flex-wrap:wrap}}
+#drCertDoc .ui-drawer-body.ui-viewer{padding:24px}
+#drCertDoc .sp-doc-file{width:100%;height:100%;min-height:60vh;border:0;background:#fff}
+#drCertDoc .ui-viewer > img{max-width:100%;box-shadow:0 6px 20px rgba(15,31,49,.15)}
+/* Thumbnail of the uploaded file in the file row (option 3, 28/11) – click opens the preview screen */
+.ui-file-row.sp-cf-file{grid-template-columns:56px minmax(0,1fr) auto}
+.sp-cf-thumb{width:56px;height:56px;padding:0;border:1px solid var(--color-border-default);border-radius:6px;background:var(--color-bg-page);overflow:hidden;display:grid;place-items:center;cursor:pointer;color:var(--color-icon-primary)}
+.sp-cf-thumb:hover{border-color:var(--color-primary-400)}
+.sp-cf-thumb:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
+.sp-cf-thumb img,.sp-cf-thumb canvas{width:100%;height:100%;object-fit:cover;object-position:top;display:block;background:#fff}
 textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:vertical}
 .sp-cf-drop{padding:var(--space-20)}
 @media (max-width:575.98px){.sp-cf-grid{grid-template-columns:1fr}}
@@ -534,7 +581,7 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
             <div class="sp-head">
               <span class="ui-icon-box is-success"><span data-icon="graduation:f:20"></span></span>
               <div class="sp-head-txt"><h2 id="secCertsH">Certifications &amp; Achievements <i data-count="certs">0</i></h2><p>Recognized learning. Real progress.</p></div>
-              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-modal-open="mdCert"><span data-icon="plus:l:14"></span>Add</button></div>
+              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-cert-add><span data-icon="plus:l:14"></span>Add</button></div>
             </div>
             <div class="sp-cols c2" id="certList"></div>
           </section>
@@ -584,7 +631,7 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
             <div class="sp-head">
               <span class="ui-icon-box is-primary"><span data-icon="code:f:20"></span></span>
               <div class="sp-head-txt"><h2 id="secProjectsH">College Project Details <i data-count="projects">0</i></h2><p>Projects you built during your course.</p></div>
-              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-soon="Add Project"><span data-icon="plus:l:14"></span>Add</button></div>
+              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-proj-add><span data-icon="plus:l:14"></span>Add</button></div>
             </div>
             <div class="sp-list" id="projectList"></div>
           </section>
@@ -649,7 +696,7 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
   <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdCertTitle">
     <div class="ui-modal-head">
       <span class="ui-modal-icon"><span data-icon="award:f:22"></span></span>
-      <div class="ui-modal-title"><h4 id="mdCertTitle">Add Certificate</h4><p>Add a certificate you have earned. It shows in your Skill Passport.</p></div>
+      <div class="ui-modal-title"><h4 id="mdCertTitle">Add Certificate</h4><p id="mdCertSub">Add a certificate you have earned. It shows in your Skill Passport.</p></div>
       <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
     </div>
     <div class="ui-modal-body">
@@ -668,9 +715,13 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
           </div>
           <input type="file" id="cfFileIn" accept=".pdf,.jpg,.jpeg,application/pdf,image/jpeg" hidden>
           <div class="ui-file-row sp-cf-file" id="cfFileRow" hidden>
-            <span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span>
+            <button class="sp-cf-thumb" type="button" id="cfThumb" title="View certificate" aria-label="View uploaded certificate"></button>
             <div><b id="cfFileName"></b><small id="cfFileSize"></small></div>
-            <div class="ui-acts sp-cf-acts"><button class="ui-act ui-act-view" type="button" id="cfFileView" title="View certificate" aria-label="View uploaded certificate"><span data-icon="view:f:18"></span></button><button class="ui-btn ui-btn-danger-soft ui-btn-sm" type="button" id="cfFileRm">Remove</button></div>
+            <div class="ui-acts sp-cf-acts"><button class="ui-act ui-act-view" type="button" id="cfFileView" title="View certificate" aria-label="View uploaded certificate" aria-expanded="false" aria-controls="cfPrev"><span data-icon="view:f:18"></span></button><button class="ui-btn ui-btn-danger-soft ui-btn-sm" type="button" id="cfFileRm">Remove</button></div>
+          </div>
+          <div class="sp-cf-prev" id="cfPrev" hidden>
+            <div class="sp-cf-prev-head"><b>Preview</b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="cfPrevHide">Hide preview</button></div>
+            <div class="sp-cf-prev-body" id="cfPrevBody"></div>
           </div>
           <span class="ui-help" data-cf-err></span>
         </div>
@@ -713,8 +764,119 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
       </div>
     </div>
     <div class="ui-modal-foot">
-      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close id="cfCancel">Cancel</button>
       <button class="ui-btn ui-btn-primary" type="button" id="cfSave">Save Certification</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: Add / Edit College Project (28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdProj" data-static>
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdProjTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="code:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="mdProjTitle">Add College Project</h4><p id="mdProjSub">Add a project you built during your course.</p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="sp-pj-grid" id="pjForm">
+        <div class="ui-field is-full" data-pj="title">
+          <label class="ui-label" for="pjTitle">Project Title<span class="ui-req">*</span></label>
+          <input class="ui-input" id="pjTitle" maxlength="150" placeholder="e.g. Smart Campus Attendance System">
+          <span class="ui-help" data-pj-err></span>
+        </div>
+        <div class="ui-field" data-pj="category">
+          <label class="ui-label">Project Category<span class="ui-req">*</span></label>
+          <div class="ui-select" id="pjCategory" data-ph="Select category"></div>
+          <span class="ui-help" data-pj-err></span>
+        </div>
+        <div class="ui-field" data-pj="type">
+          <label class="ui-label">Project Type<span class="ui-req">*</span></label>
+          <div class="ui-select" id="pjType" data-ph="Select type"></div>
+          <span class="ui-help" data-pj-err></span>
+        </div>
+        <div class="ui-field" data-pj="year">
+          <label class="ui-label">Academic Year<span class="ui-req">*</span></label>
+          <div class="ui-select" id="pjYear" data-ph="Select year"></div>
+          <span class="ui-help" data-pj-err></span>
+        </div>
+        <div class="ui-field is-full" data-pj="text">
+          <label class="ui-label" for="pjText">Project Description<span class="ui-req">*</span></label>
+          <textarea class="ui-input" id="pjText" maxlength="500" rows="3" placeholder="What does the project do, and who is it for?"></textarea>
+          <span class="ui-help" data-pj-help><span data-pj-err></span><span class="sp-cf-count" data-pj-count="pjText">0 / 500 characters</span></span>
+        </div>
+        <div class="ui-field is-full" data-pj="role">
+          <label class="ui-label" for="pjRole">Your Role<span class="ui-req">*</span></label>
+          <textarea class="ui-input" id="pjRole" maxlength="500" rows="3" placeholder="e.g. Team Lead – planned the work and built the dashboard."></textarea>
+          <span class="ui-help" data-pj-help><span data-pj-err></span><span class="sp-cf-count" data-pj-count="pjRole">0 / 500 characters</span></span>
+        </div>
+        <div class="ui-field is-full" data-pj="skills">
+          <span class="sp-pj-skhead">Skills Added (<b id="pjSkCount">0</b>)</span>
+          <div class="ui-chips" id="pjSkChips"></div>
+          <label class="ui-label">Select the skills you used in this project<span class="ui-req">*</span></label>
+          <div class="ui-select" id="pjSkill" data-ph="Search and select skills (e.g. Java, React JS, SQL...)" data-search></div>
+          <span class="ui-help" data-pj-err></span>
+        </div>
+        <div class="ui-field is-full" data-pj="url">
+          <label class="ui-label" for="pjUrl">Project Link</label>
+          <input class="ui-input" id="pjUrl" maxlength="200" placeholder="e.g. https://github.com/student/project" inputmode="url">
+          <span class="ui-help" data-pj-err></span>
+        </div>
+        <div class="ui-field is-full" data-pj="file">
+          <label class="ui-label">Upload Document</label>
+          <div class="ui-drop sp-pj-drop" id="pjDrop" tabindex="0" role="button" aria-label="Upload project document">
+            <span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span>
+            <b>Drag &amp; drop your file here or <u>browse</u></b>
+            <small>PDF · up to 5 MB</small>
+          </div>
+          <input type="file" id="pjFileIn" accept=".pdf,application/pdf" hidden>
+          <div class="ui-file-row sp-pj-file" id="pjFileRow" hidden>
+            <span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span>
+            <div><b id="pjFileName"></b><small id="pjFileSize"></small></div>
+            <div class="ui-acts sp-cf-acts"><button class="ui-act ui-act-view" type="button" id="pjFileView" title="View document" aria-label="View uploaded document" aria-expanded="false" aria-controls="pjPrev"><span data-icon="view:f:18"></span></button><button class="ui-btn ui-btn-danger-soft ui-btn-sm" type="button" id="pjFileRm">Remove</button></div>
+          </div>
+          <div class="sp-cf-prev" id="pjPrev" hidden>
+            <div class="sp-cf-prev-head"><b>Preview</b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="pjPrevHide">Hide preview</button></div>
+            <div class="sp-cf-prev-body" id="pjPrevBody"></div>
+          </div>
+          <span class="ui-help" data-pj-err></span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="pjSave">Save Project</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: View College Project (read only, 28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdProjView">
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="code:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="pvTitle">Project</h4><p id="pvSub"></p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body" id="pvBody"></div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Close</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="pvEdit"><span data-icon="edit:f:16"></span>Edit Project</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONFIRM: Delete certificate (28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdCertDel" data-static>
+  <div class="ui-modal ui-confirm" role="alertdialog" aria-modal="true" aria-labelledby="mdCertDelTitle" aria-describedby="mdCertDelText">
+    <div class="ui-confirm-body">
+      <span class="ui-confirm-icon is-danger"><span data-icon="delete:f:24"></span></span>
+      <h4 id="mdCertDelTitle">Delete this certificate?</h4>
+      <p id="mdCertDelText">Are you sure you want to delete this certificate? This cannot be undone.</p>
+    </div>
+    <div class="ui-confirm-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close autofocus>Cancel</button>
+      <button class="ui-btn ui-btn-danger" type="button" id="cfDelYes">Delete</button>
     </div>
   </div>
 </div>
@@ -724,12 +886,12 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
   <div class="ui-modal" role="dialog" aria-modal="true" aria-labelledby="mdSkillsTitle">
     <div class="ui-modal-head">
       <span class="ui-modal-icon"><span data-icon="briefcase:f:22"></span></span>
-      <div class="ui-modal-title"><h4 id="mdSkillsTitle">Add Job Oriented Skill</h4><p>Search and add the skills that are relevant for your career.</p></div>
+      <div class="ui-modal-title"><h4 id="mdSkillsTitle">Add Job Oriented Skill</h4><p id="mdSkillsSub">Search and add the skills that are relevant for your career.</p></div>
       <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
     </div>
     <div class="ui-modal-body">
       <div class="sp-added">
-        <div class="ui-form-sec-head"><h5>Your Added Skills</h5><p>Total added skills: <b id="mdSkCount">0</b> / 15</p></div>
+        <div class="ui-form-sec-head"><h5 id="mdSkHead">Your Added Skills</h5><p>Total added skills: <b id="mdSkCount">0</b> / 15</p></div>
         <div class="ui-chips" id="mdSkChips"></div>
         <p class="sp-added-empty" id="mdSkNone">No skills added yet. Search below to add your first skill.</p>
       </div>
@@ -764,6 +926,21 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
   </div>
 </aside>
 
+<!-- ============ DRAWER: Certificate document (opens from the right, 28/11) ============ -->
+<aside class="ui-drawer ui-drawer-lg" id="drCertDoc" role="dialog" aria-modal="true" aria-labelledby="drCertDocTitle">
+  <div class="ui-modal-head">
+    <span class="ui-modal-icon"><span data-icon="award:f:22"></span></span>
+    <div class="ui-modal-title"><h4 id="drCertDocTitle">Certificate</h4><p id="drCertDocSub"></p></div>
+    <button class="ui-modal-close" type="button" data-drawer-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+  </div>
+  <div class="ui-drawer-tools">
+    <span class="ui-file"><span data-icon="document:f:18"></span><b id="drCertDocFile">certificate.pdf</b><span id="drCertDocType">PDF</span></span>
+    <button class="ui-btn ui-btn-soft ui-btn-sm" type="button" data-soon="Download"><span data-icon="download:l:14"></span>Download</button>
+  </div>
+  <div class="ui-drawer-body ui-viewer" id="drCertDocBody"></div>
+  <div class="ui-drawer-foot"><button class="ui-btn ui-btn-outline" type="button" data-drawer-close>Close</button></div>
+</aside>
+
 <!-- ============ DRAWER: Semester marks (opens from the right) ============ -->
 <aside class="ui-drawer ui-drawer-lg" id="drSem" role="dialog" aria-modal="true" aria-labelledby="drSemTitle">
   <div class="ui-modal-head">
@@ -777,10 +954,12 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
 
 <!-- Row actions menu (3 dots) – design only, Edit / Delete are not connected yet -->
 <div class="ui-menu" id="spMenu" role="menu">
-  <button class="ui-menu-item" type="button" role="menuitem"><span data-icon="edit:f:18"></span>Edit</button>
-  <button class="ui-menu-item is-danger" type="button" role="menuitem"><span data-icon="delete:f:18"></span>Delete</button>
+  <button class="ui-menu-item" type="button" role="menuitem" data-act="view" hidden><span data-icon="view:f:18"></span>View</button>
+  <button class="ui-menu-item" type="button" role="menuitem" data-act="edit"><span data-icon="edit:f:18"></span>Edit</button>
+  <button class="ui-menu-item is-danger" type="button" role="menuitem" data-act="delete"><span data-icon="delete:f:18"></span>Delete</button>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="icons.js"></script>
 <script>
 const $ = s => document.querySelector(s);
@@ -829,8 +1008,8 @@ const RESEARCH = [
   { title: "Comparative Study of Container Security Tools", status: "Under Review", venue: "National Conference on Emerging Technologies (NCET)", type: "Conference", label: "Submitted", date: "20/08/2026", role: "Co-author", co: "", doi: "" }
 ];
 const PROJECTS = [
-  { title: "Smart Campus Attendance System", type: "Major Project", sem: "7", team: "4 · Team Lead", from: "07/2026", to: "11/2026", text: "Face-recognition attendance for classrooms with a teacher dashboard and monthly reports for the institute.", skills: ["Java", "Spring Boot", "MySQL", "OpenCV"], link: "View on GitHub", icon: "github" },
-  { title: "Library Management Portal", type: "Mini Project", sem: "5", team: "3 · Developer", from: "01/2026", to: "04/2026", text: "Book issue, return and fine tracking for the college library, with email reminders for due dates.", skills: ["Hibernate", "SQL", "JavaScript"], link: "Live Demo", icon: "external" }
+  { title: "Smart Campus Attendance System", category: "Web Application", type: "Major Project", year: "2026-27", role: "Team Lead – planned the work, built the face-recognition module and the teacher dashboard.", url: "https://github.com/aaravpatel/smart-attendance", sem: "7", team: "4 · Team Lead", from: "07/2026", to: "11/2026", text: "Face-recognition attendance for classrooms with a teacher dashboard and monthly reports for the institute.", skills: ["Java", "Spring Boot", "MySQL", "OpenCV"], link: "View on GitHub", icon: "github" },
+  { title: "Library Management Portal", category: "Web Application", type: "Mini Project", year: "2025-26", role: "Developer – built the issue and return screens and the email reminders.", url: "https://library-portal.example.com", sem: "5", team: "3 · Developer", from: "01/2026", to: "04/2026", text: "Book issue, return and fine tracking for the college library, with email reminders for due dates.", skills: ["Hibernate", "SQL", "JavaScript"], link: "Live Demo", icon: "external" }
 ];
 const BADGE = { Approved: "approved", Published: "approved", "Under Review": "review" };
 const CURRENT = [["University", "Gujarat Technological University"], ["Institute", "L.D. College of Engineering, Ahmedabad"], ["Degree / Program", "BE/B-Tech"], ["Branch", "Computer Engineering"], ["Enrollment No.", "230280107014"], ["Admission Year", "2023-2024"]];
@@ -877,7 +1056,8 @@ function certRow(c) {
   return row(box("is-success", "award"),
     `<h3>${esc(c.title)}</h3><div class="sp-row-sub">${esc(c.by)} · ${c.date}</div>
      <div class="sp-row-meta"><span class="sp-tag">${esc(c.skill)}</span><span>ID <b>${esc(c.id || "–")}</b></span><span>Level <b>${esc(c.level)}</b></span></div>`,
-    viewBtn("View certificate", "Certificate viewer") + MORE_BTN);
+    `<button class="ui-act ui-act-view" type="button" data-certview="${CERTS.indexOf(c)}" title="View certificate" aria-label="View ${esc(c.title)}">${iconSvg("view", "f", 18)}</button>`
+    + MORE_BTN.replace("data-menu", `data-menu data-cert="${CERTS.indexOf(c)}"`));
 }
 /* Certificates: 2 cards side by side; 3 or more → a slider (2 per view, 1 on phones) with dots + auto scroll every 4 s */
 const CS = { timer: 0, pause: false, st: 0 };
@@ -960,9 +1140,9 @@ function renderProjects() {
   $("#projectList").innerHTML = listRows("projects", PROJECTS, p => row(box("is-primary", "code"),
     `<h3>${esc(p.title)}<span class="sp-tag">${esc(p.type)}</span></h3><p class="sp-desc">${esc(p.text)}</p>
      <div class="sp-skills">${p.skills.map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("")}</div>
-     <div class="sp-row-meta"><span>Semester <b>${p.sem}</b></span><span>Team <b>${esc(p.team)}</b></span><span>${iconSvg("calendar", "f", 14)}<b>${p.from} – ${p.to}</b></span></div>
-     <a class="sp-link" href="#">${iconSvg(p.icon, p.icon === "github" ? "f" : "l", 14)}${esc(p.link)}</a>`,
-    MORE_BTN));
+     <div class="sp-row-meta">${p.category ? `<span>Category <b>${esc(p.category)}</b></span>` : ""}${p.year ? `<span>Academic Year <b>${esc(p.year)}</b></span>` : ""}${p.sem ? `<span>Semester <b>${p.sem}</b></span>` : ""}${p.from ? `<span>${iconSvg("calendar", "f", 14)}<b>${p.from} – ${p.to}</b></span>` : ""}</div>
+     ${p.url ? `<a class="sp-link" href="${esc(p.url)}" target="_blank" rel="noopener">${iconSvg(p.icon || "external", p.icon === "github" ? "f" : "l", 14)}${esc(p.link || "Project Link")}</a>` : ""}`,
+    MORE_BTN.replace("data-menu", `data-menu data-proj="${PROJECTS.indexOf(p)}"`)));
   setCount("projects", PROJECTS.length);
 }
 const LISTS = { certs: renderCerts, interns: renderInterns, special: renderSpecial, diss: renderDiss, research: renderResearch, projects: renderProjects };
@@ -1130,7 +1310,7 @@ document.addEventListener("keydown", e => {
 
 /* ================= JOB ORIENTED SKILLS ================= */
 /* ================= ADD CERTIFICATE (modal #mdCert, 28/11) ================= */
-const CF = { file: null, skill: "", level: "" };
+const CF = { file: null, skill: "", level: "", edit: null };
 function cfSelect(el, opts, key) {   // Design System .ui-select (single), same markup as initSelect in index.html
   const chev = '<svg class="ui-select-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>';
   const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>';
@@ -1166,20 +1346,47 @@ function cfErr(key, msg) {
 }
 const cfIsoToDmy = v => v ? v.split("-").reverse().join("/") : "";
 const cfToday = () => { const d = new Date(); return new Date(d - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); };
+const cfDmyToIso = v => /^\d{2}\/\d{2}\/\d{4}$/.test(v || "") ? v.split("/").reverse().join("-") : "";
 function cfReset() {
-  cfFree(); CF.skill = ""; CF.level = "";
-  ["cfTitle", "cfBy", "cfId", "cfDate", "cfExp", "cfDesc"].forEach(id => $("#" + id).value = "");
+  const c = CF.edit != null ? CERTS[CF.edit] : null;   // Edit = the same modal, filled in
+  cfFree(); CF.skill = c ? c.skill : ""; CF.level = c ? c.level : "";
+  const vals = { cfTitle: c?.title, cfBy: c?.by, cfId: c?.id, cfDate: cfDmyToIso(c?.date), cfExp: cfDmyToIso(c?.exp), cfDesc: c?.desc };
+  Object.entries(vals).forEach(([id, v]) => $("#" + id).value = v || "");
+  if (c) CF.file = { name: c.file || c.title.replace(/[^\w]+/g, "_").replace(/^_|_$/g, "") + ".pdf", size: c.size || 245760, url: c.url || null, kept: true };
+  $("#mdCertTitle").textContent = c ? "Edit Certificate" : "Add Certificate";
+  $("#mdCertSub").textContent = c ? "Update the details of this certificate." : "Add a certificate you have earned. It shows in your Skill Passport.";
+  $("#cfSave").textContent = c ? "Update Certification" : "Save Certification";
   $("#cfDate").max = cfToday();
-  cfSelect($("#cfSkill"), [...new Set([...SK.saved, ...SKILL_OPTIONS])], "skill");
+  cfSelect($("#cfSkill"), [...new Set([...(c ? [c.skill] : []), ...SK.saved, ...SKILL_OPTIONS])], "skill");
   cfSelect($("#cfLevel"), $("#cfLevel").dataset.options.split("|"), "level");
   ["skill", "file", "title", "by", "level", "id", "date", "exp", "desc"].forEach(k => cfErr(k, ""));
-  cfFileRender(); $("#cfCount").textContent = "0 / 250 characters";
+  cfFileRender(); $("#cfCount").textContent = $("#cfDesc").value.length + " / 250 characters";
   $("#mdCert .ui-modal-body").scrollTop = 0;
 }
 $("#mdCert").addEventListener("modal:open", cfReset);
 function cfFileRender() {
+  cfPrev(false);
   $("#cfDrop").hidden = !!CF.file; $("#cfFileRow").hidden = !CF.file;
   if (CF.file) { $("#cfFileName").textContent = CF.file.name; $("#cfFileSize").textContent = (CF.file.size / 1024 / 1024).toFixed(2) + " MB"; }
+  cfThumb();
+}
+/* Small picture of the file: JPG = the image itself, PDF = page 1 drawn by pdf.js; if that fails, the document icon */
+async function cfThumb() {
+  const t = $("#cfThumb"), f = CF.file, icon = iconSvg("document", "f", 20);
+  if (!f) { t.innerHTML = ""; return; }
+  if (!f.url) { t.innerHTML = icon; return; }   // a saved sample certificate (no real file)
+  if (!/\.pdf$/i.test(f.name)) { t.innerHTML = `<img src="${f.url}" alt="">`; return; }
+  t.innerHTML = icon;
+  try {
+    const lib = window.pdfjsLib; if (!lib) return;
+    lib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    const doc = await lib.getDocument(f.url).promise, page = await doc.getPage(1);
+    const v = page.getViewport({ scale: 1 }), sc = 112 / v.width, vp = page.getViewport({ scale: sc });
+    const c = document.createElement("canvas"); c.width = vp.width; c.height = vp.height;
+    await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
+    if (CF.file === f) { t.innerHTML = ""; t.appendChild(c); }
+    doc.destroy();
+  } catch (e) { /* keep the document icon */ }
 }
 function cfTake(f) {
   if (!f) return;
@@ -1194,12 +1401,33 @@ $("#cfDrop").addEventListener("dragleave", () => $("#cfDrop").classList.remove("
 $("#cfDrop").addEventListener("drop", e => { e.preventDefault(); $("#cfDrop").classList.remove("is-over"); cfTake(e.dataTransfer.files[0]); });
 $("#cfFileIn").addEventListener("change", e => { cfTake(e.target.files[0]); e.target.value = ""; });
 $("#cfFileRm").addEventListener("click", () => { cfFree(); cfFileRender(); $("#cfDrop").focus(); });
-/* View = open the uploaded file itself (PDF / JPG) in a new browser tab – no modal on top of the modal */
-function cfFree() { if (CF.file?.url) URL.revokeObjectURL(CF.file.url); CF.file = null; }
-$("#cfFileView").addEventListener("click", () => {
-  if (!CF.file?.url) return;
-  const a = document.createElement("a"); a.href = CF.file.url; a.target = "_blank"; a.rel = "noopener"; a.click();
-});
+function cfFree() {   // empty the preview first, so nothing still points at the freed link
+  $("#cfPrevBody").innerHTML = "";
+  if (CF.file?.url && !CF.file.kept) URL.revokeObjectURL(CF.file.url);   // a kept link belongs to a saved certificate
+  CF.file = null;
+}
+/* Sample certificate page (the real file is not stored in this prototype) */
+function certDocHtml(c) {
+  return `<div class="sp-doc"><div><img src="LOGO-USK-sm.png" alt=""><span class="sub">Certificate of Completion · Sample document</span>
+    <p>This is to certify that</p><h3>${esc($("#spName").textContent)}</h3><p>has successfully completed</p><h2>${esc(c.title || "Certificate")}</h2>
+    <p>offered by ${esc(c.by || "the issuing organization")}</p>
+    <div class="sign"><span>Issued on: <b>${esc(c.date || "–")}</b></span><span>Certificate ID: <b>${esc(c.id || "–")}</b></span></div></div></div>`;
+}
+const certFileHtml = (url, name, cls) => /\.pdf$/i.test(name)
+  ? `<iframe class="${cls || ""}" src="${url}#navpanes=0&view=FitH" title="${esc(name)}"></iframe>` : `<img src="${url}" alt="${esc(name)}">`;
+/* View in the modal = preview under the file row (option 1): Show / Hide */
+function cfPrev(show) {
+  const box = $("#cfPrev"), body = $("#cfPrevBody"), btn = $("#cfFileView");
+  show = !!(show && CF.file);
+  box.hidden = !show; btn.classList.toggle("is-on", show); btn.setAttribute("aria-expanded", show);
+  btn.title = show ? "Hide preview" : "View certificate";
+  body.innerHTML = !show ? "" : CF.file.url ? certFileHtml(CF.file.url, CF.file.name)
+    : certDocHtml({ title: $("#cfTitle").value.trim(), by: $("#cfBy").value.trim(), date: cfIsoToDmy($("#cfDate").value), id: $("#cfId").value.trim() });
+  if (show) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+$("#cfFileView").addEventListener("click", () => cfPrev($("#cfPrev").hidden));
+$("#cfThumb").addEventListener("click", () => cfPrev($("#cfPrev").hidden));
+$("#cfPrevHide").addEventListener("click", () => { cfPrev(false); $("#cfFileView").focus(); });
 $("#cfDesc").addEventListener("input", e => { $("#cfCount").textContent = e.target.value.length + " / 250 characters"; });
 $("#cfForm").addEventListener("input", e => { const f = e.target.closest("[data-cf]"); if (f) cfErr(f.dataset.cf, ""); });
 $("#cfSave").addEventListener("click", () => {
@@ -1218,11 +1446,199 @@ $("#cfSave").addEventListener("click", () => {
     $(`[data-cf="${errs[0]}"]`).scrollIntoView({ block: "center", behavior: "smooth" });
     return toast("Please fill in the required details.");
   }
-  CERTS.push({ skill: CF.skill, title: v("cfTitle"), by: v("cfBy"), date: cfIsoToDmy(d), id: v("cfId"), level: CF.level, exp: cfIsoToDmy(x), desc: v("cfDesc"), file: CF.file.name });
+  const old = CF.edit != null ? CERTS[CF.edit] : null;
+  const item = { skill: CF.skill, title: v("cfTitle"), by: v("cfBy"), date: cfIsoToDmy(d), id: v("cfId"), level: CF.level, exp: cfIsoToDmy(x), desc: v("cfDesc"), file: CF.file.name, size: CF.file.size, url: CF.file.url || null };
+  if (old && old.url && old.url !== item.url) URL.revokeObjectURL(old.url);   // the file was replaced
+  CF.file.kept = true;                                  // the link now belongs to the saved certificate
+  if (old) CERTS[CF.edit] = item; else CERTS.push(item);
+  const at = old ? CF.edit : CERTS.length - 1;
   renderCerts(); hydrate($("#certList"));
   closeModal($("#mdCert"));
-  toast("Certificate added");
-  if ($("#certTrack")) setTimeout(() => { certGo(certPages() - 1); setTimeout(certDotSync, 450); }, 150);
+  toast(old ? "Certificate updated" : "Certificate added");
+  if ($("#certTrack")) setTimeout(() => { certGo(Math.min(at, certPages() - 1)); setTimeout(certDotSync, 450); }, 150);
+});
+
+/* Certificate card actions (28/11): Add · View (right drawer) · 3 dots → Edit (same modal, filled) / Delete (confirm) */
+let cfDelAt = null;
+const DEL = { fn: null };   // other sections (projects) put their own delete action here
+function askDelete(what, name, fn) {
+  cfDelAt = null; DEL.fn = fn;
+  $("#mdCertDelTitle").textContent = `Delete this ${what}?`;
+  $("#mdCertDelText").textContent = `Are you sure you want to delete “${name}”? It will be removed from your Skill Passport. This cannot be undone.`;
+  openModal("mdCertDel");
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-cert-add]")) { CF.edit = null; return openModal("mdCert"); }
+  const v = e.target.closest("[data-certview]");
+  if (v) {
+    const c = CERTS[+v.dataset.certview]; if (!c) return;
+    $("#drCertDocTitle").textContent = c.title; $("#drCertDocSub").textContent = `${c.by} · Issued on ${c.date}`;
+    const name = c.file || c.title.replace(/[^\w]+/g, "_").replace(/^_|_$/g, "") + ".pdf";
+    $("#drCertDocFile").textContent = name; $("#drCertDocType").textContent = /\.pdf$/i.test(name) ? "PDF" : "Image";
+    $("#drCertDocBody").innerHTML = c.url ? certFileHtml(c.url, name, "sp-doc-file") : certDocHtml(c);
+    return openDrawer("drCertDoc");
+  }
+  const it = e.target.closest("#spMenu .ui-menu-item"), mb = typeof menuBtn !== "undefined" ? menuBtn : null;
+  if (it && mb && mb.dataset.cert != null) {
+    const i = +mb.dataset.cert;
+    if (it.classList.contains("is-danger")) {
+      DEL.fn = null; $("#mdCertDelTitle").textContent = "Delete this certificate?";
+      cfDelAt = i; $("#mdCertDelText").textContent = `Are you sure you want to delete “${CERTS[i].title}”? It will be removed from your Skill Passport. This cannot be undone.`;
+      openModal("mdCertDel");
+    } else { CF.edit = i; openModal("mdCert"); }
+  }
+});
+$("#cfDelYes").addEventListener("click", () => {
+  if (DEL.fn) { const fn = DEL.fn; DEL.fn = null; fn(); closeModal($("#mdCertDel")); return; }
+  if (cfDelAt == null) return;
+  const [c] = CERTS.splice(cfDelAt, 1); cfDelAt = null;
+  if (c?.url) URL.revokeObjectURL(c.url);
+  renderCerts(); hydrate($("#certList"));
+  closeModal($("#mdCertDel")); toast("Certificate deleted");
+});
+
+/* ================= COLLEGE PROJECTS: Add / Edit (#mdProj), View (#mdProjView), Delete (28/11) ================= */
+const PJ_CATS = ["Web Application", "Mobile Application", "Machine Learning / AI", "Data Analytics", "IoT / Embedded Systems", "Cloud / DevOps", "Cyber Security", "Research / Prototype", "Other"];
+const PJ_TYPES = ["Major Project", "Mini Project", "Capstone Project", "Group Project", "Individual Project"];
+const PJ_YEARS = ["2023-24", "2024-25", "2025-26", "2026-27"];
+const PJ = { edit: null, category: "", type: "", year: "", skills: [], file: null };
+function pjSelect(el, opts, cur, onPick) {   // Design System .ui-select (single); same markup as cfSelect
+  const chev = '<svg class="ui-select-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>';
+  const tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg>';
+  const find = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
+  const search = "search" in el.dataset;
+  el.innerHTML = `<div class="ui-select-trigger" role="button" tabindex="0" aria-haspopup="listbox"><span class="ui-select-value"></span>${chev}</div>
+    <div class="ui-select-menu">${search ? `<div class="ui-select-search">${find}<input placeholder="Search..."></div>` : ""}<div class="ui-select-list" role="listbox">${opts.map(o => `<div class="ui-option" role="option" data-v="${esc(o)}"><span>${esc(o)}</span><span class="ui-check">${tick}</span></div>`).join("")}</div><div class="ui-select-empty" hidden>No results found</div></div>`;
+  const trig = el.firstElementChild, inp = el.querySelector(".ui-select-search input");
+  el.pjSync = v => { const val = el.querySelector(".ui-select-value"); val.textContent = v || el.dataset.ph; val.classList.toggle("is-ph", !v); el.classList.toggle("is-filled", !!v);
+    el.querySelectorAll(".ui-option").forEach(o => o.classList.toggle("is-selected", o.dataset.v === v)); };
+  el.pjOff = list => el.querySelectorAll(".ui-option").forEach(o => o.hidden = list.includes(o.dataset.v));   // hide values already picked (skills)
+  const toggle = () => { const open = !el.classList.contains("is-open"); pjCloseSel(); el.classList.toggle("is-open", open);
+    if (open && inp) { inp.value = ""; inp.dispatchEvent(new Event("input")); inp.focus({ preventScroll: true }); } };
+  trig.addEventListener("click", toggle);
+  trig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+  if (inp) inp.addEventListener("input", () => { const q = inp.value.toLowerCase(); let n = 0;
+    el.querySelectorAll(".ui-option").forEach(o => { const off = o.dataset.off === "1"; const m = !off && o.dataset.v.toLowerCase().includes(q); o.style.display = m ? "" : "none"; n += m; });
+    el.querySelector(".ui-select-empty").hidden = n > 0; });
+  el.querySelector(".ui-select-list").addEventListener("click", e => { const o = e.target.closest(".ui-option"); if (!o) return; el.classList.remove("is-open"); onPick(o.dataset.v); trig.focus(); });
+  el.pjSync(cur);
+}
+const pjCloseSel = () => $$(".sp-pj-grid .ui-select.is-open").forEach(x => x.classList.remove("is-open"));
+document.addEventListener("click", e => { if (!e.target.closest(".sp-pj-grid .ui-select")) pjCloseSel(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && $(".sp-pj-grid .ui-select.is-open")) { e.stopImmediatePropagation(); pjCloseSel(); } }, true);
+function pjErr(key, msg) {
+  const f = $(`[data-pj="${key}"]`); if (!f) return;
+  const h = f.querySelector("[data-pj-err]"); h.textContent = msg || "";
+  (f.querySelector("[data-pj-help]") || h).classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .ui-input")?.classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .ui-select")?.classList.toggle("is-error", !!msg);
+}
+function pjSkills() {
+  $("#pjSkChips").innerHTML = PJ.skills.map(s => `<span class="ui-chip">${esc(s)}<button type="button" data-pj-rm="${esc(s)}" title="Remove ${esc(s)}" aria-label="Remove ${esc(s)}">${iconSvg("close", "l", 12)}</button></span>`).join("");
+  $("#pjSkCount").textContent = PJ.skills.length;
+  $$("#pjSkill .ui-option").forEach(o => { o.dataset.off = PJ.skills.includes(o.dataset.v) ? "1" : ""; o.style.display = o.dataset.off ? "none" : ""; });
+}
+function pjFileRender() {
+  pjPrev(false);
+  $("#pjDrop").hidden = !!PJ.file; $("#pjFileRow").hidden = !PJ.file;
+  if (PJ.file) { $("#pjFileName").textContent = PJ.file.name; $("#pjFileSize").textContent = (PJ.file.size / 1024 / 1024).toFixed(2) + " MB"; }
+}
+function pjFree() { $("#pjPrevBody").innerHTML = ""; if (PJ.file?.url && !PJ.file.kept) URL.revokeObjectURL(PJ.file.url); PJ.file = null; }
+function pjPrev(show) {
+  const box = $("#pjPrev"), btn = $("#pjFileView"); show = !!(show && PJ.file);
+  box.hidden = !show; btn.classList.toggle("is-on", show); btn.setAttribute("aria-expanded", show); btn.title = show ? "Hide preview" : "View document";
+  $("#pjPrevBody").innerHTML = !show ? "" : PJ.file.url ? certFileHtml(PJ.file.url, PJ.file.name)
+    : certDocHtml({ title: $("#pjTitle").value.trim() || "Project Report", by: "L.D. College of Engineering, Ahmedabad", date: "–", id: "–" });
+  if (show) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+const pjCount = () => $$("[data-pj-count]").forEach(c => c.textContent = $("#" + c.dataset.pjCount).value.length + " / 500 characters");
+function pjReset() {
+  const p = PJ.edit != null ? PROJECTS[PJ.edit] : null;
+  pjFree();
+  PJ.category = p?.category || ""; PJ.type = p?.type || ""; PJ.year = p?.year || ""; PJ.skills = p ? [...p.skills] : [];
+  $("#pjTitle").value = p?.title || ""; $("#pjText").value = p?.text || ""; $("#pjRole").value = p?.role || ""; $("#pjUrl").value = p?.url || "";
+  if (p && p.file) PJ.file = { name: p.file, size: p.size || 1048576, url: p.fileUrl || null, kept: true };
+  $("#mdProjTitle").textContent = p ? "Edit College Project" : "Add College Project";
+  $("#mdProjSub").textContent = p ? "Update the details of this project." : "Add a project you built during your course.";
+  $("#pjSave").textContent = p ? "Update Project" : "Save Project";
+  pjSelect($("#pjCategory"), PJ_CATS, PJ.category, v => { PJ.category = v; $("#pjCategory").pjSync(v); pjErr("category", ""); });
+  pjSelect($("#pjType"), PJ_TYPES, PJ.type, v => { PJ.type = v; $("#pjType").pjSync(v); pjErr("type", ""); });
+  pjSelect($("#pjYear"), PJ_YEARS, PJ.year, v => { PJ.year = v; $("#pjYear").pjSync(v); pjErr("year", ""); });
+  pjSelect($("#pjSkill"), [...new Set([...SK.saved, ...SKILL_OPTIONS, ...PJ.skills])], "", v => { if (!PJ.skills.includes(v)) PJ.skills.push(v); pjSkills(); pjErr("skills", ""); });
+  ["title", "category", "type", "year", "text", "role", "skills", "url", "file"].forEach(k => pjErr(k, ""));
+  pjSkills(); pjFileRender(); pjCount();
+  $("#mdProj .ui-modal-body").scrollTop = 0;
+}
+$("#mdProj").addEventListener("modal:open", pjReset);
+$("#pjSkChips").addEventListener("click", e => { const b = e.target.closest("[data-pj-rm]"); if (!b) return; PJ.skills = PJ.skills.filter(s => s !== b.dataset.pjRm); pjSkills(); });
+$("#pjForm").addEventListener("input", e => { const f = e.target.closest("[data-pj]"); if (f) pjErr(f.dataset.pj, ""); pjCount(); });
+function pjTake(f) {
+  if (!f) return;
+  if (!/\.pdf$/i.test(f.name)) return pjErr("file", "Only PDF files are allowed.");
+  if (f.size > 5 * 1024 * 1024) return pjErr("file", "File size must be up to 5 MB.");
+  pjFree(); PJ.file = { name: f.name, size: f.size, url: URL.createObjectURL(f) }; pjErr("file", ""); pjFileRender();
+}
+$("#pjDrop").addEventListener("click", () => $("#pjFileIn").click());
+$("#pjDrop").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("#pjFileIn").click(); } });
+$("#pjDrop").addEventListener("dragover", e => { e.preventDefault(); $("#pjDrop").classList.add("is-over"); });
+$("#pjDrop").addEventListener("dragleave", () => $("#pjDrop").classList.remove("is-over"));
+$("#pjDrop").addEventListener("drop", e => { e.preventDefault(); $("#pjDrop").classList.remove("is-over"); pjTake(e.dataTransfer.files[0]); });
+$("#pjFileIn").addEventListener("change", e => { pjTake(e.target.files[0]); e.target.value = ""; });
+$("#pjFileRm").addEventListener("click", () => { pjFree(); pjFileRender(); $("#pjDrop").focus(); });
+$("#pjFileView").addEventListener("click", () => pjPrev($("#pjPrev").hidden));
+$("#pjPrevHide").addEventListener("click", () => { pjPrev(false); $("#pjFileView").focus(); });
+$("#pjSave").addEventListener("click", () => {
+  const v = id => $("#" + id).value.trim(), errs = [];
+  const need = (k, ok, msg) => { if (!ok) { pjErr(k, msg); errs.push(k); } };
+  need("title", v("pjTitle"), "Enter the project title.");
+  need("category", PJ.category, "Select the project category.");
+  need("type", PJ.type, "Select the project type.");
+  need("year", PJ.year, "Select the academic year.");
+  need("text", v("pjText"), "Enter the project description.");
+  need("role", v("pjRole"), "Enter your role in the project.");
+  need("skills", PJ.skills.length, "Add at least one skill.");
+  if (v("pjUrl")) need("url", /^https?:\/\/\S+\.\S+/i.test(v("pjUrl")), "Enter a valid link starting with http:// or https://");
+  if (errs.length) { $(`[data-pj="${errs[0]}"]`).scrollIntoView({ block: "center", behavior: "smooth" }); return toast("Please fill in the required details."); }
+  const old = PJ.edit != null ? PROJECTS[PJ.edit] : null;
+  const item = Object.assign({}, old || {}, { title: v("pjTitle"), category: PJ.category, type: PJ.type, year: PJ.year, text: v("pjText"), role: v("pjRole"), skills: [...PJ.skills], url: v("pjUrl"),
+    link: v("pjUrl") ? (/github\.com/i.test(v("pjUrl")) ? "View on GitHub" : "Project Link") : "", icon: /github\.com/i.test(v("pjUrl")) ? "github" : "external",
+    file: PJ.file?.name || "", size: PJ.file?.size || 0, fileUrl: PJ.file?.url || null });
+  if (old && old.fileUrl && old.fileUrl !== item.fileUrl) URL.revokeObjectURL(old.fileUrl);
+  if (PJ.file) PJ.file.kept = true;
+  if (old) PROJECTS[PJ.edit] = item; else PROJECTS.push(item);
+  SHOW.projects = PROJECTS.length > LIMIT.projects ? SHOW.projects : false;
+  if (!old && PROJECTS.length > LIMIT.projects) SHOW.projects = true;   // show the new card
+  renderProjects(); hydrate($("#projectList"));
+  closeModal($("#mdProj")); toast(old ? "Project updated" : "Project added");
+});
+function pjView(i) {
+  const p = PROJECTS[i]; if (!p) return;
+  PJ.view = i;
+  $("#pvTitle").textContent = p.title; $("#pvSub").textContent = [p.category, p.type].filter(Boolean).join(" · ");
+  const kv = [["Project Category", p.category], ["Project Type", p.type], ["Academic Year", p.year], ["Semester", p.sem], ["Team", p.team], ["Duration", p.from ? `${p.from} – ${p.to}` : ""]].filter(x => x[1]);
+  $("#pvBody").innerHTML = `<div class="sp-kv">${kv.map(([l, v]) => `<div><span>${l}</span><b>${esc(v)}</b></div>`).join("")}</div>
+    <div class="sp-pv-sec"><h5>Project Description</h5><p>${esc(p.text || "–")}</p></div>
+    <div class="sp-pv-sec"><h5>Your Role</h5><p>${esc(p.role || "–")}</p></div>
+    <div class="sp-pv-sec"><h5>Skills Used (${p.skills.length})</h5><div class="sp-skills">${p.skills.map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("")}</div></div>
+    <div class="sp-pv-sec"><h5>Project Link</h5>${p.url ? `<a class="sp-link" href="${esc(p.url)}" target="_blank" rel="noopener">${iconSvg("external", "l", 14)}${esc(p.url)}</a>` : "<p>Not added</p>"}</div>
+    <div class="sp-pv-sec"><h5>Document</h5>${p.file ? `<div class="ui-file-row"><span class="ui-icon-box is-primary">${iconSvg("document", "f", 18)}</span><div><b>${esc(p.file)}</b><small>PDF · ${((p.size || 0) / 1024 / 1024).toFixed(2)} MB</small></div><span></span></div>` : "<p>Not added</p>"}</div>`;
+  openModal("mdProjView");
+}
+$("#pvEdit").addEventListener("click", () => { const i = PJ.view; closeModal($("#mdProjView")); PJ.edit = i; setTimeout(() => openModal("mdProj"), 50); });
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-proj-add]")) { PJ.edit = null; return openModal("mdProj"); }
+  const mbtn = e.target.closest("[data-menu]");
+  if (mbtn) { const vi = $("#spMenu [data-act=view]"); vi.hidden = mbtn.dataset.proj == null; return; }   // View only in the projects menu
+  const it = e.target.closest("#spMenu .ui-menu-item"), mb = typeof menuBtn !== "undefined" ? menuBtn : null;
+  if (it && mb && mb.dataset.proj != null) {
+    const i = +mb.dataset.proj, act = it.dataset.act;
+    if (act === "view") pjView(i);
+    else if (act === "edit") { PJ.edit = i; openModal("mdProj"); }
+    else askDelete("project", PROJECTS[i].title, () => {
+      const [p] = PROJECTS.splice(i, 1); if (p?.fileUrl) URL.revokeObjectURL(p.fileUrl);
+      renderProjects(); hydrate($("#projectList")); toast("Project deleted");
+    });
+  }
 });
 
 const SKILL_OPTIONS = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Angular", "Vue.js", "Node.js", "Java", "Spring Boot", "Hibernate", "Python", "Django", "Machine Learning", "Data Analysis", "SQL", "MySQL", "MongoDB", "PHP", "Laravel", "C", "C++", "C#", ".NET", "Docker", "Git", "Linux", "AWS", "Figma", "UI/UX Design", "Communication", "Problem Solving", "Teamwork", "MS Excel", "Tally"];
@@ -1280,7 +1696,11 @@ function skAdd(v) {
 }
 $("#mdSkills").addEventListener("modal:open", () => {
   SK.draft = [...SK.saved]; skIn.value = ""; SK.active = 0;
-  $("#mdSkillsTitle").textContent = SK.saved.length ? "Edit Job Oriented Skills" : "Add Job Oriented Skill";
+  const ed = SK.saved.length > 0;   // no skill yet → Add modal; skills saved → the same modal as Edit (28/11)
+  $("#mdSkillsTitle").textContent = ed ? "Edit Job Oriented Skill" : "Add Job Oriented Skill";
+  $("#mdSkillsSub").textContent = ed ? "Remove a skill with × or search to add more." : "Search and add the skills that are relevant for your career.";
+  $("#mdSkHead").textContent = ed ? "Selected Skills" : "Your Added Skills";
+  $("#mdSkSave").textContent = ed ? "Update Skills" : "Save Skills";
   skHelp("Type to search. Press Enter to add a skill that is not in the list.");
   skRenderChips(); skOpen(false);
 });
