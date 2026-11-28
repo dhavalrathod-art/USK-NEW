@@ -66,6 +66,7 @@
      never for status. Solid = icon + button, -bg = card (10%), -border = card border (15%). */
   --color-cat-purple:#7c3aed; --color-cat-purple-bg:rgba(124,58,237,.1); --color-cat-purple-border:rgba(124,58,237,.15);
   --color-cat-green:#16a34a;  --color-cat-green-bg:rgba(22,163,74,.1);   --color-cat-green-border:rgba(22,163,74,.15);
+  --color-brand-digilocker:#6942fe;   --color-brand-digilocker-bg:#f5f2ff;   --color-brand-digilocker-active:#e9e2ff;   /* DigiLocker sign-up button only (user, 28/11) */
   --color-cat-teal:#0d9488;   --color-cat-teal-bg:rgba(13,148,136,.1);   --color-cat-teal-border:rgba(13,148,136,.15);
   --color-cat-blue:#2563eb;   --color-cat-blue-bg:rgba(37,99,235,.1);    --color-cat-blue-border:rgba(37,99,235,.15);
   --color-cat-orange:#ea580c; --color-cat-orange-bg:rgba(234,88,12,.1); --color-cat-orange-border:rgba(234,88,12,.15);
@@ -150,6 +151,9 @@
 .ui-btn-outline{background:#fff;border-color:var(--color-primary-600);color:var(--color-primary-600)}
 .ui-btn-outline:hover,.ui-btn-outline.is-hover{background:var(--color-primary-50)}
 .ui-btn-outline:active,.ui-btn-outline.is-active{background:var(--color-primary-100)}
+.ui-btn-digilocker{background:#fff;border-color:var(--color-brand-digilocker);color:var(--color-brand-digilocker)}
+.ui-btn-digilocker:hover,.ui-btn-digilocker.is-hover{background:var(--color-brand-digilocker-bg)}
+.ui-btn-digilocker:active,.ui-btn-digilocker.is-active{background:var(--color-brand-digilocker-active)}
 
 .ui-btn-accent{background:var(--color-accent-500);color:#fff}
 .ui-btn-accent:hover,.ui-btn-accent.is-hover{background:var(--color-accent-600)}

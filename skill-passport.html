@@ -410,7 +410,7 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
 .sp-cf-prev-body > img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;background:#fff}
 .sp-cf-acts .ui-act.is-on{background:var(--color-primary-50)}
 @media (max-width:575.98px){.sp-cf-prev-body{height:320px}}
-/* College project – Add / Edit modal + View modal (28/11) */
+/* College project – Add / Edit modal (28/11) */
 .ui-menu-item[hidden]{display:none}
 .sp-pj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-16)}
 .sp-pj-grid .is-full{grid-column:1/-1}
@@ -421,12 +421,32 @@ button.sp-skill.is-more:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color
 .sp-pj-file[hidden],.sp-pj-drop[hidden]{display:none}
 .sp-pj-drop{padding:var(--space-20)}
 @media (max-width:767.98px){.sp-pj-grid{grid-template-columns:1fr}}
-.sp-pv-sec{margin-top:var(--space-20)}
-.sp-pv-sec h5{margin:0 0 var(--space-8);font-size:var(--font-size-overline);line-height:var(--line-height-overline);font-weight:var(--font-weight-semibold);letter-spacing:.3px;text-transform:uppercase;color:var(--color-text-secondary)}
-.sp-pv-sec p{margin:0;font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body);white-space:pre-line}
-.sp-pv-sec .sp-skills{margin:0}
-#mdProjView .sp-kv{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:575.98px){#mdProjView .sp-kv{grid-template-columns:1fr 1fr}}
+/* Internship View modal (28/11) */
+.sp-iv-card{border:1px solid var(--color-border-default);border-radius:12px;padding:var(--space-16) var(--space-20);background:#fff}
+.sp-iv-card + .sp-iv-card{margin-top:var(--space-16)}
+.sp-iv-card > .ui-form-sec-head{margin-bottom:var(--space-16)}
+.sp-iv-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-16)}
+.sp-iv-tile{display:flex;align-items:center;gap:var(--space-12);min-width:0}
+.sp-iv-tile > div{min-width:0}
+.sp-iv-tile small{display:block;font-size:var(--font-size-caption);line-height:var(--line-height-caption);color:var(--color-text-secondary)}
+.sp-iv-tile b{display:block;font-size:var(--font-size-body-lg);color:var(--color-text-heading);overflow-wrap:anywhere}
+.sp-iv-sub{margin:var(--space-16) 0 var(--space-8);font-size:var(--font-size-body);font-weight:var(--font-weight-semibold);color:var(--color-primary-600)}
+.sp-iv-projs{display:flex;flex-wrap:wrap;row-gap:var(--space-4);font-size:var(--font-size-body);color:var(--color-text-body)}
+.sp-iv-projs span + span{margin-left:var(--space-12);padding-left:var(--space-12);border-left:1px solid var(--color-border-strong)}
+.sp-iv-p{margin:0;font-size:var(--font-size-body);line-height:var(--line-height-body);color:var(--color-text-body);overflow-wrap:anywhere}
+.sp-iv-file{margin-top:var(--space-16)}
+.sp-iv-tiles .is-full{grid-column:1/-1}
+.sp-iv-tiles [hidden]{display:none}
+.sp-iv-sub.sp-iv-first{margin-top:0}
+.sp-iv-file .ui-file-row{background:var(--color-bg-page)}
+@media (max-width:575.98px){.sp-iv-tiles{grid-template-columns:1fr}.sp-iv-card{padding:var(--space-16)}}
+/* Internship Add / Edit (28/11) */
+.sp-pj-grid.is-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:767.98px){.sp-pj-grid.is-2{grid-template-columns:1fr}}
+.sp-in-hint{margin-top:calc(-1 * var(--space-4))}
+.sp-in-add{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-8);align-items:start}
+.sp-in-chips{margin:var(--space-8) 0 0}
+.sp-in-chips:empty{display:none}
 /* Sample certificate page (dummy document) – drawer + modal preview; same look as index.html .dr-cert */
 .sp-doc{width:min(620px,100%);min-width:0;aspect-ratio:1.414;padding:22px;background:#fffdf8;box-shadow:0 6px 20px rgba(15,31,49,.15)}
 .sp-doc > div{height:100%;border:3px double var(--color-accent-600);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:20px}
@@ -591,7 +611,7 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
             <div class="sp-head">
               <span class="ui-icon-box is-info"><span data-icon="briefcase:f:20"></span></span>
               <div class="sp-head-txt"><h2 id="secInternH">Internship <i data-count="interns">0</i></h2><p>Your practical experience and industry exposure.</p></div>
-              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-soon="Add Internship"><span data-icon="plus:l:14"></span>Add</button></div>
+              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-intern-add><span data-icon="plus:l:14"></span>Add</button></div>
             </div>
             <div class="sp-cols c2" id="internList"></div>
           </section>
@@ -601,7 +621,7 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
             <div class="sp-head">
               <span class="ui-icon-box is-success"><span data-icon="trophy:f:20"></span></span>
               <div class="sp-head-txt"><h2 id="secAchieveH">Special Achievements <i data-count="special">0</i></h2><p>Awards and recognitions you have earned.</p></div>
-              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-soon="Add Special Achievement"><span data-icon="plus:l:14"></span>Add</button></div>
+              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-special-add><span data-icon="plus:l:14"></span>Add</button></div>
             </div>
             <div class="sp-cols c2" id="specialList"></div>
           </section>
@@ -611,7 +631,7 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
             <div class="sp-head">
               <span class="ui-icon-box is-primary"><span data-icon="book:f:20"></span></span>
               <div class="sp-head-txt"><h2 id="secDissertationH">College Dissertation <i data-count="dissertations">0</i></h2><p>Your final-year dissertation or thesis.</p></div>
-              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-soon="Add Dissertation"><span data-icon="plus:l:14"></span>Add</button></div>
+              <div class="sp-head-act"><button class="ui-btn ui-btn-primary ui-btn-sm" type="button" data-diss-add><span data-icon="plus:l:14"></span>Add</button></div>
             </div>
             <div class="sp-cols c2" id="dissList"></div>
           </section>
@@ -850,18 +870,307 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
   </div>
 </div>
 
-<!-- ============ MODAL: View College Project (read only, 28/11) ============ -->
-<div class="ui-modal-backdrop" id="mdProjView">
-  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+<!-- ============ MODAL: Add / Edit Special Achievement (28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdSpecial" data-static>
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdSpecialTitle">
     <div class="ui-modal-head">
-      <span class="ui-modal-icon"><span data-icon="code:f:22"></span></span>
-      <div class="ui-modal-title"><h4 id="pvTitle">Project</h4><p id="pvSub"></p></div>
+      <span class="ui-modal-icon"><span data-icon="trophy:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="mdSpecialTitle">Add Special Achievement</h4><p id="mdSpecialSub">Add your awards and recognitions to showcase what makes you stand out.</p></div>
       <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
     </div>
-    <div class="ui-modal-body" id="pvBody"></div>
+    <div class="ui-modal-body">
+      <div class="sp-pj-grid is-2" id="saForm">
+        <div class="ui-field" data-sa="skill">
+          <label class="ui-label" for="saSkill">Skill Name<span class="ui-req">*</span></label>
+          <input class="ui-input" id="saSkill" maxlength="80" placeholder="e.g. 100m race">
+          <span class="ui-help" data-sa-err></span>
+        </div>
+        <div class="ui-field" data-sa="level">
+          <label class="ui-label">Skill Level<span class="ui-req">*</span></label>
+          <div class="ui-select" id="saLevel" data-ph="Select skill level"></div>
+          <span class="ui-help" data-sa-err></span>
+        </div>
+        <div class="ui-field" data-sa="id">
+          <label class="ui-label" for="saId">Certificate ID</label>
+          <input class="ui-input" id="saId" maxlength="40" placeholder="e.g. 1234567890">
+          <span class="ui-help" data-sa-err></span>
+        </div>
+        <div class="ui-field" data-sa="title">
+          <label class="ui-label" for="saTitle">Certificate Name<span class="ui-req">*</span></label>
+          <input class="ui-input" id="saTitle" maxlength="120" placeholder="e.g. Inter-college athletics winner">
+          <span class="ui-help" data-sa-err></span>
+        </div>
+        <div class="ui-field is-full" data-sa="org">
+          <label class="ui-label" for="saOrg">Organization Name<span class="ui-req">*</span></label>
+          <input class="ui-input" id="saOrg" maxlength="120" placeholder="e.g. University of XYZ">
+          <span class="ui-help" data-sa-err></span>
+        </div>
+        <div class="ui-field" data-sa="date">
+          <label class="ui-label" for="saDate">Issue Date<span class="ui-req">*</span></label>
+          <input class="ui-input" id="saDate" type="date">
+          <span class="ui-help" data-sa-err></span>
+        </div>
+        <div class="ui-field" data-sa="exp">
+          <label class="ui-label" for="saExp">Expiry Date</label>
+          <input class="ui-input" id="saExp" type="date">
+          <span class="ui-help" data-sa-err>Leave empty if it does not expire.</span>
+        </div>
+        <div class="ui-field is-full" data-sa="desc">
+          <label class="ui-label" for="saDesc">Description<span class="ui-req">*</span></label>
+          <textarea class="ui-input" id="saDesc" maxlength="500" rows="3" placeholder="Briefly describe your achievement and how you earned it."></textarea>
+          <span class="ui-help" data-sa-help><span data-sa-err></span><span class="sp-cf-count" data-pj-count="saDesc">0 / 500 characters</span></span>
+        </div>
+        <div class="ui-field is-full" data-sa="file">
+          <label class="ui-label">Upload Certificate</label>
+          <div class="ui-drop sp-pj-drop" id="saDrop" tabindex="0" role="button" aria-label="Upload certificate">
+            <span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span>
+            <b>Drag &amp; drop your file here or <u>browse</u></b>
+            <small>PDF, JPEG, JPG, PNG · up to 2 MB</small>
+          </div>
+          <input type="file" id="saFileIn" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" hidden>
+          <div class="ui-file-row sp-pj-file" id="saFileRow" hidden>
+            <span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span>
+            <div><b id="saFileName"></b><small id="saFileSize"></small></div>
+            <div class="ui-acts sp-cf-acts"><button class="ui-act ui-act-view" type="button" id="saFileView" title="View certificate" aria-label="View uploaded certificate" aria-expanded="false" aria-controls="saPrev"><span data-icon="view:f:18"></span></button><button class="ui-btn ui-btn-danger-soft ui-btn-sm" type="button" id="saFileRm">Remove</button></div>
+          </div>
+          <div class="sp-cf-prev" id="saPrev" hidden>
+            <div class="sp-cf-prev-head"><b>Preview</b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="saPrevHide">Hide preview</button></div>
+            <div class="sp-cf-prev-body" id="saPrevBody"></div>
+          </div>
+          <span class="ui-help" data-sa-err></span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="saSave">Save Achievement</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: Add / Edit College Dissertation (28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdDiss" data-static>
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdDissTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="book:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="mdDissTitle">Add College Dissertation</h4><p id="mdDissSub">Add your college dissertation details to showcase your research work.</p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="sp-pj-grid is-2" id="dsForm">
+        <div class="ui-field is-full" data-ds="title">
+          <label class="ui-label" for="dsTitle">Dissertation Title<span class="ui-req">*</span></label>
+          <input class="ui-input" id="dsTitle" maxlength="200" placeholder="e.g. Impact of microservices on deployment frequency">
+          <span class="ui-help" data-ds-err></span>
+        </div>
+        <div class="ui-field" data-ds="guide">
+          <label class="ui-label" for="dsGuide">Guide Name<span class="ui-req">*</span></label>
+          <input class="ui-input" id="dsGuide" maxlength="100" placeholder="e.g. Dr. Anita Sharma">
+          <span class="ui-help" data-ds-err></span>
+        </div>
+        <div class="ui-field" data-ds="year">
+          <label class="ui-label">Academic Year<span class="ui-req">*</span></label>
+          <div class="ui-select" id="dsYear" data-ph="Select academic year"></div>
+          <span class="ui-help" data-ds-err></span>
+        </div>
+        <div class="ui-field is-full" data-ds="desc">
+          <label class="ui-label" for="dsDesc">Dissertation Description<span class="ui-req">*</span></label>
+          <textarea class="ui-input" id="dsDesc" maxlength="1000" rows="5" placeholder="e.g. This dissertation studies how moving from a monolith to microservices..."></textarea>
+          <span class="ui-help" data-ds-help><span data-ds-err></span><span class="sp-cf-count" data-pj-count="dsDesc">0 / 1000 characters</span></span>
+        </div>
+        <div class="ui-field is-full" data-ds="file">
+          <label class="ui-label">Upload Document</label>
+          <div class="ui-drop sp-pj-drop" id="dsDrop" tabindex="0" role="button" aria-label="Upload dissertation document">
+            <span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span>
+            <b>Drag &amp; drop your file here or <u>browse</u></b>
+            <small>PDF · up to 5 MB</small>
+          </div>
+          <input type="file" id="dsFileIn" accept=".pdf,application/pdf" hidden>
+          <div class="ui-file-row sp-pj-file" id="dsFileRow" hidden>
+            <span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span>
+            <div><b id="dsFileName"></b><small id="dsFileSize"></small></div>
+            <div class="ui-acts sp-cf-acts"><button class="ui-act ui-act-view" type="button" id="dsFileView" title="View document" aria-label="View uploaded document" aria-expanded="false" aria-controls="dsPrev"><span data-icon="view:f:18"></span></button><button class="ui-btn ui-btn-danger-soft ui-btn-sm" type="button" id="dsFileRm">Remove</button></div>
+          </div>
+          <div class="sp-cf-prev" id="dsPrev" hidden>
+            <div class="sp-cf-prev-head"><b>Preview</b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="dsPrevHide">Hide preview</button></div>
+            <div class="sp-cf-prev-body" id="dsPrevBody"></div>
+          </div>
+          <span class="ui-help" data-ds-err></span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="dsSave">Save Dissertation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: View College Dissertation (read only, 28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdDissView">
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="dvTitleH">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="book:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="dvTitleH">College Dissertation Details</h4><p>View your college dissertation information.</p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <section class="sp-iv-card">
+        <div class="ui-form-sec-head"><h5>Dissertation Information</h5></div>
+        <div class="sp-iv-tiles">
+          <div class="sp-iv-tile is-full"><span class="ui-icon-box is-primary"><span data-icon="book:f:20"></span></span><div><small>Dissertation Title</small><b id="dvTitle"></b></div></div>
+          <div class="sp-iv-tile"><span class="ui-icon-box is-primary"><span data-icon="calendar:f:20"></span></span><div><small>Academic Year</small><b id="dvYear"></b></div></div>
+          <div class="sp-iv-tile"><span class="ui-icon-box is-primary"><span data-icon="user:f:20"></span></span><div><small>Guide Name</small><b id="dvGuide"></b></div></div>
+          <div class="sp-iv-tile"><span class="ui-icon-box is-primary"><span data-icon="info:f:20"></span></span><div><small>Status</small><span id="dvStatus"></span></div></div>
+          <div class="sp-iv-tile" id="dvGradeWrap"><span class="ui-icon-box is-primary"><span data-icon="star:f:20"></span></span><div><small>Grade</small><b id="dvGrade"></b></div></div>
+        </div>
+      </section>
+      <section class="sp-iv-card">
+        <div class="ui-form-sec-head"><h5>Dissertation Details</h5></div>
+        <h6 class="sp-iv-sub sp-iv-first">Dissertation Description</h6>
+        <p class="sp-iv-p" id="dvDesc"></p>
+        <div class="sp-iv-file" id="dvFileWrap">
+          <div class="ui-file-row">
+            <span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span>
+            <div><b id="dvFileName"></b><small id="dvFileType"></small></div>
+            <button class="ui-act ui-act-view" type="button" id="dvFileView" title="View document" aria-label="View document" aria-expanded="false" aria-controls="dvPrev"><span data-icon="view:f:18"></span></button>
+          </div>
+          <div class="sp-cf-prev" id="dvPrev" hidden>
+            <div class="sp-cf-prev-head"><b>Preview</b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="dvPrevHide">Hide preview</button></div>
+            <div class="sp-cf-prev-body" id="dvPrevBody"></div>
+          </div>
+        </div>
+      </section>
+    </div>
     <div class="ui-modal-foot">
       <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Close</button>
-      <button class="ui-btn ui-btn-primary" type="button" id="pvEdit"><span data-icon="edit:f:16"></span>Edit Project</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="dvEdit"><span data-icon="edit:f:16"></span>Edit Dissertation</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: View Internship (read only, 28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdInternView">
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="ivTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="briefcase:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="ivTitle">Internship Details</h4><p>View your internship information and project details.</p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <section class="sp-iv-card">
+        <div class="ui-form-sec-head"><h5>Company Information</h5></div>
+        <div class="sp-iv-tiles">
+          <div class="sp-iv-tile"><span class="ui-icon-box is-primary"><span data-icon="building:f:20"></span></span><div><small>Company Name</small><b id="ivCompany"></b></div></div>
+          <div class="sp-iv-tile"><span class="ui-icon-box is-primary"><span data-icon="briefcase:f:20"></span></span><div><small>Work Sector</small><b id="ivSector"></b></div></div>
+        </div>
+      </section>
+      <section class="sp-iv-card">
+        <div class="ui-form-sec-head"><h5>Internship Details</h5></div>
+        <div class="sp-iv-tile"><span class="ui-icon-box is-primary"><span data-icon="clock:f:20"></span></span><div><small>Duration</small><b id="ivDur"></b><small id="ivDays"></small></div></div>
+        <h6 class="sp-iv-sub">Internship Projects Name</h6>
+        <div class="sp-iv-projs" id="ivProjs"></div>
+        <h6 class="sp-iv-sub">Project Deliverables</h6>
+        <p class="sp-iv-p" id="ivDeliv"></p>
+        <h6 class="sp-iv-sub">Skills Used / Technologies</h6>
+        <div class="sp-skills" id="ivSkills"></div>
+        <div class="sp-iv-file" id="ivFileWrap">
+          <div class="ui-file-row">
+            <span class="ui-icon-box is-primary" id="ivFileIc"></span>
+            <div><b id="ivFileName"></b><small id="ivFileType"></small></div>
+            <button class="ui-act ui-act-view" type="button" id="ivFileView" title="View certificate" aria-label="View certificate" aria-expanded="false" aria-controls="ivPrev"><span data-icon="view:f:18"></span></button>
+          </div>
+          <div class="sp-cf-prev" id="ivPrev" hidden>
+            <div class="sp-cf-prev-head"><b>Preview</b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="ivPrevHide">Hide preview</button></div>
+            <div class="sp-cf-prev-body" id="ivPrevBody"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Close</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="ivEdit"><span data-icon="edit:f:16"></span>Edit Internship</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL: Add / Edit Internship (28/11) ============ -->
+<div class="ui-modal-backdrop" id="mdIntern" data-static>
+  <div class="ui-modal ui-modal-lg" role="dialog" aria-modal="true" aria-labelledby="mdInternTitle">
+    <div class="ui-modal-head">
+      <span class="ui-modal-icon"><span data-icon="briefcase:f:22"></span></span>
+      <div class="ui-modal-title"><h4 id="mdInternTitle">Add Internship</h4><p id="mdInternSub">Add an internship you completed. It shows in your Skill Passport.</p></div>
+      <button class="ui-modal-close" type="button" data-modal-close title="Close" aria-label="Close"><span data-icon="close:l:20"></span></button>
+    </div>
+    <div class="ui-modal-body">
+      <div class="sp-pj-grid is-2" id="inForm">
+        <div class="ui-field" data-in="company">
+          <label class="ui-label" for="inCompany">Company Name<span class="ui-req">*</span></label>
+          <input class="ui-input" id="inCompany" maxlength="120" placeholder="e.g. Technova Solutions">
+          <span class="ui-help" data-in-err></span>
+        </div>
+        <div class="ui-field" data-in="sector">
+          <label class="ui-label">Work Sector<span class="ui-req">*</span></label>
+          <div class="ui-select" id="inSector" data-ph="Select work sector"></div>
+          <span class="ui-help" data-in-err></span>
+        </div>
+        <div class="ui-field" data-in="from">
+          <label class="ui-label" for="inFrom">Start Date<span class="ui-req">*</span></label>
+          <input class="ui-input" id="inFrom" type="date">
+          <span class="ui-help" data-in-err></span>
+        </div>
+        <div class="ui-field" data-in="to">
+          <label class="ui-label" for="inTo">End Date<span class="ui-req">*</span></label>
+          <input class="ui-input" id="inTo" type="date">
+          <span class="ui-help" data-in-err></span>
+        </div>
+        <div class="ui-field is-full" data-in="projects">
+          <label class="ui-label" for="inProj">Internship Projects<span class="ui-req">*</span></label>
+          <span class="ui-help sp-in-hint">Add the project names you worked on during your internship. Press Enter or click Add after each one.</span>
+          <div class="sp-in-add">
+            <input class="ui-input" id="inProj" maxlength="100" placeholder="e.g. Student management system" autocomplete="off">
+            <button class="ui-btn ui-btn-primary" type="button" id="inProjAdd"><span data-icon="plus:l:16"></span>Add</button>
+          </div>
+          <div class="ui-chips sp-in-chips" id="inProjChips"></div>
+          <span class="ui-help" data-in-err></span>
+        </div>
+        <div class="ui-field is-full" data-in="deliv">
+          <label class="ui-label" for="inDeliv">Project Deliverable<span class="ui-req">*</span></label>
+          <span class="ui-help sp-in-hint">Describe your key responsibilities and deliverables for this internship.</span>
+          <textarea class="ui-input" id="inDeliv" maxlength="500" rows="3" placeholder="e.g. Developed responsive UI, integrated APIs"></textarea>
+          <span class="ui-help" data-in-help><span data-in-err></span><span class="sp-cf-count" data-pj-count="inDeliv">0 / 500 characters</span></span>
+        </div>
+        <div class="ui-field is-full" data-in="skills">
+          <span class="sp-pj-skhead">Skills Added (<b id="inSkCount">0</b>)</span>
+          <div class="ui-chips" id="inSkChips"></div>
+          <label class="ui-label">Select the skills you used during your internship<span class="ui-req">*</span></label>
+          <div class="ui-select" id="inSkill" data-ph="Search and select skills (e.g. HTML, CSS, JavaScript...)" data-search></div>
+          <span class="ui-help" data-in-err></span>
+        </div>
+        <div class="ui-field is-full" data-in="file">
+          <label class="ui-label">Upload Certificate</label>
+          <div class="ui-drop sp-pj-drop" id="inDrop" tabindex="0" role="button" aria-label="Upload internship certificate">
+            <span class="ui-drop-ic"><span data-icon="upload:l:24"></span></span>
+            <b>Drag &amp; drop your file here or <u>browse</u></b>
+            <small>PDF, JPEG, JPG, PNG · up to 2 MB</small>
+          </div>
+          <input type="file" id="inFileIn" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" hidden>
+          <div class="ui-file-row sp-pj-file" id="inFileRow" hidden>
+            <span class="ui-icon-box is-primary"><span data-icon="document:f:18"></span></span>
+            <div><b id="inFileName"></b><small id="inFileSize"></small></div>
+            <div class="ui-acts sp-cf-acts"><button class="ui-act ui-act-view" type="button" id="inFileView" title="View certificate" aria-label="View uploaded certificate" aria-expanded="false" aria-controls="inPrev"><span data-icon="view:f:18"></span></button><button class="ui-btn ui-btn-danger-soft ui-btn-sm" type="button" id="inFileRm">Remove</button></div>
+          </div>
+          <div class="sp-cf-prev" id="inPrev" hidden>
+            <div class="sp-cf-prev-head"><b>Preview</b><button class="ui-btn ui-btn-ghost ui-btn-sm" type="button" id="inPrevHide">Hide preview</button></div>
+            <div class="sp-cf-prev-body" id="inPrevBody"></div>
+          </div>
+          <span class="ui-help" data-in-err></span>
+        </div>
+      </div>
+    </div>
+    <div class="ui-modal-foot">
+      <button class="ui-btn ui-btn-outline" type="button" data-modal-close>Cancel</button>
+      <button class="ui-btn ui-btn-primary" type="button" id="inSave">Save Internship</button>
     </div>
   </div>
 </div>
@@ -954,7 +1263,6 @@ textarea.ui-input.sp-cf-desc{min-height:96px;padding-top:var(--space-8);resize:v
 
 <!-- Row actions menu (3 dots) – design only, Edit / Delete are not connected yet -->
 <div class="ui-menu" id="spMenu" role="menu">
-  <button class="ui-menu-item" type="button" role="menuitem" data-act="view" hidden><span data-icon="view:f:18"></span>View</button>
   <button class="ui-menu-item" type="button" role="menuitem" data-act="edit"><span data-icon="edit:f:18"></span>Edit</button>
   <button class="ui-menu-item is-danger" type="button" role="menuitem" data-act="delete"><span data-icon="delete:f:18"></span>Delete</button>
 </div>
@@ -989,23 +1297,34 @@ const viewBtn = (what, soon) => `<button class="ui-act ui-act-view" type="button
 /* ================= SAMPLE DATA (the same student as the Dashboard: Aarav Patel) ================= */
 const CERTS = [
   { skill: "Cloud Computing", title: "AWS Certified Cloud Practitioner", by: "Amazon Web Services", date: "18/06/2026", id: "AWS-CCP-58H2K9", level: "International" },
-  { skill: "Java", title: "Java Programming Fundamentals", by: "NPTEL · IIT Kharagpur", date: "12/04/2026", id: "NPTEL26CS41S3", level: "National" }
+  { skill: "Java", title: "Java Programming Fundamentals", by: "NPTEL · IIT Kharagpur", date: "12/04/2026", id: "NPTEL26CS41S3", level: "National" },
+  { skill: "Python", title: "Python for Data Science", by: "Coursera · IBM", date: "10/03/2026", id: "COURSERA-PY-77A1", level: "International" },
+  { skill: "SQL", title: "SQL and Relational Databases 101", by: "IBM · Cognitive Class", date: "22/01/2026", id: "CC-SQL-20458", level: "International" },
+  { skill: "Git", title: "Git and GitHub for Beginners", by: "GTU · Skill Hub", date: "05/11/2025", id: "GTU-GIT-1142", level: "University" }
 ];
 const INTERNS = [
-  { company: "Nexora Softech", role: "Web Development", from: "01/05/2026", to: "30/06/2026", dur: "02 Months", skills: ["React JS", "REST APIs", "Git", "JavaScript", "HTML", "CSS"], file: "Internship_Certificate.pdf" },
-  { company: "Sabar Fintech", role: "Backend Engineering", from: "08/12/2025", to: "06/01/2026", dur: "01 Month", skills: ["Spring Boot", "SQL"], file: "Completion_Letter.pdf" }
+  { company: "Nexora Softech", sector: "Web Development", projects: ["Student Portal Redesign", "Admin Dashboard"], deliv: "Built responsive UI screens and integrated REST APIs for the student portal.", role: "Web Development", from: "01/05/2026", to: "30/06/2026", dur: "02 Months", skills: ["React JS", "REST APIs", "Git", "JavaScript", "HTML", "CSS"], file: "Internship_Certificate.pdf" },
+  { company: "Sabar Fintech", sector: "Backend Engineering", projects: ["Loan Eligibility Service"], deliv: "Developed backend APIs and SQL queries for loan eligibility checks.", role: "Backend Engineering", from: "08/12/2025", to: "06/01/2026", dur: "01 Month", skills: ["Spring Boot", "SQL"], file: "Completion_Letter.pdf" },
+  { company: "Technova Solutions", sector: "Information Technology", projects: ["Inventory Tracker", "Support Ticket Portal"], deliv: "Built the inventory tracker screens and wrote REST endpoints with unit tests.", role: "Information Technology", from: "10/06/2025", to: "09/07/2025", dur: "01 Month", skills: ["Java", "Spring Boot", "MySQL", "Git"], file: "Technova_Certificate.pdf" },
+  { company: "Gujarat Informatics Ltd", sector: "Government / Public Sector", projects: ["e-Governance Dashboard"], deliv: "Prepared reports and a dashboard for district-level service data.", role: "Government / Public Sector", from: "02/12/2024", to: "31/12/2024", dur: "01 Month", skills: ["MS Excel", "SQL", "Data Analysis"], file: "GIL_Internship_Letter.pdf" }
 ];
 const SPECIAL = [
-  { title: "State Level Winner", level: "State", event: "Smart Gujarat Hackathon 2025 · Agri-Tech Track", org: "Student Startup & Innovation Hub", date: "15/02/2026", skill: "Problem Solving" },
-  { title: "Best Innovation Award", level: "University", event: "GTU Innovation Fest 2026", org: "GTU Innovation Council", date: "20/03/2026", skill: "Ideation" }
+  { title: "State Level Winner", id: "SGH-2025-0142", desc: "Won the state-level Smart Gujarat Hackathon (Agri-Tech track) with a crop-advice app built by a team of four in 24 hours.", level: "State", event: "Smart Gujarat Hackathon 2025 · Agri-Tech Track", org: "Student Startup & Innovation Hub", date: "15/02/2026", skill: "Problem Solving" },
+  { title: "Best Innovation Award", id: "GTU-IF-2026-31", desc: "Awarded for the most innovative project at GTU Innovation Fest 2026 – a low-cost water-quality monitoring kit.", level: "University", event: "GTU Innovation Fest 2026", org: "GTU Innovation Council", date: "20/03/2026", skill: "Ideation" },
+  { title: "Best Paper Presenter", id: "NCET-2026-ST-07", desc: "Best presentation in the student track for the paper on lightweight intrusion detection.", level: "National", event: "NCET 2026 Student Track", org: "GTU & CSI Ahmedabad Chapter", date: "09/04/2026", skill: "Research Writing" },
+  { title: "Winner – Coding Contest", id: "TF25-CS-001", desc: "First place in the Code Sprint contest of TechFest 2025 among 120 participants.", level: "College", event: "TechFest 2025 · Code Sprint", org: "L.D. College of Engineering", date: "18/10/2025", skill: "Problem Solving" }
 ];
 const DISS = [
-  { title: "Intrusion Detection in IoT Networks using Machine Learning", status: "Approved", guide: "Dr. Mehul Patel", dept: "Computer Engineering", date: "15/04/2026", grade: "A+", text: "A lightweight machine-learning model that detects unusual traffic in IoT networks in real time, tested on the CIC-IoT dataset with 96% accuracy and low memory use on edge devices." },
-  { title: "Smart Traffic Signal Control using Reinforcement Learning", status: "Under Review", guide: "Prof. Nirav Shah", dept: "Computer Engineering", date: "02/06/2026", grade: "Pending", text: "A reinforcement-learning agent that adjusts signal timing from live camera counts, simulated on a 12-junction map of Ahmedabad with 18% shorter average waiting time." }
+  { title: "Intrusion Detection in IoT Networks using Machine Learning", year: "2025-26", status: "Approved", guide: "Dr. Mehul Patel", dept: "Computer Engineering", date: "15/04/2026", grade: "A+", text: "A lightweight machine-learning model that detects unusual traffic in IoT networks in real time, tested on the CIC-IoT dataset with 96% accuracy and low memory use on edge devices." },
+  { title: "Smart Traffic Signal Control using Reinforcement Learning", year: "2025-26", status: "Under Review", guide: "Prof. Nirav Shah", dept: "Computer Engineering", date: "02/06/2026", grade: "Pending", text: "A reinforcement-learning agent that adjusts signal timing from live camera counts, simulated on a 12-junction map of Ahmedabad with 18% shorter average waiting time." },
+  { title: "Blockchain-based Academic Certificate Verification", year: "2025-26", status: "Approved", guide: "Dr. Anita Desai", dept: "Computer Engineering", date: "10/03/2026", grade: "A", text: "A permissioned blockchain that lets colleges issue tamper-proof certificates which employers can verify in seconds, tested with 500 sample records." },
+  { title: "Sentiment Analysis of Gujarati Social Media Posts", year: "2024-25", status: "Published", guide: "Prof. Kunal Joshi", dept: "Computer Engineering", date: "25/01/2026", grade: "A+", text: "A transformer-based classifier for Gujarati and mixed-language posts, trained on 20,000 labelled posts with a 91% F1 score." }
 ];
 const RESEARCH = [
   { title: "A Lightweight Deep Learning Approach for IoT Intrusion Detection", status: "Published", venue: "International Journal of Computer Applications", type: "Journal", label: "Published", date: "12/05/2026", role: "First Author", co: "Dr. Mehul Patel, Riya Shah", doi: "10.5120/ijca2026-0123" },
-  { title: "Comparative Study of Container Security Tools", status: "Under Review", venue: "National Conference on Emerging Technologies (NCET)", type: "Conference", label: "Submitted", date: "20/08/2026", role: "Co-author", co: "", doi: "" }
+  { title: "Comparative Study of Container Security Tools", status: "Under Review", venue: "National Conference on Emerging Technologies (NCET)", type: "Conference", label: "Submitted", date: "20/08/2026", role: "Co-author", co: "", doi: "" },
+  { title: "Federated Learning for Privacy-Preserving Attendance Analytics", status: "Published", venue: "International Conference on Smart Computing (ICSC)", type: "Conference", label: "Published", date: "14/03/2026", role: "Co-author", co: "Dr. Mehul Patel", doi: "10.1109/icsc2026.0456" },
+  { title: "Energy-Aware Scheduling in Edge Computing: A Survey", status: "Under Review", venue: "Journal of Emerging Technologies", type: "Journal", label: "Submitted", date: "01/09/2026", role: "First Author", co: "Prof. Nirav Shah", doi: "" }
 ];
 const PROJECTS = [
   { title: "Smart Campus Attendance System", category: "Web Application", type: "Major Project", year: "2026-27", role: "Team Lead – planned the work, built the face-recognition module and the teacher dashboard.", url: "https://github.com/aaravpatel/smart-attendance", sem: "7", team: "4 · Team Lead", from: "07/2026", to: "11/2026", text: "Face-recognition attendance for classrooms with a teacher dashboard and monthly reports for the institute.", skills: ["Java", "Spring Boot", "MySQL", "OpenCV"], link: "View on GitHub", icon: "github" },
@@ -1059,77 +1378,81 @@ function certRow(c) {
     `<button class="ui-act ui-act-view" type="button" data-certview="${CERTS.indexOf(c)}" title="View certificate" aria-label="View ${esc(c.title)}">${iconSvg("view", "f", 18)}</button>`
     + MORE_BTN.replace("data-menu", `data-menu data-cert="${CERTS.indexOf(c)}"`));
 }
-/* Certificates: 2 cards side by side; 3 or more → a slider (2 per view, 1 on phones) with dots + auto scroll every 4 s */
-const CS = { timer: 0, pause: false, st: 0 };
-function renderCerts() {
-  const el = $("#certList");
-  clearInterval(CS.timer);
-  if (CERTS.length <= 2) {
-    el.className = "sp-cols c2"; el.innerHTML = CERTS.map(certRow).join("");
-  } else {
-    el.className = "sp-slider";
-    el.innerHTML = `<div class="sp-slide-track" id="certTrack" aria-label="Certificates">${CERTS.map(certRow).join("")}</div>
-      <div class="sp-dots" id="certDots" role="group" aria-label="Choose certificates"></div>`;
-    certDots();
-    $("#certTrack").addEventListener("scroll", () => { clearTimeout(CS.st); CS.st = setTimeout(certDotSync, 80); });
-    el.onmouseenter = () => CS.pause = true;
-    el.onmouseleave = () => CS.pause = false;
-    el.onfocusin = () => CS.pause = true;
-    el.onfocusout = e => { if (!el.contains(e.relatedTarget)) CS.pause = false; };
-    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) CS.timer = setInterval(() => {
-      if (CS.pause || document.hidden || document.body.classList.contains("ui-modal-lock")) return;
-      const i = certPage();
-      certGo(i + 1 >= certPages() ? 0 : i + 1);
-    }, 4000);
+/* Card sections (certificates, internships, special achievements, dissertations, research):
+   2 cards side by side; 3 or more → a slider (2 per view, 1 on phones) with dots + auto scroll every 4 s (28/11) */
+const SL = {};   // per section: { timer, pause, st }
+const SL_ORDER = ["cert", "intern", "special", "diss", "research"];
+const slPer = () => matchMedia("(max-width:767.98px)").matches ? 1 : 2;
+const slPages = n => Math.max(1, n - slPer() + 1);   // one dot = one step of one card
+function slider(id, items, rowFn) {
+  const el = $("#" + id + "List"), S = SL[id] || (SL[id] = { timer: 0, pause: false, st: 0, n: 0 });
+  clearInterval(S.timer); S.n = items.length;
+  if (items.length <= 2) {
+    el.className = "sp-cols c2"; el.innerHTML = items.map(rowFn).join("");
+    el.onmouseenter = el.onmouseleave = el.onfocusin = el.onfocusout = null; return;
   }
-  setCount("certs", CERTS.length);
+  el.className = "sp-slider";
+  el.innerHTML = `<div class="sp-slide-track" id="${id}Track" aria-label="Cards">${items.map(rowFn).join("")}</div>
+    <div class="sp-dots" id="${id}Dots" role="group" aria-label="Choose cards"></div>`;
+  slDots(id);
+  $("#" + id + "Track").addEventListener("scroll", () => { clearTimeout(S.st); S.st = setTimeout(() => slSync(id), 80); });
+  el.onmouseenter = () => S.pause = true;
+  el.onmouseleave = () => S.pause = false;
+  el.onfocusin = () => S.pause = true;
+  el.onfocusout = e => { if (!el.contains(e.relatedTarget)) S.pause = false; };
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) S.timer = setInterval(() => {
+    if (S.pause || document.hidden || document.body.classList.contains("ui-modal-lock") || document.body.classList.contains("ui-drawer-lock")) return;
+    const i = slPage(id); slGo(id, i + 1 >= slPages(S.n) ? 0 : i + 1);
+  }, 4000 + SL_ORDER.indexOf(id) * 500);   // a little apart, so the sections do not all move at once
 }
-const certPer = () => matchMedia("(max-width:767.98px)").matches ? 1 : 2;
-const certPages = () => Math.max(1, CERTS.length - certPer() + 1);   // one dot = one step of one card
-function certPage() {
-  const tr = $("#certTrack"), c = tr && tr.firstElementChild; if (!c) return 0;
-  const w = c.getBoundingClientRect().width + 12;
-  return Math.min(certPages() - 1, Math.round(tr.scrollLeft / w));
+function slPage(id) {
+  const tr = $("#" + id + "Track"), c = tr && tr.firstElementChild; if (!c) return 0;
+  return Math.min(slPages(SL[id].n) - 1, Math.round(tr.scrollLeft / (c.getBoundingClientRect().width + 12)));
 }
-function certGo(i) { const tr = $("#certTrack"), c = tr && tr.children[i]; if (c) tr.scrollTo({ left: c.offsetLeft - tr.firstElementChild.offsetLeft }); }
-function certDots() {
-  const d = $("#certDots"); if (!d) return;
-  d.innerHTML = Array.from({ length: certPages() }, (_, i) => `<button class="sp-sdot" type="button" data-certdot="${i}" aria-label="Show certificate ${i + 1}"></button>`).join("");
-  certDotSync();
+function slGo(id, i) { const tr = $("#" + id + "Track"), c = tr && tr.children[i]; if (c) tr.scrollTo({ left: c.offsetLeft - tr.firstElementChild.offsetLeft }); }
+function slDots(id) {
+  const d = $("#" + id + "Dots"); if (!d) return;
+  d.innerHTML = Array.from({ length: slPages(SL[id].n) }, (_, i) => `<button class="sp-sdot" type="button" data-sldot="${id}:${i}" aria-label="Show card ${i + 1}"></button>`).join("");
+  slSync(id);
 }
-function certDotSync() { const i = certPage(); $$("#certDots .sp-sdot").forEach((b, k) => { b.classList.toggle("is-active", k === i); b.setAttribute("aria-current", k === i ? "true" : "false"); }); }
-document.addEventListener("click", e => { const b = e.target.closest("[data-certdot]"); if (b) { certGo(+b.dataset.certdot); setTimeout(certDotSync, 450); } });
-addEventListener("resize", () => { if ($("#certTrack")) certDots(); });
+function slSync(id) { const i = slPage(id); $$(`#${id}Dots .sp-sdot`).forEach((b, k) => { b.classList.toggle("is-active", k === i); b.setAttribute("aria-current", k === i ? "true" : "false"); }); }
+document.addEventListener("click", e => { const b = e.target.closest("[data-sldot]"); if (!b) return; const [id, i] = b.dataset.sldot.split(":"); slGo(id, +i); setTimeout(() => slSync(id), 450); });
+addEventListener("resize", () => SL_ORDER.forEach(id => { if ($("#" + id + "Track")) slDots(id); }));
+function renderCerts() { slider("cert", CERTS, certRow); setCount("certs", CERTS.length); }
+const certGo = i => slGo("cert", i), certPages = () => slPages(CERTS.length), certDotSync = () => slSync("cert");
 function skillChips(list, id) {
   const show = list.slice(0, 3), more = list.length - show.length;
   return `<div class="sp-skills" data-skills="${id}">${show.map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("")}${more > 0 ? `<button class="sp-skill is-sm is-more" type="button" data-more="${id}" aria-expanded="false" title="Show all skills">+${more} More</button>` : ""}</div>`;
 }
 function renderInterns() {
-  $("#internList").innerHTML = listRows("interns", INTERNS, it => row(box("is-info", "briefcase"),
-    `<h3>${esc(it.company)}</h3><div class="sp-row-sub">${esc(it.role)}</div>
+  slider("intern", INTERNS, it => row(box("is-info", "briefcase"),
+    `<h3>${esc(it.company)}</h3><div class="sp-row-sub">${esc(it.sector || it.role)}</div>
      <div class="sp-row-meta"><span>${iconSvg("calendar", "f", 14)}<b>${it.from} – ${it.to}</b></span><span>${esc(it.dur)}</span></div>
      <span class="sp-skills-lbl">Skill used</span>${skillChips(it.skills, INTERNS.indexOf(it))}
-     <button class="sp-link" type="button" data-soon="Document viewer">${iconSvg("document", "f", 14)}${esc(it.file)}</button>`,
-    MORE_BTN));
+     ${it.file ? `<button class="sp-link" type="button" data-intern-file="${INTERNS.indexOf(it)}">${iconSvg("document", "f", 14)}${esc(it.file)}</button>` : ""}`,
+    `<button class="ui-act ui-act-view" type="button" data-internview="${INTERNS.indexOf(it)}" title="View internship" aria-label="View ${esc(it.company)}">${iconSvg("view", "f", 18)}</button>`
+    + MORE_BTN.replace("data-menu", `data-menu data-intern="${INTERNS.indexOf(it)}"`)));
   setCount("interns", INTERNS.length);
 }
 function renderSpecial() {
-  $("#specialList").innerHTML = listRows("special", SPECIAL, a => row(box("is-success", "trophy"),
-    `<h3>${esc(a.title)}<span class="sp-tag">${esc(a.level)}</span></h3><div class="sp-row-sub">${esc(a.event)}</div>
+  slider("special", SPECIAL, a => row(box("is-success", "trophy"),
+    `<h3>${esc(a.title)}<span class="sp-tag">${esc(a.level)}</span></h3>${a.event ? `<div class="sp-row-sub">${esc(a.event)}</div>` : `<p class="sp-desc">${esc(a.desc || "")}</p>`}
      <div class="sp-row-meta"><span>${esc(a.org)}</span><span>${iconSvg("calendar", "f", 14)}<b>${a.date}</b></span><span class="sp-skill is-sm">${esc(a.skill)}</span></div>`,
-    MORE_BTN));
+    `<button class="ui-act ui-act-view" type="button" data-specialview="${SPECIAL.indexOf(a)}" title="View achievement" aria-label="View ${esc(a.title)}">${iconSvg("view", "f", 18)}</button>`
+    + MORE_BTN.replace("data-menu", `data-menu data-special="${SPECIAL.indexOf(a)}"`)));
   setCount("special", SPECIAL.length);
 }
 function renderDiss() {
-  $("#dissList").innerHTML = listRows("diss", DISS, d => row(box("is-primary", "book"),
+  slider("diss", DISS, d => row(box("is-primary", "book"),
     `<h3>${esc(d.title)}</h3><div><span class="ui-badge ui-badge-${BADGE[d.status] || "neutral"}">${esc(d.status)}</span></div>
-     <div class="sp-row-meta"><span>Guide <b>${esc(d.guide)}</b></span><span>Dept <b>${esc(d.dept)}</b></span><span>Submitted <b>${d.date}</b></span><span>Grade <b>${esc(d.grade)}</b></span></div>
+     <div class="sp-row-meta"><span>Guide <b>${esc(d.guide)}</b></span>${d.year ? `<span>Academic Year <b>${esc(d.year)}</b></span>` : ""}${d.dept ? `<span>Dept <b>${esc(d.dept)}</b></span>` : ""}<span>Submitted <b>${d.date}</b></span><span>Grade <b>${esc(d.grade)}</b></span></div>
      <p class="sp-desc">${esc(d.text)}</p>`,
-    viewBtn("View dissertation", "Dissertation viewer") + MORE_BTN));
+    `<button class="ui-act ui-act-view" type="button" data-dissview="${DISS.indexOf(d)}" title="View dissertation" aria-label="View ${esc(d.title)}">${iconSvg("view", "f", 18)}</button>`
+    + MORE_BTN.replace("data-menu", `data-menu data-diss="${DISS.indexOf(d)}"`)));
   setCount("dissertations", DISS.length);
 }
 function renderResearch() {
-  $("#researchList").innerHTML = listRows("research", RESEARCH, r => row(box("is-warning", "research"),
+  slider("research", RESEARCH, r => row(box("is-warning", "research"),
     `<h3>${esc(r.title)}</h3><div class="sp-row-sub">${esc(r.venue)} · ${esc(r.type)}</div>
      <div class="sp-row-meta"><span class="ui-badge ui-badge-${BADGE[r.status] || "neutral"}">${esc(r.status)}</span><span>${r.label} <b>${r.date}</b></span><span>Role <b>${esc(r.role)}</b></span>${r.co ? `<span>Co-authors <b>${esc(r.co)}</b></span>` : ""}</div>
      ${r.doi ? `<a class="sp-link" href="#">${iconSvg("link", "l", 14)}DOI: ${esc(r.doi)}</a>` : ""}`,
@@ -1408,9 +1731,9 @@ function cfFree() {   // empty the preview first, so nothing still points at the
 }
 /* Sample certificate page (the real file is not stored in this prototype) */
 function certDocHtml(c) {
-  return `<div class="sp-doc"><div><img src="LOGO-USK-sm.png" alt=""><span class="sub">Certificate of Completion · Sample document</span>
-    <p>This is to certify that</p><h3>${esc($("#spName").textContent)}</h3><p>has successfully completed</p><h2>${esc(c.title || "Certificate")}</h2>
-    <p>offered by ${esc(c.by || "the issuing organization")}</p>
+  return `<div class="sp-doc"><div><img src="LOGO-USK-sm.png" alt=""><span class="sub">${esc(c.kind || "Certificate of Completion")} · Sample document</span>
+    <p>This is to certify that</p><h3>${esc($("#spName").textContent)}</h3><p>${esc(c.verb || "has successfully completed")}</p><h2>${esc(c.title || "Certificate")}</h2>
+    <p>${esc(c.byLabel || "offered by")} ${esc(c.by || "the issuing organization")}</p>
     <div class="sign"><span>Issued on: <b>${esc(c.date || "–")}</b></span><span>Certificate ID: <b>${esc(c.id || "–")}</b></span></div></div></div>`;
 }
 const certFileHtml = (url, name, cls) => /\.pdf$/i.test(name)
@@ -1497,7 +1820,7 @@ $("#cfDelYes").addEventListener("click", () => {
   closeModal($("#mdCertDel")); toast("Certificate deleted");
 });
 
-/* ================= COLLEGE PROJECTS: Add / Edit (#mdProj), View (#mdProjView), Delete (28/11) ================= */
+/* ================= COLLEGE PROJECTS: Add / Edit (#mdProj), Delete (28/11) ================= */
 const PJ_CATS = ["Web Application", "Mobile Application", "Machine Learning / AI", "Data Analytics", "IoT / Embedded Systems", "Cloud / DevOps", "Cyber Security", "Research / Prototype", "Other"];
 const PJ_TYPES = ["Major Project", "Mini Project", "Capstone Project", "Group Project", "Individual Project"];
 const PJ_YEARS = ["2023-24", "2024-25", "2025-26", "2026-27"];
@@ -1551,7 +1874,7 @@ function pjPrev(show) {
     : certDocHtml({ title: $("#pjTitle").value.trim() || "Project Report", by: "L.D. College of Engineering, Ahmedabad", date: "–", id: "–" });
   if (show) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
 }
-const pjCount = () => $$("[data-pj-count]").forEach(c => c.textContent = $("#" + c.dataset.pjCount).value.length + " / 500 characters");
+const pjCount = () => $$("[data-pj-count]").forEach(c => c.textContent = $("#" + c.dataset.pjCount).value.length + " / " + $("#" + c.dataset.pjCount).maxLength + " characters");
 function pjReset() {
   const p = PJ.edit != null ? PROJECTS[PJ.edit] : null;
   pjFree();
@@ -1611,35 +1934,386 @@ $("#pjSave").addEventListener("click", () => {
   renderProjects(); hydrate($("#projectList"));
   closeModal($("#mdProj")); toast(old ? "Project updated" : "Project added");
 });
-function pjView(i) {
-  const p = PROJECTS[i]; if (!p) return;
-  PJ.view = i;
-  $("#pvTitle").textContent = p.title; $("#pvSub").textContent = [p.category, p.type].filter(Boolean).join(" · ");
-  const kv = [["Project Category", p.category], ["Project Type", p.type], ["Academic Year", p.year], ["Semester", p.sem], ["Team", p.team], ["Duration", p.from ? `${p.from} – ${p.to}` : ""]].filter(x => x[1]);
-  $("#pvBody").innerHTML = `<div class="sp-kv">${kv.map(([l, v]) => `<div><span>${l}</span><b>${esc(v)}</b></div>`).join("")}</div>
-    <div class="sp-pv-sec"><h5>Project Description</h5><p>${esc(p.text || "–")}</p></div>
-    <div class="sp-pv-sec"><h5>Your Role</h5><p>${esc(p.role || "–")}</p></div>
-    <div class="sp-pv-sec"><h5>Skills Used (${p.skills.length})</h5><div class="sp-skills">${p.skills.map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("")}</div></div>
-    <div class="sp-pv-sec"><h5>Project Link</h5>${p.url ? `<a class="sp-link" href="${esc(p.url)}" target="_blank" rel="noopener">${iconSvg("external", "l", 14)}${esc(p.url)}</a>` : "<p>Not added</p>"}</div>
-    <div class="sp-pv-sec"><h5>Document</h5>${p.file ? `<div class="ui-file-row"><span class="ui-icon-box is-primary">${iconSvg("document", "f", 18)}</span><div><b>${esc(p.file)}</b><small>PDF · ${((p.size || 0) / 1024 / 1024).toFixed(2)} MB</small></div><span></span></div>` : "<p>Not added</p>"}</div>`;
-  openModal("mdProjView");
-}
-$("#pvEdit").addEventListener("click", () => { const i = PJ.view; closeModal($("#mdProjView")); PJ.edit = i; setTimeout(() => openModal("mdProj"), 50); });
 document.addEventListener("click", e => {
   if (e.target.closest("[data-proj-add]")) { PJ.edit = null; return openModal("mdProj"); }
-  const mbtn = e.target.closest("[data-menu]");
-  if (mbtn) { const vi = $("#spMenu [data-act=view]"); vi.hidden = mbtn.dataset.proj == null; return; }   // View only in the projects menu
   const it = e.target.closest("#spMenu .ui-menu-item"), mb = typeof menuBtn !== "undefined" ? menuBtn : null;
   if (it && mb && mb.dataset.proj != null) {
     const i = +mb.dataset.proj, act = it.dataset.act;
-    if (act === "view") pjView(i);
-    else if (act === "edit") { PJ.edit = i; openModal("mdProj"); }
+    if (act === "edit") { PJ.edit = i; openModal("mdProj"); }
     else askDelete("project", PROJECTS[i].title, () => {
       const [p] = PROJECTS.splice(i, 1); if (p?.fileUrl) URL.revokeObjectURL(p.fileUrl);
       renderProjects(); hydrate($("#projectList")); toast("Project deleted");
     });
   }
 });
+
+/* ================= INTERNSHIPS: Add / Edit (#mdIntern), Delete (28/11) ================= */
+const IN_SECTORS = ["Information Technology", "Web Development", "Backend Engineering", "Software Engineering", "Data & Analytics", "Banking & Finance", "FinTech", "Healthcare", "Manufacturing", "Education", "Government / Public Sector", "E-Commerce", "Telecom", "Other"];
+const IN = { edit: null, sector: "", projects: [], skills: [], file: null };
+function inErr(key, msg) {
+  const f = $(`[data-in="${key}"]`); if (!f) return;
+  const h = f.querySelector("[data-in-err]"); h.textContent = msg || "";
+  (f.querySelector("[data-in-help]") || h).classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .ui-input")?.classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .ui-select")?.classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .sp-in-add .ui-input")?.classList.toggle("is-error", !!msg);
+}
+const inDur = (a, b) => {   // "02 Months" / "01 Month" / "12 Days" from two dd/mm/yyyy dates
+  const d = s => { const [x, y, z] = s.split("/").map(Number); return new Date(z, y - 1, x); };
+  const days = Math.round((d(b) - d(a)) / 86400000) + 1, m = Math.round(days / 30.4);
+  return m >= 1 ? `${String(m).padStart(2, "0")} Month${m > 1 ? "s" : ""}` : `${days} Day${days > 1 ? "s" : ""}`;
+};
+function inChips() {
+  $("#inProjChips").innerHTML = IN.projects.map(s => `<span class="ui-chip">${esc(s)}<button type="button" data-in-prm="${esc(s)}" title="Remove ${esc(s)}" aria-label="Remove ${esc(s)}">${iconSvg("close", "l", 12)}</button></span>`).join("");
+  $("#inSkChips").innerHTML = IN.skills.map(s => `<span class="ui-chip">${esc(s)}<button type="button" data-in-srm="${esc(s)}" title="Remove ${esc(s)}" aria-label="Remove ${esc(s)}">${iconSvg("close", "l", 12)}</button></span>`).join("");
+  $("#inSkCount").textContent = IN.skills.length;
+  $$("#inSkill .ui-option").forEach(o => { o.dataset.off = IN.skills.includes(o.dataset.v) ? "1" : ""; o.style.display = o.dataset.off ? "none" : ""; });
+}
+function inFileRender() {
+  inPrev(false);
+  $("#inDrop").hidden = !!IN.file; $("#inFileRow").hidden = !IN.file;
+  if (IN.file) { $("#inFileName").textContent = IN.file.name; $("#inFileSize").textContent = (IN.file.size / 1024 / 1024).toFixed(2) + " MB"; }
+}
+function inFree() { $("#inPrevBody").innerHTML = ""; if (IN.file?.url && !IN.file.kept) URL.revokeObjectURL(IN.file.url); IN.file = null; }
+function inPrev(show) {
+  const box = $("#inPrev"), btn = $("#inFileView"); show = !!(show && IN.file);
+  box.hidden = !show; btn.classList.toggle("is-on", show); btn.setAttribute("aria-expanded", show); btn.title = show ? "Hide preview" : "View certificate";
+  $("#inPrevBody").innerHTML = !show ? "" : IN.file.url ? certFileHtml(IN.file.url, IN.file.name)
+    : certDocHtml({ title: "Internship Certificate", by: $("#inCompany").value.trim() || "Company", date: cfIsoToDmy($("#inTo").value) || "–", id: "–" });
+  if (show) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+function inReset() {
+  const it = IN.edit != null ? INTERNS[IN.edit] : null;
+  inFree();
+  IN.sector = it?.sector || ""; IN.projects = it ? [...(it.projects || [])] : []; IN.skills = it ? [...it.skills] : [];
+  $("#inCompany").value = it?.company || ""; $("#inFrom").value = cfDmyToIso(it?.from); $("#inTo").value = cfDmyToIso(it?.to);
+  $("#inDeliv").value = it?.deliv || ""; $("#inProj").value = "";
+  if (it && it.file) IN.file = { name: it.file, size: it.size || 245760, url: it.url || null, kept: true };
+  $("#mdInternTitle").textContent = it ? "Edit Internship" : "Add Internship";
+  $("#mdInternSub").textContent = it ? "Update the details of this internship." : "Add an internship you completed. It shows in your Skill Passport.";
+  $("#inSave").textContent = it ? "Update Internship" : "Save Internship";
+  pjSelect($("#inSector"), [...new Set([...(it ? [it.sector] : []), ...IN_SECTORS])], IN.sector, v => { IN.sector = v; $("#inSector").pjSync(v); inErr("sector", ""); });
+  pjSelect($("#inSkill"), [...new Set([...SK.saved, ...SKILL_OPTIONS, ...IN.skills])], "", v => { if (!IN.skills.includes(v)) IN.skills.push(v); inChips(); inErr("skills", ""); });
+  ["company", "sector", "from", "to", "projects", "deliv", "skills", "file"].forEach(k => inErr(k, ""));
+  inChips(); inFileRender(); pjCount();
+  $("#mdIntern .ui-modal-body").scrollTop = 0;
+}
+$("#mdIntern").addEventListener("modal:open", inReset);
+function inAddProject() {
+  const v = $("#inProj").value.trim().replace(/\s+/g, " ");
+  if (!v) return inErr("projects", "Type a project name, then click Add.");
+  if (IN.projects.some(p => p.toLowerCase() === v.toLowerCase())) return inErr("projects", "This project is already added.");
+  if (IN.projects.length >= 10) return inErr("projects", "You can add up to 10 projects.");
+  IN.projects.push(v); $("#inProj").value = ""; inErr("projects", ""); inChips(); $("#inProj").focus();
+}
+$("#inProjAdd").addEventListener("click", inAddProject);
+$("#inProj").addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); inAddProject(); } });
+$("#inProjChips").addEventListener("click", e => { const b = e.target.closest("[data-in-prm]"); if (!b) return; IN.projects = IN.projects.filter(s => s !== b.dataset.inPrm); inChips(); });
+$("#inSkChips").addEventListener("click", e => { const b = e.target.closest("[data-in-srm]"); if (!b) return; IN.skills = IN.skills.filter(s => s !== b.dataset.inSrm); inChips(); });
+$("#inForm").addEventListener("input", e => { const f = e.target.closest("[data-in]"); if (f && e.target.id !== "inProj") inErr(f.dataset.in, ""); pjCount(); });
+function inTake(f) {
+  if (!f) return;
+  if (!/\.(pdf|jpe?g|png)$/i.test(f.name)) return inErr("file", "Only PDF, JPEG, JPG or PNG files are allowed.");
+  if (f.size > 2 * 1024 * 1024) return inErr("file", "File size must be up to 2 MB.");
+  inFree(); IN.file = { name: f.name, size: f.size, url: URL.createObjectURL(f) }; inErr("file", ""); inFileRender();
+}
+$("#inDrop").addEventListener("click", () => $("#inFileIn").click());
+$("#inDrop").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("#inFileIn").click(); } });
+$("#inDrop").addEventListener("dragover", e => { e.preventDefault(); $("#inDrop").classList.add("is-over"); });
+$("#inDrop").addEventListener("dragleave", () => $("#inDrop").classList.remove("is-over"));
+$("#inDrop").addEventListener("drop", e => { e.preventDefault(); $("#inDrop").classList.remove("is-over"); inTake(e.dataTransfer.files[0]); });
+$("#inFileIn").addEventListener("change", e => { inTake(e.target.files[0]); e.target.value = ""; });
+$("#inFileRm").addEventListener("click", () => { inFree(); inFileRender(); $("#inDrop").focus(); });
+$("#inFileView").addEventListener("click", () => inPrev($("#inPrev").hidden));
+$("#inPrevHide").addEventListener("click", () => { inPrev(false); $("#inFileView").focus(); });
+$("#inSave").addEventListener("click", () => {
+  const v = id => $("#" + id).value.trim(), errs = [];
+  const need = (k, ok, msg) => { if (!ok) { inErr(k, msg); errs.push(k); } };
+  need("company", v("inCompany"), "Enter the company name.");
+  need("sector", IN.sector, "Select the work sector.");
+  const a = v("inFrom"), b = v("inTo");
+  need("from", a, "Select the start date.");
+  need("to", b && (!a || b >= a), b ? "End date cannot be before the start date." : "Select the end date.");
+  need("projects", IN.projects.length, "Add at least one project.");
+  need("deliv", v("inDeliv"), "Describe your responsibilities and deliverables.");
+  need("skills", IN.skills.length, "Add at least one skill.");
+  if (errs.length) { $(`[data-in="${errs[0]}"]`).scrollIntoView({ block: "center", behavior: "smooth" }); return toast("Please fill in the required details."); }
+  const old = IN.edit != null ? INTERNS[IN.edit] : null, from = cfIsoToDmy(a), to = cfIsoToDmy(b);
+  const item = Object.assign({}, old || {}, { company: v("inCompany"), sector: IN.sector, role: IN.sector, from, to, dur: inDur(from, to), projects: [...IN.projects], deliv: v("inDeliv"), skills: [...IN.skills], file: IN.file?.name || "", size: IN.file?.size || 0, url: IN.file?.url || null });
+  if (old && old.url && old.url !== item.url) URL.revokeObjectURL(old.url);
+  if (IN.file) IN.file.kept = true;
+  if (old) INTERNS[IN.edit] = item; else INTERNS.push(item);
+  if (!old && INTERNS.length > LIMIT.interns) SHOW.interns = true;   // show the new card
+  renderInterns(); hydrate($("#internList"));
+  closeModal($("#mdIntern")); toast(old ? "Internship updated" : "Internship added");
+  if ($("#internTrack")) { const at = old ? IN.edit : INTERNS.length - 1; setTimeout(() => { slGo("intern", Math.min(at, slPages(INTERNS.length) - 1)); setTimeout(() => slSync("intern"), 450); }, 150); }
+});
+/* ================= SPECIAL ACHIEVEMENTS: Add / Edit (#mdSpecial), View (right drawer), Delete (28/11) ================= */
+const SA_LEVELS = ["International", "National", "State", "University", "College"];
+const SA = { edit: null, level: "", file: null };
+function saErr(key, msg) {
+  const f = $(`[data-sa="${key}"]`); if (!f) return;
+  const h = f.querySelector("[data-sa-err]");
+  if (h.dataset.def === undefined) h.dataset.def = h.textContent;
+  h.textContent = msg || h.dataset.def;
+  (f.querySelector("[data-sa-help]") || h).classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .ui-input")?.classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .ui-select")?.classList.toggle("is-error", !!msg);
+}
+function saFileRender() {
+  saPrev(false);
+  $("#saDrop").hidden = !!SA.file; $("#saFileRow").hidden = !SA.file;
+  if (SA.file) { $("#saFileName").textContent = SA.file.name; $("#saFileSize").textContent = (SA.file.size / 1024 / 1024).toFixed(2) + " MB"; }
+}
+function saFree() { $("#saPrevBody").innerHTML = ""; if (SA.file?.url && !SA.file.kept) URL.revokeObjectURL(SA.file.url); SA.file = null; }
+const saDoc = a => ({ title: a.title || "Achievement", by: a.org || "the issuing organization", date: a.date || "–", id: a.id || "–", kind: "Certificate of Achievement", verb: "has been awarded" });
+function saPrev(show) {
+  const box = $("#saPrev"), btn = $("#saFileView"); show = !!(show && SA.file);
+  box.hidden = !show; btn.classList.toggle("is-on", show); btn.setAttribute("aria-expanded", show); btn.title = show ? "Hide preview" : "View certificate";
+  $("#saPrevBody").innerHTML = !show ? "" : SA.file.url ? certFileHtml(SA.file.url, SA.file.name)
+    : certDocHtml(saDoc({ title: $("#saTitle").value.trim(), org: $("#saOrg").value.trim(), date: cfIsoToDmy($("#saDate").value), id: $("#saId").value.trim() }));
+  if (show) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+function saReset() {
+  const a = SA.edit != null ? SPECIAL[SA.edit] : null;
+  saFree();
+  SA.level = a?.level || "";
+  const vals = { saSkill: a?.skill, saId: a?.id, saTitle: a?.title, saOrg: a?.org, saDate: cfDmyToIso(a?.date), saExp: cfDmyToIso(a?.exp), saDesc: a?.desc };
+  Object.entries(vals).forEach(([id, v]) => $("#" + id).value = v || "");
+  if (a && a.file) SA.file = { name: a.file, size: a.size || 245760, url: a.url || null, kept: true };
+  $("#mdSpecialTitle").textContent = a ? "Edit Special Achievement" : "Add Special Achievement";
+  $("#mdSpecialSub").textContent = a ? "Update the details of this achievement." : "Add your awards and recognitions to showcase what makes you stand out.";
+  $("#saSave").textContent = a ? "Update Achievement" : "Save Achievement";
+  $("#saDate").max = cfToday();
+  pjSelect($("#saLevel"), SA_LEVELS, SA.level, v => { SA.level = v; $("#saLevel").pjSync(v); saErr("level", ""); });
+  ["skill", "level", "id", "title", "org", "date", "exp", "desc", "file"].forEach(k => saErr(k, ""));
+  saFileRender(); pjCount();
+  $("#mdSpecial .ui-modal-body").scrollTop = 0;
+}
+$("#mdSpecial").addEventListener("modal:open", saReset);
+$("#saForm").addEventListener("input", e => { const f = e.target.closest("[data-sa]"); if (f) saErr(f.dataset.sa, ""); pjCount(); });
+function saTake(f) {
+  if (!f) return;
+  if (!/\.(pdf|jpe?g|png)$/i.test(f.name)) return saErr("file", "Only PDF, JPEG, JPG or PNG files are allowed.");
+  if (f.size > 2 * 1024 * 1024) return saErr("file", "File size must be up to 2 MB.");
+  saFree(); SA.file = { name: f.name, size: f.size, url: URL.createObjectURL(f) }; saErr("file", ""); saFileRender();
+}
+$("#saDrop").addEventListener("click", () => $("#saFileIn").click());
+$("#saDrop").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("#saFileIn").click(); } });
+$("#saDrop").addEventListener("dragover", e => { e.preventDefault(); $("#saDrop").classList.add("is-over"); });
+$("#saDrop").addEventListener("dragleave", () => $("#saDrop").classList.remove("is-over"));
+$("#saDrop").addEventListener("drop", e => { e.preventDefault(); $("#saDrop").classList.remove("is-over"); saTake(e.dataTransfer.files[0]); });
+$("#saFileIn").addEventListener("change", e => { saTake(e.target.files[0]); e.target.value = ""; });
+$("#saFileRm").addEventListener("click", () => { saFree(); saFileRender(); $("#saDrop").focus(); });
+$("#saFileView").addEventListener("click", () => saPrev($("#saPrev").hidden));
+$("#saPrevHide").addEventListener("click", () => { saPrev(false); $("#saFileView").focus(); });
+$("#saSave").addEventListener("click", () => {
+  const v = id => $("#" + id).value.trim(), errs = [];
+  const need = (k, ok, msg) => { if (!ok) { saErr(k, msg); errs.push(k); } };
+  need("skill", v("saSkill"), "Enter the skill name.");
+  need("level", SA.level, "Select the skill level.");
+  need("title", v("saTitle"), "Enter the certificate name.");
+  need("org", v("saOrg"), "Enter the organization name.");
+  const d = v("saDate"), x = v("saExp");
+  need("date", d && d <= cfToday(), d ? "Issue date cannot be a future date." : "Select the issue date.");
+  if (x && d) need("exp", x > d, "Expiry date must be after the issue date.");
+  need("desc", v("saDesc"), "Enter a short description.");
+  if (errs.length) { $(`[data-sa="${errs[0]}"]`).scrollIntoView({ block: "center", behavior: "smooth" }); return toast("Please fill in the required details."); }
+  const old = SA.edit != null ? SPECIAL[SA.edit] : null;
+  const item = Object.assign({}, old || {}, { skill: v("saSkill"), level: SA.level, id: v("saId"), title: v("saTitle"), org: v("saOrg"), date: cfIsoToDmy(d), exp: cfIsoToDmy(x), desc: v("saDesc"), file: SA.file?.name || "", size: SA.file?.size || 0, url: SA.file?.url || null });
+  if (old && old.url && old.url !== item.url) URL.revokeObjectURL(old.url);
+  if (SA.file) SA.file.kept = true;
+  if (old) SPECIAL[SA.edit] = item; else SPECIAL.push(item);
+  const at = old ? SA.edit : SPECIAL.length - 1;
+  renderSpecial(); hydrate($("#specialList"));
+  closeModal($("#mdSpecial")); toast(old ? "Achievement updated" : "Achievement added");
+  if ($("#specialTrack")) setTimeout(() => { slGo("special", Math.min(at, slPages(SPECIAL.length) - 1)); setTimeout(() => slSync("special"), 450); }, 150);
+});
+/* Card: eye → the same right drawer as certificates · 3 dots → Edit / Delete */
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-special-add]")) { SA.edit = null; return openModal("mdSpecial"); }
+  const v = e.target.closest("[data-specialview]");
+  if (v) {
+    const a = SPECIAL[+v.dataset.specialview]; if (!a) return;
+    const name = a.file || a.title.replace(/[^\w]+/g, "_").replace(/^_|_$/g, "") + ".pdf";
+    $("#drCertDocTitle").textContent = a.title; $("#drCertDocSub").textContent = `${a.org} · Issued on ${a.date}`;
+    $("#drCertDocFile").textContent = name; $("#drCertDocType").textContent = /\.pdf$/i.test(name) ? "PDF" : "Image";
+    $("#drCertDocBody").innerHTML = a.url ? certFileHtml(a.url, name, "sp-doc-file") : certDocHtml(saDoc(a));
+    return openDrawer("drCertDoc");
+  }
+  const it = e.target.closest("#spMenu .ui-menu-item"), mb = typeof menuBtn !== "undefined" ? menuBtn : null;
+  if (it && mb && mb.dataset.special != null) {
+    const i = +mb.dataset.special;
+    if (it.dataset.act === "edit") { SA.edit = i; openModal("mdSpecial"); }
+    else askDelete("achievement", SPECIAL[i].title, () => {
+      const [x] = SPECIAL.splice(i, 1); if (x?.url) URL.revokeObjectURL(x.url);
+      renderSpecial(); hydrate($("#specialList")); toast("Achievement deleted");
+    });
+  }
+});
+
+/* ================= COLLEGE DISSERTATION: Add / Edit (#mdDiss), View (#mdDissView), Delete (28/11) ================= */
+const DX_YEARS = ["2022-23", "2023-24", "2024-25", "2025-26", "2026-27"];
+const DX = { edit: null, year: "", file: null, view: null };
+function dxErr(key, msg) {
+  const f = $(`[data-ds="${key}"]`); if (!f) return;
+  const h = f.querySelector("[data-ds-err]");
+  if (h.dataset.def === undefined) h.dataset.def = h.textContent;
+  h.textContent = msg || h.dataset.def;
+  (f.querySelector("[data-ds-help]") || h).classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .ui-input")?.classList.toggle("is-error", !!msg);
+  f.querySelector(":scope > .ui-select")?.classList.toggle("is-error", !!msg);
+}
+const dxDoc = d => ({ title: d.title || "Dissertation", by: d.guide || "the guide", byLabel: "guided by", date: d.date || "–", id: "–", kind: "Dissertation Report", verb: "has submitted the dissertation" });
+function dxFileRender() {
+  dxPrev(false);
+  $("#dsDrop").hidden = !!DX.file; $("#dsFileRow").hidden = !DX.file;
+  if (DX.file) { $("#dsFileName").textContent = DX.file.name; $("#dsFileSize").textContent = (DX.file.size / 1024 / 1024).toFixed(2) + " MB"; }
+}
+function dxFree() { $("#dsPrevBody").innerHTML = ""; if (DX.file?.url && !DX.file.kept) URL.revokeObjectURL(DX.file.url); DX.file = null; }
+function dxPrev(show) {
+  const box = $("#dsPrev"), btn = $("#dsFileView"); show = !!(show && DX.file);
+  box.hidden = !show; btn.classList.toggle("is-on", show); btn.setAttribute("aria-expanded", show); btn.title = show ? "Hide preview" : "View document";
+  $("#dsPrevBody").innerHTML = !show ? "" : DX.file.url ? certFileHtml(DX.file.url, DX.file.name) : certDocHtml(dxDoc({ title: $("#dsTitle").value.trim(), guide: $("#dsGuide").value.trim() }));
+  if (show) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+function dxReset() {
+  const d = DX.edit != null ? DISS[DX.edit] : null;
+  dxFree();
+  DX.year = d?.year || "";
+  $("#dsTitle").value = d?.title || ""; $("#dsGuide").value = d?.guide || ""; $("#dsDesc").value = d?.text || "";
+  if (d && d.file) DX.file = { name: d.file, size: d.size || 1048576, url: d.url || null, kept: true };
+  $("#mdDissTitle").textContent = d ? "Edit College Dissertation" : "Add College Dissertation";
+  $("#mdDissSub").textContent = d ? "Update the details of this dissertation." : "Add your college dissertation details to showcase your research work.";
+  $("#dsSave").textContent = d ? "Update Dissertation" : "Save Dissertation";
+  pjSelect($("#dsYear"), [...new Set([...(d?.year ? [d.year] : []), ...DX_YEARS])], DX.year, v => { DX.year = v; $("#dsYear").pjSync(v); dxErr("year", ""); });
+  ["title", "guide", "year", "desc", "file"].forEach(k => dxErr(k, ""));
+  dxFileRender(); pjCount();
+  $("#mdDiss .ui-modal-body").scrollTop = 0;
+}
+$("#mdDiss").addEventListener("modal:open", dxReset);
+$("#dsForm").addEventListener("input", e => { const f = e.target.closest("[data-ds]"); if (f) dxErr(f.dataset.ds, ""); pjCount(); });
+function dxTake(f) {
+  if (!f) return;
+  if (!/\.pdf$/i.test(f.name)) return dxErr("file", "Only PDF files are allowed.");
+  if (f.size > 5 * 1024 * 1024) return dxErr("file", "File size must be up to 5 MB.");
+  dxFree(); DX.file = { name: f.name, size: f.size, url: URL.createObjectURL(f) }; dxErr("file", ""); dxFileRender();
+}
+$("#dsDrop").addEventListener("click", () => $("#dsFileIn").click());
+$("#dsDrop").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("#dsFileIn").click(); } });
+$("#dsDrop").addEventListener("dragover", e => { e.preventDefault(); $("#dsDrop").classList.add("is-over"); });
+$("#dsDrop").addEventListener("dragleave", () => $("#dsDrop").classList.remove("is-over"));
+$("#dsDrop").addEventListener("drop", e => { e.preventDefault(); $("#dsDrop").classList.remove("is-over"); dxTake(e.dataTransfer.files[0]); });
+$("#dsFileIn").addEventListener("change", e => { dxTake(e.target.files[0]); e.target.value = ""; });
+$("#dsFileRm").addEventListener("click", () => { dxFree(); dxFileRender(); $("#dsDrop").focus(); });
+$("#dsFileView").addEventListener("click", () => dxPrev($("#dsPrev").hidden));
+$("#dsPrevHide").addEventListener("click", () => { dxPrev(false); $("#dsFileView").focus(); });
+$("#dsSave").addEventListener("click", () => {
+  const v = id => $("#" + id).value.trim(), errs = [];
+  const need = (k, ok, msg) => { if (!ok) { dxErr(k, msg); errs.push(k); } };
+  need("title", v("dsTitle"), "Enter the dissertation title.");
+  need("guide", v("dsGuide"), "Enter the guide name.");
+  need("year", DX.year, "Select the academic year.");
+  need("desc", v("dsDesc"), "Enter the dissertation description.");
+  if (errs.length) { $(`[data-ds="${errs[0]}"]`).scrollIntoView({ block: "center", behavior: "smooth" }); return toast("Please fill in the required details."); }
+  const old = DX.edit != null ? DISS[DX.edit] : null, t = new Date();
+  const today = `${String(t.getDate()).padStart(2, "0")}/${String(t.getMonth() + 1).padStart(2, "0")}/${t.getFullYear()}`;
+  const item = Object.assign({ status: "Under Review", dept: "", date: today, grade: "Pending" }, old || {}, { title: v("dsTitle"), guide: v("dsGuide"), year: DX.year, text: v("dsDesc"), file: DX.file?.name || "", size: DX.file?.size || 0, url: DX.file?.url || null });
+  if (old && old.url && old.url !== item.url) URL.revokeObjectURL(old.url);
+  if (DX.file) DX.file.kept = true;
+  if (old) DISS[DX.edit] = item; else DISS.push(item);
+  const at = old ? DX.edit : DISS.length - 1;
+  renderDiss(); hydrate($("#dissList"));
+  closeModal($("#mdDiss")); toast(old ? "Dissertation updated" : "Dissertation added");
+  if ($("#dissTrack")) setTimeout(() => { slGo("diss", Math.min(at, slPages(DISS.length) - 1)); setTimeout(() => slSync("diss"), 450); }, 150);
+});
+/* View (read only) */
+function dvPrev(show) {
+  const d = DISS[DX.view], box = $("#dvPrev"), btn = $("#dvFileView"); show = !!(show && d && d.file);
+  box.hidden = !show; btn.classList.toggle("is-on", show); btn.setAttribute("aria-expanded", show); btn.title = show ? "Hide preview" : "View document";
+  $("#dvPrevBody").innerHTML = !show ? "" : d.url ? certFileHtml(d.url, d.file) : certDocHtml(dxDoc(d));
+  if (show) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+function dxView(i) {
+  const d = DISS[i]; if (!d) return; DX.view = i;
+  $("#dvTitle").textContent = d.title; $("#dvYear").textContent = d.year || "–"; $("#dvGuide").textContent = d.guide;
+  $("#dvStatus").innerHTML = `<span class="ui-badge ui-badge-${BADGE[d.status] || "neutral"}">${esc(d.status)}</span>`;
+  $("#dvGradeWrap").hidden = !d.grade; $("#dvGrade").textContent = d.grade || "";
+  $("#dvDesc").textContent = d.text || "–";
+  $("#dvFileWrap").hidden = !d.file;
+  if (d.file) { $("#dvFileName").textContent = d.file; $("#dvFileType").textContent = "PDF"; }
+  dvPrev(false);
+  openModal("mdDissView");
+}
+$("#dvFileView").addEventListener("click", () => dvPrev($("#dvPrev").hidden));
+$("#dvPrevHide").addEventListener("click", () => { dvPrev(false); $("#dvFileView").focus(); });
+$("#dvEdit").addEventListener("click", () => { const i = DX.view; closeModal($("#mdDissView")); DX.edit = i; setTimeout(() => openModal("mdDiss"), 50); });
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-diss-add]")) { DX.edit = null; return openModal("mdDiss"); }
+  const v = e.target.closest("[data-dissview]"); if (v) return dxView(+v.dataset.dissview);
+  const it = e.target.closest("#spMenu .ui-menu-item"), mb = typeof menuBtn !== "undefined" ? menuBtn : null;
+  if (it && mb && mb.dataset.diss != null) {
+    const i = +mb.dataset.diss;
+    if (it.dataset.act === "edit") { DX.edit = i; openModal("mdDiss"); }
+    else askDelete("dissertation", DISS[i].title, () => {
+      const [x] = DISS.splice(i, 1); if (x?.url) URL.revokeObjectURL(x.url);
+      renderDiss(); hydrate($("#dissList")); toast("Dissertation deleted");
+    });
+  }
+});
+
+/* Internship View (read only): eye on the card → #mdInternView (28/11) */
+const inDays = (a, b) => { const d = s => { const [x, y, z] = s.split("/").map(Number); return new Date(z, y - 1, x); }; return Math.round((d(b) - d(a)) / 86400000) + 1; };
+let ivAt = null;
+function ivPrev(show) {
+  const it = INTERNS[ivAt], box = $("#ivPrev"), btn = $("#ivFileView"); show = !!(show && it && it.file);
+  box.hidden = !show; btn.classList.toggle("is-on", show); btn.setAttribute("aria-expanded", show); btn.title = show ? "Hide preview" : "View certificate";
+  $("#ivPrevBody").innerHTML = !show ? "" : it.url ? certFileHtml(it.url, it.file) : certDocHtml({ title: "Internship Certificate", by: it.company, date: it.to, id: "–" });
+  if (show) box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+}
+function inView(i) {
+  const it = INTERNS[i]; if (!it) return; ivAt = i;
+  $("#ivCompany").textContent = it.company; $("#ivSector").textContent = it.sector || it.role || "–";
+  $("#ivDur").textContent = `${it.from} – ${it.to}`; $("#ivDays").textContent = `(${inDays(it.from, it.to)} days)`;
+  $("#ivProjs").innerHTML = (it.projects || []).map(p => `<span>${esc(p)}</span>`).join("") || "<span>–</span>";
+  $("#ivDeliv").textContent = it.deliv || "–";
+  $("#ivSkills").innerHTML = it.skills.map(s => `<span class="sp-skill is-sm">${esc(s)}</span>`).join("");
+  $("#ivFileWrap").hidden = !it.file;
+  if (it.file) {
+    const pdf = /\.pdf$/i.test(it.file);
+    $("#ivFileIc").innerHTML = iconSvg(pdf ? "document" : "image", "f", 18);
+    $("#ivFileName").textContent = it.file; $("#ivFileType").textContent = pdf ? "PDF" : "Image";
+  }
+  ivPrev(false);
+  openModal("mdInternView");
+}
+$("#ivFileView").addEventListener("click", () => ivPrev($("#ivPrev").hidden));
+$("#ivPrevHide").addEventListener("click", () => { ivPrev(false); $("#ivFileView").focus(); });
+$("#ivEdit").addEventListener("click", () => { const i = ivAt; closeModal($("#mdInternView")); IN.edit = i; setTimeout(() => openModal("mdIntern"), 50); });
+document.addEventListener("click", e => { const b = e.target.closest("[data-internview]"); if (b) inView(+b.dataset.internview); });
+/* Card: certificate link → drawer · 3 dots → Edit / Delete */
+document.addEventListener("click", e => {
+  if (e.target.closest("[data-intern-add]")) { IN.edit = null; return openModal("mdIntern"); }
+  const f = e.target.closest("[data-intern-file]");
+  if (f) {
+    const it = INTERNS[+f.dataset.internFile]; if (!it) return;
+    const c = { title: "Internship Certificate", by: it.company, date: it.to, id: "–" };
+    $("#drCertDocTitle").textContent = `${it.company} – Internship`; $("#drCertDocSub").textContent = `${it.sector || it.role} · ${it.from} – ${it.to}`;
+    $("#drCertDocFile").textContent = it.file; $("#drCertDocType").textContent = /\.pdf$/i.test(it.file) ? "PDF" : "Image";
+    $("#drCertDocBody").innerHTML = it.url ? certFileHtml(it.url, it.file, "sp-doc-file") : certDocHtml(c);
+    return openDrawer("drCertDoc");
+  }
+  const it = e.target.closest("#spMenu .ui-menu-item"), mb = typeof menuBtn !== "undefined" ? menuBtn : null;
+  if (it && mb && mb.dataset.intern != null) {
+    const i = +mb.dataset.intern;
+    if (it.dataset.act === "edit") { IN.edit = i; openModal("mdIntern"); }
+    else askDelete("internship", INTERNS[i].company, () => {
+      const [x] = INTERNS.splice(i, 1); if (x?.url) URL.revokeObjectURL(x.url);
+      renderInterns(); hydrate($("#internList")); toast("Internship deleted");
+    });
+  }
+});
+
 
 const SKILL_OPTIONS = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Angular", "Vue.js", "Node.js", "Java", "Spring Boot", "Hibernate", "Python", "Django", "Machine Learning", "Data Analysis", "SQL", "MySQL", "MongoDB", "PHP", "Laravel", "C", "C++", "C#", ".NET", "Docker", "Git", "Linux", "AWS", "Figma", "UI/UX Design", "Communication", "Problem Solving", "Teamwork", "MS Excel", "Tally"];
 const SK = { saved: ["Java", "Python", "SQL", "Spring Boot", "React JS", "Data Structures and Algorithms", "Git", "Docker"], draft: [], max: 15, active: 0, opts: [] };

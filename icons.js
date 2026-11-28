@@ -20,6 +20,9 @@ window.USK_ICONS = {
  "briefcase": {
   "f": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M9 3h6a2 2 0 012 2v2h3a2 2 0 012 2v4H2V9a2 2 0 012-2h3V5a2 2 0 012-2zm0 4h6V5H9z\"/><path d=\"M2 15h8v1a1 1 0 001 1h2a1 1 0 001-1v-1h8v4a2 2 0 01-2 2H4a2 2 0 01-2-2z\"/></g>"
  },
+ "building": {
+  "f": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M5 3h8a1 1 0 011 1v5h4a1 1 0 011 1v11H4V4a1 1 0 011-1zM7 6v2h2V6zM11 6v2h2V6zM7 10v2h2v-2zM11 10v2h2v-2zM7 14v2h2v-2zM11 14v2h2v-2zM16 11v2h2v-2zM16 15v2h2v-2z\"/></g>"
+ },
  "calendar": {
   "f": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M7 2h2v2h6V2h2v2h2a2 2 0 012 2v13a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h2zM5 10v9h14v-9z\"/></g>",
   "o": "<g fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 10h18M8 3v4M16 3v4\"/></g>"
@@ -30,6 +33,9 @@ window.USK_ICONS = {
  "chevron-down": {
   "l": "<g fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 9l6 6 6-6\"/></g>"
  },
+ "clock": {
+  "f": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M12 2a10 10 0 100 20 10 10 0 000-20zM11 7h2v4.6l3.2 1.9-1 1.7-4.2-2.5z\"/></g>"
+ },
  "close": {
   "l": "<g fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 6l12 12M18 6L6 18\"/></g>"
  },
@@ -39,6 +45,9 @@ window.USK_ICONS = {
  "delete": {
   "f": "<g fill=\"currentColor\"><path d=\"M9 3h6l1 2h4v2H4V5h4z\"/><path fill-rule=\"evenodd\" d=\"M6 9h12l-1 11a2 2 0 01-2 2H9a2 2 0 01-2-2zm4 3v7h1.5v-7zm2.5 0v7H14v-7z\"/></g>",
   "o": "<g fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3\"/></g>"
+ },
+ "digilocker": {
+  "f": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M8 2h6l6 6v12a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2zM13 3.5V9h5.5zM9.5 18a2.3 2.3 0 01-.3-4.6 3.5 3.5 0 016.7-.4A2.5 2.5 0 0115.5 18z\"/></g>"
  },
  "document": {
   "f": "<g fill=\"currentColor\"><path fill-rule=\"evenodd\" d=\"M6 2h9l5 5v13a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm8 1.5V8h4.5zM8 12v2h8v-2zm0 4v2h5v-2z\"/></g>",

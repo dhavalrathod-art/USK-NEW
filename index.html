@@ -748,6 +748,7 @@ mark{background:#ffe9b8;color:inherit;border-radius:2px;padding:0 1px}
 .lg-err[hidden]{display:none}
 .lg-or{display:flex;align-items:center;gap:var(--space-12);font-size:var(--font-size-caption);color:var(--color-text-secondary)}
 .lg-or::before,.lg-or::after{content:"";flex:1;height:1px;background:var(--color-divider)}
+.lg-dl{text-decoration:none}
 .lg-help{text-align:center;font-size:var(--font-size-body-sm);line-height:var(--line-height-body-sm);color:var(--color-text-body)}
 .lg-helpdesk{align-self:center;display:inline-flex;align-items:center;gap:6px;font-size:var(--font-size-body-sm);font-weight:var(--font-weight-semibold);color:var(--color-primary-600);text-decoration:none}
 .lg-helpdesk:hover{text-decoration:underline}
@@ -2265,6 +2266,7 @@ a.af-item:focus-visible{outline:0;box-shadow:0 0 0 3px var(--color-focus-ring)}
         <span class="ui-help is-error lg-err" id="lgErr" role="alert" hidden></span>
         <button class="ui-btn ui-btn-primary ui-btn-lg ui-btn-block" type="submit" id="lgSubmit" data-lg="Sign In">Sign In</button>
         <div class="lg-or" data-lg="OR">OR</div>
+        <a class="ui-btn ui-btn-digilocker ui-btn-lg ui-btn-block lg-dl" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener" id="lgDigi"><span data-icon="digilocker:f:20"></span><span data-lg="Sign Up With DigiLocker">Sign Up With DigiLocker</span></a>
         <p class="lg-help" data-lg="Problem logging in? Contact support or visit your university help desk.">Problem logging in? Contact support or visit your university help desk.</p>
         <a class="lg-helpdesk" href="#" data-lgsoon="Help Desk"><span data-icon="phone:f:16"></span><span data-lg="Help Desk">Help Desk</span></a>
       </form>
@@ -8637,7 +8639,7 @@ const LG_GU = {   // Gujarati texts for the Sign In screen
   "Access your academic records, schedules, and administrative resources in one unified space.": "તમારા શૈક્ષણિક રેકોર્ડ, સમયપત્રક અને વહીવટી સંસાધનો એક જ જગ્યાએ મેળવો.",
   "Government Of Gujarat": "ગુજરાત સરકાર", "Student Login": "વિદ્યાર્થી લૉગિન", "Enter your credentials to access the portal": "પોર્ટલ ખોલવા માટે તમારી વિગતો દાખલ કરો",
   "Email / Mobile No / APAAR ID": "ઈમેલ / મોબાઈલ નં. / APAAR ID", "Password": "પાસવર્ડ", "Remember me on this device": "આ ઉપકરણ પર મને યાદ રાખો",
-  "Sign In": "સાઇન ઇન", "OR": "અથવા",
+  "Sign In": "સાઇન ઇન", "OR": "અથવા", "Sign Up With DigiLocker": "ડિજીલોકર સાથે સાઇન અપ કરો",
   "Scholarships": "શિષ્યવૃત્તિ", "Scholarships Made Simple for Every Student.": "દરેક વિદ્યાર્થી માટે શિષ્યવૃત્તિ હવે સરળ.",
   "Check your eligibility, apply online and track every scholarship application from one place.": "તમારી પાત્રતા ચકાસો, ઓનલાઇન અરજી કરો અને દરેક શિષ્યવૃત્તિ અરજીની સ્થિતિ એક જ જગ્યાએથી જુઓ.",
   "Skills & Careers": "કૌશલ્ય અને કારકિર્દી", "Build Your Skills. Shape Your Career.": "કૌશલ્ય વિકસાવો. કારકિર્દી ઘડો.",
